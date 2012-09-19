@@ -1,0 +1,3888 @@
+/*
+ Document   : zalerioStyle.css
+ Created on : 15 May, 2012, 6:29:07 PM
+ Author     : Shekhar
+ Description:
+ Purpose of the stylesheet follows.
+*/
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+@font-face {
+    font-family: FuturaLT;
+    src: url('fonts/FuturaLT.ttf')
+}
+@font-face {
+    font-family: FuturaLT-Bold;
+    src: url('fonts/FuturaLT-Bold.ttf')
+}
+body {
+    font-family: FuturaLT;
+}
+
+#active-screen {
+    background: url(../images/zalerio_1.2/3.ingame_board/board/ingame_bg.jpg) no-repeat top left;
+	width: 758px;
+	height: 640px;
+    overflow: visible;
+    color: white;
+    margin: 0 auto;
+    position: relative;
+}
+.startGame {
+    display: block;
+    margin-left: 4px;
+    margin-top: 0px;
+}
+.gameLogo{
+	background: url("../images/zalerio_1.2/4.ingame_ui/zalerio_logo.png") left -3px no-repeat transparent;
+	width: 202px;
+	height: 60px;
+	float: left
+}
+.assistDiv-message {
+    width: 439px;
+    height: 102px;
+    position: relative;
+}
+.assistDiv-character {
+    width: 132px;
+    height: 148px;
+}
+#startButton {
+    background: url("../images/zalerio_1.2/4.ingame_ui/startbutton.png") 1px -113px no-repeat transparent;
+	width: 153px;
+	height: 110px;
+	margin-bottom: 8px;
+	border: none;
+	display: block;
+	cursor: pointer
+}
+
+#startButton:hover {
+    background-position: 1px 0px;
+}
+.bottomHUDpanel {
+    padding-left: 142px
+}
+.bottomHUDbuttons {
+    list-style: none;
+    position: relative;
+    padding:0px;
+    margin-top:4px
+}
+.bottomHUDbuttons li {
+    background: url("../images/zalerio_1.2/4.ingame_ui/basebuttons.png") -3px -5px no-repeat transparent;
+    display: block;
+    float: left;
+    width: 54px;
+    height: 54px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-family:FuturaLT-Bold;
+    line-height: 14px;
+}
+.bottomHUDbuttons li:hover {
+   background-position:-2px -72px;
+   display: inline-block;
+}
+
+.bottomHUDbuttons li div {
+    width: 50px;
+    height: 34px;
+}
+.bottomHUDbuttons li#bottomHUDbuttons-acc div {
+}
+.bottomHUDbuttons li#bottomHUDbuttons-more div {
+    background: url("../images/zalerio_1.2/4.ingame_ui/basebuttons_moresymbol.png") 7px 5px transparent no-repeat;
+}
+.bottomHUDbuttons li#bottomHUDbuttons-stats div {
+    background: url("../images/zalerio_1.2/4.ingame_ui/basebuttons_Statssymbol.png") 6px 4px transparent no-repeat;
+}
+.bottomHUDbuttons li#bottomHUDbuttons-chat div {
+}
+.bottomHUDbuttons li#bottomHUDbuttons-play div {
+}
+.bottomHUDbuttons li#bottomHUDbuttons-play {
+	background:none;
+    width: 141px;
+    height: 62px;
+    font-size: 1em;
+    margin-top:-3px
+}
+.bottomHUDbuttons li#bottomHUDbuttons-play a {
+    background: url("../images/zalerio_1.2/4.ingame_ui/play.png") -6px 4px transparent no-repeat;
+}
+.bottomHUDbuttons li#bottomHUDbuttons-play a:hover {
+    /*background-position:-6px -66px !important;*/
+}
+.bottomHUDbuttons li.bottomHUDbuttons-play-gray {
+    width: 141px;
+    height: 56px;      
+}
+.bottomHUDbuttons li.bottomHUDbuttons-play-gray a{
+	background: url("../images/zalerio_1.2/4.ingame_ui/play.png") -6px -138px transparent no-repeat !important;
+    color:#ccc !important;
+    line-height: 62px !important;
+}
+.bottomHUDbuttons li.bottomHUDbuttons-play-gray .bet_done{
+	background-position:-6px -208px !important;
+}
+.bottomHUDbuttons li#bottomHUDbuttons-play a {
+    color: white;
+    display: block;
+    font-size: 1.9em;
+    font-weight: bolder;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+    text-decoration: none;
+    width: 141px;
+    text-transform: uppercase
+}
+.box-blank {
+    background: url("../images/zalerio_1.2/3.ingame_board/board/tile_base.png") no-repeat top left transparent;
+    width: 20px;
+    line-height: 20px;
+    height: 20px;
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+    border-radius: 4px;
+}
+.draggableBets{
+	border-radius: 4px;
+}
+.box-drophover {
+    background: url("../images/zalerio_1.2/3.ingame_board/board/tile_red.png") no-repeat top left transparent;
+    width: 20px;
+    height: 20px;
+}
+.box-newBet {
+    background: url("../images/zalerio_1.2/3.ingame_board/board/board_question_mark_tile.png") no-repeat top left transparent;
+    cursor: pointer;        
+}
+
+.box-currentRoundCorrect, .box-previousRoundCurrentPlayerCorrect {
+    background: url("../images/zalerio_1.2/3.ingame_board/board/tile_green.png") no-repeat top left transparent;
+    font-family: FuturaLT;
+    text-align: center;
+    line-height: 20px;
+    font-size: 13px;
+}
+.box-previousRoundCurrentPlayerIncorrect, .box-currentRoundIncorrect {
+    background: url("../images/zalerio_1.2/3.ingame_board/board/tile_orange.png") no-repeat top left transparent;
+}
+.box-dizitCompleted {
+    background: url("../images/zalerio_1.2/3.ingame_board/board/tile_blue.png") no-repeat top left transparent;
+}
+.box-previousRoundOtherPlayer {
+    background: url("../images/zalerio_1.2/3.ingame_board/board/tile_lightgrey.png") no-repeat top left transparent;
+}
+.box-currentRoundCorrect, .box-currentRoundIncorrect, .box-dizitCompleted {
+    color: white;
+    font-family: FuturaLT;
+    text-align: center;
+    line-height: 20px;
+    font-size: 13px;
+}
+.box-previousRoundCurrentPlayerCorrect, .box-previousRoundCurrentPlayerIncorrect, .box-previousRoundOtherPlayer {
+    color: black;
+}
+.box-RevealingNumber {
+}
+.superJoker{
+    background: url("../images/zalerio_1.2/3.ingame_board/board/tile_superjoker.png") no-repeat top left transparent;
+}
+.joker{
+    background: url("../images/zalerio_1.2/3.ingame_board/board/tile_joker.png") no-repeat top left transparent;
+}
+.arrowclass{
+	background: url("../images/zalerio_1.2/4.ingame_ui/arrow.png") 2px 4px no-repeat;
+	width:8px;
+}
+
+.boardRowLastTile {
+    clear: left;
+}
+.gameBetPanel {
+    position: relative;
+    height: 38px;
+}
+.gameBetPanel .friendChallenge {
+    background: url("../images/zalerio_1.2/4.ingame_ui/hud_buttons.png") no-repeat scroll 3px -2px transparent;
+	height: 27px;
+	padding-top:10px;
+	margin-top:5px;
+	width: 175px;
+	position:absolute
+}
+.gameBetPanel .friendChallenge:hover {
+    background-position:3px -52px;
+}
+.gameBetPanel .back_to_the_game{
+	background: url("../images/zalerio_1.2/4.ingame_ui/hud_buttons.png") no-repeat scroll 3px -89px transparent;
+}
+.gameBetPanel .back_to_the_game:hover{
+	background-position:3px -139px;
+}
+.friendChallenge a{
+     font-family: mriam;
+     color: white;
+     font-size: 17px;
+    font-weight: normal;
+    line-height: 30px;
+    text-decoration: none;
+    display: block;
+	width: 165px;
+	height: 21px;
+}
+
+
+.gameBetPanelUl {
+    /* background: url(../images/zlro/Stand_base.png) no-repeat top left transparent;*/
+	position: absolute;
+	right: 0px;
+	margin-right: 16px;
+}
+.gamewall {
+    width: 440px;
+	margin-left: 7px;
+	margin-top: 5px;
+}
+.gameBetPanelUl li {
+    background: url(../images/zalerio_1.2/3.ingame_board/stand/stand_tile.png) no-repeat top left transparent;
+    display: inline-block;
+    height: 26px;
+    margin: 6px 0 0 2px;
+    width: 26px;
+    padding-right: 1px
+}
+.gameBetPanelUl li.draggableBets {
+    cursor: pointer;
+}
+.gameBetPanelUl li.draggableBets:hover {
+    background: url(../images/zalerio_1.2/3.ingame_board/stand/stand_tile_hover.png) no-repeat top left transparent;
+    cursor: pointer;
+}
+.gameBetPanelUl li.usedDraggableBets {
+    background: none;
+}
+
+.gameBetPanelUl li.betsAlreadyPlaced {
+    background: none;
+}
+.draggableBetsClick {
+    background: url("../images/zalerio_1.2/3.ingame_board/stand/stand_tile_pickup.png") no-repeat top left transparent !important;
+    cursor: pointer;
+    width: 50px;
+    height: 49px;
+}
+.topHead {
+}
+.assistDiv {
+    position: relative;
+}
+.assistDiv-message {
+    float: left;
+}
+.assistDiv-character {
+    position: absolute;
+    right: 12px;
+    top: 86px;
+}
+.centerHUD {
+    clear: both;
+    position: relative;
+}
+.leftHUD, .mainGame, .rightHUDPanel {
+    float: left;
+}
+
+.leftHUD {
+    background: url("../images/zalerio_1.2/4.ingame_ui/left_pannelbase.png") no-repeat center 65px transparent;
+    width: 143px;
+	height: 485px;
+	margin-right: 1px;
+	margin-left: 0px;
+	margin-top: 6px
+}
+.gameInfoPanel {
+    padding-left: 2px
+}
+.mainGame {
+    position: relative;
+    width: 440px;
+    margin-left: 0px;
+}
+.rightHUDPanel {
+    margin-left: 0px;
+    width: 156px;
+    height: 490px;
+    margin-left: -2px;
+    overflow: hidden
+}
+#rightHUDbackground {
+    width: 157px;
+    height: 465px;
+    position: relative;
+    z-index: 999;
+    overflow: visible;
+	border-radius: 0px 0px 15px 15px;
+	background: rgba(48,96,142,0.7);
+	-webkit-background: rgba(48,96,142,0.7);
+	-moz-background: rgba(48,96,142,0.7);
+   /* filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000); /* IE 6/7 */
+   /* -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF)";  IE8 */
+}
+.playerImage img, .userAreaImg img {
+    width: 46px;
+    height: 46px;
+    background:#000;
+    padding:1px;
+    padding: 2px
+}
+.userAreaImg .userlevelbelt{
+    height: auto !important;
+    width: auto !important;
+    position: absolute !important;
+    background: none !important;
+}
+.gameInfoDiv#gameInfo-game-players .userAreaImg {
+    width: 39px;
+    height: 39px;
+    padding-top: 2px;
+    margin: 0 0 0 15px
+}
+.gameInfoDiv#gameInfo-game-players .userAreaImg img {
+    width: 35px;
+    height: 35px;
+    padding: 2px;
+}
+.gameScore-round li {
+    display: inline-block;
+    line-height: 18px
+}
+.gameScore-round li a {
+    display: block;
+    width: 14px;
+    height: 17px;
+    text-decoration: none;
+    color: white;
+    font-weight: normal;
+    font-size: 10px;
+    text-align: center;
+    font-family: FuturaLT-Bold;
+}
+.gameScore-round li a.doneRound {
+    background: url("../images/zalerio_1.2/4.ingame_ui/roundbar_roundnotreached.png") no-repeat -3px -2px;
+}
+.gameScore-round li a.currentRound {
+    background: url("../images/zalerio_1.2/4.ingame_ui/roundbar_roundcurrent.png") no-repeat -3px -3px;
+    color: #000;
+    width: 15px;
+}
+.gameScore-round li a.notPlayedRound {
+    background: url("../images/zalerio_1.2/4.ingame_ui/roundbar_roundcompleated.png") no-repeat -3px -2px;
+}
+.gameScore-round li a.finalRound {
+    width: 55px;
+    height: 17px;
+    text-transform:uppercase;
+    background: url("../images/zalerio_1.2/4.ingame_ui/roundbar_finalroundnotreached.png") no-repeat -2px -2px;
+}
+.gameScore-round li a.currentFinalRound {
+    background: url("../images/zalerio_1.2/4.ingame_ui/roundbar_finalroundcurrent.png") no-repeat -2px -2px;
+    width: 56px;
+    height: 17px;
+}
+.gameMenu {
+    height: 24px
+}
+.gameMenu ul {
+    width: 157px;
+    height: 33px;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    list-style: none;
+}
+.gameMenu ul li {
+    float: left;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.gameMenu ul li.helpButton {
+    background: url("../images/zalerio_1.2/4.ingame_ui/hud_buttons.png") no-repeat -222px -12px;
+    height: 30px;
+    width: 90px;
+    line-height: 28px;
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+.gameMenu ul li.helpButton:hover {
+    background-position: -222px -62px;
+}
+.gameMenu ul li.audioButton a {
+    background: url("../images/zalerio_1.2/4.ingame_ui/hud_buttons.png") no-repeat -361px -13px transparent;
+    width: 67px;
+    height: 30px;
+    display: block;
+    margin-left: -1px
+}
+.gameMenu ul li.mute a{
+    background-position: -451px -13px
+}
+.gameMenu ul li.audioButton a:hover {
+    background-position:-452px -63px;
+}
+.gameMenu ul li.mute a:hover{
+    background-position: -361px -63px
+}
+.gameInfoDiv#gamePrize {
+    width: 136px;
+    height: 65px;
+}
+.companySignature {
+    float: left;
+    width: 210px;
+    height: 55px;
+}
+.bottomHUDbuttons {
+    float: left;
+}
+.gameInfoDiv div {
+    padding-top: 4px;
+    overflow: hidden;
+    text-align: center;
+}
+.gameInfoDiv#gameInfo-game-players {
+    height: 68px;
+    width: 145px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 2px;
+    margin-left: -3px;
+}
+#gamePrizeImageDiv {
+    width: 135px;
+}
+#gamePrizeName {
+    float: left;
+    width: 78px;
+    height: 18px;
+}
+#gamePrizeMRP {
+    float: right;
+    width: 58px;
+    height: 18px;
+}
+.userArea {
+    background: url("../images/zalerio_1.2/4.ingame_ui/playerdescription_bar.png") no-repeat top left; /*mainplayer_base */
+    width: 145px;
+    height: 66px;
+    position: relative;
+}
+#gameInfo-game-players .userArea {
+    background: url("../images/zalerio_1.2/4.ingame_ui/yourturntheirturn_playerbase.png") no-repeat top left;
+}
+.userArea div {
+    float: left;
+}
+.userArea .userAreaName {
+    letter-spacing: 1px;
+    font-weight: normal !important;
+    width: 78px;
+    height: 20px;
+    overflow: hidden;
+    color: #1f3447;
+    font-weight: bold;
+    padding-top: 0;
+    text-align: left;
+    margin-left: 1px;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.userArea .userArealogout {
+    padding: 0;
+    margin: 21px 0 0 32px;
+}
+.userArea .userArealogout a {
+    color: #ccc;
+    font-size: 12px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    margin: 0;
+}
+.userArea .userArealogout a:hover {
+    color: #fff;
+}
+#userTopPicHUDMain {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    width: 10000px;
+    height: 68px;
+}
+#userTopPicHUDMain li {
+    float: left;
+}
+.userArea .userAreaImg {
+    margin-left: 4px;
+    margin-top: -5px;
+    width: 50px;
+    height: 50px;
+}
+#userScoreHUDMain{
+    width: 98%
+}
+.gameScore {
+    margin: 5px 0 0 1px;
+    width: 140px;
+    height: 132px;
+    background: url("../images/zalerio_1.2/4.ingame_ui/roundbar_and_score_base.png") left top no-repeat;
+}
+.gameScore-players table tr td {
+    padding: 0px;
+    margin: 0px;
+    padding-top: 2px;
+    color: white;
+}
+.gameScore-players table tr td {
+    overflow: hidden;
+    height: 15px;
+    width: 10px;
+    text-transform:capitalize
+}
+.userScoreHUD_playerSerial:after{
+	content:"."
+}
+.navCarouselForPlayer {
+    height: 60px;
+    width: 12px;
+    position: absolute;
+    z-index: 2;
+    cursor: url;
+}
+.navCarouselForPlayer#navCarouselLeft {
+    cursor: pointer;
+}
+.navCarouselForPlayer#navCarouselRight {
+    left: 127px;
+    cursor: pointer;
+}
+.assistDiv-message .chatPane {
+    position: absolute;
+    overflow: hidden;
+    top: 10px;
+    left: 10px;
+    width: 365px;
+    height: 70px;
+    color: white;
+    font-weight: bold;
+}
+#showOnMouseOver {
+    position: absolute;
+    display: none;
+}
+.turnLabel {
+    background: url("../images/zalerio_1.2/4.ingame_ui/yourturntheirturn_indicatorbase.png") no-repeat top left transparent;
+    width: 83px;
+    height: 17px;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 4px;
+    padding-right: 5px;
+    font-size: 15px;
+    line-height: 18px
+}
+.turnLabel#theirturn-label {
+    margin-left: 44px;
+}
+.turnLabel#yourturn-label {
+    margin-left: 12px;
+}
+.rightHUDDiv {
+    overflow: hidden;
+    width: 146px;
+    margin-bottom: 6px;
+    padding-left: 4px;
+    padding-bottom:10px
+}
+ul.turnGameInstance {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 10000px;
+    position: relative;
+}
+
+.turnGameInstance li {
+    float: left;
+    position: relative;
+    width: 150px;
+    height: 65px;
+}
+.turnGameInstance li a.userLeftHUDMoveAnc {
+    position: absolute;
+    display: block;
+    height: 60px;
+    width: 12px;
+    z-index: 1;
+}
+.turnGameInstance li a.userLeftHUDMoveAnc.userLeftHUDMoveAncRight {
+    left: 128px;
+}
+.turnGameInstance li a div {
+    display: block;
+    float: left;
+    height: 50px;
+}
+.turnGameInstance li a div.playerImage {
+    width: 45px;
+    padding-left: 14px;
+    padding-top: 5px;
+}
+
+.turnGameInstance li a div.playerInfoTxt {
+    position: relative;
+    width: 68px;
+    padding-top: 4px;
+    height: 46px;
+    overflow: hidden;
+}
+.turnGameInstance li a div.playerInfoTxt div {
+    float: left;
+    text-decoration: none;
+    width: 68px;
+    height: 18px;
+    margin: 1px 0;
+    color: white;
+    overflow: hidden;
+}
+.turnGameInstance li a div.playerInfoTxt .lineTwo {
+    height: 11px;
+}
+
+.turnGameInstance li a div.playerInfoTxt .lineOne {
+    height: 10px;
+}
+
+.turnGameInstance li a div.playerInfoTxt div.lineThree {
+    font-weight: bold;
+}
+.turnGameInstance li a div.playerImage img {
+    height: 35px;
+    width: 35px;
+}
+
+.assistDiv-message {
+    display: none !important;
+}
+.userRIGHTMoveAnc{
+    width: 12px;
+    height: 62px;
+    cursor: pointer;
+    position: absolute;
+    left: 127px
+}
+.userLEFTMoveAnc{
+    width: 16px;
+    height: 62px;
+    cursor: pointer;
+    position: absolute;
+    left: 0
+}
+/* 19/06/2012 */
+
+.mainGame {
+    background: url("../images/zalerio_1.2/3.ingame_board/board/boardand_stand.png") left top no-repeat;
+    width: 458px;
+    height: 492px;
+    margin-right: 2px;
+}
+.gameInfoDiv#gamePrize {
+    background: none;
+    text-indent: -9999px
+}
+
+.gameInfoDiv#gamePrize img {
+    display: none
+}
+.girlimg {
+    /* background: url("../images/ingame/Girlbreadthing0001.png") 610px 30px no-repeat; */
+    display: block;
+    overflow: visible
+}
+.wait {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    background:#000;
+}
+
+.offline, .null, .online, .idle, .active {
+    text-indent: -9999px
+}
+
+.offline, .null {
+    background: url('../images/zalerio_1.2/4.ingame_ui/indicator_offline.png') no-repeat;
+    width: 20px;
+    margin-top: 38px;
+    margin-left: 3px
+}
+
+.online, .active, .idle {
+    width: 20px;
+    height: 22px;
+    margin-top: 38px;
+    background: url('../images/zalerio_1.2/4.ingame_ui/indicator_online.png') no-repeat;
+}
+
+.gameScore-round li .currentFinalRound {
+    color: #000
+}
+
+#gameScore-round {
+    padding-top: 2px;
+}
+
+#friendpopup {
+    width: 531px;
+    height: 460px;
+    margin: 0 auto;
+    background: url('../images/popupBase.png') center center no-repeat;
+}
+
+.div_top {
+    height: 125px;
+    display: block;
+    clear: both
+}
+.div_botttom {
+	width:530px;
+	height: 335px;
+	background: url('../images/zalerio_1.2/5.all_popup/mystats/mygames/statsbase.png') no-repeat;
+	border: none;
+	margin: 0 auto;
+	overflow: hidden;
+	display: block;
+	float: left;
+	margin-left: 5px;
+}
+.div_botttom .div_left, .div_botttom .div_right {
+    overflow: hidden;
+    width: 245px;
+    float: left;
+    margin-left: 5px;
+}
+.div_left .titles {
+    margin-top: 50px;
+    margin-left: 20px;
+    color: #314d70;
+    overflow: hidden;
+    display: block;
+    width: 90%;
+}
+.div_left .titles span {
+    font-size: 15px;
+    display: block;
+    float: left
+}
+.div_left .titles .players {
+    width: 80px
+}
+.div_left .titles .round {
+    width: 80px
+}
+.div_left .titles .rank {
+    width: 40px
+}
+
+.s_show_popup, .score_show_popup, .status_show_popup {
+    position: absolute;
+    top: 142px;
+    z-index: 9999;
+    width: 100%;
+    display: none;
+}
+#s_friendpopup, #score_friendpopup {
+    width: 531px;
+    height: 460px;
+    margin: 0 auto
+}
+
+.invite_status_base{
+    height: 418px;
+    background: url('../images/zalerio_1.2/5.all_popup/group_formation/gfp_base.png') 4px 36px no-repeat;
+    margin: 0 auto;
+    overflow: hidden
+}
+.show_score {
+    width: 472px;
+    height: 443px;
+    background: url('../images/zalerio_1.2/5.all_popup/gameover_screen/showscore.png') center center no-repeat;
+    margin: 0 auto;
+    overflow: hidden
+}
+.div_img {
+    background: url("../images/zalerio_1.2/5.all_popup/mystats/mystatsCommon/player_picbase.png") 1px -5px no-repeat;
+    color: #FFFFFF;
+    float: left;
+    font-size: 16px;
+    height: 88px;
+    margin-left: 60px;
+    margin-top: 15px;
+    text-align: center;
+    width: 110px;
+}
+.div_img span#stat_userName {
+	font-size: 13px;
+	height: 15px;
+	overflow: hidden;
+	margin-top: -2px;
+	display: block;
+	text-transform: capitalize;
+}
+
+.div_img img {margin: 0 0 -3px;
+              padding: 8px 20px 0 21px;}
+.game_stats_user {
+    width: 65px;
+    height: 48px;
+    display: block;
+    overflow: hidden;
+    background: url('../images/zalerio_1.2/5.all_popup/mystats/mygames/player_namebase.png') 5px bottom no-repeat;
+    margin: 1px 0 0 17px
+}
+#lineone, #lineTwo, #lineThree {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-left: 20px;
+    float: left;
+    width: 90%
+}
+
+#lineone {
+    margin-top: 30px
+}
+.GreenBelt {
+    color: #3f9441;
+    float: right
+}
+#lineTwo span, #lineThree span {
+    float: right;
+    text-decoration: underline
+}
+.rip div {
+    float: left
+}
+.rip .round_stats, .rip .rank_stats {
+    width: 41px;
+    height: 41px;
+    background: url('../images/Player_roundandrankbase.png') no-repeat;
+    margin-top: 18px;
+    margin-left: 24px;
+    line-height: 41px;
+    text-align: center;
+    color: white;
+    font-size: 22px;
+}
+.rip .rank_stats {
+    margin-left: 34px
+}
+#topScore_div {
+    margin-top: 182px;
+    overflow: hidden;
+    width: 100%
+}
+#bottomScore_div {
+    overflow: hidden;
+    margin-top: 35px;
+    height: 97px;
+    overflow-y: scroll;
+    margin-right: 7px
+}
+#topScore_div *, #bottomScore_div * {
+    float: left;
+}
+#topScore_div #score1 {
+    width: 90%
+}
+#topScore_div img {
+    margin-left: 80px;
+    padding:1px;
+    background:#000;
+    width: 59px;
+    height: 58px;
+    padding: 4px
+}
+#bottomScore_div img {
+    height: 38px;
+    padding: 1px;
+    margin-top: 2px;
+    padding:1px;
+    background:#000;
+}
+#topScore_div .name {
+    margin-left: 10px;
+    font-size: 20px;
+    color: #000;
+    text-transform: capitalize;
+    margin-top: 40px
+}
+#score1 .score {
+    color: #02aa03;
+    font-size: 38px;
+    margin-top: 12px;
+    text-shadow:0px 1px 0.05em #333
+}
+#topScore_div .score, #bottomScore_div .score {
+    float: right
+}
+.show_score .score,.show_score .rank{
+    font-family: FuturaLT-Bold;
+}
+.score_rep {
+    width: 95% !important;
+    padding-right: 25px;
+    height: 44px;
+    margin-left: 10px;
+    background: url('../images/gameoverscreen_otherplayer_base.png') no-repeat;
+    margin-bottom: 3px;
+}
+.score_rep .rank {
+    height: 44px;
+    width: 50px;
+    line-height: 44px;
+    font-size: 24px;
+    padding-left: 10px
+}
+.score_rep .name {
+    color: #000;
+    margin-top: 28px;
+    font-size: 13px;
+    margin-left: 5px;
+}
+.score_rep .score {
+    height: 44px;
+    width: 50px;
+    line-height: 44px;
+    font-size: 24px;
+    padding-left: 10px
+}
+.show_score .button_score a {
+    width: 100px;
+    text-decoration: none;
+    padding-right: 6px;
+    height:35px;
+    float: left;
+    background: url('../images/zalerio_1.2/5.all_popup/gameover_screen/buttons.png') left 1px no-repeat;
+    text-indent:-9999px
+}
+
+.show_score .button_score a:hover {
+		background-position:left bottom
+}
+.show_score .button_score a.dismiss {
+	background-position:right 1px
+}
+.show_score .button_score .dismiss:hover {
+	background-position:right bottom
+}
+.button_score {
+	margin-top: 29px;
+	margin-left: 129px;
+	overflow: hidden;
+}
+.gameScore-players table tr .userScoreHUD_playerScore {
+    text-align: right;
+    padding-right: 5px
+}
+.GRAY, .GRAY *{
+    color:#aaa !important
+}
+body {
+    background: #000 url('../images/zalerio_1.2/3.ingame_board/stand/stand_tile_pickup.png') center center no-repeat;
+}
+
+/* 5/7/2012 */
+.div_top_right{ float:left; width:325px;}
+
+#rip_active {
+    display: inline-block;
+    height: 240px;
+    overflow-y: scroll;
+    width: 240px;
+}
+#rip_active div.rip{
+    display: inline-block;
+}
+.won, .lost {
+    height: 250px;
+    margin-top: 50px;
+    overflow-y: scroll;
+    width: 230px;
+}
+.lost {
+    margin-top: 34px;
+}
+.won .rip, .lost .rip {
+    display: inline-block;height:45px;
+}
+.won .game_stats_user, .lost .game_stats_user {
+    margin: 0px 0 0 12px;
+}
+.won .rematch, .lost .rematch {
+
+    float: left;
+    height: 35px;
+    margin: 10px 0 0 2px;
+    overflow: hidden;
+    width: 95px;
+}
+.won .rematch a, .lost .rematch a {
+	background: -moz-linear-gradient(top, #204364 0%, #53708d 50%, #4b6885 51%, #204364 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c6185), color-stop(50%,#53708d), color-stop(51%,#4b6885), color-stop(100%,#204364));
+    background: -webkit-linear-gradient(top, #204364 0%,#53708d 50%,#4b6885 51%,#204364 100%);
+    background: -ms-linear-gradient(top, #204364 0%,#53708d 50%,#4b6885 51%,#204364 100%);
+    border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+    float: left;
+    height: 25px;
+    overflow: hidden;
+    font-size: 14px;
+    font-family: FuturaLT-Bold;
+    text-decoration: none;
+    width: 95px;
+    color: #fff;
+    text-align: center;
+	line-height: 25px;	
+}
+.won .rematch a:hover, .lost .rematch a:hover {
+	background: -moz-linear-gradient(top, #7eafe0 0%, #94b9df 50%, #76a6d6 51%, #6d9ccb 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7eafe0), color-stop(50%,#94b9df), color-stop(51%,#76a6d6), color-stop(100%,#6d9ccb));
+    background: -webkit-linear-gradient(top, #7eafe0 0%,#94b9df 50%,#76a6d6 51%,#6d9ccb 100%);
+    background: -ms-linear-gradient(top, #7eafe0 0%,#94b9df 50%,#76a6d6 51%,#6d9ccb 100%);
+    
+}
+
+/* carousel styling*/
+.infiniteCarousel {
+    position: relative;
+    width: 38px;
+    padding: 0 16px;
+}
+
+.infiniteCarousel .wrapper {
+	
+    /*min-height: 10em;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    width: 34px;*/
+    min-height: 10em;
+overflow: auto;
+position: absolute;
+top: 0;
+width: 51px;
+left:5px;
+}
+
+
+
+.infiniteCarousel .wrapper ul {
+    width: 9999px;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    position: absolute;
+    top: 0;
+}
+
+.infiniteCarousel ul li {
+  /*display: block;
+    float: left;
+    height: 31px;
+    padding: 6px 1px;
+    width: 31px;*/
+  display: block;
+float: left;
+height: 38px; overflow:hidden;
+padding: 5px 10px;
+width: 31px;position:relative;
+}
+.infiniteCarousel ul li a {
+	text-decoration:none;
+	color:#fff;
+        
+}
+.infiniteCarousel ul li a img {
+  display:block;
+    padding: 0 2px;
+    margin-left: -1px;
+    bottom:-7px;
+}
+.infiniteCarousel ul li a span {
+	color:#fff;
+	font-size:11px;
+     
+position:absolute;
+z-index:999;
+width:51px;
+left:3px; float:left;
+text-align:center;
+margin-top:-2px;
+
+}
+.infiniteCarousel .arrow {
+   cursor: pointer;
+display: block;
+height: 16px;
+position: absolute;
+text-indent: -999px;
+top: 10px;
+width: 9px;
+}
+
+#lineone{
+    margin-top: 30px
+}
+.GreenBelt{
+    color:#3f9441;
+    float: right
+}
+#lineTwo span,#lineThree span{
+    float: right;
+    text-decoration: underline
+}
+.rip div{ float: left}
+.rip .round_stats,.rip .rank_stats{ 
+    width: 49px; height: 49px;
+    background: url('../images/zalerio_1.2/5.all_popup/mystats/mygames/player_roundandrankbase.png') no-repeat;
+    margin-top: 4px;
+    margin-left: 11px;
+    line-height: 48px;
+    font-family: FuturaLT-Bold;
+    text-align: center;
+    color:#fff;
+    font-size: 16px;
+}
+.rip .rank_stats{ margin-left: 27px}
+#topScore_div{
+    margin-top: 182px;
+    overflow: hidden;
+    width: 100%
+}
+#bottomScore_div{
+    overflow: hidden;
+    margin-top: 35px;
+    height: 82px;
+    overflow-y: scroll;
+    margin-right: 7px;
+    width: 97%;
+}
+#topScore_div *,#bottomScore_div *{
+    float:left;
+}
+#topScore_div #score1{
+    width: 90%
+}
+#topScore_div img{
+    margin-left: 80px;
+    padding:1px;
+    background:#000;
+    width: 59px;
+    height:58px;
+    padding: 4px
+}
+#bottomScore_div img{
+    height:38px;  
+    padding:1px;
+    margin-top: 2px;
+    padding:1px;
+    background:#000;
+}
+#topScore_div .name{
+    margin-left: 2px;
+    font-size: 24px;
+    color: black;
+    text-transform: capitalize;
+    margin-top: 32px;
+    color:#fff
+}
+#score1 .score{ color:#435b77;}
+#topScore_div .score,#bottomScore_div .score{
+    float: right
+}
+.score_rep{
+	width: 87%;
+	padding-right: 3px;
+	height: 46px;
+	margin-left: 12px;
+    background: url('../images/zalerio_1.2/5.all_popup/gameover_screen/gameoverscreen_otherplayer_base.png') no-repeat;
+}
+.score_rep .rank{
+	color: white;
+	font-family: FuturaLT;
+	font-size: 22px;
+	height: 44px;
+	line-height: 44px;
+	padding-right: 5px;
+	padding-left: 5px;
+	width: 50px;
+}
+.score_rep .name{
+	color: white;
+	text-transform: capitalize;
+	margin-top: 15px;
+	font-size: 20px;
+	margin-left: 3px;
+}
+.score_rep .score{
+	height: 44px;
+	width: 60px;
+	line-height: 44px;
+	font-size: 24px;
+	padding-right: 10px;
+	color: white;
+	font-family: FuturaLT;
+}
+
+.infiniteCarousel .back {
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mygames/games_player_arrow_key.png) no-repeat 1px 0;
+    left: 4px;
+}
+
+.infiniteCarousel .forward:hover {
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mygames/games_player_arrow_key.png) no-repeat -16px -18px;
+}
+.infiniteCarousel .forward {
+    background : url(../images/zalerio_1.2/5.all_popup/mystats/mygames/games_player_arrow_key.png) no-repeat -16px 0;
+    right: 11px;
+}
+.infiniteCarousel .back:hover {
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mygames/games_player_arrow_key.png) no-repeat 1px -18px;
+}
+
+
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+*/
+
+.jspContainer
+{
+    overflow: hidden;
+    position: relative;
+}
+
+.jspPane
+{
+    position: absolute;
+}
+
+.jspVerticalBar
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px;
+    background: #545454;
+}
+
+.jspHorizontalBar
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: red;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+{
+    margin: 0;
+    padding: 0;
+}
+
+.jspCap
+{
+    display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+    float: left;
+}
+
+.jspTrack
+{
+
+    position: relative;
+}
+
+.jspDrag
+{
+    background: #2a2a2a;
+    position: relative;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+    float: left;
+    height: 100%;
+}
+
+.jspArrow
+{
+    text-indent: -20000px;
+    display: block;
+    cursor: pointer;
+}
+
+.jspArrow.jspDisabled
+{
+    cursor: default;
+
+}
+
+.jspVerticalBar .jspArrow
+{
+    height: 16px;
+}
+
+.jspHorizontalBar .jspArrow
+{
+    width: 16px;
+    float: left;
+    height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+    outline: none;
+}
+
+.jspCorner
+{
+    background: #eeeef4;
+    float: left;
+    height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+    margin: 0 -3px 0 0;
+}
+.gameScore-players table tr .userScoreHUD_playerScore{
+    text-align: right;
+    padding-right: 2px
+}
+body{
+    background: #fff url('../images/zalerio_1.2/3.ingame_board/stand/stand_tile_pickup.png') center center no-repeat;
+}
+#page{
+	background:#fff !important;
+	margin-top:0px !important;
+}
+.roundForBidsCountUl{
+    margin: 0px;
+    padding: 0px;
+}
+
+/**** Styles for help pop  ****/
+.help {
+    background: url("../images/zalerio_1.2/5.all_popup/help/help_common/helptab_base.png") no-repeat scroll 0 83px;
+    border: medium none;
+    display: block;
+    height: 450px;
+    margin: 0 4px;
+    overflow: hidden;
+    width: 513px;
+}
+ul.help_nav {
+    float:right;
+    margin:61px 0 0 0 ;
+}
+#li-help-contact-us{
+
+}
+#li-help-tutorial{
+    margin-right: 2px;
+}
+ul.help_nav  li {
+    float:right;
+    width:86px;
+    list-style:none;
+}
+ul.help_nav  li a {
+    background: url("../images/zalerio_1.2/5.all_popup/help/help_common/helptab_on_off.png") no-repeat scroll -9px -8px;
+    width:86px;
+    float:left;
+    height:18px;
+    color:#fff;
+    text-decoration:none;
+    font-size:15px;
+    padding-top:3px;
+    text-align:center;
+}
+ul.help_nav  li a.active,ul.help_nav  li a:hover {
+    background: url("../images/zalerio_1.2/5.all_popup/help/help_common/helptab_on_off.png") no-repeat scroll -9px -36px;
+    color:#4482be;
+    margin-top:0px;
+    text-indent:0px;
+} 
+.tutorial{
+    float:left;
+    width: 513px;
+    height:367px;
+    overflow:hidden;
+
+}
+.tutorial h2 {
+   background: url("../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_how_ does_ it_work.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    font-size: 20px;
+    height: 32px;
+    padding-top: 8px;
+    text-align: center;
+    width: 513px;
+}
+.rules-content { width:155px; float:left; background: url("../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_sepration _line.png") no-repeat scroll right top; height:168px;}
+.rules-content ul { margin:0; padding:0 10px;}
+.rules-content ul li{ list-style:decimal inside; color:#344555; font-size:13px; height:16px;}
+.rules-content ul li a { color: #344555; font-size:13px; text-decoration:none;}
+.rules-content ul li a:hover,.rules-content ul li a.active{ font-size:13px; color:#344555}
+.rules-container {
+	float:left;
+	width: 355px;
+	height:300px;
+        overflow:hidden;
+} 
+.rules {
+	width:335px;
+	float:left;
+	padding:0 2px 0 5px;
+	height:6200px;
+}
+.rules h3{ font-size:18px; color:#4482be; margin:0px 0 10px; padding:0px; float:left; width:100%;}
+.rules p{ color:#344555; font-size:13px; float:left;}
+.rules p.start{ margin-bottom:160px;}
+.rules img{ float:left;}
+.rules p img,.rules ul li img{ float:right; margin:0 0 0 0px;}
+.rules p img.none,.rules ul li img.none{ float:none;}
+.rules p img.left,.rules ul li img.left{ float:left;margin:0 10px 0 0;}
+.rules ul li{ color:#344555; font-size:13px; float:left; margin:5px 0;}
+.rules p img.left,.rules ul li img.right{ float:right;}
+.rules table{ border:1px solid #ffff;}
+.rules table tr td{ font-size:22px;}
+.rules table tr.even{ background:#FFFFFF;}
+.rules table tr.odd{ background:#ccc;}
+
+
+.rep img{
+    margin: 3px 6px 3px 10px;
+    padding: 2px;
+    background:#000;
+    width: 43px;
+}
+
+.positionAbsolute{
+    position: absolute !important;
+}
+
+.newCarousel .userArea {
+    background: url("../images/zalerio_1.2/4.ingame_ui/yourturntheirturn_playerbase.png") no-repeat top left;
+}
+.newCarousel .userArea.current {
+	background: url("../images/zalerio_1.2/4.ingame_ui/yourturntheirturn_playerbase_active.png") no-repeat top left;
+}
+.newCarouselblanktile{
+	padding:0 !important;
+	cursor:pointer;
+	opacity:0.8
+}
+.newCarouselblanktile:hover{
+	opacity:1
+}
+.newCarouselblanktile:before {
+    background: url("../images/zalerio_1.2/4.ingame_ui/yourturntheirturn_blank_tile.png") 0 -1px no-repeat;
+    content: 'Start more games!';
+    display:block;
+    float:left;
+    width: 150px;
+	height: 35px;
+	padding-top:10px;
+	font-family:FuturaLT;
+	font-size:15px
+
+}
+
+.newCarousel .pastgame:before {
+    background: url("../images/zalerio_1.2/4.ingame_ui/yourturntheirturn_blank_tile.png") 0 -1px no-repeat;
+    content: 'Nothing finished yet!';
+    display:block;
+    float:left;
+    width: 150px;
+	height: 35px;
+	padding-top:10px;
+	font-family:FuturaLT;
+	font-size:15px;
+	padding-left:5px
+
+}
+
+.newCarousel .blanktile,.newCarousel .pastgame{background:none;padding-top:0}
+
+.newCarousel .userArea .userAreaName{
+    font-size:15px;
+    letter-spacing: 0px;
+    width: 70px;
+    height: 20px;
+    color: #4c7394;
+    text-transform: capitalize
+}
+.pastgame .userAreaImg img{
+    margin-top: 7px;
+}
+.pastgame .userAreaName{
+    margin-top: 3px;
+}
+.gameInfoDiv#gameInfo-game-players .newCarousel .userAreaImg img,.turnGameInstance .userAreaImg img{
+    width: 38px;
+    height: 38px;
+    padding: 2px;
+    background:#000;
+    padding:1px
+}
+.turnGameInstance .userAreaImg{
+    margin-left: 14px;
+    width: 44px;
+}
+
+.gameInfoDiv#gameInfo-game-players .newCarousel .userAreaImg{
+    width: 42px;
+    height: 42px;
+    padding-top: 0px
+}
+.gameInfoDiv .userLastPlayed{
+    padding-top: 0px;
+    font-size:11px;
+    margin-top:-3px
+}
+
+.gameInfoDiv .userPlayStatus,.gameInfoDiv .userRemind{
+    padding:0px 0 0 1px;
+    font-size: 11px;
+    color: #ff3300
+}
+.userPlayStatus{
+    width: 68px;
+    text-align: left !important
+}
+.gameInfoDiv .userRemind{    
+    left: 57px;
+    top: 49px;
+    position: absolute;
+    cursor: pointer;
+    word-break: break-all;
+    width: 68px;
+    overflow: hidden;
+    height: 14px;
+}
+
+.userRemind.loader{   background: url(../images/zalerio_1.2/loader/58x10.gif)  no-repeat; text-indent: -9999px; }
+
+.gameInfoDiv .userRemind:hover{
+    text-decoration:underline
+}
+.gameInfoDiv .userRoundNo{
+    position: absolute;
+    width: 13px;
+    height: 14px;
+    top: 47px;
+    left: 16px;
+    padding: 0;
+    color:#000;
+    line-height: 14px;
+    font-size:11px;
+    font-family: FuturaLT-Bold;
+    background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/carauselbaseroundindicator.png)  no-repeat;    
+}
+
+.gameInfoDiv .userOnlineStatus{
+	background: url('../images/zalerio_1.2/4.ingame_ui/indicator_offline.png') 3px 4px no-repeat;
+    position: absolute;
+    width: 22px;
+    height: 19px;
+    top: 44px;
+    left: 34px;
+    padding: 0; 
+}
+.gameInfoDiv .status_online{
+	background: url('../images/zalerio_1.2/4.ingame_ui/indicator_online.png') left 2px no-repeat;
+}
+/* round result css */
+.roundresult{
+    width: 368px;
+    height: 329px;
+    background: url("../images/zalerio_1.2/8.round result Popup/round_result_popup_base.png") no-repeat;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    left: 265px;
+    top: 160px
+}
+
+.content_r{
+    height: 300px;
+    width: 208px;
+}
+
+.content_r_new_effect{
+    height: 300px;
+    width: 208px;
+    text-align: center;
+	background: #123;
+	background-image: -webkit-linear-gradient(-45deg, rgba(100, 155, 155, 0), rgba(100, 155, 155, .1) 50%, transparent 50%), -webkit-linear-gradient(#234,#345,#234);
+	background-image: -moz-linear-gradient(-45deg, rgba(100, 155, 155, 0), rgba(100, 155, 155, .1) 50%, transparent 50%), -moz-linear-gradient(#234,#345,#234);
+	background-image: -ms-linear-gradient(-45deg, rgba(100, 155, 155, 0), rgba(100, 155, 155, .1) 50%, transparent 50%), -ms-linear-gradient(#234,#345,#234);
+	background-image: -o-linear-gradient(-45deg, rgba(100, 155, 155, 0), rgba(100, 155, 155, .1) 50%, transparent 50%), -o-linear-gradient(#234,#345,#234);
+	background-image: linear-gradient(-45deg, rgba(100, 155, 155, 0), rgba(100, 155, 155, .1) 50%, transparent 50%), linear-gradient(#234,#345,#234);
+	padding: 10px 10px;
+	width: 240px;
+	color: #DEF;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .7);
+	margin: 0 auto;
+	border-radius: 5px;
+	font-weight: bold;
+	box-shadow: 0 0 7px 3px rgba(0, 155, 255, .3), inset 0 0 0 1px rgba(180, 255, 255, .2), inset 0 1px 0 rgba(255, 255, 255, .2), 0 0 0 1px #012;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-delay: .2s;
+	-webkit-animation-timing-function: ease;
+	-webkit-animation-fill-mode: both;
+	-moz-animation-duration: 1s;
+	-moz-animation-delay: .2s;
+	-moz-animation-timing-function: ease;
+	-moz-animation-fill-mode: both;
+	-ms-animation-duration: 1s;
+	-ms-animation-delay: .2s;
+	-ms-animation-timing-function: ease;
+	-ms-animation-fill-mode: both;
+	-o-animation-duration: 1s;
+	-o-animation-delay: .2s;
+	-o-animation-timing-function: ease;
+	-o-animation-fill-mode: both;
+	animation-duration: 1s;
+	animation-delay: .2s;
+	animation-timing-function: ease;
+	animation-fill-mode: both;
+}
+
+#round_no_r{
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+.content_r .score{
+    width: 100%;
+    float: left;
+}
+.content_r img{
+    padding: 2px;
+    width: 65px;
+    height: 65px;
+    float: left;
+    margin-left: 20px
+}
+.content_r .points{
+    height: 65px;
+    float: right;
+    margin-right: 10px;
+}
+.content_r .points{
+    padding-left: 5px;
+    font-size: 48px;
+    line-height: 68px;
+}
+
+.content_r .plus{
+    color:#67cc04;
+}
+.content_r .minus{
+    color:#e10c0e;
+}
+
+.content_r .top_three_r .score{
+    margin:0 0 3px;
+}
+.content_r .top_three_r .count_r{ float: left; color:#8f9ba7; font-size: 32px; line-height:46px}
+.content_r .top_three_r img{
+    width: 43px;
+    height: 43px;
+    margin-left: 15px
+}
+.content_r .top_three_r .points{
+    padding-left: 5px;
+    font-size: 32px;
+    line-height: 58px;
+    height: 45px;
+    text-align: right;
+    width: 70px
+}
+
+.top_three_r{
+    clear: both;
+    display: block;
+    overflow: hidden;
+    margin-left: 25px;
+    padding-top: 10px;
+}
+#showOnMouseOver ul li{
+    float: left;
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 42px;
+    overflow: hidden;
+}
+#showOnMouseOver ul li img{
+    border-radius: 1px;
+    margin: 0 1px;
+    height: 42px;
+    width: 42px;
+
+}
+.roundForBidsCountUl{
+    margin: 0px;
+    padding: 3px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.6);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000); /* IE 6/7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF)"; /* IE8 */
+}
+
+/*************** for help contact us ***********/
+.contactus {
+    float:left;
+    width: 483px;
+    height:367px;
+    overflow:hidden;
+    padding:5px 15px;
+}
+.contactus  ul {
+    margin:0;
+    float:left;
+    padding:0;
+}
+.contactus  ul  li{
+    float:left;
+    width:100%;
+    margin:2px 0;
+    list-style:none;
+}
+.contactus  ul  li label{
+    float:left;
+    width:175px;
+    color:#4482be;
+    font-size:15px;
+}
+.contactus  ul  li input{
+    background: url("../images/zalerio_1.2/5.all_popup/help/contactus/contactus_typing _bar.png") no-repeat scroll 0 0;
+    height:21px;
+    padding: 2px 10px;
+    width: 284px;
+    color: #4482be;
+}
+.contactus  ul  li select{
+	 width: 302px;
+         height: 25px !important;
+         color: #4482be;
+         letter-spacing: 1px;
+         
+}
+.contactus  ul  li select:selected{color: #4482be;}
+.contactus  ul  li textarea{
+    background: url("../images/zalerio_1.2/5.all_popup/help/contactus/contactus_email_body_base.png") repeat scroll 0 0;
+    width:470px;
+    height:150px;
+    padding:3px 5px;
+    resize: none;
+}
+.captcha {
+    float:left;
+    width:300px;
+    margin-top:3px;
+}
+.captcha span {
+    width:175px;
+    height: 50px;
+    font-size:24px;
+    padding:2px;
+    float:left;
+    text-align:right;
+    margin-right:5px;
+    overflow:hidden;
+} 
+.captcha span img{ float: right;}
+.captcha input {
+    background: url("../images/zalerio_1.2/5.all_popup/help/contactus/contactus_spaming_base.png") no-repeat scroll 0 0;
+    width:92px;
+    height: 30px;
+    color:#fff;
+    font-size:24px;
+    padding:2px 5px;
+    margin-top: 10px;
+    overflow:hidden;
+}
+.captcha p {
+    float:left;
+    color:#fff;
+    font-size:12px;
+    width:100%;
+    margin:0;
+}
+.submit {
+    float:left;
+    width:180px;
+    margin-top:8px;
+}
+.submit  input {
+    background: url("../images/zalerio_1.2/5.all_popup/help/contactus/sendbutton_ideal.png") no-repeat scroll 0 0;
+    width:75px;
+    height:60px;
+    float:right;
+}
+.submit input:hover{
+    background: url("../images/zalerio_1.2/5.all_popup/help/contactus/sendbutton_ideal.png") no-repeat scroll 0 -60px;
+
+}
+
+input.error{border:1px solid #f00;
+            border-radius: 12px;}
+.captcha input.error{border:1px solid #f00;border-radius:0;}
+select.error{border:1px solid #f00;
+             border-radius: 12px;}
+textarea.error{border:1px solid #f00;}
+
+.msg-submit {
+    background: url("../images/Popupbase0004.png") no-repeat scroll 0 0;
+    position:absolute;
+    width:530px;
+    height:130px;
+    top:-125px;
+   
+}
+#s_friendpopup .msg-submit {right: 19%;top: -178px;}
+.msg-submit  p {
+    color: #FFFFFF;
+    font-size: 19px;
+    padding: 52px 60px 0;
+    width: 360px;
+    margin:0;
+}
+/* *** My level *** */
+.div_top { height:106px;}
+
+ul.tab_nav {
+    float:left;
+    margin: 0 0 -6px;
+    padding-left:5px;
+}
+ul.tab_nav  li {
+    float:left;
+    width:94px;
+    list-style:none;
+}
+ul.tab_nav  li a {
+    background: url("../images/zalerio_1.2/5.all_popup/mystats/mystatsCommon/stats_on_off_tab.png") -4px -5px no-repeat scroll ;
+    width:93px;
+    float:left;
+    height:23px;
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+    padding-top:3px;
+    text-align:center;
+    
+}
+ul.tab_nav  li a.active,ul.tab_nav  li a:hover {
+    background: url("../images/zalerio_1.2/5.all_popup/mystats/mystatsCommon/stats_on_off_tab.png") no-repeat scroll -2px -32px;
+    color:#406ba2;
+    margin-top:0px;
+    text-indent:0px;
+   
+} 
+
+
+.my-level { float:left;
+            background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/myleve_tab_base.png) no-repeat 0 0;
+            width:530px;
+            height:310px;
+            margin-left: 5px;
+            padding:10px 0px 5px 10px;
+}
+.belt-info {
+    float:left;
+    width:320px;
+    height:310px;
+    margin-right:4px;
+}
+.belt-info h3 {
+    font-size: 16px;
+	margin: 0px 0px 20px 0px;
+	font-family: FuturaLT-Bold;
+}
+.blue h3 { color:#536bcb;}
+.belts{ 
+	float: left;
+	width: 125px;
+	height: 305px;
+	padding: 5px 15px;
+	margin-left: 20px;
+}
+.next-belt, .current-belt { 
+	width: 195px;
+	height: 100px;
+	margin-left: 90px;
+	margin-top: 10px;
+	padding-left: 57px;
+	padding-top: 15px;
+}
+.perform { 
+    text-align: center;
+	margin-top: 4px;
+}
+.perform  a{
+    color:#456295;
+    font-size:16px;
+    text-decoration:none;
+}
+.perform  a:hover{
+    text-decoration:underline;
+}
+.current-belt { 
+    width:185px;
+    padding-left:50px;
+    height:104px;
+    margin-left:90px;
+}
+.next-belt h4, .current-belt h4 {
+    margin:0;
+    font-size:15px;
+    color:#fff;
+}
+.next-belt ul, .current-belt ul {
+    margin:0;
+    padding:0;
+    list-style:square inside;
+    color:#fff;
+    font-size:14px;
+}
+.blue .next-belt { 
+    background: url(../images/top_bubble/Purple.png) no-repeat 0 0;
+}
+.blue .current-belt { 
+    background: url(../images/bottom_bubble/Blue.png) no-repeat 0 0;
+}
+
+.belts ul {
+    padding:0;
+    margin:0;
+
+}
+.belts ul  li { float:left; margin:0; padding:0; list-style:none; width:100%; position:relative; background: none;height:33px}
+.belts ul  li img { 
+    float:left;
+    margin-right:5px;
+    height:40px;
+
+}
+.belts ul  li.active { height:27px; text-indent:0; position:relative;}
+.belts ul  li.active img { height: 52px;margin-left: -10px;margin-top: -10px;position: absolute;width: 78px;z-index: 99;}
+.belts ul  li a {	float:right;
+                  font-size:16px;
+                  text-decoration:none;
+                  margin-top:5px;
+                  font-weight: bold;
+}
+.belts ul  li.active a{ margin-top: 1px;}
+.belts ul  li.active img.white-img { margin-top: -14px;}
+.belts ul  li.active img.black-img { margin-top: -6px;}
+/* new*/
+.brown h3 { color:#7d2900;}
+.brown .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/black.png) no-repeat 0 0;
+}
+.brown .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/brown.png) no-repeat 0 0;
+}
+.black h3 { color:#000000;}
+.black .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/black.png) no-repeat 0 0;
+}
+.black .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/black.png) no-repeat 0 0;
+}
+.blue h3 { color:#3344ff;}
+.blue .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/purple.png) no-repeat 0 0;
+}
+.blue .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/blue.png) no-repeat 0 0;
+}
+.red h3 { color:#b20000;}
+.red .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/brown.png) no-repeat 0 0;
+}
+.red .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/red.png) no-repeat 0 0;
+}
+.green h3 { color:#008300;}
+.green .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/blue.png) no-repeat 0 0;
+}
+.green .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/green.png) no-repeat 0 0;
+}
+.purple h3 { color:#a6004a;}
+.purple .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/red.png) no-repeat 0 0;
+}
+.purple .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/purple.png) no-repeat 0 0;
+}
+.orange h3 { color:#f3390b;}
+.orange .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/green.png) no-repeat 0 0;
+}
+.orange .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/orange.png) no-repeat 0 0;
+}
+.yellow h3 { color:#ffa700;}
+.yellow .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/orange.png) no-repeat 0 0;
+}
+.yellow .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/yellow.png) no-repeat 0 0;
+}
+.white h3 { color:#fff;}
+.white .next-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubbletop/yellow.png) no-repeat 0 0;
+}
+.white .current-belt { 
+    background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/speech_bubblebottom/white.png) no-repeat 0 0;
+}
+
+
+.dummy_div{
+    width:185px;
+    height:104px;
+    margin-left:100px;
+    margin-top:10px;
+    padding-left:40px;
+    padding-top:10px;
+}
+
+.gameInfoDiv .rep_turn{
+    padding: 0px;
+    position: relative
+}
+.rep_turn{
+    position: relative
+}
+
+#scroll_carousel{
+    overflow: hidden;
+    width: 155px;
+    height: 450px;
+    float: left
+}
+/* Let's get this party started */
+#bottomScore_div::-webkit-scrollbar,#scroll_carousel::-webkit-scrollbar,.scroll_bar::-webkit-scrollbar {
+    width: 5px;
+}
+.friendlist::-webkit-scrollbar{
+    width: 10px;
+} 
+/* Track */
+.friendlist::-webkit-scrollbar-track,#bottomScore_div::-webkit-scrollbar-track,#scroll_carousel::-webkit-scrollbar-track,.scroll_bar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(48,96,142,0.3); 
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+/* Handle */
+.friendlist::-webkit-scrollbar-thumb,#bottomScore_div::-webkit-scrollbar-thumb,#scroll_carousel::-webkit-scrollbar-thumb,.scroll_bar::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.5); 
+    -webkit-box-shadow: inset 0 0 6px rgba(48,96,142,0.5); 
+}
+.friendlist::-webkit-scrollbar-thumb:window-inactive,#bottomScore_div::-webkit-scrollbar-thumb:window-inactive,#scroll_carousel::-webkit-scrollbar-thumb:window-inactive,.scroll_bar::-webkit-scrollbar-thumb:window-inactive  {
+    background: rgba(48,96,142,0.4); 
+}
+.friendlist::-webkit-scrollbar:horizontal,#bottomScore_div::-webkit-scrollbar:horizontal,#scroll_carousel::-webkit-scrollbar:horizontal,.scroll_bar::-webkit-scrollbar:horizontal{
+    visibility:hidden
+}
+
+.userlevelbelt.otherbelt{
+    position: absolute;
+    left:15px;
+}
+.userRemind{
+    text-transform: capitalize
+}
+
+/**** belt level color class****/
+.WhiteBelt {
+    color: #fff;
+	font-family: FuturaLT-Bold;
+    float: right;
+}
+.YellowBelt {
+    color: #ffaf00;
+    float: right;
+}
+.OrangeBelt {
+    color: #ff4111;
+    float: right;
+}
+.BlueBelt {
+    color: #334bff;
+    float: right;
+}
+.GreenBelt {
+    color: #00a000;
+    float: right;
+}
+.PurpleBelt {
+    color: #b3005f;
+    float: right;
+}
+.RedBelt {
+    color: #ff1a1a;
+    float: right;
+}
+.BrownBelt {
+    color: #7d2900;
+    float: right;
+}
+.BlackBelt {
+    color: #4d4d4d;
+    float: right;
+}
+.white{color: #fffcd5;}
+a.white:hover{color: #fffcd5;}
+.yellow{color: #ffaf00;}
+a.yellow:hover{color: #ffaf00;}
+.orange{color: #ff4111;}
+a.orange:hover{color: #ff4111;}
+.blue{color: #334bff;}
+a.blue:hover{color: #334bff;}
+.green{color: #00a000;}
+.purple{color: #b3005f;}
+a.purple:hover{color: #b3005f;}
+.red{color: #ff1a1a;}
+a.red:hover{color: #ff1a1a;}
+.brown{color: #7d2900;}
+a.brown:hover{color: #7d2900;}
+.black{color: #1e1e1e;}
+a.black:hover{color: #1e1e1e;}
+/**** end ******/
+.green{
+    color:#118400 !important
+}
+.userTotal{
+    position: absolute;
+    margin: 46px 0 0 17px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.userTotal sup{
+    font-size: 10px;
+    letter-spacing: 0px;
+}
+
+.contactus ul li { position:relative;}
+.dropdown-img {
+
+    background-image: url('../images/zalerio_1.2/5.all_popup/help/contactus/contactus_scroldowb_menu_button_ideal.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    width:25px;
+    height:26px;
+    position:absolute;
+    z-index:100;
+    top:-1px; right:5px;
+
+}
+.contactus ul li select option{ background:#fff;}
+
+.rightHUDPanel .userArea{
+    cursor: pointer;
+}
+
+/** *Performance Level Popup* **/
+.performance_level {
+	background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/popup/popup_base.png) no-repeat center center;
+	width:521px;
+	float:left;
+	height:390px;
+	margin-left:4px;
+	position:absolute;
+	top:66px;
+        display:none;
+	z-index: 999;
+	color:#fff
+}
+
+.performance_level a.close {
+	background: url('../images/zalerio_1.2/5.all_popup/all_popup_common/popup_closebutton.png') no-repeat;
+	height:14px;
+	width:14px;
+	float:right;
+	margin:6px 17px 0 0;
+	cursor:pointer 
+}
+.performance_level a.close:hover {
+	background-position:0px -15px;
+	height:14px;
+	width:14px;
+	float:right;
+	margin:6px 17px 0 0;
+	cursor:pointer 
+}
+.performance_level h3 {
+	background:url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/popup/headinghighlight.png) no-repeat left top;
+	margin:30px 0 20px 15px;
+	font-size:16px; 
+	color:#fff;
+        padding:2px;
+
+}
+.performance_level p { 
+	margin:0 15px;
+	font-size:13px;
+	color:#fff
+}
+.performance_level ul,.belt_table { 
+	background: url(../images/zalerio_1.2/5.all_popup/mystats/mylevel/popup/tablebase.png) no-repeat left top;
+	width:510px;
+	height:190px; padding:0;
+	margin: 15px 1px;
+	list-style:none;
+}
+.belt_table table td { float:left; width:168px; margin:0; margin-top:5px; font-size:12px; padding: 1px 10px 0px 5px; color:#fff;text-align:center;line-height:16px;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ .belt_table table td   { padding: 1px 10px 0px 5px !important;}
+}
+.belt_table table th{height: 30px;
+    color: #344555;
+    font-size: 13px;
+    padding-top: 0;
+    padding: 0px 10px 4px 5px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 13px;}
+.level{ text-align:left !important;}
+/****** end *******/
+
+.customStyleSelectBox{
+        background: url("../images/zalerio_1.2/5.all_popup/help/contactus/contactus_typing _bar.png") no-repeat scroll 0 0;
+	width:295px;
+	height:25px;
+        -webkit-appearance:none;
+        outline: none;
+}
+.customStyleSelectBoxInner { 
+    background: url("../images/zalerio_1.2/5.all_popup/help/contactus/contactus_scroldowb_menu_button_ideal.png") no-repeat scroll right center transparent;
+    height: 19px;
+    padding: 3px 0px 3px 10px;
+    width: 294px !important;
+    line-height: 20px
+}
+.customStyleSelectBoxInner:hover { 
+    background: url("../images/zalerio_1.2/5.all_popup/help/contactus/contactus_scroldowb_menu_button_hover.png") no-repeat scroll right center transparent;
+}
+#rightHUDbackground .ui-slider-vertical{
+        z-index: 999px;
+        position: absolute;
+        height: 310px;
+        width: 3px;
+        margin-left: 150px !important;
+        background: none;
+        border: none;
+        margin-top: 40px;
+}
+#rightHUDbackground  .ui-slider .ui-slider-handle{
+    z-index: 999px;
+    position: absolute;
+    width:5px;
+    height: 30px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: rgba(100,100,100,0.7);
+}
+/*    cheat Sheet stlye   */
+.popup-cheatsheet {
+	left: 148px;
+	top: 97px;
+    background:url(../images/zalerio_1.2/9.cheatsheet/cheatsheet_base.png) no-repeat center center; 
+    width:434px; height:468px;  float: left;
+	overflow:hidden;position: absolute;display:none
+}
+.pop-content { float:left; padding-left:12px; width:422px !important;}
+.popup-cheatsheet .jspPane{ width:396px !important;}
+.popup-cheatsheet .jspContainer {margin: 10px 0 20px !important; height: 438px !important; overflow: hidden !important;}
+.popup-cheatsheet .jspArrow { display:none !important}
+.popup-cheatsheet .jspDrag{ border-radius:5px;height: 37% !important} 
+.popup-cheatsheet .jspVerticalBar { right:15px; width:6px !important; top:12px !important;background:#333333 !important}
+.popup-cheatsheet .jspDrag{ background:#CCCCCC !important;}
+.pop-content h3{ color:#FFFFFF; font-size:16px; margin:0; padding:8px 0 0 5px;letter-spacing: 2px;}
+
+.figures{ background:url(../images/zalerio_1.2/9.cheatsheet/cheatsheet_part1.png) no-repeat center center; width:396px; float:left; height:250px;}
+.figures p{ color:#FFFFFF; font-size:12px; margin:203px 0 0; text-align:center;letter-spacing: 1px;}
+.jokers{ background:url(../images/zalerio_1.2/9.cheatsheet/cheatsheet_part2.png) no-repeat center center; width:396px; height:181px; float:left; margin-top:10px;}
+.jokers p{ color:#FFFFFF; font-size:12px; margin:36px 0 0; text-align:center;letter-spacing: 1px;}
+.points-to-win{ background:url(../images/zalerio_1.2/9.cheatsheet/cheatsheet_part3.png) no-repeat center center; width:396px; height:243px; float:left; margin-top:10px;}
+.points-to-win table { padding:0 0 0 10px; color:#FFFFFF;}
+.points-to-win table td,th{ padding-top: 2px}
+.points-to-win .win-table{ width: 100%; float: left;}
+
+.points-to-win .win-table .tiles{ width: 100%; float: left; height: 50px;color:#FFFFFF;}
+.points-to-win .win-table .figure{ width: 100%; float: left; height: 67px;color:#FFFFFF;}
+.points-to-win .win-table .superjoker{ width: 100%; float: left; height: 50px;color:#FFFFFF;}
+.points-to-win .win-table .bpoint{ width: 100%; float: left; height: 50px;color:#FFFFFF;}
+.points-to-win .win-table .tiles h3{ width: 23%; height: 30px; padding-top: 19px; float: left; text-align: center;color: #000000; font-size: 13px;}
+.points-to-win .win-table .tiles p{ width: 74%;height: 17px;padding: 5px 0 0 6px !important; float: left; margin: 0; padding:0; text-align: left;}
+.points-to-win .win-table .figure h3{ width: 23%; height: 46px;padding-top: 20px; float: left; text-align: center;color: #000000;font-size: 13px;}
+.points-to-win .win-table .figure p{ width: 70%;height: 15px;padding: 3px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;line-height: 13px;}
+.points-to-win .win-table .superjoker h3{ width: 23%; height: 50px; float: left; text-align: center;color: #000000;font-size: 13px;}
+.points-to-win .win-table .superjoker p{ width: 71%;height: 15px;padding: 7px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;}
+.points-to-win .win-table .bpoint h3{ width: 23%; height: 50px; float: left; text-align: center;color: #000000;font-size: 13px;}
+.points-to-win .win-table .bpoint p{ width: 71%;height: 15px;padding: 7px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;}
+
+.example-grid{ background:url(../images/zalerio_1.2/9.cheatsheet/cheatsheet_part4.png) no-repeat top center; width:396px; height:450px; float:left; margin-top:10px;}
+.points-to-win table tr th{color: #333333;letter-spacing: 2px;}
+.points-to-win table tr td{height:17px;font-size: 12px;letter-spacing: 1px;}
+/**** rating popup ***/
+.rating-popup{ background:url(../images/zalerio_1.2/6.feedback_screen/feedback_base.png) no-repeat center center; width:406px; height:499px;margin:0 auto;position: absolute;left: 143px;top: 85px;display:none;}
+.rating-popup a.close { background: url('../images/zalerio_1.2/5.all_popup/all_popup_common/popup_closebutton.png') no-repeat; width:14px; height:14px; float:right; margin:12px 15px 0 0; }
+.rating-popup a.close:hover{ background-position:0px -15px}
+.rating-content {width:369px; height:454px; margin:8px 0 0 14px; float:left;}
+.rating-content ul{ padding:10px 20px 0; margin:0; list-style:none; float:left; width:90%}
+.rating-content ul li{ float:left; width:100%; height: 35px;}
+.rating-content ul li span{ background:url(../images/zalerio_1.2/6.feedback_screen/ratin_base_not_selected.png) no-repeat 0px 0px; width:121px; height:27px; padding-top:7px; float:left; text-align:center; margin-right:10px;}
+.rating-content ul li span.selected{ background:url(../images/zalerio_1.2/6.feedback_screen/ratin_base_selected.png) no-repeat 0px 0px}
+.rating-content ul li span:hover{ background:url(../images/zalerio_1.2/6.feedback_screen/ratin_base_selected.png) no-repeat 0px 0px}
+.rating-content ul li span img { margin:0 auto;}
+.rating-content ul li h3{ float:left; width:60%; margin:0; color:#FFFFFF; font-size:18px}
+.rating-content ul li p{ float:left; width:60%; margin:0; color:#FFFFFF; font-size:12px;}
+.rating-content div.suggestion { background:url(../images/zalerio_1.2/6.feedback_screen/feedback_commentbase.png) no-repeat left top; width:329px; height:104px; float:left; margin:10px 20px 0}
+.rating-content div.suggestion h3 {color:#FFFFFF; font-size:12px; padding:2px 5px 0; margin:0;}
+.rating-content div.suggestion textarea{ width:319px; height:88px; color:#6c99c4;font-family: FuturaLT; font-size:11px; padding:0 5px;resize:none}
+.rating-content input.submit{ background:url(../images/zalerio_1.2/6.feedback_screen/sendbutton_ideal.png) no-repeat left top; width:92px; height:36px; color:#FFFFFF; text-indent:-9999px; font-size:14px;padding-bottom: 9px; float:right; margin:5px 11px 0 0;}
+.rating-content input.submit:hover{background:url(../images/zalerio_1.2/6.feedback_screen/sendbutton_hover.png) no-repeat left top;}
+#rightHUD-pastgames .rep_turn{overflow: hidden}
+.popup-cheatsheet{display: none}
+
+ .jspArrow { display:none !important}
+ .jspDrag{ border-radius:5px;} 
+ .jspVerticalBar {width:6px !important;top:12px !important;background:#4482be !important}
+ .jspDrag{ background:#344555 !important;}
+
+#bottomHUD{
+    position: relative
+}
+.resignPopup{
+	width: 523px;
+	height: 100px;
+	background: url(../images/zalerio_1.2/7.resign/resign_basebase.png);
+	position: absolute;
+	top: -91px;
+	z-index: 999;
+	left: 120px;
+    display: none
+}
+.resignPopup #resignme{
+	margin-top: 23px;
+	width: 66px;
+	height: 62px;
+	background: url(../images/zalerio_1.2/7.resign/resignbutton.png) center top no-repeat;
+	float: left;
+	margin-left: 7px;
+	cursor: pointer
+}
+.resignPopup #resignme:hover{ background-position: center -62px }
+#resignmeClose{
+    background: url('../images/zalerio_1.2/5.all_popup/all_popup_common/popup_closebutton.png') no-repeat;
+    width: 14px;
+    height: 14px;
+    float: right;
+    margin-top: 3px;
+    margin-right: 25px;
+}
+#resignmeClose:hover{
+	background-position:0px -15px;
+}
+.statusWrapper{
+	height:220px
+}
+.imgWrapper{
+	float: right;
+	margin-right: 40px;
+	margin-bottom:10px;
+	margin-top:10px
+}
+
+.imgWrapper img{
+	border-radius:3px;
+	border:2px solid #fff;
+	width:42px;
+	height:42px;
+	float:left;
+	margin-left:5px
+}
+.topUserInfo{
+	display:block;
+	overflow:hidden;
+	height:80px;
+	background: url(../images/zalerio_1.2/5.all_popup/group_formation/base_mainplayerhighlight.png) center center no-repeat;	
+}
+.acceptBlock,.inviteBlock,.declineBlock{
+	background: url(../images/zalerio_1.2/5.all_popup/group_formation/base_seperationline.png) center bottom no-repeat;	
+	display: block;
+	overflow: hidden;
+	width:100%
+}
+.acceptBlock span{
+	font-size:22px;
+	color:#759b6c;
+	width: 150px;
+	display: block;
+	float: left;
+	margin-left: 25px;
+	overflow: hidden;
+	margin-top:30px
+}
+.declineBlock span{
+	margin-top:30px
+}
+.inviteBlock span{
+	margin-top:15px
+}
+.inviteBlock span, .declineBlock span{
+	font-size: 22px;
+	overflow: hidden;
+	color: #4F6AC3;
+	width: 150px;
+	display: block;
+	float: left;
+	margin-left: 25px;
+}
+.leftButtonWrapper,.rightButtonWrapper{
+	width:245px;
+	overflow:hidden;
+	float:left;
+}
+.leftButtonWrapper{
+	margin-left:40px
+}
+.leftButtonWrapper .leftButton,.rightButtonWrapper .rightButton{
+	background: url(../images/zalerio_1.2/5.all_popup/group_formation/button_ideal.png) center bottom no-repeat;	
+	display: block;
+	overflow: hidden;
+	width:192px;
+	height:46px
+}
+
+.leftButtonWrapper .leftButton:hover,.rightButtonWrapper .rightButton:hover{
+	background: url(../images/zalerio_1.2/5.all_popup/group_formation/button_hover.png) center bottom no-repeat;	
+}
+.leftButtonWrapper .leftButton,.rightButtonWrapper .rightButton {
+	color: white;
+	font-size: 26px;
+	line-height: 50px;
+	text-align: center;
+	cursor:pointer
+}
+
+.leftButtonWrapper .textLeftButton,.rightButtonWrapper .textRightButton{
+	width:192px;
+	height:46px;
+	display: block;
+	overflow: hidden;
+	font-size:11px;
+	padding:5px 10px 0 2px;
+	color:#000
+}
+.userAcceptDeclinedDiv{
+	background: #AAA;
+	width: 69px;
+	margin-left: 0px;
+	margin-top: 5px;
+	height: 32px;
+}
+
+.userAcceptDeclinedDiv > div{
+	width: 65px;
+	height: 14px;
+	padding: 0;
+}
+.userAcceptDeclinedDiv span{
+	font-size:10px
+}
+.acceptSpan{
+	margin-right:5px
+}
+.acceptSpan:hover,.declineSpan:hover{
+	text-decoration:underline
+}
+.flr{float:right}
+.fll{float:left}
+.tri_level_belt {
+height: auto !important;
+width: auto !important;
+position: absolute !important;
+background: none !important;
+}
+.basebutton.left{display:none !important}
+
+/**** to make font color grey instead of default white ***/
+.white .current-belt h4{color:#aaaaaa}
+.white .current-belt li{color:#aaaaaa}
+
+/**/
+
+.rules-content h3{color: #4482be;}
+
+/** popups **/
+.zalerio_popup:before{
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0px;
+	left:0px;
+	bottom:0px;
+	right:0px;
+	background:#000;
+	opacity:0.4;
+	display:block;
+	content:'.'
+}
+.zalerio_popup{
+	position: absolute !important;
+	top: 125px !important;
+	z-index: 9999 !important;
+	width: 100% !important;
+}
+/* .zalerio_popup  */
+#close {
+    width: 14px;
+    height: 14px;
+    background: url('../images/zalerio_1.2/5.all_popup/all_popup_common/popup_closebutton.png') no-repeat;
+    float: right;
+    clear: left;
+    margin-top: 11px;
+    margin-left: 498px;
+    position: absolute;
+    cursor: pointer !important;
+}
+#close:hover{
+    background-position:0px -15px;
+}
+.outer_base{
+	width: 532px; height: 465px; margin:0 auto;position:relative;
+    background: url('../images/zalerio_1.2/5.all_popup/all_popup_common/popup_base.png') left top no-repeat !important;
+}
+
+.inner_base_invite{
+	width: 520px;
+	height: 432px;
+	margin-top: 26px;
+	background: url('../images/zalerio_1.2/5.all_popup/group_formation/gfp_base.png') center center no-repeat;
+	text-align: center;
+}
+.line {
+	width: 436px;
+	height: 2px;
+	margin-left: 30px;
+	background: url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_friendsdiffrenciation_line.png') center center no-repeat;
+}
+.rep {
+	height: 55px;
+	width: 446px;
+	background: url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_Frienddescriptionbase.png') no-repeat;
+	margin: 2px 0 2px 30px;
+}
+
+.inner_base_invite .findfriend{
+	padding-top: 47px;
+	background: url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_underline.png') 12px 45px no-repeat;
+}
+
+.inner_base_invite .findfriend { margin-top: 10px;height:26px; }
+.inner_base_invite .findfriend *{float: left}
+.inner_base_invite .findfriend label{margin:0 5px 0 23px; letter-spacing:1px; color:#5885b1; line-height: 30px;font-size: 17px; }
+.inner_base_invite #findfriend{ width: 355px; height: 21px;
+            background: url('../images/Searchbar.png') no-repeat;
+            border: none; margin-left: 5px;
+                padding-left: 5px;
+    letter-spacing: 1px;
+    font-size: 15px;
+    color: white;
+    height: 21px;
+    width: 276px;
+    margin:5px 0 0 2px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background: #1c3955;
+    opacity:0.7;
+    font-family: FuturaLT;
+}
+
+.inner_base_invite .findfriend:before{
+	content: "Select friends to begin the game";
+	position:absolute;
+	top:42px;
+	left:22px;
+	font-size:24px;
+	color:#789fc6;
+	font-family: FuturaLT-Bold;
+	width:480px;
+	display:block;
+	text-align:center
+}
+.inner_base_invite #searchButton{
+	margin:5px 0 0 2px	
+}
+.inner_base_invite #show_all_friends{
+    background:url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_showallbtn.png') no-repeat -8px -3px;
+    text-indent: -99999px;
+    height: 21px;
+	width: 55px;
+	margin:5px 0 0 5px
+}
+
+.inner_base_invite #show_all_friends:hover{
+    background:url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_showallbtn.png') no-repeat -8px -35px;
+}
+.rep div{font-size: 17px;}
+.select_button{
+    background: url('../images/zalerio_1.2/5.all_popup/friendselection/selectbutton.png') no-repeat;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top:10px;    
+    line-height: 30px;
+    text-indent: -99999px;
+    height: 32px;
+    width: 100px;
+    padding-right: 10px;
+    cursor:pointer
+}
+.inner_base_invite .select_button:hover {
+    background: url('../images/zalerio_1.2/5.all_popup/friendselection/selectbutton.png') left -40px  no-repeat;
+    color: white;
+    height: 32px;
+}
+
+.inner_base_invite .select_button.selected{
+    background: url('../images/zalerio_1.2/5.all_popup/friendselection/selectbutton.png') left -80px no-repeat;
+    color:#fff;
+    height: 32px;
+}
+.inner_base_invite .footerbutton{ width: 90%; margin: 0 auto; padding: 2px 10px; background:url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_underline.png') no-repeat; }
+.inner_base_invite .basebutton{
+	width: 154px;
+	height: 30px;
+	background: url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_basebutton_ideal.png') left -38px no-repeat;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+	line-height: 30px;
+	font-weight: normal;
+	font-size: 14px;
+	font-family: FuturaLT-Bold;
+	margin-top: 5px;
+	cursor: pointer;
+}
+.inner_base_invite .basebutton:hover{
+       background: url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_basebutton_ideal.png') left -2px no-repeat;
+}
+
+/*  new carousel*/
+.rightHUD_carousel div{
+	padding-top:1px
+}
+.rightHUD_carousel .userArea{
+	width:140px;
+	height:62px;
+	background:#264257;
+	margin-bottom: 8px;
+	border:1px solid #dddddd;
+	position:relative;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	
+	-webkit-box-shadow: 2px 3px 11px 0px black;
+	-moz-box-shadow: 2px 3px 11px 0px black;
+	box-shadow: 2px 3px 11px 0px black;
+}
+.rightHUD_carousel .userArea:hover{
+	background:#254a66;
+}
+.rightHUD_carousel .userArea.selected{
+	border: 2px solid #fff;
+	background: #DCDCDC;
+}
+.rightHUD_carousel .imageWrapper:first-child{
+	margin-left: 0px;
+}
+.rightHUD_carousel .imageWrapper img{
+	width:25px;
+	height:25px;
+	border-bottom: 4px solid #4ABB2C;
+	margin:0 0 0 2px;
+	float:left;
+}
+.rightHUD_carousel .imageWrapper img.offline{
+	border-bottom: 4px solid #E42217
+}
+.rightHUD_carousel .round_no{
+	position: absolute;
+	top: 44px;
+	left: 5px;
+	width: 15px;
+	height: 15px;
+	padding: 0;
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/carauselbaseroundindicator.png) no-repeat;
+	color:#000;
+	font-size:13px;
+	line-height:15px;
+	font-family:FuturaLT-Bold
+}
+.rightHUD_carousel .game_end_time{
+	position: absolute;
+	right: 4px;
+	top: 45px;
+	height: 20px;
+	color:#fff;
+	font-size:12px;
+}
+.rightHUD_carousel .selected .game_end_time{
+	color:#5D6D7C;
+}
+.rightHUD_carousel .right_hud_accept{
+	color: #fff;
+    cursor: pointer;
+    position: relative;
+    font-size:11px;
+}
+.rightHUD_carousel .selected .right_hud_accept{
+	color: #5D6D7C;
+}
+.rightHUD_carousel .accept_decline{
+	position: absolute;
+	top: 28px;
+	left: 63px;
+}
+.rightHUD_carousel .accept_decline div{
+	padding-right:5px
+}
+
+.rightHUD_carousel .right_hud_accept:hover{
+	text-decoration:underline
+}
+.rightHUD_carousel .right_hud_decline{
+	color: #fff;
+    cursor: pointer;
+    position: relative;
+    font-size:11px;
+}
+.rightHUD_carousel .selected .right_hud_decline{
+	color:#5D6D7C
+}
+
+.rightHUD_carousel .right_hud_decline:hover{
+	text-decoration:underline
+}
+.gdScoreInfoDiv table{
+	font-size: 20px;
+	line-height: 22px	
+}
+.gdScoreInfoDiv table td{
+	padding-right:2px
+}
+.gdScoreInfoDiv table .userScoreHUD_playerSerial{
+	width:10px
+}
+.gdScoreInfoDiv table .userScoreHUD_playerScore{
+	padding-right:5px
+}
+/** game details popup **/
+.gdWrapper:before{
+	content:'';
+	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
+	position: absolute;
+	width: 265px;
+	height: 350px;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	
+	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
+	-moz-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
+}
+.gdWrapper{
+	position: absolute;
+	top: 160px;
+	right: 162px;
+	width: 265px;
+	height: 350px;
+	background: rgba(204,204,204,0.7);
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px	
+}
+.gdRightImage{
+	background:#6081a2 url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/brandimage.png) center center no-repeat;
+	width:95px;
+	height:288px;
+	border:1px solid #6081a2;
+	border-radius:6px;
+	position: absolute;
+	top: 10px;
+	right: 12px;
+}
+.gdUserImgDiv{
+	float:left;
+	position:relative
+}
+.gdUsersImgdiv{
+	position: absolute;
+	top:10px;
+	left:5px;
+}
+.gdUserImgbelt{
+	left:1px;
+	position:absolute
+}
+.gdUserImg{
+	margin-right: 3px;
+	width: 48px;
+	height: 48px;
+	border-bottom: 4px solid #E42217;
+}
+.gdUserImg.user_online{
+	border-bottom: 4px solid #4ABB2C
+}
+
+.gdScoreCardDiv{
+	width:250px;
+	height:190px;
+	background:#264257;
+	position:absolute;
+	top:110px;
+	border-radius:6px;
+	left:8px
+}
+.gdScoreCardDiv .userScoreHUD_playerName{
+	text-transform: capitalize;
+}
+.gdScoreCardDiv .userScoreHUD_playerScore{
+	width:40px;
+	text-align:right
+}
+.gdCloseInvitediv{
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/buttons.png) left bottom no-repeat;
+	width: 212px;
+	height: 94px;
+	display: block;
+	position: absolute;
+	top: 310px;
+	left: 5px;
+	cursor:pointer;
+	font-size: 22px;
+	text-align: center;
+	line-height: 96px;
+	font-family:FuturaLT-Bold
+}
+.gdCloseInvitediv:hover{
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/buttons.png) left -152px no-repeat;
+}
+
+.gdReturndiv{
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/buttons.png) right -42px no-repeat;
+	width: 126px;
+	height: 40px;
+	display: block;
+	position: absolute;
+	top: 306px;
+	left: 137px;
+	cursor: pointer;
+}
+.gdReturndiv:hover{
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/buttons.png) right top no-repeat;
+}
+
+.gdResumeDiv, .gdPlaydiv{
+background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/buttons.png) right -228px no-repeat;
+width: 129px;
+height: 38px;
+display: block;
+position: absolute;
+top: 306px;
+left: 5px;
+cursor: pointer;
+}
+.gdResumeDiv:hover{
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/buttons.png) right -189px no-repeat;
+}
+.gdPlaydiv{
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/playbutton.png) -2px -44px no-repeat;
+}
+.gdPlaydiv:hover{
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/playbutton.png) -2px -4px no-repeat
+}
+
+.gdReminddiv{
+background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/buttons.png) left -40px no-repeat;
+width: 260px;
+height: 33px;
+position: absolute;
+top: 70px;
+left: 3px;
+cursor: pointer;
+}
+.gdReminddiv:hover{
+	background: url(../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/buttons.png) left 0px no-repeat;
+}
+
+#gdAllRoundDivId{
+	padding-left: 4px;
+	padding-top: 4px;
+	background:#2a5a80;
+	border-radius:6px 6px 0 0;
+}
+#gdAllRoundDivId li {
+    display: inline-block;
+    line-height: 18px
+}
+#gdAllRoundDivId li a {
+    display: block;
+    width: 25px;
+    height: 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: normal;
+    font-size: 15px;
+    text-align: center;
+    font-family: FuturaLT-Bold;
+    line-height: 25px;
+}
+#gdAllRoundDivId li a.doneRound {
+    background: url("../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/scoreboardround1_6.png") no-repeat -96px -2px;
+}
+#gdAllRoundDivId li a.currentRound {
+    background: url("../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/scoreboardround1_6.png") no-repeat -49px -3px;
+    color: #000;
+    width: 25px;
+}
+#gdAllRoundDivId li a.notPlayedRound {
+    background: url("../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/scoreboardround1_6.png") no-repeat -3px -2px;
+}
+#gdAllRoundDivId li a.finalRound {
+    width:90px;
+	height: 30px;
+    text-transform:uppercase;
+    background: url("../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/scoreboardround1_final.png") no-repeat -2px -2px;
+}
+#gdAllRoundDivId li a.currentFinalRound {
+    background: url("../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/scoreboardround1_final.png") no-repeat -2px -2px;
+    width: 56px;
+    height: 17px;
+}
+.gdScoreCardDiv .arrowclass{
+	background: url("../images/zalerio_1.2/3.ingame_board/rightcarausel_popup/scoreboardarrow.png") no-repeat 2px 4px;
+    width: 11px;
+    height: 18px;
+}
+
+/** message popup **/
+.msg-outer-div
+{
+    width: 383px;
+	height: 140px;
+	background-color: #2D5B87;
+	border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+	position: absolute;
+	top: 220px;
+	left: 177px;
+	box-shadow: 5px 5px 12px black;
+        z-index: 10000;
+}
+
+.msg-inner-div
+{
+    width: 382px;
+height: 140px;
+background-color: #274F76;
+margin-top: 0px;
+margin-left: 2px;
+border-radius: 10px;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+position: absolute;
+box-shadow: inset 4px 7px 9px 0px #2D5B87;
+-moz-box-shadow: inset 4px 7px 9px 0px #2D5B87;
+-webkit-box-shadow: inset 4px 7px 9px 0px #2D5B87;
+}
+.msgbox-ok, .msgbox-cancel{
+	text-transform: uppercase;
+	width: 99px;
+	cursor: pointer;
+	height: 22px;
+	position: absolute;
+	margin-left: 275px;
+	margin-top:8px;
+	background: -moz-linear-gradient(top, #8691b0 0%, #939dbb 50%, #7581a4 51%, #939dbb 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8691b0), color-stop(50%,#939dbb), color-stop(51%,#7581a4), color-stop(100%,#939dbb));
+	background: -webkit-linear-gradient(top, #8691b0 0%,#939dbb 50%,#7581a4 51%,#939dbb 100%);
+	background: -ms-linear-gradient(top, #8691b0 0%,#939dbb 50%,#7581a4 51%,#939dbb 100%);
+	text-align: center;
+	padding-top: 3px;
+	color: white;
+	font-weight: bold;
+	font-family: FuturaLT-Bold;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+	box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5)
+}
+
+.msgbox-cancel{
+	margin-left: 275px;
+}
+
+.msgbox-ok.msgbox-cancel{
+	margin-left: 165px;
+}
+
+.msgbox-ok:hover,.msgbox-cancel:hover{
+    background: -moz-linear-gradient(top, #7283b2 0%, #667cbb 50%, #596da4 51%, #667cbb 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7283b2), color-stop(50%,#667cbb), color-stop(51%,#596da4), color-stop(100%,#667cbb));
+	background: -webkit-linear-gradient(top, #7283b2 0%,#667cbb 50%,#596da4 51%,#667cbb 100%);
+	background: -ms-linear-gradient(top, #7283b2 0%,#667cbb 50%,#596da4 51%,#667cbb 100%);
+}
+
+
+ 
+
+.msgbox-msg{
+    width: 100%;
+    height: 100px;
+}
+.msgbox-msg p{
+    padding-left: 10px;
+    padding-right:5px;
+    padding-top: 15px;
+	font-size: 18px;
+	color: white;
+	font-family: FuturaLT;
+}
+#help_contact_form{color:#4482BE;letter-spacing: 1px;}
+#mylevel-check{display:none}
+.won  .medal{
+	 float: left;
+    height: 35px;
+    margin: 10px 0 0 0px;
+    overflow: hidden;
+    width: 40px;
+}
+.won  .medal_pic{
+	 background: url('../images/zalerio_1.2/5.all_popup/mystats/mygames/cup.png') center no-repeat;
+}
+#lineone span{font-weight:bold;}
+.msg-outer-div.animated,.mainGame.animated,.gdWrapper.animated {
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	-ms-animation-fill-mode: both;
+	-o-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-duration: 1s;
+	-moz-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	animation-duration: 1s;
+}
+
+@-webkit-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.3);
+	}
+	
+	50% {
+		opacity: 1;
+		-webkit-transform: scale(1.05);
+	}
+	
+	70% {
+		-webkit-transform: scale(.8);
+	}
+	
+	100% {
+		-webkit-transform: scale(1);
+	}
+}
+
+@-moz-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-moz-transform: scale(.3);
+	}
+	
+	50% {
+		opacity: 1;
+		-moz-transform: scale(1.05);
+	}
+	
+	70% {
+		-moz-transform: scale(.9);
+	}
+	
+	100% {
+		-moz-transform: scale(1);
+	}
+}
+
+@-o-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-o-transform: scale(.3);
+	}
+	
+	50% {
+		opacity: 1;
+		-o-transform: scale(1.05);
+	}
+	
+	70% {
+		-o-transform: scale(.9);
+	}
+	
+	100% {
+		-o-transform: scale(1);
+	}
+}
+
+@keyframes bounceIn {
+	0% {
+		opacity: 0;
+		transform: scale(.3);
+	}
+	
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	
+	70% {
+		transform: scale(.9);
+	}
+	
+	100% {
+		transform: scale(1);
+	}
+}
+
+.bounceIn {
+	-webkit-animation-name: bounceIn;
+	-moz-animation-name: bounceIn;
+	-o-animation-name: bounceIn;
+	animation-name: bounceIn;
+}
+
+@-webkit-keyframes fadeInLeftBig {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateX(-2000px);
+	}
+	
+	100% {
+		opacity: 1;
+		-webkit-transform: translateX(0);
+	}
+}
+@-moz-keyframes fadeInLeftBig {
+	0% {
+		opacity: 0;
+		-moz-transform: translateX(-2000px);
+	}
+	
+	100% {
+		opacity: 1;
+		-moz-transform: translateX(0);
+	}
+}
+@-o-keyframes fadeInLeftBig {
+	0% {
+		opacity: 0;
+		-o-transform: translateX(-2000px);
+	}
+	
+	100% {
+		opacity: 1;
+		-o-transform: translateX(0);
+	}
+}
+@keyframes fadeInLeftBig {
+	0% {
+		opacity: 0;
+		transform: translateX(-2000px);
+	}
+	
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.fadeInLeftBig {
+	-webkit-animation-name: fadeInLeftBig;
+	-moz-animation-name: fadeInLeftBig;
+	-o-animation-name: fadeInLeftBig;
+	animation-name: fadeInLeftBig;
+}
+
+@-webkit-keyframes bounceInLeft {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateX(-2000px);
+	}
+	
+	60% {
+		opacity: 1;
+		-webkit-transform: translateX(30px);
+	}
+	
+	80% {
+		-webkit-transform: translateX(-10px);
+	}
+	
+	100% {
+		-webkit-transform: translateX(0);
+	}
+}
+
+@-moz-keyframes bounceInLeft {
+	0% {
+		opacity: 0;
+		-moz-transform: translateX(-2000px);
+	}
+	
+	60% {
+		opacity: 1;
+		-moz-transform: translateX(30px);
+	}
+	
+	80% {
+		-moz-transform: translateX(-10px);
+	}
+	
+	100% {
+		-moz-transform: translateX(0);
+	}
+}
+
+@-o-keyframes bounceInLeft {
+	0% {
+		opacity: 0;
+		-o-transform: translateX(-2000px);
+	}
+	
+	60% {
+		opacity: 1;
+		-o-transform: translateX(30px);
+	}
+	
+	80% {
+		-o-transform: translateX(-10px);
+	}
+	
+	100% {
+		-o-transform: translateX(0);
+	}
+}
+
+@keyframes bounceInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-2000px);
+	}
+	
+	60% {
+		opacity: 1;
+		transform: translateX(30px);
+	}
+	
+	80% {
+		transform: translateX(-10px);
+	}
+	
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.bounceInLeft {
+	-webkit-animation-name: bounceInLeft;
+	-moz-animation-name: bounceInLeft;
+	-o-animation-name: bounceInLeft;
+	animation-name: bounceInLeft;
+}
+
+@-webkit-keyframes hinge {
+	0% { -webkit-transform: rotate(0); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }	
+	20%, 60% { -webkit-transform: rotate(80deg); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }	
+	40% { -webkit-transform: rotate(60deg); -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }	
+	80% { -webkit-transform: rotate(60deg) translateY(0); opacity: 1; -webkit-transform-origin: top left; -webkit-animation-timing-function: ease-in-out; }	
+	100% { -webkit-transform: translateY(700px); opacity: 0; }
+}
+
+@-moz-keyframes hinge {
+	0% { -moz-transform: rotate(0); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }	
+	20%, 60% { -moz-transform: rotate(80deg); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }	
+	40% { -moz-transform: rotate(60deg); -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }	
+	80% { -moz-transform: rotate(60deg) translateY(0); opacity: 1; -moz-transform-origin: top left; -moz-animation-timing-function: ease-in-out; }	
+	100% { -moz-transform: translateY(700px); opacity: 0; }
+}
+
+@-o-keyframes hinge {
+	0% { -o-transform: rotate(0); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }	
+	20%, 60% { -o-transform: rotate(80deg); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }	
+	40% { -o-transform: rotate(60deg); -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }	
+	80% { -o-transform: rotate(60deg) translateY(0); opacity: 1; -o-transform-origin: top left; -o-animation-timing-function: ease-in-out; }	
+	100% { -o-transform: translateY(700px); opacity: 0; }
+}
+
+@keyframes hinge {
+	0% { transform: rotate(0); transform-origin: top left; animation-timing-function: ease-in-out; }	
+	20%, 60% { transform: rotate(80deg); transform-origin: top left; animation-timing-function: ease-in-out; }	
+	40% { transform: rotate(60deg); transform-origin: top left; animation-timing-function: ease-in-out; }	
+	80% { transform: rotate(60deg) translateY(0); opacity: 1; transform-origin: top left; animation-timing-function: ease-in-out; }	
+	100% { transform: translateY(700px); opacity: 0; }
+}
+
+.hinge {
+	-webkit-animation-name: hinge;
+	-moz-animation-name: hinge;
+	-o-animation-name: hinge;
+	animation-name: hinge;
+}
+
+
+@-webkit-keyframes fadeInRight {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateX(20px);
+	}
+	
+	100% {
+		opacity: 1;
+		-webkit-transform: translateX(0);
+	}
+}
+
+@-moz-keyframes fadeInRight {
+	0% {
+		opacity: 0;
+		-moz-transform: translateX(20px);
+	}
+	
+	100% {
+		opacity: 1;
+		-moz-transform: translateX(0);
+	}
+}
+
+@-o-keyframes fadeInRight {
+	0% {
+		opacity: 0;
+		-o-transform: translateX(20px);
+	}
+	
+	100% {
+		opacity: 1;
+		-o-transform: translateX(0);
+	}
+}
+
+@keyframes fadeInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+	
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.fadeInRight {
+	-webkit-animation-name: fadeInRight;
+	-moz-animation-name: fadeInRight;
+	-o-animation-name: fadeInRight;
+	animation-name: fadeInRight;
+}
+
+#sendinvite.loader_small{
+	background:transparent url("../images/zalerio_1.2/loader/loader_20x20.gif") right center no-repeat !important;
+	cursor:default
+}
+.userRemind.loader_small{
+	top: 42px;
+	width: 68px;
+	left: 100px;
+	height: 19px;
+}
+.accept_decline.loader_small{
+	width:68px;
+	height:30px;
+	background-position:right top;
+}
+
+
+/* big loader */
+#floatingBarsG{
+position:relative;
+width:62px;
+height:77px;
+margin: 0 auto;
+margin-top: 220px;
+}
+
+.blockG{
+position:absolute;
+background-color:#FFFFFF;
+width:10px;
+height:24px;
+-moz-border-radius:8px 8px;
+-webkit-border-radius:8px 8px;
+-webkit-transform:scale(0.4);
+-webkit-animation-name:fadeG;
+-webkit-animation-duration:1.6s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-direction:linear;
+-moz-transform:scale(0.4);
+-moz-animation-name:fadeG;
+-moz-animation-duration:1.6s;
+-moz-animation-iteration-count:infinite;
+-moz-animation-direction:linear;
+border-radius:8px 8px;
+-o-transform:scale(0.4);
+-o-animation-name:fadeG;
+-o-animation-duration:1.6s;
+-o-animation-iteration-count:infinite;
+-o-animation-direction:linear;
+-ms-transform:scale(0.4);
+-ms-animation-name:fadeG;
+-ms-animation-duration:1.6s;
+-ms-animation-iteration-count:infinite;
+-ms-animation-direction:linear;
+}
+
+#rotateG_01{
+left:0;
+top:28px;
+-webkit-animation-delay:0.4s;
+-webkit-transform:rotate(-90deg);
+-moz-animation-delay:0.4s;
+-moz-transform:rotate(-90deg);
+-o-animation-delay:0.4s;
+-o-transform:rotate(-90deg);
+-ms-animation-delay:0.4s;
+-ms-transform:rotate(-90deg);
+}
+
+#rotateG_02{
+left:8px;
+top:10px;
+-webkit-animation-delay:0.6s;
+-webkit-transform:rotate(-45deg);
+-moz-animation-delay:0.6s;
+-moz-transform:rotate(-45deg);
+-o-animation-delay:0.6s;
+-o-transform:rotate(-45deg);
+-ms-animation-delay:0.6s;
+-ms-transform:rotate(-45deg);
+}
+
+#rotateG_03{
+left:26px;
+top:3px;
+-webkit-animation-delay:0.8s;
+-webkit-transform:rotate(0deg);
+-moz-animation-delay:0.8s;
+-moz-transform:rotate(0deg);
+-o-animation-delay:0.8s;
+-o-transform:rotate(0deg);
+-ms-animation-delay:0.8s;
+-ms-transform:rotate(0deg);
+}
+
+#rotateG_04{
+right:8px;
+top:10px;
+-webkit-animation-delay:1s;
+-webkit-transform:rotate(45deg);
+-moz-animation-delay:1s;
+-moz-transform:rotate(45deg);
+-o-animation-delay:1s;
+-o-transform:rotate(45deg);
+-ms-animation-delay:1s;
+-ms-transform:rotate(45deg);
+}
+
+#rotateG_05{
+right:0;
+top:28px;
+-webkit-animation-delay:1.2s;
+-webkit-transform:rotate(90deg);
+-moz-animation-delay:1.2s;
+-moz-transform:rotate(90deg);
+-o-animation-delay:1.2s;
+-o-transform:rotate(90deg);
+-ms-animation-delay:1.2s;
+-ms-transform:rotate(90deg);
+}
+
+#rotateG_06{
+right:8px;
+bottom:7px;
+-webkit-animation-delay:1.4s;
+-webkit-transform:rotate(135deg);
+-moz-animation-delay:1.4s;
+-moz-transform:rotate(135deg);
+-o-animation-delay:1.4s;
+-o-transform:rotate(135deg);
+-ms-animation-delay:1.4s;
+-ms-transform:rotate(135deg);
+}
+
+#rotateG_07{
+bottom:0;
+left:26px;
+-webkit-animation-delay:1.6s;
+-webkit-transform:rotate(180deg);
+-moz-animation-delay:1.6s;
+-moz-transform:rotate(180deg);
+-o-animation-delay:1.6s;
+-o-transform:rotate(180deg);
+-ms-animation-delay:1.6s;
+-ms-transform:rotate(180deg);
+}
+
+#rotateG_08{
+left:8px;
+bottom:7px;
+-webkit-animation-delay:1.8s;
+-webkit-transform:rotate(-135deg);
+-moz-animation-delay:1.8s;
+-moz-transform:rotate(-135deg);
+-o-animation-delay:1.8s;
+-o-transform:rotate(-135deg);
+-ms-animation-delay:1.8s;
+-ms-transform:rotate(-135deg);
+}
+
+
+
+/* small loader */
+
+#floatingBarsGs{
+	position: relative;
+	width: 16px;
+	overflow: visible !important;
+	height: 20px;
+	padding: 0 !important;
+}
+
+.accept_decline #floatingBarsGs{
+	margin-left: 50px;
+	margin-top: -2px;
+}
+#floatingBarsGs .blockG{
+padding:0px !important;
+overflow:visible;
+height:6px;
+position:absolute;
+background-color:#FFFFFF;
+width:3px;
+opacity:0.6;
+height:6px;
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+-webkit-transform:scale(0.4);
+-webkit-animation-name:fadeG;
+-webkit-animation-duration:0.4s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-direction:linear;
+-moz-transform:scale(0.4);
+-moz-animation-name:fadeG;
+-moz-animation-duration:0.4s;
+-moz-animation-iteration-count:infinite;
+-moz-animation-direction:linear;
+border-radius:3px;
+-o-transform:scale(0.4);
+-o-animation-name:fadeG;
+-o-animation-duration:0.4s;
+-o-animation-iteration-count:infinite;
+-o-animation-direction:linear;
+-ms-transform:scale(0.4);
+-ms-animation-name:fadeG;
+-ms-animation-duration:0.4s;
+-ms-animation-iteration-count:infinite;
+-ms-animation-direction:linear;
+}
+
+#floatingBarsGs #rotateG_01{
+left:0;
+top:7px;
+-webkit-animation-delay:0.15s;
+-webkit-transform:rotate(-90deg);
+-moz-animation-delay:0.15s;
+-moz-transform:rotate(-90deg);
+-o-animation-delay:0.15s;
+-o-transform:rotate(-90deg);
+-ms-animation-delay:0.15s;
+-ms-transform:rotate(-90deg);
+}
+
+#floatingBarsGs #rotateG_02{
+left:2px;
+top:3px;
+-webkit-animation-delay:0.2s;
+-webkit-transform:rotate(-45deg);
+-moz-animation-delay:0.2s;
+-moz-transform:rotate(-45deg);
+-o-animation-delay:0.2s;
+-o-transform:rotate(-45deg);
+-ms-animation-delay:0.2s;
+-ms-transform:rotate(-45deg);
+}
+
+#floatingBarsGs #rotateG_03{
+left:7px;
+top:1px;
+-webkit-animation-delay:0.25s;
+-webkit-transform:rotate(0deg);
+-moz-animation-delay:0.25s;
+-moz-transform:rotate(0deg);
+-o-animation-delay:0.25s;
+-o-transform:rotate(0deg);
+-ms-animation-delay:0.25s;
+-ms-transform:rotate(0deg);
+}
+
+#floatingBarsGs #rotateG_04{
+right:2px;
+top:3px;
+-webkit-animation-delay:0.3s;
+-webkit-transform:rotate(45deg);
+-moz-animation-delay:0.3s;
+-moz-transform:rotate(45deg);
+-o-animation-delay:0.3s;
+-o-transform:rotate(45deg);
+-ms-animation-delay:0.3s;
+-ms-transform:rotate(45deg);
+}
+
+#floatingBarsGs #rotateG_05{
+right:0;
+top:7px;
+-webkit-animation-delay:0.35s;
+-webkit-transform:rotate(90deg);
+-moz-animation-delay:0.35s;
+-moz-transform:rotate(90deg);
+-o-animation-delay:0.35s;
+-o-transform:rotate(90deg);
+-ms-animation-delay:0.35s;
+-ms-transform:rotate(90deg);
+}
+
+#floatingBarsGs #rotateG_06{
+right:2px;
+bottom:2px;
+-webkit-animation-delay:0.4s;
+-webkit-transform:rotate(135deg);
+-moz-animation-delay:0.4s;
+-moz-transform:rotate(135deg);
+-o-animation-delay:0.4s;
+-o-transform:rotate(135deg);
+-ms-animation-delay:0.4s;
+-ms-transform:rotate(135deg);
+}
+
+#floatingBarsGs #rotateG_07{
+bottom:0;
+left:7px;
+-webkit-animation-delay:0.45s;
+-webkit-transform:rotate(180deg);
+-moz-animation-delay:0.45s;
+-moz-transform:rotate(180deg);
+-o-animation-delay:0.45s;
+-o-transform:rotate(180deg);
+-ms-animation-delay:0.45s;
+-ms-transform:rotate(180deg);
+}
+
+#floatingBarsGs #rotateG_08{
+left:2px;
+bottom:2px;
+-webkit-animation-delay:0.5s;
+-webkit-transform:rotate(-135deg);
+-moz-animation-delay:0.5s;
+-moz-transform:rotate(-135deg);
+-o-animation-delay:0.5s;
+-o-transform:rotate(-135deg);
+-ms-animation-delay:0.5s;
+-ms-transform:rotate(-135deg);
+}
+
+@-webkit-keyframes fadeG{
+0%{
+background-color:#000000
+}
+
+100%{
+background-color:#FFFFFF
+}
+
+}
+
+@-moz-keyframes fadeG{
+0%{
+background-color:#000000}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-o-keyframes fadeG{
+0%{
+background-color:#000000}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-ms-keyframes fadeG{
+0%{
+background-color:#000000}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+.footerbutton  #floatingBarsGs{
+left: 440px;
+top: 11px;
+height: 19px;
+}
+
+#tutorial-accordion-cover{
+	position: absolute;
+	width: 136px;
+	height: 313px;
+	top: 0px;
+}
+#showmehow{
+	color: white;
+	text-align: center;
+	line-height: 17px;
+	padding-top: 9px;
+	width: 69px;
+	height: 39px;
+	border-radius: 14px;
+	position: absolute;
+	margin-left: 70px;
+	margin-top: 18px;
+	cursor:pointer;
+	border: solid 1px #2c5a86;
+	
+	background: #2c5a86;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2c5a86), to(#8da7c2));
+	background: -moz-linear-gradient(top,  #2c5a86,  #8da7c2);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+
+#showmehow:hover{
+	background: -webkit-gradient(linear, left top, left bottom, from(#8da7c2), to(#2c5a86));
+	background: -moz-linear-gradient(top,  #8da7c2,  #2c5a86);
+}
+#copyright{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	text-align: right;
+	font-family:FuturaLT;
+	color:#cfcbc8;
+	font-size:11px	
+}

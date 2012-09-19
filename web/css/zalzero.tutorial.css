@@ -1,0 +1,257 @@
+@keyframes arrow-anim-top {
+  0% {
+    transform: rotate(180deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    transform: rotate(180deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    transform: rotate(180deg) scale(1, 1) translate(0, 0); } }
+
+@-webkit-keyframes arrow-anim-top {
+  0% {
+    -webkit-transform: rotate(180deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    -webkit-transform: rotate(180deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    -webkit-transform: rotate(180deg) scale(1, 1) translate(0, 0); } }
+
+@-moz-keyframes arrow-anim-top {
+  0% {
+    -moz-transform: rotate(180deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    -moz-transform: rotate(180deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    -moz-transform: rotate(180deg) scale(1, 1) translate(0, 0); } }
+
+@-ms-keyframes arrow-anim-top {
+  0% {
+    -ms-transform: rotate(180deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    -ms-transform: rotate(180deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    -ms-transform: rotate(180deg) scale(1, 1) translate(0, 0); } }
+
+@-o-keyframes arrow-anim-top {
+  0% {
+    -o-transform: rotate(180deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    -o-transform: rotate(180deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    -o-transform: rotate(180deg) scale(1, 1) translate(0, 0); } }
+
+@keyframes arrow-anim-right {
+  0% {
+    transform: rotate(270deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    transform: rotate(270deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    transform: rotate(270deg) scale(1, 1) translate(0, 0); } }
+
+@-webkit-keyframes arrow-anim-right {
+  0% {
+    -webkit-transform: rotate(270deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    -webkit-transform: rotate(270deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    -webkit-transform: rotate(270deg) scale(1, 1) translate(0, 0); } }
+
+@-moz-keyframes arrow-anim-right {
+  0% {
+    -moz-transform: rotate(270deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    -moz-transform: rotate(270deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    -moz-transform: rotate(270deg) scale(1, 1) translate(0, 0); } }
+
+@-ms-keyframes arrow-anim-right {
+  0% {
+    -ms-transform: rotate(270deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    -ms-transform: rotate(270deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    -ms-transform: rotate(270deg) scale(1, 1) translate(0, 0); } }
+
+@-o-keyframes arrow-anim-right {
+  0% {
+    -o-transform: rotate(270deg) scale(1, 1) translate(0, 0); }
+
+  50% {
+    -o-transform: rotate(270deg) scale(1.14, 0.82) translate(0, -30px); }
+
+  100% {
+    -o-transform: rotate(270deg) scale(1, 1) translate(0, 0); } }
+
+@keyframes popup-anim {
+  0% {
+    transform: scale(0.1, 0.1); }
+
+  80% {
+    transform: scale(1.2, 1.2); }
+
+  100% {
+    transform: scale(1, 1); } }
+
+@-webkit-keyframes popup-anim {
+  0% {
+    -webkit-transform: scale(0.1, 0.1); }
+
+  80% {
+    -webkit-transform: scale(1.2, 1.2); }
+
+  100% {
+    -webkit-transform: scale(1, 1); } }
+
+@-moz-keyframes popup-anim {
+  0% {
+    -moz-transform: scale(0.1, 0.1); }
+
+  80% {
+    -moz-transform: scale(1.2, 1.2); }
+
+  100% {
+    -moz-transform: scale(1, 1); } }
+
+@-ms-keyframes popup-anim {
+  0% {
+    -ms-transform: scale(0.1, 0.1); }
+
+  80% {
+    -ms-transform: scale(1.2, 1.2); }
+
+  100% {
+    -ms-transform: scale(1, 1); } }
+
+@-o-keyframes popup-anim {
+  0% {
+    -o-transform: scale(0.1, 0.1); }
+
+  80% {
+    -o-transform: scale(1.2, 1.2); }
+
+  100% {
+    -o-transform: scale(1, 1); } }
+
+#page .girlimg {
+  position: relative; }
+  #page .girlimg .tutorial-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.5;
+    z-index: 1000; }
+
+.tutorial-highlight {
+  z-index: 1001; }
+
+.tutorial-highlight-low, .tutorial-highlight-low > * {
+  z-index: -1; }
+
+.tutorial-arrow {
+  position: absolute;
+  width: 26px;
+  height: 53px;
+  background: url("../images/tutorial/green_arrow.png"); }
+  .tutorial-arrow.top {
+    animation: arrow-anim-top 500ms linear infinite;
+    -webkit-animation: arrow-anim-top 500ms linear infinite;
+    -moz-animation: arrow-anim-top 500ms linear infinite;
+    -ms-animation: arrow-anim-top 500ms linear infinite;
+    -o-animation: arrow-anim-top 500ms linear infinite; }
+  .tutorial-arrow.right {
+    animation: arrow-anim-right 500ms linear infinite;
+    -webkit-animation: arrow-anim-right 500ms linear infinite;
+    -moz-animation: arrow-anim-right 500ms linear infinite;
+    -ms-animation: arrow-anim-right 500ms linear infinite;
+    -o-animation: arrow-anim-right 500ms linear infinite; }
+
+.tutorial-popup {
+  position: absolute;
+  z-index: 1002;
+  width: 306px;
+  height: 89px;
+  padding: 10px 18px 18px 14px;
+  font-size: 15px;
+  background: url("../images/tutorial/popup_background.png");
+  animation: popup-anim 300ms;
+  -webkit-animation: popup-anim 300ms;
+  -moz-animation: popup-anim 300ms;
+  -ms-animation: popup-anim 300ms;
+  -o-animation: popup-anim 300ms; }
+  .tutorial-popup .popup-button {
+    position: absolute;
+    top: 81px;
+    left: 225px;
+    width: 95px;
+    height: 30px;
+    background: url("../images/tutorial/popup_button_normal.png");
+    cursor: pointer; }
+    .tutorial-popup .popup-button:hover {
+      background: url("../images/tutorial/popup_button_hover.png"); }
+
+.draggableBetsClick {
+  position: absolute;
+  z-index: 1001;
+  transition: width 300ms, height 300ms;
+  -webkit-transition: width 300ms, height 300ms;
+  -moz-transition: width 300ms, height 300ms;
+  -ms-transition: width 300ms, height 300ms;
+  -o-transition: width 300ms, height 300ms; }
+  .draggableBetsClick.transition {
+    transition: left 300ms, top 300ms, width 300ms, height 300ms;
+    -webkit-transition: left 300ms, top 300ms, width 300ms, height 300ms;
+    -moz-transition: left 300ms, top 300ms, width 300ms, height 300ms;
+    -ms-transition: left 300ms, top 300ms, width 300ms, height 300ms;
+    -o-transition: left 300ms, top 300ms, width 300ms, height 300ms; }
+
+.tutorial-accordion {
+  position: relative;
+  margin: 0 0 0 5px;
+  width: 130px; }
+  .tutorial-accordion .accordion-content {
+    background: white;
+    color: #555;
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 0 5px 0; }
+  .tutorial-accordion h3 {
+    font-size: 12px;
+    font-family: FuturaLT-bold;
+    margin: 0 0 2px 0; }
+    .tutorial-accordion h3 .accordion-circle {
+      position: relative;
+      top: 0;
+      display: inline-block;
+      width: 29px;
+      height: 20px;
+      background: url("../images/tutorial/accordion_green.png");
+      padding: 9px 0 0 0;
+      margin: 0 3px 0 0;
+      text-align: center;
+      color: white; }
+    .tutorial-accordion h3 a {
+      text-decoration: none;
+      color: white;
+      text-transform: uppercase; }
+  .tutorial-accordion h3.ui-state-active .accordion-circle {
+    background: url("../images/tutorial/accordion_orange.png"); }

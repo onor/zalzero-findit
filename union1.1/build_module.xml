@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This file is used to compile and build a jar file from zzSrc.
+	 It can be modified to incorporate more functionalities. -->
+
+
+<project name="Zalerio_Union" basedir="." default="build">
+
+    <property name="src.dir" value="zzSrc"/>
+    <property name="classes.dir" value="bin"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="proj.dir" value="../.."/>
+	<path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+	
+	<condition property="is-windows">
+	    <os family="windows"/>
+	</condition>
+	
+	<condition property="is-unix">
+	    <not>
+	       <os family="windows"/>
+	   </not>
+	</condition>
+	
+			<!--Build-->
+	
+	<target name="compile" description="Compiles the files in zzSrc">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+    	<echo message="All files compiled successfully."/>
+    </target>
+
+    <target name="jar" description="JARs the compiled files into zzGame" depends="compile">
+        <jar destfile="zzGame.jar" basedir="${classes.dir}"/>
+    	<move file="zzGame.jar" todir="./modules"/>
+    	<echo message="All files JARed successfully."/>	    
+    </target>
+	
+	<target name="clean" depends="jar">
+		<!--deletes the bin directory-->
+		<delete dir="${classes.dir}"/>
+		<echo message="Bin directory deleted."/>
+		<!--deletes current deployment of the application-->
+		<delete includeemptydirs="true">
+			<fileset dir="${proj.dir}" defaultexcludes="false">
+				<include name="**/*"/>
+				<exclude name="**/*zalzero-findit*/**"/>
+			</fileset>
+		</delete>
+		<echo message="Project directory cleaned."/>
+	</target>
+	
+			<!--Porting Script-->
+	
+	<target name="port.script.windows" description="runs the porting script for windows">
+	    <exec dir=".." executable="cmd">
+	      <arg line="/c portingscript.bat"/>
+	   </exec>
+	</target>
+	
+	<target name="port.script.unix" description="runs the porting script for unix">
+	    <exec dir=".." executable="/bin/sh">
+	        <arg line="-c portingscript.sh"/>
+		</exec>
+	</target>
+	
+	<target name="ifWindows" if="is-windows" depends="clean">
+	   <antcall target="port.script.windows"/>
+	</target>
+
+	<target name="ifNotWindows" if="is-unix" depends="clean">
+	   <antcall target="port.script.unix"/>
+	</target>
+
+	<target depends="ifWindows, ifNotWindows" name="port.script">
+		<echo message="Porting Script runs successfully. "/>
+	</target>
+	
+	<target name="build" depends="port.script"/>
+
+</project>
