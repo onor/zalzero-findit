@@ -60,6 +60,7 @@
         $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zalerioScript.js');
         $cs->registerScriptFile(Yii::app()->baseUrl . '/lib/require.js');
         $cs->registerScriptFile(Yii::app()->baseUrl . '/dist/zalzero.tutorial-build.js');
+        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 
         
         //$cs->registerScriptFile('http://connect.facebook.net/en_US/all.js');
@@ -68,12 +69,21 @@
         <?php if($new_user == true ) {?>
         	<script>
 	        jQuery(function() {
-	        	require(['zalzero.tutorial'], function(tutorial) {
+		        require(['zalzero.tutorial'], function(tutorial) {
 	        		tutorial.launch();
 	        	});
 	        });
 	        </script>
 	    <?php } ?>
+	    
+	    <script>
+	        jQuery(function() {
+	        	require(['gameEventManager'], function(gameEventManager) {
+		        	start = new gameEventManager();	        		
+	        	});
+	  
+	        });
+	        </script>
   		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   <script>
   $(document).ready(function() {
@@ -411,7 +421,7 @@
                             <ul>
                                 <li>Now it's your turn! You have a total of 9 tiles to place in each round and you have a total of 7 rounds to win (or lose)! </li>
                                 <li>Symbols in white <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_tile_with _white_digit.png" alt=""> always are the tiles you are playing in the current round; numbers in black are tiles you played in previous rounds.A red tile with a white question mark '?' <img  class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_red_tile.png" alt=""> represents a new tile which has been placed on the board by you in the current round.Green tiles remain green if  they "hit" (your placement uncovered a part of a hidden number). The digit on the tile represents the number of players who have placed a tile on the same space (if you hover over the tile you will also see pictures of your friends who placed a tile on the same space). </li>
-                                <li>An orange tile <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_yellow_tile.png" alt=""> represents a "miss" by you.A grey tile <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_grey_tile.png" alt=""> represents a miss by one of your fellow players. A “miss” is a tile that was placed that did neither uncover any part of a hidden number nor did it hit a joker. You will always see your own misses and the misses of your fellow players.</li>
+                                <li>An orange tile <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_yellow_tile.png" alt=""> represents a "miss" by you.A grey tile <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_grey_tile.png" alt=""> represents a miss by one of your fellow players. A â€œmissâ€� is a tile that was placed that did neither uncover any part of a hidden number nor did it hit a joker. You will always see your own misses and the misses of your fellow players.</li>
                                 <li><img class="left" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_complete_ digit.png" alt="">When the number is fully uncovered by you all the tiles turn. Only you will see your uncovered numbers. Here an example of the number 5. Each number from 0 - 9 is placed on the grid. To make this a little harder the numbers can be placed in any position. To see all of the hidden objects you can uncover please take a look at the cheatsheet.</li>
                                 <li>To add to the fun, there are up to 6 Joker tiles <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_joker_tile.png" alt=""> hidden on the board. Whoever hits the Joker first gets 33 joker points - so go for it!</li>
                                 <li>Even better, there is only 1 Super Joker tile <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_sjoker_tile.png" alt=""> hidden on the board.Whoever hits the Super Joker first gets 77 super-joker points!  Find him and you have an edge!(by the way - if multiple players uncover the Joker or Super-Joker in the same round they all get the bonus joker points!)</li>

@@ -8,6 +8,7 @@ popupMSG =
 		
 __hasProp_ = Object::hasOwnProperty
 rematchCall = ->
+usersRecord = ->
 sendDeclinedToServer = ->
 gameChangeListener = ->
 resignStatus = 0
@@ -37,481 +38,484 @@ jQuery ->
   unionGameServerId = "zalerioGameServer"
   userLevelImg = new Array("carauselbelts_otherplayers_white_belt.png", "carauselbelts_otherplayers_yellow_belt.png", "carauselbelts_otherplayers_orange_belt.png", "carauselbelts_otherplayers_green_belt.png", "carauselbelts_otherplayers_blue_belt.png", "carauselbelts_otherplayers_purple_belt.png", "carauselbelts_otherplayers_red_belt.png", "carauselbelts_otherplayers_brown_belt.png", "carauselbelts_otherplayers_black_belt.png")
   userLevelImgBig = new Array("carauselbelts_main_player_white_belt.png", "carauselbelts_main_player_yellow_belt.png", "carauselbelts_main_player_orange_belt.png", "carauselbelts_main_player_green_belt.png", "carauselbelts_main_player_blue_belt.png", "carauselbelts_main_player_purple_belt.png", "carauselbelts_main_player_red_belt.png", "carauselbelts_main_player_brown_belt.png", "carauselbelts_main_player_black_belt.png")
+  
+  
   jDocument = jQuery(document)
   unionClientId = null
   roomID = null
   pad2 = (number) ->
     _ref = undefined
     (if (_ref = number < 10)? then _ref else 0: "") + number
-
-  oloEvents =
-    JOINED_ROOM: "joinedRoomListener"
-    RESET_GAME_VARIABLES: "resetGameVariables"
-    CLIENT_ADDED_TO_ROOM: "clientAddedListener"
-    CLIENT_REMOVED_FROM_ROOM: "clientRemovedListener"
-    ROOM_SNAPSHOT: "roomSnapshotListener"
-    CLIENT_SNAPSHOT: "clientSnapshotListener"
-    ROOM_ATTR_UPDATE: "roomAttrUpdateListener"
-    CLIENT_ATTR_UPDATE: "clientAttrUpdateListener"
-    ROOM_OCCUPANTCOUNT_UPDATE: "roomOccupantCountUpdateListener"
-    LOGGED_IN: "onLoginResult"
-    RECEIVE_MESSAGE: "messageListener"
-    SEND_UPC_MESSAGE: "send_upc_message"
-    RECEIVE_USERVO: "received_userVO"
-    REMOVE_USERVO: "remove_userVO"
-    UPDATE_TTL: "update_ttl"
-    CONNECTION_CLOSE: "connection_close"
-    SEND_CHAT_MESSAGE: "send_chat_message"
-    UPDATE_LOCAL_TTL: "update_local_ttl"
-    BID_CHANGED: "bid_changed"
-    SERVER_MESSAGE: "SERVER_MESSAGE"
-    WINNER_CHANGE: "winner_change"
-    CLIENT_JOINED: "client_joined"
-    CLIENT_LEFT: "client_left"
-    OLOTUTS_MESSAGE: "olotuts_message"
-    CLIENT_BETS_PLACED: "zalerioUserBetPlaced"
-
-  OloGlobals = ->
-    inviteStatus = null
-    ttl = null
-    currentUserDBId = null    
-    offlinePlayers = null
-    clientCodes =
-      USER_ID: "UI"
-      USER_DISPLAY_NAME: "UD"
-      USER_NAME: "UN"
-      USER_UNION_ID: "UU"
-      USER_FACEBOOK_ID: "UF"
-      USER_PARTY_ID: "UP"
-      USER_SEAT_ID: "UR"
-      Z_USER_SCORE: "ZS"
-      MY_TURN: "MT"
-      THEIR_TURN: "TT"
-      ALL_PAST_GAME: "APG"
-      USERINFO: "UINFO"
-      
-	# new implementation
-    msgCodes =
-      RIGHT_HUD:"RH"
-    dataObjCodes =
-      ALL_PLAYER_INFO:"AP"
-
-    roomCodes =
-      ROOM_ID: "GI"
-      USER_TOTAL: "UT"
-      USER_COUNT: "UC"
-      WINNER_NAME: "WN"
-      WINNER_ID: "WI"
-      GAME_ENDED: "GE"
-      TIME_LEFT: "TL"
-      GAME_DURATION: "GD"
-      START_TIME: "ST"
-      END_TIME: "ET"
-      ROOM_NAME: "RN"
-      TOTAL_SEATS: "TS"
-      ROOM_PRIZE_NAME: "RP"
-      ROOM_MRP: "RM"
-      ROOM_IMAGEROOM_MRP: "RI"
-      TOTALROUNDS: "TR"
-      CURRENTROUND: "CR"
-      ROUND_ENDTIME: "RE"
-      ROUND_ENDTIMEINMS: "EM"
-      ROUND_NOOFBETS: "NB"
-      BOARDVARS: "BV"
-      BOARD_XY: "XY"
-      TOTALFIGS: "TF"
-      ROOM_ALLROUNDS: "AR"
-      FIGURE_DETAILS: "FD"
-      ZALERIO_SCORES: "ZS"
-      GAME_FINISH: "FR"
-      PLAYER_BETS_PLACE: "PP"
-      ALL_PLAYER_INFO: "AP"
-
-    userVOsIndex = {}
-    userVOsSeatIndex = {}
-    userVOsPartyIndex = {}
-    generateAttrVars = (attrCodes) ->
-      attrV = {}
-      for i of attrCodes
-        attrV[attrCodes[i]] = i
-      attrV
-      
-    msgVars = generateAttrVars(msgCodes)
-    dataObjVars = generateAttrVars(dataObjCodes)
-    clientVars = generateAttrVars(clientCodes)
-    roomVars = generateAttrVars(roomCodes)
-    roomVarsFlag = generateAttrVars(roomCodes)
-    userVOs = {}
-    userFBVOs = {}
-    gameDuration = ""
-    setClockInterval = ""
-    UserVO = (userUnionId, userSnapshotObj) ->
-      if isDevEnvironment
-      	console.log "Added to room " + userSnapshotObj
-      	console.log "Current User local ID : " + oloGlobals.currentUserDBId;
-      for i of clientCodes
-        this[clientCodes[i]] = "-1"
-      userVArr = userSnapshotObj.split("|")
-      userVArrLen = userVArr.length
-      i = 0
-      while i < userVArrLen
-        this[userVArr[i]] = userVArr[i + 1]  if clientVars[userVArr[i]]
-        i += 3
-      this[clientCodes.USER_UNION_ID] = userUnionId  if this[clientCodes.USER_ID]
-      if this[clientCodes.USER_ID] is oloGlobals.currentUserDBId
-        i = 0
-        while i < userVArrLen
-          oloGlobals.clientVars[userVArr[i]] = userVArr[i + 1]  if clientVars[userVArr[i]]
-          i += 3
-      this
-
-    getUserName = (clientID) ->
-      userName = clientID
-      userName = oloGlobals.userVOsIndex[clientID][clientCodes.USER_DISPLAY_NAME]  if clientID and oloGlobals.userVOsIndex[clientID]
-      userName
-
-    updateGameDuration = (event, data) ->
-      data = (if data then parseInt(data) else null)
-      gameDuration = data  if data and not isNaN(data)
-
-    updateClock = ->
-      ttl--
-      if ttl > 0
-        pageRefresh.clearTimer()  if pageRefresh and pageRefresh.isTimerEnabled and pageRefresh.isTimerEnabled()
-      else
-        if pageRefresh and ttl <= 0
-          if pageRefresh.isTimerEnabled and not (pageRefresh.isTimerEnabled()) and currentScreen isnt "postscreen"
-            console.log "Pagerefresh.isTimerEnabled false!" if isDevEnvironment
-            pageRefresh.enableTimer()
-      jDocument.trigger oloEvents.UPDATE_LOCAL_TTL, @ttl
-
-    updateTTL = (event, data) ->
-      clearInterval setClockInterval  if setClockInterval
-      data = (if data then parseInt(data) else null)
-      ttl = data  if data and typeof data is "number"
-      setClockInterval = setInterval(updateClock, 10000)
-
-    pageRefresh = ->
-      timer = null
-      enableTimerFn = ->
-        _this = this
-        timer = setTimeout(->
-          redirectToPlayNow gameInstId
-        , 5000)
-        console.log "refresh timer set!" if isDevEnvironment
-
-      clearTimerFn = ->
-        timer = null
-        console.log "refresh timer cleared!" if isDevEnvironment
-
-      isTimerEnabled: ->
-        if timer
-          true
-        else
-          false
-
-      enableTimer: ->
-        enableTimerFn()
-
-      clearTimer: ->
-        clearTimerFn()
-
-
-    generateAttrVarsFn: (p) ->
-      generateAttrVars p
-
-    roomCodes: roomCodes
-    clientCodes: clientCodes
-    msgCodes: msgCodes
-    dataObjCodes: dataObjCodes
-    dataObjVars: dataObjVars
-    UserVO: UserVO
-    userVOsIndex: userVOsIndex
-    roomVars: roomVars
-    roomVarsFlag: roomVarsFlag
-    clientVars: clientVars
-    msgVars: msgVars
-    userVOs: userVOs
-    userFBVOs: userFBVOs
-    getUserName: getUserName
-    userVOsPartyIndex: userVOsPartyIndex
-    getTtl: ->
-      ttl
-
-    userVOsSeatIndex: userVOsSeatIndex
-    getGameDuration: ->
-      gameDuration
-
-    offlinePlayers: offlinePlayers
-    currentUserDBId: currentUserDBId
-
-  window.oloGlobals = oloGlobals = OloGlobals()
-  OloUnionConnection = (->
-    OloUnionConnection = ->
-      window.UPC = UPC
-      init()
-    UPC = net.user1.orbiter.UPC
-    orbiter = null
-    msgManager = null
-    getClientSnapshotResult = ->
-    	if isDevEnvironment
-    		console.log "client snapshot result"
-    		console.log arguments
-
-    roomOccupantCountUpdateListener = (roomID, numOccupants) ->
-      numOccupants = parseInt(numOccupants)
-      if numOccupants is 1
-
-      else if numOccupants is 2
-
-      else
-
-    roomAttrUpdateListener = (e, roomId, attrKey, attrVal) ->
-      if oloGlobals.roomVars[attrKey]
-        oloGlobals.roomVars[attrKey] = attrVal
-        if oloGlobals.roomCodes.WINNING_BID is attrKey
-          try
-            wbBid = jQuery.parseJSON(attrVal)
-            oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_ID] = wbBid[oloGlobals.roomCodes.WINNER_ID]
-            oloGlobals.roomVars[oloGlobals.roomCodes.WINNING_AMOUNT] = wbBid[oloGlobals.roomCodes.WINNING_AMOUNT]
-            oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_NAME] = wbBid[oloGlobals.roomCodes.WINNER_NAME]
-            return jDocument.trigger(oloEvents.WINNER_CHANGE, [ wbBid[oloGlobals.roomCodes.WINNING_AMOUNT], wbBid[oloGlobals.roomCodes.WINNER_NAME], wbBid[oloGlobals.roomCodes.WINNER_ID] ])
-          catch e
-            console.log(e) if isDevEnvironment
-            return
-        else
-        	if isDevEnvironment
-        		console.log "Triggered room:", attrKey, attrVal
-        	jDocument.trigger "room:" + attrKey, attrVal
-      
-    closeListener = (e) ->
-      _this = this
-      jDocument.trigger oloEvents.CONNECTION_CLOSE
-      el = document.getElementById("loadingGame")
-      el.style.display = "block"  if el and el.style
-      window.setTimeout (->
-        document.location.reload true
-      ), 5000
-
-    onLoginResult = (clientID, userID, arg2) ->
-      unionClientId = clientID
-      oloGlobals.currentUserDBId = userID
-
-    clientAttrUpdate = (attrKey) ->
-      switch attrKey
-        when clientCodes.USER_ID then
-        when clientCodes.USER_DISPLAY_NAME then
-        when clientCodes.USER_NAME then
-
-    roomSnapshotListener = (requestID, roomID, occupantCount, observerCount, roomAttrsStr) ->
-      argLen = arguments.length
-      i = 5
-      while i < argLen
-        userVO = new oloGlobals.UserVO(arguments[i], arguments[i + 3])
-        jDocument.trigger oloEvents.RECEIVE_USERVO, [ userVO, false ]
-        i += 5
-      userFBVOs = getGameInstWithFBFriends([ oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID] ])  if (typeof getGameInstWithFBFriends isnt "undefined" and getGameInstWithFBFriends isnt null) and oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID]
-      roomAttrsSplit = roomAttrsStr.split("|")
-      len = roomAttrsSplit.length
-      roomAttrKey = null
-      roomAttrVal = null
-      _results = []
-      i = 0
-      while i < len
-        if roomAttrsSplit[i] and roomAttrsSplit[i + 1]
-          roomAttrKey = roomAttrsSplit[i]
-          roomAttrVal = roomAttrsSplit[i + 1]
-          if oloGlobals.roomCodes.WINNING_BID is roomAttrKey
-            try
-              wbBid = jQuery.parseJSON(roomAttrVal)
-              oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_ID] = wbBid[oloGlobals.roomCodes.WINNER_ID]
-              oloGlobals.roomVars[oloGlobals.roomCodes.WINNING_AMOUNT] = wbBid[oloGlobals.roomCodes.WINNING_AMOUNT]
-              oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_NAME] = wbBid[oloGlobals.roomCodes.WINNER_NAME]
-              _results.push jDocument.trigger(oloEvents.WINNER_CHANGE)
-            catch e
-              _results.push console.log(e) #if isDevEnvironment
-          else
-            if oloGlobals.roomVars[roomAttrKey]
-              unless roomAttrKey is oloGlobals.roomCodes.WINNER_ID and roomAttrVal is "-1"
-              	if isDevEnvironment
-              		console.log "Triggered via ss room:", roomAttrKey, roomAttrVal
-               oloGlobals.roomVars[roomAttrKey] = {}
-               oloGlobals.roomVars[roomAttrKey] = roomAttrVal
-               _results.push jDocument.trigger("room:" + roomAttrKey, roomAttrVal)
-            else
-              _results.push undefined
-        else
-          _results.push undefined
-        i += 2
-      _results
-
-    clientSnapshotListener = (requestID, clientID, userID, a4, clientAttrsStr) ->
-      console.log "ClientSnapshotListener ",clientAttrsStr if isDevEnvironment
-      if userLoginId is userID
-        clientAttrsSplit = clientAttrsStr.split("|")
-        len = clientAttrsSplit.length
-        clientAttrKey = null
-        clientAttrVal = null
-        _results = []
-        i = 0
-        while i < len
-          if clientAttrsSplit[i] and clientAttrsSplit[i + 1]
-            clientAttrKey = clientAttrsSplit[i]
-            clientAttrVal = clientAttrsSplit[i + 1]
-            if clientVars[clientAttrKey]
-              clientVars[clientAttrKey] = clientAttrVal
-              _results.push jDocument.trigger("client:" + clientAttrKey, clientAttrVal)
-            else
-              _results.push undefined
-          else
-            _results.push undefined
-          i += 2
-        _results
-
-    joinedRoomListener = (rId) ->
-      roomID = rId
-      #oloGlobals.roomVars.FR = 0
-      resetGameVariables() # reset all global variable on game change
-      jDocument.trigger oloEvents.JOINED_ROOM
-	
-	# reset global variable on game change
-    resetGameVariables = ()->
-    	flag_roundDrawn = false
-    	jQuery("#userTopPicHUDMain").css("left","0")
-    	jQuery("#scroll_carousel .selected").removeClass "selected"
-    	jQuery("#gameBetPanel").css("display",'block')
-    	jQuery("#right_hud_"+gameInstId).addClass "selected"
-	
-    clientAddedListener = (roomID, clientID, userID) ->
-      userVO = new oloGlobals.UserVO(clientID, arguments[3])
-      console.log "user added and triggered : [UserVO:", userVO, ",clientId:" + clientID + ",args:" + arguments[3] + "]" if isDevEnvironment
-      jDocument.trigger oloEvents.CLIENT_JOINED, userVO
-      jDocument.trigger oloEvents.RECEIVE_USERVO, [ userVO, true ]
-
-    clientRemovedListener = (roomID, clientID) ->
-      userName = clientID
-      jDocument.trigger oloEvents.REMOVE_USERVO, clientID  if clientID and oloGlobals.userVOsIndex[clientID]
-
-    messageListener = (messageName, broadcastType, fromClientID, roomID, message) ->
-      jDocument.trigger oloEvents.SERVER_MESSAGE, [ messageName, broadcastType, fromClientID, roomID, message, orbiter.getClientID() ]
-
-    clientAttrUpdateListener = (roomId, clientId, userId, attrKey, attrVal) ->
-      if oloGlobals.currentUserDBId is userId
-        if oloGlobals.clientVars[attrKey]
-          oloGlobals.clientVars[attrKey] = attrVal
-          return jDocument.trigger("client:" + attrKey, attrVal)
-
-    init = ->
-      orbiter = new net.user1.orbiter.Orbiter()
-      msgManager = orbiter.getMessageManager()
-      addOloListeners()
-      if isDevEnvironment
-      	console.log "defining UPC"
-      	console.log "ololisteners :", oloListeners
-      	console.log "UPC definition completed!"
-      unless orbiter.getSystem().isJavaScriptCompatible()
-        oloGame.displayChatMessage "systemChatMessage", "Your browser is not supported."
-        return
-      if orbiter
-        orbiter.addEventListener net.user1.orbiter.OrbiterEvent.READY, readyListener, this
-        orbiter.addEventListener net.user1.orbiter.OrbiterEvent.CLOSE, closeListener, this
-      jQuery ->
-        if document.domain is "localhost" or document.domain is "zl.mobicules.com"
-            orbiter.connect document["domain"], 9933
-        else
-            orbiter.connect "union.zalerio.com", 80
-
-    askClientData = (e) ->
-      console.log "askfordata" if isDevEnvironment
-      msgManager.sendUPC UPC.SEND_SERVERMODULE_MESSAGE, unionGameServerId, "REQ", "C|AGD", "UID|" + oloGlobals.currentUserDBId
-
-    readyListener = (e) ->
-	    msgManager.sendUPC UPC.SEND_SERVERMODULE_MESSAGE, unionGameServerId, "REQ", "C|LI", "UI|" + userLoginId, "GI|" + gameInstId
-	    jDocument.bind oloEvents.SEND_UPC_MESSAGE, sendUpcMessageToServer
-    
-    # change game
-    gameChangeListener = (gameInstIdTemp) ->	# fire when user click on crouse to change game
-      if typeof gameInstIdTemp is 'undefined'
-      	eval("gameInstIdTemp = gameInstId")
-      else
-      	eval("gameInstId = gameInstIdTemp")
-      oloGlobals.roomVars.FR = -1
-      flag_roundDrawn = false
-      flag_roundBetsDrawn = false
-      msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
- 
-    sendDeclinedToServer = (gameSeatId,gameId) ->   # fire when user click decined
-    	jQuery('#accept_decline_' + gameId).text('')
-    	jQuery('#accept_decline_' + gameId).css('cursor', 'default')
-    	jQuery('#accept_decline_' + gameId).html("""<div id="floatingBarsGs">
-		<div class="blockG" id="rotateG_01">
-		</div>
-		<div class="blockG" id="rotateG_02">
-		</div>
-		<div class="blockG" id="rotateG_03">
-		</div>
-		<div class="blockG" id="rotateG_04">
-		</div>
-		<div class="blockG" id="rotateG_05">
-		</div>
-		<div class="blockG" id="rotateG_06">
-		</div>
-		<div class="blockG" id="rotateG_07">
-		</div>
-		<div class="blockG" id="rotateG_08">
-		</div>
-		</div>""")
-    	
-    	msgManager.sendUPC UPC.SEND_SERVERMODULE_MESSAGE, unionGameServerId, "REQ", "C|DG", "GSID|" + gameSeatId
-
-    sendUpcMessageToServer = (event, upcFunctionCode,p2,p3,p4,p5,p6) ->
-      console.log("sending upc message [upcFunctionCode:" + upcFunctionCode + ",p2:" + p2 + ",p3:" + p3 + ",p4:" + p4 + ",p5:" + p5 + ",p6:" + p6 + "]") if isDevEnvironment
-      argArr = [];
-      for i in [0...arguments.length]
-          if i is 0
-              continue;
-          else
-              if(arguments[i])
-                  argArr.push(arguments[i]);
-              else
-                  argArr.push('');
-
-      console.log(argArr) if isDevEnvironment
-      if(upcFunctionCode)
-          msgManager.sendUPC.apply(msgManager,argArr);
-          
-    onLogoutResult = (clientUnionId,userId)->
-    	if parseInt(unionClientId) is parseInt(clientUnionId)
-    		window.location = "http://" + document.domain + baseUrl + "/site/closesession"
-    	
-    oloListeners =
-      JOINED_ROOM: joinedRoomListener
-      CLIENT_ADDED_TO_ROOM: clientAddedListener
-      CLIENT_REMOVED_FROM_ROOM: clientRemovedListener
-      ROOM_SNAPSHOT: roomSnapshotListener
-      CLIENT_SNAPSHOT: clientSnapshotListener
-      ROOM_ATTR_UPDATE: roomAttrUpdateListener
-      CLIENT_ATTR_UPDATE: clientAttrUpdateListener
-      ROOM_OCCUPANTCOUNT_UPDATE: roomOccupantCountUpdateListener
-      LOGGED_IN: onLoginResult
-      LOGGED_OFF: onLogoutResult
-      RECEIVE_MESSAGE: messageListener
-      GET_CLIENT_SNAPSHOT_RESULT: getClientSnapshotResult
-
-    addOloListeners = ->
-      _results = []
-      for msgEvt of oloListeners
-        if msgManager and msgManager.addMessageListener
-          if oloListeners[msgEvt] is "messageListener"
-            _results.push msgManager.addMessageListener(UPC[msgEvt], oloListeners[msgEvt], this, gameInstId)
-          else
-            _results.push msgManager.addMessageListener(UPC[msgEvt], oloListeners[msgEvt], this)
-        else
-          _results.push undefined
-      _results
-
-    OloUnionConnection
-  )()
+#  ### move to globals
+#  zzEvents =
+#    JOINED_ROOM: "joinedRoomListener"
+#    RESET_GAME_VARIABLES: "resetGameVariables"
+#    CLIENT_ADDED_TO_ROOM: "clientAddedListener"
+#    CLIENT_REMOVED_FROM_ROOM: "clientRemovedListener"
+#    ROOM_SNAPSHOT: "roomSnapshotListener"
+#    CLIENT_SNAPSHOT: "clientSnapshotListener"
+#    ROOM_ATTR_UPDATE: "roomAttrUpdateListener"
+#    CLIENT_ATTR_UPDATE: "clientAttrUpdateListener"
+#    ROOM_OCCUPANTCOUNT_UPDATE: "roomOccupantCountUpdateListener"
+#    LOGGED_IN: "onLoginResult"
+#    RECEIVE_MESSAGE: "messageListener"
+#    SEND_UPC_MESSAGE: "send_upc_message"
+#    RECEIVE_USERVO: "received_userVO"
+#    REMOVE_USERVO: "remove_userVO"
+#    UPDATE_TTL: "update_ttl"
+#    CONNECTION_CLOSE: "connection_close"
+#    SEND_CHAT_MESSAGE: "send_chat_message"
+#    UPDATE_LOCAL_TTL: "update_local_ttl"
+#    BID_CHANGED: "bid_changed"
+#    SERVER_MESSAGE: "SERVER_MESSAGE"
+#    WINNER_CHANGE: "winner_change"
+#    CLIENT_JOINED: "client_joined"
+#    CLIENT_LEFT: "client_left"
+#    OLOTUTS_MESSAGE: "olotuts_message"
+#    CLIENT_BETS_PLACED: "zalerioUserBetPlaced"
+#
+#  OloGlobals = ->
+#    inviteStatus = null
+#    ttl = null
+#    currentUserDBId = null    
+#    offlinePlayers = null
+#    clientCodes =
+#      USER_ID: "UI"
+#      USER_DISPLAY_NAME: "UD"
+#      USER_NAME: "UN"
+#      USER_UNION_ID: "UU"
+#      USER_FACEBOOK_ID: "UF"
+#      USER_PARTY_ID: "UP"
+#      USER_SEAT_ID: "UR"
+#      Z_USER_SCORE: "ZS"
+#      MY_TURN: "MT"
+#      THEIR_TURN: "TT"
+#      ALL_PAST_GAME: "APG"
+#      USERINFO: "UINFO"
+#      
+#	# new implementation
+#    msgCodes =
+#      RIGHT_HUD:"RH"
+#    dataObjCodes =
+#      ALL_PLAYER_INFO:"AP"
+#
+#    roomCodes =
+#      ROOM_ID: "GI"
+#      USER_TOTAL: "UT"
+#      USER_COUNT: "UC"
+#      WINNER_NAME: "WN"
+#      WINNER_ID: "WI"
+#      GAME_ENDED: "GE"
+#      TIME_LEFT: "TL"
+#      GAME_DURATION: "GD"
+#      START_TIME: "ST"
+#      END_TIME: "ET"
+#      ROOM_NAME: "RN"
+#      TOTAL_SEATS: "TS"
+#      ROOM_PRIZE_NAME: "RP"
+#      ROOM_MRP: "RM"
+#      ROOM_IMAGEROOM_MRP: "RI"
+#      TOTALROUNDS: "TR"
+#      CURRENTROUND: "CR"
+#      ROUND_ENDTIME: "RE"
+#      ROUND_ENDTIMEINMS: "EM"
+#      ROUND_NOOFBETS: "NB"
+#      BOARDVARS: "BV"
+#      BOARD_XY: "XY"
+#      TOTALFIGS: "TF"
+#      ROOM_ALLROUNDS: "AR"
+#      FIGURE_DETAILS: "FD"
+#      ZALERIO_SCORES: "ZS"
+#      GAME_FINISH: "FR"
+#      PLAYER_BETS_PLACE: "PP"
+#      ALL_PLAYER_INFO: "AP"
+#
+#    userVOsIndex = {}
+#    userVOsSeatIndex = {}
+#    userVOsPartyIndex = {}
+#    generateAttrVars = (attrCodes) ->
+#      attrV = {}
+#      for i of attrCodes
+#        attrV[attrCodes[i]] = i
+#      attrV
+#      
+#    msgVars = generateAttrVars(msgCodes)
+#    dataObjVars = generateAttrVars(dataObjCodes)
+#    clientVars = generateAttrVars(clientCodes)
+#    roomVars = generateAttrVars(roomCodes)
+#    roomVarsFlag = generateAttrVars(roomCodes)
+#    userVOs = {}
+#    userFBVOs = {}
+#    gameDuration = ""
+#    setClockInterval = ""
+#    UserVO = (userUnionId, userSnapshotObj) ->
+#      if isDevEnvironment
+#      	console.log "Added to room " + userSnapshotObj
+#      	console.log "Current User local ID : " + zzGlobals.currentUserDBId;
+#      for i of clientCodes
+#        this[clientCodes[i]] = "-1"
+#      userVArr = userSnapshotObj.split("|")
+#      userVArrLen = userVArr.length
+#      i = 0
+#      while i < userVArrLen
+#        this[userVArr[i]] = userVArr[i + 1]  if clientVars[userVArr[i]]
+#        i += 3
+#      this[clientCodes.USER_UNION_ID] = userUnionId  if this[clientCodes.USER_ID]
+#      if this[clientCodes.USER_ID] is zzGlobals.currentUserDBId
+#        i = 0
+#        while i < userVArrLen
+#          zzGlobals.clientVars[userVArr[i]] = userVArr[i + 1]  if clientVars[userVArr[i]]
+#          i += 3
+#      this
+#
+#    getUserName = (clientID) ->
+#      userName = clientID
+#      userName = zzGlobals.userVOsIndex[clientID][clientCodes.USER_DISPLAY_NAME]  if clientID and zzGlobals.userVOsIndex[clientID]
+#      userName
+#
+#    updateGameDuration = (event, data) ->
+#      data = (if data then parseInt(data) else null)
+#      gameDuration = data  if data and not isNaN(data)
+#
+#    updateClock = ->
+#      ttl--
+#      if ttl > 0
+#        pageRefresh.clearTimer()  if pageRefresh and pageRefresh.isTimerEnabled and pageRefresh.isTimerEnabled()
+#      else
+#        if pageRefresh and ttl <= 0
+#          if pageRefresh.isTimerEnabled and not (pageRefresh.isTimerEnabled()) and currentScreen isnt "postscreen"
+#            console.log "Pagerefresh.isTimerEnabled false!" if isDevEnvironment
+#            pageRefresh.enableTimer()
+#      jDocument.trigger zzEvents.UPDATE_LOCAL_TTL, @ttl
+#
+#    updateTTL = (event, data) ->
+#      clearInterval setClockInterval  if setClockInterval
+#      data = (if data then parseInt(data) else null)
+#      ttl = data  if data and typeof data is "number"
+#      setClockInterval = setInterval(updateClock, 10000)
+#
+#    pageRefresh = ->
+#      timer = null
+#      enableTimerFn = ->
+#        _this = this
+#        timer = setTimeout(->
+#          redirectToPlayNow gameInstId
+#        , 5000)
+#        console.log "refresh timer set!" if isDevEnvironment
+#
+#      clearTimerFn = ->
+#        timer = null
+#        console.log "refresh timer cleared!" if isDevEnvironment
+#
+#      isTimerEnabled: ->
+#        if timer
+#          true
+#        else
+#          false
+#
+#      enableTimer: ->
+#        enableTimerFn()
+#
+#      clearTimer: ->
+#        clearTimerFn()
+#
+#
+#    generateAttrVarsFn: (p) ->
+#      generateAttrVars p
+#
+#    roomCodes: roomCodes
+#    clientCodes: clientCodes
+#    msgCodes: msgCodes
+#    dataObjCodes: dataObjCodes
+#    dataObjVars: dataObjVars
+#    UserVO: UserVO
+#    userVOsIndex: userVOsIndex
+#    roomVars: roomVars
+#    roomVarsFlag: roomVarsFlag
+#    clientVars: clientVars
+#    msgVars: msgVars
+#    userVOs: userVOs
+#    userFBVOs: userFBVOs
+#    getUserName: getUserName
+#    userVOsPartyIndex: userVOsPartyIndex
+#    getTtl: ->
+#      ttl
+#
+#    userVOsSeatIndex: userVOsSeatIndex
+#    getGameDuration: ->
+#      gameDuration
+#
+#    offlinePlayers: offlinePlayers
+#    currentUserDBId: currentUserDBId
+#
+#  window.zzGlobals = zzGlobals = OloGlobals()
+#  OloUnionConnection = (->
+#    OloUnionConnection = ->
+#      window.UPC = UPC
+#      init()
+#    UPC = net.user1.orbiter.UPC
+#    orbiter = null
+#    msgManager = null
+#    getClientSnapshotResult = ->
+#    	if isDevEnvironment
+#    		console.log "client snapshot result"
+#    		console.log arguments
+#
+#    roomOccupantCountUpdateListener = (roomID, numOccupants) ->
+#      numOccupants = parseInt(numOccupants)
+#      if numOccupants is 1
+#
+#      else if numOccupants is 2
+#
+#      else
+#
+#    roomAttrUpdateListener = (e, roomId, attrKey, attrVal) ->
+#      if zzGlobals.roomVars[attrKey]
+#        zzGlobals.roomVars[attrKey] = attrVal
+#        if zzGlobals.roomCodes.WINNING_BID is attrKey
+#          try
+#            wbBid = jQuery.parseJSON(attrVal)
+#            zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_ID] = wbBid[zzGlobals.roomCodes.WINNER_ID]
+#            zzGlobals.roomVars[zzGlobals.roomCodes.WINNING_AMOUNT] = wbBid[zzGlobals.roomCodes.WINNING_AMOUNT]
+#            zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_NAME] = wbBid[zzGlobals.roomCodes.WINNER_NAME]
+#            return jDocument.trigger(zzEvents.WINNER_CHANGE, [ wbBid[zzGlobals.roomCodes.WINNING_AMOUNT], wbBid[zzGlobals.roomCodes.WINNER_NAME], wbBid[zzGlobals.roomCodes.WINNER_ID] ])
+#          catch e
+#            console.log(e) if isDevEnvironment
+#            return
+#        else
+#        	if isDevEnvironment
+#        		console.log "Triggered room:", attrKey, attrVal
+#        	jDocument.trigger "room:" + attrKey, attrVal
+#      
+#    closeListener = (e) ->
+#      _this = this
+#      jDocument.trigger zzEvents.CONNECTION_CLOSE
+#      el = document.getElementById("loadingGame")
+#      el.style.display = "block"  if el and el.style
+#      window.setTimeout (->
+#        document.location.reload true
+#      ), 5000
+#
+#    onLoginResult = (clientID, userID, arg2) ->
+#      unionClientId = clientID
+#      zzGlobals.currentUserDBId = userID
+#
+#    clientAttrUpdate = (attrKey) ->
+#      switch attrKey
+#        when clientCodes.USER_ID then
+#        when clientCodes.USER_DISPLAY_NAME then
+#        when clientCodes.USER_NAME then
+#
+#    roomSnapshotListener = (requestID, roomID, occupantCount, observerCount, roomAttrsStr) ->
+#      argLen = arguments.length
+#      i = 5
+#      while i < argLen
+#        userVO = new zzGlobals.UserVO(arguments[i], arguments[i + 3])
+#        jDocument.trigger zzEvents.RECEIVE_USERVO, [ userVO, false ]
+#        i += 5
+#      userFBVOs = getGameInstWithFBFriends([ zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID] ])  if (typeof getGameInstWithFBFriends isnt "undefined" and getGameInstWithFBFriends isnt null) and zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID]
+#      roomAttrsSplit = roomAttrsStr.split("|")
+#      len = roomAttrsSplit.length
+#      roomAttrKey = null
+#      roomAttrVal = null
+#      _results = []
+#      i = 0
+#      while i < len
+#        if roomAttrsSplit[i] and roomAttrsSplit[i + 1]
+#          roomAttrKey = roomAttrsSplit[i]
+#          roomAttrVal = roomAttrsSplit[i + 1]
+#          if zzGlobals.roomCodes.WINNING_BID is roomAttrKey
+#            try
+#              wbBid = jQuery.parseJSON(roomAttrVal)
+#              zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_ID] = wbBid[zzGlobals.roomCodes.WINNER_ID]
+#              zzGlobals.roomVars[zzGlobals.roomCodes.WINNING_AMOUNT] = wbBid[zzGlobals.roomCodes.WINNING_AMOUNT]
+#              zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_NAME] = wbBid[zzGlobals.roomCodes.WINNER_NAME]
+#              _results.push jDocument.trigger(zzEvents.WINNER_CHANGE)
+#            catch e
+#              _results.push console.log(e) #if isDevEnvironment
+#          else
+#            if zzGlobals.roomVars[roomAttrKey]
+#              unless roomAttrKey is zzGlobals.roomCodes.WINNER_ID and roomAttrVal is "-1"
+#              	if isDevEnvironment
+#              		console.log "Triggered via ss room:", roomAttrKey, roomAttrVal
+#               zzGlobals.roomVars[roomAttrKey] = {}
+#               zzGlobals.roomVars[roomAttrKey] = roomAttrVal
+#               _results.push jDocument.trigger("room:" + roomAttrKey, roomAttrVal)
+#            else
+#              _results.push undefined
+#        else
+#          _results.push undefined
+#        i += 2
+#      _results
+#
+#    clientSnapshotListener = (requestID, clientID, userID, a4, clientAttrsStr) ->
+#      console.log "ClientSnapshotListener ",clientAttrsStr if isDevEnvironment
+#      if userLoginId is userID
+#        clientAttrsSplit = clientAttrsStr.split("|")
+#        len = clientAttrsSplit.length
+#        clientAttrKey = null
+#        clientAttrVal = null
+#        _results = []
+#        i = 0
+#        while i < len
+#          if clientAttrsSplit[i] and clientAttrsSplit[i + 1]
+#            clientAttrKey = clientAttrsSplit[i]
+#            clientAttrVal = clientAttrsSplit[i + 1]
+#            if clientVars[clientAttrKey]
+#              clientVars[clientAttrKey] = clientAttrVal
+#              _results.push jDocument.trigger("client:" + clientAttrKey, clientAttrVal)
+#            else
+#              _results.push undefined
+#          else
+#            _results.push undefined
+#          i += 2
+#        _results
+#
+#    joinedRoomListener = (rId) ->
+#      roomID = rId
+#      #zzGlobals.roomVars.FR = 0
+#      resetGameVariables() # reset all global variable on game change
+#      jDocument.trigger zzEvents.JOINED_ROOM
+#	
+#	# reset global variable on game change
+#    resetGameVariables = ()->
+#    	flag_roundDrawn = false
+#    	jQuery("#userTopPicHUDMain").css("left","0")
+#    	jQuery("#scroll_carousel .selected").removeClass "selected"
+#    	jQuery("#gameBetPanel").css("display",'block')
+#    	jQuery("#right_hud_"+gameInstId).addClass "selected"
+#	
+#    clientAddedListener = (roomID, clientID, userID) ->
+#      userVO = new zzGlobals.UserVO(clientID, arguments[3])
+#      console.log "user added and triggered : [UserVO:", userVO, ",clientId:" + clientID + ",args:" + arguments[3] + "]" if isDevEnvironment
+#      jDocument.trigger zzEvents.CLIENT_JOINED, userVO
+#      jDocument.trigger zzEvents.RECEIVE_USERVO, [ userVO, true ]
+#
+#    clientRemovedListener = (roomID, clientID) ->
+#      userName = clientID
+#      jDocument.trigger zzEvents.REMOVE_USERVO, clientID  if clientID and zzGlobals.userVOsIndex[clientID]
+#
+#    messageListener = (messageName, broadcastType, fromClientID, roomID, message) ->
+#      jDocument.trigger zzEvents.SERVER_MESSAGE, [ messageName, broadcastType, fromClientID, roomID, message, orbiter.getClientID() ]
+#
+#    clientAttrUpdateListener = (roomId, clientId, userId, attrKey, attrVal) ->
+#      if zzGlobals.currentUserDBId is userId
+#        if zzGlobals.clientVars[attrKey]
+#          zzGlobals.clientVars[attrKey] = attrVal
+#          return jDocument.trigger("client:" + attrKey, attrVal)
+#
+#    init = ->
+#      orbiter = new net.user1.orbiter.Orbiter()
+#      msgManager = orbiter.getMessageManager()
+#      addOloListeners()
+#      if isDevEnvironment
+#      	console.log "defining UPC"
+#      	console.log "ololisteners :", oloListeners
+#      	console.log "UPC definition completed!"
+#      unless orbiter.getSystem().isJavaScriptCompatible()
+#        oloGame.displayChatMessage "systemChatMessage", "Your browser is not supported."
+#        return
+#      if orbiter
+#        orbiter.addEventListener net.user1.orbiter.OrbiterEvent.READY, readyListener, this
+#        orbiter.addEventListener net.user1.orbiter.OrbiterEvent.CLOSE, closeListener, this
+#      jQuery ->
+#        if document.domain is "localhost" or document.domain is "zl.mobicules.com"
+#            orbiter.connect document["domain"], 9933
+#        else
+#            orbiter.connect "union.zalerio.com", 80
+#
+#    askClientData = (e) ->
+#      console.log "askfordata" if isDevEnvironment
+#      msgManager.sendUPC UPC.SEND_SERVERMODULE_MESSAGE, unionGameServerId, "REQ", "C|AGD", "UID|" + zzGlobals.currentUserDBId
+#
+#    readyListener = (e) ->
+#	    msgManager.sendUPC UPC.SEND_SERVERMODULE_MESSAGE, unionGameServerId, "REQ", "C|LI", "UI|" + userLoginId, "GI|" + gameInstId
+#	    jDocument.bind zzEvents.SEND_UPC_MESSAGE, sendUpcMessageToServer
+#    
+#    # change game
+#    gameChangeListener = (gameInstIdTemp) ->	# fire when user click on crouse to change game
+#      if typeof gameInstIdTemp is 'undefined'
+#      	eval("gameInstIdTemp = gameInstId")
+#      else
+#      	eval("gameInstId = gameInstIdTemp")
+#      zzGlobals.roomVars.FR = -1
+#      flag_roundDrawn = false
+#      flag_roundBetsDrawn = false
+#      msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
+# 
+#    sendDeclinedToServer = (gameSeatId,gameId) ->   # fire when user click decined
+#    	jQuery('#accept_decline_' + gameId).text('')
+#    	jQuery('#accept_decline_' + gameId).css('cursor', 'default')
+#    	jQuery('#accept_decline_' + gameId).html("""<div id="floatingBarsGs">
+#		<div class="blockG" id="rotateG_01">
+#		</div>
+#		<div class="blockG" id="rotateG_02">
+#		</div>
+#		<div class="blockG" id="rotateG_03">
+#		</div>
+#		<div class="blockG" id="rotateG_04">
+#		</div>
+#		<div class="blockG" id="rotateG_05">
+#		</div>
+#		<div class="blockG" id="rotateG_06">
+#		</div>
+#		<div class="blockG" id="rotateG_07">
+#		</div>
+#		<div class="blockG" id="rotateG_08">
+#		</div>
+#		</div>""")
+#    	
+#    	msgManager.sendUPC UPC.SEND_SERVERMODULE_MESSAGE, unionGameServerId, "REQ", "C|DG", "GSID|" + gameSeatId
+#
+#    sendUpcMessageToServer = (event, upcFunctionCode,p2,p3,p4,p5,p6) ->
+#      console.log("sending upc message [upcFunctionCode:" + upcFunctionCode + ",p2:" + p2 + ",p3:" + p3 + ",p4:" + p4 + ",p5:" + p5 + ",p6:" + p6 + "]") if isDevEnvironment
+#      argArr = [];
+#      for i in [0...arguments.length]
+#          if i is 0
+#              continue;
+#          else
+#              if(arguments[i])
+#                  argArr.push(arguments[i]);
+#              else
+#                  argArr.push('');
+#
+#      console.log(argArr) if isDevEnvironment
+#      if(upcFunctionCode)
+#          msgManager.sendUPC.apply(msgManager,argArr);
+#          
+#    onLogoutResult = (clientUnionId,userId)->
+#    	if parseInt(unionClientId) is parseInt(clientUnionId)
+#    		window.location = "http://" + document.domain + baseUrl + "/site/closesession"
+#    	
+#    oloListeners =
+#      JOINED_ROOM: joinedRoomListener
+#      CLIENT_ADDED_TO_ROOM: clientAddedListener
+#      CLIENT_REMOVED_FROM_ROOM: clientRemovedListener
+#      ROOM_SNAPSHOT: roomSnapshotListener
+#      CLIENT_SNAPSHOT: clientSnapshotListener
+#      ROOM_ATTR_UPDATE: roomAttrUpdateListener
+#      CLIENT_ATTR_UPDATE: clientAttrUpdateListener
+#      ROOM_OCCUPANTCOUNT_UPDATE: roomOccupantCountUpdateListener
+#      LOGGED_IN: onLoginResult
+#      LOGGED_OFF: onLogoutResult
+#      RECEIVE_MESSAGE: messageListener
+#      GET_CLIENT_SNAPSHOT_RESULT: getClientSnapshotResult
+#
+#    addOloListeners = ->
+#      _results = []
+#      for msgEvt of oloListeners
+#        if msgManager and msgManager.addMessageListener
+#          if oloListeners[msgEvt] is "messageListener"
+#            _results.push msgManager.addMessageListener(UPC[msgEvt], oloListeners[msgEvt], this, gameInstId)
+#          else
+#            _results.push msgManager.addMessageListener(UPC[msgEvt], oloListeners[msgEvt], this)
+#        else
+#          _results.push undefined
+#      _results
+#
+#    OloUnionConnection
+#  )()
+#  ###
   oloUserComponent = ->
     flag_drawUserPanel = false
     docElems = {}
@@ -533,47 +537,47 @@ jQuery ->
       USER_ONLINE_STATUS: "userOnlineStatusDiv"
 
     updateUserIndex = ->
-      oloGlobals.userVOsIndex = {}
-      for i of oloGlobals.userVOs
-        oloGlobals.userVOsIndex[oloGlobals.userVOs[i][oloGlobals.clientCodes.USER_UNION_ID]] = oloGlobals.userVOs[i]
+      zzGlobals.userVOsIndex = {}
+      for i of zzGlobals.userVOs
+        zzGlobals.userVOsIndex[zzGlobals.userVOs[i][zzGlobals.clientCodes.USER_UNION_ID]] = zzGlobals.userVOs[i]
       updateUserIndexForPartyId()
 
     updateUserIndexForPartyId = ->
       _results = []
-      for i of oloGlobals.userVOs
-        unless oloGlobals.userVOsPartyIndex[oloGlobals.userVOs[i][oloGlobals.clientCodes.USER_PARTY_ID]]
-          _results.push oloGlobals.userVOsPartyIndex[oloGlobals.userVOs[i][oloGlobals.clientCodes.USER_PARTY_ID]] = oloGlobals.userVOs[i]
+      for i of zzGlobals.userVOs
+        unless zzGlobals.userVOsPartyIndex[zzGlobals.userVOs[i][zzGlobals.clientCodes.USER_PARTY_ID]]
+          _results.push zzGlobals.userVOsPartyIndex[zzGlobals.userVOs[i][zzGlobals.clientCodes.USER_PARTY_ID]] = zzGlobals.userVOs[i]
         else
           _results.push undefined
       _results
 
     updateUserIndexForPartyIdViaOfflinePlayers = ->
       _results = []
-      for i of oloGlobals.offlinePlayers
-        unless oloGlobals.userVOsPartyIndex[oloGlobals.offlinePlayers[i][oloGlobals.clientCodes.USER_PARTY_ID]]
-          _results.push oloGlobals.userVOsPartyIndex[oloGlobals.offlinePlayers[i][oloGlobals.clientCodes.USER_PARTY_ID]] = oloGlobals.offlinePlayers[i]
+      for i of zzGlobals.offlinePlayers
+        unless zzGlobals.userVOsPartyIndex[zzGlobals.offlinePlayers[i][zzGlobals.clientCodes.USER_PARTY_ID]]
+          _results.push zzGlobals.userVOsPartyIndex[zzGlobals.offlinePlayers[i][zzGlobals.clientCodes.USER_PARTY_ID]] = zzGlobals.offlinePlayers[i]
         else
           _results.push undefined
       _results
 
     refreshUserPanel = ->
       userCtr = 0
-      for i of oloGlobals.userVOs
-        if oloGlobals.userVOs.hasOwnProperty(i)
-          if (showAllUsers isnt "FB") or (showAllUsers is "FB" and oloGlobals.userFBVOs[i])
-            userVO = oloGlobals.userVOs[i]
+      for i of zzGlobals.userVOs
+        if zzGlobals.userVOs.hasOwnProperty(i)
+          if (showAllUsers isnt "FB") or (showAllUsers is "FB" and zzGlobals.userFBVOs[i])
+            userVO = zzGlobals.userVOs[i]
             renderUserVOToUserPanel userCtr++, userVO
-      if (typeof getGameInstWithFriends isnt "undefined" and getGameInstWithFriends isnt null) and not oloGlobals.offlinePlayers and getGameInstWithFriends(oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID])
-        oloGlobals.offlinePlayers = getGameInstWithFriends(oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID])
+      if (typeof getGameInstWithFriends isnt "undefined" and getGameInstWithFriends isnt null) and not zzGlobals.offlinePlayers and getGameInstWithFriends(zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID])
+        zzGlobals.offlinePlayers = getGameInstWithFriends(zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID])
         updateUserIndexForPartyIdViaOfflinePlayers()
         changeWinner()
-      for i of oloGlobals.offlinePlayers
-        if oloGlobals.offlinePlayers.hasOwnProperty(i)
-          offlineUserVO = oloGlobals.offlinePlayers[i]
+      for i of zzGlobals.offlinePlayers
+        if zzGlobals.offlinePlayers.hasOwnProperty(i)
+          offlineUserVO = zzGlobals.offlinePlayers[i]
           if showAllUsers is "FB"
             renderUserVOToUserPanel userCtr++, offlineUserVO, true  unless userFBVOs[i]
           else
-            renderUserVOToUserPanel userCtr++, offlineUserVO, true  unless oloGlobals.userVOs[i]
+            renderUserVOToUserPanel userCtr++, offlineUserVO, true  unless zzGlobals.userVOs[i]
       currentNoOfUsers = userCtr
       while userCtr < MAX_PLAYERS_IN_A_GAME
         userVOsDivIndex[userCtr][userDivCodes.USER_DIV].style.display = "none"  if userVOsDivIndex and userVOsDivIndex[userCtr] and userVOsDivIndex[userCtr][userDivCodes.USER_DIV]
@@ -581,19 +585,19 @@ jQuery ->
       activateUserPanelJQuery currentNoOfUsers
 
     activateUserPanelJQuery = (currentNoOfUsers) ->
-      oloGlobals.roomVars[oloGlobals.roomCodes.USER_TOTAL] = currentNoOfUsers
-      jDocument.trigger "room:" + oloGlobals.roomCodes.USER_TOTAL, currentNoOfUsers
+      zzGlobals.roomVars[zzGlobals.roomCodes.USER_TOTAL] = currentNoOfUsers
+      jDocument.trigger "room:" + zzGlobals.roomCodes.USER_TOTAL, currentNoOfUsers
 
     renderUserVOToUserPanel = (idx, userVO, userOffline) ->
       userOffline = userOffline or false
-      if userVO and userVO[oloGlobals.clientCodes.USER_ID]
+      if userVO and userVO[zzGlobals.clientCodes.USER_ID]
         userVOsDivIndex[idx][userDivCodes.USER_LI].style.display = "block"
-        if userVO[oloGlobals.clientCodes.USER_DISPLAY_NAME]
-          userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = userVO[oloGlobals.clientCodes.USER_DISPLAY_NAME]
+        if userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]
+          userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]
         else
           userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = "-"
-        if userVO[oloGlobals.clientCodes.USER_FACEBOOK_ID] and userVO[oloGlobals.clientCodes.USER_FACEBOOK_ID].length > 2
-          userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = "https://graph.facebook.com/" + userVO[oloGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"
+        if userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] and userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2
+          userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"
         else
           userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = DEFAULT_PLAYER_IMG_URL
         if userOffline
@@ -633,27 +637,27 @@ jQuery ->
       refreshUserPanel()
 
     pushToUserVO = (event, userVO, flag_updateUserIdx) ->
-      if userVO and userVO[oloGlobals.clientCodes.USER_ID]
-        oloGlobals.userVOs[userVO[oloGlobals.clientCodes.USER_ID]] = userVO
+      if userVO and userVO[zzGlobals.clientCodes.USER_ID]
+        zzGlobals.userVOs[userVO[zzGlobals.clientCodes.USER_ID]] = userVO
         updateUserIndex()
       refreshUserPanel()  if flag_drawUserPanel
 
     removeFromUserVO = (event, clientID) ->
       clientName = undefined
-      if clientID and oloGlobals.userVOsIndex[clientID]
-        clientName = oloGlobals.userVOsIndex[clientID][oloGlobals.clientCodes.USER_DISPLAY_NAME]
-        delete oloGlobals.userVOs[oloGlobals.userVOsIndex[clientID][oloGlobals.clientCodes.USER_ID]]
+      if clientID and zzGlobals.userVOsIndex[clientID]
+        clientName = zzGlobals.userVOsIndex[clientID][zzGlobals.clientCodes.USER_DISPLAY_NAME]
+        delete zzGlobals.userVOs[zzGlobals.userVOsIndex[clientID][zzGlobals.clientCodes.USER_ID]]
 
-        jDocument.trigger oloEvents.CLIENT_LEFT, [ clientID, clientName ]
+        jDocument.trigger zzEvents.CLIENT_LEFT, [ clientID, clientName ]
         updateUserIndex()
 
     jQuery ->
       docElems["currentWinnerName"] = document.getElementById("jCurrentWinnerName")
       docElems["currentWinnerImage"] = document.getElementById("jCurrentWinnerImage")
       docElems["prizeName"] = document.getElementById("")
-      jDocument.bind oloEvents.JOINED_ROOM, drawUserPanel
-      jDocument.bind oloEvents.RECEIVE_USERVO, pushToUserVO
-      jDocument.bind oloEvents.REMOVE_USERVO, removeFromUserVO
+      jDocument.bind zzEvents.JOINED_ROOM, drawUserPanel
+      jDocument.bind zzEvents.RECEIVE_USERVO, pushToUserVO
+      jDocument.bind zzEvents.REMOVE_USERVO, removeFromUserVO
 
 
   OloChatComponent = (->
@@ -679,7 +683,7 @@ jQuery ->
       msg = undefined
       msg = chatInput.value
       msg = (if msg? then msg else msg.trim())
-      jDocument.trigger oloEvents.SEND_UPC_MESSAGE, [ UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", msg ]  if msg?
+      jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", msg ]  if msg?
       chatInput.value = ""
       chatInput.focus()
 
@@ -703,29 +707,29 @@ jQuery ->
           if orbiterClientId is fromClientID
             displayChatMessage "myChatMessage", message, "me : "
           else
-            userName = oloGlobals.getUserName(fromClientID)
+            userName = zzGlobals.getUserName(fromClientID)
             displayChatMessage "userChatMessage", message, userName + " : "
 
     clientJoined = (event, userVO) ->
       if isDevEnvironment
       	console.log "clientJoined"
       	console.log arguments
-      userName = userVO[oloGlobals.clientCodes.USER_DISPLAY_NAME]
+      userName = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]
       displayChatMessage "systemChatMessage", userName + " joined the game."
 
     jQuery ->
       chatPane = document.getElementById("chatPane")
       chatInput = document.getElementById("outgoingChat")
-      jDocument.bind oloEvents.SERVER_MESSAGE, messageListener
-      jDocument.bind oloEvents.CLIENT_JOINED, clientJoined
-      jDocument.bind oloEvents.SEND_CHAT_MESSAGE, sendMessageToRoomFn
-      jDocument.bind oloEvents.CONNECTION_CLOSE, closeConnectionMessage
-      jDocument.bind oloEvents.CLIENT_LEFT, userSignedOutMessage
+      jDocument.bind zzEvents.SERVER_MESSAGE, messageListener
+      jDocument.bind zzEvents.CLIENT_JOINED, clientJoined
+      jDocument.bind zzEvents.SEND_CHAT_MESSAGE, sendMessageToRoomFn
+      jDocument.bind zzEvents.CONNECTION_CLOSE, closeConnectionMessage
+      jDocument.bind zzEvents.CLIENT_LEFT, userSignedOutMessage
 
     OloChatComponent
   )()
   sendChatMessage = ->
-    jDocument.trigger oloEvents.SEND_CHAT_MESSAGE
+    jDocument.trigger zzEvents.SEND_CHAT_MESSAGE
 
   acceptTermsForSeat = ->
     checkObj = document.getElementById("checkCondition")
@@ -749,7 +753,7 @@ jQuery ->
     jDocument.bind "room:FR", noUserExist
     
   noUserExist = ->
-    if oloGlobals.roomVars.FR is "2"
+    if zzGlobals.roomVars.FR is "2"
       messagePopup("Game cancel!!! <br/>  Insufficient Users in Game")
       jQuery("#gameBetPanel").hide()
     
@@ -892,19 +896,19 @@ jQuery ->
     roundVOs = {}
     figureDetailsVO = {}
     initBoard = ->
-      console.log "BoardXY : " + oloGlobals.roomVars[oloGlobals.roomCodes.BOARD_XY] if isDevEnvironment
-      boardDimension = oloGlobals.roomVars[oloGlobals.roomCodes.BOARD_XY].split(":")
+      console.log "BoardXY : " + zzGlobals.roomVars[zzGlobals.roomCodes.BOARD_XY] if isDevEnvironment
+      boardDimension = zzGlobals.roomVars[zzGlobals.roomCodes.BOARD_XY].split(":")
       board_X = boardDimension[0]
       board_Y = boardDimension[1]
       drawGameBoard()
 
     initRoundBets = ->
-      console.log "Round Bets : " + oloGlobals.roomVars[oloGlobals.roomCodes.ROUND_NOOFBETS] if isDevEnvironment
-      roundBets = oloGlobals.roomVars[oloGlobals.roomCodes.ROUND_NOOFBETS]
+      console.log "Round Bets : " + zzGlobals.roomVars[zzGlobals.roomCodes.ROUND_NOOFBETS] if isDevEnvironment
+      roundBets = zzGlobals.roomVars[zzGlobals.roomCodes.ROUND_NOOFBETS]
       reDrawBetsPanel()
 
     parseRounds = (el, val) ->
-      console.log "parse Ar data : " + oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ALLROUNDS] if isDevEnvironment
+      console.log "parse Ar data : " + zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ALLROUNDS] if isDevEnvironment
       obj = jQuery.parseJSON(val)
       roundVOs = {}
       for i of obj
@@ -922,11 +926,11 @@ jQuery ->
           el.className = "notPlayedRound"
         else
           el.className = "doneRound"
-        el.className = "currentRound"  if roundId is oloGlobals.roomVars[oloGlobals.roomCodes.CURRENTROUND]
+        el.className = "currentRound"  if roundId is zzGlobals.roomVars[zzGlobals.roomCodes.CURRENTROUND]
         lastEl = el
         lastRoundId = roundId
       if lastEl and lastRoundId
-        if lastRoundId is oloGlobals.roomVars[oloGlobals.roomCodes.CURRENTROUND]
+        if lastRoundId is zzGlobals.roomVars[zzGlobals.roomCodes.CURRENTROUND]
           lastEl.className = "currentFinalRound"
         else
           lastEl.className = "finalRound"
@@ -1114,7 +1118,7 @@ jQuery ->
       currentTileClass = ""
       currentTileVal = ""
       currentEl = null
-      currentSeatId = oloGlobals.clientVars[oloGlobals.clientCodes.USER_SEAT_ID]
+      currentSeatId = zzGlobals.clientVars[zzGlobals.clientCodes.USER_SEAT_ID]
       currentTilePriority = 0
       for tileIdx of tilesIdxVOs
         flag = false
@@ -1167,7 +1171,7 @@ jQuery ->
                 currentTileVal = " "
               break
         lastRound = false
-        lastRound = true  if oloGlobals.roomVars.FR is "1"
+        lastRound = true  if zzGlobals.roomVars.FR is "1"
         unless lastRound
           if (currentBets[tileIdx]?) and currentBets[tileIdx] isnt null
             dropEnable = false
@@ -1331,9 +1335,9 @@ jQuery ->
         		for x of seatIdArray
         			usersObject[i].PLSC[x] = seatIdArray[x]
 
-        	oloGlobals.msgVars.RH = usersObject
-        	console.log 'MT',oloGlobals.msgVars.RH if isDevEnvironment
-        	jDocument.trigger "client:" + oloGlobals.msgCodes.RIGHT_HUD,usersObject
+        	zzGlobals.msgVars.RH = usersObject
+        	console.log 'MT',zzGlobals.msgVars.RH if isDevEnvironment
+        	jDocument.trigger "client:" + zzGlobals.msgCodes.RIGHT_HUD,usersObject
         when zalerioCMDListners.CLOSE_INVITE
         	if 0 is message
         		messagePopup('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
@@ -1368,7 +1372,7 @@ jQuery ->
         			for tileId of playerBetTiles
         				betChangeVOs[tileId] = playerBetTiles[tileId]
         	currentRoundBidPlaced = playerBetsChangeObj["BC"]
-        	jDocument.trigger oloEvents.CLIENT_BETS_PLACED, currentRoundBidPlaced
+        	jDocument.trigger zzEvents.CLIENT_BETS_PLACED, currentRoundBidPlaced
         	reDrawBetsPanel()
         	refreshGameBoard()
 
@@ -1407,7 +1411,7 @@ jQuery ->
               playerTiles = playerBetTiles[seatId]  if playerBetTiles[seatId]
               playerTiles[i] = 1
               playerBetTiles[seatId] = playerTiles
-              if oloGlobals.clientVars[oloGlobals.clientCodes.USER_SEAT_ID] is seatId
+              if zzGlobals.clientVars[zzGlobals.clientCodes.USER_SEAT_ID] is seatId
                 noOfTiles = 0
                 noOfTiles = currPlayerFigVOs[boardObj["CF"]]  if currPlayerFigVOs[boardObj["CF"]]?
                 currPlayerFigVOs[boardObj["CF"]] = ++noOfTiles
@@ -1449,7 +1453,7 @@ jQuery ->
       console.log "jTileHoverDiv : ", jTileHoverDiv if isDevEnvironment
       isMousingOver = false
       jQuery("#gamewall").delegate ".box-previousRoundOtherPlayer,.box-previousRoundCurrentPlayerIncorrect,.box-previousRoundCurrentPlayerCorrect,.box-dizitCompleted,.joker,.superJoker", "mouseover mouseout", (e) ->
-        usersObject =  jQuery.parseJSON(oloGlobals.roomVars.AP)
+        usersObject =  jQuery.parseJSON(zzGlobals.roomVars.AP)
         for i of usersObject
         		usersObject[i] = jQuery.parseJSON(usersObject[i])
         		usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
@@ -1464,7 +1468,7 @@ jQuery ->
             strOut = ""
             imgSrc = ""
             for playerSeatId of playersObjs
-              console.log "mouseover", oloGlobals.userVOsSeatIndex[playerSeatId].UR if isDevEnvironment
+              console.log "mouseover", zzGlobals.userVOsSeatIndex[playerSeatId].UR if isDevEnvironment
               if (usersObject[i].PLRS[playerSeatId]?) and (usersObject[i].PLRS[playerSeatId].PFB?)
                 imgSrc = "https://graph.facebook.com/" + usersObject[i].PLRS[playerSeatId].PFB + "/picture"
               else
@@ -1498,13 +1502,13 @@ jQuery ->
           isMousingOver = false
           console.log "resetting" if isDevEnvironment
 
-      jDocument.bind "room:" + oloGlobals.roomCodes.FIGURE_DETAILS, updateFigureDetails
-      jDocument.bind "room:" + oloGlobals.roomCodes.BOARD_XY, initBoard
-      jDocument.bind "room:" + oloGlobals.roomCodes.ROUND_NOOFBETS, initRoundBets
-      jDocument.bind "room:" + oloGlobals.roomCodes.ROOM_ALLROUNDS, parseRounds
-      jDocument.bind "room:" + oloGlobals.roomCodes.BOARDVARS, updateBoardVars
-      jDocument.bind "room:" + oloGlobals.roomCodes.CURRENTROUND, refreshRoundsPanel
-      jDocument.bind oloEvents.SERVER_MESSAGE, messageListener
+      jDocument.bind "room:" + zzGlobals.roomCodes.FIGURE_DETAILS, updateFigureDetails
+      jDocument.bind "room:" + zzGlobals.roomCodes.BOARD_XY, initBoard
+      jDocument.bind "room:" + zzGlobals.roomCodes.ROUND_NOOFBETS, initRoundBets
+      jDocument.bind "room:" + zzGlobals.roomCodes.ROOM_ALLROUNDS, parseRounds
+      jDocument.bind "room:" + zzGlobals.roomCodes.BOARDVARS, updateBoardVars
+      jDocument.bind "room:" + zzGlobals.roomCodes.CURRENTROUND, refreshRoundsPanel
+      jDocument.bind zzEvents.SERVER_MESSAGE, messageListener
 
     ZalerioGame
   ).call(this)
@@ -1567,10 +1571,10 @@ jQuery ->
       docElems["clock"].innerHTML = timeRemaining  if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["clock"]?)
 
   changeTotalUserCount = ->
-    docElems["totalPlayers"].innerHTML = oloGlobals.roomVars[oloGlobals.roomCodes.USER_TOTAL]  if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["totalPlayers"]?)
+    docElems["totalPlayers"].innerHTML = zzGlobals.roomVars[zzGlobals.roomCodes.USER_TOTAL]  if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["totalPlayers"]?)
 
   changeActiveUserCount = ->
-    docElems["totalOnlinePlayers"].innerHTML = oloGlobals.roomVars[oloGlobals.roomCodes.USER_COUNT]  if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["totalOnlinePlayers"]?)
+    docElems["totalOnlinePlayers"].innerHTML = zzGlobals.roomVars[zzGlobals.roomCodes.USER_COUNT]  if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["totalOnlinePlayers"]?)
 
   messageListener = ->
     {}
@@ -1579,18 +1583,18 @@ jQuery ->
     console.log "Winner changed!", arguments if isDevEnvironment
 
   jQuery ->
-    jDocument.bind oloEvents.SERVER_MESSAGE, messageListener
-    jDocument.bind oloEvents.WINNER_CHANGE, winnerChange
-    jDocument.bind "room:" + oloGlobals.roomCodes.USER_TOTAL, changeTotalUserCount
-    jDocument.bind "room:" + oloGlobals.roomCodes.USER_COUNT, changeActiveUserCount
+    jDocument.bind zzEvents.SERVER_MESSAGE, messageListener
+    jDocument.bind zzEvents.WINNER_CHANGE, winnerChange
+    jDocument.bind "room:" + zzGlobals.roomCodes.USER_TOTAL, changeTotalUserCount
+    jDocument.bind "room:" + zzGlobals.roomCodes.USER_COUNT, changeActiveUserCount
 
   OloClockComponent = (->
     OloClockComponent = ->
     flag_gameJustStarted = false
     docElems = {}
     updateClock = (event, ttl) ->
-      gameDuration = oloGlobals.getGameDuration()
-      secs = oloGlobals.getTtl()
+      gameDuration = zzGlobals.getGameDuration()
+      secs = zzGlobals.getTtl()
       if secs > 0
         timeRemaining = secs + " secs"
         classForTime = "clockRed"
@@ -1628,7 +1632,7 @@ jQuery ->
         clock: document.getElementById("clock")
         gameTimeText: document.getElementById("gameTimeText")
 
-      jDocument.bind oloEvents.UPDATE_LOCAL_TTL, updateClock
+      jDocument.bind zzEvents.UPDATE_LOCAL_TTL, updateClock
 
     OloClockComponent
   )()
@@ -1692,9 +1696,9 @@ jQuery ->
       USER_LEFT_HUDYT_LASTBET_MSG: "userLeftHUDYTLastbetMsg"
 
     updateUserIndex = ->
-      oloGlobals.userVOsIndex = {}
-      for i of oloGlobals.userVOs
-        oloGlobals.userVOsIndex[oloGlobals.userVOs[i][oloGlobals.clientCodes.USER_UNION_ID]] = oloGlobals.userVOs[i]
+      zzGlobals.userVOsIndex = {}
+      for i of zzGlobals.userVOs
+        zzGlobals.userVOsIndex[zzGlobals.userVOs[i][zzGlobals.clientCodes.USER_UNION_ID]] = zzGlobals.userVOs[i]
       updateUserIndexForPartyId()
       updateUserIndexForSeatId()
 
@@ -1702,27 +1706,27 @@ jQuery ->
       i = undefined
       _results = undefined
       _results = []
-      for i of oloGlobals.userVOs
-        unless oloGlobals.userVOsPartyIndex[oloGlobals.userVOs[i][oloGlobals.clientCodes.USER_PARTY_ID]]
-          _results.push oloGlobals.userVOsPartyIndex[oloGlobals.userVOs[i][oloGlobals.clientCodes.USER_PARTY_ID]] = oloGlobals.userVOs[i]
+      for i of zzGlobals.userVOs
+        unless zzGlobals.userVOsPartyIndex[zzGlobals.userVOs[i][zzGlobals.clientCodes.USER_PARTY_ID]]
+          _results.push zzGlobals.userVOsPartyIndex[zzGlobals.userVOs[i][zzGlobals.clientCodes.USER_PARTY_ID]] = zzGlobals.userVOs[i]
         else
           _results.push undefined
       _results
 
     updateUserIndexForSeatId = ->
       _results = []
-      for i of oloGlobals.userVOs
-        unless oloGlobals.userVOsSeatIndex[oloGlobals.userVOs[i][oloGlobals.clientCodes.USER_SEAT_ID]]
-          _results.push oloGlobals.userVOsSeatIndex[oloGlobals.userVOs[i][oloGlobals.clientCodes.USER_SEAT_ID]] = oloGlobals.userVOs[i]
+      for i of zzGlobals.userVOs
+        unless zzGlobals.userVOsSeatIndex[zzGlobals.userVOs[i][zzGlobals.clientCodes.USER_SEAT_ID]]
+          _results.push zzGlobals.userVOsSeatIndex[zzGlobals.userVOs[i][zzGlobals.clientCodes.USER_SEAT_ID]] = zzGlobals.userVOs[i]
         else
           _results.push undefined
       _results
 
     updateUserIndexForPartyIdViaOfflinePlayers = ->
       _results = []
-      for i of oloGlobals.offlinePlayers
-        unless oloGlobals.userVOsPartyIndex[oloGlobals.offlinePlayers[i][oloGlobals.clientCodes.USER_PARTY_ID]]
-          _results.push oloGlobals.userVOsPartyIndex[oloGlobals.offlinePlayers[i][oloGlobals.clientCodes.USER_PARTY_ID]] = oloGlobals.offlinePlayers[i]
+      for i of zzGlobals.offlinePlayers
+        unless zzGlobals.userVOsPartyIndex[zzGlobals.offlinePlayers[i][zzGlobals.clientCodes.USER_PARTY_ID]]
+          _results.push zzGlobals.userVOsPartyIndex[zzGlobals.offlinePlayers[i][zzGlobals.clientCodes.USER_PARTY_ID]] = zzGlobals.offlinePlayers[i]
 
       _results
 
@@ -1730,9 +1734,9 @@ jQuery ->
       i = undefined
       _results = undefined
       _results = []
-      for i of oloGlobals.offlinePlayers
-        unless oloGlobals.userVOsSeatIndex[oloGlobals.offlinePlayers[i][oloGlobals.clientCodes.USER_SEAT_ID]]
-          _results.push oloGlobals.userVOsSeatIndex[oloGlobals.offlinePlayers[i][oloGlobals.clientCodes.USER_SEAT_ID]] = oloGlobals.offlinePlayers[i]
+      for i of zzGlobals.offlinePlayers
+        unless zzGlobals.userVOsSeatIndex[zzGlobals.offlinePlayers[i][zzGlobals.clientCodes.USER_SEAT_ID]]
+          _results.push zzGlobals.userVOsSeatIndex[zzGlobals.offlinePlayers[i][zzGlobals.clientCodes.USER_SEAT_ID]] = zzGlobals.offlinePlayers[i]
         else
           _results.push undefined
       _results
@@ -1747,12 +1751,12 @@ jQuery ->
       arrLen = userScoreArr.length
       userPos = 0
       while (if 0 <= arrLen then userPos < arrLen else userPos > arrLen)
-        userVO = oloGlobals.userVOsSeatIndex[userScoreArr[userPos]]
+        userVO = zzGlobals.userVOsSeatIndex[userScoreArr[userPos]]
         console.log userVO if isDevEnvironment
         renderUserVOToUserPanel userCtr++, userVO, null, userPos + 1  if userVO
         (if 0 <= arrLen then userPos++ else userPos--)
-      if (typeof getGameInstWithFriends isnt "undefined" and getGameInstWithFriends isnt null) and not oloGlobals.offlinePlayers and getGameInstWithFriends(oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID])
-        oloGlobals.offlinePlayers = getGameInstWithFriends(oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID])
+      if (typeof getGameInstWithFriends isnt "undefined" and getGameInstWithFriends isnt null) and not zzGlobals.offlinePlayers and getGameInstWithFriends(zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID])
+        zzGlobals.offlinePlayers = getGameInstWithFriends(zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID])
         updateUserIndexForPartyIdViaOfflinePlayers()
         updateUserIndexForSeatIdViaOfflinePlayers()
         changeWinner()
@@ -1761,19 +1765,19 @@ jQuery ->
       userDisplayName = undefined
       userFacebookImgUrl = undefined
       userOffline = userOffline or false
-      if userVOsDivIndex[idx] and userVO and userVO[oloGlobals.clientCodes.USER_ID]
+      if userVOsDivIndex[idx] and userVO and userVO[zzGlobals.clientCodes.USER_ID]
         userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_TR].style.visibility = "visible"
         userDisplayName = "-"
-        userDisplayName = userVO[oloGlobals.clientCodes.USER_DISPLAY_NAME]  if userVO[oloGlobals.clientCodes.USER_DISPLAY_NAME]?
+        userDisplayName = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]  if userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]?
         userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_NAME].innerHTML = userDisplayName
         userFacebookImgUrl = DEFAULT_PLAYER_IMG_URL
-        userFacebookImgUrl = "https://graph.facebook.com/" + userVO[oloGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"  if (userVO[oloGlobals.clientCodes.USER_FACEBOOK_ID]?) and userVO[oloGlobals.clientCodes.USER_FACEBOOK_ID].length > 2
+        userFacebookImgUrl = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"  if (userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID]?) and userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2
         userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SERAIL].innerHTML = userSerial + "."
-        if userVO[oloGlobals.clientCodes.USER_SEAT_ID]
-          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = userScoreObj[userVO[oloGlobals.clientCodes.USER_SEAT_ID]]
+        if userVO[zzGlobals.clientCodes.USER_SEAT_ID]
+          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = userScoreObj[userVO[zzGlobals.clientCodes.USER_SEAT_ID]]
         else
           userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = 0
-        unless (oloGlobals.roomVars.PP).indexOf(userVO[oloGlobals.clientCodes.USER_SEAT_ID]) is -1
+        unless (zzGlobals.roomVars.PP).indexOf(userVO[zzGlobals.clientCodes.USER_SEAT_ID]) is -1
           $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).removeClass "arrowclass"
         else
           $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).addClass "arrowclass"
@@ -1784,8 +1788,8 @@ jQuery ->
       console.log "drawUserPanel" if isDevEnvironment
       playerListTopHUDTbl = document.getElementById("userScoreHUDMain")
       playerListTopHUDTbl.innerHTML = ""
-      usersObject = jQuery.parseJSON(oloGlobals.roomVars.AP)
-      console.log "Score Board left (oloGlobals.roomVars.AP)", usersObject if isDevEnvironment
+      usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
+      console.log "Score Board left (zzGlobals.roomVars.AP)", usersObject if isDevEnvironment
       for i of usersObject
         usersInfoObject = jQuery.parseJSON(usersObject[i])
       i = 0
@@ -1825,7 +1829,7 @@ jQuery ->
                   userTopHUDTr.className = "userScoreHUD_player GRAY"
               userTopHUDNameTd.innerHTML = userObject.PDN
           else
-              if parseInt(userObject.UI) is parseInt(oloGlobals.currentUserDBId)
+              if parseInt(userObject.UI) is parseInt(zzGlobals.currentUserDBId)
               		jQuery("#gameBetPanel").hide()
               		jQuery(".draggableBets").attr("draggable","false");
               s = document.createElement("s");
@@ -1840,7 +1844,7 @@ jQuery ->
           userTopHUDScoreTd.innerHTML = userObject.PSC
         else
           try
-            usersScoreObject = jQuery.parseJSON(oloGlobals.roomVars.ZS)
+            usersScoreObject = jQuery.parseJSON(zzGlobals.roomVars.ZS)
             userTopHUDScoreTd.innerHTML = if typeof usersScoreObject[x] isnt "undefined"
                 usersScoreObject[x] 
             else 0
@@ -1851,7 +1855,7 @@ jQuery ->
       refreshUserPanel()
 
     updatePlayerPlate = ->
-      currentUserObj = jQuery.parseJSON(oloGlobals.clientVars.UINFO)
+      currentUserObj = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
       console.log "Player Plate : ", currentUserObj if isDevEnvironment
       jQuery("#currentUserName").text currentUserObj.PDN
       unless typeof currentUserObj.PL is "undefined"
@@ -1864,8 +1868,8 @@ jQuery ->
         jQuery("#currentUserAreaImg").prepend currentUserLevel
 
     updateLeftHud = ->
-      usersObject = jQuery.parseJSON(oloGlobals.roomVars.AP)
-      console.log "All Users Data (oloGlobals.roomVars.AP)", usersObject if isDevEnvironment
+      usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
+      console.log "All Users Data (zzGlobals.roomVars.AP)", usersObject if isDevEnvironment
       for i of usersObject
         usersInfoObject = jQuery.parseJSON usersObject[i]
         break
@@ -1888,7 +1892,7 @@ jQuery ->
         userObject = jQuery.parseJSON(usersObject[x])
         remindUsersLeft[userObject.PFB] = { GSS : userObject.GSS, CRS : userObject.CRS } 
         #skip if resign game
-        #return if userObject.PRE is 1 and gameInstId isnt gameLinkID and userObject.UI is oloGlobals.currentUserDBId
+        #return if userObject.PRE is 1 and gameInstId isnt gameLinkID and userObject.UI is zzGlobals.currentUserDBId
         
         # skep user if user declined game 
         continue if userObject.GSS is 3 or userObject.GSS is 5
@@ -1956,7 +1960,7 @@ jQuery ->
         	userRecodeDiv.appendChild userRecodeLastPlayDiv
         	userRecodeDiv.appendChild userRecodePlayStatusDiv
         	userRecodeDiv.appendChild userRecodePlayerRemindDiv
-        else if parseInt(userObject.UI) is parseInt(oloGlobals.currentUserDBId)
+        else if parseInt(userObject.UI) is parseInt(zzGlobals.currentUserDBId)
        		userAcceptDeclinedDiv.appendChild userAcceptDeclinedMsgDiv
 	        userAcceptDeclinedDiv.appendChild acceptSpan
 	        userAcceptDeclinedDiv.appendChild declineSpan
@@ -1995,12 +1999,12 @@ jQuery ->
             userRank = userObject.PR + "<sup>th</sup>"
           userRecodePlayerTotalUserDiv.innerHTML = userRank + "/" + usersObjectPastRound.TP
           userRecodeDiv.appendChild userRecodePlayerTotalUserDiv
-        if userObject.PDN and oloGlobals.clientVars.UI
+        if userObject.PDN and zzGlobals.clientVars.UI
           if userObject.CRS is 0
-            if oloGlobals.clientVars.UI is userObject.UI
+            if zzGlobals.clientVars.UI is userObject.UI
               userRecodePlayerRemindDiv.innerHTML = "place your tiles..."
             else
-            	unless oloGlobals.clientVars.UI is userObject.UI
+            	unless zzGlobals.clientVars.UI is userObject.UI
             		fbUser = {}
             		fbUser[userObject.PFB] = { GSS : userObject.GSS, CRS : userObject.CRS }
             		remindUserAdd gameLinkID, remindUsersLeft, x, fbUser,userRecodePlayerRemindDiv
@@ -2156,7 +2160,7 @@ jQuery ->
     					gdScoreCardTr.className = "userScoreHUD_player GRAY"
     				gdScoreCardNameTd.innerHTML = gameDetails.PLRS[gameSeatID].PDN
     			else
-    				if parseInt(gameDetails.PLRS[gameSeatID].UI) is parseInt(oloGlobals.currentUserDBId)
+    				if parseInt(gameDetails.PLRS[gameSeatID].UI) is parseInt(zzGlobals.currentUserDBId)
     					s = document.createElement("s")
     					s.innerHTML = userObject.PDN
     					gdScoreCardNameTd.appendChild(s)
@@ -2222,7 +2226,7 @@ jQuery ->
     					urImageDiv.appendChild imgElement
     				## accept / Decline
     				if typeof message[gameId].PLRS[gameSeatID].GSS isnt 'undefined'
-    					if message[gameId].PLRS[gameSeatID].GSS is 1 and oloGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
+    					if message[gameId].PLRS[gameSeatID].GSS is 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
     						urInviteDiv = document.createElement("div")
     						urInviteDiv.id= 'accept_decline_'+gameId
     						urInviteDiv.className= 'accept_decline'
@@ -2238,7 +2242,7 @@ jQuery ->
     						urInviteDiv.appendChild urInviteAcceptDiv
     						urInviteDiv.appendChild urInviteDeclineDiv
     						urDiv.appendChild urInviteDiv
-    					else if oloGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
+    					else if zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
     						onMouseOverShowDetails urDiv, message[gameId], gameId
     						
     			if parseInt(message[gameId].GS) is 1
@@ -2279,7 +2283,7 @@ jQuery ->
     				
               ## accept / Decline
               if typeof message[gameId].PLRS[gameSeatID].GSS isnt 'undefined'
-                if message[gameId].PLRS[gameSeatID].GSS isnt 1 and oloGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
+                if message[gameId].PLRS[gameSeatID].GSS isnt 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
                   jQuery('#accept_decline_'+gameId).remove()
                   urDiv = document.getElementById("right_hud_"+gameId)
                   onMouseOverShowDetails urDiv, message[gameId], gameId
@@ -2297,33 +2301,33 @@ jQuery ->
           jQuery("#rightHUD-theirturn .newCarouselblanktile").remove()
 
     pushToUserVO = (event, userVO, flag_updateUserIdx) ->
-      if (userVO?) and (userVO[oloGlobals.clientCodes.USER_ID]?)
-        oloGlobals.userVOs[userVO[oloGlobals.clientCodes.USER_ID]] = userVO
+      if (userVO?) and (userVO[zzGlobals.clientCodes.USER_ID]?)
+        zzGlobals.userVOs[userVO[zzGlobals.clientCodes.USER_ID]] = userVO
         updateUserIndex()
       refreshUserPanel()  if flag_drawUserPanel?
 
     removeFromUserVO = (event, clientID) ->
       clientName = undefined
-      if (clientID?) and (oloGlobals.userVOsIndex[clientID]?)
-        clientName = oloGlobals.userVOsIndex[clientID][oloGlobals.clientCodes.USER_DISPLAY_NAME]
-        delete oloGlobals.userVOs[oloGlobals.userVOsIndex[clientID][oloGlobals.clientCodes.USER_ID]]
+      if (clientID?) and (zzGlobals.userVOsIndex[clientID]?)
+        clientName = zzGlobals.userVOsIndex[clientID][zzGlobals.clientCodes.USER_DISPLAY_NAME]
+        delete zzGlobals.userVOs[zzGlobals.userVOsIndex[clientID][zzGlobals.clientCodes.USER_ID]]
 
-        jDocument.trigger oloEvents.CLIENT_LEFT, [ clientID, clientName ]
+        jDocument.trigger zzEvents.CLIENT_LEFT, [ clientID, clientName ]
         updateUserIndex()
 
     changeWinner = ->
-      if oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_NAME] is "-1"
+      if zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_NAME] is "-1"
         docElems["currentWinnerName"].innerHTML = ""
       else
         if docElems?
-          if (docElems["currentWinnerImage"]?) and (oloGlobals.userVOsPartyIndex[oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_ID]]?)
-            if oloGlobals.userVOsPartyIndex[oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_ID]][oloGlobals.clientCodes.USER_FACEBOOK_ID] and oloGlobals.userVOsPartyIndex[oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_ID]][oloGlobals.clientCodes.USER_FACEBOOK_ID] isnt "-1"
-              docElems["currentWinnerImage"].setAttribute "src", "https://graph.facebook.com/" + oloGlobals.userVOsPartyIndex[oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_ID]][oloGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"
+          if (docElems["currentWinnerImage"]?) and (zzGlobals.userVOsPartyIndex[zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_ID]]?)
+            if zzGlobals.userVOsPartyIndex[zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_ID]][zzGlobals.clientCodes.USER_FACEBOOK_ID] and zzGlobals.userVOsPartyIndex[zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_ID]][zzGlobals.clientCodes.USER_FACEBOOK_ID] isnt "-1"
+              docElems["currentWinnerImage"].setAttribute "src", "https://graph.facebook.com/" + zzGlobals.userVOsPartyIndex[zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_ID]][zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"
             else
               docElems["currentWinnerImage"].setAttribute "src", DEFAULT_PLAYER_IMG_URL
           else
             docElems["currentWinnerImage"].setAttribute "src", DEFAULT_PLAYER_IMG_URL  if docElems["currentWinnerImage"]?
-            docElems["currentWinnerName"].innerHTML = oloGlobals.roomVars[oloGlobals.roomCodes.WINNER_NAME]  if docElems["currentWinnerName"]?
+            docElems["currentWinnerName"].innerHTML = zzGlobals.roomVars[zzGlobals.roomCodes.WINNER_NAME]  if docElems["currentWinnerName"]?
 
     panelMoveMagnitudeCodes =
       ONE: "1"
@@ -2413,7 +2417,7 @@ jQuery ->
 
     showFinalScore = () ->
       try
-        if oloGlobals.roomVars.FR is "1" # if Game finished
+        if zzGlobals.roomVars.FR is "1" # if Game finished
           jQuery("#gameBetPanel").hide()
           jQuery(".resignPopup").hide()
           ii = 0
@@ -2421,12 +2425,12 @@ jQuery ->
           rankHtml = ""
           disableRematch = false
           
-          usersObject = oloGlobals.dataObjVars.AP
+          usersObject = zzGlobals.dataObjVars.AP
 
           for index of usersObject.PLSC
           	seatId = usersObject.PLSC[index]
           	if parseInt(usersObject.PLRS[seatId].PRE) is 1 or parseInt(usersObject.PLRS[seatId].GSS) isnt 2
-          		if parseInt(oloGlobals.currentUserDBId) is parseInt(usersObject.PLRS[seatId].UI)
+          		if parseInt(zzGlobals.currentUserDBId) is parseInt(usersObject.PLRS[seatId].UI)
           			disableRematch = true
           		continue
           	if ii is 0
@@ -2447,12 +2451,12 @@ jQuery ->
           jQuery(".score_show_popup").css "display", "block"
     
     showRoundScorePopup = () ->
-      return  if oloGlobals.roomVars.CR.split("_")[1] is "0" or oloGlobals.roomVars.FR is "1"
-      if parseInt(oloGlobals.roomVars.CR.split("_")[1]) isnt _currentRoundStatus
-        _currentRoundStatus = parseInt(oloGlobals.roomVars.CR.split("_")[1])
+      return  if zzGlobals.roomVars.CR.split("_")[1] is "0" or zzGlobals.roomVars.FR is "1"
+      if parseInt(zzGlobals.roomVars.CR.split("_")[1]) isnt _currentRoundStatus
+        _currentRoundStatus = parseInt(zzGlobals.roomVars.CR.split("_")[1])
       else
         return
-      usersObject = jQuery.parseJSON(oloGlobals.roomVars.AP)
+      usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
       for i of usersObject
         		usersObject[i] = jQuery.parseJSON(usersObject[i])
         		usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
@@ -2486,7 +2490,7 @@ jQuery ->
           userCount++
           if userCount <= 3 
             rankHtml += "<div class='score'><img src='https://graph.facebook.com/" + usersObject.PLRS[seatId].PFB  + "/picture' /><div class='points plus'>" + usersObject.PLRS[seatId].PSC + "</div></div>"
-          if oloGlobals.currentUserDBId is usersObject.PLRS[seatId].UI
+          if zzGlobals.currentUserDBId is usersObject.PLRS[seatId].UI
             selfHtml = document.createElement("div")
             selfHtml.className = "score self"
             selfHtmlImg = document.createElement("img")
@@ -2500,13 +2504,13 @@ jQuery ->
       jQuery(scorePopuptopthree).append rankHtml
       roundPopupHeading = document.createElement("h2")
       roundPopupHeading.id = "round_no_r"
-      jQuery(roundPopupHeading).text "Round " + parseInt(oloGlobals.roomVars.CR.split("_")[1])
+      jQuery(roundPopupHeading).text "Round " + parseInt(zzGlobals.roomVars.CR.split("_")[1])
       scorePopupContent.appendChild roundPopupHeading
       if selfHtml 
 	      scorePopupContent.appendChild selfHtml
 	      scorePopupContent.appendChild scorePopuptopthree
 	      scorePopup.appendChild scorePopupContent
-	      if parseInt(oloGlobals.roomVars.CR.split("_")[1]) > 0
+	      if parseInt(zzGlobals.roomVars.CR.split("_")[1]) > 0
 	        $("#active-screen").append scorePopup
 	        setTimeout (->
 	          $(".roundresult").remove()
@@ -2614,17 +2618,17 @@ jQuery ->
     	popupimgWrapper = document.createElement("div")
     	popupimgWrapper.className = "imgWrapper"
     	
-    	unless parseInt(toShow) is parseInt(oloGlobals.currentUserDBId)
+    	unless parseInt(toShow) is parseInt(zzGlobals.currentUserDBId)
     		return
     	
     	unless acceptedImgs.length + declinedImgs.length > totalUser / 2 and invitedImgs.length != 0
     		return
     	
-    	if oloGlobals.inviteStatus isnt null and typeof oloGlobals.inviteStatus isnt "undefined"
-    		unless rejected.length + acceptedImgs.length + declinedImgs.length > oloGlobals.inviteStatus 
+    	if zzGlobals.inviteStatus isnt null and typeof zzGlobals.inviteStatus isnt "undefined"
+    		unless rejected.length + acceptedImgs.length + declinedImgs.length > zzGlobals.inviteStatus 
     			return
     	
-    	oloGlobals.inviteStatus = rejected.length + acceptedImgs.length + declinedImgs.length
+    	zzGlobals.inviteStatus = rejected.length + acceptedImgs.length + declinedImgs.length
     	
     	# Accepted user html    	
     	if acceptedImgs.length isnt 0
@@ -2698,7 +2702,7 @@ jQuery ->
     currentGameUsersData = {}
 	# set ALL_PLAYER_INFO (AP) to currentGameUsersData, trigger when ALL_PLAYER_INFO (AP) update
     setPlayersInfo = ->    	
-    	usersObject = jQuery.parseJSON(oloGlobals.roomVars.AP)
+    	usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
     	for i of usersObject
 	    	usersObject[i] = jQuery.parseJSON(usersObject[i])
 	    	usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
@@ -2714,35 +2718,35 @@ jQuery ->
     		for x of seatIdArray
     			usersObject[i].PLSC[x] = seatIdArray[x]
  			
-    	oloGlobals.dataObjVars.AP = usersObject[i]
-    	jDocument.trigger "dataObj:" + oloGlobals.dataObjCodes.ALL_PLAYER_INFO, oloGlobals.dataObjVars.AP
+    	zzGlobals.dataObjVars.AP = usersObject[i]
+    	jDocument.trigger "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, zzGlobals.dataObjVars.AP
     	showInviteStatus(usersObject) # Function call to show current game invite player status
 	
     jQuery ->
       _this = this
       docElems["currentWinnerName"] = document.getElementById("jCurrentWinnerName")
       docElems["currentWinnerImage"] = document.getElementById("jCurrentWinnerImage")
-      jDocument.bind oloEvents.RECEIVE_USERVO, pushToUserVO
-      jDocument.bind oloEvents.REMOVE_USERVO, removeFromUserVO
-      jDocument.bind oloEvents.WINNER_CHANGE, changeWinner
-      jDocument.bind "room:" + oloGlobals.roomCodes.ZALERIO_SCORES, updateZalerioScores
-      jDocument.bind "room:" + oloGlobals.roomCodes.TOTAL_SEATS, updateTotalSeats
-      jDocument.bind "room:" + oloGlobals.roomCodes.PLAYER_BETS_PLACE, renderUserVOToUserPanel
+      jDocument.bind zzEvents.RECEIVE_USERVO, pushToUserVO
+      jDocument.bind zzEvents.REMOVE_USERVO, removeFromUserVO
+      jDocument.bind zzEvents.WINNER_CHANGE, changeWinner
+      jDocument.bind "room:" + zzGlobals.roomCodes.ZALERIO_SCORES, updateZalerioScores
+      jDocument.bind "room:" + zzGlobals.roomCodes.TOTAL_SEATS, updateTotalSeats
+      jDocument.bind "room:" + zzGlobals.roomCodes.PLAYER_BETS_PLACE, renderUserVOToUserPanel
 		
-      jDocument.bind "room:" + oloGlobals.roomCodes.ALL_PLAYER_INFO, setPlayersInfo
-      jDocument.bind "dataObj:" + oloGlobals.dataObjCodes.ALL_PLAYER_INFO, showFinalScore
-      jDocument.bind "room:" + oloGlobals.roomCodes.ALL_PLAYER_INFO, updateLeftHud
-      jDocument.bind "room:" + oloGlobals.roomCodes.ALL_PLAYER_INFO, drawUserPanel
-      jDocument.bind "room:" + oloGlobals.roomCodes.ALL_PLAYER_INFO, showRoundScorePopup
+      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, setPlayersInfo
+      jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showFinalScore
+      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, updateLeftHud
+      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, drawUserPanel
+      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, showRoundScorePopup
 
-      jDocument.bind "client:" + oloGlobals.clientCodes.UINFO, usersRecordCall
-      jDocument.bind "client:" + oloGlobals.clientCodes.ALL_PAST_GAME, usersRecordCall
-      jDocument.bind "client:" + oloGlobals.msgCodes.RIGHT_HUD, usersRecordCall
+      jDocument.bind "client:" + zzGlobals.clientCodes.UINFO, usersRecordCall
+      jDocument.bind "client:" + zzGlobals.clientCodes.ALL_PAST_GAME, usersRecordCall
+      jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, usersRecordCall
       
-      jDocument.bind "client:" + oloGlobals.msgCodes.RIGHT_HUD, updateRightHud
+      jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, updateRightHud
       
 
-      jDocument.bind "client:" + oloGlobals.clientCodes.USERINFO, updatePlayerPlate
+      jDocument.bind "client:" + zzGlobals.clientCodes.USERINFO, updatePlayerPlate
 
 
     ZalerioUserComponent
@@ -2763,20 +2767,20 @@ jQuery ->
     size
 
   sendOriginalFigsRequest = ->
-    jDocument.trigger oloEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID], "RQ", "C|OF" ]
+    jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|OF" ]
 
   placeBetsToServer = (betStr) ->
-    jDocument.trigger oloEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID], "RQ", "C|PB", "BI|" + betStr ]
+    jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|PB", "BI|" + betStr ]
   
   sendResignToServer = ->   # fire when user click resign
     jQuery(".draggableBets").attr("draggable","false")
     jQuery(".resignPopup").hide()
     jQuery("#gameBetPanel").hide()
-    jDocument.trigger oloEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID], "RQ", "C|RG" ]
+    jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|RG" ]
   
   # trigger on close invite request
   closeInvits = ->
-    jDocument.trigger oloEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, oloGlobals.roomVars[oloGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]
+    jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]
     
   resignme = document.getElementById("resignme")
   addEventHandler resignme, "click", sendResignToServer, false  # resign event handler
@@ -2786,8 +2790,8 @@ jQuery ->
   	e.preventDefault() if e.preventDefault
   	otherbuttonSound.Play if playSound
   	if typeof rematchPlayerFBID is "undefined"
-  		usersObject = jQuery.parseJSON(oloGlobals.roomVars.AP)
-  		console.log "Score Board left (oloGlobals.roomVars.AP", userObject if isDevEnvironment
+  		usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
+  		console.log "Score Board left (zzGlobals.roomVars.AP", userObject if isDevEnvironment
   		for gameId of usersObject
   			usersInfoObject = jQuery.parseJSON(usersObject[gameId])
   			break
@@ -2809,12 +2813,12 @@ jQuery ->
   
   # call My level popup function
   usersRecordCall = ->
-  	if typeof oloGlobals.clientVars.UINFO isnt 'undefined' and oloGlobals.clientVars.UINFO isnt 'USERINFO'
-  		usersObjectUINFO = jQuery.parseJSON(oloGlobals.clientVars.UINFO)
+  	if typeof zzGlobals.clientVars.UINFO isnt 'undefined' and zzGlobals.clientVars.UINFO isnt 'USERINFO'
+  		usersObjectUINFO = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
 
 	#parse APG
-  	if typeof oloGlobals.clientVars.APG isnt 'undefined' and oloGlobals.clientVars.APG isnt 'ALL_PAST_GAME'
-  		usersObjectAPG = jQuery.parseJSON(oloGlobals.clientVars.APG)
+  	if typeof zzGlobals.clientVars.APG isnt 'undefined' and zzGlobals.clientVars.APG isnt 'ALL_PAST_GAME'
+  		usersObjectAPG = jQuery.parseJSON(zzGlobals.clientVars.APG)
   		scoreArray = []
   		gameIdArray = []
   		for i of usersObjectAPG
@@ -2827,7 +2831,7 @@ jQuery ->
   		gameIdArray.sort (x, y) ->
   			scoreArray[y] - scoreArray[x]
   	usersInfo = 
-  		RH : oloGlobals.msgVars.RH
+  		RH : zzGlobals.msgVars.RH
   		APG : usersObjectAPG
   		APG_SORT : gameIdArray
   		UINFO: usersObjectUINFO
@@ -2898,13 +2902,13 @@ jQuery ->
     gameStartAnimation = new SpriteAnimation(200, 125, document.getElementById("loadWaitAnimation"), 12, true, 70)
     gameStartAnimation.startAnimation()
 
-  oloConnection = new OloUnionConnection
+  #oloConnection = new OloUnionConnection
   oloUserComponent()
   # show resign Popup
   resignPopUP = ->
       jQuery("#bottomHUDbuttons-more").click(->
         totalPlayer=0
-        usersObjectAP = jQuery.parseJSON(oloGlobals.roomVars.AP)
+        usersObjectAP = jQuery.parseJSON(zzGlobals.roomVars.AP)
         
         for i of usersObjectAP
         	usersObjectAP[i] = jQuery.parseJSON(usersObjectAP[i])
@@ -2914,8 +2918,8 @@ jQuery ->
         		if usersObjectAP[i].PLRS[seatId].GSS is 2 or usersObjectAP[i].PLRS[seatId].GSS is 1        			
         			++totalPlayer
         	break
-        currentUserObj = jQuery.parseJSON(oloGlobals.clientVars.UINFO)
-        if totalPlayer > 1 and parseInt(oloGlobals.roomVars.FR) isnt 1 and parseInt(currentUserObj.PRE) isnt 1  # show if total number of user > 1 and Game Not finished
+        currentUserObj = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
+        if totalPlayer > 1 and parseInt(zzGlobals.roomVars.FR) isnt 1 and parseInt(currentUserObj.PRE) isnt 1  # show if total number of user > 1 and Game Not finished
           jQuery(".resignPopup").show()
       );
       
