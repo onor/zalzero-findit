@@ -1,5 +1,5 @@
-define ["../../config/globals"], (globals)->
-	drawCarousel = (usersObject, appendto, gameLinkID, typeOfCarousel) ->
+define ["../../config/config"], (config)->
+	drawCarousel : (usersObject, appendto, gameLinkID, typeOfCarousel) ->
       currentPlayerList = document.getElementById(appendto)
       usersObjectPastRound = usersObject
       usersObject = jQuery.parseJSON(usersObject.PLRS)
@@ -9,7 +9,7 @@ define ["../../config/globals"], (globals)->
         userObject = jQuery.parseJSON(usersObject[x])
         remindUsersLeft[userObject.PFB] = { GSS : userObject.GSS, CRS : userObject.CRS } 
         #skip if resign game
-        #return if userObject.PRE is 1 and gameInstId isnt gameLinkID and userObject.UI is oloGlobals.currentUserDBId
+        #return if userObject.PRE is 1 and gameInstId isnt gameLinkID and userObject.UI is zzGlobals.currentUserDBId
         
         # skep user if user declined game 
         continue if userObject.GSS is 3 or userObject.GSS is 5
@@ -34,7 +34,7 @@ define ["../../config/globals"], (globals)->
           		userObject.PL = 1
           userRecodeImgLevelEl = document.createElement("img")
           userRecodeImgLevelEl.className = "userlevelbelt otherbelt"
-          userRecodeImgLevelEl.src = baseUrl + "/images/zalerio_1.2/4.ingame_ui/carauselbelts_otherplayers/" + userLevelImg[parseInt(userObject.PL) - 1]
+          userRecodeImgLevelEl.src = baseUrl + "/images/zalerio_1.2/4.ingame_ui/carauselbelts_otherplayers/" + config.userLevelImg[parseInt(userObject.PL) - 1]
           userRecodeImgDiv.appendChild userRecodeImgLevelEl
         userRecodePlayerNameDiv = document.createElement("div")
         userRecodePlayerNameDiv.className = "userAreaName"
@@ -77,7 +77,7 @@ define ["../../config/globals"], (globals)->
         	userRecodeDiv.appendChild userRecodeLastPlayDiv
         	userRecodeDiv.appendChild userRecodePlayStatusDiv
         	userRecodeDiv.appendChild userRecodePlayerRemindDiv
-        else if parseInt(userObject.UI) is parseInt(oloGlobals.currentUserDBId)
+        else if parseInt(userObject.UI) is parseInt(zzGlobals.currentUserDBId)
        		userAcceptDeclinedDiv.appendChild userAcceptDeclinedMsgDiv
 	        userAcceptDeclinedDiv.appendChild acceptSpan
 	        userAcceptDeclinedDiv.appendChild declineSpan
@@ -116,12 +116,12 @@ define ["../../config/globals"], (globals)->
             userRank = userObject.PR + "<sup>th</sup>"
           userRecodePlayerTotalUserDiv.innerHTML = userRank + "/" + usersObjectPastRound.TP
           userRecodeDiv.appendChild userRecodePlayerTotalUserDiv
-        if userObject.PDN and oloGlobals.clientVars.UI
+        if userObject.PDN and zzGlobals.clientVars.UI
           if userObject.CRS is 0
-            if oloGlobals.clientVars.UI is userObject.UI
+            if zzGlobals.clientVars.UI is userObject.UI
               userRecodePlayerRemindDiv.innerHTML = "place your tiles..."
             else
-            	unless oloGlobals.clientVars.UI is userObject.UI
+            	unless zzGlobals.clientVars.UI is userObject.UI
             		fbUser = {}
             		fbUser[userObject.PFB] = { GSS : userObject.GSS, CRS : userObject.CRS }
             		remindUserAdd gameLinkID, remindUsersLeft, x, fbUser,userRecodePlayerRemindDiv

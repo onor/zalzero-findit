@@ -1,5 +1,4 @@
-define ["../../config/config","../../config/globals","./carouselView"], (config,globals,carouselView) ->
-  jDocument = jQuery(document)
+define ["../../config/config","../../helper/confirmBox","../../config/globals","./carouselView","./rightHudController","./leftHudController","./gamePlayController","../../popup/resignPopup","../../popup/showInviteStatus","../../popup/showFinalScore","../../popup/showFrndSelector"],(config,confirmBox,globals,carouselView,rightHudController,leftHudController,gamePlayController,resignPopup,showInviteStatus,showFinalScore,showFrndSelector) ->
   zzUnionConnection = (->
     zzUnionConnection = ->
       window.UPC = UPC
@@ -136,6 +135,71 @@ define ["../../config/config","../../config/globals","./carouselView"], (config,
       jDocument.trigger zzEvents.REMOVE_USERVO, clientID  if clientID and zzGlobals.userVOsIndex[clientID]
 
     messageListener = (messageName, broadcastType, fromClientID, roomID, message) ->
+#      switch messageName
+#      	when zalerioCMDListners.DECLINE_STATUS
+#      		 if parseInt(message) is 1
+#      		 	   confirmBox.messagePopup(popupMSG.declineInvite())
+#      		 	   jQuery(".draggableBets").attr("draggable","false")
+#      		 	   jQuery(".resignPopup").hide()
+#      		 	   jQuery("#gameBetPanel").hide()
+#      	when zalerioCMDListners.RIGHT_HUD
+#        	usersObject = jQuery.parseJSON(message)      
+#        	for i of usersObject
+#        		usersObject[i] = jQuery.parseJSON(usersObject[i])
+#        		usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
+#        		scoreArray = []
+#        		seatIdArray = []	
+#	        	for seatId of usersObject[i].PLRS
+#	        		usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId])
+#	        		scoreArray[seatId] = parseInt(usersObject[i].PLRS[seatId].PSC)
+#	        		seatIdArray.push seatId
+#        		seatIdArray.sort (x, y) ->
+#        			scoreArray[y] - scoreArray[x]
+#        		usersObject[i].PLSC = {}
+#        		for x of seatIdArray
+#        			usersObject[i].PLSC[x] = seatIdArray[x]
+#
+#        	zzGlobals.msgVars.RH = usersObject
+#        	console.log 'MT & TT',zzGlobals.msgVars.RH if isDevEnvironment
+#        	
+#        	jDocument.trigger "client:" + zzGlobals.msgCodes.RIGHT_HUD,usersObject
+#        when zalerioCMDListners.CLOSE_INVITE
+#        	if 0 is message
+#        		confirmBox.messagePopup('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
+#        	else
+#        		jQuery(".status_show_popup").remove();
+#        		jQuery(".gdWrapper").remove();
+#        when zalerioCMDListners.RESIGN_GAME
+#        	if message is 0
+#        		confirmBox.messagePopup('Sorry!!! Unable to Resign, \n Plese try again..');
+#        		jQuery("#gameBetPanel").show()
+#        	else
+#        		resignStatus = 1
+#        		jQuery(".draggableBets").attr("draggable","false");
+#        		jQuery("#gameBetPanel").hide()
+#        		jQuery(".resignPopup").hide();
+#        when zalerioCMDListners.ORIG_FIGS
+#        	newCoordObj = jQuery.parseJSON(message)
+#        	console.log newCoordObj if isDevEnvironment
+#        	parseToGameBoard zalerioMapType.ORIG_MAP, newCoordObj
+#        when zalerioCMDListners.BET_RESPONSE
+#        	parsedObj = jQuery.parseJSON(message)
+#        	console.log "zalerioCMDListners.BET_RESPONSE if failed : ", parsedObj if isDevEnvironment
+#        when zalerioCMDListners.BET_CHANGES
+#        	betChangeVOs = {}
+#        	playerBetsChangeObj = jQuery.parseJSON(message)
+#        	console.log "zalerioCMDListners.BET_CHANGES : ", playerBetsChangeObj if isDevEnvironment
+#        	currentBets = {}
+#        	currentBetsIdx = {}
+#        	for i of playerBetsChangeObj
+#        		if i is "PB"
+#        			playerBetTiles = jQuery.parseJSON(playerBetsChangeObj[i])
+#        			for tileId of playerBetTiles
+#        				betChangeVOs[tileId] = playerBetTiles[tileId]
+#        	currentRoundBidPlaced = playerBetsChangeObj["BC"]
+#        	jDocument.trigger zzEvents.CLIENT_BETS_PLACED, currentRoundBidPlaced
+#        	gamePlayController.reDrawBetsPanel()
+#        	gamePlayController.refreshGameBoard()
       jDocument.trigger zzEvents.SERVER_MESSAGE, [ messageName, broadcastType, fromClientID, roomID, message, orbiter.getClientID() ]
 
     clientAttrUpdateListener = (roomId, clientId, userId, attrKey, attrVal) ->
@@ -170,7 +234,8 @@ define ["../../config/config","../../config/globals","./carouselView"], (config,
 	    jDocument.bind zzEvents.SEND_UPC_MESSAGE, sendUpcMessageToServer
     
     # change game
-    gameChangeListener = (gameInstIdTemp) ->	# fire when user click on crouse to change game
+    gameChangeListener = (e,gameInstIdTemp) ->	# fire when user click on crouse to change game
+      console.log(gameInstIdTemp)
       if typeof gameInstIdTemp is 'undefined'
       	eval("gameInstIdTemp = gameInstId")
       else
@@ -179,7 +244,8 @@ define ["../../config/config","../../config/globals","./carouselView"], (config,
       flag_roundDrawn = false
       flag_roundBetsDrawn = false
       msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
-
+    jDocument.bind "gameChangeListener" , gameChangeListener
+	
     sendDeclinedToServer = (gameSeatId,gameId) ->   # fire when user click decined
     	jQuery('#accept_decline_' + gameId).text('')
     	jQuery('#accept_decline_' + gameId).css('cursor', 'default')
@@ -249,6 +315,11 @@ define ["../../config/config","../../config/globals","./carouselView"], (config,
         else
           _results.push undefined
       _results
-
+	
+#    jQuery( ($) ->
+#    	$('#startButton').click () ->
+#    		alert(showFrndSelector)
+#    	)
+	
     zzUnionConnection
   )()

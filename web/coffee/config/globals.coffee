@@ -199,6 +199,16 @@ define ["./config"], (config) ->
 	
 	    offlinePlayers: offlinePlayers
 	    currentUserDBId: currentUserDBId
-	
+	    
+	zzCMDListners =
+      ORIG_FIGS: "OF"
+      BET_RESPONSE: "PB"
+      BET_CHANGES: "CB"
+      RESIGN_GAME:"RG"
+      CLOSE_INVITE : "CI"
+      RIGHT_HUD:"MT"
+      DECLINE_STATUS:"DG"
+    window.jDocument = jQuery(document)
+    window.zalerioCMDListners = zzCMDListners
 	window.zzGlobals = new zzGlobals()
 	window.zzEvents = zzEvents

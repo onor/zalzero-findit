@@ -1,4 +1,27 @@
-define ["../../config/globals"], (zzGlobals) ->
+define ["../../helper/confirmBox"], (confirmBox) ->
+	
+	addEventHandler = (node, evtType, func, isCapture) ->
+    if window and window.addEventListener
+      node.addEventListener evtType, func, isCapture
+    else
+      node.attachEvent "on" + evtType, func
+	
+	removeEventHandler = (node, evtType, func, isCapture) ->
+	    if window and window.removeEventListener
+	      node.removeEventListener evtType, func, isCapture
+	    else
+	      node.detachEvent "on" + evtType, func
+	
+	removeClassName = (node, cls) ->
+	    reg = undefined
+	    if (node?) and node.className
+	      reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
+	      node.className = node.className.replace(reg, " ")
+	      
+	bets = {}
+	boardVo = {}
+	responseVo = {}
+      
 	ZalerioGame = (->
 	    ZalerioGame = ->
 	    _this = this
@@ -467,7 +490,7 @@ define ["../../config/globals"], (zzGlobals) ->
 	      	return
 	      playButtonEl = document.getElementById("placeBetOnServer");
 	      if playButtonEl.className is "bet_done"
-	      	messagePopup "Not so fast.... lets wait for your friends to play their turn"
+	      	confirmBox.messagePopup "Not so fast.... lets wait for your friends to play their turn"
 	      	return
 	      betStr = ""
 	      betCtr = 0
@@ -481,11 +504,11 @@ define ["../../config/globals"], (zzGlobals) ->
 	        console.log "bets[" + betCtr + "] : " + betId if isDevEnvironment
 	      if betStr is ""
 	        console.log "No bets placed!" if isDevEnvironment
-	        messagePopup "No bets placed!"
+	        confirmBox.messagePopup "No bets placed!"
 	        return false
 	      else unless betCtr is 9
 	        console.log "Bets count is less then 9!" if isDevEnvironment
-	        messagePopup "Not so fast... please place all of your 9 tiles!"
+	        confirmBox.messagePopup "Not so fast... please place all of your 9 tiles!"
 	        return false
 	      else
 	        console.log "every thing is fine s    end the bets to the server" if isDevEnvironment
@@ -514,7 +537,7 @@ define ["../../config/globals"], (zzGlobals) ->
 	      switch messageName
 	      	when zalerioCMDListners.DECLINE_STATUS
 	      		 if parseInt(message) is 1
-	      		 	   messagePopup(popupMSG.declineInvite())
+	      		 	   confirmBox.messagePopup(popupMSG.declineInvite())
 	      		 	   jQuery(".draggableBets").attr("draggable","false")
 	      		 	   jQuery(".resignPopup").hide()
 	      		 	   jQuery("#gameBetPanel").hide()
@@ -536,17 +559,18 @@ define ["../../config/globals"], (zzGlobals) ->
 	        			usersObject[i].PLSC[x] = seatIdArray[x]
 	
 	        	zzGlobals.msgVars.RH = usersObject
-	        	console.log 'MT',zzGlobals.msgVars.RH if isDevEnvironment
+	        	console.log 'MT & TT',zzGlobals.msgVars.RH if isDevEnvironment
+	        	
 	        	jDocument.trigger "client:" + zzGlobals.msgCodes.RIGHT_HUD,usersObject
 	        when zalerioCMDListners.CLOSE_INVITE
 	        	if 0 is message
-	        		messagePopup('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
+	        		confirmBox.messagePopup('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
 	        	else
 	        		jQuery(".status_show_popup").remove();
 	        		jQuery(".gdWrapper").remove();
 	        when zalerioCMDListners.RESIGN_GAME
 	        	if message is 0
-	        		messagePopup('Sorry!!! Unable to Resign, \n Plese try again..');
+	        		confirmBox.messagePopup('Sorry!!! Unable to Resign, \n Plese try again..');
 	        		jQuery("#gameBetPanel").show()
 	        	else
 	        		resignStatus = 1
@@ -572,7 +596,7 @@ define ["../../config/globals"], (zzGlobals) ->
 	        			for tileId of playerBetTiles
 	        				betChangeVOs[tileId] = playerBetTiles[tileId]
 	        	currentRoundBidPlaced = playerBetsChangeObj["BC"]
-	        	jDocument.trigger oloEvents.CLIENT_BETS_PLACED, currentRoundBidPlaced
+	        	jDocument.trigger zzEvents.CLIENT_BETS_PLACED, currentRoundBidPlaced
 	        	reDrawBetsPanel()
 	        	refreshGameBoard()
 	
@@ -708,7 +732,27 @@ define ["../../config/globals"], (zzGlobals) ->
 	      jDocument.bind "room:" + zzGlobals.roomCodes.ROOM_ALLROUNDS, parseRounds
 	      jDocument.bind "room:" + zzGlobals.roomCodes.BOARDVARS, updateBoardVars
 	      jDocument.bind "room:" + zzGlobals.roomCodes.CURRENTROUND, refreshRoundsPanel
-	      jDocument.bind oloEvents.SERVER_MESSAGE, messageListener
+	      jDocument.bind zzEvents.SERVER_MESSAGE, messageListener
 	
 	    ZalerioGame
-  ).call(this)
+	  ).call(this)
+	  
+	placeBetsToServer = (betStr) ->
+    	jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|PB", "BI|" + betStr ]
+    
+    sendPlaceBetRequest = ->
+	    console.log "bet Validation before sen  ding the request t  o server" if isDevEnvironment
+	    betStr = ""
+	    for bet of bets
+	      betStr += (if betStr is "" then bets[bet] else ":" + bets[bet])
+	      console.log "bets[" + bet + "] : " + bets[bet] if isDevEnvironment
+	    console.log "[betStr: " + betStr + "]" if isDevEnvironment
+	    if betStr is ""
+	      console.log "No bets placed!" if isDevEnvironment
+	      messagePopup "No bets placed!"
+	      return false
+	    else
+	      console.log "every thing is fine end the bets to the server" if isDevEnvironment
+	      placeBetsToServer betStr
+	    false
+  
