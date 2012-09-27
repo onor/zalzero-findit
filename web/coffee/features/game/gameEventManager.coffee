@@ -29,7 +29,7 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 			msgManager = orbiter.getMessageManager()
 			addZzListeners()
 			utils.log "defining UPC"
-			utils.log "ololisteners :"+zzListeners
+			utils.log "ololisteners :" + zzListeners
 			utils.log "UPC definition completed!"
 			unless orbiter.getSystem().isJavaScriptCompatible()
 				oloGame.displayChatMessage "systemChatMessage", "Your browser is not supported."
@@ -37,6 +37,7 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 			if orbiter
 				orbiter.addEventListener net.user1.orbiter.OrbiterEvent.READY, readyListener, this
 				orbiter.addEventListener net.user1.orbiter.OrbiterEvent.CLOSE, closeListener, this
+				
 			#connecting to union	      
 			jQuery ->
 				orbiter.connect config.unionConnection.url, config.unionConnection.port
@@ -47,7 +48,7 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 				utils.log "Triggered room:", attrKey, attrVal
 				jDocument.trigger "room:" + attrKey, attrVal
       
-#TODO: this needs to be reviewed as it may not be used
+		#TODO: this needs to be reviewed as it may not be used
 		closeListener = (e) ->
 			_this = this
 			jDocument.trigger zzEvents.CONNECTION_CLOSE
@@ -73,7 +74,6 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 			len = roomAttrsSplit.length
 			roomAttrKey = null
 			roomAttrVal = null
-			_results = []
 			i = 0
 			while i < len
 				if roomAttrsSplit[i] and roomAttrsSplit[i + 1]
@@ -81,17 +81,12 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 					roomAttrVal = roomAttrsSplit[i + 1]
 					if zzGlobals.roomVars[roomAttrKey]
 						unless roomAttrKey is zzGlobals.roomCodes.WINNER_ID and roomAttrVal is "-1"
-							if config.isDevEnvironment
-								console.log "Triggered via ss room:", roomAttrKey, roomAttrVal
+							utils.log console.log "Triggered via ss room:", roomAttrKey, roomAttrVal
 							zzGlobals.roomVars[roomAttrKey] = {}
 							zzGlobals.roomVars[roomAttrKey] = roomAttrVal
-							_results.push jDocument.trigger("room:" + roomAttrKey, roomAttrVal)
-					else
-						_results.push undefined
-				else
-					_results.push undefined
+							jDocument.trigger("room:" + roomAttrKey, roomAttrVal)
 				i += 2
-			_results
+			true
 
 		clientSnapshotListener = (requestID, clientID, userID, a4, clientAttrsStr) ->
 			console.log "ClientSnapshotListener ",clientAttrsStr if config.isDevEnvironment
@@ -100,7 +95,6 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 				len = clientAttrsSplit.length
 				clientAttrKey = null
 				clientAttrVal = null
-				_results = []
 				i = 0
 				while i < len
 					if clientAttrsSplit[i] and clientAttrsSplit[i + 1]
@@ -108,13 +102,9 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 						clientAttrVal = clientAttrsSplit[i + 1]
 						if clientVars[clientAttrKey]
 							clientVars[clientAttrKey] = clientAttrVal
-							_results.push jDocument.trigger("client:" + clientAttrKey, clientAttrVal)
-						else
-							_results.push undefined
-					else
-						_results.push undefined
+							jDocument.trigger("client:" + clientAttrKey, clientAttrVal)
 					i += 2
-				_results
+				true
 
 		joinedRoomListener = (rId) ->
 			roomID = rId
@@ -147,10 +137,10 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 			if zzGlobals.currentUserDBId is userId
 				if zzGlobals.clientVars[attrKey]
 					zzGlobals.clientVars[attrKey] = attrVal
-					return jDocument.trigger("client:" + attrKey, attrVal)
+					jDocument.trigger("client:" + attrKey, attrVal)
 
 		askClientData = (e) ->
-			console.log "askfordata" if config.isDevEnvironment
+			utils.log "askfordata"
 			msgManager.sendUPC UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|AGD", "UID|" + zzGlobals.currentUserDBId
 
 		readyListener = (e) ->
@@ -200,16 +190,13 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 				window.location = "http://" + document.domain + baseUrl + "/site/closesession"
 		
 		addZzListeners = ->
-			_results = []
 			for msgEvt of zzListeners
 				if msgManager and msgManager.addMessageListener
 					if zzListeners[msgEvt] is "messageListener"
-						_results.push msgManager.addMessageListener(UPC[msgEvt], zzListeners[msgEvt], this, gameInstId)
+						msgManager.addMessageListener(UPC[msgEvt], zzListeners[msgEvt], this, gameInstId)
 					else
-						_results.push msgManager.addMessageListener(UPC[msgEvt], zzListeners[msgEvt], this)
-				else
-					_results.push undefined
-				_results
+						msgManager.addMessageListener(UPC[msgEvt], zzListeners[msgEvt], this)
+			true
 		
 		# Listeners object topl level
 		zzListeners =

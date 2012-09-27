@@ -86,17 +86,18 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	        el = roundVOsIdx[roundId]
 	        roundEndTimeTTL = parseInt(roundVOs[roundId]["EM"])
 	        if roundEndTimeTTL > 0
-	          gamePlayView.getNotPlayedRoundClass el  #el.className = "notPlayedRound"
+	          gamePlayView.getNotPlayedRoundClass el
 	        else
-	          gamePlayView.getDoneRoundClass el  #el.className = "doneRound"
+	          gamePlayView.getDoneRoundClass el
+	          
 	        gamePlayView.getCurrentRoundClass el   if roundId is zzGlobals.roomVars[zzGlobals.roomCodes.CURRENTROUND]
 	        lastEl = el
 	        lastRoundId = roundId
 	      if lastEl and lastRoundId
 	        if lastRoundId is zzGlobals.roomVars[zzGlobals.roomCodes.CURRENTROUND]
-	          gamePlayView.getCurrentFinalRoundClass el #lastEl.className = "currentFinalRound"
+	          gamePlayView.getCurrentFinalRoundClass el
 	        else
-	          gamePlayView.getFinalRoundClass el #lastEl.className = "finalRound"
+	          gamePlayView.getFinalRoundClass el
 	
 	    drawRoundsPanel = (elementDiv)->
 	      if typeof elementDiv is 'undefined'
@@ -115,9 +116,12 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	        liElem = gamePlayView.createliElem() # document.createElement("li")
 	        aHrefElem = gamePlayView.createAHrefElem() #document.createElement("a")
 	        aHrefElem.href = "#"
+	        
 	        gamePlayView.getNotPlayedRoundClass aHrefElem #aHrefElem.className = "notPlayedRound"
-	        aHrefElem.innerHTML = roundVOs[roundId]["RN"]
+	        gamePlayView.setInnerHTML aHrefElem, roundVOs[roundId]["RN"]
+	        
 	        utils.log "roundVo : ", roundId
+	        
 	        liElem.appendChild aHrefElem
 	        if typeof elementDiv is 'undefined'
 	        	roundVOsIdx[roundId] = aHrefElem
@@ -345,18 +349,14 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      resetDropZoneOnGameBoard()
 	
 	    resetDropZoneOnGameBoard = ->
-	      _results = []
 	      for tileIdx of tilesIdxVOs
 	        continue  unless __hasProp_.call(tilesIdxVOs, tileIdx)
 	        currentEl = tilesIdxVOs[tileIdx]
 	        switch currentEl.getAttribute("droppable")
 	          when "1"
-	            _results.push currentEl.setAttribute("droppable", "2")
+	            currentEl.setAttribute("droppable", "2")
 	          when "0"
-	            _results.push currentEl.setAttribute("droppable", "-1")
-	          else
-	            _results.push undefined
-	      _results
+	            currentEl.setAttribute("droppable", "-1")
 	
 	    handleDragoverNew = (e) ->
 	      e.preventDefault()  if e.preventDefault
@@ -401,9 +401,9 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      utils.log "bet Validation before sen  ding the request t  o server"
 	      if tutorial is true
 	      	return
-	      playButtonEl = document.getElementById("placeBetOnServer");
+	      playButtonEl = gamePlayView.getPlayButtonEl()
 	      if playButtonEl.className is "bet_done"
-	      	confirmBox.messagePopup "Not so fast.... lets wait for your friends to play their turn"
+	      	confirmBox "Not so fast.... lets wait for your friends to play their turn"
 	      	return
 	      betStr = ""
 	      betCtr = 0
@@ -420,14 +420,14 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	        utils.log "bets[" + betCtr + "] : " + betId
 	      if betStr is ""
 	        utils.log "No bets placed!"
-	        confirmBox.messagePopup "No bets placed!"
+	        confirmBox "No bets placed!"
 	        return false
 	      else unless betCtr is 9
 	        utils.log "Bets count is less then 9!"
-	        confirmBox.messagePopup "Not so fast... please place all of your 9 tiles!"
+	        confirmBox "Not so fast... please place all of your 9 tiles!"
 	        return false
 	      else
-	        utils.log "every thing is fine s    end the bets to the server"
+	        utils.log "every thing is fine's end the bets to the server"
 	        placeBetsToServer betStr
 	      false
 	
@@ -442,18 +442,17 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	    parseToGameBoard = (mapType, mapData) ->
 	      if (mapType?) and (mapType.code?) and (mapType.className?)
 	        ctr = 0
-	        _results = []
 	        for curCoordId of mapData
 	          curCoordObj = mapData[curCoordId]
-	          _results.push jQuery("#boardTile-" + (parseInt(curCoordId))).addClass(mapType.className)
-	        _results
+	          jQuery("#boardTile-" + (parseInt(curCoordId))).addClass(mapType.className)
+	      true
 	
 	# message listener        
 	    messageListener = (event, messageName, broadcastType, fromClientID, roomID, message) ->
 	      switch messageName
 	      	when zalerioCMDListners.DECLINE_STATUS
 	      		 if parseInt(message) is 1
-	      		 	   confirmBox.messagePopup(popupMSG.declineInvite())
+	      		 	   confirmBox(popupMSG.declineInvite())
 	      		 	   gamePlayView.setGameDisable()
 	      	when zalerioCMDListners.RIGHT_HUD
 	        	usersObject = jQuery.parseJSON(message)      
@@ -478,12 +477,12 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	        	jDocument.trigger "client:" + zzGlobals.msgCodes.RIGHT_HUD,usersObject
 	        when zalerioCMDListners.CLOSE_INVITE
 	        	if 0 is message
-	        		confirmBox.messagePopup('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
+	        		confirmBox('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
 	        	else
 	        		gamePlayView.removeStatusPopup
 	        when zalerioCMDListners.RESIGN_GAME
 	        	if message is 0
-	        		confirmBox.messagePopup('Sorry!!! Unable to Resign, \n Plese try again..');
+	        		confirmBox('Sorry!!! Unable to Resign, \n Plese try again..');
 	        		gamePlayView.showBetsPanel()
 	        	else
 	        		resignStatus = 1
@@ -571,7 +570,6 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	                # tile palced by users
 	                gamePlayView.showBetPlacedBy(currentFigId,usersObject[i],playerSeatId)
 	            
-	            #tileHoverDivBids.innerHTML = boardVOs[tileIdx][boardVOCodes.TILE_COUNT]
 	            tileNo = parseInt(tileIdx)
 	            noOfRows = tileNo / board_X
 	            noOfCols = tileNo % board_Y

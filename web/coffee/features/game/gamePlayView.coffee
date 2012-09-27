@@ -82,6 +82,9 @@ define [], () ->
 			el.className = 'bet_done'
 			@disablePlayBoutton el
 		
+		setInnerHTML : (el, val)->
+			el.innerHTML = val
+		
 		disablePlayBoutton : (el) ->
 			el.parentNode.setAttribute "class", "bottomHUDbuttons-play-gray"
 		
