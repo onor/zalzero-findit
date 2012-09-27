@@ -1,5 +1,5 @@
 define [], () ->	
-	showFrndSelector : ->
+	showFrndSelector = ->
 		if typeof tutorial != 'undefined' 
 			if tutorial is true
 				boxBlank = jQuery '.box-blank'

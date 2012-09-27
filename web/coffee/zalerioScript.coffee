@@ -1515,63 +1515,63 @@ jQuery ->
 #
 #    ZalerioGame
 #  ).call(this)
-  basicFx = ->
-    docElems = {}
-    pageRefresh = ->
-      timer = null
-      enableTimerFn = ->
-        _this = this
-        timer = setTimeout(->
-          location.reload true
-        , 5000)
-
-      clearTimerFn = ->
-        timer = null
-
-      returnObj =
-        isTimerEnabled: ->
-          if timer
-            true
-          else
-            false
-
-        enableTimer: ->
-          enableTimerFn()
-
-        clearTimer: ->
-          clearTimerFn()
-
-  basicFx()
-  updateClock = ->
-    secs = ttl--
-    if secs > 0
-      timeRemaining = secs + " secs"
-      classForTime = "clockRed"
-      flag_gameStarted = true
-      if gameDuration < secs
-        secs = secs - gameDuration
-        flag_gameStarted = false
-      if not flag_gameJustStarted and flag_gameStarted
-        flag_gameJustStarted = true
-        refreshBidPanel()
-      if (secs > 100 and flag_gameStarted) or not flag_gameStarted
-        hours = Math.floor(secs / (60 * 60))
-        divisor_for_minutes = secs % (60 * 60)
-        minutes = Math.floor(divisor_for_minutes / 60)
-        divisor_for_seconds = divisor_for_minutes % 60
-        seconds = Math.ceil(divisor_for_seconds)
-        timeRemaining = pad2(hours) + " : " + pad2(minutes) + " : " + pad2(seconds)
-        if flag_gameStarted
-          classForTime = "clockBlack"
-        else
-          timeRemaining = "Starting in : " + timeRemaining
-          classForTime = "clockBefore"
-      if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["clock"]?)
-        docElems["clock"].className = classForTime
-        docElems["clock"].innerHTML = timeRemaining
-    else
-      timeRemaining = "Time Up!"
-      docElems["clock"].innerHTML = timeRemaining  if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["clock"]?)
+#  basicFx = ->
+#    docElems = {}
+#    pageRefresh = ->
+#      timer = null
+#      enableTimerFn = ->
+#        _this = this
+#        timer = setTimeout(->
+#          location.reload true
+#        , 5000)
+#
+#      clearTimerFn = ->
+#        timer = null
+#
+#      returnObj =
+#        isTimerEnabled: ->
+#          if timer
+#            true
+#          else
+#            false
+#
+#        enableTimer: ->
+#          enableTimerFn()
+#
+#        clearTimer: ->
+#          clearTimerFn()
+#
+#  basicFx()
+#  updateClock = ->
+#    secs = ttl--
+#    if secs > 0
+#      timeRemaining = secs + " secs"
+#      classForTime = "clockRed"
+#      flag_gameStarted = true
+#      if gameDuration < secs
+#        secs = secs - gameDuration
+#        flag_gameStarted = false
+#      if not flag_gameJustStarted and flag_gameStarted
+#        flag_gameJustStarted = true
+#        refreshBidPanel()
+#      if (secs > 100 and flag_gameStarted) or not flag_gameStarted
+#        hours = Math.floor(secs / (60 * 60))
+#        divisor_for_minutes = secs % (60 * 60)
+#        minutes = Math.floor(divisor_for_minutes / 60)
+#        divisor_for_seconds = divisor_for_minutes % 60
+#        seconds = Math.ceil(divisor_for_seconds)
+#        timeRemaining = pad2(hours) + " : " + pad2(minutes) + " : " + pad2(seconds)
+#        if flag_gameStarted
+#          classForTime = "clockBlack"
+#        else
+#          timeRemaining = "Starting in : " + timeRemaining
+#          classForTime = "clockBefore"
+#      if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["clock"]?)
+#        docElems["clock"].className = classForTime
+#        docElems["clock"].innerHTML = timeRemaining
+#    else
+#      timeRemaining = "Time Up!"
+#      docElems["clock"].innerHTML = timeRemaining  if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["clock"]?)
 
 #  changeTotalUserCount = ->
 #    docElems["totalPlayers"].innerHTML = zzGlobals.roomVars[zzGlobals.roomCodes.USER_TOTAL]  if (typeof docElems isnt "undefined" and docElems isnt null) and (docElems["totalPlayers"]?)
@@ -2707,27 +2707,27 @@ jQuery ->
 #		#append to body
 #    	jQuery("body").append(popupDivBase)
     
-    currentGameUsersData = {}
-	# set ALL_PLAYER_INFO (AP) to currentGameUsersData, trigger when ALL_PLAYER_INFO (AP) update
-    setPlayersInfo = ->    	
-    	usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
-    	for i of usersObject
-	    	usersObject[i] = jQuery.parseJSON(usersObject[i])
-	    	usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
-	    	scoreArray = []
-	    	seatIdArray = []	
-    		for seatId of usersObject[i].PLRS
-    			usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId])
-    			scoreArray[seatId] = parseInt(usersObject[i].PLRS[seatId].PSC)
-    			seatIdArray.push seatId
-    		seatIdArray.sort (x, y) ->
-    			scoreArray[y] - scoreArray[x]
-    		usersObject[i].PLSC = {}
-    		for x of seatIdArray
-    			usersObject[i].PLSC[x] = seatIdArray[x]
- 			
-    	zzGlobals.dataObjVars.AP = usersObject[i]
-    	jDocument.trigger "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, zzGlobals.dataObjVars.AP
+#    currentGameUsersData = {}
+#	# set ALL_PLAYER_INFO (AP) to currentGameUsersData, trigger when ALL_PLAYER_INFO (AP) update
+#    setPlayersInfo = ->    	
+#    	usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
+#    	for i of usersObject
+#	    	usersObject[i] = jQuery.parseJSON(usersObject[i])
+#	    	usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
+#	    	scoreArray = []
+#	    	seatIdArray = []	
+#    		for seatId of usersObject[i].PLRS
+#    			usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId])
+#    			scoreArray[seatId] = parseInt(usersObject[i].PLRS[seatId].PSC)
+#    			seatIdArray.push seatId
+#    		seatIdArray.sort (x, y) ->
+#    			scoreArray[y] - scoreArray[x]
+#    		usersObject[i].PLSC = {}
+#    		for x of seatIdArray
+#    			usersObject[i].PLSC[x] = seatIdArray[x]
+# 			
+#    	zzGlobals.dataObjVars.AP = usersObject[i]
+#    	jDocument.trigger "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, zzGlobals.dataObjVars.AP
     	#showInviteStatus(usersObject) # Function call to show current game invite player status
 	
     jQuery ->
@@ -2741,15 +2741,15 @@ jQuery ->
 #      jDocument.bind "room:" + zzGlobals.roomCodes.TOTAL_SEATS, updateTotalSeats
       jDocument.bind "room:" + zzGlobals.roomCodes.PLAYER_BETS_PLACE, renderUserVOToUserPanel
 		
-      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, setPlayersInfo
+#      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, setPlayersInfo
       #jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showFinalScore
       #jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, updateLeftHud
       jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, drawUserPanel
-      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, showRoundScorePopup
+      #jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, showRoundScorePopup
 
-      jDocument.bind "client:" + zzGlobals.clientCodes.UINFO, usersRecordCall
-      jDocument.bind "client:" + zzGlobals.clientCodes.ALL_PAST_GAME, usersRecordCall
-      jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, usersRecordCall
+#      jDocument.bind "client:" + zzGlobals.clientCodes.UINFO, usersRecordCall
+#      jDocument.bind "client:" + zzGlobals.clientCodes.ALL_PAST_GAME, usersRecordCall
+#      jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, usersRecordCall
       
       #jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, updateRightHud
       
@@ -2774,8 +2774,8 @@ jQuery ->
       size++  if obj.hasOwnProperty(key)
     size
 
-  sendOriginalFigsRequest = ->
-    jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|OF" ]
+#  sendOriginalFigsRequest = ->
+#    jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|OF" ]
 
 #  placeBetsToServer = (betStr) ->
 #    jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|PB", "BI|" + betStr ]
@@ -2794,57 +2794,57 @@ jQuery ->
 #  addEventHandler resignme, "click", sendResignToServer, false  # resign event handler
 
   # fire when user rematch and create game
-  rematchCall = (e,rematchPlayerFBID)->
-  	e.preventDefault() if e.preventDefault
-  	otherbuttonSound.Play if playSound
-  	if typeof rematchPlayerFBID is "undefined"
-  		usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
-  		console.log "Score Board left (zzGlobals.roomVars.AP", userObject if isDevEnvironment
-  		for gameId of usersObject
-  			usersInfoObject = jQuery.parseJSON(usersObject[gameId])
-  			break
-  		i=0
-  		usersInfoObject = jQuery.parseJSON(usersInfoObject.PLRS)
-  		_results = []
-  		for x of usersInfoObject
-  			userObject = jQuery.parseJSON(usersInfoObject[x])
-  			#continue if parseInt(userObject.PRE) == 1  			
-  			_results.push(userObject.PFB)
-  	else
-  		_results = []
-  		_results.push(rematchPlayerFBID)
-  	InviteFriends(_results,'Rematch',gameId)
-  	jQuery('.zalerio_popup').css('display','none')
-  	return
-
-  addEventHandler document.getElementById('rematch'), 'click' ,rematchCall, false # attach event with rematch botton
+#  rematchCall = (e,rematchPlayerFBID)->
+#  	e.preventDefault() if e.preventDefault
+#  	otherbuttonSound.Play if playSound
+#  	if typeof rematchPlayerFBID is "undefined"
+#  		usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
+#  		console.log "Score Board left (zzGlobals.roomVars.AP", userObject if isDevEnvironment
+#  		for gameId of usersObject
+#  			usersInfoObject = jQuery.parseJSON(usersObject[gameId])
+#  			break
+#  		i=0
+#  		usersInfoObject = jQuery.parseJSON(usersInfoObject.PLRS)
+#  		_results = []
+#  		for x of usersInfoObject
+#  			userObject = jQuery.parseJSON(usersInfoObject[x])
+#  			#continue if parseInt(userObject.PRE) == 1  			
+#  			_results.push(userObject.PFB)
+#  	else
+#  		_results = []
+#  		_results.push(rematchPlayerFBID)
+#  	InviteFriends(_results,'Rematch',gameId)
+#  	jQuery('.zalerio_popup').css('display','none')
+#  	return
+#
+#  addEventHandler document.getElementById('rematch'), 'click' ,rematchCall, false # attach event with rematch botton
   
-  # call My level popup function
-  usersRecordCall = ->
-  	if typeof zzGlobals.clientVars.UINFO isnt 'undefined' and zzGlobals.clientVars.UINFO isnt 'USERINFO'
-  		usersObjectUINFO = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
-
-	#parse APG
-  	if typeof zzGlobals.clientVars.APG isnt 'undefined' and zzGlobals.clientVars.APG isnt 'ALL_PAST_GAME'
-  		usersObjectAPG = jQuery.parseJSON(zzGlobals.clientVars.APG)
-  		scoreArray = []
-  		gameIdArray = []
-  		for i of usersObjectAPG
-  			usersObjectAPG[i] = jQuery.parseJSON(usersObjectAPG[i])
-  			usersObjectAPG[i].PLRS = jQuery.parseJSON(usersObjectAPG[i].PLRS)  			
-  			scoreArray[i] = parseInt(usersObjectAPG[i].EDL)
-  			gameIdArray.push i
-  			for seatId of usersObjectAPG[i].PLRS
-  				usersObjectAPG[i].PLRS[seatId] = jQuery.parseJSON(usersObjectAPG[i].PLRS[seatId])
-  		gameIdArray.sort (x, y) ->
-  			scoreArray[y] - scoreArray[x]
-  	usersInfo = 
-  		RH : zzGlobals.msgVars.RH
-  		APG : usersObjectAPG
-  		APG_SORT : gameIdArray
-  		UINFO: usersObjectUINFO
-  	usersRecord usersInfo
-  	return
+#  # call My level popup function
+#  usersRecordCall = ->
+#  	if typeof zzGlobals.clientVars.UINFO isnt 'undefined' and zzGlobals.clientVars.UINFO isnt 'USERINFO'
+#  		usersObjectUINFO = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
+#
+#	#parse APG
+#  	if typeof zzGlobals.clientVars.APG isnt 'undefined' and zzGlobals.clientVars.APG isnt 'ALL_PAST_GAME'
+#  		usersObjectAPG = jQuery.parseJSON(zzGlobals.clientVars.APG)
+#  		scoreArray = []
+#  		gameIdArray = []
+#  		for i of usersObjectAPG
+#  			usersObjectAPG[i] = jQuery.parseJSON(usersObjectAPG[i])
+#  			usersObjectAPG[i].PLRS = jQuery.parseJSON(usersObjectAPG[i].PLRS)  			
+#  			scoreArray[i] = parseInt(usersObjectAPG[i].EDL)
+#  			gameIdArray.push i
+#  			for seatId of usersObjectAPG[i].PLRS
+#  				usersObjectAPG[i].PLRS[seatId] = jQuery.parseJSON(usersObjectAPG[i].PLRS[seatId])
+#  		gameIdArray.sort (x, y) ->
+#  			scoreArray[y] - scoreArray[x]
+#  	usersInfo = 
+#  		RH : zzGlobals.msgVars.RH
+#  		APG : usersObjectAPG
+#  		APG_SORT : gameIdArray
+#  		UINFO: usersObjectUINFO
+#  	usersRecord usersInfo
+#  	return
     
 #  sendPlaceBetRequest = ->
 #    console.log "bet Validation before sen  ding the request t  o server" if isDevEnvironment
@@ -2931,10 +2931,10 @@ jQuery ->
 #          jQuery(".resignPopup").show()
 #      );
 #      
-  if document.domain is "localhost" or document.domain is "zl.mobicules.com"
-  	# if development environment version
-    addEventHandler document.getElementById("bottomHUDbuttons-more"), "click", sendOriginalFigsRequest, false
-    window.sendOriginalFigsRequest = sendOriginalFigsRequest
+#  if document.domain is "localhost" or document.domain is "zl.mobicules.com"
+#  	# if development environment version
+#    addEventHandler document.getElementById("bottomHUDbuttons-more"), "click", sendOriginalFigsRequest, false
+#    window.sendOriginalFigsRequest = sendOriginalFigsRequest
 #    resignPopUP()	# call resign popup
 #    
 #  else

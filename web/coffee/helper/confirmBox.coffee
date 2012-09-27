@@ -1,8 +1,10 @@
-define [], () ->
-	messagePopup = (message,callback,callback_param)->
+define ['./sound'], (sound) ->
+	window.messagePopup = (message,callback,callback_param)->
 	  	jQuery('.msg-outer-div').remove()
-	  	try
-	  		popupapperence.play() if playSound
+	  	
+	  	# play popup apperence sound if sound enable
+	  	sound.playPopupApperenceSound()
+		  	
 	  	msgDiv = document.createElement("div")
 	  	msgDiv.className = 'msg-outer-div bounceIn animated'
 	  	
@@ -21,8 +23,8 @@ define [], () ->
 	  	  	
 	  	if typeof callback is 'undefined'
 		  	msgOkDiv.onclick = ->
-		  		try
-		  			closebutton.play() if playSound
+		  		# play close button sound if sound enable
+		  		sound.playCloseButtonSound()		  		
 		  		jQuery('.msg-outer-div').remove()
 	  	else
 	  		msgCancelDiv = document.createElement("div")
@@ -31,16 +33,18 @@ define [], () ->
 	  		msgOkDiv.className = 'msgbox-ok msgbox-cancel'
 	  		
 	  		msgCancelDiv.onclick = ->
-	  			try
-		  			closebutton.play() if playSound
+	  			# play close button sound if sound enable
+		  		sound.playCloseButtonSound()
+		  		
 		  		#jQuery('.msg-outer-div').addClass("hinge")
 		  		jQuery('.msg-outer-div').remove()
 		  		
 		  		
 	  		msgOkDiv.onclick = ->
 		  		callback(callback_param)
-		  		try
-		  			closebutton.play() if playSound
+		  		# play close button sound if sound enable
+		  		sound.playCloseButtonSound()
+		  		
 		  		jQuery('.msg-outer-div').remove()
 	  		  	
 	  	msgTextDiv.appendChild msgTextP  	

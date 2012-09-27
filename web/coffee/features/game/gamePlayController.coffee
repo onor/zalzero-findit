@@ -1,23 +1,4 @@
-define ["../../helper/confirmBox"], (confirmBox) ->
-	
-	addEventHandler = (node, evtType, func, isCapture) ->
-    if window and window.addEventListener
-      node.addEventListener evtType, func, isCapture
-    else
-      node.attachEvent "on" + evtType, func
-	
-	removeEventHandler = (node, evtType, func, isCapture) ->
-	    if window and window.removeEventListener
-	      node.removeEventListener evtType, func, isCapture
-	    else
-	      node.detachEvent "on" + evtType, func
-	
-	removeClassName = (node, cls) ->
-	    reg = undefined
-	    if (node?) and node.className
-	      reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
-	      node.className = node.className.replace(reg, " ")
-	      
+define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./myLevel","../../config/globals","gamePlayView"], (confirmBox,utils,sound,myLevel,globals,gamePlayView) ->
 	bets = {}
 	boardVo = {}
 	responseVo = {}
@@ -26,53 +7,12 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	    ZalerioGame = ->
 	    _this = this
 	    docElems = {}
-	    DEFAULT_PLAYER_IMG_URL = "/olotheme/images/fbDefaultUser.gif"
 	    tilesIdxVOs = {}
 	    currentBets = {}
 	    currentBetsIdx = {}
 	    betsPanelIndexVO = {}
 	    currentRoundBidPlaced = -1
-	    internalDNDType = "text/x-betiddata"
-	    tileClassOverload =
-	      BASE_TILE_CLASS:
-	        N: "box-blank box-black"
-	        Z: "box-blankZoom box-blackZoom"
-	
-	      OTHER_TURN:
-	        N: "box-previousRoundOtherPlayer"
-	        Z: "box-previousRoundOtherPlayerZoom"
-	
-	      PRV_CURRPLYR_CORRECT_TILE:
-	        N: "box-previousRoundCurrentPlayerCorrect"
-	        Z: "box-previousRoundCurrentPlayerCorrectZoom"
-	
-	      PRV_CURRPLYR_INCORRECT_TILE:
-	        N: "box-previousRoundCurrentPlayerIncorrect"
-	        Z: "box-previousRoundCurrentPlayerIncorrectZoom"
-	
-	      CURRENT_CORRECT_TILE:
-	        N: "box-currentRoundCorrect"
-	        Z: "box-currentRoundCorrectZoom"
-	
-	      CURRENT_INCORRECT_TILE:
-	        N: "box-currentRoundIncorrect"
-	        Z: "box-currentRoundIncorrectZoom"
-	
-	      CURR_PLYR_FIG_COMPLETE:
-	        N: "box-dizitCompleted"
-	        Z: "box-dizitCompletedZoom"
-	
-	      CURR_PLYR_NEWBET:
-	        N: "box-newBet"
-	        Z: "box-newBetZoom"
-	
-	      JOKER_BET:
-	        N: "joker"
-	        Z: "jokerZoom"
-	
-	      SUPPER_JOKER_BET:
-	        N: "superJoker"
-	        Z: "superJokerZoom"
+	    internalDNDType = "text/x-betiddata"	    
 	
 	    flag_zoomTrue = false
 	    currPlayerFigVOs = {}
@@ -119,19 +59,19 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	    roundVOs = {}
 	    figureDetailsVO = {}
 	    initBoard = ->
-	      console.log "BoardXY : " + zzGlobals.roomVars[zzGlobals.roomCodes.BOARD_XY] if isDevEnvironment
+	      utils.log "BoardXY : " + zzGlobals.roomVars[zzGlobals.roomCodes.BOARD_XY]
 	      boardDimension = zzGlobals.roomVars[zzGlobals.roomCodes.BOARD_XY].split(":")
 	      board_X = boardDimension[0]
 	      board_Y = boardDimension[1]
 	      drawGameBoard()
 	
 	    initRoundBets = ->
-	      console.log "Round Bets : " + zzGlobals.roomVars[zzGlobals.roomCodes.ROUND_NOOFBETS] if isDevEnvironment
+	      utils.log "Round Bets : " + zzGlobals.roomVars[zzGlobals.roomCodes.ROUND_NOOFBETS]
 	      roundBets = zzGlobals.roomVars[zzGlobals.roomCodes.ROUND_NOOFBETS]
 	      reDrawBetsPanel()
 	
 	    parseRounds = (el, val) ->
-	      console.log "parse Ar data : " + zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ALLROUNDS] if isDevEnvironment
+	      utils.log "parse Ar data : " + zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ALLROUNDS]
 	      obj = jQuery.parseJSON(val)
 	      roundVOs = {}
 	      for i of obj
@@ -139,28 +79,28 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	      refreshRoundsPanel()
 	
 	    refreshRoundsPanel = ->
-	      drawRoundsPanel()  unless flag_roundDrawn
+	      drawRoundsPanel()  #unless flag_roundDrawn
 	      lastRoundId = null
 	      lastEl = null
 	      for roundId of roundVOs
 	        el = roundVOsIdx[roundId]
 	        roundEndTimeTTL = parseInt(roundVOs[roundId]["EM"])
 	        if roundEndTimeTTL > 0
-	          el.className = "notPlayedRound"
+	          gamePlayView.getNotPlayedRoundClass el  #el.className = "notPlayedRound"
 	        else
-	          el.className = "doneRound"
-	        el.className = "currentRound"  if roundId is zzGlobals.roomVars[zzGlobals.roomCodes.CURRENTROUND]
+	          gamePlayView.getDoneRoundClass el  #el.className = "doneRound"
+	        gamePlayView.getCurrentRoundClass el   if roundId is zzGlobals.roomVars[zzGlobals.roomCodes.CURRENTROUND]
 	        lastEl = el
 	        lastRoundId = roundId
 	      if lastEl and lastRoundId
 	        if lastRoundId is zzGlobals.roomVars[zzGlobals.roomCodes.CURRENTROUND]
-	          lastEl.className = "currentFinalRound"
+	          gamePlayView.getCurrentFinalRoundClass el #lastEl.className = "currentFinalRound"
 	        else
-	          lastEl.className = "finalRound"
+	          gamePlayView.getFinalRoundClass el #lastEl.className = "finalRound"
 	
 	    drawRoundsPanel = (elementDiv)->
 	      if typeof elementDiv is 'undefined'
-	      	gameRoundulElem = document.getElementById("gameScore-round")
+	      	gameRoundulElem = gamePlayView.getGameRoundulElem()
 	      	roundVOsIdx = {}
 	      else
 	      	gameRoundulElem = elementDiv
@@ -172,12 +112,12 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	      
 	      for roundId of roundVOs
 	        cnt++
-	        liElem = document.createElement("li")
-	        aHrefElem = document.createElement("a")
+	        liElem = gamePlayView.createliElem() # document.createElement("li")
+	        aHrefElem = gamePlayView.createAHrefElem() #document.createElement("a")
 	        aHrefElem.href = "#"
-	        aHrefElem.className = "notPlayedRound"
+	        gamePlayView.getNotPlayedRoundClass aHrefElem #aHrefElem.className = "notPlayedRound"
 	        aHrefElem.innerHTML = roundVOs[roundId]["RN"]
-	        console.log "roundVo : ", roundId if isDevEnvironment
+	        utils.log "roundVo : ", roundId
 	        liElem.appendChild aHrefElem
 	        if typeof elementDiv is 'undefined'
 	        	roundVOsIdx[roundId] = aHrefElem
@@ -187,36 +127,36 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	        gameRoundulElem.appendChild liElem
 	        aHrefElemClone = aHrefElem
 	      if cnt > 0
-	        aHrefElemClone.innerHTML = "Final"
+	        gamePlayView.setFinalInnerHTML aHrefElemClone	        
 	        flag_roundDrawn = true
 	
 	    reDrawBetsPanel = ->
 	      try
 	      	if tutorial is true
 	      		return
-	      playButtonEl = document.getElementById("placeBetOnServer")
+	      playButtonEl = gamePlayView.getPlayButtonEl()
 	      if currentRoundBidPlaced > 0
 	        i = 0
 	        while (if 0 <= roundBets then i < roundBets else i > roundBets)
 	          currentBetId = "bet_" + i
 	          el = betsPanelIndexVO[currentBetId]
-	          el.className = "betsAlreadyPlaced"
+	          gamePlayView.getBetsAlreadyPlacedClass el	          
 	          el.dragBet = 0
 	          el.draggable = false  if el.draggable?
-	          removeEventHandler el, "dragstart", handleDragStart, false
+	          # remove event handler
+	          utils.removeEventHandler el, "dragstart", handleDragStart, false
+	          
 	          (if 0 <= roundBets then i++ else i--)
-	        playButtonEl.href = "#Already Placed Bets"
-	        playButtonEl.className = 'bet_done'
-	        playButtonEl.parentNode.setAttribute "class", "bottomHUDbuttons-play-gray"
-	        removeEventHandler playButtonEl, "click", sendPlaceBetRequest, true
+	        gamePlayView.setBetDonePlayButtonEl playButtonEl
+	        utils.removeEventHandler playButtonEl, "click", sendPlaceBetRequest, true
 	      else
 	        count = 0
 	        for k of currentBets
 	          count++
 	        if count < 9
-	          playButtonEl.parentNode.setAttribute "class", "bottomHUDbuttons-play-gray"
+	          gamePlayView.disablePlayBoutton playButtonEl
 	        else
-	          playButtonEl.parentNode.setAttribute "class", ""
+	          gamePlayView.enablePlayBoutton playButtonEl
 	        drawBetPanel()  unless flag_roundBetsDrawn
 	        _results = []
 	        i = 0
@@ -231,36 +171,35 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	              flag_alreadyUsed = true
 	              break
 	          if flag_alreadyUsed
-	            el.className = "usedDraggableBets"
+	            gamePlayView.getUsedDraggableBetsClass el	            
 	            el.dragBet = 0
 	            el.draggable = false  if el.draggable?
-	            removeEventHandler el, "dragstart", handleDragStart, false
+	            utils.removeEventHandler el, "dragstart", handleDragStart, false
 	          else
-	            el.className = "draggableBets"
+	            gamePlayView.getDraggableBetsClass el	            
 	            el.dragBet = 1
 	            el.draggable = true  if el.draggable?
-	            addEventHandler el, "dragstart", handleDragStart, false
-	          playButtonEl.href = "#Place Bets"
-	          playButtonEl.className = ""
-	          _results.push addEventHandler(playButtonEl, "click", sendPlaceBetToServer, true)
+	            utils.addEventHandler el, "dragstart", handleDragStart, false
+	          gamePlayView.enablePlayBoutton playButtonEl
+	          _results.push utils.addEventHandler(playButtonEl, "click", sendPlaceBetToServer, true)
 	          (if 0 <= roundBets then i++ else i--)
 	        _results
 	
 	    drawBetPanel = ->
 	      betsPanelIndexVO = {}
-	      betsPanel = document.getElementById("gameBetPanel")
+	      betsPanel = gamePlayView.getGameBetPanelEl()
 	      betsPanel.innerHTML = ""
 	      _results = []
 	      i = 0
 	      while (if 0 <= roundBets then i < roundBets else i > roundBets)
 	        currentBetId = "bet_" + i
-	        divNbrPanel = document.createElement("li")
-	        divNbrPanel.className = "draggableBets"
+	        divNbrPanel = gamePlayView.createliElem()
+	        gamePlayView.getDraggableBetsClass divNbrPanel
 	        divNbrPanel.id = currentBetId
 	        divNbrPanel.draggable = true  if divNbrPanel.draggable?
-	        addEventHandler divNbrPanel, "dragstart", handleDragStart, false
-	        divAnc = document.createElement("a")
-	        divAnc.className = "nbrs"
+	        utils.addEventHandler divNbrPanel, "dragstart", handleDragStart, false
+	        divAnc = gamePlayView.createAHrefElem()
+	        gamePlayView.getSpaceClass divAnc
 	        divAnc.id = "new-" + i
 	        bets[i] = divAnc.id
 	        divNbrPanel.appendChild divAnc
@@ -269,60 +208,36 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	        _results.push flag_roundBetsDrawn = true
 	        (if 0 <= roundBets then i++ else i--)
 	      _results
-	
-	    customSetDragImage = (e) ->
-	      dragIcon = document.createElement("img")
-	      dragIcon.src = baseUrl + "/images/zalerio_1.2/3.ingame_board/stand/stand_tile_pickup.png"
-	      dragIcon.width = 45
-	      e.dataTransfer.setDragImage dragIcon, 35, 30
-	
+	      
+	    		
+		#fired when tiles are lifted from the upper basket
 	    handleDragStart = (e) ->
-	      console.log e.target.id if isDevEnvironment
-	      customSetDragImage e
+	      utils.log e.target.id
+	      gamePlayView.setCustomDragImage e
 	      e.dataTransfer.setData internalDNDType, @id
-	      e.target.className += " moving"
-	      if isDevEnvironment
-	      	console.log e.target, e.target.className
-	      	console.log "drag started!"
-	
+	      gamePlayView.addMoveClass e.target	      
+	      utils.log e.target + " : " + e.target.className
+	      utils.log "drag started!"
+		
+		#fired when tiles are lifted from the board
 	    handleDragStartWithinBoard = (e) ->
 	      betId = @getAttribute("placedBetId")
-	      customSetDragImage e
+	      gamePlayView.setCustomDragImage e
 	      e.dataTransfer.setData internalDNDType, betId
-	      e.target.className += " moving"
-	      if isDevEnvironment
-	      	console.log e.target, e.target.className
-	      	console.log "drag started!"
+	      gamePlayView.addMoveClass e.target
+	      utils.log e.target, e.target.className
+	      utils.log "drag started!"
 	
-	    parseCoordsAsNum = (coordX, coordY) ->
-	      (coordY * board_X) + coordX
+	    
 	
 	    drawGameBoard = ->
-	      gameWallDiv = document.getElementById("gamewall")
-	      gameWallDiv.setAttribute "dropzone", "move s:text/x-betiddata"
-	      addEventHandler gameWallDiv, "drop", handleDropNew, false
-	      addEventHandler gameWallDiv, "dragover", handleDragoverNew, false
-	      addEventHandler gameWallDiv, "dragenter", handleDragEnterNew, false
-	      addEventHandler gameWallDiv, "dragleave", handleDragleave, false
-	      gameWallDiv.innerHTML = ""
-	      i = 0
-	      while (if 0 <= board_Y then i < board_Y else i > board_Y)
-	        j = 0
-	        while (if 0 <= board_X then j < board_X else j > board_X)
-	          csBlankTileClassName = "box-blank box-black"
-	          gameWallTileDiv = document.createElement("div")
-	          gameWallTileDiv.className = csBlankTileClassName
-	          tileIdx = parseCoordsAsNum(j, i)
-	          gameWallTileDiv.id = "boardTile-" + tileIdx
-	          gameWallTileDiv.setAttribute "tileIdx", tileIdx
-	          gameWallTileDiv.className = csBlankTileClassName + " boardRowLastTile"  if j is (board_X - 1)
-	          tilesIdxVOs[tileIdx] = gameWallTileDiv
-	          gameWallDiv.appendChild gameWallTileDiv
-	          (if 0 <= board_X then j++ else j--)
-	        (if 0 <= board_Y then i++ else i--)
-	      elBr = document.createElement("br")
-	      elBr.setAttribute "clear", "all"
-	      gameWallDiv.appendChild elBr
+	      gameWallDiv = gamePlayView.getGameWall(board_X,board_Y)
+	      tilesIdxVOs = gamePlayView.getTilesIdxVOs()   
+	      utils.addEventHandler gameWallDiv, "drop", handleDropNew, false
+	      utils.addEventHandler gameWallDiv, "dragover", handleDragoverNew, false
+	      utils.addEventHandler gameWallDiv, "dragenter", handleDragEnterNew, false
+	      utils.addEventHandler gameWallDiv, "dragleave", handleDragleave, false
+	      	      
 	
 	    getTileClass = (tileClassOverLoadObj) ->
 	      if flag_zoomTrue
@@ -337,7 +252,7 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	      " "
 	
 	    refreshGameBoard = ->
-	      csBlankTileClassName = getTileClass(tileClassOverload.BASE_TILE_CLASS)
+	      csBlankTileClassName = getTileClass(gamePlayView.tileClassOverload.BASE_TILE_CLASS)
 	      currentTileClass = ""
 	      currentTileVal = ""
 	      currentEl = null
@@ -359,14 +274,14 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	            currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID]
 	            if currentFigId.indexOf("_NUMERIC_12") isnt -1 or currentFigId.indexOf("_NUMERIC_13") isnt -1 or currentFigId.indexOf("_NUMERIC_14") isnt -1 or currentFigId.indexOf("_NUMERIC_15") isnt -1 or currentFigId.indexOf("_NUMERIC_16") isnt -1 or currentFigId.indexOf("_NUMERIC_17") isnt -1
 	              dropEnable = false
-	              currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.JOKER_BET)
+	              currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.JOKER_BET)
 	              currentTileVal = ""
 	            else unless currentFigId.indexOf("_NUMERIC_11") is -1
 	              dropEnable = false
-	              currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.SUPPER_JOKER_BET)
+	              currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.SUPPER_JOKER_BET)
 	              currentTileVal = ""
 	          unless boardVOs[tileIdx][boardVOCodes.FIGURE_ID]
-	            currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.OTHER_TURN)
+	            currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.OTHER_TURN)
 	            currentTileVal = ""
 	          playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ]
 	          for playerSeatId of playersObjs
@@ -374,23 +289,23 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	              dropEnable = false
 	              currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID]
 	              if currentFigId
-	                currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.PRV_CURRPLYR_CORRECT_TILE)
-	                console.log "figureDetailsVO", currentFigId if isDevEnvironment
+	                currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.PRV_CURRPLYR_CORRECT_TILE)
+	                utils.log "figureDetailsVO", currentFigId
 	                if currPlayerFigVOs[currentFigId] is figureDetailsVO[currentFigId]
 	                  currentTilePriority = 10
-	                  currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.CURR_PLYR_FIG_COMPLETE)
+	                  currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_FIG_COMPLETE)
 	                  if currentFigId.indexOf("_NUMERIC_12") isnt -1 or currentFigId.indexOf("_NUMERIC_13") isnt -1 or currentFigId.indexOf("_NUMERIC_14") isnt -1 or currentFigId.indexOf("_NUMERIC_15") isnt -1 or currentFigId.indexOf("_NUMERIC_16") isnt -1 or currentFigId.indexOf("_NUMERIC_17") isnt -1
-	                    currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.JOKER_BET)
+	                    currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.JOKER_BET)
 	                    flag = true
 	                  else unless currentFigId.indexOf("_NUMERIC_11") is -1
-	                    currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.SUPPER_JOKER_BET)
+	                    currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.SUPPER_JOKER_BET)
 	                    flag = true
 	                if flag
 	                  currentTileVal = ""
 	                else
 	                  currentTileVal = boardVOs[tileIdx][boardVOCodes.TILE_COUNT]
 	              else
-	                currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.PRV_CURRPLYR_INCORRECT_TILE)
+	                currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.PRV_CURRPLYR_INCORRECT_TILE)
 	                currentTileVal = " "
 	              break
 	        lastRound = false
@@ -401,19 +316,19 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	            currentEl.draggable = true
 	            currentEl.dragBet = 1
 	            currentEl.setAttribute "placedBetId", currentBets[tileIdx]
-	            currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.CURR_PLYR_NEWBET)
-	            addEventHandler currentEl, "dragstart", handleDragStartWithinBoard, false
+	            currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET)
+	            utils.addEventHandler currentEl, "dragstart", handleDragStartWithinBoard, false
 	            currentTileVal = ""
 	          if currentTilePriority < 10 and (betChangeVOs[tileIdx]?)
 	            if parseInt(betChangeVOs[tileIdx]) is 1
-	              currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.CURR_PLYR_NEWBET)
+	              currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET)
 	              currentTileVal = ""
 	            else
-	              currentTileClass = csBlankTileClassName + getTileClass(tileClassOverload.CURR_PLYR_NEWBET)
+	              currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET)
 	              currentTileVal = ""
 	        currentTileClass += " boardRowLastTile "  if (parseInt(tileIdx) % board_X) is 0
 	        dropEnableVal = null
-	        console.log "[dropEnable:", dropEnable, ",currentEl:", currentEl.getAttribute("droppable")  if currentEl.id is "boardTile-35" and isDevEnvironment
+	        utils.log "[dropEnable:", dropEnable, ",currentEl:", currentEl.getAttribute("droppable")  if currentEl.id is "boardTile-35" and isDevEnvironment
 	        switch currentEl.getAttribute("droppable")
 	          when "-1"
 	            dropEnableVal = "1"  if dropEnable is true
@@ -452,13 +367,16 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	        betId = e.dataTransfer.getData(internalDNDType)
 	        if betId?
 	          if (e.target?) and (e.target.getAttribute?) and e.target.getAttribute("droppable") is "2"
-	            e.target.className += " box-drophover"
+	            gamePlayView.addBoxDropHoverClass e.target	            
 	            return true
 	      false
 	
 	    handleDropNew = (e) ->
-	      titledrop.play()  if playSound
-	      removeClassName e.target, "box-drophover"  if e.target?
+	    	
+	      #play tile drop sound if sound enable
+	      sound.playTitleDropSound()
+	      
+	      utils.removeClassName e.target, "box-drophover"  if e.target?
 	      e.preventDefault()  if e.preventDefault
 	      e.stopPropagation()  if e.stopPropagation
 	      betId = e.dataTransfer.getData(internalDNDType)
@@ -477,15 +395,10 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	      false
 	
 	    handleDragleave = (e) ->
-	      removeClassName e.target, "box-drophover"  if e.target?
+	      utils.removeClassName e.target, "box-drophover"  if e.target?
 	
 	    sendPlaceBetToServer = ->
-	#      jQuery("#placeBetOnServer").live('click',()->
-	#      		try{
-	#      			jQuery("#placeBetOnServer").append(loader_small);
-	#      		}catch(err){}
-	#      )
-	      console.log "bet Validation before sen  ding the request t  o server" if isDevEnvironment
+	      utils.log "bet Validation before sen  ding the request t  o server"
 	      if tutorial is true
 	      	return
 	      playButtonEl = document.getElementById("placeBetOnServer");
@@ -494,24 +407,27 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	      	return
 	      betStr = ""
 	      betCtr = 0
-	      playbutton.play()  if playSound
+	      
+	      #play tile play sound if sound enable
+	      sound.playPlayButtonSound()
+
 	      for betPanelId of currentBetsIdx
 	        continue  unless __hasProp_.call(currentBetsIdx, betPanelId)
 	        betTileId = currentBetsIdx[betPanelId]
 	        betId = betTileId.replace(/\bboardTile-\b/, "")
 	        betStr += (if betStr is "" then betId else ":" + betId)
 	        ++betCtr
-	        console.log "bets[" + betCtr + "] : " + betId if isDevEnvironment
+	        utils.log "bets[" + betCtr + "] : " + betId
 	      if betStr is ""
-	        console.log "No bets placed!" if isDevEnvironment
+	        utils.log "No bets placed!"
 	        confirmBox.messagePopup "No bets placed!"
 	        return false
 	      else unless betCtr is 9
-	        console.log "Bets count is less then 9!" if isDevEnvironment
+	        utils.log "Bets count is less then 9!"
 	        confirmBox.messagePopup "Not so fast... please place all of your 9 tiles!"
 	        return false
 	      else
-	        console.log "every thing is fine s    end the bets to the server" if isDevEnvironment
+	        utils.log "every thing is fine s    end the bets to the server"
 	        placeBetsToServer betStr
 	      false
 	
@@ -538,9 +454,7 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	      	when zalerioCMDListners.DECLINE_STATUS
 	      		 if parseInt(message) is 1
 	      		 	   confirmBox.messagePopup(popupMSG.declineInvite())
-	      		 	   jQuery(".draggableBets").attr("draggable","false")
-	      		 	   jQuery(".resignPopup").hide()
-	      		 	   jQuery("#gameBetPanel").hide()
+	      		 	   gamePlayView.setGameDisable()
 	      	when zalerioCMDListners.RIGHT_HUD
 	        	usersObject = jQuery.parseJSON(message)      
 	        	for i of usersObject
@@ -559,35 +473,32 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	        			usersObject[i].PLSC[x] = seatIdArray[x]
 	
 	        	zzGlobals.msgVars.RH = usersObject
-	        	console.log 'MT & TT',zzGlobals.msgVars.RH if isDevEnvironment
+	        	utils.log 'MT & TT',zzGlobals.msgVars.RH
 	        	
 	        	jDocument.trigger "client:" + zzGlobals.msgCodes.RIGHT_HUD,usersObject
 	        when zalerioCMDListners.CLOSE_INVITE
 	        	if 0 is message
 	        		confirmBox.messagePopup('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
 	        	else
-	        		jQuery(".status_show_popup").remove();
-	        		jQuery(".gdWrapper").remove();
+	        		gamePlayView.removeStatusPopup
 	        when zalerioCMDListners.RESIGN_GAME
 	        	if message is 0
 	        		confirmBox.messagePopup('Sorry!!! Unable to Resign, \n Plese try again..');
-	        		jQuery("#gameBetPanel").show()
+	        		gamePlayView.showBetsPanel()
 	        	else
 	        		resignStatus = 1
-	        		jQuery(".draggableBets").attr("draggable","false");
-	        		jQuery("#gameBetPanel").hide()
-	        		jQuery(".resignPopup").hide();
+	        		gamePlayView.setGameDisable()
 	        when zalerioCMDListners.ORIG_FIGS
 	        	newCoordObj = jQuery.parseJSON(message)
-	        	console.log newCoordObj if isDevEnvironment
+	        	utils.log newCoordObj
 	        	parseToGameBoard zalerioMapType.ORIG_MAP, newCoordObj
 	        when zalerioCMDListners.BET_RESPONSE
 	        	parsedObj = jQuery.parseJSON(message)
-	        	console.log "zalerioCMDListners.BET_RESPONSE if failed : ", parsedObj if isDevEnvironment
+	        	utils.log "zalerioCMDListners.BET_RESPONSE if failed : ", parsedObj
 	        when zalerioCMDListners.BET_CHANGES
 	        	betChangeVOs = {}
 	        	playerBetsChangeObj = jQuery.parseJSON(message)
-	        	console.log "zalerioCMDListners.BET_CHANGES : ", playerBetsChangeObj if isDevEnvironment
+	        	utils.log "zalerioCMDListners.BET_CHANGES : ", playerBetsChangeObj
 	        	currentBets = {}
 	        	currentBetsIdx = {}
 	        	for i of playerBetsChangeObj
@@ -601,27 +512,16 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	        	refreshGameBoard()
 	
 	    drawResponseTiles = (responseObj) ->
-	      console.log "responseObj in drawResponseTiles(): ", responseObj if isDevEnvironment
+	      utils.log "responseObj in drawResponseTiles(): " + responseObj
 	      _results = []
 	      for tileId of responseObj
-	        correctFlag = responseObj[tileId]
-	        tempTileElem = document.getElementById("boardTile-" + tileId)
-	        if correctFlag is 0 or correctFlag is 1
-	          if correctFlag is 1
-	            tempTileElem.className = tempTileElem.className + " box-MyTurn"
-	            _results.push tempTileElem.innerHTML = "N"
-	          else
-	            tempTileElem.className = tempTileElem.className + " box-MyWorngTurn"
-	            _results.push tempTileElem.innerHTML = "X"
-	        else
-	          _results.push undefined
+	        correctFlag = responseObj[tileId]	        
+	        _results.push gamePlayView.markMyTurnTiles(correctFlag)
 	      _results
 	
 	    updateBoardVars = (evt, val) ->
 	      currPlayerFigVOs = {}
 	      playerBetTiles = {}
-	      el = document.getElementById("loadingGame")
-	      el.style.display = "none"  if (el?) and (el.style?)
 	      boardVOs = {}
 	      boardObjs = jQuery.parseJSON(val)
 	      for i of boardObjs
@@ -645,36 +545,11 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	    updateFigureDetails = (evt, val) ->
 	      figureDetailsVO = {}
 	      figureDetailsVO = jQuery.parseJSON(val)  if val?
-	
-	    updateFlagZoomTrue = (val) ->
-	      if (val?) and val is true
-	        flag_zoomTrue = true
-	      else
-	        flag_zoomTrue = false
-	      refreshGameBoard()
-	
-	    jQuery ->
-	      jQuery("#zoomBtm").click ->
-	        jQuery(".playersInfo").toggleClass "playersInfoZoom"
-	        jQuery(".turnBase").toggleClass "turnBaseZoom"
-	        jQuery(".playableArea").toggleClass "playableAreaZoom"
-	        jQuery("#gamewall").toggleClass "game_wallZoom"
-	        jQuery(".box-MyTurn").toggleClass "box-MyTurnZoom"
-	        jQuery(".box-MyWorngTurn").toggleClass "box-MyWorngTurnZoom"
-	        jQuery(".box-RevealingNumber").toggleClass "box-RevealingNumberZoom"
-	        jQuery(".box-OthersTurn").toggleClass "box-OthersTurnZoom"
-	        jQuery(".box-priviousOthersTurn").toggleClass "box-priviousOthersTurnZoom"
-	        jQuery(".panelZoom").toggleClass "panelZoomZoom"
-	        jQuery(".zoomBtm").toggleClass "zoomBtmZoom"
-	        jQuery(".dragFromHere").toggleClass "dragFromHereZoom"
-	        jQuery(".nbrs").toggleClass "nbrsZoom"
-	        jQuery(".nbrs-Panel").toggleClass "nbrs-PanelZoom"
-	        updateFlagZoomTrue (if flag_zoomTrue then false else true)
-	
-	      jTileHoverDiv = jQuery("#showOnMouseOver")
-	      tileHoverDivBids = jTileHoverDiv.find(".roundForBidsCount")[0]
-	      jTileHoverDivContent = jQuery(jTileHoverDiv.find(".roundForBidsCountUl")[0])
-	      console.log "jTileHoverDiv : ", jTileHoverDiv if isDevEnvironment
+	      		  	
+	    jQuery ->	
+	      jTileHoverDiv = gamePlayView.getShowOnMouseOverEl()	      
+	      utils.log "jTileHoverDiv : " + jTileHoverDiv
+	      
 	      isMousingOver = false
 	      jQuery("#gamewall").delegate ".box-previousRoundOtherPlayer,.box-previousRoundCurrentPlayerIncorrect,.box-previousRoundCurrentPlayerCorrect,.box-dizitCompleted,.joker,.superJoker", "mouseover mouseout", (e) ->
 	        usersObject =  jQuery.parseJSON(zzGlobals.roomVars.AP)
@@ -686,26 +561,17 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 		        		usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId])
 	        if e.type is "mouseover" and not isMousingOver
 	          tileIdx = @getAttribute("tileIdx")
-	          console.log "offset :", @offsetLeft + " : " + @offsetTop if isDevEnvironment
+	          utils.log "offset :" + @offsetLeft + " : " + @offsetTop
 	          if boardVOs[tileIdx]?
 	            playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ]
-	            strOut = ""
-	            imgSrc = ""
-	            for playerSeatId of playersObjs
-	              console.log "mouseover", zzGlobals.userVOsSeatIndex[playerSeatId].UR if isDevEnvironment
-	              if (usersObject[i].PLRS[playerSeatId]?) and (usersObject[i].PLRS[playerSeatId].PFB?)
-	                imgSrc = "https://graph.facebook.com/" + usersObject[i].PLRS[playerSeatId].PFB + "/picture"
-	              else
-	                imgSrc = DEFAULT_PLAYER_IMG_URL
+	            
+	            for playerSeatId of playersObjs	              
 	              if usersObject[i].PLRS[playerSeatId]?
 	                currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID]
-	                unless typeof currentFigId is "undefined"
-	                  if currentFigId.indexOf("_NUMERIC_12") isnt -1 or currentFigId.indexOf("_NUMERIC_13") isnt -1 or currentFigId.indexOf("_NUMERIC_14") isnt -1 or currentFigId.indexOf("_NUMERIC_15") isnt -1 or currentFigId.indexOf("_NUMERIC_16") isnt -1 or currentFigId.indexOf("_NUMERIC_17") isnt -1
-	                    strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_joker.png' alt='Joker' ></li>"
-	                  else strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_Superjoker.png' alt='Supper Joker' ></li>"  unless currentFigId.indexOf("_NUMERIC_11") is -1
-	                strOut += "<li><img src='" + imgSrc + "' alt='" + usersObject[i].PLRS[playerSeatId].PFB + "' ></li>"
-	            jTileHoverDivContent.html strOut
-	            tileHoverDivBids.innerHTML = boardVOs[tileIdx][boardVOCodes.TILE_COUNT]
+	                # tile palced by users
+	                gamePlayView.showBetPlacedBy(currentFigId,usersObject[i],playerSeatId)
+	            
+	            #tileHoverDivBids.innerHTML = boardVOs[tileIdx][boardVOCodes.TILE_COUNT]
 	            tileNo = parseInt(tileIdx)
 	            noOfRows = tileNo / board_X
 	            noOfCols = tileNo % board_Y
@@ -713,46 +579,131 @@ define ["../../helper/confirmBox"], (confirmBox) ->
 	            topMajor = (if noOfCols > board_X / 2 then false else true)
 	            elLeft = e.pageX + 10
 	            elTop = e.pageY
-	            elLeft = elLeft - $("#showOnMouseOver").width() - 10  if @offsetLeft > 300
-	            elTop = elTop - $("#showOnMouseOver").height()  if @offsetTop > 400
-	            $(".roundForBidsCount").remove()
+	            elLeft = elLeft - jTileHoverDiv.width() - 10  if @offsetLeft > 300
+	            elTop = elTop - jTileHoverDiv.height()  if @offsetTop > 400
+	            
 	            jTileHoverDiv.show().offset
 	              top: elTop
 	              left: elLeft
 	          isMousingOver = true
-	          console.log "enlarged" if isDevEnvironment
+	          utils.log "enlarged"
 	        else if e.type is "mouseout"
 	          jTileHoverDiv.hide()
 	          isMousingOver = false
-	          console.log "resetting" if isDevEnvironment
-	
+	          utils.log "resetting"
+	          
+	      jDocument.bind "client:" + zzGlobals.clientCodes.UINFO, usersRecordCall
+	      jDocument.bind "client:" + zzGlobals.clientCodes.ALL_PAST_GAME, usersRecordCall
+	      jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, usersRecordCall
 	      jDocument.bind "room:" + zzGlobals.roomCodes.FIGURE_DETAILS, updateFigureDetails
 	      jDocument.bind "room:" + zzGlobals.roomCodes.BOARD_XY, initBoard
 	      jDocument.bind "room:" + zzGlobals.roomCodes.ROUND_NOOFBETS, initRoundBets
 	      jDocument.bind "room:" + zzGlobals.roomCodes.ROOM_ALLROUNDS, parseRounds
 	      jDocument.bind "room:" + zzGlobals.roomCodes.BOARDVARS, updateBoardVars
 	      jDocument.bind "room:" + zzGlobals.roomCodes.CURRENTROUND, refreshRoundsPanel
+	      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, setPlayersInfo
 	      jDocument.bind zzEvents.SERVER_MESSAGE, messageListener
 	
 	    ZalerioGame
 	  ).call(this)
-	  
+	
+	# call My level popup function
+	usersRecordCall = ->
+	  	if typeof zzGlobals.clientVars.UINFO isnt 'undefined' and zzGlobals.clientVars.UINFO isnt 'USERINFO'
+	  		usersObjectUINFO = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
+	
+		#parse APG
+	  	if typeof zzGlobals.clientVars.APG isnt 'undefined' and zzGlobals.clientVars.APG isnt 'ALL_PAST_GAME'
+	  		usersObjectAPG = jQuery.parseJSON(zzGlobals.clientVars.APG)
+	  		scoreArray = []
+	  		gameIdArray = []
+	  		for i of usersObjectAPG
+	  			usersObjectAPG[i] = jQuery.parseJSON(usersObjectAPG[i])
+	  			usersObjectAPG[i].PLRS = jQuery.parseJSON(usersObjectAPG[i].PLRS)  			
+	  			scoreArray[i] = parseInt(usersObjectAPG[i].EDL)
+	  			gameIdArray.push i
+	  			for seatId of usersObjectAPG[i].PLRS
+	  				usersObjectAPG[i].PLRS[seatId] = jQuery.parseJSON(usersObjectAPG[i].PLRS[seatId])
+	  		gameIdArray.sort (x, y) ->
+	  			scoreArray[y] - scoreArray[x]
+	  	usersInfo = 
+	  		RH : zzGlobals.msgVars.RH
+	  		APG : usersObjectAPG
+	  		APG_SORT : gameIdArray
+	  		UINFO: usersObjectUINFO
+	  	
+	  	myLevel usersInfo
+	
+	currentGameUsersData = {}
+	# set ALL_PLAYER_INFO (AP) to currentGameUsersData, trigger when ALL_PLAYER_INFO (AP) update
+	setPlayersInfo = ->    	
+    	usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
+    	for i of usersObject
+	    	usersObject[i] = jQuery.parseJSON(usersObject[i])
+	    	usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
+	    	scoreArray = []
+	    	seatIdArray = []	
+    		for seatId of usersObject[i].PLRS
+    			usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId])
+    			scoreArray[seatId] = parseInt(usersObject[i].PLRS[seatId].PSC)
+    			seatIdArray.push seatId
+    		seatIdArray.sort (x, y) ->
+    			scoreArray[y] - scoreArray[x]
+    		usersObject[i].PLSC = {}
+    		for x of seatIdArray
+    			usersObject[i].PLSC[x] = seatIdArray[x]
+ 			
+    	zzGlobals.dataObjVars.AP = usersObject[i]
+    	jDocument.trigger "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, zzGlobals.dataObjVars.AP
+	
+	if document.domain is "localhost" or document.domain is "zl.mobicules.com"
+  	# if development environment version
+    	utils.addEventHandler document.getElementById("bottomHUDbuttons-more"), "click", sendOriginalFigsRequest, false
+    	window.sendOriginalFigsRequest = sendOriginalFigsRequest
+	
+	sendOriginalFigsRequest = ->
+		jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|OF" ]
+    
+	rematchCall = (e,rematchPlayerFBID)->
+	  	e.preventDefault() if e.preventDefault
+	  	otherbuttonSound.Play if playSound
+	  	if typeof rematchPlayerFBID is "undefined"
+	  		usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
+	  		utils.log "Score Board left (zzGlobals.roomVars.AP", userObject
+	  		for gameId of usersObject
+	  			usersInfoObject = jQuery.parseJSON(usersObject[gameId])
+	  			break
+	  		i=0
+	  		usersInfoObject = jQuery.parseJSON(usersInfoObject.PLRS)
+	  		_results = []
+	  		for x of usersInfoObject
+	  			userObject = jQuery.parseJSON(usersInfoObject[x])
+	  			#continue if parseInt(userObject.PRE) == 1  			
+	  			_results.push(userObject.PFB)
+	  	else
+	  		_results = []
+	  		_results.push(rematchPlayerFBID)
+	  	InviteFriends(_results,'Rematch',gameId)
+	  	jQuery('.zalerio_popup').css('display','none')
+	  	return
+	
+	utils.addEventHandler document.getElementById('rematch'), 'click' ,rematchCall, false
+      
 	placeBetsToServer = (betStr) ->
     	jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|PB", "BI|" + betStr ]
     
     sendPlaceBetRequest = ->
-	    console.log "bet Validation before sen  ding the request t  o server" if isDevEnvironment
+	    utils.log "bet Validation before sen  ding the request t  o server"
 	    betStr = ""
 	    for bet of bets
 	      betStr += (if betStr is "" then bets[bet] else ":" + bets[bet])
-	      console.log "bets[" + bet + "] : " + bets[bet] if isDevEnvironment
-	    console.log "[betStr: " + betStr + "]" if isDevEnvironment
+	      utils.log "bets[" + bet + "] : " + bets[bet]
+	    utils.log "[betStr: " + betStr + "]"
 	    if betStr is ""
-	      console.log "No bets placed!" if isDevEnvironment
+	      utils.log "No bets placed!"
 	      messagePopup "No bets placed!"
 	      return false
 	    else
-	      console.log "every thing is fine end the bets to the server" if isDevEnvironment
+	      utils.log "every thing is fine end the bets to the server"
 	      placeBetsToServer betStr
 	    false
-  

@@ -1,4 +1,5 @@
 define ["./config"], (config) ->
+	DEFAULT_PLAYER_IMG_URL = "/olotheme/images/fbDefaultUser.gif"
 	zzEvents =
 	    JOINED_ROOM: "joinedRoomListener"
 	    RESET_GAME_VARIABLES: "resetGameVariables"

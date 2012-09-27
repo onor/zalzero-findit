@@ -1,5 +1,6 @@
 define [], () ->
 	# union sever connectin data
+	# env specific
 	unionConnection:
 		url : document.domain
 		port : 9933

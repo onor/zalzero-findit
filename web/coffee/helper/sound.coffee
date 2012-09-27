@@ -1,17 +1,51 @@
 define [], () ->
-	
-	playSound : true
-	
-	# attach sound file
-	try
-		audioBaseUrl = baseUrl.replace( '/index.php','/' )
-		otherbuttonSound : new Audio( audioBaseUrl + "/sound/otherbuttons.wav" )
-		selectbuttonSound : new Audio( audioBaseUrl + "/sound/select_button.wav" )
-		popupapperence : new Audio( audioBaseUrl + "/sound/popupapperence.wav" )
-		closebutton : new Audio( audioBaseUrl + "/sound/closebutton.wav" )
-		tilepickup : new Audio( audioBaseUrl + "/sound/Tilepickup.wav" ) 	# tile pickup sound file
-		titledrop : new Audio( baseUrl + "/sound/Tiledrop.wav")
-		playbutton : new Audio( baseUrl + "/sound/playbutton.wav" )
+	class Sound
+		# constructor class
+		constructor: () ->
+			@audioBaseUrl = baseUrl.replace( '/index.php','/' )
+			@otherButton = new Audio( @audioBaseUrl + "/sound/otherbuttons.wav" )
+			@selectButton = new Audio( @audioBaseUrl + "/sound/select_button.wav" )
+			@popupApperence = new Audio( @audioBaseUrl + "/sound/popupapperence.wav" )
+			@closeButton = new Audio( @audioBaseUrl + "/sound/closebutton.wav" )
+			@tilePickup = new Audio( @audioBaseUrl + "/sound/Tilepickup.wav" ) 	# tile pickup sound file
+			@titleDrop = new Audio( baseUrl + "/sound/Tiledrop.wav")
+			@playButton = new Audio( baseUrl + "/sound/playbutton.wav" )
+			
+			@isPlaySound = true
+		
+		onSound : () ->
+			@isPlaySound = true
+		
+		offSound : () ->
+			@isPlaySound = false
+			
+		playOtherButtonSound : () ->
+			if @isPlaySound
+				@otherButton.play()
+		
+		playSelectButtonSound : () ->
+			if @isPlaySound
+				@selectButton.play()
+		
+		playPopupApperenceSound : () ->
+			if @isPlaySound
+				@popupApperence.play()
+		
+		playCloseButtonSound : () ->
+			if @isPlaySound
+				@closeButton.play()
+				
+		playTilePickupSound : () ->
+			if @isPlaySound
+				@tilePickup.play()
+		
+		playTitleDropSound : () ->
+			if @isPlaySound
+				@titleDrop.play()
+				
+		playPlayButtonSound : () ->
+			if @isPlaySound
+				@playButton.play()
 
-	catch error
-		console.log "Sound loading fail and error is" + error
+	# return class instance			
+	new Sound
