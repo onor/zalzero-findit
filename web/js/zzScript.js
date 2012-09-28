@@ -660,6 +660,7 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
           if (message[gameId].PLRS[gameSeatID].GSS) {
             if (message[gameId].PLRS[gameSeatID].GSS === 1 && zzGlobals.currentUserDBId === message[gameId].PLRS[gameSeatID].UI) {
               urDiv.append("<div class=\"accept_decline\" id=\"accept_decline_" + gameId + "\"><div class=\"right_hud_accept\">Accept</div><div class=\"right_hud_decline\">Decline</div></div>");
+              acceptInvitationAdd($("#accept_decline_" + gameId + " .right_hud_accept", gameId));
               $("#accept_decline_" + gameId + " .right_hud_decline").click({
                 gsID: gameSeatID,
                 id: gameId
