@@ -35,15 +35,15 @@ roundVOsIdxRightHUD = {};
 flag_roundDrawn = false;
 
 acceptInvitationAdd = function(div, gameIdToAdd) {
-  return div.onclick = function() {
+  return div.on('click', function(e) {
     return acceptInvitation(gameIdToAdd);
-  };
+  });
 };
 
 declineInvitationAdd = function(div, gameSeatIdToDecline, gameId) {
-  return div.onclick = function() {
+  return div.on('click', function(e) {
     return sendDeclinedToServer(gameSeatIdToDecline, gameId);
-  };
+  });
 };
 
 remindUserAdd = function(gameLinkID, remindUsersLeft, x, fbUser, div) {
