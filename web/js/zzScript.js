@@ -1504,6 +1504,7 @@ define('gamePlayView',[], function() {
 
     gameView.prototype.enablePlayBoutton = function(el) {
       el.href = "#Place Bets";
+      el.className = '';
       return el.parentNode.setAttribute("class", "");
     };
 
@@ -2498,9 +2499,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
     if (e.preventDefault) {
       e.preventDefault();
     }
-    if (playSound) {
-      otherbuttonSound.Play;
-    }
+    sound.playOtherbuttonSound();
     if (typeof rematchPlayerFBID === "undefined") {
       usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP);
       utils.log("Score Board left (zzGlobals.roomVars.AP", userObject);
@@ -2528,7 +2527,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
   };
   return sendPlaceBetRequest = function() {
     var bet, betStr;
-    utils.log("bet Validation before sen  ding the request t  o server");
+    utils.log("bet Validation before sending the request t  o server");
     betStr = "";
     for (bet in bets) {
       betStr += (betStr === "" ? bets[bet] : ":" + bets[bet]);
