@@ -660,8 +660,12 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
           if (message[gameId].PLRS[gameSeatID].GSS) {
             if (message[gameId].PLRS[gameSeatID].GSS === 1 && zzGlobals.currentUserDBId === message[gameId].PLRS[gameSeatID].UI) {
               urDiv.append("<div class=\"accept_decline\" id=\"accept_decline_" + gameId + "\"><div class=\"right_hud_accept\">Accept</div><div class=\"right_hud_decline\">Decline</div></div>");
-              acceptInvitationAdd($(".right_hud_accept", urDiv), gameId);
-              declineInvitationAdd($(".right_hud_decline", urDiv), gameSeatID, gameId);
+              $("#accept_decline_" + gameId + " .right_hud_decline").click({
+                gsID: gameSeatID,
+                id: gameId
+              }, function(e) {
+                return jDocument.trigger("sendDeclinedToServer", [e.data.gsID, e.data.id]);
+              });
             } else if (zzGlobals.currentUserDBId === message[gameId].PLRS[gameSeatID].UI) {
               urDiv.click({
                 gameDetails: message[gameId],
@@ -3052,12 +3056,13 @@ define('gameEventManager',["../../config/config", "../../helper/confirmBox", "..
       return msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
     };
     jDocument.bind("gameChangeListener", gameChangeListener);
-    sendDeclinedToServer = function(gameSeatId, gameId) {
-      jQuery('#accept_decline_' + gameId).text('');
-      jQuery('#accept_decline_' + gameId).css('cursor', 'default');
-      jQuery('#accept_decline_' + gameId).html(utils.getMiniLoaderHTML());
+    sendDeclinedToServer = function(e, gameSeatId, gameId) {
+      $('#accept_decline_' + gameId).text('');
+      $('#accept_decline_' + gameId).css('cursor', 'default');
+      $('#accept_decline_' + gameId).html(utils.getMiniLoaderHTML());
       return msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|DG", "GSID|" + gameSeatId);
     };
+    jDocument.bind("sendDeclinedToServer", sendDeclinedToServer);
     sendUpcMessageToServer = function(event, upcFunctionCode, p2, p3, p4, p5, p6) {
       var argArr, i, _i, _ref;
       if (config.isDevEnvironment) {
