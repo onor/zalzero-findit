@@ -719,7 +719,6 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
                   sound.playSelectButtonSound();
                   return createGameDetailsPopup(e.data.gameDetails, e.data.id);
                 });
-                return;
               }
             }
           }
@@ -743,7 +742,7 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
     return true;
   };
   createGameDetailsPopup = function(gameDetails, gameId) {
-    var betPlacedNoClass, gameSeatID, gdDiv, gdPlaydivClassName, gdUserImgclassName, i, index, playerName, remindUsersData, trClass, _ref, _score;
+    var betPlacedNoClass, gameSeatID, gdDiv, gdPlaydivClassName, gdUserImgclassName, i, index, playerName, plrs, remindUsersData, trClass, _ref, _score;
     jQuery('.gdWrapper').remove();
     gdDiv = $("<div class=\"gdWrapper animated fadeInRight\">\n	<div class=\"gdScoreCardDiv\">\n		<div class=\"gdAllRoundDiv\" id=\"gdAllRoundDivId\"></div>\n\n		<div class=\"gdScoreInfoDiv\">\n			<table class=\"gdScoreCardTbl\"></table>\n		</div>\n	</div>\n	<div class=\"gdUsersImgdiv\"></div>\n	<div class=\"gdReminddiv\"></div>\n	<div class=\"gdReturndiv\"></div>\n</div>");
     $('.gdReminddiv', gdDiv).click(function() {
@@ -776,37 +775,37 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
     remindUsersData = {};
     for (index in gameDetails.PLSC) {
       gameSeatID = gameDetails.PLSC[index];
-      remindUsersData[gameDetails.PLRS[gameSeatID].PFB] = {
-        GSS: gameDetails.PLRS[gameSeatID].GSS,
-        CRS: gameDetails.PLRS[gameSeatID].CRS
+      plrs = gameDetails.PLRS[gameSeatID];
+      remindUsersData[plrs.PFB] = {
+        GSS: plrs.GSS,
+        CRS: plrs.CRS
       };
-      if (gameDetails.PLRS[gameSeatID].GSS === 5 || gameDetails.PLRS[gameSeatID].GSS === 3) {
+      if (plrs.GSS === 5 || plrs.GSS === 3) {
         continue;
       }
-      gdUserImgclassName = (_ref = gameDetails.PLRS[gameSeatID].PON === 1) != null ? _ref : {
+      gdUserImgclassName = (_ref = plrs.PON === 1) != null ? _ref : {
         'gdUserImg user_online': 'gdUserImg'
       };
-      _score = gameDetails.PLRS[gameSeatID].PSC ? gameDetails.PLRS[gameSeatID].PSC : '0';
+      _score = plrs.PSC ? plrs.PSC : '0';
       trClass = "userScoreHUD_player";
       betPlacedNoClass = 'userScoreHUD_playerBetPlacedNo arrowclass';
-      if (gameDetails.PLRS[gameSeatID].PDN) {
-        playerName = gameDetails.PLRS[gameSeatID].PDN;
-        if (parseInt(gameDetails.PLRS[gameSeatID].PRE) !== 1) {
-          if (parseInt(gameDetails.PLRS[gameSeatID].PON) === 0) {
+      if (plrs.PDN) {
+        playerName = plrs.PDN;
+        if (parseInt(plrs.PRE) !== 1) {
+          if (parseInt(plrs.PON) === 0) {
             trClass = "userScoreHUD_player GRAY";
-            playerName = gameDetails.PLRS[gameSeatID].PDN;
           }
         } else {
-          if (parseInt(gameDetails.PLRS[gameSeatID].UI) === parseInt(zzGlobals.currentUserDBId)) {
-            playerName = "<s>" + gameDetails.PLRS[gameSeatID].PDN + "</s>";
+          if (parseInt(plrs.UI) === parseInt(zzGlobals.currentUserDBId)) {
+            playerName = "<s>" + plrs.PDN + "</s>";
             betPlacedNoClass = 'userScoreHUD_playerBetPlacedNo';
           }
         }
       }
-      if (gameDetails.PLRS[gameSeatID].CRS === 9) {
+      if (plrs.CRS === 9) {
         betPlacedNoClass = 'userScoreHUD_playerBetPlacedNo';
       }
-      $('.gdUsersImgdiv', gdDiv).append("<div class=\"gdUserImgDiv user_offline\"><img src=\"" + baseUrl + "/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/" + config.userLevelImgBig[parseInt(gameDetails.PLRS[gameSeatID].PL) - 1] + "\" class=\"gdUserImgbelt\" /><img src=\"https://graph.facebook.com/" + gameDetails.PLRS[gameSeatID].PFB + "/picture\" class=\"" + gdUserImgclassName + "\" /></div> ");
+      $('.gdUsersImgdiv', gdDiv).append("<div class=\"gdUserImgDiv user_offline\"><img src=\"" + baseUrl + "/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/" + config.userLevelImgBig[parseInt(plrs.PL) - 1] + "\" class=\"gdUserImgbelt\" /><img src=\"https://graph.facebook.com/" + plrs.PFB + "/picture\" class=\"" + gdUserImgclassName + "\" /></div> ");
       $(".gdScoreCardTbl", gdDiv).append("\" <tr class=\"" + trClass + "\">\n	<td  class=\"" + betPlacedNoClass + "\"></td> \n	<td  class=\"userScoreHUD_playerSerial\" >" + (++i) + "</td>\n	<td  class=\"userScoreHUD_playerName\" >" + playerName + "</td>\n	<td class=\"userScoreHUD_playerScore\">" + _score + "</td>\n</tr>");
     }
     sound.playPopupApperenceSound();
