@@ -664,7 +664,7 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
     
 	rematchCall = (e,rematchPlayerFBID)->
 	  	e.preventDefault() if e.preventDefault
-	  	otherbuttonSound.Play if playSound
+	  	sound.playOtherbuttonSound()
 	  	if typeof rematchPlayerFBID is "undefined"
 	  		usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
 	  		utils.log "Score Board left (zzGlobals.roomVars.AP", userObject
@@ -691,7 +691,7 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
     	jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [ UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|PB", "BI|" + betStr ]
     
     sendPlaceBetRequest = ->
-	    utils.log "bet Validation before sen  ding the request t  o server"
+	    utils.log "bet Validation before sending the request t  o server"
 	    betStr = ""
 	    for bet of bets
 	      betStr += (if betStr is "" then bets[bet] else ":" + bets[bet])

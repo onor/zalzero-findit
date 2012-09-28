@@ -55,7 +55,7 @@ define(["../../config/config", "../../helper/confirmBox", "../../config/globals"
       return zzGlobals.currentUserDBId = userID;
     };
     roomSnapshotListener = function(requestID, roomID, occupantCount, observerCount, roomAttrsStr) {
-      var argLen, i, len, roomAttrKey, roomAttrVal, roomAttrsSplit, userFBVOs, userVO, _results;
+      var argLen, i, len, roomAttrKey, roomAttrVal, roomAttrsSplit, userFBVOs, userVO;
       argLen = arguments.length;
       i = 5;
       while (i < argLen) {
@@ -70,7 +70,6 @@ define(["../../config/config", "../../helper/confirmBox", "../../config/globals"
       len = roomAttrsSplit.length;
       roomAttrKey = null;
       roomAttrVal = null;
-      _results = [];
       i = 0;
       while (i < len) {
         if (roomAttrsSplit[i] && roomAttrsSplit[i + 1]) {
@@ -78,25 +77,19 @@ define(["../../config/config", "../../helper/confirmBox", "../../config/globals"
           roomAttrVal = roomAttrsSplit[i + 1];
           if (zzGlobals.roomVars[roomAttrKey]) {
             if (!(roomAttrKey === zzGlobals.roomCodes.WINNER_ID && roomAttrVal === "-1")) {
-              if (config.isDevEnvironment) {
-                console.log("Triggered via ss room:", roomAttrKey, roomAttrVal);
-              }
+              utils.log(console.log("Triggered via ss room:", roomAttrKey, roomAttrVal));
               zzGlobals.roomVars[roomAttrKey] = {};
               zzGlobals.roomVars[roomAttrKey] = roomAttrVal;
-              _results.push(jDocument.trigger("room:" + roomAttrKey, roomAttrVal));
+              jDocument.trigger("room:" + roomAttrKey, roomAttrVal);
             }
-          } else {
-            _results.push(void 0);
           }
-        } else {
-          _results.push(void 0);
         }
         i += 2;
       }
-      return _results;
+      return true;
     };
     clientSnapshotListener = function(requestID, clientID, userID, a4, clientAttrsStr) {
-      var clientAttrKey, clientAttrVal, clientAttrsSplit, i, len, _results;
+      var clientAttrKey, clientAttrVal, clientAttrsSplit, i, len;
       if (config.isDevEnvironment) {
         console.log("ClientSnapshotListener ", clientAttrsStr);
       }
@@ -105,7 +98,6 @@ define(["../../config/config", "../../helper/confirmBox", "../../config/globals"
         len = clientAttrsSplit.length;
         clientAttrKey = null;
         clientAttrVal = null;
-        _results = [];
         i = 0;
         while (i < len) {
           if (clientAttrsSplit[i] && clientAttrsSplit[i + 1]) {
@@ -113,16 +105,12 @@ define(["../../config/config", "../../helper/confirmBox", "../../config/globals"
             clientAttrVal = clientAttrsSplit[i + 1];
             if (clientVars[clientAttrKey]) {
               clientVars[clientAttrKey] = clientAttrVal;
-              _results.push(jDocument.trigger("client:" + clientAttrKey, clientAttrVal));
-            } else {
-              _results.push(void 0);
+              jDocument.trigger("client:" + clientAttrKey, clientAttrVal);
             }
-          } else {
-            _results.push(void 0);
           }
           i += 2;
         }
-        return _results;
+        return true;
       }
     };
     joinedRoomListener = function(rId) {
@@ -167,9 +155,7 @@ define(["../../config/config", "../../helper/confirmBox", "../../config/globals"
       }
     };
     askClientData = function(e) {
-      if (config.isDevEnvironment) {
-        console.log("askfordata");
-      }
+      utils.log("askfordata");
       return msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|AGD", "UID|" + zzGlobals.currentUserDBId);
     };
     readyListener = function(e) {
@@ -193,12 +179,13 @@ define(["../../config/config", "../../helper/confirmBox", "../../config/globals"
       return msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
     };
     jDocument.bind("gameChangeListener", gameChangeListener);
-    sendDeclinedToServer = function(gameSeatId, gameId) {
-      jQuery('#accept_decline_' + gameId).text('');
-      jQuery('#accept_decline_' + gameId).css('cursor', 'default');
-      jQuery('#accept_decline_' + gameId).html(utils.getMiniLoaderHTML());
+    sendDeclinedToServer = function(e, gameSeatId, gameId) {
+      $('#accept_decline_' + gameId).text('');
+      $('#accept_decline_' + gameId).css('cursor', 'default');
+      $('#accept_decline_' + gameId).html(utils.getMiniLoaderHTML());
       return msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|DG", "GSID|" + gameSeatId);
     };
+    jDocument.bind("sendDeclinedToServer", sendDeclinedToServer);
     sendUpcMessageToServer = function(event, upcFunctionCode, p2, p3, p4, p5, p6) {
       var argArr, i, _i, _ref;
       if (config.isDevEnvironment) {
@@ -227,22 +214,17 @@ define(["../../config/config", "../../helper/confirmBox", "../../config/globals"
       }
     };
     addZzListeners = function() {
-      var msgEvt, _results, _results1;
-      _results = [];
-      _results1 = [];
+      var msgEvt;
       for (msgEvt in zzListeners) {
         if (msgManager && msgManager.addMessageListener) {
           if (zzListeners[msgEvt] === "messageListener") {
-            _results.push(msgManager.addMessageListener(UPC[msgEvt], zzListeners[msgEvt], this, gameInstId));
+            msgManager.addMessageListener(UPC[msgEvt], zzListeners[msgEvt], this, gameInstId);
           } else {
-            _results.push(msgManager.addMessageListener(UPC[msgEvt], zzListeners[msgEvt], this));
+            msgManager.addMessageListener(UPC[msgEvt], zzListeners[msgEvt], this);
           }
-        } else {
-          _results.push(void 0);
         }
-        _results1.push(_results);
       }
-      return _results1;
+      return true;
     };
     zzListeners = {
       JOINED_ROOM: joinedRoomListener,

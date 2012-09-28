@@ -163,11 +163,12 @@ define ["../../config/config","../../helper/confirmBox","../../config/globals","
 			msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
 		jDocument.bind "gameChangeListener" , gameChangeListener
 
-		sendDeclinedToServer = (gameSeatId,gameId) ->   # fire when user click decined
-			jQuery('#accept_decline_' + gameId).text('')
-			jQuery('#accept_decline_' + gameId).css('cursor', 'default')
-			jQuery('#accept_decline_' + gameId).html(utils.getMiniLoaderHTML())
+		sendDeclinedToServer = (e,gameSeatId,gameId) ->   # fire when user click decined
+			$('#accept_decline_' + gameId).text('')
+			$('#accept_decline_' + gameId).css('cursor', 'default')
+			$('#accept_decline_' + gameId).html(utils.getMiniLoaderHTML())
 			msgManager.sendUPC UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|DG", "GSID|" + gameSeatId
+		jDocument.bind "sendDeclinedToServer" , sendDeclinedToServer
 
 		sendUpcMessageToServer = (event, upcFunctionCode,p2,p3,p4,p5,p6) ->
 			utils.log("sending upc message [upcFunctionCode:" + upcFunctionCode + ",p2:" + p2 + ",p3:" + p3 + ",p4:" + p4 + ",p5:" + p5 + ",p6:" + p6 + "]") if config.isDevEnvironment

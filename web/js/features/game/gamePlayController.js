@@ -129,7 +129,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
         aHrefElem = gamePlayView.createAHrefElem();
         aHrefElem.href = "#";
         gamePlayView.getNotPlayedRoundClass(aHrefElem);
-        aHrefElem.innerHTML = roundVOs[roundId]["RN"];
+        gamePlayView.setInnerHTML(aHrefElem, roundVOs[roundId]["RN"]);
         utils.log("roundVo : ", roundId);
         liElem.appendChild(aHrefElem);
         if (typeof elementDiv === 'undefined') {
@@ -520,9 +520,9 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
       if (tutorial === true) {
         return;
       }
-      playButtonEl = document.getElementById("placeBetOnServer");
+      playButtonEl = gamePlayView.getPlayButtonEl();
       if (playButtonEl.className === "bet_done") {
-        confirmBox.messagePopup("Not so fast.... lets wait for your friends to play their turn");
+        confirmBox("Not so fast.... lets wait for your friends to play their turn");
         return;
       }
       betStr = "";
@@ -540,14 +540,14 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
       }
       if (betStr === "") {
         utils.log("No bets placed!");
-        confirmBox.messagePopup("No bets placed!");
+        confirmBox("No bets placed!");
         return false;
       } else if (betCtr !== 9) {
         utils.log("Bets count is less then 9!");
-        confirmBox.messagePopup("Not so fast... please place all of your 9 tiles!");
+        confirmBox("Not so fast... please place all of your 9 tiles!");
         return false;
       } else {
-        utils.log("every thing is fine s    end the bets to the server");
+        utils.log("every thing is fine's end the bets to the server");
         placeBetsToServer(betStr);
       }
       return false;
@@ -564,23 +564,22 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
       };
     };
     parseToGameBoard = function(mapType, mapData) {
-      var ctr, curCoordId, curCoordObj, _results;
+      var ctr, curCoordId, curCoordObj;
       if ((mapType != null) && (mapType.code != null) && (mapType.className != null)) {
         ctr = 0;
-        _results = [];
         for (curCoordId in mapData) {
           curCoordObj = mapData[curCoordId];
-          _results.push(jQuery("#boardTile-" + (parseInt(curCoordId))).addClass(mapType.className));
+          jQuery("#boardTile-" + (parseInt(curCoordId))).addClass(mapType.className);
         }
-        return _results;
       }
+      return true;
     };
     messageListener = function(event, messageName, broadcastType, fromClientID, roomID, message) {
       var i, newCoordObj, parsedObj, playerBetsChangeObj, resignStatus, scoreArray, seatId, seatIdArray, tileId, usersObject, x;
       switch (messageName) {
         case zalerioCMDListners.DECLINE_STATUS:
           if (parseInt(message) === 1) {
-            confirmBox.messagePopup(popupMSG.declineInvite());
+            confirmBox(popupMSG.declineInvite());
             return gamePlayView.setGameDisable();
           }
           break;
@@ -609,14 +608,14 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
           return jDocument.trigger("client:" + zzGlobals.msgCodes.RIGHT_HUD, usersObject);
         case zalerioCMDListners.CLOSE_INVITE:
           if (0 === message) {
-            return confirmBox.messagePopup('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
+            return confirmBox('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
           } else {
             return gamePlayView.removeStatusPopup;
           }
           break;
         case zalerioCMDListners.RESIGN_GAME:
           if (message === 0) {
-            confirmBox.messagePopup('Sorry!!! Unable to Resign, \n Plese try again..');
+            confirmBox('Sorry!!! Unable to Resign, \n Plese try again..');
             return gamePlayView.showBetsPanel();
           } else {
             resignStatus = 1;
@@ -832,9 +831,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
     if (e.preventDefault) {
       e.preventDefault();
     }
-    if (playSound) {
-      otherbuttonSound.Play;
-    }
+    sound.playOtherbuttonSound();
     if (typeof rematchPlayerFBID === "undefined") {
       usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP);
       utils.log("Score Board left (zzGlobals.roomVars.AP", userObject);
@@ -862,7 +859,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
   };
   return sendPlaceBetRequest = function() {
     var bet, betStr;
-    utils.log("bet Validation before sen  ding the request t  o server");
+    utils.log("bet Validation before sending the request t  o server");
     betStr = "";
     for (bet in bets) {
       betStr += (betStr === "" ? bets[bet] : ":" + bets[bet]);

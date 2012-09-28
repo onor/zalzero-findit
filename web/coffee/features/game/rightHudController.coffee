@@ -1,54 +1,49 @@
-define ["../../config/config"], (config) ->
+define ["../../config/config","../../helper/sound"], (config,sound) ->
 	updateRightHud = (event, message)->
-		rightHUD_yourturn = document.getElementById 'rightHUD-yourturn'
-		rightHUD_theirturn = document.getElementById 'rightHUD-theirturn'
 		for gameId of message
 			if document.getElementById("right_hud_"+gameId) is null    			
-				## carousel wrapper
-				urDiv = document.createElement("div")
-				urDiv.className = "userArea"
-				urDiv.id = "right_hud_"+gameId
-				urDiv.className = "userArea selected" if gameInstId is gameId
-   
-				$(urDiv).append("<div class=\"round_no\">#{message[gameId].CR}</div>") if typeof message[gameId].CR isnt 'undefined'
+
+				urDivClassName = if gameInstId is gameId then "userArea selected" else "userArea"
+				
+				urDiv = $ """<div class="#{urDivClassName}" id="right_hud_#{gameId}" ></div>"""
+   				
+				urDiv.append """<div class="round_no">#{message[gameId].CR}</div>"""  if message[gameId].CR
     			
-				$(urDiv).append("<div class=\"game_end_time\">#{message[gameId].ED}</div>") if typeof message[gameId].ED isnt 'undefined'
+				urDiv.append """<div class="game_end_time">#{message[gameId].ED}</div>"""  if message[gameId].ED
 				
 				for index of message[gameId].PLSC
 					gameSeatID = message[gameId].PLSC[index]
 					
-					if message[gameId].PLRS[gameSeatID].GSS is 5 or  message[gameId].PLRS[gameSeatID].GSS is 3
-						continue
+					continue if message[gameId].PLRS[gameSeatID].GSS is 5 or  message[gameId].PLRS[gameSeatID].GSS is 3					
     					
     				## user images
 					status = if message[gameId].PLRS[gameSeatID].PON is 1 then "online" else "offline"
-					$(urDiv).append("""<div class="imageWrapper" id="right_hud_Images#{gameId}"><img src="https://graph.facebook.com/#{message[gameId].PLRS[gameSeatID].PFB}/picture" alt="#{message[gameId].PLRS[gameSeatID].PFN}" class="#{status}" id="who_am_i_#{gameSeatID}" /></div>""") if typeof message[gameId].PLRS[gameSeatID].PFB isnt 'undefined'
+					urDiv.append("""<div class="imageWrapper" id="right_hud_Images#{gameId}"><img src="https://graph.facebook.com/#{message[gameId].PLRS[gameSeatID].PFB}/picture" alt="#{message[gameId].PLRS[gameSeatID].PFN}" class="#{status}" id="who_am_i_#{gameSeatID}" /></div>""") if message[gameId].PLRS[gameSeatID].PFB
+										
 					## accept / Decline
-					if typeof message[gameId].PLRS[gameSeatID].GSS isnt 'undefined'
+					if message[gameId].PLRS[gameSeatID].GSS
+						
 						if message[gameId].PLRS[gameSeatID].GSS is 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
-							urInviteDiv = document.createElement("div")
-							urInviteDiv.id= 'accept_decline_'+gameId
-							urInviteDiv.className= 'accept_decline'
-							urInviteAcceptDiv = document.createElement("div")
-							urInviteAcceptDiv.innerHTML = 'Accept'
-							urInviteAcceptDiv.className = 'right_hud_accept'
-							acceptInvitationAdd(urInviteAcceptDiv,gameId)
-							urInviteDeclineDiv = document.createElement("div")
-							urInviteDeclineDiv.innerHTML = 'Decline'
-							urInviteDeclineDiv.className = 'right_hud_decline'
-							declineInvitationAdd(urInviteDeclineDiv, gameSeatID, gameId);
-              # append to userArea
-							urInviteDiv.appendChild urInviteAcceptDiv
-							urInviteDiv.appendChild urInviteDeclineDiv
-							urDiv.appendChild urInviteDiv
+							
+							urDiv.append """<div class="accept_decline" id="accept_decline_#{gameId}"><div class="right_hud_accept">Accept</div><div class="right_hud_decline">Decline</div></div>"""
+						
+							acceptInvitationAdd( $("#accept_decline_#{gameId} .right_hud_accept") , gameId )
+							
+							$("#accept_decline_#{gameId} .right_hud_decline").click( {gsID:gameSeatID, id:gameId}, (e)->
+								# trigger decline event
+								jDocument.trigger "sendDeclinedToServer" , [e.data.gsID, e.data.id]
+							)
+							
 						else if zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
-							onMouseOverShowDetails urDiv, message[gameId], gameId
-    						
-					if parseInt(message[gameId].GS) is 1
-						# select carousel and append	    			
-						rightHUD_yourturn.appendChild urDiv
-					else if parseInt(message[gameId].GS) is 2	
-						rightHUD_theirturn.appendChild urDiv
+							
+							urDiv.click { gameDetails: message[gameId], id : gameId }, (e) ->							
+								sound.playSelectButtonSound()								
+								createGameDetailsPopup e.data.gameDetails,e.data.id
+								return					
+
+					$('#rightHUD-yourturn').append urDiv if parseInt(message[gameId].GS) is 1
+
+					$('#rightHUD-theirturn').append urDiv if parseInt(message[gameId].GS) is 2	
 						
 			# update recode
 			else
@@ -56,190 +51,137 @@ define ["../../config/config"], (config) ->
 					jQuery("#right_hud_"+gameId).remove()
 					continue
 				else 
-				if 	parseInt(message[gameId].GS) is 1
-					if jQuery("#right_hud_"+gameId).parent().attr('id') is 'rightHUD-theirturn'
-						divElement = jQuery("#right_hud_"+gameId).detach()
-						divElement.appendTo('#rightHUD-yourturn')
-				else if parseInt(message[gameId].GS) is 2
-					if jQuery("#right_hud_" + gameId).parent().attr('id') is 'rightHUD-yourturn'
-						divElement = jQuery("#right_hud_" + gameId).detach();
-						divElement.appendTo('#rightHUD-theirturn');
-            
-				# update game round
-				if  typeof message[gameId].CR isnt 'undefined'
-					jQuery("#right_hud_" + gameId).find('.round_no').text(message[gameId].CR)
-            
-				#update game end time
-				if  typeof message[gameId].ED isnt 'undefined'
-					jQuery("#right_hud_" + gameId).find('.game_end_time').html(message[gameId].ED);
-            
-				for gameSeatID of message[gameId].PLRS                  
-				## update online status
-					if typeof message[gameId].PLRS[gameSeatID].PON isnt 'undefined'
-						if message[gameId].PLRS[gameSeatID].GSS is 5 or  message[gameId].PLRS[gameSeatID].GSS is 3
-							jQuery("#who_am_i_" + gameSeatID).remove()
-						else
-							imgElement =  document.getElementById("who_am_i_" + gameSeatID)
-							imgElement.className = if imgElement.className and message[gameId].PLRS[gameSeatID].PON then "online" else "offline"
-    				
-					## accept / Decline
-					if typeof message[gameId].PLRS[gameSeatID].GSS isnt 'undefined'
-						if message[gameId].PLRS[gameSeatID].GSS isnt 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
-							jQuery('#accept_decline_'+gameId).remove()
-							urDiv = document.getElementById("right_hud_"+gameId)
-							onMouseOverShowDetails urDiv, message[gameId], gameId
+					if 	parseInt(message[gameId].GS) is 1
+						$("#right_hud_"+gameId).detach().appendTo('#rightHUD-yourturn')	if jQuery("#right_hud_"+gameId).parent().attr('id') is 'rightHUD-theirturn'
+							
+					else if parseInt(message[gameId].GS) is 2
+						$("#right_hud_" + gameId).detach().appendTo('#rightHUD-theirturn') if $("#right_hud_" + gameId).parent().attr('id') is 'rightHUD-yourturn'
+	            
+					$("#right_hud_" + gameId).find('.round_no').text message[gameId].CR  if message[gameId].CR	# update game round
+	            
+					$("#right_hud_" + gameId).find('.game_end_time').html message[gameId].ED  if message[gameId].ED	#update game end time
+	            
+					for gameSeatID of message[gameId].PLRS                  
+					## update online status
+						if typeof message[gameId].PLRS[gameSeatID].PON isnt "undefined"
+							
+							if message[gameId].PLRS[gameSeatID].GSS is 5 or  message[gameId].PLRS[gameSeatID].GSS is 3
+								$("#who_am_i_" + gameSeatID).remove()
+							else
+								$("#who_am_i_#{gameSeatID}").removeClass().addClass message[gameId].PLRS[gameSeatID].PON ? "online" : "offline"
+	    				
+						## accept / Decline
+						if typeof message[gameId].PLRS[gameSeatID].GSS isnt 'undefined'
+							if message[gameId].PLRS[gameSeatID].GSS isnt 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
+								$('#accept_decline_'+gameId).remove()
+								
+								$("right_hud_#{gameId}").click { gameDetails: message[gameId], id : gameId }, (e) ->							
+									sound.playSelectButtonSound()								
+									createGameDetailsPopup e.data.gameDetails,e.data.id
                   
-				if  jQuery('#rightHUD-yourturn').find(".userArea").length is 0
-					if  jQuery('#rightHUD-yourturn').find(".newCarouselblanktile").length is 0
-						jQuery('#rightHUD-yourturn').append('<div class="newCarouselblanktile"></div>')
-				else
-					jQuery("#rightHUD-yourturn .newCarouselblanktile").remove()
-            
-				if jQuery('#rightHUD-theirturn').find(".userArea").length is 0
-					if  jQuery('#rightHUD-theirturn').find(".newCarouselblanktile").length is 0
-						jQuery('#rightHUD-theirturn').append('<div class="newCarouselblanktile"></div>')
-				else
-					jQuery("#rightHUD-theirturn .newCarouselblanktile").remove()
-
-	onMouseOverShowDetails = (urDiv,gameDetails,gameId)->
-		urDiv.onclick = ->
-			try
-				selectbuttonSound.play() if playSound
-				console.log("gameDetails",gameDetails)
-			createGameDetailsPopup gameDetails,gameId
-    
+		if  $('#rightHUD-yourturn').find(".userArea").length is 0
+			$('#rightHUD-yourturn').append('<div class="newCarouselblanktile"></div>') if  $('#rightHUD-yourturn').find(".newCarouselblanktile").length is 0
+				
+		else
+			$("#rightHUD-yourturn .newCarouselblanktile").remove()
+	
+		if $('#rightHUD-theirturn').find(".userArea").length is 0
+			$('#rightHUD-theirturn').append '<div class="newCarouselblanktile"></div>'	if  $('#rightHUD-theirturn').find(".newCarouselblanktile").length is 0				
+		else
+			$("#rightHUD-theirturn .newCarouselblanktile").remove()
+		
+		true
+			
+	
 	createGameDetailsPopup = (gameDetails,gameId)->
     	jQuery('.gdWrapper').remove()
-    	#console.log 'gameDetails',gameDetails
-    	gdDiv = document.createElement("div")
-    	gdDiv.className = 'gdWrapper  animated fadeInRight'
 	
-    	
-    	$(gdDiv).append("""<div class="gdScoreCardDiv"></div>""")
-    	#<div class="gdAllRoundDiv" id="gdAllRoundDivId"></div>
-    	
-    	gdAllRoundDiv = document.createElement("div")
-    	gdAllRoundDiv.className = 'gdAllRoundDiv'
-    	gdAllRoundDiv.id = 'gdAllRoundDivId'
-    	$(".gdScoreCardDiv",gdDiv).append gdAllRoundDiv
-    	drawRoundsPanel(gdAllRoundDiv)
-    	
-    	try
-	    	for roundId in [1..7]
-		        el = roundVOsIdxRightHUD[roundId]
-		        console.log('roundVOsIdx',roundVOsIdxRightHUD)
-		        if roundId > parseInt gameDetails.CR
-		          el.className = "notPlayedRound"
-		        else
-		          el.className = "doneRound"
-		        el.className = "currentRound"  if roundId is parseInt gameDetails.CR
-		        lastEl = el
-		        lastRoundId = roundId
-		      if lastEl and lastRoundId
-		        if lastRoundId is parseInt gameDetails.CR
-		          lastEl.className = "currentFinalRound"
-		        else
-	          lastEl.className = "finalRound"
-    	
-    	$(".gdScoreCardDiv",gdDiv).append """<div class="gdScoreInfoDiv"></div>"""
-    	
-    	$(".gdScoreInfoDiv",gdDiv).append """<table class="gdScoreCardTbl"></table>"""
-    	
-    	$(gdDiv).append """<div class="gdUsersImgdiv"></div>"""
-    	
-    	gdReminddiv = document.createElement("div")
-    	gdReminddiv.className = 'gdReminddiv'
+    	gdDiv = $ """<div class="gdWrapper animated fadeInRight">
+						<div class="gdScoreCardDiv">
+							<div class="gdAllRoundDiv" id="gdAllRoundDivId"></div>
 
-    	gdDiv.appendChild gdReminddiv
-    	    	
-    	gdReturndiv = document.createElement("div")
-    	gdReturndiv.className = 'gdReturndiv'
-    	gdReturndiv.onclick = ->
-    		try
-    			closebutton.play() if playSound
-    		jQuery('.gdWrapper').remove()
-    	gdDiv.appendChild gdReturndiv
+							<div class="gdScoreInfoDiv">
+								<table class="gdScoreCardTbl"></table>
+							</div>
+						</div>
+						<div class="gdUsersImgdiv"></div>
+						<div class="gdReminddiv"></div>
+						<div class="gdReturndiv"></div>
+					</div>"""
+
+#    	drawRoundsPanel(gdAllRoundDiv)
     	
-    	gdPlaydiv = document.createElement("div")
-    	gdPlaydiv.className = 'gdPlaydiv'
-    	gdDiv.appendChild gdPlaydiv
+    	$('.gdReminddiv',gdDiv).click(->
+    		remindUser gameId,remindUsersData
+    		return
+    	)
+    	    	
+    	$('.gdReturndiv',gdDiv).on 'click', (e) ->
+    		sound.playCloseButtonSound()
+    		$('.gdWrapper').remove()
+
+    	
+    	gdPlaydivClassName = if gameId isnt gameInstId then 'gdResumeDiv' else 'gdPlaydiv'
+
+    	gdDiv.append """<div class="#{gdPlaydivClassName}"></div>"""
     	
     	if gameId isnt gameInstId
-    		onClickAddRedrict gdPlaydiv, gameId, '.gdWrapper'
-    		gdPlaydiv.className = 'gdResumeDiv'
+    		$(".#{gdPlaydivClassName}",gdDiv).click( { id: gameId, remove : '.gdWrapper' }, (e)->
+    			sound.playCloseButtonSound()
+    			$(e.data.remove).remove() if e.data.remove
+    			jDocument.trigger "gameChangeListener" , e.data.id
+    		)
     	else
-    		gdPlaydiv.onclick = ->
-    			try
-    				closebutton.play() if playSound
-    			jQuery('.gdWrapper').remove()
-    	## round panel
-    	#for(i=0; i<7;i++)
-    	
+    		$(".#{gdPlaydivClassName}",gdDiv).on "click", (e) ->
+    			sound.playCloseButtonSound()
+    			$('.gdWrapper').remove()
+
     	i = 0
     	remindUsersData = {}
     	for index of gameDetails.PLSC
     		gameSeatID = gameDetails.PLSC[index]
     		
+    		plrs = gameDetails.PLRS[gameSeatID] # player list
+    		
     		# create remind user object
-    		remindUsersData[gameDetails.PLRS[gameSeatID].PFB] = { GSS : gameDetails.PLRS[gameSeatID].GSS, CRS : gameDetails.PLRS[gameSeatID].CRS }
+    		remindUsersData[plrs.PFB] = { GSS : plrs.GSS, CRS : plrs.CRS }
     		
-    		if gameDetails.PLRS[gameSeatID].GSS is 5 or  gameDetails.PLRS[gameSeatID].GSS is 3
-    			continue
-    		gdUserImgDiv = document.createElement("div")
-    		
-    		gdUserImgclassName = if gameDetails.PLRS[gameSeatID].PON is 1 then 'gdUserImg user_online' else 'gdUserImg'
-    		
-    		$('gdUsersImgdiv',gdDiv).append """<div class="gdUserImgDiv user_offline">
-<img src="#{baseUrl}/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/#{config.userLevelImgBig[parseInt(gameDetails.PLRS[gameSeatID].PL) - 1]}" class="#{gdUserImgbelt}" />
-<img src="https://graph.facebook.com/#{gameDetails.PLRS[gameSeatID].PFB}/picture" class="#{gdUserImgclassName}" />
-</div> """
+    		continue if plrs.GSS is 5 or  plrs.GSS is 3
     		    		
-    		gdScoreCardTr = document.createElement("tr")
-    		gdScoreCardTr.className = "userScoreHUD_player"
-    		gdScoreCardBetsPlacedTd = document.createElement("td")
-    		gdScoreCardBetsPlacedTd.className = "userScoreHUD_playerBetPlacedNo arrowclass"
-    		gdScoreCardBetsPlacedTd.innerHTML = ""
-    		gdScoreCardBetsPlacedTd.className = "userScoreHUD_playerBetPlacedNo"  if gameDetails.PLRS[gameSeatID].CRS is 9
-    		gdScoreCardTr.appendChild gdScoreCardBetsPlacedTd
-    		gdScoreCardSerialNumTd = document.createElement("td")
-    		gdScoreCardSerialNumTd.className = "userScoreHUD_playerSerial"
-    		gdScoreCardSerialNumTd.innerHTML = ++i
-    		gdScoreCardTr.appendChild gdScoreCardSerialNumTd
-    		gdScoreCardNameTd = document.createElement("td")
-    		gdScoreCardNameTd.className = "userScoreHUD_playerName"
-    		gdScoreCardNameTd.innerHTML = ""
-    		if gameDetails.PLRS[gameSeatID].PDN
-    			if parseInt(gameDetails.PLRS[gameSeatID].PRE) != 1
-    				if parseInt(gameDetails.PLRS[gameSeatID].PON) == 0
-    					gdScoreCardTr.className = "userScoreHUD_player GRAY"
-    				gdScoreCardNameTd.innerHTML = gameDetails.PLRS[gameSeatID].PDN
+    		gdUserImgclassName = plrs.PON is 1 ? 'gdUserImg user_online' : 'gdUserImg'
+    		
+    		_score = if plrs.PSC then plrs.PSC else '0'
+    		
+    		trClass = "userScoreHUD_player"
+    		
+    		betPlacedNoClass = 'userScoreHUD_playerBetPlacedNo arrowclass'
+    		if plrs.PDN
+    			playerName = plrs.PDN
+    			if parseInt(plrs.PRE) != 1    				
+    					trClass = "userScoreHUD_player GRAY" if parseInt(plrs.PON) == 0
     			else
-    				if parseInt(gameDetails.PLRS[gameSeatID].UI) is parseInt(zzGlobals.currentUserDBId)
-    					$(gdScoreCardNameTd).append "<s>#{userObject.PDN}</s>"
-    					gdScoreCardBetsPlacedTd.className = "userScoreHUD_playerBetPlacedNo" # remove arrow
-	          
-    		$(gdScoreCardTr).append gdScoreCardNameTd
-    		_score = if gameDetails.PLRS[gameSeatID].PSC then gameDetails.PLRS[gameSeatID].PSC else '0'
-    		$(gdScoreCardTr).append(""" <td class="userScoreHUD_playerScore"> </td> """)
- 
-    		$(".gdScoreCardTbl",gdDiv).append gdScoreCardTr
-    	try
-    		popupapperence.play() if playSound
-    	gdReminddiv.onclick = -> 
-        	remindUser gameId,remindUsersData
-        	return
-    	jQuery('#active-screen').append(jQuery(gdDiv))
+    				if parseInt(plrs.UI) is parseInt(zzGlobals.currentUserDBId)
+    					
+    					playerName = "<s>#{plrs.PDN}</s>"
+    					
+    					betPlacedNoClass = 'userScoreHUD_playerBetPlacedNo' # remove arrow
+    		
+    		betPlacedNoClass = 'userScoreHUD_playerBetPlacedNo'  if plrs.CRS is 9
+    		
+    		$('.gdUsersImgdiv',gdDiv).append """<div class="gdUserImgDiv user_offline"><img src="#{baseUrl}/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/#{config.userLevelImgBig[parseInt(plrs.PL) - 1]}" class="gdUserImgbelt" /><img src="https://graph.facebook.com/#{plrs.PFB}/picture" class="#{gdUserImgclassName}" /></div> """
+				
+    		$(".gdScoreCardTbl",gdDiv).append """" <tr class="#{trClass}">
+											<td  class="#{betPlacedNoClass}"></td> 
+											<td  class="userScoreHUD_playerSerial" >#{++i}</td>
+											<td  class="userScoreHUD_playerName" >#{playerName}</td>
+											<td class="userScoreHUD_playerScore">#{_score}</td>
+										</tr>
+									"""
+    		
+    	sound.playPopupApperenceSound()
+    	
+    	$('#active-screen').append gdDiv
    
 	jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, updateRightHud
-
-	onClickAddRedrict = (userRecodeDivValue, gameID, remove) ->
-    	game = gameID
-    	$(userRecodeDivValue).click(->
-    			if typeof remove isnt 'undefined'
-    				$(remove).remove()
-    			#gameChangeListener(game)
-    			jDocument.trigger "gameChangeListener" , game
-    		)
-    	return
 	
 	true

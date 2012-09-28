@@ -9,7 +9,7 @@ popupMSG =
 __hasProp_ = Object::hasOwnProperty
 rematchCall = ->
 usersRecord = ->
-sendDeclinedToServer = ->
+
 resignStatus = 0
 flag_roundBetsDrawn = false
 drawRoundsPanel = ->
@@ -18,11 +18,13 @@ _currentRoundStatus = -1
 roundVOsIdxRightHUD = {}
 flag_roundDrawn = false
 acceptInvitationAdd = (div,gameIdToAdd)->
-	div.onclick = ->
+	div.on 'click', (e) ->
 		acceptInvitation(gameIdToAdd)
-declineInvitationAdd = (div, gameSeatIdToDecline, gameId) ->
-  div.onclick = ->
-     sendDeclinedToServer gameSeatIdToDecline, gameId
+		
+#declineInvitationAdd = (div, gameSeatIdToDecline, gameId) ->
+#  div.on 'click', (e) ->
+#     jDocument.trigger "sendDeclinedToServer" , [gameSeatIdToDecline, gameId]
+#     #sendDeclinedToServer gameSeatIdToDecline, gameId
      
 remindUserAdd = (gameLinkID, remindUsersLeft, x, fbUser,div) ->
   div.onclick = ->

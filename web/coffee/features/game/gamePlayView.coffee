@@ -90,6 +90,7 @@ define [], () ->
 		
 		enablePlayBoutton : (el) ->
 			el.href = "#Place Bets"
+			el.className = ''
 			el.parentNode.setAttribute "class", ""
 		
 		getPlayButtonEl : () ->
