@@ -2699,6 +2699,17 @@ define('../../popup/showInviteStatus',[], function() {
     }
     popupimgWrapper = document.createElement("div");
     popupimgWrapper.className = "imgWrapper";
+    if (parseInt(toShow) !== parseInt(zzGlobals.currentUserDBId)) {
+      return;
+    }
+    if (!(acceptedImgs.length + declinedImgs.length > totalUser / 2 && invitedImgs.length !== 0)) {
+      return;
+    }
+    if (zzGlobals.inviteStatus !== null && typeof zzGlobals.inviteStatus !== "undefined") {
+      if (!(rejected.length + acceptedImgs.length + declinedImgs.length > zzGlobals.inviteStatus)) {
+        return;
+      }
+    }
     zzGlobals.inviteStatus = rejected.length + acceptedImgs.length + declinedImgs.length;
     if (acceptedImgs.length !== 0) {
       imgWrapper = document.createElement("div");
