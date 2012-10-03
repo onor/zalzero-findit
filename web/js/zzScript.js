@@ -2621,8 +2621,8 @@ define('../../popup/resignPopup',["../helper/utils"], function(utils) {
 
 define('../../popup/showInviteStatus',[], function() {
   var showInviteStatus;
-  showInviteStatus = function(currentGameUsersData) {
-    var acceptedImgs, declinedImgs, gameObjPLRS, img, imgWrapper, invitedImgs, popupDiv, popupDivBase, popupDivClose, popupStatusBase, popupStatusWrapper, popupacceptBlock, popupbuttonWrapper, popupdeclineBlock, popupimgWrapper, popupinviteBlock, popupleftButton, popupleftButtonWrapper, popuprightButton, popuprightButtonWrapper, popuptextLeftButton, popuptextRightButton, popuptopUserInfo, rejected, spanTag, toShow, totalUser, userInfo, usersInfoObject, x, y, z;
+  showInviteStatus = function() {
+    var acceptedImgs, declinedImgs, gameObjPLRS, img, imgWrapper, invitedImgs, popupDiv, popupDivBase, popupDivClose, popupStatusBase, popupStatusWrapper, popupacceptBlock, popupbuttonWrapper, popupdeclineBlock, popupimgWrapper, popupinviteBlock, popupleftButton, popupleftButtonWrapper, popuprightButton, popuprightButtonWrapper, popuptextLeftButton, popuptextRightButton, popuptopUserInfo, rejected, seatid, spanTag, toShow, totalUser, userInfo, usersInfoObject, z;
     popupDivBase = document.createElement("div");
     popupDivBase.className = "status_show_popup zalerio_popup";
     popupDivBase.id = "invitestatus";
@@ -2671,19 +2671,16 @@ define('../../popup/showInviteStatus',[], function() {
     popuptextRightButton = document.createElement("div");
     popuptextRightButton.className = "textRightButton";
     popuptextRightButton.innerHTML = "Friends who did not respond yet will get a gentle reminder to join your game...";
-    for (x in currentGameUsersData) {
-      usersInfoObject = currentGameUsersData[x];
-      totalUser = usersInfoObject.TP;
-      toShow = usersInfoObject.GCB;
-      gameObjPLRS = jQuery.parseJSON(usersInfoObject.PLRS);
-      break;
-    }
+    usersInfoObject = zzGlobals.dataObjVars.AP;
+    totalUser = usersInfoObject.TP;
+    toShow = usersInfoObject.GCB;
+    gameObjPLRS = usersInfoObject.PLRS;
     invitedImgs = [];
     acceptedImgs = [];
     declinedImgs = [];
     rejected = [];
-    for (y in gameObjPLRS) {
-      userInfo = jQuery.parseJSON(gameObjPLRS[y]);
+    for (seatid in gameObjPLRS) {
+      userInfo = gameObjPLRS[seatid];
       if (parseInt(userInfo.GSS) === 1) {
         img = document.createElement("img");
         img.src = "https://graph.facebook.com/" + userInfo.PFB + "/picture";
@@ -2702,17 +2699,6 @@ define('../../popup/showInviteStatus',[], function() {
     }
     popupimgWrapper = document.createElement("div");
     popupimgWrapper.className = "imgWrapper";
-    if (parseInt(toShow) !== parseInt(zzGlobals.currentUserDBId)) {
-      return;
-    }
-    if (!(acceptedImgs.length + declinedImgs.length > totalUser / 2 && invitedImgs.length !== 0)) {
-      return;
-    }
-    if (zzGlobals.inviteStatus !== null && typeof zzGlobals.inviteStatus !== "undefined") {
-      if (!(rejected.length + acceptedImgs.length + declinedImgs.length > zzGlobals.inviteStatus)) {
-        return;
-      }
-    }
     zzGlobals.inviteStatus = rejected.length + acceptedImgs.length + declinedImgs.length;
     if (acceptedImgs.length !== 0) {
       imgWrapper = document.createElement("div");
