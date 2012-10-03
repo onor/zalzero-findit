@@ -39,8 +39,8 @@ body {
 }
 .startGame {
     display: block;
-    margin-left: 4px;
-    margin-top: 0px;
+    margin-left: 32PX;
+    margin-top: -3px;    
 }
 .gameLogo{
 	background: url("../images/zalerio_1.2/4.ingame_ui/zalerio_logo.png") left -3px no-repeat transparent;
@@ -310,7 +310,7 @@ body {
 }
 
 .leftHUD {
-    background: url("../images/zalerio_1.2/4.ingame_ui/left_pannelbase.png") no-repeat center 65px transparent;
+    background: url("../images/zalerio_1.2/4.ingame_ui/left_pannelbase.png") no-repeat center 43px transparent;
     width: 143px;
 	height: 485px;
 	margin-right: 1px;

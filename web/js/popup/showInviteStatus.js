@@ -6,12 +6,15 @@ define([], function() {
     return jDocument.trigger(zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]);
   };
   showInviteStatus = function() {
-    var gameObjPLRS, invitedImgs, popupDivBase, rejected, seatid, toShow, totalResponse, totalUser, userInfo, usersInfoObject;
+    var gameObjPLRS, invitedImgs, popupDivBase, seatid, totalResponse, usersInfoObject;
+    if (parseInt(zzGlobals.dataObjVars.AP.GCB) !== parseInt(zzGlobals.currentUserDBId)) {
+      return;
+    }
     usersInfoObject = zzGlobals.dataObjVars.AP;
-    totalUser = usersInfoObject.TP;
-    toShow = usersInfoObject.GCB;
     gameObjPLRS = usersInfoObject.PLRS;
-    popupDivBase = $("<div class=\"status_show_popup zalerio_popup\" id=\"invitestatus\" style=\"display:block\" >\n		<div id=\"score_friendpopup\" class=\"outer_base\">\n			<a class=\"positionAbsolute\" id=\"close\"></a>\n			<div class=\"invite_status_base\" style=\"padding-top:32px\">\n				<div class=\"topUserInfo\"></div>\n				<div class=\"statusWrapper\">\n					<div class=\"acceptBlock\"><span>Accepted</span><div class=\"imgWrapper\"></div></div>\n					<div class=\"declineBlock\"><span>Declined</span><div class=\"imgWrapper\"></div></div>\n					<div class=\"inviteBlock\"><span>Not responded yet ...</span><div class=\"imgWrapper\"></div></div>\n				</div>\n				<div class=\"buttonWrapper\">\n					<div class=\"leftButtonWrapper\">\n						<div class=\"leftButton\">Close Invitations</div>\n						<div class=\"textLeftButton\">Game will kick-off with all friends that have accepted your game invitation so far</div>\n					</div>\n					<div class=\"rightButtonWrapper\">\n						<div class=\"rightButton\">Send Reminder</div>\n						<div class=\"textRightButton\">Friends who did not respond yet will get a gentle reminder to join your game...</div>\n					</div>\n				</div>\n			</div>\n		</div>\n</div>");
+    totalResponse = 0;
+    invitedImgs = 0;
+    popupDivBase = $("<div class=\"status_show_popup zalerio_popup\" id=\"invitestatus\" style=\"display:block\" >\n	<div id=\"score_friendpopup\" class=\"outer_base\">\n		<a class=\"positionAbsolute\" id=\"close\"></a>\n		<div class=\"invite_status_base\" style=\"padding-top:32px\">\n			<div class=\"topUserInfo\"></div>\n			<div class=\"statusWrapper\">\n				<div class=\"acceptBlock\"><span>Accepted</span><div class=\"imgWrapper\"></div></div>\n				<div class=\"declineBlock\"><span>Declined</span><div class=\"imgWrapper\"></div></div>\n				<div class=\"inviteBlock\"><span>Not responded yet ...</span><div class=\"imgWrapper\"></div></div>\n			</div>\n			<div class=\"buttonWrapper\">\n				<div class=\"leftButtonWrapper\">\n					<div class=\"leftButton\">Close Invitations</div>\n					<div class=\"textLeftButton\">Game will kick-off with all friends that have accepted your game invitation so far</div>\n				</div>\n				<div class=\"rightButtonWrapper\">\n					<div class=\"rightButton\">Send Reminder</div>\n					<div class=\"textRightButton\">Friends who did not respond yet will get a gentle reminder to join your game...</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>");
     $('.positionAbsolute', popupDivBase).click(function() {
       jQuery('.status_show_popup').remove();
       return false;
@@ -19,29 +22,20 @@ define([], function() {
     $('.leftButton', popupDivBase).click(function() {
       return closeInvits();
     });
-    rejected = [];
-    totalResponse = 0;
-    invitedImgs = 0;
     for (seatid in gameObjPLRS) {
-      userInfo = gameObjPLRS[seatid];
-      if (parseInt(userInfo.GSS) === 1) {
-        totalResponse++;
-        $('.acceptBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + userInfo.PFB + "/picture\" />");
-      } else if (parseInt(userInfo.GSS) === 2) {
-        totalResponse++;
-        $('.declineBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + userInfo.PFB + "/picture\" />");
-      } else if (parseInt(userInfo.GSS) === 3) {
+      totalResponse++;
+      if (parseInt(gameObjPLRS[seatid].GSS) === 1) {
+        $('.acceptBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + gameObjPLRS[seatid].PFB + "/picture\" />");
+      } else if (parseInt(gameObjPLRS[seatid].GSS) === 2) {
+        $('.declineBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + gameObjPLRS[seatid].PFB + "/picture\" />");
+      } else if (parseInt(gameObjPLRS[seatid].GSS) === 3) {
+        totalResponse--;
         invitedImgs++;
-        $('.inviteBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + userInfo.PFB + "/picture\" />");
-      } else {
-        rejected.push(userInfo.GSS);
+        $('.inviteBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + gameObjPLRS[seatid].PFB + "/picture\" />");
       }
     }
     $('.imgWrapper:not(:has(img))', popupDivBase).parent().remove();
-    if (parseInt(toShow) !== parseInt(zzGlobals.currentUserDBId)) {
-      return;
-    }
-    if (!(totalResponse > totalUser / 2 && invitedImgs !== 0)) {
+    if (!(totalResponse > usersInfoObject.TP / 2 && invitedImgs !== 0)) {
       return;
     }
     if (zzGlobals.inviteStatus !== null && typeof zzGlobals.inviteStatus !== "undefined") {

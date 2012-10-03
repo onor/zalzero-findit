@@ -36,7 +36,7 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 							
 						else if zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
 							
-							urDiv.click { gameDetails: message[gameId], id : gameId }, (e) ->							
+							urDiv.click { gameDetails: message[gameId], id : gameId }, (e) ->						
 								sound.playSelectButtonSound()								
 								createGameDetailsPopup e.data.gameDetails,e.data.id
 								return					
@@ -75,7 +75,7 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 							if message[gameId].PLRS[gameSeatID].GSS isnt 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
 								$('#accept_decline_'+gameId).remove()
 								
-								$("right_hud_#{gameId}").click { gameDetails: message[gameId], id : gameId }, (e) ->							
+								$("#right_hud_#{gameId}").click { gameDetails: message[gameId], id : gameId }, (e) ->							
 									sound.playSelectButtonSound()								
 									createGameDetailsPopup e.data.gameDetails,e.data.id
                   
@@ -139,9 +139,8 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
     	i = 0
     	remindUsersData = {}
     	for index of gameDetails.PLSC
-    		gameSeatID = gameDetails.PLSC[index]
-    		
-    		plrs = gameDetails.PLRS[gameSeatID] # player list
+
+    		plrs = gameDetails.PLRS[ gameDetails.PLSC[index] ] # player list
     		
     		# create remind user object
     		remindUsersData[plrs.PFB] = { GSS : plrs.GSS, CRS : plrs.CRS }
