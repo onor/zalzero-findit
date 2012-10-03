@@ -2,6 +2,6 @@
 
 define(function() {
   return {
-    version: 2
+    version: null
   };
 });
