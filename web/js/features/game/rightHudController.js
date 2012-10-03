@@ -35,11 +35,10 @@ define(["../../config/config", "../../helper/sound"], function(config, sound) {
               });
             } else if (zzGlobals.currentUserDBId === message[gameId].PLRS[gameSeatID].UI) {
               urDiv.click({
-                gameDetails: message[gameId],
                 id: gameId
               }, function(e) {
                 sound.playSelectButtonSound();
-                createGameDetailsPopup(e.data.gameDetails, e.data.id);
+                createGameDetailsPopup(e.data.id);
               });
             }
           }
@@ -83,13 +82,14 @@ define(["../../config/config", "../../helper/sound"], function(config, sound) {
             if (typeof message[gameId].PLRS[gameSeatID].GSS !== 'undefined') {
               if (message[gameId].PLRS[gameSeatID].GSS !== 1 && zzGlobals.currentUserDBId === message[gameId].PLRS[gameSeatID].UI) {
                 $('#accept_decline_' + gameId).remove();
-                $("#right_hud_" + gameId).click({
-                  gameDetails: message[gameId],
-                  id: gameId
-                }, function(e) {
-                  sound.playSelectButtonSound();
-                  return createGameDetailsPopup(e.data.gameDetails, e.data.id);
-                });
+                if (!$("#right_hud_" + gameId).data("events").click) {
+                  $("#right_hud_" + gameId).click({
+                    id: gameId
+                  }, function(e) {
+                    sound.playSelectButtonSound();
+                    return createGameDetailsPopup(e.data.id);
+                  });
+                }
               }
             }
           }
@@ -112,8 +112,9 @@ define(["../../config/config", "../../helper/sound"], function(config, sound) {
     }
     return true;
   };
-  window.createGameDetailsPopup = function(gameDetails, gameId) {
-    var betPlacedNoClass, gdDiv, gdPlaydivClassName, gdUserImgclassName, i, index, playerName, plrs, remindUsersData, trClass, _ref, _score;
+  window.createGameDetailsPopup = function(gameId) {
+    var betPlacedNoClass, gameDetails, gdDiv, gdPlaydivClassName, gdUserImgclassName, i, index, playerName, plrs, remindUsersData, trClass, _ref, _score;
+    gameDetails = zzGlobals.msgVars.RH[gameId];
     jQuery('.gdWrapper').remove();
     gdDiv = $("<div class=\"gdWrapper animated fadeInRight\">\n	<div class=\"gdScoreCardDiv\">\n		<div class=\"gdAllRoundDiv\" id=\"gdAllRoundDivId\"></div>\n\n		<div class=\"gdScoreInfoDiv\">\n			<table class=\"gdScoreCardTbl\"></table>\n		</div>\n	</div>\n	<div class=\"gdUsersImgdiv\"></div>\n	<div class=\"gdReminddiv\"></div>\n	<div class=\"gdReturndiv\"></div>\n</div>");
     $('.gdReminddiv', gdDiv).click(function() {

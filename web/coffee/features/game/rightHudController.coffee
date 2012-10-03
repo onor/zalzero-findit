@@ -36,9 +36,9 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 							
 						else if zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
 							
-							urDiv.click { gameDetails: message[gameId], id : gameId }, (e) ->						
+							urDiv.click { id : gameId }, (e) ->						
 								sound.playSelectButtonSound()								
-								createGameDetailsPopup e.data.gameDetails,e.data.id
+								createGameDetailsPopup e.data.id
 								return					
 
 					$('#rightHUD-yourturn').append urDiv if parseInt(message[gameId].GS) is 1
@@ -74,10 +74,10 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 						if typeof message[gameId].PLRS[gameSeatID].GSS isnt 'undefined'
 							if message[gameId].PLRS[gameSeatID].GSS isnt 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
 								$('#accept_decline_'+gameId).remove()
-								
-								$("#right_hud_#{gameId}").click { gameDetails: message[gameId], id : gameId }, (e) ->							
-									sound.playSelectButtonSound()								
-									createGameDetailsPopup e.data.gameDetails,e.data.id
+								unless $("#right_hud_#{gameId}").data("events").click
+									$("#right_hud_#{gameId}").click { id : gameId }, (e) ->							
+										sound.playSelectButtonSound()								
+										createGameDetailsPopup e.data.id
                   
 		if  $('#rightHUD-yourturn').find(".userArea").length is 0
 			$('#rightHUD-yourturn').append('<div class="newCarouselblanktile"></div>') if  $('#rightHUD-yourturn').find(".newCarouselblanktile").length is 0
@@ -93,7 +93,8 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 		true
 			
 	
-	window.createGameDetailsPopup = (gameDetails,gameId)->
+	window.createGameDetailsPopup = (gameId)->
+    	gameDetails = zzGlobals.msgVars.RH[gameId]
     	jQuery('.gdWrapper').remove()
 	
     	gdDiv = $ """<div class="gdWrapper animated fadeInRight">
