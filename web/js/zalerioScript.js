@@ -645,9 +645,6 @@ jQuery(function() {
     }
     return size;
   };
-  //jDocument.trigger(zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|RG"]);
-  closeInvits = function() {
-    //return jDocument.trigger(zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]);
-  };
+  closeInvits = function() {};
   return oloUserComponent();
 });

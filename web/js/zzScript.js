@@ -1022,9 +1022,7 @@ define('../../helper/utils',[], function() {
         return node.className = node.className.replace(reg, " ");
       }
     },
-    log: function(message) {
-      return console.log(message);
-    },
+    log: function(message) {},
     getMiniLoaderHTML: function() {
       return "<div id=\"floatingBarsGs\">\n<div class=\"blockG\" id=\"rotateG_01\">\n</div>\n<div class=\"blockG\" id=\"rotateG_02\">\n</div>\n<div class=\"blockG\" id=\"rotateG_03\">\n</div>\n<div class=\"blockG\" id=\"rotateG_04\">\n</div>\n<div class=\"blockG\" id=\"rotateG_05\">\n</div>\n<div class=\"blockG\" id=\"rotateG_06\">\n</div>\n<div class=\"blockG\" id=\"rotateG_07\">\n</div>\n<div class=\"blockG\" id=\"rotateG_08\">\n</div>\n</div>";
     }
@@ -2579,9 +2577,7 @@ define('../../popup/../helper/utils',[], function() {
         return node.className = node.className.replace(reg, " ");
       }
     },
-    log: function(message) {
-      return console.log(message);
-    },
+    log: function(message) {},
     getMiniLoaderHTML: function() {
       return "<div id=\"floatingBarsGs\">\n<div class=\"blockG\" id=\"rotateG_01\">\n</div>\n<div class=\"blockG\" id=\"rotateG_02\">\n</div>\n<div class=\"blockG\" id=\"rotateG_03\">\n</div>\n<div class=\"blockG\" id=\"rotateG_04\">\n</div>\n<div class=\"blockG\" id=\"rotateG_05\">\n</div>\n<div class=\"blockG\" id=\"rotateG_06\">\n</div>\n<div class=\"blockG\" id=\"rotateG_07\">\n</div>\n<div class=\"blockG\" id=\"rotateG_08\">\n</div>\n</div>";
     }
@@ -2923,7 +2919,7 @@ define('../../popup/roundScorePopup',[], function() {
       });
     }
   };
-  jDocument.bind("room:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showRoundScorePopup);
+  jDocument.bind("dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showRoundScorePopup);
   return true;
 });
 

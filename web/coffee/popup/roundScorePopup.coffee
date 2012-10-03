@@ -44,6 +44,6 @@ define [], () ->
 	      $(".roundresult").click ->
 	          $(this).remove()
 	          
-    jDocument.bind "room:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showRoundScorePopup
+    jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showRoundScorePopup
     
     true

@@ -1,5 +1,6 @@
 define [] , () ->
 	showInviteStatus = (currentGameUsersData) ->
+    	#alert('dffd')
     	popupDivBase = document.createElement("div")
     	popupDivBase.className = "status_show_popup zalerio_popup"
     	popupDivBase.id = "invitestatus"

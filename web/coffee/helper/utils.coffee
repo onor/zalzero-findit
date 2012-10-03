@@ -18,7 +18,7 @@ define [], ()-> #'utils',
 			node.className = node.className.replace(reg, " ")
 			
 	log : (message) ->
-		console.log message
+		#console.log message
 		
 	getMiniLoaderHTML: ->
 		return """<div id="floatingBarsGs">
