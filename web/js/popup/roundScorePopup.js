@@ -37,14 +37,7 @@ define([], function() {
     scorePopuptopthree.append(rankHtml);
     if (selfHtml !== "") {
       $(".content_r", scorePopup).append(selfHtml);
-      $(".content_r", scorePopup).append(scorePopuptopthree);
-      $("#active-screen").append(scorePopup);
-      setTimeout((function() {
-        return $(".roundresult").remove();
-      }), 5000);
-      return $(".roundresult").click(function() {
-        return $(this).remove();
-      });
+      return $(".content_r", scorePopup).append(scorePopuptopthree);
     }
   };
   jDocument.bind("dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showRoundScorePopup);

@@ -51,7 +51,7 @@ if (typeof valDevEnvironment !== "undefined") {
 }
 
 jQuery(function() {
-  var ZalerioUserComponent, addEventHandler, closeInvits, jDocument, noUserExist, objSize, oloUserComponent, pad2, printOnConsole, redirectToPlayNow, removeClassName, removeEventHandler, roomID, unionClientId;
+  var ZalerioUserComponent, addEventHandler, jDocument, noUserExist, objSize, oloUserComponent, pad2, printOnConsole, redirectToPlayNow, removeClassName, removeEventHandler, roomID, unionClientId;
   jDocument = jQuery(document);
   unionClientId = null;
   roomID = null;
@@ -645,6 +645,5 @@ jQuery(function() {
     }
     return size;
   };
-  closeInvits = function() {};
   return oloUserComponent();
 });

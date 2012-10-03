@@ -37,12 +37,12 @@ define [], () ->
 	      $(".content_r",scorePopup).append selfHtml
 	      $(".content_r",scorePopup).append scorePopuptopthree
 	      
-	      $("#active-screen").append scorePopup
-	      setTimeout (->
-	      		$(".roundresult").remove()
-	      ), 5000
-	      $(".roundresult").click ->
-	          $(this).remove()
+#	      $("#active-screen").append scorePopup
+#	      setTimeout (->
+#	      		$(".roundresult").remove()
+#	      ), 5000
+#	      $(".roundresult").click ->
+#	          $(this).remove()
 	          
     jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showRoundScorePopup
     
