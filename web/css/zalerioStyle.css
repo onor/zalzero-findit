@@ -503,9 +503,10 @@ body {
 	background: url('../images/zalerio_1.2/4.ingame_ui/left_Otherplayers.png') no-repeat center bottom;
 }
 #gameInfo-game-players .userAreaImg{
-	margin-left:10px !important;
+	margin-left:5px !important;
 	float:left;
 	margin-right:2px !important;
+	margin-top: -1px !important;
 	
 }
 #gameInfo-game-players .userinfo, #gameInfo-game-players .userinfo div{
@@ -541,7 +542,7 @@ body {
 .userArea {
     background: url("../images/zalerio_1.2/4.ingame_ui/playerdescription_bar.png") no-repeat top left; /*mainplayer_base */
     width: 145px;
-    height: 55px;
+    height: 51px;
     position: relative;
 }
 #gameInfo-game-players .userArea {
@@ -669,7 +670,7 @@ body {
     overflow: hidden;
     width: 146px;
     margin-bottom: 6px;
-    padding-left: 4px;
+    padding-left: 2px;
     padding-bottom:10px
 }
 ul.turnGameInstance {
@@ -2191,18 +2192,35 @@ ul.tab_nav  li a.active,ul.tab_nav  li a:hover {
 #bottomScore_div::-webkit-scrollbar,#scroll_carousel::-webkit-scrollbar,.scroll_bar::-webkit-scrollbar {
     width: 5px;
 }
+#scroll_carousel::-webkit-scrollbar{
+	width: 8px;
+}
+#scroll_carousel::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(39,63,87,0.8); 
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+#scroll_carousel::-webkit-scrollbar-thumb{
+	-webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: rgb(39,63,87); 
+    -webkit-box-shadow: inset 0 0 6px rgb(39,63,87); 
+}
+#scroll_carousel::-webkit-scrollbar-thumb:window-inactive{
+	background: rgb(39,63,87); 
+}
 .friendlist::-webkit-scrollbar{
     width: 10px;
 } 
 /* Track */
-.friendlist::-webkit-scrollbar-track,#bottomScore_div::-webkit-scrollbar-track,#scroll_carousel::-webkit-scrollbar-track,.scroll_bar::-webkit-scrollbar-track {
+.friendlist::-webkit-scrollbar-track,#bottomScore_div::-webkit-scrollbar-track,.scroll_bar::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(48,96,142,0.3); 
     -webkit-border-radius: 6px;
     border-radius: 6px;
 }
 
 /* Handle */
-.friendlist::-webkit-scrollbar-thumb,#bottomScore_div::-webkit-scrollbar-thumb,#scroll_carousel::-webkit-scrollbar-thumb,.scroll_bar::-webkit-scrollbar-thumb {
+.friendlist::-webkit-scrollbar-thumb,#bottomScore_div::-webkit-scrollbar-thumb,.scroll_bar::-webkit-scrollbar-thumb {
     -webkit-border-radius: 6px;
     border-radius: 6px;
     background: rgba(255,255,255,0.5); 
@@ -2808,26 +2826,28 @@ background: none !important;
 	padding-top:1px
 }
 .rightHUD_carousel .userArea{
-	width:140px;
-	height:62px;
-	background:#264257;
-	margin-bottom: 8px;
-	border:1px solid #dddddd;
+	width:139px;
+	height:60px;
+	/*background:#264257;*/
+	background: url("../images/zalerio_1.2/4.ingame_ui/rightcarauselIdeal.png");
+	margin-bottom: 4px;
+	/*border:1px solid #dddddd;*/
 	position:relative;
 	border-radius:6px;
 	-webkit-border-radius:6px;
 	-moz-border-radius:6px;
-	
+	padding: 2px 0 0 1px;
 	-webkit-box-shadow: 2px 3px 11px 0px black;
 	-moz-box-shadow: 2px 3px 11px 0px black;
 	box-shadow: 2px 3px 11px 0px black;
 }
 .rightHUD_carousel .userArea:hover{
-	background:#254a66;
+	background: url("../images/zalerio_1.2/4.ingame_ui/rightcarauselSelected.png");
 }
 .rightHUD_carousel .userArea.selected{
-	border: 2px solid #fff;
-	background: #DCDCDC;
+	/*border: 2px solid #fff;
+	background: #DCDCDC;*/
+	background: url("../images/zalerio_1.2/4.ingame_ui/rightcarauselSelected.png");
 }
 .rightHUD_carousel .imageWrapper:first-child{
 	margin-left: 0px;

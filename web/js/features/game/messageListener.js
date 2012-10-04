@@ -30,7 +30,11 @@ define(["../../helper/confirmBox", "../../helper/utils"], function(confirmBox, u
             usersObject[i].PLSC[x] = seatIdArray[x];
           }
         }
-        zzGlobals.msgVars.RH = usersObject;
+        if (zzGlobals.msgVars.RH === 'RIGHT_HUD') {
+          zzGlobals.msgVars.RH = usersObject;
+        } else {
+          $.extend(zzGlobals.msgVars.RH, usersObject);
+        }
         utils.log('MT & TT', zzGlobals.msgVars.RH);
         return jDocument.trigger("client:" + zzGlobals.msgCodes.RIGHT_HUD, usersObject);
       case zalerioCMDListners.CLOSE_INVITE:

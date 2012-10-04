@@ -24,8 +24,12 @@ define ["../../helper/confirmBox","../../helper/utils"], (confirmBox,utils)->
 	        		usersObject[i].PLSC = {}
 	        		for x of seatIdArray
 	        			usersObject[i].PLSC[x] = seatIdArray[x]
-	
-	        	zzGlobals.msgVars.RH = usersObject
+	        			
+	        	if zzGlobals.msgVars.RH is 'RIGHT_HUD'
+	        		zzGlobals.msgVars.RH = usersObject
+	        	else
+	        		$.extend zzGlobals.msgVars.RH , usersObject
+	        		
 	        	utils.log 'MT & TT',zzGlobals.msgVars.RH
 	        	
 	        	jDocument.trigger "client:" + zzGlobals.msgCodes.RIGHT_HUD,usersObject

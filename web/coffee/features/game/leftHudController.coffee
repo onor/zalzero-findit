@@ -1,4 +1,4 @@
-define ["../../config/config"], (config,carouselView,animation) ->
+define ["../../config/config"], (config) ->
 	updatePlayerPlate = ->
       currentUserObj = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
 
