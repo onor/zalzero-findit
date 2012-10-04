@@ -41,6 +41,7 @@ body {
     display: block;
     margin-left: 32PX;
     margin-top: -3px;    
+    height:102px
 }
 .gameLogo{
 	background: url("../images/zalerio_1.2/4.ingame_ui/zalerio_logo.png") left -3px no-repeat transparent;
@@ -347,26 +348,41 @@ body {
 .playerImage img, .userAreaImg img {
     width: 46px;
     height: 46px;
-    background:#000;
-    padding:1px;
+    background:#fff;
     padding: 2px
 }
+.playerImage img, .userAreaImg .userlevelbelt{
+	padding: 1px
+}
+.gameInfoPanel .gameInfoDiv{
+	width:134px;
+	margin: 0 auto;
+}
 .userAreaImg .userlevelbelt{
-    height: auto !important;
     width: auto !important;
     position: absolute !important;
     background: none !important;
 }
-.gameInfoDiv#gameInfo-game-players .userAreaImg {
-    width: 39px;
-    height: 39px;
-    padding-top: 2px;
-    margin: 0 0 0 15px
+.gameInfoDiv#gameInfo-game-players{
+	height:195px
 }
-.gameInfoDiv#gameInfo-game-players .userAreaImg img {
-    width: 35px;
-    height: 35px;
-    padding: 2px;
+.gameInfoDiv#gameInfo-game-players .userAreaImg {
+    width: 32px;
+    height: 39px;
+    padding-top: 1px;
+    margin: 0 0 0 15px
+}.gameInfoDiv#gameInfo-game-players .userAreaImg img{padding:0;height: 32px;}
+.gameInfoDiv#gameInfo-game-players .userAreaImg img.backendImage {
+    width: 32px;
+    height: 32px;
+    padding:0;
+    border-bottom:2px solid #4ABB2C;
+}
+.gameInfoDiv#gameInfo-game-players .userAreaImg img.offline {
+    border-bottom:2px solid #E42217;
+    margin:0px;
+    background:none;
+    padding:0;
 }
 .gameScore-round li {
     display: inline-block;
@@ -470,13 +486,45 @@ body {
     text-align: center;
 }
 .gameInfoDiv#gameInfo-game-players {
-    height: 68px;
     width: 145px;
     overflow: hidden;
     position: relative;
     margin-top: 2px;
     margin-left: -3px;
+
 }
+.gameInfoDiv#gameInfo-game-players .background{
+	width: 134px;
+	margin: 0 auto;
+	border-radius: 0 0 5px 5px;
+    background: url('../images/zalerio_1.2/4.ingame_ui/left_Otherplayers.png') no-repeat center top;
+}
+.gameInfoDiv#gameInfo-game-players .lastPlayerAP{
+	background: url('../images/zalerio_1.2/4.ingame_ui/left_Otherplayers.png') no-repeat center bottom;
+}
+#gameInfo-game-players .userAreaImg{
+	margin-left:10px !important;
+	float:left;
+	margin-right:2px !important;
+	
+}
+#gameInfo-game-players .userinfo, #gameInfo-game-players .userinfo div{
+	float:left;
+	line-height: 12px;
+	width:90px;
+	text-align:left;
+	padding:0px !important;
+}
+#gameInfo-game-players .lastPlayed{
+	font-size:10px
+}
+#gameInfo-game-players .username{
+	color:#395771
+}
+#gameInfo-game-players .infoPlate{
+	height:44px
+}
+
 #gamePrizeImageDiv {
     width: 135px;
 }
@@ -493,7 +541,7 @@ body {
 .userArea {
     background: url("../images/zalerio_1.2/4.ingame_ui/playerdescription_bar.png") no-repeat top left; /*mainplayer_base */
     width: 145px;
-    height: 66px;
+    height: 55px;
     position: relative;
 }
 #gameInfo-game-players .userArea {
@@ -551,7 +599,7 @@ body {
     width: 98%
 }
 .gameScore {
-    margin: 5px 0 0 1px;
+    margin: 0px 0 0 1px;
     width: 140px;
     height: 132px;
     background: url("../images/zalerio_1.2/4.ingame_ui/roundbar_and_score_base.png") left top no-repeat;
@@ -3892,4 +3940,10 @@ height: 19px;
 	right:0;
 	bottom:0;
 	z-index:1000
+}
+h2.round_no_r{
+	color:#fff;
+	margin-bottom:0px;
+	padding-left:30px;
+	line-height:55px
 }

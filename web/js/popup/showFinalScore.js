@@ -27,6 +27,9 @@ define([], function() {
             rankHtml += "<div class='score_rep' id='score" + ++ii + "'><div class='rank'>" + ii + "nd</div><img src='https://graph.facebook.com/" + usersObject.PLRS[seatId].PFB + "/picture' /><div class='name'>" + usersObject.PLRS[seatId].PDN + "</div><div class='score'>" + usersObject.PLRS[seatId].PSC + "</div></div>";
           }
         }
+        if (ii === 0) {
+          return;
+        }
         if (ii < 2 || disableRematch || resignStatus === 1) {
           jQuery("#rematch").hide();
           jQuery(".dismiss").css({
@@ -40,9 +43,8 @@ define([], function() {
             marginLeft: ''
           });
         }
-        rankHtmlArray.push(rankHtml);
         jQuery("#topScore_div").html(rankHtmlArray[0]);
-        jQuery("#bottomScore_div").html(rankHtmlArray[1]);
+        jQuery("#bottomScore_div").html(rankHtml);
         return jQuery(".score_show_popup").css("display", "block");
       }
     } catch (_error) {}

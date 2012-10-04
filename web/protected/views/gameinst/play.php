@@ -43,16 +43,13 @@ if (isset($startGame) || isset($game)) {
                         </div>
                     </div>
                     <div class="gameInfoDiv" id="gameInfo-game-players">
-                        <div id="navCarouselLeft" class="navCarouselForPlayer"></div>
-                        <div id="navCarouselRight" class="navCarouselForPlayer"></div>
-                        <ul id="userTopPicHUDMain" class="newCarousel" ></ul>
-                        <ul id="nowPlayers" style="display:hidden;"></ul>
+
                     </div>
-                    <div class="gameInfoDiv" id="gamePrize">
+               <?php /* ?>     <div class="gameInfoDiv" id="gamePrize">
                         <div id="gamePrizeImageDiv"><img id="gamePrizeImage" src="" alt="Game Prize Image" /></div>
                         <div id="gamePrizeName"></div>
-                        <div id="gamePrizeMRP"></div>
-                    </div>
+                        <div id="gamePrizeMRP"></div> 
+                    </div> */ ?>
                 </div>
                 <div class="gameScore" <?php if(isset($tutorial)){ ?> style="display:none" <?php } ?> >
                     <div id="gameScore-round" class="gameScore-round">

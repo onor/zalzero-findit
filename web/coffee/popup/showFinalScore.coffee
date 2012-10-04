@@ -22,16 +22,17 @@ define [], () ->
           	else
           		rankHtml += "<div class='score_rep' id='score" + ++ii + "'><div class='rank'>" + ii + "nd</div><img src='https://graph.facebook.com/" + usersObject.PLRS[seatId].PFB + "/picture' /><div class='name'>" + usersObject.PLRS[seatId].PDN + "</div><div class='score'>" + usersObject.PLRS[seatId].PSC + "</div></div>"
           
+          return if ii is 0
+          
           if ii < 2 or disableRematch or resignStatus is 1
           	jQuery("#rematch").hide();
           	jQuery(".dismiss").css({marginTop: '1px', marginLeft: '50px'})
           else
           	jQuery("#rematch").show();
           	jQuery(".dismiss").css({marginTop: '', marginLeft: ''})
-            
-          rankHtmlArray.push rankHtml
+          	
           jQuery("#topScore_div").html rankHtmlArray[0]
-          jQuery("#bottomScore_div").html rankHtmlArray[1]
+          jQuery("#bottomScore_div").html rankHtml
           jQuery(".score_show_popup").css "display", "block"
           
 	jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showFinalScore

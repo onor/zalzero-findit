@@ -1,22 +1,22 @@
-define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./myLevel","../../config/globals","gamePlayView"], (confirmBox,utils,sound,myLevel,globals,gamePlayView) ->
+define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./myLevel","../../config/globals","gamePlayView","messageListener"], (confirmBox,utils,sound,myLevel,globals,gamePlayView,messageListenerObj) ->
 	bets = {}
 	boardVo = {}
 	responseVo = {}
-      
+	window.currentBets = {}
+	window.currentBetsIdx = {}
 	ZalerioGame = (->
 	    ZalerioGame = ->
 	    _this = this
 	    docElems = {}
 	    tilesIdxVOs = {}
-	    currentBets = {}
-	    currentBetsIdx = {}
+	    
 	    betsPanelIndexVO = {}
-	    currentRoundBidPlaced = -1
+	    window.currentRoundBidPlaced = -1
 	    internalDNDType = "text/x-betiddata"	    
 	
 	    flag_zoomTrue = false
 	    currPlayerFigVOs = {}
-	    playerBetTiles = {}
+	    window.playerBetTiles = {}
 	    boardVOCodes =
 	      TILE_COUNT: "BC"
 	      PLAYER_INFO_OBJ: "PR"
@@ -29,17 +29,8 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      BET_OBJ: "PB"
 	      ROUND_ID: "PR"
 	
-	    betChangeVOs = {}
+	    window.betChangeVOs = {}
 	    boardVOs = {}
-	    # message name container
-	    zalerioCMDListners =
-	      ORIG_FIGS: "OF"
-	      BET_RESPONSE: "PB"
-	      BET_CHANGES: "CB"
-	      RESIGN_GAME:"RG"
-	      CLOSE_INVITE : "CI"
-	      RIGHT_HUD:"MT"
-	      DECLINE_STATUS:"DG"
 	
 	    flag_roundDrawn = false
 	    coordCodes =
@@ -155,7 +146,7 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	        utils.removeEventHandler playButtonEl, "click", sendPlaceBetRequest, true
 	      else
 	        count = 0
-	        for k of currentBets
+	        for k of window.currentBets
 	          count++
 	        if count < 9
 	          gamePlayView.disablePlayBoutton playButtonEl
@@ -168,9 +159,9 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	          currentBetId = "bet_" + i
 	          el = betsPanelIndexVO[currentBetId]
 	          flag_alreadyUsed = false
-	          for k of currentBets
-	            continue  unless __hasProp_.call(currentBets, k)
-	            usedBetId = currentBets[k]
+	          for k of window.currentBets
+	            continue  unless __hasProp_.call(window.currentBets, k)
+	            usedBetId = window.currentBets[k]
 	            if usedBetId is currentBetId
 	              flag_alreadyUsed = true
 	              break
@@ -315,11 +306,11 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	        lastRound = false
 	        lastRound = true  if zzGlobals.roomVars.FR is "1"
 	        unless lastRound
-	          if (currentBets[tileIdx]?) and currentBets[tileIdx] isnt null
+	          if (window.currentBets[tileIdx]?) and window.currentBets[tileIdx] isnt null
 	            dropEnable = false
 	            currentEl.draggable = true
 	            currentEl.dragBet = 1
-	            currentEl.setAttribute "placedBetId", currentBets[tileIdx]
+	            currentEl.setAttribute "placedBetId", window.currentBets[tileIdx]
 	            currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET)
 	            utils.addEventHandler currentEl, "dragstart", handleDragStartWithinBoard, false
 	            currentTileVal = ""
@@ -382,13 +373,13 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      betId = e.dataTransfer.getData(internalDNDType)
 	      if (betId?) and betId isnt ""
 	        if e.target.getAttribute("droppable") is "2"
-	          unless currentBets[e.target.getAttribute("tileidx")]
-	            currentBetsIdx[betId] = e.target.getAttribute("tileidx")
-	            currentBets = {}
-	            for betd of currentBetsIdx
-	              continue  unless __hasProp_.call(currentBetsIdx, betd)
-	              betTileIdx = currentBetsIdx[betd]
-	              currentBets[betTileIdx] = betd
+	          unless window.currentBets[e.target.getAttribute("tileidx")]
+	            window.currentBetsIdx[betId] = e.target.getAttribute("tileidx")
+	            window.currentBets = {}
+	            for betd of window.currentBetsIdx
+	              continue  unless __hasProp_.call(window.currentBetsIdx, betd)
+	              betTileIdx = window.currentBetsIdx[betd]
+	              window.currentBets[betTileIdx] = betd
 	            refreshGameBoard()
 	            reDrawBetsPanel()
 	            return true
@@ -411,9 +402,9 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      #play tile play sound if sound enable
 	      sound.playPlayButtonSound()
 
-	      for betPanelId of currentBetsIdx
-	        continue  unless __hasProp_.call(currentBetsIdx, betPanelId)
-	        betTileId = currentBetsIdx[betPanelId]
+	      for betPanelId of window.currentBetsIdx
+	        continue  unless __hasProp_.call(window.currentBetsIdx, betPanelId)
+	        betTileId = window.currentBetsIdx[betPanelId]
 	        betId = betTileId.replace(/\bboardTile-\b/, "")
 	        betStr += (if betStr is "" then betId else ":" + betId)
 	        ++betCtr
@@ -446,70 +437,13 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	          curCoordObj = mapData[curCoordId]
 	          jQuery("#boardTile-" + (parseInt(curCoordId))).addClass(mapType.className)
 	      true
-	
-	# message listener        
-	    messageListener = (event, messageName, broadcastType, fromClientID, roomID, message) ->
-	      switch messageName
-	      	when zalerioCMDListners.DECLINE_STATUS
-	      		 if parseInt(message) is 1
-	      		 	   confirmBox(popupMSG.declineInvite())
-	      		 	   gamePlayView.setGameDisable()
-	      	when zalerioCMDListners.RIGHT_HUD
-	        	usersObject = jQuery.parseJSON(message)      
-	        	for i of usersObject
-	        		usersObject[i] = jQuery.parseJSON(usersObject[i])
-	        		usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
-	        		scoreArray = []
-	        		seatIdArray = []	
-		        	for seatId of usersObject[i].PLRS
-		        		usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId])
-		        		scoreArray[seatId] = parseInt(usersObject[i].PLRS[seatId].PSC)
-		        		seatIdArray.push seatId
-	        		seatIdArray.sort (x, y) ->
-	        			scoreArray[y] - scoreArray[x]
-	        		usersObject[i].PLSC = {}
-	        		for x of seatIdArray
-	        			usersObject[i].PLSC[x] = seatIdArray[x]
-	
-	        	zzGlobals.msgVars.RH = usersObject
-	        	utils.log 'MT & TT',zzGlobals.msgVars.RH
-	        	
-	        	jDocument.trigger "client:" + zzGlobals.msgCodes.RIGHT_HUD,usersObject
-	        when zalerioCMDListners.CLOSE_INVITE
-	        	if 0 is message
-	        		confirmBox('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
-	        	else
-	        		gamePlayView.removeStatusPopup
-	        when zalerioCMDListners.RESIGN_GAME
-	        	if message is 0
-	        		confirmBox('Sorry!!! Unable to Resign, \n Plese try again..');
-	        		gamePlayView.showBetsPanel()
-	        	else
-	        		resignStatus = 1
-	        		gamePlayView.setGameDisable()
-	        when zalerioCMDListners.ORIG_FIGS
-	        	newCoordObj = jQuery.parseJSON(message)
-	        	utils.log newCoordObj
-	        	parseToGameBoard zalerioMapType.ORIG_MAP, newCoordObj
-	        when zalerioCMDListners.BET_RESPONSE
-	        	parsedObj = jQuery.parseJSON(message)
-	        	utils.log "zalerioCMDListners.BET_RESPONSE if failed : ", parsedObj
-	        when zalerioCMDListners.BET_CHANGES
-	        	betChangeVOs = {}
-	        	playerBetsChangeObj = jQuery.parseJSON(message)
-	        	utils.log "zalerioCMDListners.BET_CHANGES : ", playerBetsChangeObj
-	        	currentBets = {}
-	        	currentBetsIdx = {}
-	        	for i of playerBetsChangeObj
-	        		if i is "PB"
-	        			playerBetTiles = jQuery.parseJSON(playerBetsChangeObj[i])
-	        			for tileId of playerBetTiles
-	        				betChangeVOs[tileId] = playerBetTiles[tileId]
-	        	currentRoundBidPlaced = playerBetsChangeObj["BC"]
-	        	jDocument.trigger zzEvents.CLIENT_BETS_PLACED, currentRoundBidPlaced
-	        	reDrawBetsPanel()
-	        	refreshGameBoard()
-	
+
+	    betChange = ->
+	    	reDrawBetsPanel()
+	    	refreshGameBoard()
+	    	
+	    jDocument.bind zzEvents.CLIENT_BETS_PLACED, betChange
+		
 	    drawResponseTiles = (responseObj) ->
 	      utils.log "responseObj in drawResponseTiles(): " + responseObj
 	      _results = []
@@ -595,7 +529,7 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      jDocument.bind "room:" + zzGlobals.roomCodes.BOARDVARS, updateBoardVars
 	      jDocument.bind "room:" + zzGlobals.roomCodes.CURRENTROUND, refreshRoundsPanel
 	      jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, setPlayersInfo
-	      jDocument.bind zzEvents.SERVER_MESSAGE, messageListener
+#	      jDocument.bind zzEvents.SERVER_MESSAGE, messageListener
 	
 	    ZalerioGame
 	  ).call(this)
