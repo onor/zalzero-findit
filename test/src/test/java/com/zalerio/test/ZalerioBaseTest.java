@@ -23,7 +23,7 @@ public class ZalerioBaseTest  implements SauceOnDemandSessionIdProvider {
 	 * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
 	 * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
 	 */
-	public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("snehesh_mobicules", "f1d71e1f-2a83-4362-8364-79ea37f41418");
+	public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("cloudbees_zalzero", "15b88203-7a0f-4339-804a-fffb6abb2e3c");
 
     /**
      * JUnit Rule which will mark the Sauce Job as passed/failed when the test succeeds or fails.
