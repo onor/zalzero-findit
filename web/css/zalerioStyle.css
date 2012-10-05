@@ -2877,7 +2877,7 @@ background: none !important;
 }
 .rightHUD_carousel .game_end_time{
 	position: absolute;
-	right: 4px;
+	left: 24px;
 	top: 45px;
 	height: 20px;
 	color:#fff;

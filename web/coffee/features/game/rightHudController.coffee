@@ -76,7 +76,12 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 						if typeof message[gameId].PLRS[gameSeatID].GSS isnt 'undefined'
 							if message[gameId].PLRS[gameSeatID].GSS isnt 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
 								$('#accept_decline_'+gameId).remove()
-								unless $("#right_hud_#{gameId}").data("events").click
+								bindClick = true
+								try
+									if $("#right_hud_#{gameId}").data("events").click
+										bindClick = false
+																	
+								if bindClick
 									$("#right_hud_#{gameId}").click { id : gameId }, (e) ->							
 										sound.playSelectButtonSound()								
 										createGameDetailsPopup e.data.id

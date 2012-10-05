@@ -3,7 +3,7 @@
 define(["../../config/config", "../../helper/sound"], function(config, sound) {
   var updateRightHud;
   updateRightHud = function(event, message) {
-    var dateStart, gameId, gameSeatID, index, monthNames, status, urDiv, urDivClassName;
+    var bindClick, dateStart, gameId, gameSeatID, index, monthNames, status, urDiv, urDivClassName;
     monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     for (gameId in message) {
       dateStart = new Date(message[gameId].ED);
@@ -82,7 +82,13 @@ define(["../../config/config", "../../helper/sound"], function(config, sound) {
             if (typeof message[gameId].PLRS[gameSeatID].GSS !== 'undefined') {
               if (message[gameId].PLRS[gameSeatID].GSS !== 1 && zzGlobals.currentUserDBId === message[gameId].PLRS[gameSeatID].UI) {
                 $('#accept_decline_' + gameId).remove();
-                if (!$("#right_hud_" + gameId).data("events").click) {
+                bindClick = true;
+                try {
+                  if ($("#right_hud_" + gameId).data("events").click) {
+                    bindClick = false;
+                  }
+                } catch (_error) {}
+                if (bindClick) {
                   $("#right_hud_" + gameId).click({
                     id: gameId
                   }, function(e) {
