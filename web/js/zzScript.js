@@ -503,8 +503,10 @@ define('../../helper/sound',[], function() {
 define('rightHudController',["../../config/config", "../../helper/sound"], function(config, sound) {
   var updateRightHud;
   updateRightHud = function(event, message) {
-    var gameId, gameSeatID, index, status, urDiv, urDivClassName, _ref;
+    var dateStart, gameId, gameSeatID, index, monthNames, status, urDiv, urDivClassName;
+    monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     for (gameId in message) {
+      dateStart = new Date(message[gameId].ED);
       if (document.getElementById("right_hud_" + gameId) === null) {
         urDivClassName = gameInstId === gameId ? "userArea selected" : "userArea";
         urDiv = $("<div class=\"" + urDivClassName + "\" id=\"right_hud_" + gameId + "\" ></div>");
@@ -512,7 +514,7 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
           urDiv.append("<div class=\"round_no\">" + message[gameId].CR + "</div>");
         }
         if (message[gameId].ED) {
-          urDiv.append("<div class=\"game_end_time\">" + message[gameId].ED + "</div>");
+          urDiv.append("<div class=\"game_end_time\">" + (monthNames[dateStart.getMonth()] + ' ' + dateStart.getDate()) + "</div>");
         }
         for (index in message[gameId].PLSC) {
           gameSeatID = message[gameId].PLSC[index];
@@ -567,16 +569,14 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
             $("#right_hud_" + gameId).find('.round_no').text(message[gameId].CR);
           }
           if (message[gameId].ED) {
-            $("#right_hud_" + gameId).find('.game_end_time').html(message[gameId].ED);
+            $("#right_hud_" + gameId).find('.game_end_time').html(monthNames[dateStart.getMonth()] + ' ' + dateStart.getDate());
           }
           for (gameSeatID in message[gameId].PLRS) {
             if (typeof message[gameId].PLRS[gameSeatID].PON !== "undefined") {
               if (message[gameId].PLRS[gameSeatID].GSS === 5 || message[gameId].PLRS[gameSeatID].GSS === 3) {
                 $("#who_am_i_" + gameSeatID).remove();
               } else {
-                $("#who_am_i_" + gameSeatID).removeClass().addClass((_ref = message[gameId].PLRS[gameSeatID].PON) != null ? _ref : {
-                  "online": "offline"
-                });
+                $("#who_am_i_" + gameSeatID).removeClass().addClass(message[gameId].PLRS[gameSeatID].PON === 1 ? "online" : "offline");
               }
             }
             if (typeof message[gameId].PLRS[gameSeatID].GSS !== 'undefined') {

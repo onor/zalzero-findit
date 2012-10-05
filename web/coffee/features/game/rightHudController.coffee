@@ -1,6 +1,8 @@
 define ["../../config/config","../../helper/sound"], (config,sound) ->
 	updateRightHud = (event, message)->
+		monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
 		for gameId of message
+			dateStart = new Date ( message[gameId].ED )
 			if document.getElementById("right_hud_"+gameId) is null    			
 
 				urDivClassName = if gameInstId is gameId then "userArea selected" else "userArea"
@@ -8,8 +10,8 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 				urDiv = $ """<div class="#{urDivClassName}" id="right_hud_#{gameId}" ></div>"""
    				
 				urDiv.append """<div class="round_no">#{message[gameId].CR}</div>"""  if message[gameId].CR
-    			
-				urDiv.append """<div class="game_end_time">#{message[gameId].ED}</div>"""  if message[gameId].ED
+				
+				urDiv.append """<div class="game_end_time">#{ monthNames[dateStart.getMonth()]+' '+dateStart.getDate()}</div>"""  if message[gameId].ED
 				
 				for index of message[gameId].PLSC
 					gameSeatID = message[gameId].PLSC[index]
@@ -59,7 +61,7 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 	            
 					$("#right_hud_" + gameId).find('.round_no').text message[gameId].CR  if message[gameId].CR	# update game round
 	            
-					$("#right_hud_" + gameId).find('.game_end_time').html message[gameId].ED  if message[gameId].ED	#update game end time
+					$("#right_hud_" + gameId).find('.game_end_time').html monthNames[dateStart.getMonth()]+' '+dateStart.getDate()  if message[gameId].ED	#update game end time
 	            
 					for gameSeatID of message[gameId].PLRS                  
 					## update online status
@@ -68,7 +70,7 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 							if message[gameId].PLRS[gameSeatID].GSS is 5 or  message[gameId].PLRS[gameSeatID].GSS is 3
 								$("#who_am_i_" + gameSeatID).remove()
 							else
-								$("#who_am_i_#{gameSeatID}").removeClass().addClass message[gameId].PLRS[gameSeatID].PON ? "online" : "offline"
+								$("#who_am_i_#{gameSeatID}").removeClass().addClass if message[gameId].PLRS[gameSeatID].PON is 1 then "online" else "offline"
 	    				
 						## accept / Decline
 						if typeof message[gameId].PLRS[gameSeatID].GSS isnt 'undefined'
