@@ -2877,11 +2877,11 @@ background: none !important;
 }
 .rightHUD_carousel .game_end_time{
 	position: absolute;
-	left: 24px;
-	top: 45px;
+	left: 22px;
+	top: 47px;
 	height: 20px;
-	color:#fff;
-	font-size:12px;
+	color: white;
+	font-size: 10px;
 }
 .rightHUD_carousel .selected .game_end_time{
 	color:#5D6D7C;
@@ -2891,34 +2891,42 @@ background: none !important;
     cursor: pointer;
     position: relative;
     font-size:11px;
+    height:15px;
+    width:38px;
+    margin-right:3px;
+    line-height: 14px;
+    background: url(../images/zalerio_1.2/4.ingame_ui/acceptdeclineremind.png) -49px top no-repeat;
 }
 .rightHUD_carousel .selected .right_hud_accept{
 	color: #5D6D7C;
 }
 .rightHUD_carousel .accept_decline{
 	position: absolute;
-	top: 28px;
-	left: 63px;
+	top: 44px;
+	left: 55px;
 }
 .rightHUD_carousel .accept_decline div{
-	padding-right:5px
+	
 }
 
 .rightHUD_carousel .right_hud_accept:hover{
-	text-decoration:underline
+	background-position: -49px -16px;
 }
 .rightHUD_carousel .right_hud_decline{
 	color: #fff;
     cursor: pointer;
     position: relative;
     font-size:11px;
+    width: 38px;
+    line-height: 14px;
+    background: url(../images/zalerio_1.2/4.ingame_ui/acceptdeclineremind.png) right top no-repeat;
 }
 .rightHUD_carousel .selected .right_hud_decline{
-	color:#5D6D7C
+	color:#5D6D7C;
 }
 
 .rightHUD_carousel .right_hud_decline:hover{
-	text-decoration:underline
+	background-position: right -16px;
 }
 .gdScoreInfoDiv table{
 	font-size: 20px;
