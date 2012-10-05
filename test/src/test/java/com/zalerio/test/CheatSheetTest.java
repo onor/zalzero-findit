@@ -32,5 +32,6 @@ public class CheatSheetTest extends ZalerioBaseTest {
 		// Check if the button shows Cheat Sheet
 		String cheatSheet = cheatSheetDiv.getAttribute("class");
 		assertEquals(cheatSheet, "friendChallenge");
+		// scroll needs to be done
 	}
 }

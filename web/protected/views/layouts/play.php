@@ -56,7 +56,7 @@
         $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zaleroJs_header.js');
         $cs->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.jscrollpane.min.js');
         $cs->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.mousewheel.js');
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/OrbiterMicro_1.1.0.514_Release_min.js');
+        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/OrbiterMicro_2.0.0.782_Release_min.js');
         $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zalerioScript.js');
         $cs->registerScriptFile(Yii::app()->baseUrl . '/lib/require.js');
         $cs->registerScriptFile(Yii::app()->baseUrl . '/dist/zalzero.tutorial-build.js');
