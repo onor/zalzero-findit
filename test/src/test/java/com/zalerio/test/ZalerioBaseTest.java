@@ -48,9 +48,10 @@ public class ZalerioBaseTest  implements SauceOnDemandSessionIdProvider {
         //capabillities.setCapability("version", "15");
         capabillities.setCapability("platform", Platform.VISTA);
         capabillities.setCapability("name",  testName.getMethodName());
-        this.driver = new RemoteWebDriver(
+       this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabillities);
+        //this.driver = new FirefoxDriver();
         this.sessionId = ((RemoteWebDriver)driver).getSessionId().toString();
         
         // Open the Game

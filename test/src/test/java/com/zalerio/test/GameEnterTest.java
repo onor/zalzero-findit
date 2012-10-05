@@ -8,9 +8,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
-public class GameEnterTest extends ZalerioBaseTest {
+import com.zalerio.config.GameUtil;
 
+public class GameEnterTest extends ZalerioBaseTest {
+	@Test
 	public void nonSecuredGameOpenTest() {
+		GameUtil.closeGameEndPopUp(driver);
 		try {
 			WebElement playHereButton = driver.findElement(By.className("playhere"));
 			if(playHereButton.isDisplayed()) {
@@ -32,7 +35,9 @@ public class GameEnterTest extends ZalerioBaseTest {
 		assertEquals(startButton.isDisplayed(),true);
 	}
 	
+	@Test
 	public void nonSecuredStartANewGame() {
+		GameUtil.closeGameEndPopUp(driver);
 		// If Game End Pop up Found then dismiss it
 		try {
 			WebElement dismiss = driver.findElement(By.className("dismiss"));
