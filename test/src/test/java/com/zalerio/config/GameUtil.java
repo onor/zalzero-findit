@@ -1,16 +1,13 @@
-package com.zalerio.test;
+package com.zalerio.config;
 
-
-import static junit.framework.Assert.assertEquals;
-
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class GameEnterTest extends ZalerioBaseTest {
-
-	public void nonSecuredGameOpenTest() {
+public class GameUtil {
+	
+	public static void clickPlayHereForMultiTabIssue(WebDriver driver) {
 		try {
 			WebElement playHereButton = driver.findElement(By.className("playhere"));
 			if(playHereButton.isDisplayed()) {
@@ -26,13 +23,9 @@ public class GameEnterTest extends ZalerioBaseTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		// Click Start a New Game
-		WebElement startButton = driver.findElement(By.id("startButton"));
-		assertEquals(startButton.isDisplayed(),true);
 	}
 	
-	public void nonSecuredStartANewGame() {
+	public static void closeGameEndPopUp(WebDriver driver) {
 		// If Game End Pop up Found then dismiss it
 		try {
 			WebElement dismiss = driver.findElement(By.className("dismiss"));
@@ -43,14 +36,6 @@ public class GameEnterTest extends ZalerioBaseTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		// Click Start a New Game
-		WebElement startButton = driver.findElement(By.id("startButton"));
-		startButton.click();
-		
-		WebElement findFriendsHeader = driver.findElement(By.className("findfriend"));
-		assertEquals(findFriendsHeader.isDisplayed(),true);
 	}
-	
 
 }
