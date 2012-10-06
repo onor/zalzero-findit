@@ -44,43 +44,8 @@ class SiteController extends Controller
 		if(true) {
 			// if user session is not generated the session by redirecting user to application session generation page
 			if(!is_numeric($userId)) {
-				$userid = $userId;
-				$this->_identity = new FacebookIdentity($userid,'');
 				
-				switch($this->_identity->authenticate()) {
-				
-					case FacebookIdentity::ERROR_UNKNOWN_IDENTITY:
-						$this->redirect(array('/registration/fbregister', 'facebook' => $this->_identity->id));
-						break;
-							
-					case FacebookIdentity::ERROR_NONE:
-						//$this->_logouturl = $_GET['logout'];
-				
-						Yii::app()->user->login($this->_identity);
-						// redirect login user to game board page
-						if(isset(Yii::app()->session['gameinst_id'])) {
-							$gameinst_id = Yii::app()->session['gameinst_id'];
-							update_loggedin_user_status($userid,$username);
-							update_invitation_status($userid);
-							unset(Yii::app()->session['gameinst_id']);
-							$this->redirect(Yii::app()->homeUrl.'?gameinst_id='.$gameinst_id);
-							exit;
-						} else {
-							update_loggedin_user_status($userid,$username);
-							update_invitation_status($userid);
-							$this->redirect(Yii::app()->homeUrl.'gameinst/play?gameinst_id=0');
-						}
-						break;
-							
-					default: // should not happen... just in case -> get out of here (see below)
-						$this->redirect('/');
-						break;
-				}	
-				
-			//	$urlForGeneratingSession = "/site/fbLogin?user_email=mymail.anupam@gmail.com&user_fbid=$facebookUserId";
-				//$this->redirect(array("$urlForGeneratingSession"));
-				//echo("<script> top.location.href='" . $urlForGeneratingSession . "'</script>");
-				exit;
+				$this->loginUser($userId, $userEmail);
 			}
 			// If user session is already present into the system
 			if(is_numeric($userId)) {
@@ -182,7 +147,48 @@ class SiteController extends Controller
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}
+/**
+ * set user auth
+ * @param int $userid
+ * @param string $username
+ */
+	public function loginUser($userid,$username){
+		
+		$this->_identity = new FacebookIdentity($userid,'');
+		
+		switch($this->_identity->authenticate()) {
+		
+			case FacebookIdentity::ERROR_UNKNOWN_IDENTITY:
+				$this->redirect(array('/'));
+				break;
+					
+			case FacebookIdentity::ERROR_NONE:
+				//$this->_logouturl = $_GET['logout'];
+		
+				Yii::app()->user->login($this->_identity);
+				// redirect login user to game board page
+				if(isset(Yii::app()->session['gameinst_id'])) {
+					$gameinst_id = Yii::app()->session['gameinst_id'];
+					update_loggedin_user_status($userid,$username);
+					update_invitation_status($userid);
+					unset(Yii::app()->session['gameinst_id']);
+					$this->redirect(Yii::app()->homeUrl.'?gameinst_id='.$gameinst_id);
+					exit;
+				} else {
+					update_loggedin_user_status($userid,$username);
+					update_invitation_status($userid);
+					$this->redirect(Yii::app()->homeUrl.'gameinst/play?gameinst_id=0');
+				}
+				break;
+					
+			default: // should not happen... just in case -> get out of here (see below)
+				
+				$this->redirect('/');
+				break;
+		}
+	}
 
+	// TODO: verify it is in use or not, remove if not in use 
 	public function actionFblogin() {
 
 		if($this->_identity === null) {
