@@ -75,7 +75,7 @@ class SiteController extends Controller
 					default: // should not happen... just in case -> get out of here (see below)
 						$this->redirect('/');
 						break;
-						
+				}	
 				
 			//	$urlForGeneratingSession = "/site/fbLogin?user_email=mymail.anupam@gmail.com&user_fbid=$facebookUserId";
 				//$this->redirect(array("$urlForGeneratingSession"));
