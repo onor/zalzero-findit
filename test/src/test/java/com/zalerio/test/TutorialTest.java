@@ -65,7 +65,7 @@ public class TutorialTest extends ZalerioBaseTest {
 				.release(tile9).build();
 		dragAndDrop.perform();
 		try {
-			Thread.sleep(30000);
+			Thread.sleep(25000);
 		} catch (InterruptedException e) {
 		}
 		// click OK on popup
