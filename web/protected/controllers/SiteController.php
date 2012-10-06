@@ -44,7 +44,7 @@ class SiteController extends Controller
 		if(true) {
 			// if user session is not generated the session by redirecting user to application session generation page
 			if(!is_numeric($userId)) {
-				
+				$userid = $userId;
 				$this->_identity = new FacebookIdentity($userid,'');
 				
 				switch($this->_identity->authenticate()) {
