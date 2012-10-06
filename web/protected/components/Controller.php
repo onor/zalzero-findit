@@ -27,11 +27,11 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-	
+
 	public $facebook;
-	
+
 	public $oauth_token;
-	
+
 	function __construct($id,$module=null) {
 
 		parent::__construct($id, $module);
@@ -53,61 +53,66 @@ class Controller extends CController
 	public function filterFacebook($filterChain) {
 
 		if(isset($_REQUEST["signed_request"])){
-				
+
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
-				
+
 			$data = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
-				
+
 			if(!empty($data["oauth_token"])){
-				
-				
-				
+
+
+
 				// get user if exists
 				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
 
 				if($userSatus){
-					
+
 					Yii::app()->session['fbid'] = $userSatus->user_fbid;
 					Yii::app()->session['fb_email'] = $userSatus->user_email;
-					
+
 				}else{
-					
+
 					// get facebook me data
 					$facebookUser	=	$this->get_fb_user_info($data["oauth_token"]);
-					
+
 					Yii::app()->session['fbid'] = $facebookUser->id;
-					
+
 					$model = new Zzuser;
-		
+
 					$model->user_name	=	$facebookUser->name;
-					
+
 					// User First Name
 					$model->user_fname	=	$facebookUser->first_name;
-					
+
 					// user Last name
 					$model->user_lname	=	$facebookUser->last_name;
-					
+
 					// user facebook id
 					$model->user_fbid	=	$facebookUser->id;
-					
+
 					if(isset($facebookUser->email)){
 						$model->user_email	=	$facebookUser->email;
 					}else{
 						$model->user_email	=	$facebookUser->id.'@facebook.com';
 					}
-					
+
 					$model->user_handle		=	$facebookUser->id.'@facebook.com';
-					
+
 					$model->zzuser_status	=	'';
-					
+
 					$model->save();
 				}
+				
+				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
+				Yii::app()->session['fbid'] = $userSatus->user_fbid;
+				Yii::app()->session['fb_email'] = $userSatus->user_email;
+				
 			}
-				
+
 			$filterChain->run();
-				
+
 		}else{
-			
+
 			$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
 
 			$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage);
@@ -153,7 +158,7 @@ class Controller extends CController
 		}
 		return $decoded_response;  // success
 	}
-	
+
 	// we should have access token now
 	function curl_get_file_contents($URL) {
 		$c = curl_init();

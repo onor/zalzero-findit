@@ -5,8 +5,7 @@ require_once('FBNotificationService.php');
 // function to create a new user
 function createFacebookUser($Zzuser) {
 	$model=new Zzuser;
-    $facebook = Yii :: app()->params['facebook'];
-    $canvasUrl = $facebook->getCanvasPage();
+
     if(isset($Zzuser))     // If we have the user's data of whom the account is to be created
     {
 		// Check if the user does not existes in the database by users facebook id
@@ -67,19 +66,22 @@ function getListOfInvitedUsers($fbUserData) {
 function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 
 	if (Yii::app()->request->isAjaxRequest) {
-		$facebook = Yii :: app()->params['facebook'];
-		$canvasUrl = $facebook->getCanvasPage();
-		$loggedInFbId = $facebook->getUser();
-		$fbme = $facebook->api('/me');
-		$loggedInUserName = $fbme['name'];
+	
+		$loggedInFbId = Yii::app()->user->getState('user_fbid');
+		
+		$loggedInUserName = Yii::app()->user->getState('user_name');
+		
 		$fbUserFriends = $getFbUsersInvitedData;
+		
 		$userId = Yii::app()->user->getId();
+		
 		$getLoggedinUserEmail = getUserEmailId($userId);
 		// $gameId = $_REQUEST['gameseat_gameinst_id'];
 
 		// Get an instance of the Facebook class distributed as the PHP SDK by facebook:
 		$getFbCredentialsObj = new getFbCredentials();
 		$getFbCredentials = $getFbCredentialsObj->getFbAppData();
+		
 		$fbNotificationService = new FBNotificationService($getFbCredentials['fbAppID'], $getFbCredentials['fbAppSecretId']);
 
 		foreach ($fbUserFriends as $fbUser) {
@@ -106,10 +108,10 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
            
 				$message = get_message_to_email($fbUserFriends,$id);
 				if(count($fbUserFriends) == 1) {
-					$notification = '{'.$fbme['id'].'} wants to play ZALERIO with ' . $message;
+					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message;
 					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' now!</a>';
 				} else {
-					$notification = '{'.$fbme['id'].'} wants to play ZALERIO with ' . $message;
+					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message;
 					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Join your friends now!</a>';
 				}
 				
