@@ -1,5 +1,6 @@
 <?php
 // function to create a new user
+require_once('fbappconfig.php');
 
 function createFacebookUser($Zzuser) {
 $model=new Zzuser;
@@ -78,6 +79,20 @@ if (Yii::app()->request->isAjaxRequest) {
  $userId = Yii::app()->user->getId();
  $getLoggedinUserEmail = getUserEmailId($userId);
 // $gameId = $_REQUEST['gameseat_gameinst_id'];
+
+    // Get an instance of the Facebook class distributed as the PHP SDK by facebook:
+    $getFbCredentialsObj = new getFbCredentials();
+    $getFbCredentials = $getFbCredentialsObj->getFbAppData();
+    $app_id = $getFbCredentials['fbAppID'];
+    $app_secret = $getFbCredentials['fbAppSecretId'];
+
+  $token_url = "https://graph.facebook.com/oauth/access_token?" .
+    "client_id=" . $app_id .
+    "&client_secret=" . $app_secret .
+    "&grant_type=client_credentials";
+
+  $app_access_token = file_get_contents($token_url);
+
  
  foreach ($fbUserFriends as $fbUser) {
         $name = $fbUser['name'];
@@ -101,15 +116,26 @@ if (Yii::app()->request->isAjaxRequest) {
            
        	   $message = get_message_to_email($fbUserFriends,$id);
 	   if(count($fbUserFriends) == 1) {
+		   $notification = '{'.$fbme['id'].'} wants to play ZALERIO with ' . $message;
 	   $body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' now!</a>';
 	   } else {
+		   $notification = '{'.$fbme['id'].'} wants to play ZALERIO with ' . $message;
            $body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Join your friends now!</a>';
 	   }
 	//    $body ='<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Find IT game Invitation</a>';
-           if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
-	    // send emails to the invited users
-            mail($fbEmail,'Find IT',$body, $headers);
-           }
+	//urlencode($notification) 
+		   $apprequest_url ="https://graph.facebook.com/" . $id . '/notifications?' . $app_access_token . '&template=' . urlencode($notification) . '&href=?gameinst_id=' . $gameId . "&method=post";
+		   $result = @file_get_contents($apprequest_url);
+
+		   $resultObj = json_decode($result);
+
+			if(!isset($resultObj->success)) {
+				// In case of the error Send Email
+				if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
+					// send emails to the invited users
+					mail($fbEmail,'Find IT',$body, $headers);
+				}
+			}
 	   // if user is not active in system the insert him with status invited
 	   // checking if the user is in active state in zzusers table or not. If not then we are going to insert in zzinvitre table
 	   $checkForExistenceData = Zzuser::model()->findByAttributes(array('user_fbid'=>$id,'zzuser_status'=>'invited'));
