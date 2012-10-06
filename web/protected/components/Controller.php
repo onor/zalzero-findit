@@ -1,10 +1,11 @@
 <?php
-Yii::import('application.vendors.*');
+
 Yii::import('application.config.*');
-require_once('facebook-php-sdk-b14edfa/src/facebookwrapper.php');
+
 require_once('fbappconfig.php');
 require_once('GameServices.php');
 require_once("UserServices.php");
+
 /**
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
@@ -26,80 +27,143 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-        
+	
+	public $facebook;
+	
+	public $oauth_token;
+	
 	function __construct($id,$module=null) {
-    parent::__construct($id, $module);
-    // Get an instance of the Facebook class distributed as the PHP SDK by facebook:
-    $getFbCredentialsObj = new getFbCredentials();
-    $getFbCredentials = $getFbCredentialsObj->getFbAppData();
-    $fbAppID = $getFbCredentials['fbAppID'];
-    $fbAppSecretId = $getFbCredentials['fbAppSecretId'];
-    $fbCanvasPage = $getFbCredentials['fbCanvasPage'];
-    $fbCanvasUrl = $getFbCredentials['fbCanvasUrl'];
-    $fbAppName = $getFbCredentials['fbAppName'];
 
-     Yii::app()->params['facebook'] = new FacebookWrapper(array(
-      'appId'  => $fbAppID,
-      'secret' => $fbAppSecretId,
-      'cookie' => true,
-      'appName' => $fbAppName,
-      'canvasPage' => $fbCanvasPage,
-      'canvasUrl'  => $fbCanvasUrl
-      ));
-  }
+		parent::__construct($id, $module);
 
-  /**
-   * Filters for all the request coming to facebook application 
-   */
-  public function filters() {
-    return array(
-            'facebook',
-    );
-  }
+		// Get an instance of the Facebook class distributed as the PHP SDK by facebook:
+		$this->facebook = new facebookCredetials();
 
- public function filterFacebook($filterChain) {
-    header('P3P: CP="CAO PSA OUR"');
-    $facebook = Yii::app()->params['facebook'];
-    $session = $facebook->getSession();
-    $fbme = null;
-    if ($session) {
-      try {
-        $uid = $facebook->getUser();
-        $fbme = $facebook->api('/me');
-      } catch (FacebookApiException $e) {
-        print_r("<pre>".$e."</pre>");
-      }
-    }
-    if ($fbme) {
-      // call $filterChain->run() to continue filtering and action execution
-      $filterChain->run();
-    }
-    else {
-      $appId = $facebook->getAppId();
-      if(isset($_REQUEST['gameinst_id']) && is_numeric($_REQUEST['gameinst_id'])) {
-      		$canvasUrl = $facebook->getCanvasPage()."?gameinst_id=".$_REQUEST['gameinst_id'];
-      } 
-      else {
-		$canvasUrl = $facebook->getCanvasPage();
-      }
-	// Set the required permissions for the application
-      $perms = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
-      $loginUrl = "https://www.facebook.com/dialog/oauth?scope=".$perms.
-        "&client_id=".$facebook->getAppId().
-        "&redirect_uri=".urlencode($canvasUrl);
-      echo("<script> top.location.href='" . $loginUrl . "'</script>");
-      Yii::app()->end();
-    }
-  }
+	}
+
+	/**
+	 * Filters for all the request coming to facebook application
+	 */
+	public function filters() {
+		return array(
+				'facebook',
+		);
+	}
+
+	public function filterFacebook($filterChain) {
+
+		if(isset($_REQUEST["signed_request"])){
+				
+			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
+				
+			$data = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
+				
+			if(!empty($data["oauth_token"])){
+				
+				
+				
+				// get user if exists
+				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
+
+				if($userSatus){
+					
+					Yii::app()->session['fbid'] = $userSatus->user_fbid;
+					
+				}else{
+					
+					// get facebook me data
+					$facebookUser	=	$this->get_fb_user_info($data["oauth_token"]);
+					
+					Yii::app()->session['fbid'] = $facebookUser->id;
+					
+					$model = new Zzuser;
+		
+					$model->user_name	=	$facebookUser->name;
+					
+					// User First Name
+					$model->user_fname	=	$facebookUser->first_name;
+					
+					// user Last name
+					$model->user_lname	=	$facebookUser->last_name;
+					
+					// user facebook id
+					$model->user_fbid	=	$facebookUser->id;
+					
+					if(isset($facebookUser->email)){
+						$model->user_email	=	$facebookUser->email;
+					}else{
+						$model->user_email	=	$facebookUser->id.'@facebook.com';
+					}
+					
+					$model->user_handle		=	$facebookUser->id.'@facebook.com';
+					
+					$model->zzuser_status	=	'';
+					
+					$model->save();
+				}
+			}
+				
+			$filterChain->run();
+				
+		}else{
+			
+			$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
+
+			$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage);
+
+			echo("<script> top.location.href='" . $auth_url . "'</script>");
+
+			Yii::app()->end();
+
+			exit;
+		}
+
+	}
+
+	function get_fb_user_info($oauth_token = false)
+	{
+		if ($oauth_token !== false){
+			// oatuh token set
+			$this->oauth_token = $oauth_token;
+
+		}elseif( !$this->oauth_token ) {
+			// if access token not set
+			$this->set_access_token();
+		}
+
+		// Attempt to query the graph:
+		$graph_url = "https://graph.facebook.com/me?". "access_token=" . $this->oauth_token;
+
+		$response = $this->curl_get_file_contents($graph_url);
+
+		$decoded_response = json_decode($response);
+
+		//Check for errors
+		if (@$decoded_response->error) {
+			// check to see if this is an oAuth error:
+			if ($decoded_response->error->type == "OAuthException") {
+				// Retrieving a valid access token.
+				$this->request_oauth();
+				exit;
+			}
+
+			echo "other error has happened";
+			return false;  // error
+		}
+		return $decoded_response;  // success
+	}
 	
-	
-        public function printmodel($model){
-            if(is_object($model) || is_array($model)){
-                echo "<PRE>";
-                echo print_r($model->attributes);
-                echo "</PRE>";
-            }else{
-                echo $model;
-            }
-        }
+	// we should have access token now
+	function curl_get_file_contents($URL) {
+		$c = curl_init();
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c, CURLOPT_URL, $URL);
+		$contents = curl_exec($c);
+		$err = curl_error($c);
+		curl_close($c);
+		if ($err) return $err;
+		// if not error
+		return $contents;
+	}
 }
