@@ -68,6 +68,7 @@ class Controller extends CController
 				if($userSatus){
 					
 					Yii::app()->session['fbid'] = $userSatus->user_fbid;
+					Yii::app()->session['fb_email'] = $userSatus->user_email;
 					
 				}else{
 					

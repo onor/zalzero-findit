@@ -27,8 +27,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
+
 		if(isset($_REQUEST['gameinst_id']) && is_numeric($_REQUEST['gameinst_id'])) {
 			Yii::app()->session['gameinst_id'] = $_REQUEST['gameinst_id'];
 		}
@@ -39,7 +38,7 @@ class SiteController extends Controller
 
 		$userId = Yii::app()->user->getId();
 
-		$userEmail='mymail.anupam@gmail.com';
+		$userEmail = Yii::app()->session['fb_email'];
 		
 		// if user is present in database i.e is a registered user
 		if(true) {
@@ -170,8 +169,8 @@ class SiteController extends Controller
 							
 					case FacebookIdentity::ERROR_NONE:
 						//$this->_logouturl = $_GET['logout'];
-						$duration = 0;
-						Yii::app()->user->login($this->_identity, $duration);
+						
+						Yii::app()->user->login($this->_identity);
 						// redirect login user to game board page
 						if(isset(Yii::app()->session['gameinst_id'])) {
 							$gameinst_id = Yii::app()->session['gameinst_id'];
