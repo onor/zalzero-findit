@@ -2,10 +2,7 @@ package com.zalerio.test;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import com.zalerio.config.GameUtil;
@@ -50,12 +47,8 @@ public class ContactUsTest extends ZalerioBaseTest {
 		// upload_help_contactus
 		WebElement send = driver.findElement(By.id("upload_help_contactus"));
 		send.click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-		}
 		// close window
-		// s_friendpopup
+		
 		WebElement s_friendpopup = driver.findElement(By.id("s_friendpopup"));
 		WebElement close = s_friendpopup.findElement(By.id("close"));
 		close.click();
