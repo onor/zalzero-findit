@@ -51,7 +51,7 @@ class Controller extends CController
 	}
 
 	public function filterFacebook($filterChain) {
-
+	
 		if(isset($_REQUEST["signed_request"])){
 
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
@@ -60,13 +60,11 @@ class Controller extends CController
 
 			if(!empty($data["oauth_token"])){
 
-
-
 				// get user if exists
 				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
 
 				if($userSatus){
-
+					
 					Yii::app()->session['fbid'] = $userSatus->user_fbid;
 					Yii::app()->session['fb_email'] = $userSatus->user_email;
 
@@ -99,13 +97,16 @@ class Controller extends CController
 					$model->user_handle		=	$facebookUser->id.'@facebook.com';
 
 					$model->zzuser_status	=	'';
-
+					
+					$model->user_password = md5($facebookUser->id);
+					
+					$model->user_role_id	= '2';
+					
 					$model->save();
+														
+					Yii::app()->session['fbid'] = $facebookUser->id;
+					Yii::app()->session['fb_email'] = $model->user_email;
 				}
-				
-				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
-				Yii::app()->session['fbid'] = $userSatus->user_fbid;
-				Yii::app()->session['fb_email'] = $userSatus->user_email;
 				
 			}
 
