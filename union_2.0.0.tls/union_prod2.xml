@@ -2,6 +2,7 @@
     <server>
         <admin>
             <port>8000</port>
+			<ip>198.74.48.188</ip>
     	    <password>Cytzmlk1</password>
         </admin>
         <client_timeout>30000</client_timeout>
@@ -25,9 +26,9 @@
 		    <port>443</port>
 		    <policy_file>policy.xml</policy_file>
 		    <ssl>true</ssl>
-		    <keystore>/root/.keystore</keystore>
+		    <keystore>/home/zalerio/ci/cacerts.jks</keystore>
 		    <keystorePassword>de0re,2569</keystorePassword>
-		    <truststore>/root/.keystore</truststore>
+		    <truststore>/home/zalerio/ci/cacerts.jks</truststore>
 		    <truststorePassword>de0re,2569</truststorePassword>
             <access_control_allow_origin>*</access_control_allow_origin>
 		</gateway>
