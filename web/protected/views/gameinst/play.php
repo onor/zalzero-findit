@@ -4,7 +4,9 @@ $this->breadcrumbs = array(
     'play',
 );
 ?>
-
+<script>
+var gameInstId = '<?php echo $gameinst_id ?>';
+</script>
 
 <?php
 if (isset($startGame) || isset($game)) {

@@ -158,61 +158,8 @@ jQuery(function() {
       zzGlobals.roomVars[zzGlobals.roomCodes.USER_TOTAL] = currentNoOfUsers;
       return jDocument.trigger("room:" + zzGlobals.roomCodes.USER_TOTAL, currentNoOfUsers);
     };
-    renderUserVOToUserPanel = function(idx, userVO, userOffline) {
-      userOffline = userOffline || false;
-      if (userVO && userVO[zzGlobals.clientCodes.USER_ID]) {
-        userVOsDivIndex[idx][userDivCodes.USER_LI].style.display = "block";
-        if (userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]) {
-          userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME];
-        } else {
-          userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = "-";
-        }
-        if (userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] && userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2) {
-          userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture";
-        } else {
-          userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = DEFAULT_PLAYER_IMG_URL;
-        }
-        if (userOffline) {
-          return userVOsDivIndex[idx][userDivCodes.USER_ONLINE_STATUS].className = "user-offline";
-        } else {
-          return userVOsDivIndex[idx][userDivCodes.USER_ONLINE_STATUS].className = "user-online";
-        }
-      }
-    };
+    renderUserVOToUserPanel = function(idx, userVO, userOffline) {};
     drawUserPanel = function() {
-      var i, playerListUl, userDisplayNameDiv, userImg, userImgDiv, userLi, userOnlineStatusDiv, userVODivIndexObj, userVOIndex;
-      userVOIndex = {};
-      playerListUl = document.getElementById("nowPlayers");
-      playerListUl.innerHML = "";
-      i = 0;
-      while ((0 <= MAX_PLAYERS_IN_A_GAME ? i < MAX_PLAYERS_IN_A_GAME : i > MAX_PLAYERS_IN_A_GAME)) {
-        userLi = document.createElement("li");
-        userLi.style.display = "none";
-        userImgDiv = document.createElement("div");
-        userImgDiv.className = "imgOfWn";
-        userImg = document.createElement("img");
-        userImg.src = DEFAULT_PLAYER_IMG_URL;
-        userImgDiv.appendChild(userImg);
-        userOnlineStatusDiv = document.createElement("div");
-        userOnlineStatusDiv.className = "offline";
-        userImgDiv.appendChild(userOnlineStatusDiv);
-        userLi.appendChild(userImgDiv);
-        userDisplayNameDiv = document.createElement("div");
-        userDisplayNameDiv.className = "uName";
-        userLi.appendChild(userDisplayNameDiv);
-        playerListUl.appendChild(userLi);
-        userVODivIndexObj = {};
-        userVODivIndexObj[userDivCodes.USER_LI] = userLi;
-        userVODivIndexObj[userDivCodes.USER_IMAGE] = userImg;
-        userVODivIndexObj[userDivCodes.USER_DISPLAY_NAME] = userDisplayNameDiv;
-        userVODivIndexObj[userDivCodes.USER_ONLINE_STATUS] = userOnlineStatusDiv;
-        userVOsDivIndex[i] = userVODivIndexObj;
-        if (0 <= MAX_PLAYERS_IN_A_GAME) {
-          i++;
-        } else {
-          i--;
-        }
-      }
       flag_drawUserPanel = true;
       return refreshUserPanel();
     };
@@ -464,38 +411,7 @@ jQuery(function() {
         return updateUserIndexForSeatIdViaOfflinePlayers();
       }
     };
-    renderUserVOToUserPanel = function(idx, userVO, userOffline, userSerial) {
-      var userDisplayName, userFacebookImgUrl;
-      userDisplayName = void 0;
-      userFacebookImgUrl = void 0;
-      userOffline = userOffline || false;
-      if (userVOsDivIndex[idx] && userVO && userVO[zzGlobals.clientCodes.USER_ID]) {
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_TR].style.visibility = "visible";
-        userDisplayName = "-";
-        if (userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME] != null) {
-          userDisplayName = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME];
-        }
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_NAME].innerHTML = userDisplayName;
-        userFacebookImgUrl = DEFAULT_PLAYER_IMG_URL;
-        if ((userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] != null) && userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2) {
-          userFacebookImgUrl = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture";
-        }
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SERAIL].innerHTML = userSerial + ".";
-        if (userVO[zzGlobals.clientCodes.USER_SEAT_ID]) {
-          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = userScoreObj[userVO[zzGlobals.clientCodes.USER_SEAT_ID]];
-        } else {
-          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = 0;
-        }
-        if (zzGlobals.roomVars.PP.indexOf(userVO[zzGlobals.clientCodes.USER_SEAT_ID]) !== -1) {
-          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).removeClass("arrowclass");
-        } else {
-          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).addClass("arrowclass");
-        }
-        if (isDevEnvironment) {
-          return console.log(userScoreObj);
-        }
-      }
-    };
+    renderUserVOToUserPanel = function(idx, userVO, userOffline, userSerial) {};
     drawUserPanel = function() {
       var i, playerListTopHUDTbl, s, scoreArray, seatId, seatIdArray, userObject, userTopHUDBetsPlacedTd, userTopHUDNameTd, userTopHUDScoreTd, userTopHUDSerialNumTd, userTopHUDTr, usersInfoObject, usersInfoObjectx, usersObject, usersScoreObject, x, y;
       if (isDevEnvironment) {

@@ -1,11 +1,20 @@
 <?php
-class getFbCredentials {
 
- private $fbAppIDcredetials;
-      
- public function  getFbAppData() {
+class facebookCredetials {
 
-        $this->fbAppIDcredetials = array('fbAppID'=>'419756618072782','fbAppSecretId'=>'0d702ed8e96cc385896b75b692e2d1b9','fbCanvasPage'=>'http://apps.facebook.com/zalzero/','fbCanvasUrl'=>'https://localhost/zalerio/','fbAppName'=>'Find It');
-        return $this->fbAppIDcredetials;
- }
+	public $config;
+
+	public function  __construct() {
+
+		$config = new stdClass();
+
+		$config->appId			=	'419756618072782';
+		$config->appSecretId	=	'0d702ed8e96cc385896b75b692e2d1b9';
+		$config->canvasPage		=	'http://apps.facebook.com/zalzero/';
+		$config->canvasUrl		=	'https://localhost/zalerio/';
+		$config->appName		=	'Find It';
+		
+		$this->config = $config;
+
+	}
 }
