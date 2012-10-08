@@ -17,7 +17,11 @@ define ["../../config/config"], (config) ->
     	$("#gameInfo-game-players").empty()
     	userList = $ """<div class="background"></div>"""
     	for seatID of plrs
-    		continue if zzGlobals.currentUserDBId is plrs[seatID].UI    		
+    		
+    		continue if zzGlobals.currentUserDBId is plrs[seatID].UI or plrs[seatID].GSS isnt 1 and plrs[seatID].GSS isnt 2 
+    		
+    		remind_user = ''
+    		
     		userPlayStatusText = "not played yet"
     		userPlayStatusClassName = "userPlayStatus"
 	    	if plrs[seatID].CRS is 0
@@ -29,7 +33,15 @@ define ["../../config/config"], (config) ->
 	    		userPlayStatusText = "finished round"
 	    		userPlayStatusClassName = "userPlayStatus green"
 	    	
+	    	if plrs[seatID].GSS is 1
+	    		userPlayStatusClassName = "userPlayStatus red"
+	    		userPlayStatusText = "not accepted yet"    	
+	    		remind_user = """<div class="reminder">Remind</div>"""
+	    		
+	    	fbUser = [];
+	    	fbUser[0] = plrs[seatID].PFB;
 	    	userList.append """ <div class="infoPlate">
+									#{remind_user}
 									<div class="userAreaImg" id="">
 											<img class="userlevelbelt" src="#{baseUrl}/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/#{config.userLevelImgBig[parseInt(plrs[seatID].PL) - 1]}" />
 			                                <img class="backendImage #{if plrs[seatID].PON isnt 1 then "offline" }" src="http://graph.facebook.com/#{plrs[seatID].PFB}/picture" />
@@ -41,6 +53,10 @@ define ["../../config/config"], (config) ->
 									</div>
 						 </div>
 					"""
+	    	$('.reminder',userList).click(->
+	    		remindUser(gameInstId, fbUser);
+	    	)
+			
     	$("#gameInfo-game-players").append userList
 
     

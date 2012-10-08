@@ -514,7 +514,7 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
           urDiv.append("<div class=\"round_no\">" + message[gameId].CR + "</div>");
         }
         if (message[gameId].ED) {
-          urDiv.append("<div class=\"game_end_time\">" + (monthNames[dateStart.getMonth()] + ' ' + dateStart.getDate()) + "</div>");
+          urDiv.append("<div class=\"game_end_time\">" + (monthNames[dateStart.getMonth() - 1] + ' ' + dateStart.getDate()) + "</div>");
         }
         for (index in message[gameId].PLSC) {
           gameSeatID = message[gameId].PLSC[index];
@@ -569,7 +569,7 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
             $("#right_hud_" + gameId).find('.round_no').text(message[gameId].CR);
           }
           if (message[gameId].ED) {
-            $("#right_hud_" + gameId).find('.game_end_time').html(monthNames[dateStart.getMonth()] + ' ' + dateStart.getDate());
+            $("#right_hud_" + gameId).find('.game_end_time').html(monthNames[dateStart.getMonth() - 1] + ' ' + dateStart.getDate());
           }
           for (gameSeatID in message[gameId].PLRS) {
             if (typeof message[gameId].PLRS[gameSeatID].PON !== "undefined") {
@@ -709,14 +709,15 @@ define('leftHudController',["../../config/config"], function(config) {
     }
   };
   updateLeftHud = function() {
-    var plrs, seatID, userList, userPlayStatusClassName, userPlayStatusText;
+    var fbUser, plrs, remind_user, seatID, userList, userPlayStatusClassName, userPlayStatusText;
     plrs = zzGlobals.dataObjVars.AP.PLRS;
     $("#gameInfo-game-players").empty();
     userList = $("<div class=\"background\"></div>");
     for (seatID in plrs) {
-      if (zzGlobals.currentUserDBId === plrs[seatID].UI) {
+      if (zzGlobals.currentUserDBId === plrs[seatID].UI || plrs[seatID].GSS !== 1 && plrs[seatID].GSS !== 2) {
         continue;
       }
+      remind_user = '';
       userPlayStatusText = "not played yet";
       userPlayStatusClassName = "userPlayStatus";
       if (plrs[seatID].CRS === 0) {
@@ -728,7 +729,17 @@ define('leftHudController',["../../config/config"], function(config) {
         userPlayStatusText = "finished round";
         userPlayStatusClassName = "userPlayStatus green";
       }
-      userList.append(" <div class=\"infoPlate\">\n									<div class=\"userAreaImg\" id=\"\">\n											<img class=\"userlevelbelt\" src=\"" + baseUrl + "/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/" + config.userLevelImgBig[parseInt(plrs[seatID].PL) - 1] + "\" />\n			                                <img class=\"backendImage " + (plrs[seatID].PON !== 1 ? "offline" : void 0) + "\" src=\"http://graph.facebook.com/" + plrs[seatID].PFB + "/picture\" />\n			                        </div>\n									<div class=\"userinfo\">\n										<div class=\"username\">" + plrs[seatID].PDN + "</div>\n										<div class=\"lastPlayed\">" + (plrs[seatID].PLP ? plrs[seatID].PLP : '') + "</div>\n										<div class=\"" + userPlayStatusClassName + "\">" + userPlayStatusText + "</div>\n									</div>\n</div>");
+      if (plrs[seatID].GSS === 1) {
+        userPlayStatusClassName = "userPlayStatus red";
+        userPlayStatusText = "not accepted yet";
+        remind_user = "<div class=\"reminder\">Remind</div>";
+      }
+      fbUser = [];
+      fbUser[0] = plrs[seatID].PFB;
+      userList.append(" <div class=\"infoPlate\">\n									" + remind_user + "\n									<div class=\"userAreaImg\" id=\"\">\n											<img class=\"userlevelbelt\" src=\"" + baseUrl + "/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/" + config.userLevelImgBig[parseInt(plrs[seatID].PL) - 1] + "\" />\n			                                <img class=\"backendImage " + (plrs[seatID].PON !== 1 ? "offline" : void 0) + "\" src=\"http://graph.facebook.com/" + plrs[seatID].PFB + "/picture\" />\n			                        </div>\n									<div class=\"userinfo\">\n										<div class=\"username\">" + plrs[seatID].PDN + "</div>\n										<div class=\"lastPlayed\">" + (plrs[seatID].PLP ? plrs[seatID].PLP : '') + "</div>\n										<div class=\"" + userPlayStatusClassName + "\">" + userPlayStatusText + "</div>\n									</div>\n</div>");
+      $('.reminder', userList).click(function() {
+        return remindUser(gameInstId, fbUser);
+      });
     }
     return $("#gameInfo-game-players").append(userList);
   };
