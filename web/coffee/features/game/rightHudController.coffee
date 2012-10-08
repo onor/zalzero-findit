@@ -11,7 +11,7 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
    				
 				urDiv.append """<div class="round_no">#{message[gameId].CR}</div>"""  if message[gameId].CR
 				
-				urDiv.append """<div class="game_end_time">#{ monthNames[dateStart.getMonth()]+' '+dateStart.getDate()}</div>"""  if message[gameId].ED
+				urDiv.append """<div class="game_end_time">#{ monthNames[dateStart.getMonth()-1]+' '+dateStart.getDate()}</div>"""  if message[gameId].ED
 				
 				for index of message[gameId].PLSC
 					gameSeatID = message[gameId].PLSC[index]
@@ -61,7 +61,7 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 	            
 					$("#right_hud_" + gameId).find('.round_no').text message[gameId].CR  if message[gameId].CR	# update game round
 	            
-					$("#right_hud_" + gameId).find('.game_end_time').html monthNames[dateStart.getMonth()]+' '+dateStart.getDate()  if message[gameId].ED	#update game end time
+					$("#right_hud_" + gameId).find('.game_end_time').html monthNames[dateStart.getMonth()-1]+' '+dateStart.getDate()  if message[gameId].ED	#update game end time
 	            
 					for gameSeatID of message[gameId].PLRS                  
 					## update online status
