@@ -1,5 +1,5 @@
 <?php
-require_once('fbappconfig.php');
+Yii::import('application.config.*');
 require_once('FBNotificationService.php');
 
 // function to create a new user
@@ -79,10 +79,10 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 		// $gameId = $_REQUEST['gameseat_gameinst_id'];
 
 		// Get an instance of the Facebook class distributed as the PHP SDK by facebook:
-		$getFbCredentialsObj = new getFbCredentials();
-		$getFbCredentials = $getFbCredentialsObj->getFbAppData();
-		
-		$fbNotificationService = new FBNotificationService($getFbCredentials['fbAppID'], $getFbCredentials['fbAppSecretId']);
+		//TODO: 
+		$getFbCredentials = new facebookCredetials();
+				
+		$fbNotificationService = new FBNotificationService($getFbCredentials->config->appId, $getFbCredentials->config->appSecretId);
 
 		foreach ($fbUserFriends as $fbUser) {
 			$name = $fbUser['name'];
@@ -109,10 +109,10 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 				$message = get_message_to_email($fbUserFriends,$id);
 				if(count($fbUserFriends) == 1) {
 					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message;
-					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' now!</a>';
+					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' now!</a>';
 				} else {
 					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message;
-					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Join your friends now!</a>';
+					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join your friends now!</a>';
 				}
 				
 				//    $body ='<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Find IT game Invitation</a>';
@@ -136,9 +136,9 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 				$headers .= "From: $getLoggedinUserEmail" . "\r\n";
 				$message = get_message_to_email($fbUserFriends,$id);
 				if(count($fbUserFriends) == 1) {
-					$body =$loggedInUserName.' wants to rematch you in ZALERIO game. Take the challenge - <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' now!</a>';
+					$body =$loggedInUserName.' wants to rematch you in ZALERIO game. Take the challenge - <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' now!</a>';
 				} else {
-					$body =$loggedInUserName.' wants to rematch you in ZALERIO game. Take the challenge - <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' and other friends now!</a>';
+					$body =$loggedInUserName.' wants to rematch you in ZALERIO game. Take the challenge - <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' and other friends now!</a>';
 				}
 				if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
 					// send emails to the invited users

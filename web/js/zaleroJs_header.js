@@ -1093,6 +1093,7 @@ function remindUser(gameId,UsersData,seatId,userData) {
                     	}catch(err){}                   		
                     });
 }
+
 function acceptInvitation(gameId) {
 	jQuery("#accept_decline_"+gameId).addClass("loader_small");
 	txt = jQuery("#accept_decline_"+gameId).html();

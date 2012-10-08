@@ -52,8 +52,8 @@ class Controller extends CController
 
 	public function filterFacebook($filterChain) {
 	
-		if(isset($_REQUEST["signed_request"])){
-
+		if(isset($_REQUEST["signed_request"]) || isset(Yii::app()->session['fbid'])){
+			
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
 
 			$data = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
@@ -64,7 +64,7 @@ class Controller extends CController
 				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
 
 				if($userSatus){
-					
+										
 					Yii::app()->session['fbid'] = $userSatus->user_fbid;
 					Yii::app()->session['fb_email'] = $userSatus->user_email;
 
@@ -109,14 +109,14 @@ class Controller extends CController
 				}
 				
 			}
-
+			
 			$filterChain->run();
 
 		}else{
-
+			
 			$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
 
-			$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage);
+			$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?gameinst_id=0';
 
 			echo("<script> top.location.href='" . $auth_url . "'</script>");
 
