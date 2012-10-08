@@ -202,7 +202,8 @@ class SiteController extends Controller
 				switch($this->_identity->authenticate()) {
 
 					case FacebookIdentity::ERROR_UNKNOWN_IDENTITY:
-						$this->redirect(array('/registration/fbregister', 'facebook' => $this->_identity->id));
+						echo "error";
+						//$this->redirect(array('/registration/fbregister', 'facebook' => $this->_identity->id));
 						break;
 							
 					case FacebookIdentity::ERROR_NONE:
@@ -214,18 +215,17 @@ class SiteController extends Controller
 							$gameinst_id = Yii::app()->session['gameinst_id'];
 							update_loggedin_user_status($userid,$username);
 							update_invitation_status($userid);
-							unset(Yii::app()->session['gameinst_id']);
-							$this->redirect(Yii::app()->homeUrl.'?gameinst_id='.$gameinst_id);
+							CController::forward("/gameinst/play"); //(Yii::app()->homeUrl.'?gameinst_id='.$gameinst_id);
 							exit;
 						} else {
 							update_loggedin_user_status($userid,$username);
 							update_invitation_status($userid);
-							$this->redirect(Yii::app()->homeUrl.'gameinst/play?gameinst_id=0');
+							CController::forward("/gameinst/play"); //$this->redirect(Yii::app()->homeUrl.'gameinst/play?gameinst_id=0');
 						}
 						break;
 							
 					default: // should not happen... just in case -> get out of here (see below)
-						$this->redirect('/');
+						CController::forward("/gameinst/play");
 						break;
 				}
 			} else {

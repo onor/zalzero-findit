@@ -428,7 +428,7 @@ class GameinstController extends Controller
 								$currentZlroGameRoundId = $model->gameinst_id . '_' . $currentRoundCtr;
 
 
-								//setting endTime for currentRound
+								//setting endTime for currentRoundf
 								if($currentRoundCtr == ($currentGameInstMap["noOfRounds"]-1)){
 									$zlroRoundEndTime = $endTimeInMs ;
 								}else{
@@ -570,7 +570,14 @@ class GameinstController extends Controller
 	}
 
 	public function actionPlay(){
-		$gameinst_id = 0;
+		if (isset($_REQUEST['gameinst_id'])){
+			$gameInstId = $_REQUEST['gameinst_id'];
+		}else{
+			$gameInstId = 0;
+		}
+		
+		$gameinst_id = $gameInstId;
+		
 		$user_id = Yii::app()->user->id;
 		$usersummary = Zzgameusersummary::model()->findByAttributes(array('user_id'=>$user_id));
 		$new_user = false;
