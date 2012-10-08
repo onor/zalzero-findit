@@ -106,24 +106,28 @@ class Controller extends CController
 					Yii::app()->session['fbid'] = $facebookUser->id;
 					Yii::app()->session['fb_email'] = $model->user_email;
 				}
-				
+
+				$filterChain->run();
+			}else{
+				$this->get_auth();
 			}
-			
-			$filterChain->run();
 
-		}else{
-			
-			$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
-
-			$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?gameinst_id=0';
-
-			echo("<script> top.location.href='" . $auth_url . "'</script>");
-
-			Yii::app()->end();
-
-			exit;
 		}
-
+		
+		$this->get_auth();
+	}
+	
+	function get_auth(){
+		
+		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
+		
+		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?gameinst_id=0';
+		
+		echo("<script> top.location.href='" . $auth_url . "'</script>");
+		
+		Yii::app()->end();
+		
+		exit;
 	}
 
 	function get_fb_user_info($oauth_token = false)
