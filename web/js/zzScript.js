@@ -514,7 +514,7 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
           urDiv.append("<div class=\"round_no\">" + message[gameId].CR + "</div>");
         }
         if (message[gameId].ED) {
-          urDiv.append("<div class=\"game_end_time\">" + (monthNames[dateStart.getMonth()] + ' ' + dateStart.getDate()) + "</div>");
+          urDiv.append("<div class=\"game_end_time\">" + (monthNames[dateStart.getMonth() - 1] + ' ' + dateStart.getDate()) + "</div>");
         }
         for (index in message[gameId].PLSC) {
           gameSeatID = message[gameId].PLSC[index];
@@ -569,7 +569,7 @@ define('rightHudController',["../../config/config", "../../helper/sound"], funct
             $("#right_hud_" + gameId).find('.round_no').text(message[gameId].CR);
           }
           if (message[gameId].ED) {
-            $("#right_hud_" + gameId).find('.game_end_time').html(monthNames[dateStart.getMonth()] + ' ' + dateStart.getDate());
+            $("#right_hud_" + gameId).find('.game_end_time').html(monthNames[dateStart.getMonth() - 1] + ' ' + dateStart.getDate());
           }
           for (gameSeatID in message[gameId].PLRS) {
             if (typeof message[gameId].PLRS[gameSeatID].PON !== "undefined") {

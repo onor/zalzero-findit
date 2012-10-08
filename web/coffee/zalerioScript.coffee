@@ -313,26 +313,6 @@ jQuery ->
 
     renderUserVOToUserPanel = (idx, userVO, userOffline, userSerial) ->
     	return;
-#      userDisplayName = undefined
-#      userFacebookImgUrl = undefined
-#      userOffline = userOffline or false
-#      if userVOsDivIndex[idx] and userVO and userVO[zzGlobals.clientCodes.USER_ID]
-#        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_TR].style.visibility = "visible"
-#        userDisplayName = "-"
-#        userDisplayName = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]  if userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]?
-#        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_NAME].innerHTML = userDisplayName
-#        userFacebookImgUrl = DEFAULT_PLAYER_IMG_URL
-#        userFacebookImgUrl = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"  if (userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID]?) and userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2
-#        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SERAIL].innerHTML = userSerial + "."
-#        if userVO[zzGlobals.clientCodes.USER_SEAT_ID]
-#          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = userScoreObj[userVO[zzGlobals.clientCodes.USER_SEAT_ID]]
-#        else
-#          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = 0
-#        unless (zzGlobals.roomVars.PP).indexOf(userVO[zzGlobals.clientCodes.USER_SEAT_ID]) is -1
-#          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).removeClass "arrowclass"
-#        else
-#          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).addClass "arrowclass"
-#        console.log userScoreObj if isDevEnvironment
 
 	# draw left site round panel and score board
     drawUserPanel = ->
