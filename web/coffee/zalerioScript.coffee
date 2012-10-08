@@ -129,33 +129,33 @@ jQuery ->
           userVOsDivIndex[idx][userDivCodes.USER_ONLINE_STATUS].className = "user-online"
 
     drawUserPanel = ->
-      userVOIndex = {}
-      playerListUl = document.getElementById("nowPlayers")
-      playerListUl.innerHML = ""
-      i = 0
-      while (if 0 <= MAX_PLAYERS_IN_A_GAME then i < MAX_PLAYERS_IN_A_GAME else i > MAX_PLAYERS_IN_A_GAME)
-        userLi = document.createElement("li")
-        userLi.style.display = "none"
-        userImgDiv = document.createElement("div")
-        userImgDiv.className = "imgOfWn"
-        userImg = document.createElement("img")
-        userImg.src = DEFAULT_PLAYER_IMG_URL
-        userImgDiv.appendChild userImg
-        userOnlineStatusDiv = document.createElement("div")
-        userOnlineStatusDiv.className = "offline"
-        userImgDiv.appendChild userOnlineStatusDiv
-        userLi.appendChild userImgDiv
-        userDisplayNameDiv = document.createElement("div")
-        userDisplayNameDiv.className = "uName"
-        userLi.appendChild userDisplayNameDiv
-        playerListUl.appendChild userLi
-        userVODivIndexObj = {}
-        userVODivIndexObj[userDivCodes.USER_LI] = userLi
-        userVODivIndexObj[userDivCodes.USER_IMAGE] = userImg
-        userVODivIndexObj[userDivCodes.USER_DISPLAY_NAME] = userDisplayNameDiv
-        userVODivIndexObj[userDivCodes.USER_ONLINE_STATUS] = userOnlineStatusDiv
-        userVOsDivIndex[i] = userVODivIndexObj
-        (if 0 <= MAX_PLAYERS_IN_A_GAME then i++ else i--)
+#      userVOIndex = {}
+#      playerListUl = document.getElementById("nowPlayers")
+#      playerListUl.innerHML = ""
+#      i = 0
+#      while (if 0 <= MAX_PLAYERS_IN_A_GAME then i < MAX_PLAYERS_IN_A_GAME else i > MAX_PLAYERS_IN_A_GAME)
+#        userLi = document.createElement("li")
+#        userLi.style.display = "none"
+#        userImgDiv = document.createElement("div")
+#        userImgDiv.className = "imgOfWn"
+#        userImg = document.createElement("img")
+#        userImg.src = DEFAULT_PLAYER_IMG_URL
+#        userImgDiv.appendChild userImg
+#        userOnlineStatusDiv = document.createElement("div")
+#        userOnlineStatusDiv.className = "offline"
+#        userImgDiv.appendChild userOnlineStatusDiv
+#        userLi.appendChild userImgDiv
+#        userDisplayNameDiv = document.createElement("div")
+#        userDisplayNameDiv.className = "uName"
+#        userLi.appendChild userDisplayNameDiv
+#        playerListUl.appendChild userLi
+#        userVODivIndexObj = {}
+#        userVODivIndexObj[userDivCodes.USER_LI] = userLi
+#        userVODivIndexObj[userDivCodes.USER_IMAGE] = userImg
+#        userVODivIndexObj[userDivCodes.USER_DISPLAY_NAME] = userDisplayNameDiv
+#        userVODivIndexObj[userDivCodes.USER_ONLINE_STATUS] = userOnlineStatusDiv
+#        userVOsDivIndex[i] = userVODivIndexObj
+#        (if 0 <= MAX_PLAYERS_IN_A_GAME then i++ else i--)
       flag_drawUserPanel = true
       refreshUserPanel()
 
@@ -377,7 +377,9 @@ jQuery ->
 	# draw left site round panel and score board
     drawUserPanel = ->
       console.log "drawUserPanel" if isDevEnvironment
+      
       playerListTopHUDTbl = document.getElementById("userScoreHUDMain")
+      
       playerListTopHUDTbl.innerHTML = ""
       usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
       console.log "Score Board left (zzGlobals.roomVars.AP)", usersObject if isDevEnvironment

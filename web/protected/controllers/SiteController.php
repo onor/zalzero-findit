@@ -32,55 +32,32 @@ class SiteController extends Controller
 			Yii::app()->session['gameinst_id'] = $_REQUEST['gameinst_id'];
 		}
 
-		//	$facebook = Yii :: app()->params['facebook'];
-
-		$facebookUserId = Yii::app()->session['fbid']; //$facebook->getUser();
+		$facebookUserId = Yii::app()->session['fbid'];
 
 		$userId = Yii::app()->user->getId();
 
 		$userEmail = Yii::app()->session['fb_email'];
 
-		// if user session is not generated the session by redirecting user to application session generation page
+		// if user session is not generated the session by redirecting user to application session generation page (by Pankaj Anupam)
 		if(!is_numeric($userId) || Yii::app()->session['fbid'] != Yii::app()->user->getState('user_fbid') ) {
 
 			$this->loginUser($facebookUserId, $userEmail);
 		}
 
-		// If user session is already present into the system
-		if(is_numeric($userId)) {
-
-			update_loggedin_user_status($facebookUserId,$userEmail);
-			update_invitation_status($facebookUserId);
-
-		}
-
 		// if user is coming from fabebook invited link
+		// TODO: verify is in use if not remove
 		if(isset(Yii::app()->session['gameinst_id'])) {
 			$getUserFaceBookId = $facebookUserId;
 			$gameId = Yii::app()->session['gameinst_id'];
 			// check whether the fbuser is really invited for that game or not. If yes then book the seat and redirect him to game page
 			//				$getValidInvitedUser = getValidInvitedUser($getUserFaceBookId,$gameId);
 			$gameSeat = Zzgameseat::model()->findByAttributes(array('gameseat_user_id' => Yii::app()->user->id,'gameseat_gameinst_id' => $gameId));
-			if(isset($gameSeat)) {
-				update_loggedin_user_status($facebookUserId,$userEmail);
-				update_invitation_status($facebookUserId);
-				unset(Yii::app()->session['gameinst_id']);
-				$this->redirect(array("/gameinst/play?gameinst_id=$gameId"));
-				exit;
-			} else {  // if not invited then redirect him to a new game
-				unset(Yii::app()->session['gameinst_id']);
-				update_loggedin_user_status($facebookUserId,$userEmail);
-				update_invitation_status($facebookUserId);
-				$this->redirect(array("gameinst/play?gameinst_id=0"));
-				exit;
-			}
 		}
-
-		$nowTime = new CDbExpression('now()');
-		$gameInstList = Zzgameinst::model()->with('gameinstProduct')->findAll('gameinst_starttime > :nowTime', array(':nowTime'=>$nowTime));
-		//$this->render('index',array('gameInstList'=>$gameInstList));
-		$this->redirect(array("gameinst/play?gameinst_id=0"));
-
+		
+		// update user status and forword to play (by Pankaj Anupam)
+		update_loggedin_user_status($facebookUserId,$userEmail);
+		update_invitation_status($facebookUserId);
+		CController::forward('/gameinst/play/');
 	}
 
 	/**
@@ -146,42 +123,37 @@ class SiteController extends Controller
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}
+
 	/**
 	 * set user auth
 	 * @param int $userid
 	 * @param string $username
 	 */
+	//TODO: move this to facebook auth class
 	public function loginUser($userid,$username){
-		
+
 		$this->_identity = new FacebookIdentity($userid,'');
 
 		switch($this->_identity->authenticate()) {
 
 			case FacebookIdentity::ERROR_UNKNOWN_IDENTITY:
-				
+
 				$this->redirect(array('/'));
 				break;
 					
 			case FacebookIdentity::ERROR_NONE:
-				//$this->_logouturl = $_GET['logout'];
-				
+
 				Yii::app()->user->login($this->_identity);
+
+				update_loggedin_user_status($userid,$username);
+				update_invitation_status($userid);
+					
 				CController::forward('/gameinst/play/');
-				die('not success');
-				// redirect login user to game board page
-				if(isset(Yii::app()->session['gameinst_id'])) {
-					$gameinst_id = Yii::app()->session['gameinst_id'];
-					update_loggedin_user_status($userid,$username);
-					update_invitation_status($userid);
-				} else {
-					update_loggedin_user_status($userid,$username);
-					update_invitation_status($userid);
-//					$this->redirect(Yii::app()->homeUrl.'gameinst/play?gameinst_id=0');
-				}
+
 				break;
 					
 			default: // should not happen... just in case -> get out of here (see below)
-				
+
 				$this->redirect('/');
 				break;
 		}

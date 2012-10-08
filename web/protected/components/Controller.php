@@ -52,10 +52,9 @@ class Controller extends CController
 
 	public function filterFacebook($filterChain) {
 	
-		if(isset($_REQUEST["signed_request"])){
+		if(isset($_REQUEST["signed_request"])){ // user come for facebook iframe
 			
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
-
 			$data = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
 
 			if(!empty($data["oauth_token"])){
