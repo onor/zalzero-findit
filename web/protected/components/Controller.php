@@ -52,7 +52,7 @@ class Controller extends CController
 
 	public function filterFacebook($filterChain) {
 	
-		if(isset($_REQUEST["signed_request"]) || isset(Yii::app()->session['fbid'])){
+		if(isset($_REQUEST["signed_request"])){
 			
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
 
