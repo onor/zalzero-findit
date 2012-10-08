@@ -108,10 +108,10 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
            
 				$message = get_message_to_email($fbUserFriends,$id);
 				if(count($fbUserFriends) == 1) {
-					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message;
+					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message . '. Join {' . $loggedInFbId .'} now!';
 					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' now!</a>';
 				} else {
-					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message;
+					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message . '. Join your friends now!';
 					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join your friends now!</a>';
 				}
 				
@@ -194,7 +194,7 @@ function remindUserOnFb($gameId,$userData,$UsersFbData,$checkForMessage,$loggedI
 				$notification = $data .' has joined a new ZALERIO game. The game starts shortly. Please join to play now!';
 				$body = $data .' has joined a new ZALERIO game. The game starts shortly.'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please join to play now!.</a>';
 			} else {
-				$notification = $loggedInUserName.' has invited you to play ZALERIO. Please join '.$loggedInUserName.' now.'; 
+				$notification = $loggedInUserName.' has invited you to play ZALERIO. Please join '.$loggedInUserName.' now!'; 
 				$body = $loggedInUserName.' has invited you to play ZALERIO. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please join '.$loggedInUserName.' now.</a>'; 
 			}
 		}
