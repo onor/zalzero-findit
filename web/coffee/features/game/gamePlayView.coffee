@@ -5,7 +5,7 @@ define [], () ->
 			@tilesIdxVOs = {}
 			@tileClassOverload =
 		      BASE_TILE_CLASS:
-		        N: "box-blank box-black"
+		        N: "box-blank box-black ui-droppable"
 		        Z: "box-blankZoom box-blackZoom"
 		
 		      OTHER_TURN:
@@ -74,7 +74,7 @@ define [], () ->
 		
 		#
 		getDraggableBetsClass : (el) ->
-			el.className = "draggableBets"
+			el.className = "draggableBets ui-draggable"
 		
 		# Done bet class name to play button
 		setBetDonePlayButtonEl : (el) ->
@@ -189,7 +189,7 @@ define [], () ->
 			while (if 0 <= board_Y then i < board_Y else i > board_Y)
 				j = 0
 				while (if 0 <= board_X then j < board_X else j > board_X)
-					csBlankTileClassName = "box-blank box-black"
+					csBlankTileClassName = "box-blank box-black ui-droppable"
 					gameWallTileDiv = document.createElement("div")
 					gameWallTileDiv.className = csBlankTileClassName
 					tileIdx = @parseCoordsAsNum( j, i, board_X )

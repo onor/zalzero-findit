@@ -823,8 +823,8 @@ jQuery(function($){
           $('.draggableBetsClick').css({'position':'absolute','left':e.pageX-15,'top':e.pageY-15}); 
       };
       
-      $('.box-newBet').live('mousedown',mousedownFunction);
-      $('.draggableBets').live('mousedown',mousedownFunction); 
+     //$('.box-newBet').live('mousedown',mousedownFunction);
+     // $('.draggableBets').live('mousedown',mousedownFunction); 
      
       $('.draggableBetsClick').live('mousemove',function(e){
          $('.draggableBetsClick').remove();
