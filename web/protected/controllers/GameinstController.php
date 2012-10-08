@@ -581,7 +581,7 @@ class GameinstController extends Controller
 		if(!isset($_REQUEST['force'])){
 			if($usersummary["current_gameinst_id"] != NULL){
 				$this->layout = false;
-				$this->render('confirmsession',array("gameinst_id"=>$_REQUEST['gameinst_id']));
+				$this->render('confirmsession',array("gameinst_id"=>0)); //"gameinst_id"=>$_REQUEST['gameinst_id']
 				exit;
 			}
 		}
