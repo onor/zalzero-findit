@@ -224,14 +224,33 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      utils.log "drag started!"
 	
 	    
-	
+#	    $('.draggableBets').draggable
+#	      start: (e, ui) ->
+#	      	$(@).css
+#	      		opacity: '0'
+#	      	true
+#      
+#	      stop: (e, ui) ->
+#	      	$(@).css
+#	      		opacity: '1'
+#	      true
+#
+#	    $('.box-blank').droppable
+#	      drop: (e, ui) ->
+##	      	ui.draggable.remove()
+##	      	ui.helper.remove()
+#	      	
+#	      	$(@).addClass 'box-newBet'
+#	      	
+#	      true
+        
 	    drawGameBoard = ->
 	      gameWallDiv = gamePlayView.getGameWall(board_X,board_Y)
-	      tilesIdxVOs = gamePlayView.getTilesIdxVOs()   
-	      utils.addEventHandler gameWallDiv, "drop", handleDropNew, false
-	      utils.addEventHandler gameWallDiv, "dragover", handleDragoverNew, false
-	      utils.addEventHandler gameWallDiv, "dragenter", handleDragEnterNew, false
-	      utils.addEventHandler gameWallDiv, "dragleave", handleDragleave, false
+	      tilesIdxVOs = gamePlayView.getTilesIdxVOs()
+	      #utils.addEventHandler gameWallDiv, "drop", handleDropNew, false
+	      #utils.addEventHandler gameWallDiv, "dragover", handleDragoverNew, false
+	      #utils.addEventHandler gameWallDiv, "dragenter", handleDragEnterNew, false
+	      #utils.addEventHandler gameWallDiv, "dragleave", handleDragleave, false
 	      	      
 	
 	    getTileClass = (tileClassOverLoadObj) ->
@@ -362,15 +381,18 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	            return true
 	      false
 	
-	    handleDropNew = (e) ->
+	    window.handleDropNew = (e,ui) ->
 	    	
 	      #play tile drop sound if sound enable
 	      sound.playTitleDropSound()
 	      
 	      utils.removeClassName e.target, "box-drophover"  if e.target?
+	    
 	      e.preventDefault()  if e.preventDefault
 	      e.stopPropagation()  if e.stopPropagation
-	      betId = e.dataTransfer.getData(internalDNDType)
+	    
+	      betId = ui.draggable.attr('id')
+	      
 	      if (betId?) and betId isnt ""
 	        if e.target.getAttribute("droppable") is "2"
 	          unless window.currentBets[e.target.getAttribute("tileidx")]
@@ -383,7 +405,7 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	            refreshGameBoard()
 	            reDrawBetsPanel()
 	            return true
-	      false
+	      true
 	
 	    handleDragleave = (e) ->
 	      utils.removeClassName e.target, "box-drophover"  if e.target?
