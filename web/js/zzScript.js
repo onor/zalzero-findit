@@ -1186,7 +1186,7 @@ define('gamePlayView',[], function() {
       this.tilesIdxVOs = {};
       this.tileClassOverload = {
         BASE_TILE_CLASS: {
-          N: "box-blank box-black",
+          N: "box-blank box-black ui-droppable",
           Z: "box-blankZoom box-blackZoom"
         },
         OTHER_TURN: {
@@ -1257,7 +1257,7 @@ define('gamePlayView',[], function() {
     };
 
     gameView.prototype.getDraggableBetsClass = function(el) {
-      return el.className = "draggableBets";
+      return el.className = "draggableBets ui-draggable";
     };
 
     gameView.prototype.setBetDonePlayButtonEl = function(el) {
@@ -1399,7 +1399,7 @@ define('gamePlayView',[], function() {
       while ((0 <= board_Y ? i < board_Y : i > board_Y)) {
         j = 0;
         while ((0 <= board_X ? j < board_X : j > board_X)) {
-          csBlankTileClassName = "box-blank box-black";
+          csBlankTileClassName = "box-blank box-black ui-droppable";
           gameWallTileDiv = document.createElement("div");
           gameWallTileDiv.className = csBlankTileClassName;
           tileIdx = this.parseCoordsAsNum(j, i, board_X);
@@ -1532,7 +1532,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
   window.currentBets = {};
   window.currentBetsIdx = {};
   ZalerioGame = (function() {
-    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragEnterNew, handleDragStart, handleDragStartWithinBoard, handleDragleave, handleDragoverNew, handleDropNew, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
+    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragEnterNew, handleDragStart, handleDragStartWithinBoard, handleDragleave, handleDragoverNew, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
     ZalerioGame = function() {};
     _this = this;
     docElems = {};
@@ -1794,11 +1794,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
     drawGameBoard = function() {
       var gameWallDiv;
       gameWallDiv = gamePlayView.getGameWall(board_X, board_Y);
-      tilesIdxVOs = gamePlayView.getTilesIdxVOs();
-      utils.addEventHandler(gameWallDiv, "drop", handleDropNew, false);
-      utils.addEventHandler(gameWallDiv, "dragover", handleDragoverNew, false);
-      utils.addEventHandler(gameWallDiv, "dragenter", handleDragEnterNew, false);
-      return utils.addEventHandler(gameWallDiv, "dragleave", handleDragleave, false);
+      return tilesIdxVOs = gamePlayView.getTilesIdxVOs();
     };
     getTileClass = function(tileClassOverLoadObj) {
       if (flag_zoomTrue) {
@@ -1991,7 +1987,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
       }
       return false;
     };
-    handleDropNew = function(e) {
+    window.handleDropNew = function(e, ui) {
       var betId, betTileIdx, betd;
       sound.playTitleDropSound();
       if (e.target != null) {
@@ -2003,7 +1999,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
       if (e.stopPropagation) {
         e.stopPropagation();
       }
-      betId = e.dataTransfer.getData(internalDNDType);
+      betId = ui.draggable.attr('id');
       if ((betId != null) && betId !== "") {
         if (e.target.getAttribute("droppable") === "2") {
           if (!window.currentBets[e.target.getAttribute("tileidx")]) {
@@ -2022,7 +2018,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
           }
         }
       }
-      return false;
+      return true;
     };
     handleDragleave = function(e) {
       if (e.target != null) {

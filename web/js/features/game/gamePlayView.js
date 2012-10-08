@@ -8,7 +8,7 @@ define([], function() {
       this.tilesIdxVOs = {};
       this.tileClassOverload = {
         BASE_TILE_CLASS: {
-          N: "box-blank box-black",
+          N: "box-blank box-black ui-droppable",
           Z: "box-blankZoom box-blackZoom"
         },
         OTHER_TURN: {
@@ -79,7 +79,7 @@ define([], function() {
     };
 
     gameView.prototype.getDraggableBetsClass = function(el) {
-      return el.className = "draggableBets";
+      return el.className = "draggableBets ui-draggable";
     };
 
     gameView.prototype.setBetDonePlayButtonEl = function(el) {
@@ -221,7 +221,7 @@ define([], function() {
       while ((0 <= board_Y ? i < board_Y : i > board_Y)) {
         j = 0;
         while ((0 <= board_X ? j < board_X : j > board_X)) {
-          csBlankTileClassName = "box-blank box-black";
+          csBlankTileClassName = "box-blank box-black ui-droppable";
           gameWallTileDiv = document.createElement("div");
           gameWallTileDiv.className = csBlankTileClassName;
           tileIdx = this.parseCoordsAsNum(j, i, board_X);

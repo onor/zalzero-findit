@@ -447,3 +447,29 @@ jQuery ->
    
 
   oloUserComponent()
+  
+  
+  $('.draggableBets').live( "mouseover", () ->
+  		$('.draggableBets').draggable
+	      start: (e, ui) ->
+	      	$(@).css
+	      		opacity: '1'
+	      	true
+	      
+	      scope: "drop_tile"
+	      revert : 'invalid'
+	      stop: (e, ui) ->
+	      	$(@).css
+	      		opacity: '1'
+	      true
+
+	    $('.box-blank').droppable
+	      scope: "drop_tile"
+	      drop: (e, ui) ->
+	      	ui.draggable.remove()
+	      	$(@).droppable({ disabled: true })
+	      	$(@).addClass 'box-newBet'
+	      	window.handleDropNew(e,ui) 	
+
+	      true
+	 )
