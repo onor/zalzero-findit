@@ -1,5 +1,5 @@
 <?php
-class CronCommandController extends Controller {
+class CronCommandController extends CController {
                 public function actionIndex() {
 		$cron_id = 1;
                 $game_inst_tmpl_id = 'ZalerioTempl1';    // need to change this once multitemplate game will be started. Will have to make a function for the same.
@@ -59,9 +59,6 @@ class CronCommandController extends Controller {
                 }
                 }
                 $get_cron_details->save();
-
-
-                //$this->layout = false;
-        //      $this->render('index');
+				echo 'Cron executed successfully';
         }
 }
