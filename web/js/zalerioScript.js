@@ -158,27 +158,7 @@ jQuery(function() {
       zzGlobals.roomVars[zzGlobals.roomCodes.USER_TOTAL] = currentNoOfUsers;
       return jDocument.trigger("room:" + zzGlobals.roomCodes.USER_TOTAL, currentNoOfUsers);
     };
-    renderUserVOToUserPanel = function(idx, userVO, userOffline) {
-      userOffline = userOffline || false;
-      if (userVO && userVO[zzGlobals.clientCodes.USER_ID]) {
-        userVOsDivIndex[idx][userDivCodes.USER_LI].style.display = "block";
-        if (userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]) {
-          userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME];
-        } else {
-          userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = "-";
-        }
-        if (userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] && userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2) {
-          userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture";
-        } else {
-          userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = DEFAULT_PLAYER_IMG_URL;
-        }
-        if (userOffline) {
-          return userVOsDivIndex[idx][userDivCodes.USER_ONLINE_STATUS].className = "user-offline";
-        } else {
-          return userVOsDivIndex[idx][userDivCodes.USER_ONLINE_STATUS].className = "user-online";
-        }
-      }
-    };
+    renderUserVOToUserPanel = function(idx, userVO, userOffline) {};
     drawUserPanel = function() {
       flag_drawUserPanel = true;
       return refreshUserPanel();
