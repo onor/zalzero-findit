@@ -411,38 +411,7 @@ jQuery(function() {
         return updateUserIndexForSeatIdViaOfflinePlayers();
       }
     };
-    renderUserVOToUserPanel = function(idx, userVO, userOffline, userSerial) {
-      var userDisplayName, userFacebookImgUrl;
-      userDisplayName = void 0;
-      userFacebookImgUrl = void 0;
-      userOffline = userOffline || false;
-      if (userVOsDivIndex[idx] && userVO && userVO[zzGlobals.clientCodes.USER_ID]) {
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_TR].style.visibility = "visible";
-        userDisplayName = "-";
-        if (userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME] != null) {
-          userDisplayName = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME];
-        }
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_NAME].innerHTML = userDisplayName;
-        userFacebookImgUrl = DEFAULT_PLAYER_IMG_URL;
-        if ((userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] != null) && userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2) {
-          userFacebookImgUrl = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture";
-        }
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SERAIL].innerHTML = userSerial + ".";
-        if (userVO[zzGlobals.clientCodes.USER_SEAT_ID]) {
-          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = userScoreObj[userVO[zzGlobals.clientCodes.USER_SEAT_ID]];
-        } else {
-          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = 0;
-        }
-        if (zzGlobals.roomVars.PP.indexOf(userVO[zzGlobals.clientCodes.USER_SEAT_ID]) !== -1) {
-          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).removeClass("arrowclass");
-        } else {
-          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).addClass("arrowclass");
-        }
-        if (isDevEnvironment) {
-          return console.log(userScoreObj);
-        }
-      }
-    };
+    renderUserVOToUserPanel = function(idx, userVO, userOffline, userSerial) {};
     drawUserPanel = function() {
       var i, playerListTopHUDTbl, s, scoreArray, seatId, seatIdArray, userObject, userTopHUDBetsPlacedTd, userTopHUDNameTd, userTopHUDScoreTd, userTopHUDSerialNumTd, userTopHUDTr, usersInfoObject, usersInfoObjectx, usersObject, usersScoreObject, x, y;
       if (isDevEnvironment) {

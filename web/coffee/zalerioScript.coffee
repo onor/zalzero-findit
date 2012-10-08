@@ -112,50 +112,9 @@ jQuery ->
       jDocument.trigger "room:" + zzGlobals.roomCodes.USER_TOTAL, currentNoOfUsers
 
     renderUserVOToUserPanel = (idx, userVO, userOffline) ->
-      userOffline = userOffline or false
-      if userVO and userVO[zzGlobals.clientCodes.USER_ID]
-        userVOsDivIndex[idx][userDivCodes.USER_LI].style.display = "block"
-        if userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]
-          userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]
-        else
-          userVOsDivIndex[idx][userDivCodes.USER_DISPLAY_NAME].innerHTML = "-"
-        if userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] and userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2
-          userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"
-        else
-          userVOsDivIndex[idx][userDivCodes.USER_IMAGE].src = DEFAULT_PLAYER_IMG_URL
-        if userOffline
-          userVOsDivIndex[idx][userDivCodes.USER_ONLINE_STATUS].className = "user-offline"
-        else
-          userVOsDivIndex[idx][userDivCodes.USER_ONLINE_STATUS].className = "user-online"
-
+    	return
+	
     drawUserPanel = ->
-#      userVOIndex = {}
-#      playerListUl = document.getElementById("nowPlayers")
-#      playerListUl.innerHML = ""
-#      i = 0
-#      while (if 0 <= MAX_PLAYERS_IN_A_GAME then i < MAX_PLAYERS_IN_A_GAME else i > MAX_PLAYERS_IN_A_GAME)
-#        userLi = document.createElement("li")
-#        userLi.style.display = "none"
-#        userImgDiv = document.createElement("div")
-#        userImgDiv.className = "imgOfWn"
-#        userImg = document.createElement("img")
-#        userImg.src = DEFAULT_PLAYER_IMG_URL
-#        userImgDiv.appendChild userImg
-#        userOnlineStatusDiv = document.createElement("div")
-#        userOnlineStatusDiv.className = "offline"
-#        userImgDiv.appendChild userOnlineStatusDiv
-#        userLi.appendChild userImgDiv
-#        userDisplayNameDiv = document.createElement("div")
-#        userDisplayNameDiv.className = "uName"
-#        userLi.appendChild userDisplayNameDiv
-#        playerListUl.appendChild userLi
-#        userVODivIndexObj = {}
-#        userVODivIndexObj[userDivCodes.USER_LI] = userLi
-#        userVODivIndexObj[userDivCodes.USER_IMAGE] = userImg
-#        userVODivIndexObj[userDivCodes.USER_DISPLAY_NAME] = userDisplayNameDiv
-#        userVODivIndexObj[userDivCodes.USER_ONLINE_STATUS] = userOnlineStatusDiv
-#        userVOsDivIndex[i] = userVODivIndexObj
-#        (if 0 <= MAX_PLAYERS_IN_A_GAME then i++ else i--)
       flag_drawUserPanel = true
       refreshUserPanel()
 
@@ -353,26 +312,27 @@ jQuery ->
         #changeWinner()
 
     renderUserVOToUserPanel = (idx, userVO, userOffline, userSerial) ->
-      userDisplayName = undefined
-      userFacebookImgUrl = undefined
-      userOffline = userOffline or false
-      if userVOsDivIndex[idx] and userVO and userVO[zzGlobals.clientCodes.USER_ID]
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_TR].style.visibility = "visible"
-        userDisplayName = "-"
-        userDisplayName = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]  if userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]?
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_NAME].innerHTML = userDisplayName
-        userFacebookImgUrl = DEFAULT_PLAYER_IMG_URL
-        userFacebookImgUrl = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"  if (userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID]?) and userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2
-        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SERAIL].innerHTML = userSerial + "."
-        if userVO[zzGlobals.clientCodes.USER_SEAT_ID]
-          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = userScoreObj[userVO[zzGlobals.clientCodes.USER_SEAT_ID]]
-        else
-          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = 0
-        unless (zzGlobals.roomVars.PP).indexOf(userVO[zzGlobals.clientCodes.USER_SEAT_ID]) is -1
-          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).removeClass "arrowclass"
-        else
-          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).addClass "arrowclass"
-        console.log userScoreObj if isDevEnvironment
+    	return;
+#      userDisplayName = undefined
+#      userFacebookImgUrl = undefined
+#      userOffline = userOffline or false
+#      if userVOsDivIndex[idx] and userVO and userVO[zzGlobals.clientCodes.USER_ID]
+#        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_TR].style.visibility = "visible"
+#        userDisplayName = "-"
+#        userDisplayName = userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]  if userVO[zzGlobals.clientCodes.USER_DISPLAY_NAME]?
+#        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_NAME].innerHTML = userDisplayName
+#        userFacebookImgUrl = DEFAULT_PLAYER_IMG_URL
+#        userFacebookImgUrl = "https://graph.facebook.com/" + userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID] + "/picture"  if (userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID]?) and userVO[zzGlobals.clientCodes.USER_FACEBOOK_ID].length > 2
+#        userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SERAIL].innerHTML = userSerial + "."
+#        if userVO[zzGlobals.clientCodes.USER_SEAT_ID]
+#          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = userScoreObj[userVO[zzGlobals.clientCodes.USER_SEAT_ID]]
+#        else
+#          userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_SCORE].innerHTML = 0
+#        unless (zzGlobals.roomVars.PP).indexOf(userVO[zzGlobals.clientCodes.USER_SEAT_ID]) is -1
+#          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).removeClass "arrowclass"
+#        else
+#          $(userVOsDivIndex[idx][userDivCodes.USER_TOP_HUD_BETSTATUS]).addClass "arrowclass"
+#        console.log userScoreObj if isDevEnvironment
 
 	# draw left site round panel and score board
     drawUserPanel = ->
