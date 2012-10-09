@@ -1532,7 +1532,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
   window.currentBets = {};
   window.currentBetsIdx = {};
   ZalerioGame = (function() {
-    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragEnterNew, handleDragStart, handleDragStartWithinBoard, handleDragleave, handleDragoverNew, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
+    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragStart, handleDragStartWithinBoard, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
     ZalerioGame = function() {};
     _this = this;
     docElems = {};
@@ -1968,36 +1968,11 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
       }
       return _results;
     };
-    handleDragoverNew = function(e) {
-      if (e.preventDefault) {
-        e.preventDefault();
-      }
-      return false;
-    };
-    handleDragEnterNew = function(e) {
-      var betId;
-      if (e.dataTransfer != null) {
-        betId = e.dataTransfer.getData(internalDNDType);
-        if (betId != null) {
-          if ((e.target != null) && (e.target.getAttribute != null) && e.target.getAttribute("droppable") === "2") {
-            gamePlayView.addBoxDropHoverClass(e.target);
-            return true;
-          }
-        }
-      }
-      return false;
-    };
     window.handleDropNew = function(e, ui) {
       var betId, betTileIdx, betd;
       sound.playTitleDropSound();
       if (e.target != null) {
         utils.removeClassName(e.target, "box-drophover");
-      }
-      if (e.preventDefault) {
-        e.preventDefault();
-      }
-      if (e.stopPropagation) {
-        e.stopPropagation();
       }
       if (ui.draggable.attr('placedbetid')) {
         betId = ui.draggable.attr('placedbetid');
@@ -2024,11 +1999,6 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
         }
       }
       return true;
-    };
-    handleDragleave = function(e) {
-      if (e.target != null) {
-        return utils.removeClassName(e.target, "box-drophover");
-      }
     };
     sendPlaceBetToServer = function() {
       var betCtr, betId, betPanelId, betStr, betTileId, playButtonEl;
@@ -2064,6 +2034,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
         return false;
       } else {
         utils.log("every thing is fine's end the bets to the server");
+        $('.box-newBet').draggable('disable');
         placeBetsToServer(betStr);
       }
       return false;

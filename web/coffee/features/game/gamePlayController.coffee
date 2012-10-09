@@ -445,6 +445,7 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	        return false
 	      else
 	        utils.log "every thing is fine's end the bets to the server"
+	        $('.box-newBet').draggable('disable')
 	        placeBetsToServer betStr
 	      false
 	
