@@ -711,7 +711,6 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
       e.preventDefault();
     }
     sound.playOtherButtonSound();
-    gameId = '';
     if (typeof rematchPlayerFBID === "undefined") {
       plrs = zzGlobals.dataObjVars.AP.PLRS;
       _results = [];
