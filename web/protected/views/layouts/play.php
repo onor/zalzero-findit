@@ -426,10 +426,9 @@ Yii::app()->clientScript->registerScript(
 				<div id="showmehow">Show Me How</div>
 				<ul class="help_nav">
 
-					<li id="li-help-contact-us"><a id="a-help-contactus" href="#">Contact
+					<li id="li-help-contact-us"><a id="a-help-contactus">Contact
 							us</a></li>
-					<li id="li-help-tutorial"><a id="a-help-tutorial" class=" active"
-						href="#">Game Rules</a></li>
+					<li id="li-help-tutorial"><a id="a-help-tutorial" class=" active" >Game Rules</a></li>
 				</ul>
 				<!-- help tutorial block -->
 				<div id="help-tutorial" class="tutorial">
