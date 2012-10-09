@@ -561,33 +561,5 @@ jQuery(function() {
     }
     return size;
   };
-  oloUserComponent();
-  return $('.draggableBets').live("mouseover", function() {
-    $('.draggableBets').draggable({
-      scope: "drop_tile",
-      revert: 'invalid'
-    });
-    $('.box-blank').draggable({
-      scope: "drop_tile",
-      revert: 'invalid',
-      helper: 'clone'
-    });
-    $('.box-blank').draggable("disable");
-    return $('.box-blank').droppable({
-      scope: "drop_tile",
-      drop: function(e, ui) {
-        if (!ui.draggable.hasClass('box-blank')) {
-          ui.draggable.remove();
-        } else {
-          ui.draggable.draggable("disable");
-          ui.draggable.droppable("enable");
-        }
-        $(this).droppable({
-          disabled: true
-        });
-        window.handleDropNew(e, ui);
-        return $(this).draggable("enable");
-      }
-    }, true);
-  });
+  return oloUserComponent();
 });
