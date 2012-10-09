@@ -1,4 +1,5 @@
 package com.zalerio.test;
+import com.zalerio.config.*;
 
 import java.net.URL;
 
@@ -82,6 +83,7 @@ public class ZalerioBaseTest  implements SauceOnDemandSessionIdProvider {
  			// TODO Auto-generated catch block
  			e.printStackTrace();
  		}
+ 		GameUtil.clickPlayHereForMultiTabIssue(driver);
     }
 
     @Override
