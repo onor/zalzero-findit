@@ -39,8 +39,9 @@ define ["../../config/config"], (config) ->
 	    		userPlayStatusText = "not accepted yet"    	
 	    		remind_user = """<div class="reminder">Remind</div>"""
 	    		
-	    	fbUser = [];
-	    	fbUser[0] = plrs[seatID].PFB;
+	    	fbUser = {};
+	    	fbUser[plrs[seatID].PFB] = {GSS:plrs[seatID].GSS,CRS:plrs[seatID].PFB}
+
 	    	userList.append """ <div class="infoPlate">
 									#{remind_user}
 									<div class="userAreaImg" id="">
@@ -54,10 +55,11 @@ define ["../../config/config"], (config) ->
 									</div>
 						 </div>
 					"""
-	    	$('.reminder',userList).click(->
-	    		remindUser(gameInstId, fbUser);
+	    	
+	    	$('.reminder',userList).click( {gameId:gameInstId,seatID:seatID, user:fbUser}, (e)->
+	    		remindUser(e.data.gameId, e.data.user,e.data.seatID,e.data.user);
 	    	)
-			
+	    	
     	$("#gameInfo-game-players").append userList
 
     

@@ -58,7 +58,9 @@ class Controller extends CController
 			$data = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
 
 			if(!empty($data["oauth_token"])){
-
+				
+				Yii::app()->session['oauth_token'] = $data["oauth_token"];
+				
 				// get user if exists
 				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
 

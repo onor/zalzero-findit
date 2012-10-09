@@ -156,26 +156,66 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 	}
 }
 
+// TODO: move this to a separate controller for increse reusablity
+// we should have access token now
+function curl_get_file_contents($URL) {
+	$c = curl_init();
+	curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($c, CURLOPT_URL, $URL);
+	$contents = curl_exec($c);
+	$err = curl_error($c);
+	curl_close($c);
+	if ($err) return $err;
+	// if not error
+	return $contents;
+}
+
 // function for reminding the user to play the game 
-function remindUserOnFb($gameId,$userData,$UsersFbData,$checkForMessage,$loggedInUserStatus) {
+function remindUserOnFb($gameId,$fbUid,$UsersFbData,$checkForMessage,$loggedInUserStatus) {
 	if (Yii::app()->request->isAjaxRequest) {
-		$facebook = Yii :: app()->params['facebook']; // initialize fb onject
-		$canvasUrl = $facebook->getCanvasPage(); // get canvas url
-		$loggedInFbId = $facebook->getUser(); // get logged in user fbId
-        $fbme = $facebook->api('/me');
-        $loggedInUserName = $fbme['name']; // get logged in user fb name
-		$userId = Yii::app()->user->getId();
-		$getLoggedinUserEmail = getUserEmailId($userId);// get logged in email
+
+		$getFbCredentials = new facebookCredetials();
 		
-		//foreach($userData as $fbUid) {
-		$fbUid = $userData;
-		$getFbUserDetails = $facebook->api("/$fbUid");
-		$fbUserName = $getFbUserDetails['username'];	
-		if($fbUserName != '') {
-			$fbEmail = $fbUserName.'@facebook.com';
+		$canvasUrl = $getFbCredentials->config->canvasPage; // get canvas url
+		
+		$loggedInFbId = Yii::app()->user->getState('user_fbid'); // get logged in user fbId
+        
+        $loggedInUserName = Yii::app()->user->getState('user_name'); // get logged in user fb name
+		
+        $userId = Yii::app()->user->getId();
+        
+		$getLoggedinUserEmail = Yii::app()->user->getState('user_email'); // get logged in email
+		
+		$oauth_token = Yii::app()->session['oauth_token'];
+		
+		// Attempt to query the graph:
+		$graph_url = "https://graph.facebook.com/".$fbUid."?". "access_token=" . $oauth_token;
+		
+		$response = curl_get_file_contents($graph_url);
+		
+		$decoded_response = json_decode($response);
+		
+		//Check for errors
+		if (@$decoded_response->error) {
+			// check to see if this is an oAuth error:
+			if ($decoded_response->error->type == "OAuthException") {
+				// Retrieving a valid access token.
+				exit;
+			}
+		
+			echo "other error has happened";
+			return false;  // error
+		}
+		
+		$getFbUserDetails =  $decoded_response;  // success
+		
+		if(isset($getFbUserDetails->username)) {
+			$fbEmail = $getFbUserDetails->username.'@facebook.com';
         } else {
 			$fbEmail = $fbUid.'@facebook.com';
-        }		
+        }
+        	
 		$headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
         $headers .= "From: $getLoggedinUserEmail" . "\r\n";
@@ -226,7 +266,9 @@ function remindUserOnFb($gameId,$userData,$UsersFbData,$checkForMessage,$loggedI
                 $body = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
 			}
 		}
-
+		
+		$fbNotificationService = new FBNotificationService($getFbCredentials->config->appId, $getFbCredentials->config->appSecretId);
+		
 		if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
 			// In case of the error Send Email
 			if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){

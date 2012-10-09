@@ -86,7 +86,7 @@ function facebookInit() {
 			}
 		});
 	} else {
-		//console.log("Facebook NOT initialized!");
+		// console.log("Facebook NOT initialized!");
 	}
 }
 
@@ -1055,10 +1055,13 @@ jQuery("#submit_rating")
 											'rating_level' : rating_level,
 											'comment_improvement' : comment_improvement,
 											'comment_like' : comment_like,
-											'name' : GB_UINFO.PFN
+											'name' : zzGlobals.clientVars.UINFO.PFN
 										},
 										function(data) {
-											var obj = JSON.parse(data);
+											try {
+												var obj = JSON.parse(data)
+											} catch (error) {
+											};
 											if (obj.status == '1') {
 												jQuery(
 														"#rating_form input[name=rating_level]")
@@ -1075,7 +1078,6 @@ jQuery("#submit_rating")
 											} else {
 												messagePopup(obj.msg);
 											}
-
 										});
 					}
 				});
@@ -1121,6 +1123,7 @@ function remindUser(gameId, UsersData, seatId, userData) {
 			.addClass("loader_small");
 	txt = jQuery("#thisgame_seat_" + seatId + " .userRemind").text();
 	jQuery("#thisgame_seat_" + seatId + " .userRemind").html(loader_small);
+	
 	jQuery.ajax({
 		type : 'POST',
 		url : baseUrl + "/user/remindUser",
@@ -1131,6 +1134,7 @@ function remindUser(gameId, UsersData, seatId, userData) {
 		}
 	}).done(
 			function(data) {
+				
 				try {
 					jQuery("#thisgame_seat_" + seatId + " .userRemind")
 							.removeClass('loader_small');

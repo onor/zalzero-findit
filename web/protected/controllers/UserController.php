@@ -384,8 +384,8 @@ class UserController extends Controller
 			
 			$userData = $_REQUEST['user_data'];  // get the list of users of the game
 			$gameId = $_REQUEST['game_id'];  // get the game id
-			$loggedInFbId = Yii::app()->user->getState('user_fbid');
 			
+			$loggedInFbId = Yii::app()->user->getState('user_fbid');
 			$fbDataArray = array();
 			$fbDataPlayed = array();
 			$currentUserStatus = 0;
