@@ -6,7 +6,7 @@ define([], function() {
     return jDocument.trigger(zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]);
   };
   showInviteStatus = function() {
-    var gameObjPLRS, invitedImgs, popupDivBase, seatid, totalResponse, usersInfoObject;
+    var gameObjPLRS, invitedImgs, popupDivBase, rejected, seatid, totalResponse, usersInfoObject;
     if (parseInt(zzGlobals.dataObjVars.AP.GCB) !== parseInt(zzGlobals.currentUserDBId)) {
       return;
     }
@@ -22,28 +22,32 @@ define([], function() {
     $('.leftButton', popupDivBase).click(function() {
       return closeInvits();
     });
+    rejected = 0;
     for (seatid in gameObjPLRS) {
       totalResponse++;
       if (parseInt(gameObjPLRS[seatid].GSS) === 1) {
-        $('.acceptBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + gameObjPLRS[seatid].PFB + "/picture\" />");
-      } else if (parseInt(gameObjPLRS[seatid].GSS) === 2) {
-        $('.declineBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + gameObjPLRS[seatid].PFB + "/picture\" />");
-      } else if (parseInt(gameObjPLRS[seatid].GSS) === 3) {
         totalResponse--;
         invitedImgs++;
         $('.inviteBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + gameObjPLRS[seatid].PFB + "/picture\" />");
+      } else if (parseInt(gameObjPLRS[seatid].GSS) === 2) {
+        $('.acceptBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + gameObjPLRS[seatid].PFB + "/picture\" />");
+      } else if (parseInt(gameObjPLRS[seatid].GSS) === 3) {
+        $('.declineBlock .imgWrapper', popupDivBase).append("<img src=\"https://graph.facebook.com/" + gameObjPLRS[seatid].PFB + "/picture\" />");
       }
     }
     $('.imgWrapper:not(:has(img))', popupDivBase).parent().remove();
-    if (!(totalResponse > usersInfoObject.TP / 2 && invitedImgs !== 0)) {
+    if (!(totalResponse > usersInfoObject.TP / 2)) {
+      return;
+    }
+    if (invitedImgs === 0) {
       return;
     }
     if (zzGlobals.inviteStatus !== null && typeof zzGlobals.inviteStatus !== "undefined") {
-      if (!(rejected.length + invitedImgs + totalResponse > zzGlobals.inviteStatus)) {
+      if (!(totalResponse > zzGlobals.inviteStatus)) {
         return;
       }
     }
-    zzGlobals.inviteStatus = rejected.length + acceptedImgs.length + declinedImgs.length;
+    zzGlobals.inviteStatus = totalResponse;
     jQuery('.status_show_popup').remove();
     jQuery("body").append(popupDivBase);
     return true;

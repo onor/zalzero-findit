@@ -149,6 +149,7 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 
 		# change game
 		window.gameChangeListener = (e,gameInstIdTemp) ->	# fire when user click on carousel to change game
+			zzGlobals.inviteStatus = 0
 			utils.log("gameInstIdTemp", gameInstIdTemp)
 			if(typeof e is 'string')
 				gameInstIdTemp = e

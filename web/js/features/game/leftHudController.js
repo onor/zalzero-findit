@@ -50,7 +50,7 @@ define(["../../config/config"], function(config) {
     }
     return $("#gameInfo-game-players").append(userList);
   };
-  jDocument.bind("room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, updateLeftHud);
+  jDocument.bind("dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, updateLeftHud);
   jDocument.bind("client:" + zzGlobals.clientCodes.USERINFO, updatePlayerPlate);
   return true;
 });

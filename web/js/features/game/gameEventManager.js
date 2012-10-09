@@ -164,6 +164,7 @@ define(["../../config/config", "../../config/version", "../../helper/confirmBox"
     };
     window.gameChangeListener = function(e, gameInstIdTemp) {
       var flag_roundBetsDrawn, flag_roundDrawn;
+      zzGlobals.inviteStatus = 0;
       utils.log("gameInstIdTemp", gameInstIdTemp);
       if (typeof e === 'string') {
         gameInstIdTemp = e;
