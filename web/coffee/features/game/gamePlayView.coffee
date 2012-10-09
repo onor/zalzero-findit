@@ -140,24 +140,28 @@ define [], () ->
 			else
 				_results.push undefined
 		
-		showBetPlacedBy : (currentFigId,usersObject,playerSeatId) ->
+		showBetPlacedBy : (boardVOs,usersObject,boardVOCodes,tileIdx) ->
 			jTileHoverDiv = @getShowOnMouseOverEl()
 			$(".roundForBidsCount").remove()
 			strOut = ''
-			imgSrc = ""
-			if (usersObject.PLRS[playerSeatId]?) and (usersObject.PLRS[playerSeatId].PFB?)
-	                imgSrc = "https://graph.facebook.com/" + usersObject.PLRS[playerSeatId].PFB + "/picture"
-	              else
-	                imgSrc = ''
-	                
-			jTileHoverDivContent = jQuery(jTileHoverDiv.find(".roundForBidsCountUl")[0])
-			unless typeof currentFigId is "undefined"
-				if currentFigId.indexOf("_NUMERIC_12") isnt -1 or currentFigId.indexOf("_NUMERIC_13") isnt -1 or currentFigId.indexOf("_NUMERIC_14") isnt -1 or currentFigId.indexOf("_NUMERIC_15") isnt -1 or currentFigId.indexOf("_NUMERIC_16") isnt -1 or currentFigId.indexOf("_NUMERIC_17") isnt -1
-					strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_joker.png' alt='Joker' ></li>"
-				else strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_Superjoker.png' alt='Supper Joker' ></li>"  unless currentFigId.indexOf("_NUMERIC_11") is -1
-			strOut += "<li><img src='" + imgSrc + "' alt='" + usersObject.PLRS[playerSeatId].PFB + "' ></li>"
-			jTileHoverDivContent.html strOut
+			playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ]
+			for playerSeatId of playersObjs	              
+				if usersObject.PLRS[playerSeatId]?
+					currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID]
+					
+					if (usersObject.PLRS[playerSeatId]?) and (usersObject.PLRS[playerSeatId].PFB?)
+			                imgSrc = "https://graph.facebook.com/" + usersObject.PLRS[playerSeatId].PFB + "/picture"
+			              else
+			                imgSrc = ''
+
+					jTileHoverDivContent = jQuery(jTileHoverDiv.find(".roundForBidsCountUl")[0])
+					unless typeof currentFigId is "undefined"
+						if currentFigId.indexOf("_NUMERIC_12") isnt -1 or currentFigId.indexOf("_NUMERIC_13") isnt -1 or currentFigId.indexOf("_NUMERIC_14") isnt -1 or currentFigId.indexOf("_NUMERIC_15") isnt -1 or currentFigId.indexOf("_NUMERIC_16") isnt -1 or currentFigId.indexOf("_NUMERIC_17") isnt -1
+							strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_joker.png' alt='Joker' ></li>"
+						else strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_Superjoker.png' alt='Supper Joker' ></li>"  unless currentFigId.indexOf("_NUMERIC_11") is -1
+					strOut += "<li><img src='" + imgSrc + "' alt='" + usersObject.PLRS[playerSeatId].PFB + "' ></li>"
 			
+			jTileHoverDivContent.html strOut
 			true
 			
 		#HTML5 way of showing larger image when the tiles are dragged

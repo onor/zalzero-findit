@@ -518,13 +518,9 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	          tileIdx = @getAttribute("tileIdx")
 	          utils.log "offset :" + @offsetLeft + " : " + @offsetTop
 	          if boardVOs[tileIdx]?
-	            playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ]
 	            
-	            for playerSeatId of playersObjs	              
-	              if usersObject.PLRS[playerSeatId]?
-	                currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID]
-	                # tile palced by users
-	                gamePlayView.showBetPlacedBy(currentFigId,usersObject,playerSeatId)
+	            # tile palced by users
+	            gamePlayView.showBetPlacedBy(boardVOs,usersObject,boardVOCodes,tileIdx)
 	            
 	            tileNo = parseInt(tileIdx)
 	            noOfRows = tileNo / board_X

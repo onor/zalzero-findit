@@ -597,19 +597,13 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
       utils.log("jTileHoverDiv : " + jTileHoverDiv);
       isMousingOver = false;
       jQuery("#gamewall").delegate(".box-previousRoundOtherPlayer,.box-previousRoundCurrentPlayerIncorrect,.box-previousRoundCurrentPlayerCorrect,.box-dizitCompleted,.joker,.superJoker", "mouseover mouseout", function(e) {
-        var currentFigId, elLeft, elTop, leftMajor, noOfCols, noOfRows, playerSeatId, playersObjs, tileIdx, tileNo, topMajor, usersObject;
+        var elLeft, elTop, leftMajor, noOfCols, noOfRows, tileIdx, tileNo, topMajor, usersObject;
         usersObject = zzGlobals.dataObjVars.AP;
         if (e.type === "mouseover" && !isMousingOver) {
           tileIdx = this.getAttribute("tileIdx");
           utils.log("offset :" + this.offsetLeft + " : " + this.offsetTop);
           if (boardVOs[tileIdx] != null) {
-            playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ];
-            for (playerSeatId in playersObjs) {
-              if (usersObject.PLRS[playerSeatId] != null) {
-                currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID];
-                gamePlayView.showBetPlacedBy(currentFigId, usersObject, playerSeatId);
-              }
-            }
+            gamePlayView.showBetPlacedBy(boardVOs, usersObject, boardVOCodes, tileIdx);
             tileNo = parseInt(tileIdx);
             noOfRows = tileNo / board_X;
             noOfCols = tileNo % board_Y;
