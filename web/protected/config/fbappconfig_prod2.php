@@ -8,11 +8,11 @@ class facebookCredetials {
 
 		$config = new stdClass();
 
-		$config->appId			=	'416871301709195';
-		$config->appSecretId	=	'a8b54e647bc29ee2224b28a522b8d502';
-		$config->canvasPage		=	'http://apps.facebook.com/zalerioprod/';
+		$config->appId			=	'264696926970805';
+		$config->appSecretId	=	'81a310ca60b02f37ed5ff43f30c35701';
+		$config->canvasPage		=	'http://apps.facebook.com/zalerio/';
 		$config->canvasUrl		=	'http://zzprod2.zalerio.com/';
-		$config->appName		=	'ZalerioProd2';
+		$config->appName		=	'Find It';
 		
 		$this->config = $config;
 

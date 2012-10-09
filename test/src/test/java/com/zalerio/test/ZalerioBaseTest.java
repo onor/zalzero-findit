@@ -57,7 +57,7 @@ public class ZalerioBaseTest  implements SauceOnDemandSessionIdProvider {
         
         // Open the Game
  		// login FB -ZALZEROSTAGING
- 		driver.get("http://apps.facebook.com/zalzerostaging/");
+ 		driver.get(Config.TEST_APP_URL);
  		
  		try {
  			Thread.sleep(5000);
