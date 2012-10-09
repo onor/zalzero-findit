@@ -121,7 +121,7 @@ class Controller extends CController
 	}
 	
 	function get_auth(){
-		$get_param = "gameinst_id=0";
+		$get_param = "gameinst_id=21";
 		
 		if(isset($_REQUEST["force"])){
 			$get_param .= "&force=play";
