@@ -2,7 +2,7 @@ define [] , () ->
 	# trigger on close invite request
 	closeInvits = ->
 		jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]
-	 
+	
 	showInviteStatus = () ->
 		
     	unless parseInt(zzGlobals.dataObjVars.AP.GCB) is parseInt(zzGlobals.currentUserDBId)

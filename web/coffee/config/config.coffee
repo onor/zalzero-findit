@@ -1,9 +1,9 @@
-define [], () ->
+define ['./envConfig'], (envConfig) ->
 	# union sever connectin data
 	# env specific
 	unionConnection:
-		url : document.domain
-		port : 9933
+		url : envConfig.unionConnection.url
+		port : envConfig.unionConnection.port
 		
 	# union server id		
 	unionGameServerId : "zalerioGameServer"
