@@ -51,7 +51,7 @@ class Controller extends CController
 	}
 
 	public function filterFacebook($filterChain) {
-	
+		
 		if(isset($_REQUEST["signed_request"])){ // user come for facebook iframe
 			
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
@@ -121,11 +121,14 @@ class Controller extends CController
 	}
 	
 	function get_auth(){
-		$get_param = "gameinst_id=21";
+		$get_param = "gameinst_id=0";
 		
 		if(isset($_REQUEST["force"])){
+			
 			$get_param .= "&force=play";
 		}
+		
+		$get_param = urlencode($get_param);
 		
 		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
 		
