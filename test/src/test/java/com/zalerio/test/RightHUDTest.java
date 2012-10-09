@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import com.zalerio.config.GameUtil;
 
 public class RightHUDTest extends ZalerioBaseTest {
-	//@Test
+	@Test
 	public void rightHUDTest() {
 		GameUtil.closeGameEndPopUp(driver);
 		// right HUD

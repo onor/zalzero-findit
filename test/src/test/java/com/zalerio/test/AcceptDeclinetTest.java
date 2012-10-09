@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import com.zalerio.config.GameUtil;
 
 public class AcceptDeclinetTest  extends ZalerioBaseTest  {
-	@Test
+	//@Test
 	public void acceptDeclineTest()
 	{
 	GameUtil.clickPlayHereForMultiTabIssue(driver);

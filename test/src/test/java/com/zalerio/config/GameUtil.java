@@ -36,6 +36,17 @@ public class GameUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//close feedback screen
+		try{
+			WebElement rating_popup=driver.findElement(By.className("rating-popup"));
+			WebElement close= rating_popup.findElement(By.tagName("a"));
+			if(close.isDisplayed())
+			{
+				close.click();
+			}
+		}catch(NoSuchElementException e)
+		{}
+		
 	}
 
 }
