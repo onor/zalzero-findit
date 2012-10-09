@@ -367,19 +367,19 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	            currentEl.setAttribute("droppable", "2")
 	          when "0"
 	            currentEl.setAttribute("droppable", "-1")
-	
-	    handleDragoverNew = (e) ->
-	      e.preventDefault()  if e.preventDefault
-	      false
-	
-	    handleDragEnterNew = (e) ->
-	      if e.dataTransfer?
-	        betId = e.dataTransfer.getData(internalDNDType)
-	        if betId?
-	          if (e.target?) and (e.target.getAttribute?) and e.target.getAttribute("droppable") is "2"
-	            gamePlayView.addBoxDropHoverClass e.target	            
-	            return true
-	      false
+#	
+#	    handleDragoverNew = (e) ->
+#	      e.preventDefault()  if e.preventDefault
+#	      false
+#	
+#	    handleDragEnterNew = (e) ->
+#	      if e.dataTransfer?
+#	        betId = e.dataTransfer.getData(internalDNDType)
+#	        if betId?
+#	          if (e.target?) and (e.target.getAttribute?) and e.target.getAttribute("droppable") is "2"
+#	            gamePlayView.addBoxDropHoverClass e.target	            
+#	            return true
+#	      false
 	
 	    window.handleDropNew = (e,ui) ->
 	    	
@@ -387,11 +387,15 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      sound.playTitleDropSound()
 	      
 	      utils.removeClassName e.target, "box-drophover"  if e.target?
-	    
-	      e.preventDefault()  if e.preventDefault
-	      e.stopPropagation()  if e.stopPropagation
-	    
-	      betId = ui.draggable.attr('id')
+#	    
+#	      e.preventDefault()  if e.preventDefault
+#	      e.stopPropagation()  if e.stopPropagation
+
+	      if(ui.draggable.attr('placedbetid'))
+	      	betId = ui.draggable.attr('placedbetid')
+	      	ui.draggable.removeAttr('placedbetid');
+	      else
+	      	betId = ui.draggable.attr('id')
 	      
 	      if (betId?) and betId isnt ""
 	        if e.target.getAttribute("droppable") is "2"
@@ -407,8 +411,8 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	            return true
 	      true
 	
-	    handleDragleave = (e) ->
-	      utils.removeClassName e.target, "box-drophover"  if e.target?
+#	    handleDragleave = (e) ->
+#	      utils.removeClassName e.target, "box-drophover"  if e.target?
 	
 	    sendPlaceBetToServer = ->
 	      utils.log "bet Validation before sen  ding the request t  o server"

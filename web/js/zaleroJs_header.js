@@ -809,30 +809,34 @@ jQuery(function($){
           }
       });
      jQuery("#help_contact_form input,select,textarea,submit").live('click',function(){jQuery("#msg-submit-popup").remove();});     
-     mousedownFunction = function(e){          
-          if($(this).attr('draggable') === 'false') return;
-          if(playSound){
-            tilepickup.play(); // play sound on tile pickup
-          }
-          div = $('<div></div>')
-          for(var i = 0,  attributes = $(this).get(0).attributes; i < attributes.length; i++) {
-                div.attr(attributes[i].name, attributes[i].value);
-          }
-          $(div).addClass("draggableBetsClick");
-          $('body').append(div);
-          $('.draggableBetsClick').css({'position':'absolute','left':e.pageX-15,'top':e.pageY-15}); 
-      };
-      
-     //$('.box-newBet').live('mousedown',mousedownFunction);
-     // $('.draggableBets').live('mousedown',mousedownFunction); 
-     
-      $('.draggableBetsClick').live('mousemove',function(e){
-         $('.draggableBetsClick').remove();
-      })
+//     mousedownFunction = function(e){          
+//          if($(this).attr('draggable') === 'false') return;
+//          if(playSound){
+//            tilepickup.play(); // play sound on tile pickup
+//          }
+//          div = $('<div></div>')
+//          for(var i = 0,  attributes = $(this).get(0).attributes; i < attributes.length; i++) {
+//                div.attr(attributes[i].name, attributes[i].value);
+//          }
+//          $(div).addClass("draggableBetsClick");
+//          $('body').append(div);
+//          $('.draggableBetsClick').css({'position':'absolute','left':e.pageX-15,'top':e.pageY-15}); 
+//      };
+//      
+//     //$('.box-newBet').live('mousedown',mousedownFunction);
+//     // $('.draggableBets').live('mousedown',mousedownFunction); 
+//     
+//      $('.draggableBetsClick').live('mousemove',function(e){
+//         $('.draggableBetsClick').remove();
+//      })
       
       $('.dismiss').live('click',function(){
           if(playSound){
             otherbuttonSound.play();
+            jQuery("#rating_form input[name=rating_level]").val('');
+            jQuery("#rating_form textarea[name=comment_improvement]").val('Write a comment here');
+            jQuery("#rating_form textarea[name=comment_like]").val('Write a comment here');
+            jQuery(".rating-popup").show();
           }
       });      
       var countImg = 1;

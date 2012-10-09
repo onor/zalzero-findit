@@ -1999,7 +1999,12 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
       if (e.stopPropagation) {
         e.stopPropagation();
       }
-      betId = ui.draggable.attr('id');
+      if (ui.draggable.attr('placedbetid')) {
+        betId = ui.draggable.attr('placedbetid');
+        ui.draggable.removeAttr('placedbetid');
+      } else {
+        betId = ui.draggable.attr('id');
+      }
       if ((betId != null) && betId !== "") {
         if (e.target.getAttribute("droppable") === "2") {
           if (!window.currentBets[e.target.getAttribute("tileidx")]) {

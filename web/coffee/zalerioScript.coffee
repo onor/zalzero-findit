@@ -448,28 +448,48 @@ jQuery ->
 
   oloUserComponent()
   
-  
+#  dragCustom = (ele)->
+#  	ele.draggable
+#      start: (e, ui) ->
+#      	$(@).css
+#      		opacity: '1'
+#      	#$(@).removeClass('box-newBet')
+#      	true
+#      helper:'clone'
+#      scope: "drop_tile"
+#      revert : (socketObj) ->
+#      	if(socketObj is false)
+#      		return true;
+#      	else
+#      		return false;
+#      stop: (e, ui) ->
+#      	$(@).css
+#      		opacity: '1'
+#      true
+			      
   $('.draggableBets').live( "mouseover", () ->
-  		$('.draggableBets').draggable
-	      start: (e, ui) ->
-	      	$(@).css
-	      		opacity: '1'
-	      	true
-	      
-	      scope: "drop_tile"
-	      revert : 'invalid'
-	      stop: (e, ui) ->
-	      	$(@).css
-	      		opacity: '1'
-	      true
+	    #dragCustom($('.draggableBets'));
+	    
+	    $('.draggableBets').draggable
+	    	scope: "drop_tile"
+	    	revert : 'invalid'
 
 	    $('.box-blank').droppable
 	      scope: "drop_tile"
 	      drop: (e, ui) ->
-	      	ui.draggable.remove()
+	      	unless ui.draggable.hasClass('box-blank')
+	      		ui.draggable.remove()
+	      	else
+	      		ui.draggable.draggable( "disable" )     		
+	      		ui.draggable.droppable("enable")
+	      		
 	      	$(@).droppable({ disabled: true })
-	      	$(@).addClass 'box-newBet'
-	      	window.handleDropNew(e,ui) 	
-
+	      	
+	      	window.handleDropNew(e,ui)
+	      	 	
+	      	$(@).draggable
+	      		helper:'clone'
+	      		scope: "drop_tile"
+	      		revert : 'invalid'
 	      true
 	 )

@@ -564,29 +564,27 @@ jQuery(function() {
   oloUserComponent();
   return $('.draggableBets').live("mouseover", function() {
     $('.draggableBets').draggable({
-      start: function(e, ui) {
-        $(this).css({
-          opacity: '1'
-        });
-        return true;
-      },
       scope: "drop_tile",
-      revert: 'invalid',
-      stop: function(e, ui) {
-        return $(this).css({
-          opacity: '1'
-        });
-      }
-    }, true);
+      revert: 'invalid'
+    });
     return $('.box-blank').droppable({
       scope: "drop_tile",
       drop: function(e, ui) {
-        ui.draggable.remove();
+        if (!ui.draggable.hasClass('box-blank')) {
+          ui.draggable.remove();
+        } else {
+          ui.draggable.draggable("disable");
+          ui.draggable.droppable("enable");
+        }
         $(this).droppable({
           disabled: true
         });
-        $(this).addClass('box-newBet');
-        return window.handleDropNew(e, ui);
+        window.handleDropNew(e, ui);
+        return $(this).draggable({
+          helper: 'clone',
+          scope: "drop_tile",
+          revert: 'invalid'
+        });
       }
     }, true);
   });
