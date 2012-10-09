@@ -28,6 +28,7 @@ define(["../../config/config"], function(config) {
       userPlayStatusClassName = "userPlayStatus";
       if (plrs[seatID].CRS === 0) {
         userPlayStatusClassName = "userPlayStatus";
+        remind_user = "<div class=\"reminder\">Remind</div>";
       } else if (plrs[seatID].CRS === 5) {
         userPlayStatusText = '...playing now';
         userPlayStatusClassName = "userPlayStatus green";
