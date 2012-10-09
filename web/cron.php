@@ -1,8 +1,8 @@
 <?php
 
 // change the following paths if necessary
-$yii=dirname(__FILE__).'yii/framework/yii.php';
-$config=dirname(__FILE__).'web/protected/config/cron.php';
+$yii=dirname(__FILE__).'/yii/framework/yii.php';
+$config=dirname(__FILE__).'/web/protected/config/cron.php';
 // remove the following lines when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',FALSE);
 // specify how many levels of call stack should be shown in each log message

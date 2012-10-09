@@ -136,13 +136,18 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 				$headers .= "From: $getLoggedinUserEmail" . "\r\n";
 				$message = get_message_to_email($fbUserFriends,$id);
 				if(count($fbUserFriends) == 1) {
+					$notification = '{'.$loggedInFbId.'} wants to rematch you in ZALERIO game. Take the challenge. Join {'.$loggedInFbId.'} now!';
 					$body =$loggedInUserName.' wants to rematch you in ZALERIO game. Take the challenge - <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' now!</a>';
 				} else {
+					$notification = '{'.$loggedInFbId.'} wants to rematch you in ZALERIO game. Take the challenge. Join {'.$loggedInFbId.'} and other friends now!';
 					$body =$loggedInUserName.' wants to rematch you in ZALERIO game. Take the challenge - <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' and other friends now!</a>';
 				}
-				if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
-					// send emails to the invited users
-					mail($fbEmail,'Find IT',$body, $headers);
+				if(!$fbNotificationService->sendNotification($id, $notification, $gameId)) { // Send FB Notification
+					// In case of the error Send Email
+					if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
+						// send emails to the invited users
+						mail($fbEmail,'Find IT',$body, $headers);
+					}
 				}
 			} else {
 				// Do nothing for Now.
@@ -182,11 +187,14 @@ function remindUserOnFb($gameId,$userData,$UsersFbData,$checkForMessage,$loggedI
      			$search = ',';
      			$messageToAppend = str_lreplace($search, $replace, $data);
 				$message = $messageToAppend;
+				$notification = $loggedInUserName.' has invited you and other friends to play ZALERIO.. Please join to play now!';
 				$body = $loggedInUserName.' has invited you and other friends to play ZALERIO.'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please join to play now!.</a>';
 			} else if(count($UsersFbData) == 1) {
 				$data = implode(", ",$UsersFbData);
+				$notification = $data .' has joined a new ZALERIO game. The game starts shortly. Please join to play now!';
 				$body = $data .' has joined a new ZALERIO game. The game starts shortly.'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please join to play now!.</a>';
 			} else {
+				$notification = $loggedInUserName.' has invited you to play ZALERIO. Please join '.$loggedInUserName.' now.'; 
 				$body = $loggedInUserName.' has invited you to play ZALERIO. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please join '.$loggedInUserName.' now.</a>'; 
 			}
 		}
@@ -198,31 +206,36 @@ function remindUserOnFb($gameId,$userData,$UsersFbData,$checkForMessage,$loggedI
                 $messageToAppend = str_lreplace($search, $replace, $data);
                 $message = $messageToAppend;
 				if($loggedInUserStatus == 0) {
+					$notification = 'New round in ZALERIO game has started. We are waiting for you. Check out where you stand and play your next turn now!';
 					$body = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
 				} else {
+					$notification = $loggedInUserName .' has played round in ZALERIO and is waiting for you. Please play your turn now!';
 					$body = $loggedInUserName .' has played round in ZALERIO and is waiting for you.'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please play your turn now!.</a>';
 				}
 			} else if(count($UsersFbData) == 1) {
 				$data = implode(", ",$UsersFbData);
 				if($loggedInUserStatus == 0) {
+					$notification = 'New round in ZALERIO game has started. We are waiting for you. Check out where you stand and play your next turn now!';
 					$body = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
 				} else {
+					$notification = $loggedInUserName .' has played round in ZALERIO and is waiting for you. Please play your turn now!';
 					$body = $loggedInUserName .' has played round in ZALERIO and is waiting for you.'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please play your turn now!.</a>';
 				}  
 			} else {
-                  $body = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';           
+				$notification = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and play your next turn now!';
+                $body = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
 			}
 		}
-		
-		// remind user for game
-        //  $body =$loggedInUserName.' has reminded to play the game. <a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Find IT game Invitation</a>';
-        if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
-            // send emails to the invited users
-			if($loggedInFbId != $fbUid) {
-				mail($fbEmail,'Find IT',$body, $headers);
+
+		if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
+			// In case of the error Send Email
+			if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
+				// send emails to the invited users
+				if($loggedInFbId != $fbUid) {
+					mail($fbEmail,'Find IT',$body, $headers);
+				}
 			}
-		} 
-        //}
+		}
 	}
 }
 
