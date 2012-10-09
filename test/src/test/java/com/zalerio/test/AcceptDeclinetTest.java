@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.zalerio.config.GameUtil;
@@ -18,8 +17,14 @@ public class AcceptDeclinetTest  extends ZalerioBaseTest  {
 	// accept -decline
 	//access right HUD
 	WebElement  rightHUD_yourturn= driver.findElement(By.id("rightHUD-yourturn"));
+	List<WebElement> your_turnTiles;
 	//access your turn tiles
-	List<WebElement> your_turnTiles=rightHUD_yourturn.findElements(By.className("userArea"));
+	try{
+	 your_turnTiles=rightHUD_yourturn.findElements(By.className("userArea"));
+	}catch(Exception e)
+	{
+		return;
+	}
 	int size=your_turnTiles.size();
 	int j=0;
 	for(int i=0;i<size;i++)
