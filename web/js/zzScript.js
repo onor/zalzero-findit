@@ -1340,28 +1340,33 @@ define('gamePlayView',[], function() {
       }
     };
 
-    gameView.prototype.showBetPlacedBy = function(currentFigId, usersObject, playerSeatId) {
-      var imgSrc, jTileHoverDiv, jTileHoverDivContent, strOut;
+    gameView.prototype.showBetPlacedBy = function(boardVOs, usersObject, boardVOCodes, tileIdx) {
+      var currentFigId, imgSrc, jTileHoverDiv, jTileHoverDivContent, playerSeatId, playersObjs, strOut;
       jTileHoverDiv = this.getShowOnMouseOverEl();
       $(".roundForBidsCount").remove();
       strOut = '';
-      imgSrc = "";
-      if ((usersObject.PLRS[playerSeatId] != null) && (usersObject.PLRS[playerSeatId].PFB != null)) {
-        imgSrc = "https://graph.facebook.com/" + usersObject.PLRS[playerSeatId].PFB + "/picture";
-      } else {
-        imgSrc = '';
-      }
-      jTileHoverDivContent = jQuery(jTileHoverDiv.find(".roundForBidsCountUl")[0]);
-      if (typeof currentFigId !== "undefined") {
-        if (currentFigId.indexOf("_NUMERIC_12") !== -1 || currentFigId.indexOf("_NUMERIC_13") !== -1 || currentFigId.indexOf("_NUMERIC_14") !== -1 || currentFigId.indexOf("_NUMERIC_15") !== -1 || currentFigId.indexOf("_NUMERIC_16") !== -1 || currentFigId.indexOf("_NUMERIC_17") !== -1) {
-          strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_joker.png' alt='Joker' ></li>";
-        } else {
-          if (currentFigId.indexOf("_NUMERIC_11") !== -1) {
-            strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_Superjoker.png' alt='Supper Joker' ></li>";
+      playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ];
+      for (playerSeatId in playersObjs) {
+        if (usersObject.PLRS[playerSeatId] != null) {
+          currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID];
+          if ((usersObject.PLRS[playerSeatId] != null) && (usersObject.PLRS[playerSeatId].PFB != null)) {
+            imgSrc = "https://graph.facebook.com/" + usersObject.PLRS[playerSeatId].PFB + "/picture";
+          } else {
+            imgSrc = '';
           }
+          jTileHoverDivContent = jQuery(jTileHoverDiv.find(".roundForBidsCountUl")[0]);
+          if (typeof currentFigId !== "undefined") {
+            if (currentFigId.indexOf("_NUMERIC_12") !== -1 || currentFigId.indexOf("_NUMERIC_13") !== -1 || currentFigId.indexOf("_NUMERIC_14") !== -1 || currentFigId.indexOf("_NUMERIC_15") !== -1 || currentFigId.indexOf("_NUMERIC_16") !== -1 || currentFigId.indexOf("_NUMERIC_17") !== -1) {
+              strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_joker.png' alt='Joker' ></li>";
+            } else {
+              if (currentFigId.indexOf("_NUMERIC_11") !== -1) {
+                strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_Superjoker.png' alt='Supper Joker' ></li>";
+              }
+            }
+          }
+          strOut += "<li><img src='" + imgSrc + "' alt='" + usersObject.PLRS[playerSeatId].PFB + "' ></li>";
         }
       }
-      strOut += "<li><img src='" + imgSrc + "' alt='" + usersObject.PLRS[playerSeatId].PFB + "' ></li>";
       jTileHoverDivContent.html(strOut);
       return true;
     };
@@ -1532,7 +1537,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
   window.currentBets = {};
   window.currentBetsIdx = {};
   ZalerioGame = (function() {
-    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragEnterNew, handleDragStart, handleDragStartWithinBoard, handleDragleave, handleDragoverNew, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
+    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragStart, handleDragStartWithinBoard, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
     ZalerioGame = function() {};
     _this = this;
     docElems = {};
@@ -1968,38 +1973,18 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
       }
       return _results;
     };
-    handleDragoverNew = function(e) {
-      if (e.preventDefault) {
-        e.preventDefault();
-      }
-      return false;
-    };
-    handleDragEnterNew = function(e) {
-      var betId;
-      if (e.dataTransfer != null) {
-        betId = e.dataTransfer.getData(internalDNDType);
-        if (betId != null) {
-          if ((e.target != null) && (e.target.getAttribute != null) && e.target.getAttribute("droppable") === "2") {
-            gamePlayView.addBoxDropHoverClass(e.target);
-            return true;
-          }
-        }
-      }
-      return false;
-    };
     window.handleDropNew = function(e, ui) {
       var betId, betTileIdx, betd;
       sound.playTitleDropSound();
       if (e.target != null) {
         utils.removeClassName(e.target, "box-drophover");
       }
-      if (e.preventDefault) {
-        e.preventDefault();
+      if (ui.draggable.attr('placedbetid')) {
+        betId = ui.draggable.attr('placedbetid');
+        ui.draggable.removeAttr('placedbetid');
+      } else {
+        betId = ui.draggable.attr('id');
       }
-      if (e.stopPropagation) {
-        e.stopPropagation();
-      }
-      betId = ui.draggable.attr('id');
       if ((betId != null) && betId !== "") {
         if (e.target.getAttribute("droppable") === "2") {
           if (!window.currentBets[e.target.getAttribute("tileidx")]) {
@@ -2019,11 +2004,6 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
         }
       }
       return true;
-    };
-    handleDragleave = function(e) {
-      if (e.target != null) {
-        return utils.removeClassName(e.target, "box-drophover");
-      }
     };
     sendPlaceBetToServer = function() {
       var betCtr, betId, betPanelId, betStr, betTileId, playButtonEl;
@@ -2059,6 +2039,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
         return false;
       } else {
         utils.log("every thing is fine's end the bets to the server");
+        $('.box-newBet').draggable('disable');
         placeBetsToServer(betStr);
       }
       return false;
@@ -2145,19 +2126,13 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
       utils.log("jTileHoverDiv : " + jTileHoverDiv);
       isMousingOver = false;
       jQuery("#gamewall").delegate(".box-previousRoundOtherPlayer,.box-previousRoundCurrentPlayerIncorrect,.box-previousRoundCurrentPlayerCorrect,.box-dizitCompleted,.joker,.superJoker", "mouseover mouseout", function(e) {
-        var currentFigId, elLeft, elTop, leftMajor, noOfCols, noOfRows, playerSeatId, playersObjs, tileIdx, tileNo, topMajor, usersObject;
+        var elLeft, elTop, leftMajor, noOfCols, noOfRows, tileIdx, tileNo, topMajor, usersObject;
         usersObject = zzGlobals.dataObjVars.AP;
         if (e.type === "mouseover" && !isMousingOver) {
           tileIdx = this.getAttribute("tileIdx");
           utils.log("offset :" + this.offsetLeft + " : " + this.offsetTop);
           if (boardVOs[tileIdx] != null) {
-            playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ];
-            for (playerSeatId in playersObjs) {
-              if (usersObject.PLRS[playerSeatId] != null) {
-                currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID];
-                gamePlayView.showBetPlacedBy(currentFigId, usersObject, playerSeatId);
-              }
-            }
+            gamePlayView.showBetPlacedBy(boardVOs, usersObject, boardVOCodes, tileIdx);
             tileNo = parseInt(tileIdx);
             noOfRows = tileNo / board_X;
             noOfCols = tileNo % board_Y;
@@ -2260,14 +2235,15 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
     return jDocument.trigger(zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|OF"]);
   };
   rematchCall = function(e, rematchPlayerFBID) {
-    var plrs, seatID, _results;
+    var gameId, plrs, seatID, _results;
     if (e.preventDefault) {
       e.preventDefault();
     }
-    sound.playOtherbuttonSound();
+    sound.playOtherButtonSound();
     if (typeof rematchPlayerFBID === "undefined") {
       plrs = zzGlobals.dataObjVars.AP.PLRS;
       _results = [];
+      gameId = gameInstId;
       for (seatID in plrs) {
         _results.push(plrs[seatID].PFB);
       }
@@ -2575,7 +2551,47 @@ define('../../popup/roundScorePopup',[], function() {
 
 // Generated by CoffeeScript 1.3.3
 
-define('gameEventManager',["../../config/config", "../../config/version", "../../helper/confirmBox", "../../config/globals", "./rightHudController", "./leftHudController", "./gamePlayController", "../../popup/resignPopup", "../../popup/showInviteStatus", "../../popup/showFinalScore", "../../popup/showFrndSelector", "../../helper/utils", "../../popup/roundScorePopup"], function(config, version, confirmBox, globals, rightHudController, leftHudController, gamePlayController, resignPopup, showInviteStatus, showFinalScore, showFrndSelector, utils, roundScorePopup) {
+define('drag-drop',[], function() {
+  var bindStatus;
+  bindStatus = false;
+  $('.box-blank').live("mouseover", function() {
+    return $('.box-newBet').droppable("disable");
+  });
+  return $('.draggableBets').live("mouseover", function() {
+    $('.draggableBets').draggable({
+      scope: "drop_tile",
+      revert: 'invalid'
+    });
+    $('.box-blank').draggable({
+      scope: "drop_tile",
+      revert: 'invalid',
+      helper: 'clone'
+    });
+    if (bindStatus === false) {
+      bindStatus = true;
+      $('.box-blank').draggable("disable");
+    }
+    return $('.box-blank').droppable({
+      scope: "drop_tile",
+      drop: function(e, ui) {
+        if (!ui.draggable.hasClass('box-blank')) {
+          ui.draggable.remove();
+        } else {
+          ui.draggable.draggable("disable");
+          ui.draggable.droppable("enable");
+        }
+        $(this).droppable("disabled");
+        window.handleDropNew(e, ui);
+        $(this).draggable("enable");
+        return true;
+      }
+    }, true);
+  });
+});
+
+// Generated by CoffeeScript 1.3.3
+
+define('gameEventManager',["../../config/config", "../../config/version", "../../helper/confirmBox", "../../config/globals", "./rightHudController", "./leftHudController", "./gamePlayController", "../../popup/resignPopup", "../../popup/showInviteStatus", "../../popup/showFinalScore", "../../popup/showFrndSelector", "../../helper/utils", "../../popup/roundScorePopup", "drag-drop"], function(config, version, confirmBox, globals, rightHudController, leftHudController, gamePlayController, resignPopup, showInviteStatus, showFinalScore, showFrndSelector, utils, roundScorePopup, dragNdrop) {
   var zzUnionConnection;
   return zzUnionConnection = (function() {
     var UPC, addZzListeners, askClientData, clientAddedListener, clientAttrUpdateListener, clientRemovedListener, clientSnapshotListener, closeListener, init, joinedRoomListener, messageListener, msgManager, onLoginResult, onLogoutResult, orbiter, readyListener, resetGameVariables, roomAttrUpdateListener, roomSnapshotListener, sendDeclinedToServer, sendUpcMessageToServer, zzListeners;

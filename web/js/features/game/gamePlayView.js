@@ -162,28 +162,33 @@ define([], function() {
       }
     };
 
-    gameView.prototype.showBetPlacedBy = function(currentFigId, usersObject, playerSeatId) {
-      var imgSrc, jTileHoverDiv, jTileHoverDivContent, strOut;
+    gameView.prototype.showBetPlacedBy = function(boardVOs, usersObject, boardVOCodes, tileIdx) {
+      var currentFigId, imgSrc, jTileHoverDiv, jTileHoverDivContent, playerSeatId, playersObjs, strOut;
       jTileHoverDiv = this.getShowOnMouseOverEl();
       $(".roundForBidsCount").remove();
       strOut = '';
-      imgSrc = "";
-      if ((usersObject.PLRS[playerSeatId] != null) && (usersObject.PLRS[playerSeatId].PFB != null)) {
-        imgSrc = "https://graph.facebook.com/" + usersObject.PLRS[playerSeatId].PFB + "/picture";
-      } else {
-        imgSrc = '';
-      }
-      jTileHoverDivContent = jQuery(jTileHoverDiv.find(".roundForBidsCountUl")[0]);
-      if (typeof currentFigId !== "undefined") {
-        if (currentFigId.indexOf("_NUMERIC_12") !== -1 || currentFigId.indexOf("_NUMERIC_13") !== -1 || currentFigId.indexOf("_NUMERIC_14") !== -1 || currentFigId.indexOf("_NUMERIC_15") !== -1 || currentFigId.indexOf("_NUMERIC_16") !== -1 || currentFigId.indexOf("_NUMERIC_17") !== -1) {
-          strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_joker.png' alt='Joker' ></li>";
-        } else {
-          if (currentFigId.indexOf("_NUMERIC_11") !== -1) {
-            strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_Superjoker.png' alt='Supper Joker' ></li>";
+      playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ];
+      for (playerSeatId in playersObjs) {
+        if (usersObject.PLRS[playerSeatId] != null) {
+          currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID];
+          if ((usersObject.PLRS[playerSeatId] != null) && (usersObject.PLRS[playerSeatId].PFB != null)) {
+            imgSrc = "https://graph.facebook.com/" + usersObject.PLRS[playerSeatId].PFB + "/picture";
+          } else {
+            imgSrc = '';
           }
+          jTileHoverDivContent = jQuery(jTileHoverDiv.find(".roundForBidsCountUl")[0]);
+          if (typeof currentFigId !== "undefined") {
+            if (currentFigId.indexOf("_NUMERIC_12") !== -1 || currentFigId.indexOf("_NUMERIC_13") !== -1 || currentFigId.indexOf("_NUMERIC_14") !== -1 || currentFigId.indexOf("_NUMERIC_15") !== -1 || currentFigId.indexOf("_NUMERIC_16") !== -1 || currentFigId.indexOf("_NUMERIC_17") !== -1) {
+              strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_joker.png' alt='Joker' ></li>";
+            } else {
+              if (currentFigId.indexOf("_NUMERIC_11") !== -1) {
+                strOut += "<li><img src='" + baseUrl + "/images/zalerio_1.2/3.ingame_board/board/player_countindicator_Superjoker.png' alt='Supper Joker' ></li>";
+              }
+            }
+          }
+          strOut += "<li><img src='" + imgSrc + "' alt='" + usersObject.PLRS[playerSeatId].PFB + "' ></li>";
         }
       }
-      strOut += "<li><img src='" + imgSrc + "' alt='" + usersObject.PLRS[playerSeatId].PFB + "' ></li>";
       jTileHoverDivContent.html(strOut);
       return true;
     };

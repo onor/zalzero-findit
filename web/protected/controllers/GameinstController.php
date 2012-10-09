@@ -60,13 +60,13 @@ class GameinstController extends Controller
 	}
 	// action to create a new game once the users are invited
 	public function actionCreateNewGame() {
-
+		$getFbUsersInvitedData = array();
 		$getLoggedInuserFbId = Yii::app()->user->getState('user_fbid');
 
 		$gameId = $_REQUEST['gameId'];
-		 
+	
 	 // checking if the user has requested for rematch
-		if(isset($_REQUEST) && $_REQUEST['gameOption'] == "Rematch") {
+	if(isset($_REQUEST) && $_REQUEST['gameOption'] == "Rematch") {
 			
 			foreach($_REQUEST['fbUserData'] as $data) {       // get the user id from there fb id and check there seat status.
 				
@@ -81,20 +81,21 @@ class GameinstController extends Controller
 					}
 				}
 			}
-		} else {
-			foreach($_REQUEST['fbUserData'] as $data) { // if user is creating the game
-				if($data['uid'] != $getLoggedInuserFbId) {
-					$getFbUsersInvitedData[] = $data;
-				}
+	} else {
+		foreach($_REQUEST['fbUserData'] as $data) { // if user is creating the game
+			if($data['uid'] != $getLoggedInuserFbId) {
+				$getFbUsersInvitedData[] = $data;
 			}
-	 }
+		}
+	}
+
 	 $gameDefaultParameter = new gameDefaultParameters(); // get the default parameters to generate the game
 	 $gameDefaultData = $gameDefaultParameter->getGameDefaultParameters();
 	 $gameDefaultData['gameinst_capacity'] = count($getFbUsersInvitedData)+1; // assign the game capacity by count the number of users which have been invited to the game including the game creator
 
 	 // Create a new game
 	 $getGameId = createNewGame($gameDefaultData);
-
+	 
 	 // Get list of invited users and pass them to the function to create a account in zzusers table. All the invited friends will have the status invited if they are not available in the database.
 	 getListOfInvitedUsers($getFbUsersInvitedData);
 	

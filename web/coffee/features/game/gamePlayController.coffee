@@ -367,19 +367,19 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	            currentEl.setAttribute("droppable", "2")
 	          when "0"
 	            currentEl.setAttribute("droppable", "-1")
-	
-	    handleDragoverNew = (e) ->
-	      e.preventDefault()  if e.preventDefault
-	      false
-	
-	    handleDragEnterNew = (e) ->
-	      if e.dataTransfer?
-	        betId = e.dataTransfer.getData(internalDNDType)
-	        if betId?
-	          if (e.target?) and (e.target.getAttribute?) and e.target.getAttribute("droppable") is "2"
-	            gamePlayView.addBoxDropHoverClass e.target	            
-	            return true
-	      false
+#	
+#	    handleDragoverNew = (e) ->
+#	      e.preventDefault()  if e.preventDefault
+#	      false
+#	
+#	    handleDragEnterNew = (e) ->
+#	      if e.dataTransfer?
+#	        betId = e.dataTransfer.getData(internalDNDType)
+#	        if betId?
+#	          if (e.target?) and (e.target.getAttribute?) and e.target.getAttribute("droppable") is "2"
+#	            gamePlayView.addBoxDropHoverClass e.target	            
+#	            return true
+#	      false
 	
 	    window.handleDropNew = (e,ui) ->
 	    	
@@ -387,11 +387,15 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      sound.playTitleDropSound()
 	      
 	      utils.removeClassName e.target, "box-drophover"  if e.target?
-	    
-	      e.preventDefault()  if e.preventDefault
-	      e.stopPropagation()  if e.stopPropagation
-	    
-	      betId = ui.draggable.attr('id')
+#	    
+#	      e.preventDefault()  if e.preventDefault
+#	      e.stopPropagation()  if e.stopPropagation
+
+	      if(ui.draggable.attr('placedbetid'))
+	      	betId = ui.draggable.attr('placedbetid')
+	      	ui.draggable.removeAttr('placedbetid');
+	      else
+	      	betId = ui.draggable.attr('id')
 	      
 	      if (betId?) and betId isnt ""
 	        if e.target.getAttribute("droppable") is "2"
@@ -407,8 +411,8 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	            return true
 	      true
 	
-	    handleDragleave = (e) ->
-	      utils.removeClassName e.target, "box-drophover"  if e.target?
+#	    handleDragleave = (e) ->
+#	      utils.removeClassName e.target, "box-drophover"  if e.target?
 	
 	    sendPlaceBetToServer = ->
 	      utils.log "bet Validation before sen  ding the request t  o server"
@@ -441,6 +445,7 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	        return false
 	      else
 	        utils.log "every thing is fine's end the bets to the server"
+	        $('.box-newBet').draggable('disable')
 	        placeBetsToServer betStr
 	      false
 	
@@ -513,13 +518,9 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	          tileIdx = @getAttribute("tileIdx")
 	          utils.log "offset :" + @offsetLeft + " : " + @offsetTop
 	          if boardVOs[tileIdx]?
-	            playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ]
 	            
-	            for playerSeatId of playersObjs	              
-	              if usersObject.PLRS[playerSeatId]?
-	                currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID]
-	                # tile palced by users
-	                gamePlayView.showBetPlacedBy(currentFigId,usersObject,playerSeatId)
+	            # tile palced by users
+	            gamePlayView.showBetPlacedBy(boardVOs,usersObject,boardVOCodes,tileIdx)
 	            
 	            tileNo = parseInt(tileIdx)
 	            noOfRows = tileNo / board_X
@@ -615,11 +616,11 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
     
 	rematchCall = (e,rematchPlayerFBID)->
 	  	e.preventDefault() if e.preventDefault
-	  	sound.playOtherbuttonSound()
+	  	sound.playOtherButtonSound()
 	  	if typeof rematchPlayerFBID is "undefined"
 	  		plrs = zzGlobals.dataObjVars.AP.PLRS
-	  		
 	  		_results = []
+	  		gameId = gameInstId
 	  		for seatID of plrs 			
 	  			_results.push(plrs[seatID].PFB)
 	  	else

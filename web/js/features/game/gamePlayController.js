@@ -8,7 +8,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
   window.currentBets = {};
   window.currentBetsIdx = {};
   ZalerioGame = (function() {
-    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragEnterNew, handleDragStart, handleDragStartWithinBoard, handleDragleave, handleDragoverNew, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
+    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragStart, handleDragStartWithinBoard, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
     ZalerioGame = function() {};
     _this = this;
     docElems = {};
@@ -444,38 +444,18 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
       }
       return _results;
     };
-    handleDragoverNew = function(e) {
-      if (e.preventDefault) {
-        e.preventDefault();
-      }
-      return false;
-    };
-    handleDragEnterNew = function(e) {
-      var betId;
-      if (e.dataTransfer != null) {
-        betId = e.dataTransfer.getData(internalDNDType);
-        if (betId != null) {
-          if ((e.target != null) && (e.target.getAttribute != null) && e.target.getAttribute("droppable") === "2") {
-            gamePlayView.addBoxDropHoverClass(e.target);
-            return true;
-          }
-        }
-      }
-      return false;
-    };
     window.handleDropNew = function(e, ui) {
       var betId, betTileIdx, betd;
       sound.playTitleDropSound();
       if (e.target != null) {
         utils.removeClassName(e.target, "box-drophover");
       }
-      if (e.preventDefault) {
-        e.preventDefault();
+      if (ui.draggable.attr('placedbetid')) {
+        betId = ui.draggable.attr('placedbetid');
+        ui.draggable.removeAttr('placedbetid');
+      } else {
+        betId = ui.draggable.attr('id');
       }
-      if (e.stopPropagation) {
-        e.stopPropagation();
-      }
-      betId = ui.draggable.attr('id');
       if ((betId != null) && betId !== "") {
         if (e.target.getAttribute("droppable") === "2") {
           if (!window.currentBets[e.target.getAttribute("tileidx")]) {
@@ -495,11 +475,6 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
         }
       }
       return true;
-    };
-    handleDragleave = function(e) {
-      if (e.target != null) {
-        return utils.removeClassName(e.target, "box-drophover");
-      }
     };
     sendPlaceBetToServer = function() {
       var betCtr, betId, betPanelId, betStr, betTileId, playButtonEl;
@@ -535,6 +510,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
         return false;
       } else {
         utils.log("every thing is fine's end the bets to the server");
+        $('.box-newBet').draggable('disable');
         placeBetsToServer(betStr);
       }
       return false;
@@ -621,19 +597,13 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
       utils.log("jTileHoverDiv : " + jTileHoverDiv);
       isMousingOver = false;
       jQuery("#gamewall").delegate(".box-previousRoundOtherPlayer,.box-previousRoundCurrentPlayerIncorrect,.box-previousRoundCurrentPlayerCorrect,.box-dizitCompleted,.joker,.superJoker", "mouseover mouseout", function(e) {
-        var currentFigId, elLeft, elTop, leftMajor, noOfCols, noOfRows, playerSeatId, playersObjs, tileIdx, tileNo, topMajor, usersObject;
+        var elLeft, elTop, leftMajor, noOfCols, noOfRows, tileIdx, tileNo, topMajor, usersObject;
         usersObject = zzGlobals.dataObjVars.AP;
         if (e.type === "mouseover" && !isMousingOver) {
           tileIdx = this.getAttribute("tileIdx");
           utils.log("offset :" + this.offsetLeft + " : " + this.offsetTop);
           if (boardVOs[tileIdx] != null) {
-            playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ];
-            for (playerSeatId in playersObjs) {
-              if (usersObject.PLRS[playerSeatId] != null) {
-                currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID];
-                gamePlayView.showBetPlacedBy(currentFigId, usersObject, playerSeatId);
-              }
-            }
+            gamePlayView.showBetPlacedBy(boardVOs, usersObject, boardVOCodes, tileIdx);
             tileNo = parseInt(tileIdx);
             noOfRows = tileNo / board_X;
             noOfCols = tileNo % board_Y;
@@ -736,14 +706,15 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
     return jDocument.trigger(zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|OF"]);
   };
   rematchCall = function(e, rematchPlayerFBID) {
-    var plrs, seatID, _results;
+    var gameId, plrs, seatID, _results;
     if (e.preventDefault) {
       e.preventDefault();
     }
-    sound.playOtherbuttonSound();
+    sound.playOtherButtonSound();
     if (typeof rematchPlayerFBID === "undefined") {
       plrs = zzGlobals.dataObjVars.AP.PLRS;
       _results = [];
+      gameId = gameInstId;
       for (seatID in plrs) {
         _results.push(plrs[seatID].PFB);
       }
