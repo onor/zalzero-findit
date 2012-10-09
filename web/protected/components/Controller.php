@@ -118,10 +118,15 @@ class Controller extends CController
 	}
 	
 	function get_auth(){
+		$get_param = "gameinst_id=0";
+		
+		if(isset($_REQUEST["force"])){
+			$get_param .= "&force=play";
+		}
 		
 		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
 		
-		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?gameinst_id=0';
+		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?'.$get_param;
 		
 		echo("<script> top.location.href='" . $auth_url . "'</script>");
 		

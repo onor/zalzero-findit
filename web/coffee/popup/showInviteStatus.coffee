@@ -73,6 +73,8 @@ define [] , () ->
 		#append to body
     	jQuery("body").append popupDivBase
     	
+    	true
+    	
 	jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showInviteStatus
 	
 	true
