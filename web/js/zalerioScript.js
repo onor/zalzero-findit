@@ -567,6 +567,12 @@ jQuery(function() {
       scope: "drop_tile",
       revert: 'invalid'
     });
+    $('.box-blank').draggable({
+      scope: "drop_tile",
+      revert: 'invalid',
+      helper: 'clone'
+    });
+    $('.box-blank').draggable("disable");
     return $('.box-blank').droppable({
       scope: "drop_tile",
       drop: function(e, ui) {
@@ -580,11 +586,7 @@ jQuery(function() {
           disabled: true
         });
         window.handleDropNew(e, ui);
-        return $(this).draggable({
-          helper: 'clone',
-          scope: "drop_tile",
-          revert: 'invalid'
-        });
+        return $(this).draggable("enable");
       }
     }, true);
   });

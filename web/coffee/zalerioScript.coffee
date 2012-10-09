@@ -473,7 +473,14 @@ jQuery ->
 	    $('.draggableBets').draggable
 	    	scope: "drop_tile"
 	    	revert : 'invalid'
-
+		
+	    $('.box-blank').draggable
+	    	scope: "drop_tile"
+	    	revert : 'invalid'
+	    	helper:'clone'
+	    	
+	    $('.box-blank').draggable( "disable" )
+		
 	    $('.box-blank').droppable
 	      scope: "drop_tile"
 	      drop: (e, ui) ->
@@ -487,9 +494,9 @@ jQuery ->
 	      	
 	      	window.handleDropNew(e,ui)
 	      	 	
-	      	$(@).draggable
-	      		helper:'clone'
-	      		scope: "drop_tile"
-	      		revert : 'invalid'
+	      	$(@).draggable( "enable" )
+#	      		helper:'clone'
+#	      		scope: "drop_tile"
+#	      		revert : 'invalid'
 	      true
 	 )
