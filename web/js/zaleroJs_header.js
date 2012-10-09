@@ -20,26 +20,30 @@ var loader_small = '<div id="floatingBarsGs">\
 	<div class="blockG" id="rotateG_08">\
 	</div>\
 	</div>';
+
 var userLevelImgBig = new Array("white.png", "yellow.png", "orange.png",
 		"green.png", "blue.png", "purple.png", "red.png", "brown.png",
 		"black.png");
+
 var playSound = true;
+
 try {
 	var audioBaseUrl = baseUrl.replace('/index.php', '/');
 	var otherbuttonSound = new Audio(audioBaseUrl + "/sound/otherbuttons.wav"); // other
-																				// button
-																				// sound
-																				// file
+	// button
+	// sound
+	// file
 	var selectbuttonSound = new Audio(audioBaseUrl + "/sound/select_button.wav");
 	var popupapperence = new Audio(audioBaseUrl + "/sound/popupapperence.wav");
 	var closebutton = new Audio(audioBaseUrl + "/sound/closebutton.wav");
 	var tilepickup = new Audio(audioBaseUrl + "/sound/Tilepickup.wav"); // tile
-																		// pickup
-																		// sound
-																		// file
+	// pickup
+	// sound
+	// file
 	var titledrop = new Audio(baseUrl + "/sound/Tiledrop.wav");
 	var playbutton = new Audio(baseUrl + "/sound/playbutton.wav");
 } catch (err) {
+	playSound = false
 }
 
 var ofbizUser = {};
@@ -64,11 +68,9 @@ jQuery('.closesound').live('click', function() {
 	}
 
 })
+
 function facebookInit() {
 	if (typeof (FB) !== "undefined") {
-		// FB.init ( { appId : oloFBAppId , status : true , cookie : true ,
-		// xfbml : true , oauth : true} ) ;
-
 		FB.getLoginStatus(function(response) {
 			// console.log("FB.getLoginStatus() : [response:" + response + "]");
 			// tempGlobalResponse["fbresponse"] = response;
@@ -84,120 +86,7 @@ function facebookInit() {
 			}
 		});
 	} else {
-		console.log("Facebook NOT initialized!");
-	}
-}
-
-var oloFBAppId;
-if (document["domain"] === "localhost") {
-	// oloFBAppId = "186820681347768" ;
-	oloFBAppId = "419756618072782";
-} else if (document["domain"] === "zalerio.com"
-		|| document["domain"] === "www.zalerio.com") {
-	oloFBAppId = "264696926970805";
-} else if (document["domain"] === "zl.mobicules.com") {
-	oloFBAppId = "392619034110411";
-} else {
-	// oloFBAppId = "155589847826768";
-	oloFBAppId = "264696926970805";
-}
-
-function facebookConnect() {
-	if (typeof (FB) !== "undefined") {
-		// console.log("in facebook connect FB is undefined");
-		// FB.init ( { appId : oloFBAppId , status : true , cookie : true, xfbml
-		// : true , oauth : true} ) ;
-		FB
-				.login(
-						loginSuccess_redirect,
-						{
-							scope : 'email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence'
-						});
-	}
-}
-
-function loginSuccess_redirect(response) {
-	// console.log("loginSuccess_redirect()");
-	if (typeof (response) !== "undefined") {
-
-		var fbUid = "";
-		var flag_FBConnected = false;
-
-		if (typeof (response["session"]) !== "undefined"
-				&& typeof (response["session"]["status"]) !== "undefined"
-				&& response["session"]["status"] === "connected") {
-			flag_FBConnected = true;
-			fbUid = response["session"]["uid"];
-			// console.log('fbuid : ' + fbUid);
-		} else if (typeof (response["status"]) !== "undefined"
-				&& response["status"] === "connected"
-				&& response["authResponse"]
-				&& response["authResponse"]["userID"]) {
-			flag_FBConnected = true;
-			fbUid = response["authResponse"]["userID"];
-			// console.log('fbuid : ' + fbUid);
-		} else if (typeof (response[2]) !== "undefined"
-				&& typeof (response[2][0]) !== "undefined"
-				&& typeof (response[2][0]["session"]) !== "undefined") {
-			// alert("Step3");
-			flag_FBConnected = true;
-			fbUid = response[2][0]["session"]["uid"];
-		}
-
-		if (flag_FBConnected) {
-
-			updateFBInfo(response);
-			// var partyId = "" ;
-			// dont know why this if block is used here
-			// if ( typeof ( ofbizUser ) !== "undefined" && typeof ( ofbizUser [
-			// "partyId" ] ) !== "undefined" ) {
-			// partyId = ofbizUser [ "partyId" ] ;
-			// }
-			FB
-					.api(
-							{
-								method : 'fql.query',
-								query : 'SELECT uid,name,email,first_name,last_name,birthday_date,sex,pic_square FROM user WHERE uid = me()'
-							},
-							function(response) {
-
-								var fbUserData = {};
-								for ( var i in response[0]) {
-									fbUserData[i] = response[0][i];
-								}
-								jQuery
-										.ajax(
-												{
-													type : 'POST',
-													url : baseUrl
-															+ "/user/verifyUser",
-													data : {
-														'user_email' : fbUserData["email"],
-														'user_fbid' : fbUserData["uid"]
-													}
-												})
-										.done(
-												function(data) {
-													if (data == 'true') {
-														jQuery
-																.ajax({
-																	type : 'POST',
-																	url : baseUrl
-																			+ "/user/fbCheckLoginAjax",
-																	data : {
-																		'user_fbid' : fbUid,
-																		'user_email' : fbUserData["email"]
-																	},
-																	success : fbLoginSuccessRedirect,
-																	dataType : 'json'
-																});
-													} else {
-														alert('Hey! You are not authorized to play this game.');
-													}
-												});
-							});
-
-		}
+		//console.log("Facebook NOT initialized!");
 	}
 }
 
@@ -242,124 +131,6 @@ function serveFBRequests() {
 	}
 }
 
-function fbLoginSuccessRedirect(data) {
-
-	if (typeof (data) !== "undefined"
-			&& typeof (data["userValid"]) !== "undefined"
-			&& data["userValid"] === true) {
-		/*
-		 * User is authorized on facebook and is a valid OLO-ofbiz user
-		 * Therefore, log him in
-		 */
-		// alert("Loggin now!");
-		window.location = baseUrl + "/site/fbLogin?user_email="
-				+ data['user_mail'] + "&user_fbid=" + data['user_fbid']
-	} else {
-		/*
-		 * User is authorized on facebook but is NOT a valid OLO-Ofbiz user
-		 * Therefore give him the registration form
-		 */
-		// alert("opening registration box");
-		flag_fbPullAuthorised = true;
-		// the following two functions will not be needed once the page sign up
-		// process is finalised instead of popup registration
-		// openRegistrationFormPopup () ;
-		// loadRegistrationFormFields () ;
-		// filling the signup page form field
-		loadSignUpFormFields();
-
-		// No need for redirection
-		/*
-		 * var currentUrl = window.location.pathname; var redirectUrl = ofbizUrl +
-		 * "signUp"; console.log("currentURL : " + currentUrl);
-		 * console.log("redirectURL : " + redirectUrl); if(currentUrl ===
-		 * redirectUrl){ console.log("on the signup page no need to redirect");
-		 * loadSignUpFormFields();
-		 * 
-		 * }else{ console.log("redirect it to signup page"); //redirect to
-		 * signup page and on that page check if flag_fbPullAuthorised = true
-		 * than call facebookCnnect again window.location = redirectUrl +
-		 * "?flag_fbPullAuthorised=true"; }
-		 */
-		// window.location = ofbizUrl + "signUp";
-	}
-}
-
-function loadSignUpFormFields() {
-	// alert("loading fields");
-	// select_dropdown_Field_index ( "USER_DOB_YEAR" , "1990" ) ;
-	// alert("Hi");
-	fbPullData();
-}
-
-function fbPullData() {
-	// alert("fbPullData invoked() 1");
-	if (flag_fbPullAuthorised === true) {
-		// alert("fbPullData invoked() 2");
-		FB
-				.api(
-						{
-							method : 'fql.query',
-							query : 'SELECT uid,name,email,first_name,last_name,birthday_date,sex,pic_square FROM user WHERE uid = me()'
-						}, function(response) {
-							var fbUserData = {};
-							for ( var i in response[0]) {
-								fbUserData[i] = response[0][i];
-							}
-							autoFillForm(fbUserData);
-						});
-		flag_fbPullAuthorised = false;
-	}
-}
-
-function autoFillForm(fbData) {
-	// alert("registering the form 1");
-	var formObj = document.createElement("form");
-	formObj.name = "register-user-form";
-	formObj.method = "POST";
-	formObj.action = baseUrl + "/user/createFbUser";
-	var model = "Zzuser";
-	if (formObj && formObj.action && formObj.method) {
-		if (typeof (formObj) !== "undefined" && typeof (fbData) !== "undefined") {
-			// console.log(createDocInputElement("USER_FIRST_NAME",fbData [
-			// "first_name" ]));
-			var name = fbData["first_name"] + ' ' + fbData["last_name"];
-			formObj.appendChild(createDocInputElement(model + "[user_name]",
-					name));
-			// formObj.appendChild (
-			// createDocInputElement("USER_LAST_NAME",fbData [ "last_name" ]) );
-			formObj.appendChild(createDocInputElement(model + "[user_email]",
-					fbData["email"]));
-			formObj.appendChild(createDocInputElement(model + "[user_handle]",
-					fbData["email"]));
-			formObj.appendChild(createDocInputElement(model + "[user_fname]",
-					fbData["first_name"]));
-			formObj.appendChild(createDocInputElement(model + "[user_lname]",
-					fbData["last_name"]));
-			/*
-			 * if ( typeof ( fbData [ "birthday_date" ] ) !== "undefined" ) {
-			 * var birthdate = fbData [ "birthday_date" ].split ( "/" ) ;
-			 * birthdate [ 0 ] = ( ++birthdate [ 0 ] - 1 ) ; //Month birthdate [
-			 * 1 ] = ( ++birthdate [ 1 ] - 1 ) ; //Year
-			 * 
-			 * formObj.appendChild ( createDocInputElement( "USER_BIRTHDATE" ,
-			 * birthdate [ 2 ] + "-" + pad2 ( birthdate [ 0 ] ) + "-" + pad2(
-			 * birthdate [ 1 ] ) ) ); //setFormFieldValue ( formObj.elements [
-			 * "USER_DOB_YEAR" ] , birthdate [ 2 ] ) ; //setFormFieldValue (
-			 * formObj.elements [ "USER_DOB_DATE" ] , birthdate [ 1 ] ) ; }
-			 * 
-			 */
-
-			formObj.appendChild(createDocInputElement(model + "[user_fbid]",
-					fbData["uid"]));
-			// enableRegFormForFacebook () ;
-			document.body.appendChild(formObj);
-			// Submit the form
-			formObj.submit();
-		}
-	}
-	// createUserFromFacebook
-}
 function createDocInputElement(elName, elValue) {
 	var el = document.createElement("input");
 	el.type = "hidden";
@@ -445,7 +216,7 @@ function showFrndSelector() {
 								$('.friendlist').html(html);
 								if (playSound) {
 									popupapperence.play(); // popup apperence
-															// sound
+									// sound
 								}
 
 							});
@@ -533,7 +304,7 @@ jQuery(function($) {
 									+ friends_id + ')'
 						}, function(response) {
 							fbUserData = response;
-							
+
 							$.ajax({
 								type : 'POST',
 								url : siteUrl + "/gameinst/createnewgame",
@@ -1020,7 +791,7 @@ $.fn.infiniteCarousel = function() {
 				singleWidth = $single.outerWidth(), visible = parseInt($wrapper
 						.innerWidth()
 						/ singleWidth), // note: doesn't include padding or
-										// border
+				// border
 				currentPage = 1, pages = Math.ceil($items.length / visible);
 				// console.log($wrapper.innerWidth() / singleWidth);
 
@@ -1125,11 +896,11 @@ jQuery(document)
 																	if (playSound) {
 																		closebutton
 																				.play(); // play
-																							// sound
-																							// on
-																							// close
-																							// button
-																							// click
+																		// sound
+																		// on
+																		// close
+																		// button
+																		// click
 																	}
 																	jQuery(
 																			".popup-cheatsheet")

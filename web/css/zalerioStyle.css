@@ -495,6 +495,7 @@ body {
 }
 .gameInfoDiv#gameInfo-game-players .background{
 	width: 134px;
+	padding-top: 0;
 	margin: 0 auto;
 	border-radius: 0 0 5px 5px;
     background: url('../images/zalerio_1.2/4.ingame_ui/left_Otherplayers.png') no-repeat center top;
@@ -523,7 +524,9 @@ body {
 	color:#395771
 }
 #gameInfo-game-players .infoPlate{
-	height:44px
+	height:44px;
+	position:relative;
+	overflow:visiable;
 }
 
 #gamePrizeImageDiv {
@@ -3981,7 +3984,7 @@ h2.round_no_r{
 	height: 16px;
 	background: url("../images/zalerio_1.2/4.ingame_ui/acceptdeclineremind.png") no-repeat scroll left top transparent;
 	position: absolute;
-	right: 10px;
+	right: 2px;
 	top: 0;
 	cursor:pointer;
 	font-size: 11px;

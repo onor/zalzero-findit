@@ -51,7 +51,7 @@ class Controller extends CController
 	}
 
 	public function filterFacebook($filterChain) {
-	
+		
 		if(isset($_REQUEST["signed_request"])){ // user come for facebook iframe
 			
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
@@ -75,14 +75,17 @@ class Controller extends CController
 					Yii::app()->session['fbid'] = $facebookUser->id;
 
 					$model = new Zzuser;
-
-					$model->user_name	=	$facebookUser->name;
-
+					
+					if(isset($facebookUser->name)){
+						$model->user_name	=	$facebookUser->name;
+					}else{
+						$model->user_name	= $facebookUser->id;
+					}
 					// User First Name
-					$model->user_fname	=	$facebookUser->first_name;
+					$model->user_fname	=	@$facebookUser->first_name;
 
 					// user Last name
-					$model->user_lname	=	$facebookUser->last_name;
+					$model->user_lname	=	@$facebookUser->last_name;
 
 					// user facebook id
 					$model->user_fbid	=	$facebookUser->id;
@@ -118,10 +121,18 @@ class Controller extends CController
 	}
 	
 	function get_auth(){
+		$get_param = "gameinst_id=0";
+		
+		if(isset($_REQUEST["force"])){
+			
+			$get_param .= "&force=play";
+		}
+		
+		$get_param = urlencode($get_param);
 		
 		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
 		
-		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?gameinst_id=0';
+		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?'.$get_param;
 		
 		echo("<script> top.location.href='" . $auth_url . "'</script>");
 		

@@ -26,6 +26,7 @@ define ["../../config/config"], (config) ->
     		userPlayStatusClassName = "userPlayStatus"
 	    	if plrs[seatID].CRS is 0
 	    		userPlayStatusClassName = "userPlayStatus"
+	    		remind_user = """<div class="reminder">Remind</div>"""
 	    	else if plrs[seatID].CRS is 5
 	    		userPlayStatusText = '...playing now'
 	    		userPlayStatusClassName = "userPlayStatus green"
@@ -44,7 +45,7 @@ define ["../../config/config"], (config) ->
 									#{remind_user}
 									<div class="userAreaImg" id="">
 											<img class="userlevelbelt" src="#{baseUrl}/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/#{config.userLevelImgBig[parseInt(plrs[seatID].PL) - 1]}" />
-			                                <img class="backendImage #{if plrs[seatID].PON isnt 1 then "offline" }" src="http://graph.facebook.com/#{plrs[seatID].PFB}/picture" />
+			                                <img class="backendImage #{if plrs[seatID].PON isnt 1 then "offline" }" src="https://graph.facebook.com/#{plrs[seatID].PFB}/picture" />
 			                        </div>
 									<div class="userinfo">
 										<div class="username">#{plrs[seatID].PDN}</div>
@@ -60,7 +61,7 @@ define ["../../config/config"], (config) ->
     	$("#gameInfo-game-players").append userList
 
     
-    jDocument.bind "room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, updateLeftHud
+    jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, updateLeftHud
     jDocument.bind "client:" + zzGlobals.clientCodes.USERINFO, updatePlayerPlate
     
     true

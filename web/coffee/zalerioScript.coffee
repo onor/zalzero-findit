@@ -158,7 +158,7 @@ jQuery ->
     
   printOnConsole = (obj, val) ->
     if (obj?) and (obj.type?) and (val?)
-      console.log obj.type, " : ", val if isDevEnvironment
+      ##console.log obj.type, " : ", val if isDevEnvironment
       if obj.type is "room:AR"
         roundVOs = {}
         roundObjs = jQuery.parseJSON(val)
@@ -166,7 +166,7 @@ jQuery ->
           roundStr = roundObjs[i]
           roundObj = jQuery.parseJSON(roundStr)
           roundVOs[i] = roundObj
-        console.log "RoundVOs :", roundVOs if isDevEnvironment
+        #console.log "RoundVOs :", roundVOs if isDevEnvironment
       if obj.type is "room:BV"
         roundVOs = {}
         roundObjs = jQuery.parseJSON(val)
@@ -175,7 +175,7 @@ jQuery ->
           roundObj = jQuery.parseJSON(roundStr)
           roundObj["PR"] = jQuery.parseJSON(roundObj["PR"])  if roundObj["PR"]?
           roundVOs[i] = roundObj
-        console.log "TilesVOs :", roundVOs if isDevEnvironment
+        #console.log "TilesVOs :", roundVOs if isDevEnvironment
         
 # ********** move to gamePlaycontroller.coffee ********
   addEventHandler = (node, evtType, func, isCapture) ->
@@ -297,12 +297,12 @@ jQuery ->
       userPos = undefined
       userVO = undefined
       userCtr = 0
-      console.log "refreshUserPanel : ", userScoreArr if isDevEnvironment
+      #console.log "refreshUserPanel : ", userScoreArr if isDevEnvironment
       arrLen = userScoreArr.length
       userPos = 0
       while (if 0 <= arrLen then userPos < arrLen else userPos > arrLen)
         userVO = zzGlobals.userVOsSeatIndex[userScoreArr[userPos]]
-        console.log userVO if isDevEnvironment
+        #console.log userVO if isDevEnvironment
         renderUserVOToUserPanel userCtr++, userVO, null, userPos + 1  if userVO
         (if 0 <= arrLen then userPos++ else userPos--)
       if (typeof getGameInstWithFriends isnt "undefined" and getGameInstWithFriends isnt null) and not zzGlobals.offlinePlayers and getGameInstWithFriends(zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID])
@@ -316,13 +316,13 @@ jQuery ->
 
 	# draw left site round panel and score board
     drawUserPanel = ->
-      console.log "drawUserPanel" if isDevEnvironment
+      #console.log "drawUserPanel" if isDevEnvironment
       
       playerListTopHUDTbl = document.getElementById("userScoreHUDMain")
       
       playerListTopHUDTbl.innerHTML = ""
       usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
-      console.log "Score Board left (zzGlobals.roomVars.AP)", usersObject if isDevEnvironment
+      #console.log "Score Board left (zzGlobals.roomVars.AP)", usersObject if isDevEnvironment
       for i of usersObject
         usersInfoObject = jQuery.parseJSON(usersObject[i])
       i = 0
@@ -341,7 +341,7 @@ jQuery ->
         x = seatIdArray[y]
         userObject = jQuery.parseJSON(usersInfoObject[x])
         continue if userObject.GSS is 3 or userObject.GSS is 5
-        console.log "drawing for user #", i + 1 if isDevEnvironment
+        #console.log "drawing for user #", i + 1 if isDevEnvironment
         userTopHUDTr = document.createElement("tr")
         userTopHUDTr.className = "userScoreHUD_player"
         userTopHUDBetsPlacedTd = document.createElement("td")
@@ -384,7 +384,7 @@ jQuery ->
         userTopHUDTr.appendChild userTopHUDScoreTd
         playerListTopHUDTbl.appendChild userTopHUDTr
       flag_drawUserPanel = true
-      console.log "Draw score Panel Bord", userObject if isDevEnvironment
+      #console.log "Draw score Panel Bord", userObject if isDevEnvironment
       refreshUserPanel()
 
 
@@ -405,7 +405,7 @@ jQuery ->
         
     updateTotalSeats = (evt, val) ->
       MAX_PLAYERS_IN_A_GAME = parseInt(val)
-      console.log "Max Seats in game :  ", val if isDevEnvironment
+      #console.log "Max Seats in game :  ", val if isDevEnvironment
       drawUserPanel()
 
     updateZalerioScores = (evt, val) ->

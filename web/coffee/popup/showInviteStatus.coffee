@@ -2,9 +2,8 @@ define [] , () ->
 	# trigger on close invite request
 	closeInvits = ->
 		jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]
-	 
+	
 	showInviteStatus = () ->
-		
     	unless parseInt(zzGlobals.dataObjVars.AP.GCB) is parseInt(zzGlobals.currentUserDBId)
     		return
     	
@@ -42,36 +41,40 @@ define [] , () ->
     		false
     	)
     	$('.leftButton',popupDivBase).click(-> closeInvits() )#close invite trigger
-    	
+    	rejected = 0
     	for seatid of gameObjPLRS
     			totalResponse++
     			if parseInt(gameObjPLRS[seatid].GSS) is 1
-    				$('.acceptBlock .imgWrapper',popupDivBase).append """<img src="https://graph.facebook.com/#{gameObjPLRS[seatid].PFB}/picture" />"""
+    				totalResponse--
+    				invitedImgs++
+    				$('.inviteBlock .imgWrapper',popupDivBase).append """<img src="https://graph.facebook.com/#{gameObjPLRS[seatid].PFB}/picture" />"""
 
 	    		else if parseInt(gameObjPLRS[seatid].GSS) is 2
-	    			$('.declineBlock .imgWrapper',popupDivBase).append """<img src="https://graph.facebook.com/#{gameObjPLRS[seatid].PFB}/picture" />"""
+	    			$('.acceptBlock .imgWrapper',popupDivBase).append """<img src="https://graph.facebook.com/#{gameObjPLRS[seatid].PFB}/picture" />"""
 	    			
-	    		else if parseInt(gameObjPLRS[seatid].GSS) is 3
-	    			totalResponse--
-	    			invitedImgs++
-	    			$('.inviteBlock .imgWrapper',popupDivBase).append """<img src="https://graph.facebook.com/#{gameObjPLRS[seatid].PFB}/picture" />"""
+	    		else if parseInt(gameObjPLRS[seatid].GSS) is 3    			
+	    			$('.declineBlock .imgWrapper',popupDivBase).append """<img src="https://graph.facebook.com/#{gameObjPLRS[seatid].PFB}/picture" />"""
 
     	$('.imgWrapper:not(:has(img))',popupDivBase).parent().remove()
     	
-    	unless totalResponse > usersInfoObject.TP / 2 and invitedImgs != 0
+    	unless totalResponse > usersInfoObject.TP / 2
     		return
     	
+    	return if invitedImgs == 0
+    	
     	if zzGlobals.inviteStatus isnt null and typeof zzGlobals.inviteStatus isnt "undefined"
-    		unless rejected.length + invitedImgs + totalResponse > zzGlobals.inviteStatus 
+    		unless totalResponse > zzGlobals.inviteStatus 
     			return
     	
-    	zzGlobals.inviteStatus = rejected.length + acceptedImgs.length + declinedImgs.length
+    	zzGlobals.inviteStatus = totalResponse #rejected.length + acceptedImgs.length + declinedImgs.length
    	
     	#remove last add popup if exist
     	jQuery('.status_show_popup').remove();
     		
 		#append to body
     	jQuery("body").append popupDivBase
+    	
+    	true
     	
 	jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showInviteStatus
 	

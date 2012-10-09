@@ -92,7 +92,7 @@ function getFbProfilePic($fbId) {
 	if (file_exists($imageFile)) {
  		$fbCurrentUserImg = Yii::app()->request->baseUrl.'/images/avatar/'.$fbId.'.jpg';
 	} else {
-		$fbCurrentUserImg = "http://graph.facebook.com/" . $fbId . "/picture?type=square";
+		$fbCurrentUserImg = "https://graph.facebook.com/" . $fbId . "/picture?type=square";
 	}
 	return $fbCurrentUserImg;
 }

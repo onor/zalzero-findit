@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="en" />
-        <script type="text/javascript">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<script type="text/javascript">
             var baseUrl = "<?php echo Yii::app()->request->baseUrl; ?>";
         </script>
-        <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico" type="image/x-icon" />
-        <!-- blueprint CSS framework -->
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-        <!--[if lt IE 8]>
+<link rel="shortcut icon"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"
+	type="image/x-icon" />
+<!-- blueprint CSS framework -->
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css"
+	media="screen, projection" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css"
+	media="print" />
+<!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
         <![endif]-->
 
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/zalerioStyle.css" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/zalerioStyle.css" />
 
-	<?php
-	 $userId = Yii::app()->user->getID();
-	 $userEmail = getUserEmailId($userId);
-	?>	
-	  <?php
-	        $usersummary = Zzgameusersummary::model()->findByAttributes(array('user_id'=>$userId));
-	        $new_user = false;
-	        if($usersummary['last_gameinst_id'] == NULL && $usersummary['last_gameinst_id'] == ''){
-	        	$new_user = true;
-	        }
-        ?>
-        <script type="text/javascript">
+<?php
+$userId = Yii::app()->user->getID();
+$userEmail = getUserEmailId($userId);
+?>
+<?php
+$usersummary = Zzgameusersummary::model()->findByAttributes(array('user_id'=>$userId));
+$new_user = false;
+if($usersummary['last_gameinst_id'] == NULL && $usersummary['last_gameinst_id'] == ''){
+	$new_user = true;
+}
+?>
+<script type="text/javascript">
             var userLoginId = '<?php echo $userEmail;?>';
            
             var belt_array = <?php echo CJSON::encode($GLOBALS['belt_array']);?>;
@@ -47,36 +56,37 @@
            
         </script>
 
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/zalzero.tutorial.css" />
-        <?php 
-        $baseUrl = Yii::app()->request->baseUrl;
-        $cs = Yii::app()->clientScript;
-        $cs->registerCoreScript('jquery');
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/zalzero.tutorial.css" />
+<?php 
+$baseUrl = Yii::app()->request->baseUrl;
+$cs = Yii::app()->clientScript;
+$cs->registerCoreScript('jquery');
 
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zaleroJs_header.js');
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.jscrollpane.min.js');
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.mousewheel.js');
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/OrbiterMicro_2.0.0.782_Release_min.js');
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zalerioScript.js');
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/lib/require.js');
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/dist/zalzero.tutorial-build.js');
-        $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
+$cs->registerScriptFile(Yii::app()->baseUrl . '/js/zaleroJs_header.js');
+$cs->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.jscrollpane.min.js');
+$cs->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.mousewheel.js');
+$cs->registerScriptFile(Yii::app()->baseUrl . '/js/OrbiterMicro_2.0.0.782_Release_min.js');
+$cs->registerScriptFile(Yii::app()->baseUrl . '/js/zalerioScript.js');
+$cs->registerScriptFile(Yii::app()->baseUrl . '/lib/require.js');
+$cs->registerScriptFile(Yii::app()->baseUrl . '/dist/zalzero.tutorial-build.js');
+$cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 
-        
-        //$cs->registerScriptFile('http://connect.facebook.net/en_US/all.js');
-        ?>
-        <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-        <?php if($new_user == true ) {?>
-        	<script>
+
+//$cs->registerScriptFile('http://connect.facebook.net/en_US/all.js');
+?>
+<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<?php if($new_user == true ) {?>
+<script>
 	        jQuery(function() {
 		        require(['zalzero.tutorial'], function(tutorial) {
 	        		tutorial.launch();
 	        	});
 	        });
 	        </script>
-	    <?php } ?>
-	    
-	    <script>
+<?php } ?>
+
+<script>
 	        jQuery(function() {
 	        	require(['gameEventManager'], function(gameEventManager) {
 		        	start = new gameEventManager();	        		
@@ -84,8 +94,9 @@
 	  
 	        });
 	        </script>
-  		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-  <script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script>
   $(document).ready(function() {
       if (!$.browser.webkit){
             scrollBar = document.createElement("div");
@@ -110,43 +121,48 @@
 
   });
   </script>
-        <?php
-        Yii::app()->clientScript->registerScript(
-                'myHideEffect', '$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");
-                $(".flash-notice").animate({opacity: 1.0}, 3000).fadeOut("slow");
-                $(".flash-error").animate({opacity: 1.0}, 3000).fadeOut("slow");
-            ', CClientScript::POS_READY
-        );
-        ?>
-    </head>
+<?php
+Yii::app()->clientScript->registerScript(
+		'myHideEffect', '$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");
+		$(".flash-notice").animate({opacity: 1.0}, 3000).fadeOut("slow");
+		$(".flash-error").animate({opacity: 1.0}, 3000).fadeOut("slow");
+		', CClientScript::POS_READY
+);
+?>
+</head>
+<?php $facebookConfig = new facebookCredetials(); ?>
+<body>
+	<div id="fb-root"></div>
+	<script>
 
-    <body>
-        <div id="fb-root"></div>
-        <script>
+        // Load the SDK Asynchronously
+        (function(d){
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+
+        
+        jQuery(document).ready(function($) {
             window.fbAsyncInit = function() {
                 FB.init({
-                    appId      : oloFBAppId, // App ID
+                    appId      : "<?php echo $facebookConfig->config->appId; ?>",
                     channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
                     status     : true, // check login status
-                    cookie     : true, // enable cookies to allow the server to access the session
+                    cookie     : false, // enable cookies to allow the server to access the session
                     xfbml      : true  // parse XFBML
                 });
 
                 // Additional initialization code here
             };
-
-            // Load the SDK Asynchronously
-            (function(d){
-                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement('script'); js.id = id; js.async = true;
-                js.src = "//connect.facebook.net/en_US/all.js";
-                ref.parentNode.insertBefore(js, ref);
-            }(document));
+        });
+        
         </script>
-        <div class="container" id="page">
+	<div class="container" id="page">
 
-            <!--	<div id="header">
+		<!--	<div id="header">
                             <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
                             <div>
             <?php
@@ -161,9 +177,10 @@
             }
             ?>
                                 </div>
-                    </div>--><!-- header -->
+                    </div>-->
+		<!-- header -->
 
-            <!--<div id="mainmenu">
+		<!--<div id="mainmenu">
             <?php
             $this->widget('zii.widgets.CMenu', array(
                 'items' => array(
@@ -178,8 +195,9 @@
                 ),
             ));
             ?>
-            </div>--><!-- mainmenu -->
-            <!--    <?php if (Yii::app()->user->hasFlash('success')): ?>
+            </div>-->
+		<!-- mainmenu -->
+		<!--    <?php if (Yii::app()->user->hasFlash('success')): ?>
                             <div class="flash-success">
                 <?php echo Yii::app()->user->getFlash('success'); ?>
                             </div>
@@ -203,365 +221,614 @@
             <?php endif ?>
             -->
 
-            <?php echo $content; ?>
+		<?php echo $content; ?>
 
-            <div class="clear"></div>
-            <!--
+		<div class="clear"></div>
+		<!--
             <div id="footer">
                     Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
                     All Rights Reserved.<br/>
             <?php echo Yii::powered(); ?>
-            </div>--><!-- footer -->
+            </div>-->
+		<!-- footer -->
 
-        </div><!-- page -->
+	</div>
+	<!-- page -->
 
-        <div class="score_show_popup zalerio_popup" id="winnerscreen" style="display: none">
-            <div id="score_friendpopup" class="outer_base">
-                <a href="#" id="close" class="positionAbsolute" onClick="jQuery('.wait').remove(); jQuery('.score_show_popup').css('display','none'); return false;"></a>
-                <div class="show_score">
-                    <div id="topScore_div">
-
-                    </div>
-                    <div id="bottomScore_div">
-
-                    </div>
-                    <div class="button_score">
-                        <a href="" id="rematch" class="rematch" >Rematch</a>
-                        <a href="" class="dismiss" onclick="jQuery('.score_show_popup').hide(); return false;" >Dismiss</a>
-                        <div>
-                        </div>
-                    </div>
-                </div>            
-            </div>
-        </div>
-        
-        <div class="s_show_popup zalerio_popup">
-            <div id="s_friendpopup" class="outer_base">
-                <a href="#" id="close" onClick="jQuery('.wait').remove(); jQuery('.s_show_popup').css('display','none'); return false;"></a>
-                <div id="popup-stats" class="popup-block"> 
-                    <div class="div_top">
-                        <div class="div_img">
-                            <img id="stat_image_tri_level" class="tri_level_belt" src=''/>
-                            <img id="stat_image_main"width='59' height='59' src='' />
-                            <span id='stat_userName'></span>
-                        </div>
-                        <div class="div_top_right">
-                            <div id="lineone"><label>Joined :</label><label id="joined_time"></label><span id="user-level-span"class="GreenBelt"></span></div>
-                            <div id="lineTwo"><!--Number of friends playing --><span id="frnd_playing"></span></div>
-                            <div id="lineThree"><!-- Number of friends not playing --><span id="frnd_total"></span></div>   
-                        </div>
-                    </div>
-                    <ul class="tab_nav">
-                        <li><a id="mygames_a"class="active statslink" href="#">My Games</a></li>
-                        <!--<li><a id="myfriends_a"href="#" class="statslink">My friends</a></li>-->
-                        <li><a id="mylevel_a"href="#" class="statslink">My Level</a></li>
-                    </ul>
-                    <div id="mygames_stats" class="div_botttom allstats">
-                        <div id="rip_active_container" class="div_left">
-                            <div class="titles"><span class="players">Players</span> <span class="round">Round</span> <span class="rank">Rank</span></div>
-                            <div id='rip_active' class="scroll-pane scroll_bar">
-                                <div id='rip_active_rh'></div>
-                            </div>    
-                        </div>            
-                        <div class="div_right" id="rip_win_lost_container">
-                            <div class="won scroll-pane scroll_bar" id='rip_won'>
-                                 <div id='rip_won_apg'></div>
-                            </div>
-                            <div class="lost scroll-pane scroll_bar" id='rip_lost'>
-
-                                <div id="rip_lost_apg"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                  
-                    
-                    <!-- MY level pop up template -->
-                    <div id="mylevel_stats"class="my-level">
-                       <div id="mylevel-check"> 
-                        <div id="belt-info" class="belt-info">
-                            <h3>Congrats! You are a <span id="belt_text"></span> belt!</h3>
-                           
-				
-				<div class="next-belt">
-					<h4>Want to be <span id="next_belt_h4"></span>  belt ?<br/>You need:</h4>
-					<ul id="next_belt_ul">	
-					</ul>
+	<div class="score_show_popup zalerio_popup" id="winnerscreen"
+		style="display: none">
+		<div id="score_friendpopup" class="outer_base">
+			<a href="#" id="close" class="positionAbsolute"
+				onClick="jQuery('.wait').remove(); jQuery('.score_show_popup').css('display','none'); return false;"></a>
+			<div class="show_score">
+				<div id="topScore_div"></div>
+				<div id="bottomScore_div"></div>
+				<div class="button_score">
+					<a href="" id="rematch" class="rematch">Rematch</a> <a href=""
+						class="dismiss"
+						onclick="jQuery('.score_show_popup').hide(); return false;">Dismiss</a>
+					<div></div>
 				</div>
-                                <div class="dummy_div"></div>
-				<div class="current-belt">
-					<h4>You are a <span id="current_belt_h4"></span>  belt.<br/>So far:</h4>
-					<ul id="current_belt_ul">	
-					</ul>
-				</div>
-				<div class="perform"><a id="learn-performance-level"href="#">Learn about performance levels</a></div>
 			</div>
-			<div class="belts">
-				<ul id="vertical_belt_conent">	
-				</ul>	
-			</div>
-                       </div>    
 		</div>
-                    
-                    
-                    
-                   
-                    
-                    
-                <!-- Performance pop-up  -->
-                <div id="performance_level"class="performance_level popup-block"> <a href="#" id="close-performance-level"class="close closesound"></a>
-                    <h3>The journey to becoming a Black Belt</h3>
-                    <p>You start as a WHITE BELT and can progress as you play games and win them. Both conditions number of games played and number of games won must be met
-                    in order to advance to the next belt level. For example, you need to have played 10 games and you also need to have won at least 2 games in order to advance to 
-                    the GREEN BELT level. We wish you much fun in becoming BLACK BELT.</p>
-                    <div class="belt_table">
-                        <table border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <th class="level">Level</th>
-                                <th width="304"align="center"> Number of Games played</th>
-                                <th align="center">Game's won</th>
-                             </tr>
-                            <tr>
-                                <td class="level">Black-belt</td>
-                                <td>>400</td>
-                                 <td>>180</td>
-                             </tr>
-                            <tr>
-                                <td class="level">Brown-belt</td>
-                                <td>>200</td>
-                                <td>>90</td>
-                            </tr>
-                            <tr>
-                                <td class="level">Red-belt</td>
-                                <td>>100</td>
-                                 <td>>40</td>
-                            </tr>
-                            <tr>
-                                <td class="level">Purple-belt</td>
-                                <td>>75</td>
-                                <td>>25</td>
-                             </tr>
-                            <tr>
-                                <td class="level">Blue-belt</td>
-                                <td>>30</td>
-                                <td>>8</td>
-                            </tr>
-                            <tr>
-                                <td class="level">Green-belt</td>
-                                <td>>10</td>
-                                <td>>2</td>
-                            </tr>
-                            <tr>
-                                <td class="level">Orange-belt</td>
-                                <td>>5</td>
-                                <td>>1</td>
-                            </tr>
-                            <tr>
-                                <td class="level">Yellow-belt</td>
-                                 <td>>2</td>
-                                 <td>>0</td>
-                             </tr>
-                             <tr>
-                                <td class="level">White-belt</td>
-                                    <td>>1</td>
-                                     <td>>0</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+	</div>
 
-            
-          </div>
-          <!-- end of popup-stats --> 
-          
-          
-          <!-- pop up help block template -->
-          <div id="popup-help" class="help popup-block">
-           <div id="showmehow">Show Me How</div>
-               <ul class="help_nav">
+	<div class="s_show_popup zalerio_popup">
+		<div id="s_friendpopup" class="outer_base">
+			<a href="#" id="close"
+				onClick="jQuery('.wait').remove(); jQuery('.s_show_popup').css('display','none'); return false;"></a>
+			<div id="popup-stats" class="popup-block">
+				<div class="div_top">
+					<div class="div_img">
+						<img id="stat_image_tri_level" class="tri_level_belt" src='' /> <img
+							id="stat_image_main" width='59' height='59' src='' /> <span
+							id='stat_userName'></span>
+					</div>
+					<div class="div_top_right">
+						<div id="lineone">
+							<label>Joined :</label><label id="joined_time"></label><span
+								id="user-level-span" class="GreenBelt"></span>
+						</div>
+						<div id="lineTwo">
+							<!--Number of friends playing -->
+							<span id="frnd_playing"></span>
+						</div>
+						<div id="lineThree">
+							<!-- Number of friends not playing -->
+							<span id="frnd_total"></span>
+						</div>
+					</div>
+				</div>
+				<ul class="tab_nav">
+					<li><a id="mygames_a" class="active statslink" href="#">My Games</a>
+					</li>
+					<!--<li><a id="myfriends_a"href="#" class="statslink">My friends</a></li>-->
+					<li><a id="mylevel_a" href="#" class="statslink">My Level</a></li>
+				</ul>
+				<div id="mygames_stats" class="div_botttom allstats">
+					<div id="rip_active_container" class="div_left">
+						<div class="titles">
+							<span class="players">Players</span> <span class="round">Round</span>
+							<span class="rank">Rank</span>
+						</div>
+						<div id='rip_active' class="scroll-pane scroll_bar">
+							<div id='rip_active_rh'></div>
+						</div>
+					</div>
+					<div class="div_right" id="rip_win_lost_container">
+						<div class="won scroll-pane scroll_bar" id='rip_won'>
+							<div id='rip_won_apg'></div>
+						</div>
+						<div class="lost scroll-pane scroll_bar" id='rip_lost'>
 
-                     <li id="li-help-contact-us"><a id="a-help-contactus"href="#">Contact us</a></li>
-                     <li id="li-help-tutorial"><a id="a-help-tutorial"class=" active" href="#">Game Rules</a></li>
-              </ul>
-              <!-- help tutorial block -->
-              <div id="help-tutorial"class="tutorial">
-                   <h2></h2>
-                        
-                    <div class="rules-content">
-                        <h3 style="margin-left:10px;">Content:</h3>
-                        <ul>
-                             <li><a id="tutorial_startgame" href="#">Start a game</a></li>
-                            <li><a id="tutorial_taketurn" href="#">Take your turn</a></li>
-                            <li><a id="tutorial_scoring" href="#">Scoring and winning</a></li>
-                            <li><a id="tutorial_jokers" href="#">Overview of hidden numbers and jokers</A></li>
-                        </ul>
-                    </div>
-                    <div id="rules-container"class="rules-container">
-                        <div class="rules">
-                            <div id="tutorial_0" class="fll">
-                            <h3>You need some smarts to win! Find things first before your friends and become a black-belt in "findit"!</h3>
-                            <p>findit is a fun game for you and your friends! You place tiles and try to uncover as many numbers and Jokers as you can over the course of 7 rounds. The player who scores the highest wins! But be careful, there are some twists that you need to watch out for.!</p>
-                            </div>
-                         <div id="tutorial_1" class="fll">
-                            <h3 id="startgame">1.	Start a game.</h3>
-                            <img src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_start_a_ game.png" align="Start a Game">
-                            <p>Click <strong>'START A GAME'</strong> and to <strong>Invite Friends</strong> to play a game with you.</p>
-                            <img src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_search_bar.png" alt="Find Friends">
-                            <p>The <strong>friend search bar</strong> helps you to find your friends. You can also simply scroll through the list with pictures and select. Your friends do not have to be online at the same time in order to play the game but you might get a faster response if they are. If they are not online right now they will still get invited and can chose to join as soon as they receive the invite. We suggest to invite at least 10-15 friends for a game as not all of them might join. It is most fun to play the game with 5-10 players.</p>
-                            <img  class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_indicator_green.png" alt="online"><p> Green represents online</p> <img  class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_indicator_red.png" alt="online"><p> Red represents offline</p>
-                            <img src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_select_friend.png" align="select Friend">
-                            <p>Just click <strong>'SELECT'</strong> for each friend you would like to invite to the game. It will show you clearly if your friend has declined your request earlier. Keep trying to convince your friends to play but don't annoy them - you might be called a "whiner". The game is more exciting and fun the more players there.</p>
-                            <p><img class="left" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_select_ random.png" alt="">If you don't want to choose among your friends you can just click <strong>'SELECT RANDOM'</strong> and the game engine will automatically select 10 players for you.Its sort of a blind date that will always be fun!</p>
-                            <p><img class="left" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_send _challange.png" alt="Send Challenge">After you select your friends press <strong>'SEND CHALLENGE'</strong> to start the game.
-                            Invites will be sent to your friends and you will be able to see who accepted and who did not so that you have full visibility to when all players you invited joined your game! You can start multiple games at the same time with many friends which is even more fun. So don't be shy, challenge them and see who the best is!There is a journey to become a black-belt! </p>
-                            
-                            </div>
-                          <div id="tutorial_2" class="fll">  
-                            <h3 id="taketurn">2. Take Your Turn </h3>
-                            <ul>
-                                <li>Now it's your turn! You have a total of 9 tiles to place in each round and you have a total of 7 rounds to win (or lose)! </li>
-                                <li>Symbols in white <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_tile_with _white_digit.png" alt=""> always are the tiles you are playing in the current round; numbers in black are tiles you played in previous rounds.A red tile with a white question mark '?' <img  class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_red_tile.png" alt=""> represents a new tile which has been placed on the board by you in the current round.Green tiles remain green if  they "hit" (your placement uncovered a part of a hidden number). The digit on the tile represents the number of players who have placed a tile on the same space (if you hover over the tile you will also see pictures of your friends who placed a tile on the same space). </li>
-                                <li>An orange tile <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_yellow_tile.png" alt=""> represents a "miss" by you.A grey tile <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_grey_tile.png" alt=""> represents a miss by one of your fellow players. A â€œmissâ€� is a tile that was placed that did neither uncover any part of a hidden number nor did it hit a joker. You will always see your own misses and the misses of your fellow players.</li>
-                                <li><img class="left" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_complete_ digit.png" alt="">When the number is fully uncovered by you all the tiles turn. Only you will see your uncovered numbers. Here an example of the number 5. Each number from 0 - 9 is placed on the grid. To make this a little harder the numbers can be placed in any position. To see all of the hidden objects you can uncover please take a look at the cheatsheet.</li>
-                                <li>To add to the fun, there are up to 6 Joker tiles <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_joker_tile.png" alt=""> hidden on the board. Whoever hits the Joker first gets 33 joker points - so go for it!</li>
-                                <li>Even better, there is only 1 Super Joker tile <img class="none" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_sjoker_tile.png" alt=""> hidden on the board.Whoever hits the Super Joker first gets 77 super-joker points!  Find him and you have an edge!(by the way - if multiple players uncover the Joker or Super-Joker in the same round they all get the bonus joker points!)</li>
-                                <li>Once you have placed your tiles and you are satisfied with all your <img class="right" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_play_ button.png" alt=""> moves press the <strong>"PLAY"</strong> button. The results of each round will only be published when all players have placed their tiles. So it might take a while until your friends have all played but that just makes it more exciting as you can already strategize for your next moves. Ever played chess?</li>
-                                <li>There are <strong>7rounds in total</strong> in each game <img class="right" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_round_bar.png" alt=""> (6 rounds + 1 final round). On the dashboard, the current round is highlighted in yellow. The past rounds are highlighted in brown. The rounds not played yet are grey.</li>
-                                <li>On the left-hand side you can see who <img class="right" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_left_hud.png" alt=""> is playing with you. The user carousel below your own picture gives you some help to manage the game with your friends (i.e. who is online, who you should remind to play, etc.)</li>
-                                <li><img class="right" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_right_hud.png" alt="">On the right hand side you can see all the other games that you are participating in. There are three sections. In <strong>"YOUR TURN"</strong> you will find the games in which it is your turn to place your tiles. In <strong>"THEIR TURN"</strong> you will find all the games in which your fellow players currently need to place tiles. In "<strong>PAST GAMES"</strong> you can explore who you played with in the past so it's easy for you to rematch!</li>
-                                <li>On the score board you can see the arrow in front of players who have not yet placed their bet in a particular round. Never <img class="right" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_arrow _on score_board.png" alt=""> be the last one placing your tiles as you might get a "boooh" from your friends :>).   If you don't want to finish the game and resign then just press the resign button. </li>
-                                <li>If our gentle reminders don't work well enough we will need your help!  <img  class="right" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_carousel.png" alt="">You always have the opportunity to poke your friend and remind her to play. Just click "remind to play" and a notification will be sent.In both sections of "their turn" and "my turn" players will have a choice to see all the players playing that game. You simply click the arrow buttons and shuffle to the right or left.</li>
-                            </ul>
-                            
-                         </div>   
-                         <div id="tutorial_3" class="fll">   
-                            <h3 id="scoring">3. Scoring and Winning.</h3>
-                            <p>To win you got to score points. To score points you got to uncover or find hidden numbers and jokers. There are a total of 10 numbers hidden on the board. In addition, there are 6 Jokers and 1 Super Joker.The minimum number of players who can start a game is 2. But you are free to start games with up to 10 players.</p>
-                            <p>To find numbers and Jokers you should keep the following in mind.</p>
-                            <h3>A) In-game Points</h3>
-                            <ul>
-                                <li>You have 9 tiles in total for each of the 7rounds, so you have a total of 63 tiles to play per game</li>
-                                <li>The completion of numbers 1-9 gives 100 points each and the completion of the number 0 gives 200 points</li>
-                                <li>The score of completed numbers is evenly split among all the players who complete the number during the whole game. So keep that in mind  as you see who is playing on the same tiles.</li>
-                                <li>Each correctly placed tile gives 10 points, each wrongly placed tile gives a penalty of -10 (minus 10) points.</li>
-                            </ul>
-                            <h3>B)	Bonus Points </h3>
-                            <ul>
-                                <li>In order to win the bonus points, player has to be the 1st one to find and finish the number/object.Each player who uncovers a number/object first wins an additional 75 bonus points (bonus points are never split among other players who uncover the same number later).</li>
-                            </ul>
-                            <h3>C)	Joker and Super Jokers</h3>
-                            <ul>
-                                <li>A joker is one tile only so you can uncover the joker with one hit. The uncovered jokers will be visible to other players so that you can party together! Also, we want to make sure your friends always have to look jealously at your Joker wins! TheJoker and Super Joker is exclusive to whoever hits it first.  In case of a tie (more than one player uncovers the joker in the same round) all players who uncover the joker are awarded the full Joker points. </li>
-                                <li>There are up to 6 "Jokers" and 1 "Super Joker" </li>
-                                <li>Each Joker gets33 points, 1 Super Joker gets77 points.</li>
-                            </ul>
-                            <p>So let us give you a hint: Try to complete as many numbers as possible that require the least amount of tiles but at the same time are not targeted by too many other players. Try to find the number "0" as it gives you the highest number of points (but be aware; others want it too). Of course, try to get all the Jokers as well.</p>
-                            <h3>D)	Final Tips.</h3>
-                            <ul>
-                                <li>Check out Help if you are stuck or want some more information. if you want to contact us just jot down an email and we will reply as quickly as we can!You can also reach us through live chat! Let us <img  class="right" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_help_button.png" alt=""> know anytime what you think. We love your feed-back to make our games more fun for you!</li>
-                                <li>Stats is your own dashboard and performance section. <img  class="right"src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_stats_ button.png" alt=""> You can get all the details like how many games you played, whoof your friends has and has not played with you and what your overall performance and level is. This is designed for you in a way so that you can easily plan your next games. </li>
-                                <li> <img class="right" src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_more_ button.png" alt="">Under  <strong>"MORE"</strong> you find the resign button. Just in case you are really  ready to let your friends win!</li>
-                            </ul>
-                            <p>We wish you luck, now let's go Find It!<br>
-                            Your findit Team!</p>
-                         </div>
-                         <div id="tutorial_4" class="fll">   
-                            <h3 id="jokers">4.	Overview of hidden numbers and jokers</h3>
-                            <table border="1" width="90%">
-                                <tr>
-                                    <th bgcolor="#ccc">Number</th>
-                                    <th bgcolor="#999">Shape</th>
-                                    <th bgcolor="#CCCCCC">Tiles needed to complete number</th>
-                                    <th bgcolor="#999">Available points if number is fully uncovered</th>
-                                </tr>
-                                <tr class="even">
-                                    <td valign="middle" align="center">0</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/0.png" alt=""></td>
-                                    <td>12</td>
-                                    <td>200</td>
-                                </tr>
-                                            <tr class="odd">
-                                    <td>1</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/1.png" alt=""></td>
-                                    <td>6</td>
-                                    <td>100</td>
-                                </tr>
-                                            <tr class="even">
-                                    <td>2</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/2.png" alt=""></td>
-                                    <td>11</td>
-                                    <td>100</td>
-                                </tr><tr class="odd">
-                                    <td>3</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/3.png" alt=""></td>
-                                    <td>11</td>
-                                    <td>100</td>
-                                </tr><tr class="even">
-                                    <td>4</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/4.png" alt=""></td>
-                                    <td>7</td>
-                                    <td>100</td>
-                                </tr>
-                                            <tr class="odd">
-                                    <td>5</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/5.png" alt=""></td>
-                                    <td>11</td>
-                                    <td>100</td>
-                                </tr><tr class="even">
-                                    <td>6</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/6.png" alt=""></td>
-                                    <td>12</td>
-                                    <td>100</td>
-                                </tr>
-                                            <tr class="odd">
-                                    <td>7</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/7.png" alt=""></td>
-                                    <td>8</td>
-                                    <td>100</td>
-                                </tr>
-                                            <tr class="even">
-                                    <td>8</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/8.png" alt=""></td>
-                                    <td>13</td>
-                                    <td>100</td>
-                                </tr>
-                                            <tr class="odd">
-                                    <td>9</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/9.png" alt=""></td>
-                                    <td>12</td>
-                                    <td>100</td>
-                                </tr>
-                                            <tr class="even">
-                                    <td>Joker</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/j.png" alt=""></td>
-                                    <td>1</td>
-                                    <td>33</td>
-                                </tr>
-                                <tr class="odd">
-                                    <td>Super Joker</td>
-                                    <td><img src="../images/zalerio_1.2/5.all_popup/help/tutorial/sj.png" alt=""></td>
-                                    <td>1</td>
-                                    <td>77</td>
-                                </tr>
-                            </table>
-                           </div> 
-                        </div>
-                    </div>
-                        
-                </div>
-              
-              <!-- help contact us block -->
-                <div id="help-contactus" class="popup-block">
-                </div>
-              
-          </div>
-       </div>
-               
-    </div>
-     
-       
+							<div id="rip_lost_apg"></div>
+						</div>
+					</div>
+				</div>
 
 
-            
-    </body>
+
+				<!-- MY level pop up template -->
+				<div id="mylevel_stats" class="my-level">
+					<div id="mylevel-check">
+						<div id="belt-info" class="belt-info">
+							<h3>
+								Congrats! You are a <span id="belt_text"></span> belt!
+							</h3>
+
+
+							<div class="next-belt">
+								<h4>
+									Want to be <span id="next_belt_h4"></span> belt ?<br />You
+									need:
+								</h4>
+								<ul id="next_belt_ul">
+								</ul>
+							</div>
+							<div class="dummy_div"></div>
+							<div class="current-belt">
+								<h4>
+									You are a <span id="current_belt_h4"></span> belt.<br />So far:
+								</h4>
+								<ul id="current_belt_ul">
+								</ul>
+							</div>
+							<div class="perform">
+								<a id="learn-performance-level" href="#">Learn about performance
+									levels</a>
+							</div>
+						</div>
+						<div class="belts">
+							<ul id="vertical_belt_conent">
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+				<!-- Performance pop-up  -->
+				<div id="performance_level" class="performance_level popup-block">
+					<a href="#" id="close-performance-level" class="close closesound"></a>
+					<h3>The journey to becoming a Black Belt</h3>
+					<p>You start as a WHITE BELT and can progress as you play games and
+						win them. Both conditions number of games played and number of
+						games won must be met in order to advance to the next belt level.
+						For example, you need to have played 10 games and you also need to
+						have won at least 2 games in order to advance to the GREEN BELT
+						level. We wish you much fun in becoming BLACK BELT.</p>
+					<div class="belt_table">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<th class="level">Level</th>
+								<th width="304" align="center">Number of Games played</th>
+								<th align="center">Game's won</th>
+							</tr>
+							<tr>
+								<td class="level">Black-belt</td>
+								<td>>400</td>
+								<td>>180</td>
+							</tr>
+							<tr>
+								<td class="level">Brown-belt</td>
+								<td>>200</td>
+								<td>>90</td>
+							</tr>
+							<tr>
+								<td class="level">Red-belt</td>
+								<td>>100</td>
+								<td>>40</td>
+							</tr>
+							<tr>
+								<td class="level">Purple-belt</td>
+								<td>>75</td>
+								<td>>25</td>
+							</tr>
+							<tr>
+								<td class="level">Blue-belt</td>
+								<td>>30</td>
+								<td>>8</td>
+							</tr>
+							<tr>
+								<td class="level">Green-belt</td>
+								<td>>10</td>
+								<td>>2</td>
+							</tr>
+							<tr>
+								<td class="level">Orange-belt</td>
+								<td>>5</td>
+								<td>>1</td>
+							</tr>
+							<tr>
+								<td class="level">Yellow-belt</td>
+								<td>>2</td>
+								<td>>0</td>
+							</tr>
+							<tr>
+								<td class="level">White-belt</td>
+								<td>>1</td>
+								<td>>0</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+
+			</div>
+			<!-- end of popup-stats -->
+
+
+			<!-- pop up help block template -->
+			<div id="popup-help" class="help popup-block">
+				<div id="showmehow">Show Me How</div>
+				<ul class="help_nav">
+
+					<li id="li-help-contact-us"><a id="a-help-contactus">Contact
+							us</a></li>
+					<li id="li-help-tutorial"><a id="a-help-tutorial" class=" active" >Game Rules</a></li>
+				</ul>
+				<!-- help tutorial block -->
+				<div id="help-tutorial" class="tutorial">
+					<h2></h2>
+
+					<div class="rules-content">
+						<h3 style="margin-left: 10px;">Content:</h3>
+						<ul>
+							<li><a id="tutorial_startgame" href="#">Start a game</a></li>
+							<li><a id="tutorial_taketurn" href="#">Take your turn</a></li>
+							<li><a id="tutorial_scoring" href="#">Scoring and winning</a></li>
+							<li><a id="tutorial_jokers" href="#">Overview of hidden numbers
+									and jokers</A></li>
+						</ul>
+					</div>
+					<div id="rules-container" class="rules-container">
+						<div class="rules">
+							<div id="tutorial_0" class="fll">
+								<h3>You need some smarts to win! Find things first before your
+									friends and become a black-belt in "findit"!</h3>
+								<p>findit is a fun game for you and your friends! You place
+									tiles and try to uncover as many numbers and Jokers as you can
+									over the course of 7 rounds. The player who scores the highest
+									wins! But be careful, there are some twists that you need to
+									watch out for.!</p>
+							</div>
+							<div id="tutorial_1" class="fll">
+								<h3 id="startgame">1. Start a game.</h3>
+								<img
+									src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_start_a_ game.png"
+									align="Start a Game">
+								<p>
+									Click <strong>'START A GAME'</strong> and to <strong>Invite
+										Friends</strong> to play a game with you.
+								</p>
+								<img
+									src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_search_bar.png"
+									alt="Find Friends">
+								<p>
+									The <strong>friend search bar</strong> helps you to find your
+									friends. You can also simply scroll through the list with
+									pictures and select. Your friends do not have to be online at
+									the same time in order to play the game but you might get a
+									faster response if they are. If they are not online right now
+									they will still get invited and can chose to join as soon as
+									they receive the invite. We suggest to invite at least 10-15
+									friends for a game as not all of them might join. It is most
+									fun to play the game with 5-10 players.
+								</p>
+								<img class="none"
+									src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_indicator_green.png"
+									alt="online">
+								<p>Green represents online</p>
+								<img class="none"
+									src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_indicator_red.png"
+									alt="online">
+								<p>Red represents offline</p>
+								<img
+									src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_select_friend.png"
+									align="select Friend">
+								<p>
+									Just click <strong>'SELECT'</strong> for each friend you would
+									like to invite to the game. It will show you clearly if your
+									friend has declined your request earlier. Keep trying to
+									convince your friends to play but don't annoy them - you might
+									be called a "whiner". The game is more exciting and fun the
+									more players there.
+								</p>
+								<p>
+									<img class="left"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_select_ random.png"
+										alt="">If you don't want to choose among your friends you can
+									just click <strong>'SELECT RANDOM'</strong> and the game engine
+									will automatically select 10 players for you.Its sort of a
+									blind date that will always be fun!
+								</p>
+								<p>
+									<img class="left"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_send _challange.png"
+										alt="Send Challenge">After you select your friends press <strong>'SEND
+										CHALLENGE'</strong> to start the game. Invites will be sent to
+									your friends and you will be able to see who accepted and who
+									did not so that you have full visibility to when all players
+									you invited joined your game! You can start multiple games at
+									the same time with many friends which is even more fun. So
+									don't be shy, challenge them and see who the best is!There is a
+									journey to become a black-belt!
+								</p>
+
+							</div>
+							<div id="tutorial_2" class="fll">
+								<h3 id="taketurn">2. Take Your Turn</h3>
+								<ul>
+									<li>Now it's your turn! You have a total of 9 tiles to place in
+										each round and you have a total of 7 rounds to win (or lose)!
+									</li>
+									<li>Symbols in white <img class="none"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_tile_with _white_digit.png"
+										alt=""> always are the tiles you are playing in the current
+										round; numbers in black are tiles you played in previous
+										rounds.A red tile with a white question mark '?' <img
+										class="none"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_red_tile.png"
+										alt=""> represents a new tile which has been placed on the
+										board by you in the current round.Green tiles remain green if
+										they "hit" (your placement uncovered a part of a hidden
+										number). The digit on the tile represents the number of
+										players who have placed a tile on the same space (if you hover
+										over the tile you will also see pictures of your friends who
+										placed a tile on the same space).
+									</li>
+									<li>An orange tile <img class="none"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_yellow_tile.png"
+										alt=""> represents a "miss" by you.A grey tile <img
+										class="none"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_grey_tile.png"
+										alt=""> represents a miss by one of your fellow players. A
+										â€œmissâ€� is a tile that was placed that did neither
+										uncover any part of a hidden number nor did it hit a joker.
+										You will always see your own misses and the misses of your
+										fellow players.
+									</li>
+									<li><img class="left"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_complete_ digit.png"
+										alt="">When the number is fully uncovered by you all the tiles
+										turn. Only you will see your uncovered numbers. Here an
+										example of the number 5. Each number from 0 - 9 is placed on
+										the grid. To make this a little harder the numbers can be
+										placed in any position. To see all of the hidden objects you
+										can uncover please take a look at the cheatsheet.</li>
+									<li>To add to the fun, there are up to 6 Joker tiles <img
+										class="none"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_joker_tile.png"
+										alt=""> hidden on the board. Whoever hits the Joker first gets
+										33 joker points - so go for it!
+									</li>
+									<li>Even better, there is only 1 Super Joker tile <img
+										class="none"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_sjoker_tile.png"
+										alt=""> hidden on the board.Whoever hits the Super Joker first
+										gets 77 super-joker points! Find him and you have an edge!(by
+										the way - if multiple players uncover the Joker or Super-Joker
+										in the same round they all get the bonus joker points!)
+									</li>
+									<li>Once you have placed your tiles and you are satisfied with
+										all your <img class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_play_ button.png"
+										alt=""> moves press the <strong>"PLAY"</strong> button. The
+										results of each round will only be published when all players
+										have placed their tiles. So it might take a while until your
+										friends have all played but that just makes it more exciting
+										as you can already strategize for your next moves. Ever played
+										chess?
+									</li>
+									<li>There are <strong>7rounds in total</strong> in each game <img
+										class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_round_bar.png"
+										alt=""> (6 rounds + 1 final round). On the dashboard, the
+										current round is highlighted in yellow. The past rounds are
+										highlighted in brown. The rounds not played yet are grey.
+									</li>
+									<li>On the left-hand side you can see who <img class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_left_hud.png"
+										alt=""> is playing with you. The user carousel below your own
+										picture gives you some help to manage the game with your
+										friends (i.e. who is online, who you should remind to play,
+										etc.)
+									</li>
+									<li><img class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_right_hud.png"
+										alt="">On the right hand side you can see all the other games
+										that you are participating in. There are three sections. In <strong>"YOUR
+											TURN"</strong> you will find the games in which it is your
+										turn to place your tiles. In <strong>"THEIR TURN"</strong> you
+										will find all the games in which your fellow players currently
+										need to place tiles. In "<strong>PAST GAMES"</strong> you can
+										explore who you played with in the past so it's easy for you
+										to rematch!</li>
+									<li>On the score board you can see the arrow in front of
+										players who have not yet placed their bet in a particular
+										round. Never <img class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_arrow _on score_board.png"
+										alt=""> be the last one placing your tiles as you might get a
+										"boooh" from your friends :>). If you don't want to finish the
+										game and resign then just press the resign button.
+									</li>
+									<li>If our gentle reminders don't work well enough we will need
+										your help! <img class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_carousel.png"
+										alt="">You always have the opportunity to poke your friend and
+										remind her to play. Just click "remind to play" and a
+										notification will be sent.In both sections of "their turn" and
+										"my turn" players will have a choice to see all the players
+										playing that game. You simply click the arrow buttons and
+										shuffle to the right or left.
+									</li>
+								</ul>
+
+							</div>
+							<div id="tutorial_3" class="fll">
+								<h3 id="scoring">3. Scoring and Winning.</h3>
+								<p>To win you got to score points. To score points you got to
+									uncover or find hidden numbers and jokers. There are a total of
+									10 numbers hidden on the board. In addition, there are 6 Jokers
+									and 1 Super Joker.The minimum number of players who can start a
+									game is 2. But you are free to start games with up to 10
+									players.</p>
+								<p>To find numbers and Jokers you should keep the following in
+									mind.</p>
+								<h3>A) In-game Points</h3>
+								<ul>
+									<li>You have 9 tiles in total for each of the 7rounds, so you
+										have a total of 63 tiles to play per game</li>
+									<li>The completion of numbers 1-9 gives 100 points each and the
+										completion of the number 0 gives 200 points</li>
+									<li>The score of completed numbers is evenly split among all
+										the players who complete the number during the whole game. So
+										keep that in mind as you see who is playing on the same tiles.</li>
+									<li>Each correctly placed tile gives 10 points, each wrongly
+										placed tile gives a penalty of -10 (minus 10) points.</li>
+								</ul>
+								<h3>B) Bonus Points</h3>
+								<ul>
+									<li>In order to win the bonus points, player has to be the 1st
+										one to find and finish the number/object.Each player who
+										uncovers a number/object first wins an additional 75 bonus
+										points (bonus points are never split among other players who
+										uncover the same number later).</li>
+								</ul>
+								<h3>C) Joker and Super Jokers</h3>
+								<ul>
+									<li>A joker is one tile only so you can uncover the joker with
+										one hit. The uncovered jokers will be visible to other players
+										so that you can party together! Also, we want to make sure
+										your friends always have to look jealously at your Joker wins!
+										TheJoker and Super Joker is exclusive to whoever hits it
+										first. In case of a tie (more than one player uncovers the
+										joker in the same round) all players who uncover the joker are
+										awarded the full Joker points.</li>
+									<li>There are up to 6 "Jokers" and 1 "Super Joker"</li>
+									<li>Each Joker gets33 points, 1 Super Joker gets77 points.</li>
+								</ul>
+								<p>So let us give you a hint: Try to complete as many numbers as
+									possible that require the least amount of tiles but at the same
+									time are not targeted by too many other players. Try to find
+									the number "0" as it gives you the highest number of points
+									(but be aware; others want it too). Of course, try to get all
+									the Jokers as well.</p>
+								<h3>D) Final Tips.</h3>
+								<ul>
+									<li>Check out Help if you are stuck or want some more
+										information. if you want to contact us just jot down an email
+										and we will reply as quickly as we can!You can also reach us
+										through live chat! Let us <img class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_help_button.png"
+										alt=""> know anytime what you think. We love your feed-back to
+										make our games more fun for you!
+									</li>
+									<li>Stats is your own dashboard and performance section. <img
+										class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_stats_ button.png"
+										alt=""> You can get all the details like how many games you
+										played, whoof your friends has and has not played with you and
+										what your overall performance and level is. This is designed
+										for you in a way so that you can easily plan your next games.
+									</li>
+									<li><img class="right"
+										src="../images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_more_ button.png"
+										alt="">Under <strong>"MORE"</strong> you find the resign
+										button. Just in case you are really ready to let your friends
+										win!</li>
+								</ul>
+								<p>
+									We wish you luck, now let's go Find It!<br> Your findit Team!
+								</p>
+							</div>
+							<div id="tutorial_4" class="fll">
+								<h3 id="jokers">4. Overview of hidden numbers and jokers</h3>
+								<table border="1" width="90%">
+									<tr>
+										<th bgcolor="#ccc">Number</th>
+										<th bgcolor="#999">Shape</th>
+										<th bgcolor="#CCCCCC">Tiles needed to complete number</th>
+										<th bgcolor="#999">Available points if number is fully
+											uncovered</th>
+									</tr>
+									<tr class="even">
+										<td valign="middle" align="center">0</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/0.png"
+											alt=""></td>
+										<td>12</td>
+										<td>200</td>
+									</tr>
+									<tr class="odd">
+										<td>1</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/1.png"
+											alt=""></td>
+										<td>6</td>
+										<td>100</td>
+									</tr>
+									<tr class="even">
+										<td>2</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/2.png"
+											alt=""></td>
+										<td>11</td>
+										<td>100</td>
+									</tr>
+									<tr class="odd">
+										<td>3</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/3.png"
+											alt=""></td>
+										<td>11</td>
+										<td>100</td>
+									</tr>
+									<tr class="even">
+										<td>4</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/4.png"
+											alt=""></td>
+										<td>7</td>
+										<td>100</td>
+									</tr>
+									<tr class="odd">
+										<td>5</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/5.png"
+											alt=""></td>
+										<td>11</td>
+										<td>100</td>
+									</tr>
+									<tr class="even">
+										<td>6</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/6.png"
+											alt=""></td>
+										<td>12</td>
+										<td>100</td>
+									</tr>
+									<tr class="odd">
+										<td>7</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/7.png"
+											alt=""></td>
+										<td>8</td>
+										<td>100</td>
+									</tr>
+									<tr class="even">
+										<td>8</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/8.png"
+											alt=""></td>
+										<td>13</td>
+										<td>100</td>
+									</tr>
+									<tr class="odd">
+										<td>9</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/9.png"
+											alt=""></td>
+										<td>12</td>
+										<td>100</td>
+									</tr>
+									<tr class="even">
+										<td>Joker</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/j.png"
+											alt=""></td>
+										<td>1</td>
+										<td>33</td>
+									</tr>
+									<tr class="odd">
+										<td>Super Joker</td>
+										<td><img
+											src="../images/zalerio_1.2/5.all_popup/help/tutorial/sj.png"
+											alt=""></td>
+										<td>1</td>
+										<td>77</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<!-- help contact us block -->
+				<div id="help-contactus" class="popup-block"></div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+</body>
 </html>

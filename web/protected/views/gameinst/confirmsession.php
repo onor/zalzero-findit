@@ -111,7 +111,7 @@
                 </div>
                 <div class="login">
                     <a class="closethis" href="<?php echo Yii::app()->request->baseUrl ?>/site/closesession" onclick="" >Close this <br />Session!</a>   
-                    <a class="playhere" href="<?php echo Yii::app()->request->baseUrl ?>/gameinst/play?gameinst_id=<?php echo $gameinst_id; ?>&force=play" >Close other Session! <br /> Play Here</a>                
+                    <a class="playhere" href="<?php echo Yii::app()->request->baseUrl ?>/?gameinst_id=<?php echo $gameinst_id; ?>&force=play" >Close other Session! <br /> Play Here</a>                
                 </div> 
             </div>
           </div>

@@ -11,7 +11,7 @@ define([],function(){
 /**this function updates the stats popup - mygames and mylevel */
 return function usersRecord(gameRecords)
 {
-	console.log("gameRecords",gameRecords);
+
 	
    try
    {
@@ -48,10 +48,7 @@ return function usersRecord(gameRecords)
    }
    catch(err)
    {
-       if(isDevEnvironment === true)
-       {
-           console.log('building past games data',err);
-       }
+
        return;
    }
    
@@ -101,10 +98,7 @@ return function usersRecord(gameRecords)
   }
   catch(err)
   {
-      if(isDevEnvironment === true)
-       {
-                      console.log('building past games data',err);
-       }
+
   }
           /***** RH will contain active ganmes data *****/
           try
@@ -187,10 +181,7 @@ return function usersRecord(gameRecords)
           }
           catch(err)
           {
-              if(isDevEnvironment === true)
-                  {
-                      console.log('stats RH active games',err);
-                  }
+
           }
           
           
@@ -202,7 +193,7 @@ return function usersRecord(gameRecords)
           if(is_apg)
           {
                 // first remove the data of all past games that are present and rebuild with start
-                jQuery(".ap_games").remove(); console.log('past',pastGames);
+                jQuery(".ap_games").remove();
                 jQuery.each(gameRecords.APG_SORT,
                             function(index,value)
                             {
@@ -277,10 +268,7 @@ return function usersRecord(gameRecords)
      }
      catch(err)
      {
-         if(isDevEnvironment === true)
-                  {
-                      console.log('showing past games',err);
-                  }
+
      }
                /**** for scroll bar ******/
                 jQuery(function()
@@ -363,10 +351,7 @@ return function usersRecord(gameRecords)
     }
     catch(err)
     {
-        if(isDevEnvironment === true)
-        {
-           console.log('showing level data',err);
-        }
+
     }
     
     try
@@ -385,10 +370,7 @@ return function usersRecord(gameRecords)
     }
     catch(err)
     {
-        if(isDevEnvironment === true)
-        {
-           console.log('showing stats top data',err);
-        }
+
     }
                     
 }

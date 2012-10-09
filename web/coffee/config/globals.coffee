@@ -1,4 +1,4 @@
-define ["./config"], (config) ->
+define ["./config","../helper/utils"], (config,utils) ->
 	DEFAULT_PLAYER_IMG_URL = "/olotheme/images/fbDefaultUser.gif"
 	zzEvents =
 	    JOINED_ROOM: "joinedRoomListener"
@@ -103,8 +103,8 @@ define ["./config"], (config) ->
 	    setClockInterval = ""
 	    UserVO = (userUnionId, userSnapshotObj) ->
 	      if config.isDevEnvironment
-	      	console.log "Added to room " + userSnapshotObj
-	      	console.log "Current User local ID : " + zzGlobals.currentUserDBId;
+	      	utils.log "Added to room " + userSnapshotObj
+	      	utils.log "Current User local ID : " + zzGlobals.currentUserDBId;
 	      for i of clientCodes
 	        this[clientCodes[i]] = "-1"
 	      userVArr = userSnapshotObj.split("|")
@@ -137,7 +137,7 @@ define ["./config"], (config) ->
 	      else
 	        if pageRefresh and ttl <= 0
 	          if pageRefresh.isTimerEnabled and not (pageRefresh.isTimerEnabled()) and currentScreen isnt "postscreen"
-	            console.log "Pagerefresh.isTimerEnabled false!" if config.isDevEnvironment
+	            utils.log "Pagerefresh.isTimerEnabled false!" if config.isDevEnvironment
 	            pageRefresh.enableTimer()
 	      jDocument.trigger oloEvents.UPDATE_LOCAL_TTL, @ttl
 	
@@ -154,11 +154,11 @@ define ["./config"], (config) ->
 	        timer = setTimeout(->
 	          redirectToPlayNow gameInstId
 	        , 5000)
-	        console.log "refresh timer set!" if config.isDevEnvironment
+	        utils.log "refresh timer set!" if config.isDevEnvironment
 	
 	      clearTimerFn = ->
 	        timer = null
-	        console.log "refresh timer cleared!" if config.isDevEnvironment
+	        utils.log "refresh timer cleared!" if config.isDevEnvironment
 	
 	      isTimerEnabled: ->
 	        if timer
