@@ -130,7 +130,8 @@ class Controller extends CController
 		
 		$get_param = urlencode($get_param);
 		
-		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
+//		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
+		$permission = "email,friends_online_presence";
 		
 		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?'.$get_param;
 		
