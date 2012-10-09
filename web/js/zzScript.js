@@ -2614,6 +2614,9 @@ define('drag-drop',[], function() {
     return $('.box-newBet').droppable("disable");
   });
   return $('.draggableBets').live("mouseover", function() {
+    if (window.tutorialFlag) {
+      return;
+    }
     $('.draggableBets').draggable({
       scope: "drop_tile",
       revert: 'invalid'

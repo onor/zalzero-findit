@@ -524,7 +524,8 @@ body {
 }
 #gameInfo-game-players .infoPlate{
 	height:44px;
-	position:relative
+	position:relative;
+	overflow:hidden;
 }
 
 #gamePrizeImageDiv {

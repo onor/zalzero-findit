@@ -6,6 +6,7 @@ define [], () ->
 	)
 	
 	$('.draggableBets').live( "mouseover", () ->
+		return if window.tutorialFlag
 		$('.draggableBets').draggable
 			scope: "drop_tile"
 			revert : 'invalid'
