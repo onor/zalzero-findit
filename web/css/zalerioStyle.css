@@ -495,6 +495,7 @@ body {
 }
 .gameInfoDiv#gameInfo-game-players .background{
 	width: 134px;
+	padding-top: 0;
 	margin: 0 auto;
 	border-radius: 0 0 5px 5px;
     background: url('../images/zalerio_1.2/4.ingame_ui/left_Otherplayers.png') no-repeat center top;
