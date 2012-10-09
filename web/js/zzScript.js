@@ -2554,7 +2554,7 @@ define('../../popup/roundScorePopup',[], function() {
 define('drag-drop',[], function() {
   var bindStatus;
   bindStatus = false;
-  $('.box-newBet').live("mouseover", function() {
+  $('.box-blank').live("mouseover", function() {
     return $('.box-newBet').droppable("disable");
   });
   return $('.draggableBets').live("mouseover", function() {

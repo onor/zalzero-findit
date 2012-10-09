@@ -1,7 +1,7 @@
 define [], () ->
 	bindStatus = false
 
-	$('.box-newBet').live("mouseover",() ->
+	$('.box-blank').live("mouseover",() ->
 		$('.box-newBet').droppable("disable")
 	)
 	

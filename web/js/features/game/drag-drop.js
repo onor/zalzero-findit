@@ -3,7 +3,7 @@
 define([], function() {
   var bindStatus;
   bindStatus = false;
-  $('.box-newBet').live("mouseover", function() {
+  $('.box-blank').live("mouseover", function() {
     return $('.box-newBet').droppable("disable");
   });
   return $('.draggableBets').live("mouseover", function() {
