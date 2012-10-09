@@ -1,4 +1,4 @@
-define [], ()-> #'utils',
+define ['../config/envConfig'], (config)-> #'utils',
 	addEventHandler : (node, evtType, func, isCapture) ->
 		if window and window.addEventListener
 			node.addEventListener evtType, func, isCapture
@@ -18,7 +18,8 @@ define [], ()-> #'utils',
 			node.className = node.className.replace(reg, " ")
 			
 	log : (message) ->
-		#console.log message
+		if config.showLog
+			console.log message
 		
 	getMiniLoaderHTML: ->
 		return """<div id="floatingBarsGs">

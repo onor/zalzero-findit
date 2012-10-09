@@ -4,3 +4,5 @@ define [], () ->
 	unionConnection:
 		url : "zzunion2.zalerio.com"
 		port : 443
+		
+	showLog: false

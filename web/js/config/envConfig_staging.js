@@ -5,6 +5,7 @@ define([], function() {
     unionConnection: {
       url: document.domain,
       port: 9933
-    }
+    },
+    showLog: false
   };
 });

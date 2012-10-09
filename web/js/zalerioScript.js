@@ -213,11 +213,8 @@ jQuery(function() {
     }
   };
   printOnConsole = function(obj, val) {
-    var i, roundObj, roundObjs, roundStr, roundVOs;
+    var i, roundObj, roundObjs, roundStr, roundVOs, _results;
     if ((obj != null) && (obj.type != null) && (val != null)) {
-      if (isDevEnvironment) {
-        console.log(obj.type, " : ", val);
-      }
       if (obj.type === "room:AR") {
         roundVOs = {};
         roundObjs = jQuery.parseJSON(val);
@@ -226,24 +223,20 @@ jQuery(function() {
           roundObj = jQuery.parseJSON(roundStr);
           roundVOs[i] = roundObj;
         }
-        if (isDevEnvironment) {
-          console.log("RoundVOs :", roundVOs);
-        }
       }
       if (obj.type === "room:BV") {
         roundVOs = {};
         roundObjs = jQuery.parseJSON(val);
+        _results = [];
         for (i in roundObjs) {
           roundStr = roundObjs[i];
           roundObj = jQuery.parseJSON(roundStr);
           if (roundObj["PR"] != null) {
             roundObj["PR"] = jQuery.parseJSON(roundObj["PR"]);
           }
-          roundVOs[i] = roundObj;
+          _results.push(roundVOs[i] = roundObj);
         }
-        if (isDevEnvironment) {
-          return console.log("TilesVOs :", roundVOs);
-        }
+        return _results;
       }
     }
   };
@@ -386,16 +379,10 @@ jQuery(function() {
       userPos = void 0;
       userVO = void 0;
       userCtr = 0;
-      if (isDevEnvironment) {
-        console.log("refreshUserPanel : ", userScoreArr);
-      }
       arrLen = userScoreArr.length;
       userPos = 0;
       while ((0 <= arrLen ? userPos < arrLen : userPos > arrLen)) {
         userVO = zzGlobals.userVOsSeatIndex[userScoreArr[userPos]];
-        if (isDevEnvironment) {
-          console.log(userVO);
-        }
         if (userVO) {
           renderUserVOToUserPanel(userCtr++, userVO, null, userPos + 1);
         }
@@ -414,15 +401,9 @@ jQuery(function() {
     renderUserVOToUserPanel = function(idx, userVO, userOffline, userSerial) {};
     drawUserPanel = function() {
       var i, playerListTopHUDTbl, s, scoreArray, seatId, seatIdArray, userObject, userTopHUDBetsPlacedTd, userTopHUDNameTd, userTopHUDScoreTd, userTopHUDSerialNumTd, userTopHUDTr, usersInfoObject, usersInfoObjectx, usersObject, usersScoreObject, x, y;
-      if (isDevEnvironment) {
-        console.log("drawUserPanel");
-      }
       playerListTopHUDTbl = document.getElementById("userScoreHUDMain");
       playerListTopHUDTbl.innerHTML = "";
       usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP);
-      if (isDevEnvironment) {
-        console.log("Score Board left (zzGlobals.roomVars.AP)", usersObject);
-      }
       for (i in usersObject) {
         usersInfoObject = jQuery.parseJSON(usersObject[i]);
       }
@@ -444,9 +425,6 @@ jQuery(function() {
         userObject = jQuery.parseJSON(usersInfoObject[x]);
         if (userObject.GSS === 3 || userObject.GSS === 5) {
           continue;
-        }
-        if (isDevEnvironment) {
-          console.log("drawing for user #", i + 1);
         }
         userTopHUDTr = document.createElement("tr");
         userTopHUDTr.className = "userScoreHUD_player";
@@ -496,9 +474,6 @@ jQuery(function() {
         playerListTopHUDTbl.appendChild(userTopHUDTr);
       }
       flag_drawUserPanel = true;
-      if (isDevEnvironment) {
-        console.log("Draw score Panel Bord", userObject);
-      }
       return refreshUserPanel();
     };
     pushToUserVO = function(event, userVO, flag_updateUserIdx) {
@@ -522,9 +497,6 @@ jQuery(function() {
     };
     updateTotalSeats = function(evt, val) {
       MAX_PLAYERS_IN_A_GAME = parseInt(val);
-      if (isDevEnvironment) {
-        console.log("Max Seats in game :  ", val);
-      }
       return drawUserPanel();
     };
     updateZalerioScores = function(evt, val) {

@@ -86,7 +86,7 @@ function facebookInit() {
 			}
 		});
 	} else {
-		console.log("Facebook NOT initialized!");
+		//console.log("Facebook NOT initialized!");
 	}
 }
 
