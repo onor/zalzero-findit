@@ -119,10 +119,39 @@ define(["../../config/config"], function(config) {
     return true;
   };
   window.createGameDetailsPopup = function(gameId) {
-    var betPlacedNoClass, gameDetails, gdDiv, gdPlaydivClassName, gdUserImgclassName, i, index, playerName, plrs, remindUsersData, trClass, _ref, _score;
+    var betPlacedNoClass, el, gameDetails, gdAllRoundDiv, gdDiv, gdPlaydivClassName, gdUserImgclassName, i, index, lastEl, lastRoundId, playerName, plrs, remindUsersData, roundId, trClass, _i, _ref, _score;
     gameDetails = zzGlobals.msgVars.RH[gameId];
     jQuery('.gdWrapper').remove();
-    gdDiv = $("<div class=\"gdWrapper animated fadeInRight\">\n	<div class=\"gdScoreCardDiv\">\n		<div class=\"gdAllRoundDiv\" id=\"gdAllRoundDivId\"></div>\n\n		<div class=\"gdScoreInfoDiv\">\n			<table class=\"gdScoreCardTbl\"></table>\n		</div>\n	</div>\n	<div class=\"gdUsersImgdiv\"></div>\n	<div class=\"gdReminddiv\"></div>\n	<div class=\"gdReturndiv\"></div>\n</div>");
+    gdAllRoundDiv = document.createElement("div");
+    gdAllRoundDiv.className = 'gdAllRoundDiv';
+    gdAllRoundDiv.id = 'gdAllRoundDivId';
+    drawRoundsPanel(gdAllRoundDiv);
+    console.log(gdAllRoundDiv);
+    try {
+      for (roundId = _i = 1; _i <= 7; roundId = ++_i) {
+        el = roundVOsIdxRightHUD[roundId];
+        console.log('roundVOsIdx', roundVOsIdxRightHUD);
+        if (roundId > parseInt(gameDetails.CR)) {
+          el.className = "notPlayedRound";
+        } else {
+          el.className = "doneRound";
+        }
+        if (roundId === parseInt(gameDetails.CR)) {
+          el.className = "currentRound";
+        }
+        lastEl = el;
+        lastRoundId = roundId;
+      }
+      if (lastEl && lastRoundId) {
+        if (lastRoundId === parseInt(gameDetails.CR)) {
+          lastEl.className = "currentFinalRound";
+        } else {
+          lastEl.className = "finalRound";
+        }
+      }
+    } catch (_error) {}
+    gdDiv = $("<div class=\"gdWrapper animated fadeInRight\">\n	<div class=\"gdScoreCardDiv\">\n		<div class=\"gdScoreInfoDiv\">\n			<table class=\"gdScoreCardTbl\"></table>\n		</div>\n	</div>\n	<div class=\"gdUsersImgdiv\"></div>\n	<div class=\"gdReminddiv\"></div>\n	<div class=\"gdReturndiv\"></div>\n</div>");
+    $('.gdScoreInfoDiv', gdDiv).before($(gdAllRoundDiv));
     $('.gdReminddiv', gdDiv).click(function() {
       remindUser(gameId, remindUsersData);
     });

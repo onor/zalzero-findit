@@ -104,10 +104,33 @@ define ["../../config/config"], (config) ->
     	gameDetails = zzGlobals.msgVars.RH[gameId]
     	jQuery('.gdWrapper').remove()
 	
+    	gdAllRoundDiv = document.createElement("div")
+    	gdAllRoundDiv.className = 'gdAllRoundDiv'
+    	gdAllRoundDiv.id = 'gdAllRoundDivId'
+    	
+    	drawRoundsPanel(gdAllRoundDiv)
+    	console.log(gdAllRoundDiv);
+    	#<div class="gdAllRoundDiv" id="gdAllRoundDivId"></div>
+    	
+    	try
+	    	for roundId in [1..7]
+		        el = roundVOsIdxRightHUD[roundId]
+		        console.log('roundVOsIdx',roundVOsIdxRightHUD)
+		        if roundId > parseInt gameDetails.CR
+		          el.className = "notPlayedRound"
+		        else
+		          el.className = "doneRound"
+		        el.className = "currentRound"  if roundId is parseInt gameDetails.CR
+		        lastEl = el
+		        lastRoundId = roundId
+		      if lastEl and lastRoundId
+		        if lastRoundId is parseInt gameDetails.CR
+		          lastEl.className = "currentFinalRound"
+		        else
+	          lastEl.className = "finalRound"
+    	
     	gdDiv = $ """<div class="gdWrapper animated fadeInRight">
 						<div class="gdScoreCardDiv">
-							<div class="gdAllRoundDiv" id="gdAllRoundDivId"></div>
-
 							<div class="gdScoreInfoDiv">
 								<table class="gdScoreCardTbl"></table>
 							</div>
@@ -116,8 +139,8 @@ define ["../../config/config"], (config) ->
 						<div class="gdReminddiv"></div>
 						<div class="gdReturndiv"></div>
 					</div>"""
-
-#    	drawRoundsPanel(gdAllRoundDiv)
+    	
+    	$('.gdScoreInfoDiv',gdDiv).before($(gdAllRoundDiv));
     	
     	$('.gdReminddiv',gdDiv).click(->
     		remindUser gameId,remindUsersData

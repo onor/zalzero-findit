@@ -89,14 +89,15 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	          gamePlayView.getCurrentFinalRoundClass el
 	        else
 	          gamePlayView.getFinalRoundClass el
-	
-	    drawRoundsPanel = (elementDiv)->
+		
+		#TODO: move code to right class and remove global scope
+	    window.drawRoundsPanel = (elementDiv)->
 	      if typeof elementDiv is 'undefined'
 	      	gameRoundulElem = gamePlayView.getGameRoundulElem()
 	      	roundVOsIdx = {}
 	      else
 	      	gameRoundulElem = elementDiv
-	      	roundVOsIdxRightHUD = {}
+	      	window.roundVOsIdxRightHUD = {}
 	      	
 	      gameRoundulElem.innerHTML = ""
 	      cnt = 0

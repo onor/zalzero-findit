@@ -8,7 +8,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "./myLevel", "../../con
   window.currentBets = {};
   window.currentBetsIdx = {};
   ZalerioGame = (function() {
-    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, drawRoundsPanel, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragStart, handleDragStartWithinBoard, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
+    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragStart, handleDragStartWithinBoard, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
     ZalerioGame = function() {};
     _this = this;
     docElems = {};
@@ -102,14 +102,14 @@ define(["../../helper/confirmBox", "../../helper/utils", "./myLevel", "../../con
         }
       }
     };
-    drawRoundsPanel = function(elementDiv) {
-      var aHrefElem, aHrefElemClone, cnt, gameRoundulElem, liElem, roundId, roundVOsIdxRightHUD;
+    window.drawRoundsPanel = function(elementDiv) {
+      var aHrefElem, aHrefElemClone, cnt, gameRoundulElem, liElem, roundId;
       if (typeof elementDiv === 'undefined') {
         gameRoundulElem = gamePlayView.getGameRoundulElem();
         roundVOsIdx = {};
       } else {
         gameRoundulElem = elementDiv;
-        roundVOsIdxRightHUD = {};
+        window.roundVOsIdxRightHUD = {};
       }
       gameRoundulElem.innerHTML = "";
       cnt = 0;
