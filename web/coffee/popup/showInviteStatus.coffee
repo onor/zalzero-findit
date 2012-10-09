@@ -1,4 +1,4 @@
-define [] , () ->
+define ["../helper/sound"] , (sound) ->
 	# trigger on close invite request
 	closeInvits = ->
 		jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]
@@ -37,12 +37,20 @@ define [] , () ->
 							</div>"""
 
     	$('.positionAbsolute', popupDivBase).click( ->
+    		sound.playCloseButtonSound()
     		jQuery('.status_show_popup').remove()
     		false
     	)
-    	$('.leftButton',popupDivBase).click(-> closeInvits() )#close invite trigger
+    	$('.leftButton',popupDivBase).click(->
+    		sound.playCloseButtonSound()
+    		closeInvits()
+    	)#close invite trigger
+    	
+    	
     	rejected = 0
+    	remindUsersData = {}
     	for seatid of gameObjPLRS
+    			remindUsersData[gameObjPLRS[seatid].PFB] = { GSS : gameObjPLRS[seatid].GSS, CRS : gameObjPLRS[seatid].CRS }
     			totalResponse++
     			if parseInt(gameObjPLRS[seatid].GSS) is 1
     				totalResponse--
@@ -56,6 +64,11 @@ define [] , () ->
 	    			$('.declineBlock .imgWrapper',popupDivBase).append """<img src="https://graph.facebook.com/#{gameObjPLRS[seatid].PFB}/picture" />"""
 
     	$('.imgWrapper:not(:has(img))',popupDivBase).parent().remove()
+    	
+    	$('.rightButton',popupDivBase).click( {gameId:gameInstId , user:remindUsersData}, (e)->
+    		sound.playOtherButtonSound()
+    		remindUser( e.data.gameId, e.data.user );
+    	)
     	
     	unless totalResponse > usersInfoObject.TP / 2
     		return

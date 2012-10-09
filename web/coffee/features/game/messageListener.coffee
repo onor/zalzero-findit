@@ -1,4 +1,4 @@
-define ["../../helper/confirmBox","../../helper/utils"], (confirmBox,utils)->
+define ["../../helper/confirmBox","../../helper/utils","gamePlayView"], (confirmBox,utils,gamePlayView)->
 		# message listener        
 	    window.messageListener = (event, messageName, broadcastType, fromClientID, roomID, message) ->
 	      switch messageName
@@ -38,7 +38,7 @@ define ["../../helper/confirmBox","../../helper/utils"], (confirmBox,utils)->
 	        	if 0 is message
 	        		confirmBox('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
 	        	else
-	        		gamePlayView.removeStatusPopup
+	        		gamePlayView.removeStatusPopup()
 	        		
 	        when zalerioCMDListners.RESIGN_GAME
 	        	if message is 0
