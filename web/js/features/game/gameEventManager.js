@@ -77,7 +77,7 @@ define(["../../config/config", "../../config/version", "../../helper/confirmBox"
           roomAttrVal = roomAttrsSplit[i + 1];
           if (zzGlobals.roomVars[roomAttrKey]) {
             if (!(roomAttrKey === zzGlobals.roomCodes.WINNER_ID && roomAttrVal === "-1")) {
-              utils.log(console.log("Triggered via ss room:", roomAttrKey, roomAttrVal));
+              utils.log("Triggered via ss room:", roomAttrKey, roomAttrVal);
               zzGlobals.roomVars[roomAttrKey] = {};
               zzGlobals.roomVars[roomAttrKey] = roomAttrVal;
               jDocument.trigger("room:" + roomAttrKey, roomAttrVal);
@@ -91,7 +91,7 @@ define(["../../config/config", "../../config/version", "../../helper/confirmBox"
     clientSnapshotListener = function(requestID, clientID, userID, a4, clientAttrsStr) {
       var clientAttrKey, clientAttrVal, clientAttrsSplit, i, len;
       if (config.isDevEnvironment) {
-        console.log("ClientSnapshotListener ", clientAttrsStr);
+        utils.log("ClientSnapshotListener ", clientAttrsStr);
       }
       if (userLoginId === userID) {
         clientAttrsSplit = clientAttrsStr.split("|");

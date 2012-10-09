@@ -84,7 +84,7 @@
 	  
 	        });
 	        </script>
-  		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   <script>
   $(document).ready(function() {
       if (!$.browser.webkit){

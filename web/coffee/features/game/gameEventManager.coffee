@@ -81,7 +81,7 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 					roomAttrVal = roomAttrsSplit[i + 1]
 					if zzGlobals.roomVars[roomAttrKey]
 						unless roomAttrKey is zzGlobals.roomCodes.WINNER_ID and roomAttrVal is "-1"
-							utils.log console.log "Triggered via ss room:", roomAttrKey, roomAttrVal
+							utils.log "Triggered via ss room:", roomAttrKey, roomAttrVal
 							zzGlobals.roomVars[roomAttrKey] = {}
 							zzGlobals.roomVars[roomAttrKey] = roomAttrVal
 							jDocument.trigger("room:" + roomAttrKey, roomAttrVal)
@@ -89,7 +89,7 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 			true
 
 		clientSnapshotListener = (requestID, clientID, userID, a4, clientAttrsStr) ->
-			console.log "ClientSnapshotListener ",clientAttrsStr if config.isDevEnvironment
+			utils.log "ClientSnapshotListener ",clientAttrsStr if config.isDevEnvironment
 			if userLoginId is userID
 				clientAttrsSplit = clientAttrsStr.split("|")
 				len = clientAttrsSplit.length
