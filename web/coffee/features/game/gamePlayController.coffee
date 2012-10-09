@@ -616,11 +616,12 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
     
 	rematchCall = (e,rematchPlayerFBID)->
 	  	e.preventDefault() if e.preventDefault
-	  	sound.playOtherbuttonSound()
+	  	sound.playOtherButtonSound()
+	  	gameId = ''
 	  	if typeof rematchPlayerFBID is "undefined"
 	  		plrs = zzGlobals.dataObjVars.AP.PLRS
-	  		
 	  		_results = []
+	  		gameId = gameInstId
 	  		for seatID of plrs 			
 	  			_results.push(plrs[seatID].PFB)
 	  	else

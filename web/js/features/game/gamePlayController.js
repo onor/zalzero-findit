@@ -706,14 +706,16 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
     return jDocument.trigger(zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|OF"]);
   };
   rematchCall = function(e, rematchPlayerFBID) {
-    var plrs, seatID, _results;
+    var gameId, plrs, seatID, _results;
     if (e.preventDefault) {
       e.preventDefault();
     }
-    sound.playOtherbuttonSound();
+    sound.playOtherButtonSound();
+    gameId = '';
     if (typeof rematchPlayerFBID === "undefined") {
       plrs = zzGlobals.dataObjVars.AP.PLRS;
       _results = [];
+      gameId = gameInstId;
       for (seatID in plrs) {
         _results.push(plrs[seatID].PFB);
       }
