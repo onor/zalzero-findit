@@ -25,6 +25,8 @@
         <datasource id="union"/>
     </persistence>    
     <security>
+		<connect_refusal_recipients>
+		</connect_refusal_recipients>
         <remote-client-rules>
             <rule>
                 <action>CREATE_ROOM</action>
@@ -142,6 +144,14 @@
                 <action>UPC_ACCESS</action>
                 <roles></roles>
             </rule>    
+            <rule>
+                <action>NODELIST_ACCESS</action>
+                <roles></roles>
+            </rule>   
+            <rule>
+                <action>SERVERSTATISTICS_ACCESS</action>
+                <roles></roles>
+            </rule> 
         </remote-client-rules>
     </security>
 </union>
