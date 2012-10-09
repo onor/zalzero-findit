@@ -13,9 +13,14 @@ define [], () ->
 				@playButton = new Audio( baseUrl + "/sound/playbutton.wav" )
 				@isPlaySound = true
 				@isError = false
+				window.isError = false
 			catch err
 				@isPlaySound = false
 				@isError = true
+				
+				#TODO: // move complete sound to one class and remove this
+				window.isError = true
+				window.playSound = false
 		
 		onSound : () ->
 			unless @isError
@@ -51,6 +56,6 @@ define [], () ->
 		playPlayButtonSound : () ->
 			if @isPlaySound
 				@playButton.play()
-
+	
 	# return class instance			
-	new Sound
+	window.sound = new Sound

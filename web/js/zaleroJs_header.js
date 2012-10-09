@@ -764,12 +764,16 @@ jQuery(function($) {
 
 	// Mute Unmute
 	jQuery(".audioButton a").click(function() {
-		if (playSound) {
-			playSound = false;
-			$(this).parent('.audioButton').addClass('mute');
-		} else {
-			playSound = true;
-			$(this).parent('.audioButton').removeClass('mute');
+		if(!isError){
+				if (playSound){
+					console.log(sound.offSound());
+					playSound = false;
+					$(this).parent('.audioButton').addClass('mute');
+				} else {
+					sound.onSound()
+					playSound = true;
+					$(this).parent('.audioButton').removeClass('mute');
+				}
 		}
 	});
 }) // jQuery

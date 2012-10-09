@@ -16,9 +16,12 @@ define([], function() {
         this.playButton = new Audio(baseUrl + "/sound/playbutton.wav");
         this.isPlaySound = true;
         this.isError = false;
+        window.isError = false;
       } catch (err) {
         this.isPlaySound = false;
         this.isError = true;
+        window.isError = true;
+        window.playSound = false;
       }
     }
 
@@ -77,5 +80,5 @@ define([], function() {
     return Sound;
 
   })();
-  return new Sound;
+  return window.sound = new Sound;
 });

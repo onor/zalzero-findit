@@ -1,4 +1,4 @@
-define ['./sound'], (sound) ->
+define [], () ->
 	removeMessagePopup = ->
 		sound.playCloseButtonSound()
 		$('.overlay').remove()	  			  		

@@ -1,4 +1,4 @@
-define ["../../config/config","../../helper/sound"], (config,sound) ->
+define ["../../config/config"], (config) ->
 	updateRightHud = (event, message)->
 		monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
 		for gameId of message

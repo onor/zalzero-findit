@@ -1,4 +1,4 @@
-define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./myLevel","../../config/globals","gamePlayView","messageListener"], (confirmBox,utils,sound,myLevel,globals,gamePlayView,messageListenerObj) ->
+define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config/globals","gamePlayView","messageListener"], (confirmBox,utils,myLevel,globals,gamePlayView,messageListenerObj) ->
 	bets = {}
 	boardVo = {}
 	responseVo = {}

@@ -14,7 +14,7 @@
 # Registers all the Room Attribue and Client Attribute listeners as defined in Globals Config
 # Provides method to Send UPC Messages to Server
 #
-define ["../../config/config","../../config/version","../../helper/confirmBox","../../config/globals","./rightHudController","./leftHudController","./gamePlayController","../../popup/resignPopup","../../popup/showInviteStatus","../../popup/showFinalScore","../../popup/showFrndSelector","../../helper/utils","../../popup/roundScorePopup","drag-drop"],(config,version,confirmBox,globals,rightHudController,leftHudController,gamePlayController,resignPopup,showInviteStatus,showFinalScore,showFrndSelector,utils,roundScorePopup,dragNdrop) ->
+define ["../../config/config","../../config/version","../../helper/confirmBox","../../config/globals","./rightHudController","./leftHudController","./gamePlayController","../../popup/resignPopup","../../popup/showInviteStatus","../../popup/showFinalScore","../../popup/showFrndSelector","../../helper/utils","../../popup/roundScorePopup","drag-drop","../../helper/sound"],(config,version,confirmBox,globals,rightHudController,leftHudController,gamePlayController,resignPopup,showInviteStatus,showFinalScore,showFrndSelector,utils,roundScorePopup,dragNdrop,sound) ->
 	zzUnionConnection = (->
 		zzUnionConnection = ->
 			window.UPC = UPC
