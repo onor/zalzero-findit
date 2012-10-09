@@ -2447,7 +2447,8 @@ define('../../popup/showInviteStatus',[], function() {
     }
     zzGlobals.inviteStatus = rejected.length + acceptedImgs.length + declinedImgs.length;
     jQuery('.status_show_popup').remove();
-    return jQuery("body").append(popupDivBase);
+    jQuery("body").append(popupDivBase);
+    return true;
   };
   jDocument.bind("dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showInviteStatus);
   return true;

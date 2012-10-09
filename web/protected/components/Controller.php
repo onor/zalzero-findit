@@ -75,14 +75,17 @@ class Controller extends CController
 					Yii::app()->session['fbid'] = $facebookUser->id;
 
 					$model = new Zzuser;
-
-					$model->user_name	=	$facebookUser->name;
-
+					
+					if(isset($facebookUser->name)){
+						$model->user_name	=	$facebookUser->name;
+					}else{
+						$model->user_name	= $facebookUser->id;
+					}
 					// User First Name
-					$model->user_fname	=	$facebookUser->first_name;
+					$model->user_fname	=	@$facebookUser->first_name;
 
 					// user Last name
-					$model->user_lname	=	$facebookUser->last_name;
+					$model->user_lname	=	@$facebookUser->last_name;
 
 					// user facebook id
 					$model->user_fbid	=	$facebookUser->id;
