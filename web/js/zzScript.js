@@ -810,14 +810,14 @@ define('leftHudController',["../../config/config"], function(config) {
       }
       fbUser = [];
       fbUser[0] = plrs[seatID].PFB;
-      userList.append(" <div class=\"infoPlate\">\n									" + remind_user + "\n									<div class=\"userAreaImg\" id=\"\">\n											<img class=\"userlevelbelt\" src=\"" + baseUrl + "/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/" + config.userLevelImgBig[parseInt(plrs[seatID].PL) - 1] + "\" />\n			                                <img class=\"backendImage " + (plrs[seatID].PON !== 1 ? "offline" : void 0) + "\" src=\"http://graph.facebook.com/" + plrs[seatID].PFB + "/picture\" />\n			                        </div>\n									<div class=\"userinfo\">\n										<div class=\"username\">" + plrs[seatID].PDN + "</div>\n										<div class=\"lastPlayed\">" + (plrs[seatID].PLP ? plrs[seatID].PLP : '') + "</div>\n										<div class=\"" + userPlayStatusClassName + "\">" + userPlayStatusText + "</div>\n									</div>\n</div>");
+      userList.append(" <div class=\"infoPlate\">\n									" + remind_user + "\n									<div class=\"userAreaImg\" id=\"\">\n											<img class=\"userlevelbelt\" src=\"" + baseUrl + "/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/" + config.userLevelImgBig[parseInt(plrs[seatID].PL) - 1] + "\" />\n			                                <img class=\"backendImage " + (plrs[seatID].PON !== 1 ? "offline" : void 0) + "\" src=\"https://graph.facebook.com/" + plrs[seatID].PFB + "/picture\" />\n			                        </div>\n									<div class=\"userinfo\">\n										<div class=\"username\">" + plrs[seatID].PDN + "</div>\n										<div class=\"lastPlayed\">" + (plrs[seatID].PLP ? plrs[seatID].PLP : '') + "</div>\n										<div class=\"" + userPlayStatusClassName + "\">" + userPlayStatusText + "</div>\n									</div>\n</div>");
       $('.reminder', userList).click(function() {
         return remindUser(gameInstId, fbUser);
       });
     }
     return $("#gameInfo-game-players").append(userList);
   };
-  jDocument.bind("room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, updateLeftHud);
+  jDocument.bind("dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, updateLeftHud);
   jDocument.bind("client:" + zzGlobals.clientCodes.USERINFO, updatePlayerPlate);
   return true;
 });

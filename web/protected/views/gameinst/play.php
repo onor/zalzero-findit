@@ -14,7 +14,7 @@ if (isset($startGame) || isset($game)) {
     $fbCurrentUserImg = "";
     if (isset(Yii::app()->user->user_fbid)) {
         $fbId = Yii::app()->user->user_fbid;
-        $fbCurrentUserImg = "http://graph.facebook.com/" . $fbId . "/picture";
+        $fbCurrentUserImg = "https://graph.facebook.com/" . $fbId . "/picture";
     }
 }
 ?>

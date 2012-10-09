@@ -45,7 +45,7 @@ define ["../../config/config"], (config) ->
 									#{remind_user}
 									<div class="userAreaImg" id="">
 											<img class="userlevelbelt" src="#{baseUrl}/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/#{config.userLevelImgBig[parseInt(plrs[seatID].PL) - 1]}" />
-			                                <img class="backendImage #{if plrs[seatID].PON isnt 1 then "offline" }" src="http://graph.facebook.com/#{plrs[seatID].PFB}/picture" />
+			                                <img class="backendImage #{if plrs[seatID].PON isnt 1 then "offline" }" src="https://graph.facebook.com/#{plrs[seatID].PFB}/picture" />
 			                        </div>
 									<div class="userinfo">
 										<div class="username">#{plrs[seatID].PDN}</div>
