@@ -3,19 +3,26 @@
 define([], function() {
   var bindStatus;
   bindStatus = false;
-  $('.box-blank').live("mouseover", function() {
-    return $('.box-newBet').droppable("disable");
-  });
   return $('.draggableBets').live("mouseover", function() {
     if (window.tutorialFlag) {
       return;
     }
     $('.draggableBets').draggable({
+      start: function(e, ui) {
+        $('.box-newBet').droppable("disable");
+        $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
+        return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
+      },
       scope: "drop_tile",
       revert: 'invalid'
     });
     $('.box-blank').draggable({
       scope: "drop_tile",
+      start: function(e, ui) {
+        $('.box-newBet').droppable("disable");
+        $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
+        return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
+      },
       revert: 'invalid',
       helper: 'clone'
     });
