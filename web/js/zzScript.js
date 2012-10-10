@@ -2923,7 +2923,7 @@ define('../../popup/roundScorePopup',[], function() {
       });
     }
   };
-  jDocument.bind("room:" + zzGlobals.roomCodes.ALL_PLAYER_INFO, showRoundScorePopup);
+  jDocument.bind("room:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, showRoundScorePopup);
   return true;
 });
 
