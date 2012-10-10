@@ -93,7 +93,7 @@ define ["../../config/config","../../helper/sound"], (config,sound) ->
 		true
 			
 	
-	createGameDetailsPopup = (gameDetails,gameId)->
+	window.createGameDetailsPopup = (gameDetails,gameId)->
     	jQuery('.gdWrapper').remove()
 	
     	gdDiv = $ """<div class="gdWrapper animated fadeInRight">

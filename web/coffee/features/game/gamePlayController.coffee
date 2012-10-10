@@ -551,13 +551,8 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	      
 	      isMousingOver = false
 	      jQuery("#gamewall").delegate ".box-previousRoundOtherPlayer,.box-previousRoundCurrentPlayerIncorrect,.box-previousRoundCurrentPlayerCorrect,.box-dizitCompleted,.joker,.superJoker", "mouseover mouseout", (e) ->
-	        usersObject =  jQuery.parseJSON(zzGlobals.roomVars.AP)
-	        for i of usersObject
-	        		usersObject[i] = jQuery.parseJSON(usersObject[i])
-	        		usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS)
-	
-		        	for seatId of usersObject[i].PLRS
-		        		usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId])
+	        usersObject = zzGlobals.dataObjVars.AP
+
 	        if e.type is "mouseover" and not isMousingOver
 	          tileIdx = @getAttribute("tileIdx")
 	          utils.log "offset :" + @offsetLeft + " : " + @offsetTop
@@ -565,10 +560,10 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	            playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ]
 	            
 	            for playerSeatId of playersObjs	              
-	              if usersObject[i].PLRS[playerSeatId]?
+	              if usersObject.PLRS[playerSeatId]?
 	                currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID]
 	                # tile palced by users
-	                gamePlayView.showBetPlacedBy(currentFigId,usersObject[i],playerSeatId)
+	                gamePlayView.showBetPlacedBy(currentFigId,usersObject,playerSeatId)
 	            
 	            tileNo = parseInt(tileIdx)
 	            noOfRows = tileNo / board_X
@@ -666,18 +661,11 @@ define ["../../helper/confirmBox","../../helper/utils","../../helper/sound","./m
 	  	e.preventDefault() if e.preventDefault
 	  	sound.playOtherbuttonSound()
 	  	if typeof rematchPlayerFBID is "undefined"
-	  		usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP)
-	  		utils.log "Score Board left (zzGlobals.roomVars.AP", userObject
-	  		for gameId of usersObject
-	  			usersInfoObject = jQuery.parseJSON(usersObject[gameId])
-	  			break
-	  		i=0
-	  		usersInfoObject = jQuery.parseJSON(usersInfoObject.PLRS)
+	  		plrs = zzGlobals.dataObjVars.AP.PLRS
+	  		
 	  		_results = []
-	  		for x of usersInfoObject
-	  			userObject = jQuery.parseJSON(usersInfoObject[x])
-	  			#continue if parseInt(userObject.PRE) == 1  			
-	  			_results.push(userObject.PFB)
+	  		for seatID of plrs 			
+	  			_results.push(plrs[seatID].PFB)
 	  	else
 	  		_results = []
 	  		_results.push(rematchPlayerFBID)

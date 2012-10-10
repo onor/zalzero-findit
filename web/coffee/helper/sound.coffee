@@ -2,19 +2,24 @@ define [], () ->
 	class Sound
 		# constructor class
 		constructor: () ->
-			@audioBaseUrl = baseUrl.replace( '/index.php','/' )
-			@otherButton = new Audio( @audioBaseUrl + "/sound/otherbuttons.wav" )
-			@selectButton = new Audio( @audioBaseUrl + "/sound/select_button.wav" )
-			@popupApperence = new Audio( @audioBaseUrl + "/sound/popupapperence.wav" )
-			@closeButton = new Audio( @audioBaseUrl + "/sound/closebutton.wav" )
-			@tilePickup = new Audio( @audioBaseUrl + "/sound/Tilepickup.wav" ) 	# tile pickup sound file
-			@titleDrop = new Audio( baseUrl + "/sound/Tiledrop.wav")
-			@playButton = new Audio( baseUrl + "/sound/playbutton.wav" )
-			
-			@isPlaySound = true
+			try
+				@audioBaseUrl = baseUrl.replace( '/index.php','/' )
+				@otherButton = new Audio( @audioBaseUrl + "/sound/otherbuttons.wav" )
+				@selectButton = new Audio( @audioBaseUrl + "/sound/select_button.wav" )
+				@popupApperence = new Audio( @audioBaseUrl + "/sound/popupapperence.wav" )
+				@closeButton = new Audio( @audioBaseUrl + "/sound/closebutton.wav" )
+				@tilePickup = new Audio( @audioBaseUrl + "/sound/Tilepickup.wav" ) 	# tile pickup sound file
+				@titleDrop = new Audio( baseUrl + "/sound/Tiledrop.wav")
+				@playButton = new Audio( baseUrl + "/sound/playbutton.wav" )
+				@isPlaySound = true
+				@isError = false
+			catch err
+				@isPlaySound = false
+				@isError = true
 		
 		onSound : () ->
-			@isPlaySound = true
+			unless @isError
+				@isPlaySound = true
 		
 		offSound : () ->
 			@isPlaySound = false

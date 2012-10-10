@@ -1,6 +1,7 @@
 define ['./sound'], (sound) ->
 	removeMessagePopup = ->
-		sound.playCloseButtonSound()		  			  		
+		sound.playCloseButtonSound()
+		$('.overlay').remove()	  			  		
 		$('.msg-outer-div').remove()
 		
 	window.messagePopup = (message,callback,callback_param)->
@@ -9,7 +10,7 @@ define ['./sound'], (sound) ->
 	  	# play popup apperence sound if sound enable
 	  	sound.playPopupApperenceSound()
 	  	
-	  	popUp = $ """<div class=\"msg-outer-div bounceIn animated\">
+	  	popUp = $ """<div class="overlay"></div><div class=\"msg-outer-div bounceIn animated\">
 	  					<div class=\"msg-inner-div\"><div class=\"msgbox-msg\"><p>#{message}</p></div><div class="msgbox-ok">ok</div></div>
 					</div>"""
 	  		  		  	  		  	  	
@@ -24,7 +25,7 @@ define ['./sound'], (sound) ->
 	  		
 	  		msgCancelDiv.on 'click', (e) ->
 	  			removeMessagePopup()	  		
-		  				  		
+
 	  		$('.msgbox-ok',popUp).on 'click', (e) ->	  			
 		  		callback callback_param
 		  		removeMessagePopup()

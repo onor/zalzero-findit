@@ -1,4 +1,10 @@
-define [], () ->
+require.config({
+    paths:
+        'facebook' : 'http://connect.facebook.net/en_US/all.js'
+})
+
+require ['facebook'], (facebook) ->
+	
 	facebookInit : () ->
 		if typeof(FB) isnt "undefined"
 			# FB is initialized check login status
