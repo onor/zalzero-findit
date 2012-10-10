@@ -1,4 +1,4 @@
-define ["../../config/config"], (config) ->
+define ["../../config/config","../../helper/notifications"], (config,notifications) ->
 	updateRightHud = (event, message)->
 		monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
 		for gameId of message
@@ -109,8 +109,6 @@ define ["../../config/config"], (config) ->
     	gdAllRoundDiv.id = 'gdAllRoundDivId'
     	
     	drawRoundsPanel(gdAllRoundDiv)
-    	console.log(gdAllRoundDiv);
-    	#<div class="gdAllRoundDiv" id="gdAllRoundDivId"></div>
     	
     	try
 	    	for roundId in [1..7]
@@ -141,11 +139,6 @@ define ["../../config/config"], (config) ->
 					</div>"""
     	
     	$('.gdScoreInfoDiv',gdDiv).before($(gdAllRoundDiv));
-    	
-    	$('.gdReminddiv',gdDiv).click(->
-    		remindUser gameId,remindUsersData
-    		return
-    	)
     	    	
     	$('.gdReturndiv',gdDiv).on 'click', (e) ->
     		sound.playCloseButtonSound()
@@ -207,9 +200,14 @@ define ["../../config/config"], (config) ->
 											<td class="userScoreHUD_playerScore">#{_score}</td>
 										</tr>
 									"""
+    	
+    	$('.gdReminddiv',gdDiv).click({gameId:gameId, user:remindUsersData}, (e)->
+    		notifications.remindUsers(e.data.gameId, e.data.user);
+    		return
+    	)
     		
     	sound.playPopupApperenceSound()
-    	
+		    	
     	$('#active-screen').append gdDiv
    
 	jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, updateRightHud
