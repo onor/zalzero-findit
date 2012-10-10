@@ -5,19 +5,27 @@ define([], function() {
   Sound = (function() {
 
     function Sound() {
-      this.audioBaseUrl = baseUrl.replace('/index.php', '/');
-      this.otherButton = new Audio(this.audioBaseUrl + "/sound/otherbuttons.wav");
-      this.selectButton = new Audio(this.audioBaseUrl + "/sound/select_button.wav");
-      this.popupApperence = new Audio(this.audioBaseUrl + "/sound/popupapperence.wav");
-      this.closeButton = new Audio(this.audioBaseUrl + "/sound/closebutton.wav");
-      this.tilePickup = new Audio(this.audioBaseUrl + "/sound/Tilepickup.wav");
-      this.titleDrop = new Audio(baseUrl + "/sound/Tiledrop.wav");
-      this.playButton = new Audio(baseUrl + "/sound/playbutton.wav");
-      this.isPlaySound = true;
+      try {
+        this.audioBaseUrl = baseUrl.replace('/index.php', '/');
+        this.otherButton = new Audio(this.audioBaseUrl + "/sound/otherbuttons.wav");
+        this.selectButton = new Audio(this.audioBaseUrl + "/sound/select_button.wav");
+        this.popupApperence = new Audio(this.audioBaseUrl + "/sound/popupapperence.wav");
+        this.closeButton = new Audio(this.audioBaseUrl + "/sound/closebutton.wav");
+        this.tilePickup = new Audio(this.audioBaseUrl + "/sound/Tilepickup.wav");
+        this.titleDrop = new Audio(baseUrl + "/sound/Tiledrop.wav");
+        this.playButton = new Audio(baseUrl + "/sound/playbutton.wav");
+        this.isPlaySound = true;
+        this.isError = false;
+      } catch (err) {
+        this.isPlaySound = false;
+        this.isError = true;
+      }
     }
 
     Sound.prototype.onSound = function() {
-      return this.isPlaySound = true;
+      if (!this.isError) {
+        return this.isPlaySound = true;
+      }
     };
 
     Sound.prototype.offSound = function() {

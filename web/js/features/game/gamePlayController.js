@@ -704,24 +704,17 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
       utils.log("jTileHoverDiv : " + jTileHoverDiv);
       isMousingOver = false;
       jQuery("#gamewall").delegate(".box-previousRoundOtherPlayer,.box-previousRoundCurrentPlayerIncorrect,.box-previousRoundCurrentPlayerCorrect,.box-dizitCompleted,.joker,.superJoker", "mouseover mouseout", function(e) {
-        var currentFigId, elLeft, elTop, i, leftMajor, noOfCols, noOfRows, playerSeatId, playersObjs, seatId, tileIdx, tileNo, topMajor, usersObject;
-        usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP);
-        for (i in usersObject) {
-          usersObject[i] = jQuery.parseJSON(usersObject[i]);
-          usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS);
-          for (seatId in usersObject[i].PLRS) {
-            usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId]);
-          }
-        }
+        var currentFigId, elLeft, elTop, leftMajor, noOfCols, noOfRows, playerSeatId, playersObjs, tileIdx, tileNo, topMajor, usersObject;
+        usersObject = zzGlobals.dataObjVars.AP;
         if (e.type === "mouseover" && !isMousingOver) {
           tileIdx = this.getAttribute("tileIdx");
           utils.log("offset :" + this.offsetLeft + " : " + this.offsetTop);
           if (boardVOs[tileIdx] != null) {
             playersObjs = boardVOs[tileIdx][boardVOCodes.PLAYER_INFO_OBJ];
             for (playerSeatId in playersObjs) {
-              if (usersObject[i].PLRS[playerSeatId] != null) {
+              if (usersObject.PLRS[playerSeatId] != null) {
                 currentFigId = boardVOs[tileIdx][boardVOCodes.FIGURE_ID];
-                gamePlayView.showBetPlacedBy(currentFigId, usersObject[i], playerSeatId);
+                gamePlayView.showBetPlacedBy(currentFigId, usersObject, playerSeatId);
               }
             }
             tileNo = parseInt(tileIdx);
@@ -827,24 +820,16 @@ define(["../../helper/confirmBox", "../../helper/utils", "../../helper/sound", "
     return jDocument.trigger(zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|OF"]);
   };
   rematchCall = function(e, rematchPlayerFBID) {
-    var gameId, i, userObject, usersInfoObject, usersObject, x, _results;
+    var plrs, seatID, _results;
     if (e.preventDefault) {
       e.preventDefault();
     }
     sound.playOtherbuttonSound();
     if (typeof rematchPlayerFBID === "undefined") {
-      usersObject = jQuery.parseJSON(zzGlobals.roomVars.AP);
-      utils.log("Score Board left (zzGlobals.roomVars.AP", userObject);
-      for (gameId in usersObject) {
-        usersInfoObject = jQuery.parseJSON(usersObject[gameId]);
-        break;
-      }
-      i = 0;
-      usersInfoObject = jQuery.parseJSON(usersInfoObject.PLRS);
+      plrs = zzGlobals.dataObjVars.AP.PLRS;
       _results = [];
-      for (x in usersInfoObject) {
-        userObject = jQuery.parseJSON(usersInfoObject[x]);
-        _results.push(userObject.PFB);
+      for (seatID in plrs) {
+        _results.push(plrs[seatID].PFB);
       }
     } else {
       _results = [];
