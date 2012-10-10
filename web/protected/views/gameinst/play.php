@@ -146,7 +146,7 @@ if (isset($startGame) || isset($game)) {
         <div class="clear"></div>
         <div class="bottomHUDpanel" id="bottomHUD">
             <div class="resignPopup">
-                <a href="" id="resignmeClose" onclick="jQuery('.resignPopup').hide(); return false;"></a>
+                <a href="" id="resignmeClose" onclick="jQuery('.resignPopup').hide() jQuery('.overlay').remove(); return false;"></a>
                 <span id="resignme"></span>
             </div>
             <div class="companySignature">
