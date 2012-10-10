@@ -1115,10 +1115,10 @@ function acceptInvitation(gameId) {
                     		}
                             messagePopup(popupMSG.acceptInvite,gameChangeListener,gameseat_gameinst_id)
                             try{
-                            	 $("right_hud_"+gameId).click({ gameDetails: zzGlobals.msgVars.RH[gameId], id : gameId }, (e) ->							
+                            	 $("right_hud_"+gameId).click({ gameDetails: zzGlobals.msgVars.RH[gameId], id : gameId }, function(e){							
 									//sound.playSelectButtonSound()								
 									window.createGameDetailsPopup(e.data.gameDetails,e.data.id);
-                            	 )
+                            	 });
                             }catch(err){
                             	console.log('unable to bind click event '+err)
                             }
