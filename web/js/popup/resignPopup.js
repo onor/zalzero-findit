@@ -8,7 +8,7 @@ define(["../helper/utils"], function(utils) {
       totalPlayer = 0;
       plrs = zzGlobals.dataObjVars.AP.PLRS;
       for (seatId in plrs) {
-        if (plrs[seatId].PRE === 0 ? plrs[seatId].GSS === 2 || plrs[seatId].GSS === 1 : void 0) {
+        if (plrs[seatId].PRE === 0 ? plrs[seatId].GSS === 2 || plrs[seatId].GSS === 4 : void 0) {
           ++totalPlayer;
         }
       }

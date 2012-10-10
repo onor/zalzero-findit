@@ -6,7 +6,7 @@ define ["../helper/utils"], (utils) ->
 			plrs = zzGlobals.dataObjVars.AP.PLRS
 			
 			for seatId of plrs
-				++totalPlayer	if plrs[seatId].GSS is 2 or plrs[seatId].GSS is 1 unless plrs[seatId].PRE isnt 0 
+				++totalPlayer	if plrs[seatId].GSS is 2 or plrs[seatId].GSS is 4 unless plrs[seatId].PRE isnt 0 
 
 			currentUserObj = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
 			if totalPlayer > 1 and parseInt(zzGlobals.roomVars.FR) isnt 1 and parseInt(currentUserObj.PRE) isnt 1  # show if total number of user > 1 and Game Not finished

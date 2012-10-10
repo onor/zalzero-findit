@@ -1,4 +1,4 @@
-define ["../../config/config"], (config) ->
+define ["../../config/config","../../helper/notifications"], (config,notifications) ->
 	updatePlayerPlate = ->
       currentUserObj = jQuery.parseJSON(zzGlobals.clientVars.UINFO)
 
@@ -40,9 +40,9 @@ define ["../../config/config"], (config) ->
 	    		remind_user = """<div class="reminder">Remind</div>"""
 	    		
 	    	fbUser = {};
-	    	fbUser[plrs[seatID].PFB] = {GSS:plrs[seatID].GSS,CRS:plrs[seatID].PFB}
+	    	fbUser[plrs[seatID].PFB] = {GSS:plrs[seatID].GSS,CRS:plrs[seatID].CRS}
 
-	    	userList.append """ <div class="infoPlate">
+	    	infoPlate = $ """ <div class="infoPlate">
 									#{remind_user}
 									<div class="userAreaImg" id="">
 											<img class="userlevelbelt" src="#{baseUrl}/images/zalerio_1.2/4.ingame_ui/carauselbelts_main_player/#{config.userLevelImgBig[parseInt(plrs[seatID].PL) - 1]}" />
@@ -56,10 +56,11 @@ define ["../../config/config"], (config) ->
 						 </div>
 					"""
 	    	
-	    	$('.reminder',userList).click( {gameId:gameInstId,seatID:seatID, user:fbUser}, (e)->
-	    		remindUser(e.data.gameId, e.data.user,e.data.seatID,e.data.user);
+	    	$('.reminder',infoPlate).click( {gameId:gameInstId,seatID:seatID, user:fbUser}, (e)->
+	    		notifications.remindUsers(e.data.gameId, e.data.user,e.data.seatID,e.data.user);
 	    	)
 	    	
+	    	userList.append infoPlate
     	$("#gameInfo-game-players").append userList
 
     

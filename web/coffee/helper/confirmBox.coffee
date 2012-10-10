@@ -19,17 +19,17 @@ define [], () ->
 		  		removeMessagePopup()
 		  		
 	  	else
-	  		msgCancelDiv = $ "<div class=\"msgbox-cancel\">cancel</div>"
-	  		
-	  		$('.msgbox-ok',popUp).addClass("msgbox-cancel")
-	  		
-	  		msgCancelDiv.on 'click', (e) ->
-	  			removeMessagePopup()	  		
+#	  		msgCancelDiv = $ "<div class=\"msgbox-cancel\">cancel</div>"
+#	  		
+#	  		$('.msgbox-ok',popUp).addClass("msgbox-cancel")
+#	  		
+#	  		msgCancelDiv.on 'click', (e) ->
+#	  			removeMessagePopup()	  		
 
 	  		$('.msgbox-ok',popUp).on 'click', (e) ->	  			
 		  		callback callback_param
 		  		removeMessagePopup()
 		  		 	
-	  	$('.msgbox-ok',popUp).after msgCancelDiv
+#	  	$('.msgbox-ok',popUp).after msgCancelDiv
 
 	  	$('#active-screen').append(popUp)

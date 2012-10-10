@@ -1117,42 +1117,6 @@ function capFirst(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-/** end * */
-// function to remind the user for the game
-function remindUser(gameId, UsersData, seatId, userData) {
-	if (typeof userData == 'undefined') {
-		userData = 0;
-	}
-	jQuery("#thisgame_seat_" + seatId + " .userRemind")
-			.addClass("loader_small");
-	txt = jQuery("#thisgame_seat_" + seatId + " .userRemind").text();
-	jQuery("#thisgame_seat_" + seatId + " .userRemind").html(loader_small);
-	
-	jQuery.ajax({
-		type : 'POST',
-		url : baseUrl + "/user/remindUser",
-		data : {
-			'game_id' : gameId,
-			'user_data' : UsersData,
-			'lh_users_data' : userData
-		}
-	}).done(
-			function(data) {
-				
-				try {
-					jQuery("#thisgame_seat_" + seatId + " .userRemind")
-							.removeClass('loader_small');
-					jQuery("#thisgame_seat_" + seatId + " .userRemind").text(
-							txt);
-					msg = popupMSG.remindSucess(jQuery(
-							"#thisgame_seat_" + seatId + " .userAreaName")
-							.text());
-					messagePopup(msg);
-				} catch (err) {
-				}
-			});
-}
-
 function acceptInvitation(gameId) {
 	jQuery("#accept_decline_" + gameId).addClass("loader_small");
 	txt = jQuery("#accept_decline_" + gameId).html();

@@ -8,7 +8,7 @@ define([], function() {
     return $('.msg-outer-div').remove();
   };
   return window.messagePopup = function(message, callback, callback_param) {
-    var msgCancelDiv, popUp;
+    var popUp;
     removeMessagePopup();
     sound.playPopupApperenceSound();
     popUp = $("<div class=\"overlay\"></div><div class=\"msg-outer-div bounceIn animated\">\n	  					<div class=\"msg-inner-div\"><div class=\"msgbox-msg\"><p>" + message + "</p></div><div class=\"msgbox-ok\">ok</div></div>\n</div>");
@@ -17,17 +17,11 @@ define([], function() {
         return removeMessagePopup();
       });
     } else {
-      msgCancelDiv = $("<div class=\"msgbox-cancel\">cancel</div>");
-      $('.msgbox-ok', popUp).addClass("msgbox-cancel");
-      msgCancelDiv.on('click', function(e) {
-        return removeMessagePopup();
-      });
       $('.msgbox-ok', popUp).on('click', function(e) {
         callback(callback_param);
         return removeMessagePopup();
       });
     }
-    $('.msgbox-ok', popUp).after(msgCancelDiv);
     return $('#active-screen').append(popUp);
   };
 });

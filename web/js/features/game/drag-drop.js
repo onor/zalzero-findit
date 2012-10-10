@@ -32,6 +32,7 @@ define([], function() {
     }
     return $('.box-blank').droppable({
       scope: "drop_tile",
+      hoverClass: "box-drophover",
       drop: function(e, ui) {
         if (!ui.draggable.hasClass('box-blank')) {
           ui.draggable.remove();

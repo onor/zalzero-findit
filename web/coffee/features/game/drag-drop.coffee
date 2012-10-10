@@ -26,6 +26,7 @@ define [], () ->
 		
 		$('.box-blank').droppable
 	      scope: "drop_tile"
+	      hoverClass: "box-drophover"
 	      drop: (e, ui) ->
 	      	unless ui.draggable.hasClass 'box-blank'
 	      		ui.draggable.remove()
