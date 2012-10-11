@@ -41,7 +41,7 @@ define('zalzero.config',[], function() {
     POPUP_MESSAGE_STEP_3: "After you place all tiles, press the 'PLAY' button and wait for your friends to place their tiles.",
     POPUP_MESSAGE_STEP_4: "The tiles which you placed correctly will be green, your wrong tiles will be orange, while other players wrong tiles are grey.",
     POPUP_MESSAGE_STEP_5: "Now its time for you to enjoy the game. Hit 'Start a Game' button to play with your friends. ",
-    POPUP_MESSAGE_CONGRATULATION: "You are done with our short tutorial!\n<br>\n\n  		<ul>\n	You find always more help at \n	<li>	Cheat Sheet	</li>\n	<li>	Help Section </li>\n</ul>",
+    POPUP_MESSAGE_CONGRATULATION: "You are done with our short tutorial!\n<br>\n\n  		<ul>\n	You can always find more help at \n	<li>	Cheat Sheet	</li>\n	<li>	Help Section </li>\n</ul>",
     BETS_ARR: [
       {
         id: 'boardTile-3',
@@ -200,7 +200,7 @@ define('zalzero.utils',["zalzero.config"], function(config) {
         $(".tutorial-overlay").remove();
         $("#tutorial-accordion").css("display", "none");
         $(".gameInfoPanel").css("display", "block");
-        $(".gameScore").css("display", "none");
+        $(".gameScore").css("display", "block");
         def.reject();
         jDocument.trigger("gameChangeListener", '');
         eval("tutorial = false");
@@ -210,11 +210,11 @@ define('zalzero.utils',["zalzero.config"], function(config) {
     congratPopup: function(def) {
       var nowPlay, popup;
       if (parseInt(gameInstId, 10) !== 0) {
-        nowPlay = 'Now Let\'s play with';
+        nowPlay = 'Now let\'s play with';
       } else {
-        nowPlay = 'Now Let\'s play !';
+        nowPlay = 'Now let\'s play!';
       }
-      popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations !</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button\"></div>\n</div></div>");
+      popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations!</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button\"></div>\n</div></div>");
       $('#active-screen').append(popup);
       popup.on('click', '.ok-button', function(e) {
         return popup.remove();
