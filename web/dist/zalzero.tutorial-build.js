@@ -213,7 +213,7 @@ define('zalzero.utils',["zalzero.config"], function(config) {
       popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations !</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button\"></div>\n</div></div>");
       $('#active-screen').append(popup);
       popup.on('click', '.ok-button', function(e) {
-        return popup.remove()(def.resolve());
+        return popup.remove();
       });
       return popup;
     }
@@ -489,11 +489,7 @@ define('zalzero.tutorial.step5',['zalzero.utils', 'zalzero.config'], function(ut
     _def = def;
     utils.addHighlight('#startButton');
     utils.addPositionRelative('#startButton');
-    if (parseInt(gameInstId, 10) === 0) {
-      _arrow = utils.createArrow(190, 100, 'right');
-    } else {
-      _arrow = utils.createArrow(190, 400, 'left');
-    }
+    _arrow = utils.createArrow(190, 100, 'right');
     utils.congratPopup();
     $('#startButton').on('click', _startGameButtonClick);
     return true;

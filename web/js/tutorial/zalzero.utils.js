@@ -108,7 +108,7 @@ define(["zalzero.config"], function(config) {
       popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations !</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button\"></div>\n</div></div>");
       $('#active-screen').append(popup);
       popup.on('click', '.ok-button', function(e) {
-        return popup.remove()(def.resolve());
+        return popup.remove();
       });
       return popup;
     }

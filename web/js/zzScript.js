@@ -48,12 +48,16 @@ define('../../helper/confirmBox',[], function() {
     removeMessagePopup();
     sound.playPopupApperenceSound();
     popUp = $("<div class=\"overlay\"></div><div class=\"msg-outer-div bounceIn animated\">\n	  					<div class=\"msg-inner-div\"><div class=\"msgbox-msg\"><p>" + message + "</p></div><div class=\"msgbox-ok\">ok</div></div>\n</div>");
-    $('.msgbox-ok', popUp).on('click', function(e) {
-      return removeMessagePopup()(typeof callback === 'undefined' ? void 0 : $('.msgbox-ok', popUp).on('click', function(e) {
+    if (typeof callback === 'undefined') {
+      $('.msgbox-ok', popUp).on('click', function(e) {
+        return removeMessagePopup();
+      });
+    } else {
+      $('.msgbox-ok', popUp).on('click', function(e) {
         callback(callback_param);
         return removeMessagePopup();
-      }));
-    });
+      });
+    }
     return $('#active-screen').append(popUp);
   };
 });

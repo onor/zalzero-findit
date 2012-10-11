@@ -16,10 +16,10 @@ define ['zalzero.utils', 'zalzero.config'], (utils, config) ->
     utils.addHighlight '#startButton'
     utils.addPositionRelative '#startButton'
 	
-    if parseInt(gameInstId,10) is 0    
-    	_arrow = utils.createArrow 190, 100, 'right'
-    else
-    	_arrow = utils.createArrow 190, 400, 'left'
+    #if parseInt(gameInstId,10) is 0
+    _arrow = utils.createArrow 190, 100, 'right'
+    #else
+    #	_arrow = utils.createArrow 190, 400, 'left'
     
     utils.congratPopup()
 	    

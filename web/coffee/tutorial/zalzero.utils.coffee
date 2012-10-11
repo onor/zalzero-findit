@@ -102,6 +102,7 @@ define ["zalzero.config"], (config) ->
 				</div></div>"""
   	$('#active-screen').append popup
 	
-  	popup.on 'click', '.ok-button', (e) -> popup.remove() def.resolve()
+  	popup.on 'click', '.ok-button', (e) ->
+  		popup.remove()
   	
   	popup
