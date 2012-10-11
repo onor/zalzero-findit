@@ -28,7 +28,7 @@ define(["../../config/config", "../../helper/notifications"], function(config, n
       userPlayStatusClassName = "userPlayStatus";
       if (plrs[seatID].CRS === 0) {
         userPlayStatusClassName = "userPlayStatus";
-        remind_user = "<div class=\"reminder\"></div>";
+        remind_user = "<div class=\"reminder\" title=\"Remind\" alt=\"Remind\" ></div>";
       } else if (plrs[seatID].CRS === 5) {
         userPlayStatusText = '...playing now';
         userPlayStatusClassName = "userPlayStatus green";
@@ -39,7 +39,7 @@ define(["../../config/config", "../../helper/notifications"], function(config, n
       if (plrs[seatID].GSS === 1) {
         userPlayStatusClassName = "userPlayStatus red";
         userPlayStatusText = "not accepted yet";
-        remind_user = "<div class=\"reminder\"></div>";
+        remind_user = "<div class=\"reminder\" title=\"Remind\" alt=\"Remind\"></div>";
       }
       fbUser = {};
       fbUser[plrs[seatID].PFB] = {

@@ -100,10 +100,10 @@ define ["zalzero.config"], (config) ->
   	
   congratPopup : (def) ->
   	
-  	if parseInt(gameInstId,10) isnt 0
-  		nowPlay = 'Now let\'s play with'
-  	else
-  		nowPlay = 'Now let\'s play!'
+  	#if parseInt(gameInstId,10) isnt 0
+  	#	nowPlay = 'Now let\'s play with'
+  	#else
+  	nowPlay = 'Now let\'s play!'
   		
   	popup = $ """<div class="popup-wrapper"><div class="start-popup congratPopup"><div  class="title">Congratulations!</div>
 						<div class="details">#{config.POPUP_MESSAGE_CONGRATULATION}</div>
