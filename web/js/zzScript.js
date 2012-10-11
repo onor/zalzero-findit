@@ -524,10 +524,10 @@ define('rightHudController',["../../config/config", "../../helper/notifications"
             }
           }
           if (parseInt(message[gameId].GS) === 1) {
-            $('#rightHUD-yourturn').prepend(urDiv);
+            $('#rightHUD-yourturn').append(urDiv);
           }
           if (parseInt(message[gameId].GS) === 2) {
-            $('#rightHUD-theirturn').prepend(urDiv);
+            $('#rightHUD-theirturn').append(urDiv);
           }
         }
       } else {
@@ -732,7 +732,7 @@ define('leftHudController',["../../config/config", "../../helper/notifications"]
       userPlayStatusClassName = "userPlayStatus";
       if (plrs[seatID].CRS === 0) {
         userPlayStatusClassName = "userPlayStatus";
-        remind_user = "<div class=\"reminder\">Remind</div>";
+        remind_user = "<div class=\"reminder\"></div>";
       } else if (plrs[seatID].CRS === 5) {
         userPlayStatusText = '...playing now';
         userPlayStatusClassName = "userPlayStatus green";
@@ -743,7 +743,7 @@ define('leftHudController',["../../config/config", "../../helper/notifications"]
       if (plrs[seatID].GSS === 1) {
         userPlayStatusClassName = "userPlayStatus red";
         userPlayStatusText = "not accepted yet";
-        remind_user = "<div class=\"reminder\">Remind</div>";
+        remind_user = "<div class=\"reminder\"></div>";
       }
       fbUser = {};
       fbUser[plrs[seatID].PFB] = {

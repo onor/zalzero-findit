@@ -26,7 +26,7 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
     		userPlayStatusClassName = "userPlayStatus"
 	    	if plrs[seatID].CRS is 0
 	    		userPlayStatusClassName = "userPlayStatus"
-	    		remind_user = """<div class="reminder">Remind</div>"""
+	    		remind_user = """<div class="reminder"></div>"""
 	    	else if plrs[seatID].CRS is 5
 	    		userPlayStatusText = '...playing now'
 	    		userPlayStatusClassName = "userPlayStatus green"
@@ -37,7 +37,7 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
 	    	if plrs[seatID].GSS is 1
 	    		userPlayStatusClassName = "userPlayStatus red"
 	    		userPlayStatusText = "not accepted yet"    	
-	    		remind_user = """<div class="reminder">Remind</div>"""
+	    		remind_user = """<div class="reminder"></div>"""
 	    		
 	    	fbUser = {};
 	    	fbUser[plrs[seatID].PFB] = {GSS:plrs[seatID].GSS,CRS:plrs[seatID].CRS}
@@ -61,6 +61,9 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
 	    	)
 	    	
 	    	userList.append infoPlate
+	    
+	 #   $('.reminder',userList).tooltip();
+	    	
     	$("#gameInfo-game-players").append userList
 
     

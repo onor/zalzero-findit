@@ -3980,9 +3980,9 @@ h2.round_no_r{
 }
 .reminder{
 	padding: 0px !important;
-	width: 44px;
+	width: 15px;
 	height: 16px;
-	background: url("../images/zalerio_1.2/4.ingame_ui/acceptdeclineremind.png") no-repeat scroll left top transparent;
+	background: url("../images/zalerio_1.2/4.ingame_ui/bell_.png") no-repeat scroll -5px top transparent;
 	position: absolute;
 	right: 2px;
 	top: 0;
@@ -3992,5 +3992,5 @@ h2.round_no_r{
 }
 
 .reminder:hover{
-	background: url("../images/zalerio_1.2/4.ingame_ui/acceptdeclineremind.png") no-repeat scroll left -18px transparent;
+	background: url("../images/zalerio_1.2/4.ingame_ui/bell_.png") no-repeat scroll -21px top transparent;
 }

@@ -82,6 +82,10 @@ define(["zalzero.config"], function(config) {
       }
       return popup;
     },
+    addExit: function() {
+      var exit;
+      return exit = $(" <div class=\"exit\">  </div> ");
+    },
     startPopup: function(def) {
       var popup;
       popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup\">\n		<div  class=\"title\">Welcome to Zalerio!</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT + "\n		</div>\n			<div class=\"right-button\"></div>\n			<div class=\"left-button\"></div>\n</div></div>");

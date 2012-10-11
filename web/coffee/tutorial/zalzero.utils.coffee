@@ -68,6 +68,11 @@ define ["zalzero.config"], (config) ->
     
     popup
     
+  addExit : ()->
+  	exit = $ """ <div class="exit">  </div> """
+  	
+  	  	
+    
   startPopup : (def) ->
   	popup = $ """<div class="popup-wrapper"><div class="start-popup">
 						<div  class="title">Welcome to Zalerio!</div>

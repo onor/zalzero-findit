@@ -39,7 +39,7 @@ define(["../../config/config", "../../helper/notifications"], function(config, n
       if (plrs[seatID].GSS === 1) {
         userPlayStatusClassName = "userPlayStatus red";
         userPlayStatusText = "not accepted yet";
-        remind_user = "<div class=\"reminder\">Remind</div>";
+        remind_user = "<div class=\"reminder\"></div>";
       }
       fbUser = {};
       fbUser[plrs[seatID].PFB] = {
