@@ -106,7 +106,18 @@ class Controller extends CController
 					
 					$model->user_role_id	= '2';
 					
-					$model->save();
+					if($model->save()){
+						
+						// create game users summary
+						$userGameSummaryModel = new Zzgameusersummary;
+						$userGameSummaryModel->zz_gameinsttemp_id = 'ZalerioTempl1';
+						$userGameSummaryModel->user_id = $model->user_id;
+						$userGameSummaryModel->total_games_played = 0;//At the start Games played is 0
+						$userGameSummaryModel->total_game_won = 0;//At the start Games Won is 0
+						$userGameSummaryModel->user_level = 1;//At the start the Level is 1
+						$userGameSummaryModel->save();
+						
+					}
 
 					Yii::app()->session['fbid'] = $facebookUser->id;
 					Yii::app()->session['fb_email'] = $model->user_email;
