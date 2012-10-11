@@ -213,11 +213,7 @@ define('zalzero.utils',["zalzero.config"], function(config) {
     },
     congratPopup: function(def) {
       var nowPlay, popup;
-      if (parseInt(gameInstId, 10) !== 0) {
-        nowPlay = 'Now let\'s play with';
-      } else {
-        nowPlay = 'Now let\'s play!';
-      }
+      nowPlay = 'Now let\'s play!';
       popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations!</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button\"></div>\n</div></div>");
       $('#active-screen').append(popup);
       popup.on('click', '.ok-button', function(e) {
