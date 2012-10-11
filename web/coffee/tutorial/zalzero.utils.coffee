@@ -1,4 +1,4 @@
-define [], () ->
+define ["zalzero.config"], (config) ->
   _createItemsProcessor = do ->
     _processItem = (item, methodName, className) ->
       $(item)[methodName] className
@@ -41,6 +41,7 @@ define [], () ->
     switch position
       when 'right' then arrow.addClass 'right'
       when 'top' then arrow.addClass 'top'
+      when 'left' then arrow.addClass 'left'
       
     arrow.css
       left: "#{x}px"
@@ -66,3 +67,41 @@ define [], () ->
     if handler? then popup.on 'click', '.popup-button', handler
     
     popup
+    
+  startPopup : (def) ->
+  	console.log("config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT",config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT);
+  	popup = $ """<div class="popup-wrapper"><div class="start-popup">
+						<div  class="title">Welcome to Zalerio!</div>
+						<div class="details">#{config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT}
+						</div>
+							<div class="right-button"></div>
+							<div class="left-button"></div>
+				</div></div>"""
+  	$('#active-screen').append popup
+	
+  	popup.on 'click', '.right-button', (e) ->
+  		popup.remove()
+  		def.resolve()
+	
+  	popup.on 'click', '.left-button', (e) ->
+  		try
+    		jDocument.trigger "gameChangeListener", ''
+    	popup.remove()
+  	
+  congratPopup : (def) ->
+  	
+  	if parseInt(gameInstId,10) isnt 0
+  		nowPlay = 'Now Let\'s play with'
+  	else
+  		nowPlay = 'Now Let\'s play !'
+  		
+  	popup = $ """<div class="popup-wrapper"><div class="start-popup congratPopup"><div  class="title">Congratulations !</div>
+						<div class="details">#{config.POPUP_MESSAGE_CONGRATULATION}</div>
+						<div class="nowPlay">#{nowPlay}</div>
+						<div class="ok-button"></div>
+				</div></div>"""
+  	$('#active-screen').append popup
+	
+  	popup.on 'click', '.ok-button', (e) -> popup.remove() def.resolve()
+  	
+  	popup

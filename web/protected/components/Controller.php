@@ -63,14 +63,14 @@ class Controller extends CController
 				
 				// get user if exists
 				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
-
+				
 				if($userSatus){
 										
 					Yii::app()->session['fbid'] = $userSatus->user_fbid;
 					Yii::app()->session['fb_email'] = $userSatus->user_email;
 
 				}else{
-
+					
 					// get facebook me data
 					$facebookUser	=	$this->get_fb_user_info($data["oauth_token"]);
 
@@ -79,7 +79,7 @@ class Controller extends CController
 					$model = new Zzuser;
 					
 					if(isset($facebookUser->name)){
-						$model->user_name	=	$facebookUser->name;
+						$model->user_name	=	substr($facebookUser->name, 0, 49); // user name can't more then 50 char
 					}else{
 						$model->user_name	= $facebookUser->id;
 					}
@@ -107,7 +107,7 @@ class Controller extends CController
 					$model->user_role_id	= '2';
 					
 					$model->save();
-														
+
 					Yii::app()->session['fbid'] = $facebookUser->id;
 					Yii::app()->session['fb_email'] = $model->user_email;
 				}

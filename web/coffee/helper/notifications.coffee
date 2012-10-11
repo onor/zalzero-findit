@@ -1,7 +1,7 @@
 define ["./utils"], (utils) ->
 	# // TODO: remove repated param and make function more generic (by Pankaj Anupam) 
 	remindUsers : (gameId, UsersData = 0, seatId, userData) ->
-	  jQuery.ajax(
+	  $.ajax(
 	  	
 	    type: "POST"
 	    url: baseUrl + "/user/remindUser"
@@ -13,7 +13,7 @@ define ["./utils"], (utils) ->
 	      
 	    success : (responseData, textStatus, jqXHR) ->
 	    	messagePopup popupMSG.remindSucess('')
-		      
+	    	
 	    error : (responseData, textStatus, errorThrown) ->
 	    	utils.log("notificatoion send fail : "+responseData+"\n errorThrown : "+errorThrown);
 	    	

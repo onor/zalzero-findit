@@ -14,9 +14,7 @@ define [], () ->
 	  					<div class=\"msg-inner-div\"><div class=\"msgbox-msg\"><p>#{message}</p></div><div class="msgbox-ok">ok</div></div>
 					</div>"""
 	  		  		  	  		  	  	
-	  	if typeof callback is 'undefined'
-		  	$('.msgbox-ok',popUp).on 'click', (e) ->
-		  		removeMessagePopup()
+	  	$('.msgbox-ok',popUp).on 'click', (e) -> removeMessagePopup() if typeof callback is 'undefined'
 		  		
 	  	else
 #	  		msgCancelDiv = $ "<div class=\"msgbox-cancel\">cancel</div>"

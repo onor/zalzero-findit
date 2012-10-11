@@ -45,10 +45,10 @@ define(["../../config/config", "../../helper/notifications"], function(config, n
             }
           }
           if (parseInt(message[gameId].GS) === 1) {
-            $('#rightHUD-yourturn').append(urDiv);
+            $('#rightHUD-yourturn').prepend(urDiv);
           }
           if (parseInt(message[gameId].GS) === 2) {
-            $('#rightHUD-theirturn').append(urDiv);
+            $('#rightHUD-theirturn').prepend(urDiv);
           }
         }
       } else {

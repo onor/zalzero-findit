@@ -80,19 +80,14 @@ if (isset($startGame) || isset($game)) {
                                     Once you have placed all 9 tiles hit the Play button 
                                     After your friends have placed their tiles, you will see your results.	
                                 </div>
-                                <h3><div class="accordion-circle">4</div><a href="#">Correct Hits</a></h3>
+                                <h3><div class="accordion-circle">4</div><a href="#">Start a game</a></h3>
                                 <div class="accordion-content">
-                                    You can see the results after the round, and place your next set of tiles to increase
-                                    your score.  Keep in mind, every wrong placement is penalized. While correct placements and 
-                                    completing a figure increase your score.
-                                </div>
-                                <h3><div class="accordion-circle">5</div><a href="#">Start a game</a></h3>
-                                <div class="accordion-content">
-                                    Now your ready to play. Press the 'Start a 
+                                   Now your ready to play. Press the 'Start a 
                                     GAME' button to invite and  
                                     enjoy the game with 
                                     your Friends.
                                 </div>
+                               
 	                   <div id="tutorial-accordion-cover">
 	                   		
 	                   </div>

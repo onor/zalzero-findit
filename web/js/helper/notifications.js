@@ -6,7 +6,7 @@ define(["./utils"], function(utils) {
       if (UsersData == null) {
         UsersData = 0;
       }
-      return jQuery.ajax({
+      return $.ajax({
         type: "POST",
         url: baseUrl + "/user/remindUser",
         data: {

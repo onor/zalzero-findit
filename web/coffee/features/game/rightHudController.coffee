@@ -43,9 +43,9 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
 								createGameDetailsPopup e.data.id
 								return					
 
-					$('#rightHUD-yourturn').append urDiv if parseInt(message[gameId].GS) is 1
+					$('#rightHUD-yourturn').prepend urDiv if parseInt(message[gameId].GS) is 1
 
-					$('#rightHUD-theirturn').append urDiv if parseInt(message[gameId].GS) is 2	
+					$('#rightHUD-theirturn').prepend urDiv if parseInt(message[gameId].GS) is 2	
 						
 			# update recode
 			else

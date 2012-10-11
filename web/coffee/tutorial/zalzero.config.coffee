@@ -1,4 +1,13 @@
 define [], () ->
+
+  POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT : """The one who uncovers the most valuable objects wins!
+  		<ul>
+			<li>	fun game for 2-5 players	</li>
+			<li>	play over 7 rounds	</li>
+			<li>	place titles that uncover objects	</li>
+			<li>	play multiple games at same time	</li>
+			<li>	strategy game that needs some smarts and skills. Easy to learn! </li></ul>"""
+			
   POPUP_MESSAGE_STEP_1: "Check out the Numbers hidden in the Matrix and then press 'BACK TO GAME' button."
   
   POPUP_MESSAGE_STEP_2: "Place the tile to figure out the patterns of Numbers which are hidden in the matrix."
@@ -9,6 +18,15 @@ define [], () ->
   
  
   POPUP_MESSAGE_STEP_5: "Now its time for you to enjoy the game. Hit 'Start a Game' button to play with your friends. "
+
+  POPUP_MESSAGE_CONGRATULATION : """You are done with our short tutorial!
+		<br>
+		
+  		<ul>
+			You find always more help at 
+			<li>	Cheat Sheet	</li>
+			<li>	Help Section </li>
+		</ul>"""
   
   BETS_ARR: [{
       id: 'boardTile-3'
