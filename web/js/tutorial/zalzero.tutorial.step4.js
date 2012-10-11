@@ -5,9 +5,11 @@ define(['zalzero.utils', 'zalzero.config'], function(utils, config) {
   _def = null;
   _popup = null;
   _showPopup = function() {
-    return _finish();
+    _popup = utils.createPopup(200, 200, config.POPUP_MESSAGE_STEP_4, function(e) {
+      return _finish();
+    });
+    return true;
   };
-  true;
   _processBets = function() {
     var betObj, i, _bet, _i, _len, _ref;
     _ref = config.BETS_ARR;

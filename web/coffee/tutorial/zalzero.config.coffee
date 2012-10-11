@@ -4,13 +4,13 @@ define [], () ->
   		<ul>
 			<li>	fun game for 2-5 players	</li>
 			<li>	play over 7 rounds	</li>
-			<li>	place titles that uncover objects	</li>
+			<li>	place tiles that uncover objects	</li>
 			<li>	play multiple games at same time	</li>
 			<li>	strategy game that needs some smarts and skills. Easy to learn! </li></ul>"""
 			
   POPUP_MESSAGE_STEP_1: "Check out the Numbers hidden in the Matrix and then press 'BACK TO GAME' button."
   
-  POPUP_MESSAGE_STEP_2: "Place the tile to figure out the patterns of Numbers which are hidden in the matrix."
+  POPUP_MESSAGE_STEP_2: "Place the tiles to figure out the patterns of Numbers which are hidden in the matrix."
   
   POPUP_MESSAGE_STEP_3: "After you place all tiles, press the 'PLAY' button and wait for your friends to place their tiles."
   
@@ -23,7 +23,7 @@ define [], () ->
 		<br>
 		
   		<ul>
-			You find always more help at 
+			You can always find more help at 
 			<li>	Cheat Sheet	</li>
 			<li>	Help Section </li>
 		</ul>"""

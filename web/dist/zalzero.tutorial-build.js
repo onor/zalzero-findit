@@ -35,9 +35,9 @@ define('zalzero.deffereds',[], function() {
 
 define('zalzero.config',[], function() {
   return {
-    POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT: "The one who uncovers the most valuable objects wins!\n  		<ul>\n<li>	fun game for 2-5 players	</li>\n<li>	play over 7 rounds	</li>\n<li>	place titles that uncover objects	</li>\n<li>	play multiple games at same time	</li>\n<li>	strategy game that needs some smarts and skills. Easy to learn! </li></ul>",
+    POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT: "The one who uncovers the most valuable objects wins!\n  		<ul>\n<li>	fun game for 2-5 players	</li>\n<li>	play over 7 rounds	</li>\n<li>	place tiles that uncover objects	</li>\n<li>	play multiple games at same time	</li>\n<li>	strategy game that needs some smarts and skills. Easy to learn! </li></ul>",
     POPUP_MESSAGE_STEP_1: "Check out the Numbers hidden in the Matrix and then press 'BACK TO GAME' button.",
-    POPUP_MESSAGE_STEP_2: "Place the tile to figure out the patterns of Numbers which are hidden in the matrix.",
+    POPUP_MESSAGE_STEP_2: "Place the tiles to figure out the patterns of Numbers which are hidden in the matrix.",
     POPUP_MESSAGE_STEP_3: "After you place all tiles, press the 'PLAY' button and wait for your friends to place their tiles.",
     POPUP_MESSAGE_STEP_4: "The tiles which you placed correctly will be green, your wrong tiles will be orange, while other players wrong tiles are grey.",
     POPUP_MESSAGE_STEP_5: "Now its time for you to enjoy the game. Hit 'Start a Game' button to play with your friends. ",
@@ -189,7 +189,6 @@ define('zalzero.utils',["zalzero.config"], function(config) {
     },
     startPopup: function(def) {
       var popup;
-      console.log("config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT", config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT);
       popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup\">\n		<div  class=\"title\">Welcome to Zalerio!</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT + "\n		</div>\n			<div class=\"right-button\"></div>\n			<div class=\"left-button\"></div>\n</div></div>");
       $('#active-screen').append(popup);
       popup.on('click', '.right-button', function(e) {
@@ -197,9 +196,14 @@ define('zalzero.utils',["zalzero.config"], function(config) {
         return def.resolve();
       });
       return popup.on('click', '.left-button', function(e) {
-        try {
-          jDocument.trigger("gameChangeListener", '');
-        } catch (_error) {}
+        delete window.tutorialFlag;
+        $(".tutorial-overlay").remove();
+        $("#tutorial-accordion").css("display", "none");
+        $(".gameInfoPanel").css("display", "block");
+        $(".gameScore").css("display", "none");
+        def.reject();
+        jDocument.trigger("gameChangeListener", '');
+        eval("tutorial = false");
         return popup.remove();
       });
     },
@@ -438,9 +442,11 @@ define('zalzero.tutorial.step4',['zalzero.utils', 'zalzero.config'], function(ut
   _def = null;
   _popup = null;
   _showPopup = function() {
-    return _finish();
+    _popup = utils.createPopup(200, 200, config.POPUP_MESSAGE_STEP_4, function(e) {
+      return _finish();
+    });
+    return true;
   };
-  true;
   _processBets = function() {
     var betObj, i, _bet, _i, _len, _ref;
     _ref = config.BETS_ARR;

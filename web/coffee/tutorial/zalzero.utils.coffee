@@ -69,7 +69,6 @@ define ["zalzero.config"], (config) ->
     popup
     
   startPopup : (def) ->
-  	console.log("config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT",config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT);
   	popup = $ """<div class="popup-wrapper"><div class="start-popup">
 						<div  class="title">Welcome to Zalerio!</div>
 						<div class="details">#{config.POPUP_MESSAGE_BEFORE_INIT_TEXT_POINT}
@@ -84,18 +83,24 @@ define ["zalzero.config"], (config) ->
   		def.resolve()
 	
   	popup.on 'click', '.left-button', (e) ->
-  		try
-    		jDocument.trigger "gameChangeListener", ''
-    	popup.remove()
+  		delete window.tutorialFlag
+  		$(".tutorial-overlay").remove()
+  		$("#tutorial-accordion").css("display","none")
+  		$(".gameInfoPanel").css("display","block")
+  		$(".gameScore").css("display","block")
+  		def.reject()
+  		jDocument.trigger "gameChangeListener", ''
+  		eval("tutorial = false")
+  		popup.remove()
   	
   congratPopup : (def) ->
   	
   	if parseInt(gameInstId,10) isnt 0
-  		nowPlay = 'Now Let\'s play with'
+  		nowPlay = 'Now let\'s play with'
   	else
-  		nowPlay = 'Now Let\'s play !'
+  		nowPlay = 'Now let\'s play!'
   		
-  	popup = $ """<div class="popup-wrapper"><div class="start-popup congratPopup"><div  class="title">Congratulations !</div>
+  	popup = $ """<div class="popup-wrapper"><div class="start-popup congratPopup"><div  class="title">Congratulations!</div>
 						<div class="details">#{config.POPUP_MESSAGE_CONGRATULATION}</div>
 						<div class="nowPlay">#{nowPlay}</div>
 						<div class="ok-button"></div>

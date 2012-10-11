@@ -36,8 +36,7 @@ define ['zalzero.deffereds','zalzero.utils', 'zalzero.tutorial.step1', 'zalzero.
     _overlay.on 'click', (e) ->
       false
     utils.startPopup(def)
-    #def.resolve()
-
+    
     true
   
   _afterTutorial = (arg, def) ->

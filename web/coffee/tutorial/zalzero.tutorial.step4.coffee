@@ -4,7 +4,7 @@ define ['zalzero.utils', 'zalzero.config'], (utils, config) ->
   _popup = null
   
   _showPopup = () ->
-#    _popup = utils.createPopup 200, 200, config.POPUP_MESSAGE_STEP_4, (e) ->
+    _popup = utils.createPopup 200, 200, config.POPUP_MESSAGE_STEP_4, (e) ->
      _finish()
       
 #      false
