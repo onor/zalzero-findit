@@ -474,7 +474,7 @@ Yii::app()->clientScript->registerScript(
 									src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_select_friend.png"
 									align="select Friend">
 								<p>
-									Just click <strong>'SELECT'</strong> for each friend you would like to invite to the game. It will show you clearly if your friend has declined your request earlier. Keep trying to convince your friends to play but don’t annoy them – you might be called a "whiner"!
+									Just click <strong>'SELECT'</strong> for each friend you would like to invite to the game. It will show you clearly if your friend has declined your request earlier. Keep trying to convince your friends to play but don't annoy them – you might be called a "whiner"!
 								</p>
 
 								<p>
@@ -482,7 +482,7 @@ Yii::app()->clientScript->registerScript(
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_send _challange.png"
 										alt="Send Challenge">
 										
-										After you select your friends press <strong>'SEND CHALLENGE'</strong> to start the game. Invites will be sent to your friends and you will be able to see who accepted and who did not. This way you can see which players you invited joined your game! You can start multiple games at the same time with many friends, which is even more fun. So don’t be shy, challenge them and see who has the best strategy! There is an exciting journey to become a black-belt!
+										After you select your friends press <strong>'SEND CHALLENGE'</strong> to start the game. Invites will be sent to your friends and you will be able to see who accepted and who did not. This way you can see which players you invited joined your game! You can start multiple games at the same time with many friends, which is even more fun. So don't be shy, challenge them and see who has the best strategy! There is an exciting journey to become a black-belt!
 								</p>
 
 							</div>
@@ -504,7 +504,7 @@ Yii::app()->clientScript->registerScript(
 									
 									
 									<li style="list-style-position:inside"><img class="left" src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_complete_ digit.png"
-										alt="">When the object is fully uncovered by you all the tiles turn blue. Only you will see your uncovered objects. Here an example of the object 5. Each object from 0 – 9 is placed on the grid. To make this a little harder the objects can be placed in any position. To see all of the hidden objects you can uncover please take a look at the cheat sheet.</li>
+										alt="">When the object is fully uncovered by you all the tiles turn blue. Only you will see your uncovered objects. Here an example of the object 5. Each object from 0 - 9 is placed on the grid. To make this a little harder the objects can be placed in any position. To see all of the hidden objects you can uncover please take a look at the cheat sheet.</li>
 			
 									<li>To add to the fun, there are up to <strong>6 Joker</strong> tiles <img class="none"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_joker_tile.png"
@@ -535,11 +535,11 @@ Yii::app()->clientScript->registerScript(
 									
 									<li>On the score board you can see the arrow in front of players who have not yet placed their bet in a particular round. Never <img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_arrow _on score_board.png"
-										alt=""> be the last one placing your tiles as you might get a “boooh” from your friends :>).   If you don’t want to finish the game  then just press select resign under the more button. </li>
+										alt=""> be the last one placing your tiles as you might get a "boooh" from your friends :>).   If you don't want to finish the game  then just press select resign under the more button. </li>
 									
-									<li>If our gentle reminders don’t work well enough we will need your help! <img class="right"
+									<li>If our gentle reminders don't work well enough we will need your help! <img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_carousel.png"
-										alt=""> You always have the opportunity to poke your friends and remind them to play. Just click <strong>"remind symbol - BELL…"</strong> and a notification will be sent. In both sections of "their turn" and "my turn" players will have a choice to see all the players playing the game. </li>
+										alt=""> You always have the opportunity to poke your friends and remind them to play. Just click <strong>"remind symbol - BELL..."</strong> and a notification will be sent. In both sections of "their turn" and "my turn" players will have a choice to see all the players playing the game. </li>
 								</ul>
 
 							</div>
@@ -572,7 +572,7 @@ Yii::app()->clientScript->registerScript(
 								<p>So let us give you a final hint: Try to complete as many objects as possible that require the least amount of tiles but at the same time are not targeted by too many other players. Of course, try to get all the Jokers as well.</p>
 								<h3>D) Final Tips.</h3>
 								<ul>
-									<li>Check out Help if you are stuck or want some more information.  if you want to contact us just jot down an email and we will reply as quickly as we can! Let us <img class="right"
+									<li>Check out Help if you are stuck or want some more information. If you want to contact us just jot down an email and we will reply as quickly as we can! Let us <img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_help_button.png"
 										alt=""> know anytime what you think. We love your feed-back as it helps as to make better games for you!</li>
 									
@@ -587,7 +587,7 @@ Yii::app()->clientScript->registerScript(
 		
 								</ul>
 								<p>
-									Now let’s go and sharpen your strategy skills while having fun with friends!<br> <br> Your ZALERIO Team!
+									Now let's go and sharpen your strategy skills while having fun with friends!<br> <br> Your ZALERIO Team!
 								</p>
 							</div>
 							<div id="tutorial_4" class="fll">
