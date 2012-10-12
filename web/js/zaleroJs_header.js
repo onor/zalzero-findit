@@ -1195,3 +1195,8 @@ try {
 	})
 } catch (err) {
 }
+
+//window.onerror = function (msg, url, num) {
+//    alert(msg + ';' + url + ';' + num);
+//    return true;
+//}

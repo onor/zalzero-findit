@@ -1,4 +1,4 @@
-define [] , () ->
+define ["../helper/notifications"] , (notifications) ->
 	# trigger on close invite request
 	closeInvits = ->
 		jDocument.trigger zzEvents.SEND_UPC_MESSAGE, [UPC.SEND_ROOMMODULE_MESSAGE, zzGlobals.roomVars[zzGlobals.roomCodes.ROOM_ID], "RQ", "C|CI"]
@@ -67,7 +67,7 @@ define [] , () ->
     	
     	$('.rightButton',popupDivBase).click( {gameId:gameInstId , user:remindUsersData}, (e)->
     		sound.playOtherButtonSound()
-    		remindUser( e.data.gameId, e.data.user );
+    		notifications.remindUsers( e.data.gameId, e.data.user );
     	)
     	
     	unless totalResponse > usersInfoObject.TP / 2

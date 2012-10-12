@@ -349,3 +349,13 @@
 	cursor: pointer;
 	margin: 0 auto;
 }
+
+.exit{
+	background: url("../images/tutorial/exit-button.png") right bottom no-repeat;
+	width: 108px;
+	height: 26px;
+	top: 10px;
+	position: absolute;
+	right: 10px;
+	cursor: pointer;
+}

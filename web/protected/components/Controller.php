@@ -31,6 +31,8 @@ class Controller extends CController
 	public $facebook;
 
 	public $oauth_token;
+	
+	public $loggedInUser;
 
 	function __construct($id,$module=null) {
 
@@ -42,7 +44,7 @@ class Controller extends CController
 	}
 
 	/**
-	 * Filters for all the request coming to facebook application
+	 * Filters for all request
 	 */
 	public function filters() {
 		return array(
@@ -55,79 +57,77 @@ class Controller extends CController
 		if(isset($_REQUEST["signed_request"])){ // user come for facebook iframe
 			
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
-			$data = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
+			$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
 
-			if(!empty($data["oauth_token"])){
+			if(!empty($signedRequestData["oauth_token"])){
 				
-				Yii::app()->session['oauth_token'] = $data["oauth_token"];
+				Yii::app()->session['oauth_token'] = $signedRequestData["oauth_token"];
 				
 				// get user if exists
-				$userSatus = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $data["user_id"] ));
+				$this->loggedInUser = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $signedRequestData["user_id"] ));
 				
-				if($userSatus){
-										
-					Yii::app()->session['fbid'] = $userSatus->user_fbid;
-					Yii::app()->session['fb_email'] = $userSatus->user_email;
-
-				}else{
+				if( ! $this->loggedInUser ){
 					
+					$this->loggedInUser = ''; // reset variable
+				
 					// get facebook me data
-					$facebookUser	=	$this->get_fb_user_info($data["oauth_token"]);
+					$facebookUser	=	$this->get_fb_user_info($signedRequestData["oauth_token"]);
 
 					Yii::app()->session['fbid'] = $facebookUser->id;
 
-					$model = new Zzuser;
+					$this->loggedInUser = new Zzuser;
 					
 					if(isset($facebookUser->name)){
-						$model->user_name	=	substr($facebookUser->name, 0, 49); // user name can't more then 50 char
+						$this->loggedInUser->user_name	=	substr($facebookUser->name, 0, 49); // user name can't more then 50 char
 					}else{
-						$model->user_name	= $facebookUser->id;
+						$this->loggedInUser->user_name	= $facebookUser->id;
 					}
 					// User First Name
-					$model->user_fname	=	@$facebookUser->first_name;
+					$this->loggedInUser->user_fname	=	@$facebookUser->first_name;
 
 					// user Last name
-					$model->user_lname	=	@$facebookUser->last_name;
+					$this->loggedInUser->user_lname	=	@$facebookUser->last_name;
 
 					// user facebook id
-					$model->user_fbid	=	$facebookUser->id;
+					$this->loggedInUser->user_fbid	=	$facebookUser->id;
 
 					if(isset($facebookUser->email)){
-						$model->user_email	=	$facebookUser->email;
+						$this->loggedInUser->user_email	=	$facebookUser->email;
 					}else{
-						$model->user_email	=	$facebookUser->id.'@facebook.com';
+						$this->loggedInUser->user_email	=	$facebookUser->id.'@facebook.com';
 					}
 
-					$model->user_handle		=	$facebookUser->id.'@facebook.com';
+					$this->loggedInUser->user_handle		=	$facebookUser->id.'@facebook.com';
 
-					$model->zzuser_status	=	'';
+					$this->loggedInUser->zzuser_status	=	'';
 					
-					$model->user_password = md5($facebookUser->id);
+					$this->loggedInUser->user_password = md5($facebookUser->id);
 					
-					$model->user_role_id	= '2';
+					$this->loggedInUser->user_role_id	= '2';
 					
-					if($model->save()){
+					if($this->loggedInUser->save()){
 						
 						// create game users summary
 						$userGameSummaryModel = new Zzgameusersummary;
 						$userGameSummaryModel->zz_gameinsttemp_id = 'ZalerioTempl1';
-						$userGameSummaryModel->user_id = $model->user_id;
+						$userGameSummaryModel->user_id = $this->loggedInUser->user_id;
 						$userGameSummaryModel->total_games_played = 0;//At the start Games played is 0
 						$userGameSummaryModel->total_game_won = 0;//At the start Games Won is 0
 						$userGameSummaryModel->user_level = 1;//At the start the Level is 1
 						$userGameSummaryModel->save();
 						
 					}
-
-					Yii::app()->session['fbid'] = $facebookUser->id;
-					Yii::app()->session['fb_email'] = $model->user_email;
 				}
-
+				
+				// we have logged-in user if we are here
+				Yii::app()->session['fbid']		=	$this->loggedInUser->user_fbid;
+				Yii::app()->session['fb_email'] =	$this->loggedInUser->user_email;
+			
 				$filterChain->run();
-			}else{
-				$this->get_auth();
+				
+				exit;
+				
 			}
-
 		}
 		
 		$this->get_auth();

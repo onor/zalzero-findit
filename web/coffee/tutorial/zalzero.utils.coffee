@@ -71,6 +71,18 @@ define ["zalzero.config"], (config) ->
   addExit : ()->
   	exit = $ """ <div class="exit">  </div> """
   	
+  	exit.click(->
+  		delete window.tutorialFlag
+  		$(".tutorial-overlay").remove()
+  		$("#tutorial-accordion").css("display","none")
+  		$(".gameInfoPanel").css("display","block")
+  		$(".gameScore").css("display","block")
+  		def.reject()
+  		jDocument.trigger "gameChangeListener", ''
+  		eval("tutorial = false")
+  	)
+  	
+  	$(".tutorial-overlay").append exit
   	  	
     
   startPopup : (def) ->

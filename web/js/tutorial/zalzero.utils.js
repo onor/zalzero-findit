@@ -84,7 +84,18 @@ define(["zalzero.config"], function(config) {
     },
     addExit: function() {
       var exit;
-      return exit = $(" <div class=\"exit\">  </div> ");
+      exit = $(" <div class=\"exit\">  </div> ");
+      exit.click(function() {
+        delete window.tutorialFlag;
+        $(".tutorial-overlay").remove();
+        $("#tutorial-accordion").css("display", "none");
+        $(".gameInfoPanel").css("display", "block");
+        $(".gameScore").css("display", "block");
+        def.reject();
+        jDocument.trigger("gameChangeListener", '');
+        return eval("tutorial = false");
+      });
+      return $(".tutorial-overlay").append(exit);
     },
     startPopup: function(def) {
       var popup;
