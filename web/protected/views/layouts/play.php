@@ -503,10 +503,10 @@ Yii::app()->clientScript->registerScript(
 										alt="">  represents a miss by one of your fellow players. A "miss" is a tile that was placed that did not uncover any part of a hidden object  or hit a joker. You will always see your own misses and the misses of your fellow players.</li>
 									
 									
-									<li><img class="left" src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_complete_ digit.png"
+									<li style="list-style-position:inside"><img class="left" src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_complete_ digit.png"
 										alt="">When the object is fully uncovered by you all the tiles turn blue. Only you will see your uncovered objects. Here an example of the object 5. Each object from 0 – 9 is placed on the grid. To make this a little harder the objects can be placed in any position. To see all of the hidden objects you can uncover please take a look at the cheat sheet.</li>
 			
-									<li>To add to the fun, there are up to <strong>6 Joker</strong>strong> tiles <img class="none"
+									<li>To add to the fun, there are up to <strong>6 Joker</strong> tiles <img class="none"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_joker_tile.png"
 										alt=""> hidden on the grid. Whoever hits the Joker first gets <strong style="text-decoration: underline">33 joker points</strong> - so go for it!</li>
 									
