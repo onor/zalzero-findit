@@ -54,6 +54,21 @@ class Controller extends CController
 
 	public function filterFacebook($filterChain) {
 		
+		// check if safari browser
+		if( strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') ){
+			
+			// set test cookies for browser
+			setcookie("zalerio_safari_test", "1");
+			
+			setcookie("zalerio_","1",time() + 30 * 84000 );
+			
+			// if cookies count zero or less then zero then redirect to zalerio
+			if(	! count($_COOKIE) > 0 ){
+				
+				echo("<script> top.location.href='" . $this->facebook->config->canvasUrl . "'</script>");
+			}
+		}
+		
 		if(isset($_REQUEST["signed_request"])){ // user come for facebook iframe
 			
 			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
