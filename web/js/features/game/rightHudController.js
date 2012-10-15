@@ -3,8 +3,7 @@
 define(["../../config/config", "../../helper/notifications"], function(config, notifications) {
   var updateRightHud;
   updateRightHud = function(event, message) {
-    var acceptDecline, bindClick, gameId, gameSeatID, index, monthNames, status, urDiv, urDivClassName;
-    monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var acceptDecline, bindClick, gameId, gameSeatID, index, status, urDiv, urDivClassName;
     for (gameId in message) {
       if (document.getElementById("right_hud_" + gameId) === null) {
         urDivClassName = gameInstId === gameId ? "userArea selected" : "userArea";

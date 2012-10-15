@@ -1,6 +1,5 @@
 define ["../../config/config","../../helper/notifications"], (config,notifications) ->
 	updateRightHud = (event, message)->
-		monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
 		for gameId of message
 			
 			if document.getElementById("right_hud_"+gameId) is null    			
