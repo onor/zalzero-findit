@@ -52,7 +52,7 @@ function getListOfInvitedUsers($fbUserData) {
 		$Zzuser['user_fbid'] = $id;
 		$Zzuser['user_fname'] = $fname;
 		$Zzuser['user_lname'] = $lname;
-		$Zzuser['user_name'] = substr($name, 0, 49);
+		$Zzuser['user_name'] = $name;
 		$Zzuser['user_email'] = $id.'@facebook.com';
 		$Zzuser['user_handle'] = $id.'@facebook.com';
 		$Zzuser['zzuser_status'] = 'invited';  // putting the users status to 'invited'

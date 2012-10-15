@@ -1051,6 +1051,13 @@ jQuery("#submit_rating")
 					if (rating_level == null || rating_level == '') {
 						messagePopup("Please rate the game first.");
 					} else {
+						try{
+							usersObjectUINFO = jQuery.parseJSON(zzGlobals.clientVars.UINFO);
+							PDN = usersObjectUINFO.PDN;
+						}catch(error){ 
+							PDN = '';
+						}
+						 
 						jQuery
 								.post(
 										baseUrl + '/help/ratezalerio',
@@ -1059,7 +1066,7 @@ jQuery("#submit_rating")
 											'rating_level' : rating_level,
 											'comment_improvement' : comment_improvement,
 											'comment_like' : comment_like,
-											'name' : zzGlobals.clientVars.UINFO.PFN
+											'name' : PDN
 										},
 										function(data) {
 											try {
