@@ -27,14 +27,16 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
 						
 						if message[gameId].PLRS[gameSeatID].GSS is 1 and zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
 							
-							urDiv.append """<div class="accept_decline" id="accept_decline_#{gameId}"><div class="right_hud_accept">Accept</div><div class="right_hud_decline">Decline</div></div>"""
+							acceptDecline = $ """<div class="accept_decline" id="accept_decline_#{gameId}"><div class="right_hud_accept">Accept</div><div class="right_hud_decline">Decline</div></div>"""
 						
-							acceptInvitationAdd( $("#accept_decline_#{gameId} .right_hud_accept") , gameId )
+							acceptInvitationAdd( $(".right_hud_accept",acceptDecline) , gameId )
 							
-							$("#accept_decline_#{gameId} .right_hud_decline").click( {gsID:gameSeatID, id:gameId}, (e)->
+							$(".right_hud_decline", acceptDecline ).click( {gsID:gameSeatID, id:gameId}, (e)->
 								# trigger decline event
 								jDocument.trigger "sendDeclinedToServer" , [e.data.gsID, e.data.id]
 							)
+							
+							urDiv.append acceptDecline
 							
 						else if zzGlobals.currentUserDBId is message[gameId].PLRS[gameSeatID].UI
 							
@@ -113,7 +115,7 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
     	try
 	    	for roundId in [1..7]
 		        el = roundVOsIdxRightHUD[roundId]
-		        console.log('roundVOsIdx',roundVOsIdxRightHUD)
+		        
 		        if roundId > parseInt gameDetails.CR
 		          el.className = "notPlayedRound"
 		        else

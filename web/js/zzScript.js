@@ -482,7 +482,7 @@ define('../../helper/notifications',["./utils"], function(utils) {
 define('rightHudController',["../../config/config", "../../helper/notifications"], function(config, notifications) {
   var updateRightHud;
   updateRightHud = function(event, message) {
-    var bindClick, dateStart, gameId, gameSeatID, index, monthNames, status, urDiv, urDivClassName;
+    var acceptDecline, bindClick, dateStart, gameId, gameSeatID, index, monthNames, status, urDiv, urDivClassName;
     monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     for (gameId in message) {
       dateStart = new Date(message[gameId].ED);
@@ -506,14 +506,15 @@ define('rightHudController',["../../config/config", "../../helper/notifications"
           }
           if (message[gameId].PLRS[gameSeatID].GSS) {
             if (message[gameId].PLRS[gameSeatID].GSS === 1 && zzGlobals.currentUserDBId === message[gameId].PLRS[gameSeatID].UI) {
-              urDiv.append("<div class=\"accept_decline\" id=\"accept_decline_" + gameId + "\"><div class=\"right_hud_accept\">Accept</div><div class=\"right_hud_decline\">Decline</div></div>");
-              acceptInvitationAdd($("#accept_decline_" + gameId + " .right_hud_accept"), gameId);
-              $("#accept_decline_" + gameId + " .right_hud_decline").click({
+              acceptDecline = $("<div class=\"accept_decline\" id=\"accept_decline_" + gameId + "\"><div class=\"right_hud_accept\">Accept</div><div class=\"right_hud_decline\">Decline</div></div>");
+              acceptInvitationAdd($(".right_hud_accept", acceptDecline), gameId);
+              $(".right_hud_decline", acceptDecline).click({
                 gsID: gameSeatID,
                 id: gameId
               }, function(e) {
                 return jDocument.trigger("sendDeclinedToServer", [e.data.gsID, e.data.id]);
               });
+              urDiv.append(acceptDecline);
             } else if (zzGlobals.currentUserDBId === message[gameId].PLRS[gameSeatID].UI) {
               urDiv.click({
                 id: gameId
@@ -608,7 +609,6 @@ define('rightHudController',["../../config/config", "../../helper/notifications"
     try {
       for (roundId = _i = 1; _i <= 7; roundId = ++_i) {
         el = roundVOsIdxRightHUD[roundId];
-        console.log('roundVOsIdx', roundVOsIdxRightHUD);
         if (roundId > parseInt(gameDetails.CR)) {
           el.className = "notPlayedRound";
         } else {
