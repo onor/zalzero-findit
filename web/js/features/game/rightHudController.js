@@ -3,10 +3,9 @@
 define(["../../config/config", "../../helper/notifications"], function(config, notifications) {
   var updateRightHud;
   updateRightHud = function(event, message) {
-    var acceptDecline, bindClick, dateStart, gameId, gameSeatID, index, monthNames, status, urDiv, urDivClassName;
+    var acceptDecline, bindClick, gameId, gameSeatID, index, monthNames, status, urDiv, urDivClassName;
     monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     for (gameId in message) {
-      dateStart = new Date(message[gameId].ED);
       if (document.getElementById("right_hud_" + gameId) === null) {
         urDivClassName = gameInstId === gameId ? "userArea selected" : "userArea";
         urDiv = $("<div class=\"" + urDivClassName + "\" id=\"right_hud_" + gameId + "\" ></div>");
@@ -14,7 +13,7 @@ define(["../../config/config", "../../helper/notifications"], function(config, n
           urDiv.append("<div class=\"round_no\">" + message[gameId].CR + "</div>");
         }
         if (message[gameId].ED) {
-          urDiv.append("<div class=\"game_end_time\">" + (monthNames[dateStart.getMonth() - 1] + ' ' + dateStart.getDate()) + "</div>");
+          urDiv.append("<div class=\"game_end_time\">" + message[gameId].ED + "</div>");
         }
         for (index in message[gameId].PLSC) {
           gameSeatID = message[gameId].PLSC[index];
@@ -70,7 +69,7 @@ define(["../../config/config", "../../helper/notifications"], function(config, n
             $("#right_hud_" + gameId).find('.round_no').text(message[gameId].CR);
           }
           if (message[gameId].ED) {
-            $("#right_hud_" + gameId).find('.game_end_time').html(monthNames[dateStart.getMonth() - 1] + ' ' + dateStart.getDate());
+            $("#right_hud_" + gameId).find('.game_end_time').html(message[gameId].ED);
           }
           for (gameSeatID in message[gameId].PLRS) {
             if (typeof message[gameId].PLRS[gameSeatID].PON !== "undefined") {
