@@ -139,7 +139,8 @@ public class GameVO {
 		
 		if(gameEndDate != 0) {
 			DateTime dt = new DateTime(gameEndDate);
-			DateTimeFormatter fmt = DateTimeFormat.forPattern("MMM d, yyyy HH:MM");
+			//DateTimeFormatter fmt = DateTimeFormat.forPattern("MMM d, yyyy HH:MM");
+			DateTimeFormatter fmt = DateTimeFormat.forPattern("MMM d");
 			udo.append(END_DATE, fmt.print(dt));
 		} else {
 			udo.append(END_DATE, "");
