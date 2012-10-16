@@ -485,7 +485,7 @@ function sendWinnerNotificationMail( $gameInstId)
 			$game->otherWinner .= <<<EOD
 				<tr>
 					    <td>
-					          		<table width="486" border="0" style="background:#8194cc; padding:5px 15px 0; margin:0 auto; border-radius:5px;">
+					          		<table width="486" border="0" style="color:white;background:#8194cc; padding:5px 15px 0; margin:0 auto; border-radius:5px;">
 								        <tr>
 								          <td width="10%" style="font-size:30px;">{$rank}</td>
 								          <td  width="60%"align="left" valign="bottom"><img  width="45" height="45" src="http://graph.facebook.com/{$gameUserDetails->gameseatUser->user_fbid}/picture" /><span style=" padding-top: 15px;margin:0 0 0 5px; font-size: 24px;">{$userDisplayName}</span></td>
@@ -543,13 +543,13 @@ function emailTemplate($game){
 					</head>
 					
 					<body>
-					<table width="580" border="0" align="center" style="background-color: #1a274a; background: -webkit-linear-gradient(top, #1a274a, #3366ff); ">
+					<table width="580" border="0" align="center" style="color:white;background-color: #1a274a; background: -webkit-linear-gradient(top, #1a274a, #3366ff); ">
 					  <tr>
 					    <td align="left"><img src="{$url}/images/email/Zalerio.png" alt="Logo" /></td>
 					    <td colspan="0">&nbsp;</td>
 					  </tr>
 					  <tr>
-					    <td><table width="545" border="0" style="background:#7c85a2; padding:2px; margin-left:15px; border-radius:5px;">
+					    <td><table width="545" border="0" style="color:white;background:#7c85a2; padding:2px; margin-left:15px; border-radius:5px;">
 					        <tr>
 					          <th width="30%" align="left" st>Created by</th>
 					          <th width="55%" align="center">All Players</th>
@@ -566,7 +566,7 @@ function emailTemplate($game){
 						    <td>&nbsp;</td>
 						  </tr>
 						  <tr>
-						    <td><table width="486" border="0" style="background:#818eba; padding:8px 50px; margin:0 auto; border-radius:5px;">
+						    <td><table width="486" border="0" style="color:white;background:#818eba; padding:8px 50px; margin:0 auto; border-radius:5px;">
 						        <tr>
 						          <td colspan="3" style="background: -webkit-gradient(linear, left top, right top, from(#1a2b3f), to(#7b85a0));/* Safari 5.1, Chrome 10+ */background: -webkit-linear-gradient(left, #1a2b3f, #7b85a0);/* Firefox 3.6+ */background: -moz-linear-gradient(left, #1a2b3f, #7b85a0);/* IE 10 */background: -ms-linear-gradient(left, #1a2b3f, #7b85a0);/* Opera 11.10+ */background: -o-linear-gradient(left, #1a2b3f, #7b85a0); font-size:24px; font-weight:bold; padding:10px 5px; border-radius:5px;">And the Winner is</td>
 						        </tr>
