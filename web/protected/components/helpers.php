@@ -416,6 +416,186 @@ class sendEmail{
                 return array("msg"=>'ok');
         }
 }
+
+/**
+ * Send winner notification mail to all players except players decline the game 
+ * @param int $gameInstId
+ */
+function sendWinnerNotificationMail( $gameInstId)
+{
+	$game = new stdClass;
+	$game->id = $gameInstId;
+	$game->winner = new stdClass;
+	$game->otherWinner = '';
+	$game->allPlayerImgs = '';
+	$i = 0;
+	
+	// game id and score sort by rank
+	$gameUsersDetails =  Zzgameseat::model()->with( 'gameseatUser' )->findAllByAttributes( array( 'gameseat_gameinst_id'=>"$gameInstId", 'zzgameseat_status'=> array( 'accepted', 'resigned' )),array('order'=>'game_rank ASC,gameseat_score DESC') );
+
+	if(!$gameUsersDetails){
+		return;		// return if no record found
+	}
+
+	$gameInstRecord = Zzgameinst::model()->findByAttributes(array('gameinst_id'=>"$gameInstId"));
+	$game->startDate = date("M d", strtotime( $gameInstRecord->create_time ));
+
+	foreach($gameUsersDetails as $gameUserDetails)
+	{	$i++;
+		$game->sendEmailTo[] = $gameUserDetails->gameseatUser->user_email;
+		$userDisplayName = getDisplayName( $gameUserDetails->gameseatUser->user_fname, $gameUserDetails->gameseatUser->user_lname );
+		//continue;
+		// set game creator data
+		if($gameInstRecord->gameinst_created_by == $gameUserDetails->gameseat_user_id)
+		{
+			$game->creatorFBid 	= 	$gameUserDetails->gameseatUser->user_fbid;
+			$game->creator		= 	$userDisplayName;
+		}
+			
+		if($i == 1)
+		{	// set winner data
+			$game->winner->name		=	$userDisplayName;
+			$game->winner->FBid		=	$gameUserDetails->gameseatUser->user_fbid;
+			$game->winner->score	=	$gameUserDetails->gameseat_score;
+			
+		}else{
+
+			switch ($i)
+			{
+				case 1:
+					$rank = '1st';
+					break;
+				case 2:
+					$rank = '2nd';
+					break;
+				case 3:
+					$rank = '3rd';
+					break;
+				case 4:
+					$rank = '4th';
+					break;
+				case 5:
+					$rank = '5th';
+					break;
+			}
+			
+			$game->allPlayerImgs .= '<img style=" margin-left:1px;" width="32" height="32" src="http://graph.facebook.com/'.$gameUserDetails->gameseatUser->user_fbid.'/picture" />';
+			
+			$game->otherWinner .= <<<EOD
+				<tr>
+					    <td>
+					          		<table width="486" border="0" style="background:#8194cc; padding:5px 15px 0; margin:0 auto; border-radius:5px;">
+								        <tr>
+								          <td width="10%" style="font-size:30px;">{$rank}</td>
+								          <td  width="60%"align="left" valign="bottom"><img  width="45" height="45" src="http://graph.facebook.com/{$gameUserDetails->gameseatUser->user_fbid}/picture" /><span style=" padding-top: 15px;margin:0 0 0 5px; font-size: 24px;">{$userDisplayName}</span></td>
+								          <td width="20%" align="right" style="font-size:24px; color:#fff;">{$gameUserDetails->gameseat_score}</td>
+								        </tr>
+				      				</table>
+					    </td>
+				    	<td>&nbsp;</td>
+				</tr>
+EOD;
+		}
+	}
+
+	$emailTemplate	= emailTemplate($game);
+	
+	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+	$headers .= "From: zalerio@zalerio.com" . "\r\n";
+	
+	@mail( $game->sendEmailTo,'Zalerio: winner notification',$emailTemplate, $headers );
+	
+	return;
+}
+
+
+function emailTemplate($game){
+	$url = Yii::app()->baseUrl;
+
+	$emailTemplate = <<<EOD
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+					<html xmlns="http://www.w3.org/1999/xhtml">
+					<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+					<title>Untitled Document</title>
+					<style type="text/css">
+					table {
+						font-family:arial;
+						/* fallback */
+						background-color: #1a274a;
+						/* Safari 4-5, Chrome 1-9 */
+						background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a274a), to(#3366ff));
+						/* Safari 5.1, Chrome 10+ */
+						background: -webkit-linear-gradient(top, #1a274a, #3366ff);
+						/* Firefox 3.6+ */
+						background: -moz-linear-gradient(top, #1a274a, #3366ff);
+						/* IE 10 */
+						background: -ms-linear-gradient(top, #1a274a, #3366ff);
+						/* Opera 11.10+ */
+						background: -o-linear-gradient(top, #1a274a, #3366ff);
+						color: #fff;
+					}
+					</style>
+					</head>
+					
+					<body>
+					<table width="580" border="0" align="center">
+					  <tr>
+					    <td align="left"><img src="{$url}/images/email/Zalerio.png" alt="Logo" /></td>
+					    <td colspan="0">&nbsp;</td>
+					  </tr>
+					  <tr>
+					    <td><table width="545" border="0" style="background:#7c85a2; padding:2px; margin-left:15px; border-radius:5px;">
+					        <tr>
+					          <th width="30%" align="left" st>Created by</th>
+					          <th width="55%" align="center">All Players</th>
+					          <th width="15%">Start Date</th>
+					        </tr>
+							<tr>
+								<td align="bottom" valign="middle"><img width="50" height="50" src="http://graph.facebook.com/{$game->creatorFBid}/picture" /><span style=" padding-top: 15px;margin:0 0 0 5px; font-size: 20px;">{$game->creator}</span></td>
+								<td align="center" valign="bottom">
+										{$game->allPlayerImgs}
+								</td>
+								<td align="center" valign="bottom" style="font-size:20px">{$game->startDate}</td>
+							        </tr>
+						      </table></td>
+						    <td>&nbsp;</td>
+						  </tr>
+						  <tr>
+						    <td><table width="486" border="0" style="background:#818eba; padding:8px 50px; margin:0 auto; border-radius:5px;">
+						        <tr>
+						          <td colspan="3" style="background: -webkit-gradient(linear, left top, right top, from(#1a2b3f), to(#7b85a0));/* Safari 5.1, Chrome 10+ */background: -webkit-linear-gradient(left, #1a2b3f, #7b85a0);/* Firefox 3.6+ */background: -moz-linear-gradient(left, #1a2b3f, #7b85a0);/* IE 10 */background: -ms-linear-gradient(left, #1a2b3f, #7b85a0);/* Opera 11.10+ */background: -o-linear-gradient(left, #1a2b3f, #7b85a0); font-size:24px; font-weight:bold; padding:10px 5px; border-radius:5px;">And the Winner is</td>
+						        </tr>
+						        <tr><td>&nbsp;</td></tr>
+						        <tr>
+						          <td width="10%" style="font-size:40px;">1st</td>
+						          <td width="70%"align="left" valign="bottom"><img  width="66" height="66" src="http://graph.facebook.com/{$game->winner->FBid}/picture" /><span style=" padding-top: 15px;margin:0 0 0 5px; font-size: 24px;">{$game->winner->name}</span></td>
+						          <td width="20%" align="right" style="font-size:30px; font-weight:bold; color:#435b77; text-shadow:1px 1px #424d6d;">452</td>
+						        </tr>
+						      </table></td>
+						    <td>&nbsp;</td>
+						  </tr>
+						 {$game->otherWinner}
+						  <tr><td align="center"><!-- <a href="#"><img src="Sprites/rematch_ideal.png" alt="Rematch" /></a></td><td>&nbsp;</td> --> </tr>
+					</table>
+						<table width="580" border="0" align="center" style="background:#fff; color:#000">
+						  <tr>
+						    <td>This email is intended for philippstauffer@gmail.com. You received this message because you signed uo for 'Findit' e-mail program. To unsubscribe from Find it (Game Invitation) emails <a href="#">unsubscribe here</a></td>
+						  </tr>
+						  <tr>
+						    <td>&copy; Findit. 4104 24th Street #363 San Francisco, CA 94119-3615 <a href="#">Privacy Policy</a></td>
+						  </tr>
+						</table>
+					
+					</body>
+					</html>
+EOD;
+	return $emailTemplate;
+}
+
+
+
 //desk support mail
 define('DESK_SUPPORT_MAIL','support@zalzero.com');
 
