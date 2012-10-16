@@ -505,8 +505,6 @@ EOD;
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 	$headers .= "From: zalerio@zalerio.com" . "\r\n";
-	
-	print_r($emailTemplate);
 
 	@mail( $to,'Zalerio: winner notification',$emailTemplate, $headers );
 	
