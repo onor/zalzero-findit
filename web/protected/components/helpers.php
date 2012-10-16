@@ -507,6 +507,7 @@ EOD;
 	$headers .= "From: zalerio@zalerio.com" . "\r\n";
 	
 	print_r($emailTemplate);
+
 	@mail( $to,'Zalerio: winner notification',$emailTemplate, $headers );
 	
 	return;
@@ -514,8 +515,9 @@ EOD;
 
 
 function emailTemplate($game){
-	$url = Yii::app()->baseUrl;
 
+	$url = Yii::app()->createAbsoluteUrl('/');
+	
 	$emailTemplate = <<<EOD
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 					<html xmlns="http://www.w3.org/1999/xhtml">
@@ -584,7 +586,7 @@ function emailTemplate($game){
 					</table>
 						<table width="580" border="0" align="center" style="background:#fff; color:#000">
 						  <tr>
-						    <td>This email is intended for philippstauffer@gmail.com. You received this message because you signed uo for 'Findit' e-mail program. To unsubscribe from Find it (Game Invitation) emails <a href="#">unsubscribe here</a></td>
+						    <td>This email is intended for philippstauffer@gmail.com. You received this message because you signed up for 'Findit' e-mail program. To unsubscribe from Find it (Game Invitation) emails <a href="#">unsubscribe here</a></td>
 						  </tr>
 						  <tr>
 						    <td>&copy; Findit. 4104 24th Street #363 San Francisco, CA 94119-3615 <a href="#">Privacy Policy</a></td>
