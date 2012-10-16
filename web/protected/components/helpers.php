@@ -444,6 +444,9 @@ function sendWinnerNotificationMail( $gameInstId)
 	{	$i++;
 		$game->sendEmailTo[] = $gameUserDetails->gameseatUser->user_email;
 		$userDisplayName = getDisplayName( $gameUserDetails->gameseatUser->user_fname, $gameUserDetails->gameseatUser->user_lname );
+		
+		$game->allPlayerImgs .= '<img style=" margin-left:1px;" width="32" height="32" src="http://graph.facebook.com/'.$gameUserDetails->gameseatUser->user_fbid.'/picture" />';
+		
 		//continue;
 		// set game creator data
 		if($gameInstRecord->gameinst_created_by == $gameUserDetails->gameseat_user_id)
@@ -478,8 +481,6 @@ function sendWinnerNotificationMail( $gameInstId)
 					$rank = '5th';
 					break;
 			}
-			
-			$game->allPlayerImgs .= '<img style=" margin-left:1px;" width="32" height="32" src="http://graph.facebook.com/'.$gameUserDetails->gameseatUser->user_fbid.'/picture" />';
 			
 			$game->otherWinner .= <<<EOD
 				<tr>
@@ -542,7 +543,7 @@ function emailTemplate($game){
 					</head>
 					
 					<body>
-					<table width="580" border="0" align="center">
+					<table width="580" border="0" align="center" style="background-color: #1a274a; background: -webkit-linear-gradient(top, #1a274a, #3366ff); ">
 					  <tr>
 					    <td align="left"><img src="{$url}/images/email/Zalerio.png" alt="Logo" /></td>
 					    <td colspan="0">&nbsp;</td>
@@ -573,7 +574,7 @@ function emailTemplate($game){
 						        <tr>
 						          <td width="10%" style="font-size:40px;">1st</td>
 						          <td width="70%"align="left" valign="bottom"><img  width="66" height="66" src="http://graph.facebook.com/{$game->winner->FBid}/picture" /><span style=" padding-top: 15px;margin:0 0 0 5px; font-size: 24px;">{$game->winner->name}</span></td>
-						          <td width="20%" align="right" style="font-size:30px; font-weight:bold; color:#435b77; text-shadow:1px 1px #424d6d;">452</td>
+						          <td width="20%" align="right" style="font-size:30px; font-weight:bold; color:#435b77; text-shadow:1px 1px #424d6d;">{$game->winner->score}</td>
 						        </tr>
 						      </table></td>
 						    <td>&nbsp;</td>
