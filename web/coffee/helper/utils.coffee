@@ -20,7 +20,17 @@ define ['../config/envConfig'], (config)-> #'utils',
 	log : (message) ->
 		if config.showLog
 			console.log message
-		
+	
+	playerRank : (rank) ->
+		switch parseInt rank,10
+			when 1 then '1st'
+			when 2 then '2nd'
+			when 3 then '3rd'
+			when 4 then '4th'
+			when 5 then '5th'
+			#when 0 then 'R'
+			else ''
+			
 	getMiniLoaderHTML: ->
 		return """<div id="floatingBarsGs">
 		<div class="blockG" id="rotateG_01">

@@ -548,6 +548,23 @@ body {
     height: 51px;
     position: relative;
 }
+.userArea.Mylevel {
+	background: url("../images/zalerio_1.2/5.all_popup/mystats/mygames/base.gif") no-repeat top left; /*mainplayer_base */
+	width: 222px;
+    height: 65px;
+    padding-top: 2px;
+	padding-left: 3px;
+}
+.Mylevel .round_no{
+	position:absolute;
+	left: 100px;
+	top: 15px;
+}
+.Mylevel .imageWrapper img{
+	margin-top:2px;
+	width:25px;
+	height:25px;
+}
 #gameInfo-game-players .userArea {
     background: url("../images/zalerio_1.2/4.ingame_ui/yourturntheirturn_playerbase.png") no-repeat top left;
 }
@@ -846,6 +863,7 @@ ul.turnGameInstance {
     width: 245px;
     float: left;
     margin-left: 5px;
+    padding-left:4px
 }
 .div_left .titles {
     margin-top: 50px;
@@ -1085,7 +1103,8 @@ body {
     display: inline-block;
     height: 240px;
     overflow-y: scroll;
-    width: 240px;
+    width: 230px;
+    padding-left:15px;
 }
 #rip_active div.rip{
     display: inline-block;
@@ -1139,87 +1158,6 @@ body {
     background: -ms-linear-gradient(top, #7eafe0 0%,#94b9df 50%,#76a6d6 51%,#6d9ccb 100%);
     
 }
-
-/* carousel styling*/
-.infiniteCarousel {
-    position: relative;
-    width: 38px;
-    padding: 0 16px;
-}
-
-.infiniteCarousel .wrapper {
-	
-    /*min-height: 10em;
-    overflow: auto;
-    position: absolute;
-    top: 0;
-    width: 34px;*/
-    min-height: 10em;
-overflow: auto;
-position: absolute;
-top: 0;
-width: 51px;
-left:5px;
-}
-
-
-
-.infiniteCarousel .wrapper ul {
-    width: 9999px;
-    list-style-image:none;
-    list-style-position:outside;
-    list-style-type:none;
-    margin:0;
-    padding:0;
-    position: absolute;
-    top: 0;
-}
-
-.infiniteCarousel ul li {
-  /*display: block;
-    float: left;
-    height: 31px;
-    padding: 6px 1px;
-    width: 31px;*/
-  display: block;
-float: left;
-height: 38px; overflow:hidden;
-padding: 5px 10px;
-width: 31px;position:relative;
-}
-.infiniteCarousel ul li a {
-	text-decoration:none;
-	color:#fff;
-        
-}
-.infiniteCarousel ul li a img {
-  display:block;
-    padding: 0 2px;
-    margin-left: -1px;
-    bottom:-7px;
-}
-.infiniteCarousel ul li a span {
-	color:#fff;
-	font-size:11px;
-     
-position:absolute;
-z-index:999;
-width:51px;
-left:3px; float:left;
-text-align:center;
-margin-top:-2px;
-
-}
-.infiniteCarousel .arrow {
-   cursor: pointer;
-display: block;
-height: 16px;
-position: absolute;
-text-indent: -999px;
-top: 10px;
-width: 9px;
-}
-
 #lineone{
     margin-top: 30px
 }
@@ -2862,8 +2800,61 @@ background: none !important;
 	margin:0 0 0 2px;
 	float:left;
 }
-.rightHUD_carousel .imageWrapper img.offline{
-	border-bottom: 4px solid #E42217
+.winner{
+	background:url("../images/zalerio_1.2/5.all_popup/mystats/mygames/cup.png") left 5px no-repeat;
+}
+.Mylevel{
+	color:#2c5c84
+}
+.Mylevel .point{
+	position: absolute;
+	left: 145px;
+	top: 20px;
+	width: 65px;
+	text-align: right
+}
+.Mylevel .end_date{
+	position: absolute;
+	left: 145px;
+	width: 65px;
+	top: 3px;
+	text-align: right
+}
+.Mylevel .msgbox-ok{
+	position: absolute;
+	margin: 0;
+	height: 18px;
+	left: 131px;
+	margin-top: 37px;
+	font-family:FuturaLT;
+	text-transform:none;
+	width: 85px;
+}
+ .Mylevel .imageWrapper img{
+ 	border-bottom: 4px solid #4ABB2C;
+	background:none;
+	margin:1px 1px 0 0
+ }
+ .imgCon{width:90px}
+.Mylevel .imgCon .imageWrapper{
+	height:31px	
+}
+.Mylevel .rank{
+	height: 22px;
+	position: absolute;
+	left: 90px;
+	padding-top: 40px;
+	width: 40px;
+	text-align: center;
+}
+.Mylevel .rank_active{
+	position: absolute;
+	right: 38px;
+	top: 15px;
+}
+.rightHUD_carousel .imageWrapper img.offline, .Mylevel .imageWrapper img.offline{
+	border-bottom: 4px solid #E42217;
+	background:none;
 }
 .rightHUD_carousel .round_no{
 	position: absolute;

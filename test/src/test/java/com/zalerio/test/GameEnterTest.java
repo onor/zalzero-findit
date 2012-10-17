@@ -11,6 +11,12 @@ import org.openqa.selenium.WebElement;
 import com.zalerio.config.GameUtil;
 
 public class GameEnterTest extends ZalerioBaseTest {
+	public GameEnterTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Test
 	public void nonSecuredGameOpenTest() {
 		GameUtil.closeGameEndPopUp(driver);
