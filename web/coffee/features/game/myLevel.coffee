@@ -32,7 +32,7 @@ define ['../../helper/utils'], (utils)->
 		
 		try
 			message = gameRecords.APG
-			console.log(message)
+			
 			for gameId of message
 				urDiv = $ """<div class="userArea Mylevel" id="myLevel_apg_#{gameId}" ></div>"""
 				
@@ -61,8 +61,8 @@ define ['../../helper/utils'], (utils)->
 				$('.msgbox-ok',urDiv).click({ids:FBids,gameOption:"Rematch",gameId:gameId}, (e)->
 					rematchPastGames(e.data.ids, e.data.gameOption, e.data.gameId)
 				)
-					
-				$("#rip_won_apg").append urDiv
+				if( $('.imageWrapper',urDiv).length isnt 0)
+					$("#rip_won_apg").append urDiv
 
 		$ ->
 			$(".scroll-pane").jScrollPane

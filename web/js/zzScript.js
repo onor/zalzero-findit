@@ -895,7 +895,6 @@ define('myLevel',['../../helper/utils'], function(utils) {
     } catch (_error) {}
     try {
       message = gameRecords.APG;
-      console.log(message);
       for (gameId in message) {
         urDiv = $("<div class=\"userArea Mylevel\" id=\"myLevel_apg_" + gameId + "\" ></div>");
         urDiv.append("<div class=\"end_date\">" + message[gameId].ED + "</div>");
@@ -925,7 +924,9 @@ define('myLevel',['../../helper/utils'], function(utils) {
         }, function(e) {
           return rematchPastGames(e.data.ids, e.data.gameOption, e.data.gameId);
         });
-        $("#rip_won_apg").append(urDiv);
+        if ($('.imageWrapper', urDiv).length !== 0) {
+          $("#rip_won_apg").append(urDiv);
+        }
       }
     } catch (_error) {}
     $(function() {
