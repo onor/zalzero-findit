@@ -671,7 +671,7 @@ public class ZalerioGameRoom extends BaseGameRoom implements IZalerioGameRoomVO{
 						// Only Active accepted players get rank
 						zzgameseatRecord.setGameRank(++i);
 					} else {
-						zzgameseatRecord.setGameRank(Integer.valueOf(0));
+						zzgameseatRecord.setGameRank(Integer.valueOf(99));//Case when player has resigned
 					}
 					zzgameseatRecord.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 					zzgameseatRecord.store();
