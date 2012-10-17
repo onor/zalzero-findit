@@ -1009,7 +1009,7 @@ define('myLevel',['../../helper/utils'], function(utils) {
         cl = belt_array[i].toLowerCase();
         cl_up = capFirst(cl);
         if (user_level === i) {
-          vertical_text += "<li class=\"active\"><img src=\"../images/zalerio_1.2/5.all_popup/mystats/mylevel/belts/belts_highlighted/" + cl + ".png\" alt=\"Black belt\"><a class=\"" + cl + "\" >{cl_up}</a></li>";
+          vertical_text += "<li class=\"active\"><img src=\"../images/zalerio_1.2/5.all_popup/mystats/mylevel/belts/belts_highlighted/" + cl + ".png\" alt=\"Black belt\"><a class=\"" + cl + "\" >" + cl_up + "</a></li>";
         } else {
           vertical_text += "<li><img src=\"../images/zalerio_1.2/5.all_popup/mystats/mylevel/belts/belts_ideal/" + cl + ".png\" alt=\"Black belt\"><a class=\"" + cl + "\" >" + cl_up + "</a></li>";
         }
