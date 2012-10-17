@@ -29,13 +29,13 @@ define ['../../helper/utils'], (utils)->
 				if( $('.imageWrapper',urDiv).length isnt 0)
 					$("#rip_active_rh").append urDiv
 			
-			$(".ap_games").remove()
+		$("#rip_won_apg .Mylevel").remove()
 		
 		try
 			message = gameRecords.APG
 			
 			for gameId of message
-				urDiv = $ """<div class="userArea Mylevel" id="myLevel_apg_#{gameId}" ></div>"""
+				urDiv = $ """<div class="userArea Mylevel" id="myLevel_apg_#{gameId}" ><div class="imgCon"></div></div>"""
 				
 				urDiv.append """<div class="end_date">#{message[gameId].ED}</div>"""
 				rematchButton = """<div class="msgbox-ok">Rematch</div>"""
@@ -57,7 +57,7 @@ define ['../../helper/utils'], (utils)->
 					
 					status = (if message[gameId].PLRS[index].PON is 1 then "online" else "offline")
 					
-					urDiv.append """<div class="imageWrapper" id="myLevel_apg_Images#{gameId}"><img src="https://graph.facebook.com/#{message[gameId].PLRS[index].PFB}/picture" alt="#{message[gameId].PLRS[index].PFN}" class="#{status}" id="myLevel_apg_who_am_i_#{index}" /></div>"""  if message[gameId].PLRS[index].PFB
+					$('.imgCon',urDiv).append """<div class="imageWrapper" id="myLevel_apg_Images#{gameId}"><img src="https://graph.facebook.com/#{message[gameId].PLRS[index].PFB}/picture" alt="#{message[gameId].PLRS[index].PFN}" class="#{status}" id="myLevel_apg_who_am_i_#{index}" /></div>"""  if message[gameId].PLRS[index].PFB
 				
 				$('.msgbox-ok',urDiv).click({ids:FBids,gameOption:"Rematch",gameId:gameId}, (e)->
 					rematchPastGames(e.data.ids, e.data.gameOption, e.data.gameId)

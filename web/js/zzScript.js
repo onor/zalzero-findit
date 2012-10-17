@@ -893,12 +893,12 @@ define('myLevel',['../../helper/utils'], function(utils) {
           $("#rip_active_rh").append(urDiv);
         }
       }
-      $(".ap_games").remove();
     } catch (_error) {}
+    $("#rip_won_apg .Mylevel").remove();
     try {
       message = gameRecords.APG;
       for (gameId in message) {
-        urDiv = $("<div class=\"userArea Mylevel\" id=\"myLevel_apg_" + gameId + "\" ></div>");
+        urDiv = $("<div class=\"userArea Mylevel\" id=\"myLevel_apg_" + gameId + "\" ><div class=\"imgCon\"></div></div>");
         urDiv.append("<div class=\"end_date\">" + message[gameId].ED + "</div>");
         rematchButton = "<div class=\"msgbox-ok\">Rematch</div>";
         FBids = [];
@@ -916,7 +916,7 @@ define('myLevel',['../../helper/utils'], function(utils) {
           }
           status = (message[gameId].PLRS[index].PON === 1 ? "online" : "offline");
           if (message[gameId].PLRS[index].PFB) {
-            urDiv.append("<div class=\"imageWrapper\" id=\"myLevel_apg_Images" + gameId + "\"><img src=\"https://graph.facebook.com/" + message[gameId].PLRS[index].PFB + "/picture\" alt=\"" + message[gameId].PLRS[index].PFN + "\" class=\"" + status + "\" id=\"myLevel_apg_who_am_i_" + index + "\" /></div>");
+            $('.imgCon', urDiv).append("<div class=\"imageWrapper\" id=\"myLevel_apg_Images" + gameId + "\"><img src=\"https://graph.facebook.com/" + message[gameId].PLRS[index].PFB + "/picture\" alt=\"" + message[gameId].PLRS[index].PFN + "\" class=\"" + status + "\" id=\"myLevel_apg_who_am_i_" + index + "\" /></div>");
           }
         }
         $('.msgbox-ok', urDiv).click({
