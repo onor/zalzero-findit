@@ -26,7 +26,8 @@ define ['../../helper/utils'], (utils)->
 					
 					$('.imgCon',urDiv).append """<div class="imageWrapper" id="myLevel_active_Images#{gameId}"><img src="https://graph.facebook.com/#{message[gameId].PLRS[seatID].PFB}/picture" alt="#{message[gameId].PLRS[seatID].PFN}" class="#{status}" id="myLevel_active_who_am_i_#{seatID}" /></div>"""
 					
-				$("#rip_active_rh").append urDiv
+				if( $('.imageWrapper',urDiv).length isnt 0)
+					$("#rip_active_rh").append urDiv
 			
 			$(".ap_games").remove()
 		
