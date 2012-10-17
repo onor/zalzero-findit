@@ -29,6 +29,24 @@ define(['../config/envConfig'], function(config) {
         return console.log(message);
       }
     },
+    playerRank: function(rank) {
+      switch (parseInt(rank, 10)) {
+        case 1:
+          return '1st';
+        case 2:
+          return '2nd';
+        case 3:
+          return '3rd';
+        case 4:
+          return '4th';
+        case 5:
+          return '5th';
+        case 0:
+          return 'R';
+        default:
+          return 'D';
+      }
+    },
     getMiniLoaderHTML: function() {
       return "<div id=\"floatingBarsGs\">\n<div class=\"blockG\" id=\"rotateG_01\">\n</div>\n<div class=\"blockG\" id=\"rotateG_02\">\n</div>\n<div class=\"blockG\" id=\"rotateG_03\">\n</div>\n<div class=\"blockG\" id=\"rotateG_04\">\n</div>\n<div class=\"blockG\" id=\"rotateG_05\">\n</div>\n<div class=\"blockG\" id=\"rotateG_06\">\n</div>\n<div class=\"blockG\" id=\"rotateG_07\">\n</div>\n<div class=\"blockG\" id=\"rotateG_08\">\n</div>\n</div>";
     }
