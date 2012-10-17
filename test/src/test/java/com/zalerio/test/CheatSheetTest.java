@@ -10,6 +10,12 @@ import com.zalerio.config.GameUtil;
 
 public class CheatSheetTest extends ZalerioBaseTest {
 
+	public CheatSheetTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Test
 	public void openAndScrollCheatSheet() {
 		GameUtil.closeGameEndPopUp(driver);
