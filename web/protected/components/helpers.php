@@ -508,7 +508,7 @@ EOD;
 		$game->to = $to;
 		$emailTemplate	= emailTemplate($game);
 		
-		@mail( $to,'Zalerio: winner notification',$emailTemplate, $headers );
+		@mail( $to,'Zalerio: Winner Notification',$emailTemplate, $headers );
 	}
 	
 	return;
