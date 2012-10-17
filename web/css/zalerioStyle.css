@@ -2808,10 +2808,10 @@ background: none !important;
 }
 .Mylevel .point{
 	position: absolute;
-	left: 145px;
+	left: 136px;
 	top: 20px;
-	width: 65px;
-	text-align: right
+	width: 75px;
+	text-align: right;
 }
 .Mylevel .end_date{
 	position: absolute;
