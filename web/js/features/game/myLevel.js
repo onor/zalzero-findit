@@ -5,7 +5,7 @@ define(['../../helper/utils'], function(utils) {
   GB_UINFO = {};
   GB_UINFO.PFN = "";
   return usersRecord = function(gameRecords) {
-    var APG, FBids, UINFO, cl, cl_up, cls, cm_fbids, cr_belt_html, gameId, gssCount, i, index, is_apg, low_next_game_arr, low_next_won_arr, message, need_game_next, need_won_next, next_belt_html, next_cls, next_level, seatID, status, top_level, urDiv, user_level, vertical_text;
+    var APG, FBids, UINFO, cl, cl_up, cls, cm_fbids, cr_belt_html, gameId, gssCount, i, index, is_apg, low_next_game_arr, low_next_won_arr, message, need_game_next, need_won_next, next_belt_html, next_cls, next_level, rematchButton, seatID, status, top_level, urDiv, user_level, vertical_text;
     $(".Mylevel", "#rip_active_rh").remove();
     try {
       message = gameRecords.RH;
@@ -31,10 +31,11 @@ define(['../../helper/utils'], function(utils) {
     } catch (_error) {}
     try {
       message = gameRecords.APG;
+      console.log(message);
       for (gameId in message) {
         urDiv = $("<div class=\"userArea Mylevel\" id=\"myLevel_apg_" + gameId + "\" ></div>");
         urDiv.append("<div class=\"end_date\">" + message[gameId].ED + "</div>");
-        urDiv.append("<div class=\"msgbox-ok\">Rematch</div>");
+        rematchButton = "<div class=\"msgbox-ok\">Rematch</div>";
         FBids = [];
         for (index in message[gameId].PLRS) {
           if (message[gameId].PLRS[index].GSS === 5 || message[gameId].PLRS[index].GSS === 3) {
@@ -42,6 +43,9 @@ define(['../../helper/utils'], function(utils) {
           }
           FBids.push(message[gameId].PLRS[index].PFB);
           if (gameRecords.UINFO.UI === message[gameId].PLRS[index].UI) {
+            if (message[gameId].PLRS[index].PRE !== 1) {
+              urDiv.append(rematchButton);
+            }
             urDiv.append("<div class=\"point\">Points- " + message[gameId].PLRS[index].PSC + " </div>");
             urDiv.append("<div class=\"rank " + (message[gameId].PLRS[index].PR === "1" ? 'winner' : void 0) + "\" >" + (utils.playerRank(message[gameId].PLRS[index].PR)) + "</div>");
           }

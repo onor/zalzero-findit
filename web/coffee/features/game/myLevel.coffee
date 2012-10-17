@@ -32,12 +32,13 @@ define ['../../helper/utils'], (utils)->
 		
 		try
 			message = gameRecords.APG
-	
+			console.log(message)
 			for gameId of message
 				urDiv = $ """<div class="userArea Mylevel" id="myLevel_apg_#{gameId}" ></div>"""
 				
 				urDiv.append """<div class="end_date">#{message[gameId].ED}</div>"""
-				urDiv.append """<div class="msgbox-ok">Rematch</div>"""
+				rematchButton = """<div class="msgbox-ok">Rematch</div>"""
+				
 				FBids = []
 				for index of message[gameId].PLRS
 					
@@ -46,6 +47,9 @@ define ['../../helper/utils'], (utils)->
 					FBids.push message[gameId].PLRS[index].PFB
 					
 					if gameRecords.UINFO.UI is message[gameId].PLRS[index].UI
+						
+						if message[gameId].PLRS[index].PRE isnt 1
+							urDiv.append rematchButton
 						
 						urDiv.append """<div class="point">Points- #{message[gameId].PLRS[index].PSC} </div>"""
 						urDiv.append """<div class="rank #{if message[gameId].PLRS[index].PR is "1" then 'winner'}" >#{utils.playerRank(message[gameId].PLRS[index].PR)}</div>"""

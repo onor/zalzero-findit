@@ -41,10 +41,8 @@ define(['../config/envConfig'], function(config) {
           return '4th';
         case 5:
           return '5th';
-        case 0:
-          return 'R';
         default:
-          return 'D';
+          return '';
       }
     },
     getMiniLoaderHTML: function() {

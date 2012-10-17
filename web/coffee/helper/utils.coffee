@@ -28,8 +28,8 @@ define ['../config/envConfig'], (config)-> #'utils',
 			when 3 then '3rd'
 			when 4 then '4th'
 			when 5 then '5th'
-			when 0 then 'R'
-			else 'D'
+			#when 0 then 'R'
+			else ''
 			
 	getMiniLoaderHTML: ->
 		return """<div id="floatingBarsGs">
