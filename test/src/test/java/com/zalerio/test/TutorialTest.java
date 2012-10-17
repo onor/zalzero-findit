@@ -12,6 +12,12 @@ import com.zalerio.config.GameUtil;
 
 public class TutorialTest extends ZalerioBaseTest {
 	
+	public TutorialTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Test
 	public void runTutorialFromHelp() {
 		GameUtil.closeGameEndPopUp(driver);

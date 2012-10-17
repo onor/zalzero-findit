@@ -7,6 +7,12 @@ import com.zalerio.config.GameUtil;
 
 public class StatsHandleTest extends ZalerioBaseTest {
 	
+	public StatsHandleTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Test
 	public void statsClick() {
 		GameUtil.closeGameEndPopUp(driver);
