@@ -522,8 +522,8 @@ define('rightHudController',["../../config/config", "../../helper/notifications"
         if (message[gameId].CR) {
           urDiv.append("<div class=\"round_no\">" + message[gameId].CR + "</div>");
         }
-        if (message[gameId].ED) {
-          urDiv.append("<div class=\"game_end_time\">" + message[gameId].ED + "</div>");
+        if (message[gameId].SD) {
+          urDiv.append("<div class=\"game_end_time\">" + message[gameId].SD + "</div>");
         }
         for (index in message[gameId].PLSC) {
           gameSeatID = message[gameId].PLSC[index];
@@ -578,8 +578,8 @@ define('rightHudController',["../../config/config", "../../helper/notifications"
           if (message[gameId].CR) {
             $("#right_hud_" + gameId).find('.round_no').text(message[gameId].CR);
           }
-          if (message[gameId].ED) {
-            $("#right_hud_" + gameId).find('.game_end_time').html(message[gameId].ED);
+          if (message[gameId].SD) {
+            $("#right_hud_" + gameId).find('.game_end_time').html(message[gameId].SD);
           }
           for (gameSeatID in message[gameId].PLRS) {
             if (typeof message[gameId].PLRS[gameSeatID].PON !== "undefined") {

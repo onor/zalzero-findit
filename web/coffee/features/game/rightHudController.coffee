@@ -10,7 +10,7 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
    				
 				urDiv.append """<div class="round_no">#{message[gameId].CR}</div>"""  if message[gameId].CR
 				
-				urDiv.append """<div class="game_end_time">#{message[gameId].ED}</div>"""  if message[gameId].ED
+				urDiv.append """<div class="game_end_time">#{message[gameId].SD}</div>"""  if message[gameId].SD
 				
 				for index of message[gameId].PLSC
 					gameSeatID = message[gameId].PLSC[index]
@@ -62,7 +62,7 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
 	            
 					$("#right_hud_" + gameId).find('.round_no').text message[gameId].CR  if message[gameId].CR	# update game round
 	            
-					$("#right_hud_" + gameId).find('.game_end_time').html message[gameId].ED  if message[gameId].ED	#update game end time
+					$("#right_hud_" + gameId).find('.game_end_time').html message[gameId].SD  if message[gameId].SD	#update start date
 	            
 					for gameSeatID of message[gameId].PLRS                  
 					## update online status
