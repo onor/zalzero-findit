@@ -113,7 +113,7 @@ public class ClientHelper {
 				.select(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID, Zzuser.ZZUSER.USER_ID, Zzgameseat.ZZGAMESEAT.GAMESEAT_ID, Zzuser.ZZUSER.USER_FNAME,
 						Zzuser.ZZUSER.USER_LNAME, Zzgameseat.ZZGAMESEAT.GAME_RANK, Zzuser.ZZUSER.USER_FBID, Zzzlrogameround.ZZZLROGAMEROUND.ZLGAMEROUND_ID,
 						Zzzlrogameround.ZZZLROGAMEROUND.ZLGAMEROUND_ROUNDNAME, betsPlaced, lastPlayed, Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_LEVEL, 
-						Zzgameseat.ZZGAMESEAT.ZZGAMESEAT_STATUS, Zzgameinst.ZZGAMEINST.GAMEINST_ENDTIME, Zzgameseat.ZZGAMESEAT.GAMESEAT_SCORE)
+						Zzgameseat.ZZGAMESEAT.ZZGAMESEAT_STATUS, Zzgameinst.ZZGAMEINST.GAMEINST_ENDTIME, Zzgameseat.ZZGAMESEAT.GAMESEAT_SCORE, Zzgameinst.ZZGAMEINST.GAMEINST_STARTTIME)
 				.from(Zzgameseat.ZZGAMESEAT, Zzuser.ZZUSER, Zzzlrogameround.ZZZLROGAMEROUND, Zzgameusersummary.ZZGAMEUSERSUMMARY, Zzgameinst.ZZGAMEINST)
 				.where(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.in(
 						factory.select(Zzgameinst.ZZGAMEINST.GAMEINST_ID)
@@ -168,6 +168,7 @@ public class ClientHelper {
 						gameVO.setGameInstId(gameId);
 						gameVO.setCurrentRound(GameUtil.getRoundName(rec.getValueAsString(Zzzlrogameround.ZZZLROGAMEROUND.ZLGAMEROUND_ROUNDNAME)));
 						gameVO.setGameEndDate(rec.getValueAsTimestamp(Zzgameinst.ZZGAMEINST.GAMEINST_ENDTIME).getTime());
+						gameVO.setGameStartDate(rec.getValueAsTimestamp(Zzgameinst.ZZGAMEINST.GAMEINST_STARTTIME).getTime());
 						gameVO.setPlayers(new ArrayList<PlayerVO>());
 						tempGameId = gameId;
 						isFirstSet = false;
@@ -362,7 +363,7 @@ public class ClientHelper {
 		Select<Record> zzgameseatRecords = factory
 				.select(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID, Zzuser.ZZUSER.USER_ID, Zzgameseat.ZZGAMESEAT.GAMESEAT_ID, Zzuser.ZZUSER.USER_FNAME,
 						Zzuser.ZZUSER.USER_LNAME, Zzgameseat.ZZGAMESEAT.GAME_RANK, Zzuser.ZZUSER.USER_FBID, Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_LEVEL,
-						Zzgameinst.ZZGAMEINST.GAMEINST_STARTTIME, Zzgameinst.ZZGAMEINST.GAMEINST_ENDTIME, Zzgameseat.ZZGAMESEAT.ZZGAMESEAT_STATUS)
+						Zzgameinst.ZZGAMEINST.GAMEINST_STARTTIME, Zzgameinst.ZZGAMEINST.GAMEINST_ENDTIME, Zzgameseat.ZZGAMESEAT.ZZGAMESEAT_STATUS, Zzgameseat.ZZGAMESEAT.GAMESEAT_SCORE)
 				.from(Zzgameseat.ZZGAMESEAT, Zzuser.ZZUSER, Zzgameusersummary.ZZGAMEUSERSUMMARY, Zzgameinst.ZZGAMEINST)
 				.where(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.in(
 						factory.select(Zzgameinst.ZZGAMEINST.GAMEINST_ID)
@@ -426,7 +427,7 @@ public class ClientHelper {
 					playerVO.setDisplayName(GameUtil.getDisplayName(rec.getValueAsString(Zzuser.ZZUSER.USER_FNAME), rec.getValueAsString(Zzuser.ZZUSER.USER_LNAME)));
 					playerVO.setFullName(rec.getValueAsString(Zzuser.ZZUSER.USER_FNAME) + " " + rec.getValueAsString(Zzuser.ZZUSER.USER_LNAME));
 					playerVO.setFacebookId(rec.getValueAsString(Zzuser.ZZUSER.USER_FBID));
-					// playerVO.setScore(score);
+					playerVO.setScore(rec.getValueAsInteger(Zzgameseat.ZZGAMESEAT.GAMESEAT_SCORE));
 					playerVO.setRank(rec.getValueAsInteger(Zzgameseat.ZZGAMESEAT.GAME_RANK));
 					playerVO.setLevel(rec.getValueAsInteger(Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_LEVEL));
 					
