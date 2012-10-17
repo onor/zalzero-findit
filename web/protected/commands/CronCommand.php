@@ -13,8 +13,8 @@ class CronCommand extends CConsoleCommand {
 		$get_total_rounds = get_total_number_of_rounds($game_inst_tmpl_id);
 		$currentTime = new CDbExpression('now()');
 
-		// query all the game which finish after last cron run.  currentTime >= gameRoundEndTime >= lastCronRunTime AND gameRoundNo = totalRound
-		$query = "select zlgameround_gameinst_id from zzzlrogameround where zlgameround_timeend >= "."'$get_cron_last_update_time'"." and zlgameround_timeend<= "."'$currentTime'"." and   zlgameround_roundname = "."'$get_total_rounds'"; // query for checking the game which is completed
+		// query all the game which finish after last cron run.  currentTime >= gameRoundEndTime > lastCronRunTime AND gameRoundNo = totalRound
+		$query = "select zlgameround_gameinst_id from zzzlrogameround where zlgameround_timeend > "."'$get_cron_last_update_time'"." and zlgameround_timeend<= "."'$currentTime'"." and   zlgameround_roundname = "."'$get_total_rounds'"; // query for checking the game which is completed
 		$get_completed_games = Zzzlrogameround::model()->findAllBySql($query);
 
 		$user_array = array(); // array for storing users uid's
