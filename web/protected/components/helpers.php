@@ -499,14 +499,17 @@ EOD;
 		}
 	}
 
-	$emailTemplate	= emailTemplate($game);
-	$to = implode(',',$game->sendEmailTo);
-	
+		
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 	$headers .= "From: zalerio@zalerio.com" . "\r\n";
-
-	@mail( $to,'Zalerio: winner notification',$emailTemplate, $headers );
+	
+	foreach($game->sendEmailTo as $to){
+		$game->to = $to;
+		$emailTemplate	= emailTemplate($game);
+		
+		@mail( $to,'Zalerio: winner notification',$emailTemplate, $headers );
+	}
 	
 	return;
 }
@@ -584,7 +587,7 @@ function emailTemplate($game){
 					</table>
 						<table width="580" border="0" align="center" style="background:#fff; color:#000">
 						  <tr>
-						    <td>This email is intended for philippstauffer@gmail.com. You received this message because you signed up for 'Findit' e-mail program. To unsubscribe from Find it (Game Invitation) emails <a href="#">unsubscribe here</a></td>
+						    <td>This email is intended for {$game->to}. You received this message because you signed up for 'Findit' e-mail program. To unsubscribe from Find it (Game Invitation) emails <a href="#">unsubscribe here</a></td>
 						  </tr>
 						  <tr>
 						    <td>&copy; Findit. 4104 24th Street #363 San Francisco, CA 94119-3615 <a href="#">Privacy Policy</a></td>
