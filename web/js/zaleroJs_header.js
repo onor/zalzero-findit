@@ -1002,6 +1002,10 @@ jQuery("#submit_rating")
 														.val('');
 												jQuery("#rating_form span")
 														.removeClass('selected');
+												
+												jQuery('.wait').remove();
+												jQuery('.rating-popup').css('display','none');
+												
 												messagePopup(obj.msg);
 											} else {
 												messagePopup(obj.msg);
