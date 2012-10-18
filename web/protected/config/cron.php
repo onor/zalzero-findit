@@ -1,6 +1,8 @@
 <?php
-require_once( dirname(__FILE__) . '/../components/helpers.php');
+
 require_once( dirname(__FILE__) . '/../config/fbappconfig.php');
+require_once( dirname(__FILE__) . '/../components/helpers.php');
+
 return array(
         'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
         'name'=>'Cron',
