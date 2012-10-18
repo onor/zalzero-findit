@@ -591,7 +591,7 @@ function emailTemplate($game){
 						    <td>This email is intended for {$game->to}. You received this message because you signed up for 'Zalerio' e-mail program. To unsubscribe from Zalerio (Game Invitation) emails <a href="#">unsubscribe here</a></td>
 						  </tr>
 						  <tr>
-						    <td>&copy; Zalerio. 4104 24th Street #363 San Francisco, CA 94119-3615 <a href="#">Privacy Policy</a></td>
+						    <td>&copy; Zalzero Inc. 950 Page Mill Road, Palo Alto, CA 94306, U.S.A. <a href="#" style="color:#000" >Privacy Policy</a></td>
 						  </tr>
 						</table>
 					
