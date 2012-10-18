@@ -31,7 +31,11 @@ class CronCommand extends CConsoleCommand {
 				
 				if($check_the_game_status > 1) {
 					$update_game->zzgameinst_status = 'completed';
-					sendWinnerNotificationMail( $game_id );			// send winner notification mail to all player
+					try {
+						sendWinnerNotificationMail( $game_id );			// send winner notification mail to all player
+					} catch (Exception $e) {
+						echo 'Error Message' . $e->getMessage();
+					}
 				} else {
 					$update_game->zzgameinst_status = 'canceled';
 				}
