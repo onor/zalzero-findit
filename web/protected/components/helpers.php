@@ -519,6 +519,7 @@ function emailTemplate($game){
 
 	$FBConfig = new facebookCredetials();
 	$url = $FBConfig->config->canvasUrl;
+	$privacypolicy = $url.'/site/privacypolicy';
 	
 	$emailTemplate = <<<EOD
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -591,7 +592,7 @@ function emailTemplate($game){
 						    <td>This email is intended for {$game->to}. You received this message because you signed up for 'Zalerio' e-mail program. To unsubscribe from Zalerio (Game Invitation) emails <a href="#">unsubscribe here</a></td>
 						  </tr>
 						  <tr>
-						    <td>&copy; Zalzero Inc. 950 Page Mill Road, Palo Alto, CA 94306, U.S.A. <a href="#" style="color:#000" >Privacy Policy</a></td>
+						    <td>&copy; Zalzero Inc. 950 Page Mill Road, Palo Alto, CA 94306, U.S.A. <a href="{$privacypolicy}" style="color:#000" >Privacy Policy</a></td>
 						  </tr>
 						</table>
 					
