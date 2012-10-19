@@ -208,6 +208,13 @@ class SiteController extends Controller
 		}
 	}
 
+	
+	public function actionPrivacypolicy(){
+		$this->layout = false;
+		$this->render('privacypolicy');
+		exit;
+	}
+	
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
