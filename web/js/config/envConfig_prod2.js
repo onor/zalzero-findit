@@ -4,7 +4,7 @@ define([], function() {
   return {
     unionConnection: {
       url: "zzunion2.zalerio.com",
-      port: 443
+      port: 80
     },
     showLog: false
   };
