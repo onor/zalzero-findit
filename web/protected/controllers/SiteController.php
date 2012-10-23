@@ -215,6 +215,12 @@ class SiteController extends Controller
 		exit;
 	}
 	
+	public function actiontos(){
+		$this->layout = false;
+		$this->render('tos');
+		exit;
+	}
+	
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */

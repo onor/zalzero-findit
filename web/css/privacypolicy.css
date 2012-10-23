@@ -15,6 +15,7 @@ body {
 #con {
   background: url(../images/zalerio_1.2/3.ingame_board/board/ingame_bg.jpg) no-repeat;
   width: 758px;
+  margin: 0 auto;
   height: 640px; }
   #con .gameLogo {
     background: url(../images/zalerio_1.2/4.ingame_ui/zalerio_logo.png) left -3px no-repeat transparent;
@@ -26,7 +27,7 @@ body {
     height: 40px;
     width: 700px;
     padding: 0 10px 0 10px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     margin: 100px auto 0;
     border-radius: 6px;
     -moz-border-radius: 6px;
@@ -35,12 +36,31 @@ body {
     height: 400px;
     width: 700px;
     padding: 0 10px 0 10px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     margin: 10px auto 0;
     border-radius: 6px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
-    padding: 10px; }
+    padding: 10px;
+    overflow-y: scroll;
+    text-align: justify; }
+    #con .text ol {
+      margin-bottom: 20px; }
+    #con .text li {
+      margin-top: 20px; }
+  #con .text::-webkit-scrollbar {
+    width: 12px; }
+  #con .text::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+  #con .text::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); }
+  #con .text::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4); }
   #con .button {
     background-color: #7fbf4d;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
