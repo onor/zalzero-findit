@@ -20,21 +20,7 @@ public class GameEnterTest extends ZalerioBaseTest {
 	@Test
 	public void nonSecuredGameOpenTest() {
 		GameUtil.closeGameEndPopUp(driver);
-		try {
-			WebElement playHereButton = driver.findElement(By.className("playhere"));
-			if(playHereButton.isDisplayed()) {
-				playHereButton.click();
-				try {
-					Thread.sleep(10000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		} catch (NoSuchElementException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		// Click Start a New Game
 		WebElement startButton = driver.findElement(By.id("startButton"));

@@ -130,16 +130,15 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
 		pass.sendKeys(password);
 		login.submit();
 		driver.switchTo().frame("iframe_canvas");
+		GameUtil.clickPlayHereForMultiTabIssue(driver);
+		
     }
 
     @Override
     public String getSessionId() {
         return sessionId;
     }
- //   @Test
-    public void nothingTest(){
-    	assertEquals("1","1");
-    }
+ 
     
 
     @After
