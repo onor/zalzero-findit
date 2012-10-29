@@ -133,10 +133,24 @@ class Controller extends CController
 						
 					}
 				}
-				
+
+				if( $this->loggedInUser->zzuser_status == 'invited'){
+					
+					// get facebook me data
+					$facebookUser	=	$this->get_fb_user_info($signedRequestData["oauth_token"]);
+					
+					if(isset($facebookUser->email)){
+						Yii::app()->session['fb_email']	=	$facebookUser->email;
+					}else{
+						Yii::app()->session['fb_email']	=	$facebookUser->id.'@facebook.com';
+					}
+					
+				}else{
+					Yii::app()->session['fb_email'] =	$this->loggedInUser->user_email;
+				}
+			
 				// we have logged-in user if we are here
 				Yii::app()->session['fbid']		=	$this->loggedInUser->user_fbid;
-				Yii::app()->session['fb_email'] =	$this->loggedInUser->user_email;
 			
 				$filterChain->run();
 				
