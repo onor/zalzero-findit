@@ -14,8 +14,7 @@ define([], function() {
         return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       },
       scope: "drop_tile",
-      revert: 'invalid',
-      delay: 50
+      revert: 'invalid'
     });
     $('.box-blank').draggable({
       scope: "drop_tile",
@@ -25,7 +24,7 @@ define([], function() {
         return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       },
       revert: 'invalid',
-      delay: 50
+      helper: 'clone'
     });
     if (bindStatus === false) {
       bindStatus = true;
