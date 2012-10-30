@@ -99,9 +99,10 @@ public class OldUserJoinZalerioTest {
 				}
 				//click more to resign
 			
-				WebElement	bottomHUD=driver.findElement(By.id("bottomHUD"));
-				WebElement bottomHUDbuttons_more=bottomHUD.findElement(By.id("bottomHUDbuttons-more"));
-				bottomHUDbuttons_more.click();
+			WebElement bottomHUD = driver.findElement(By.id("bottomHUD"));
+			WebElement bottomHUDbuttons_more = bottomHUD.findElement(By
+					.id("bottomHUDbuttons-more"));
+			bottomHUDbuttons_more.click();
 				System.out.print("clicked More");
 				// click resign
 				WebElement resign=driver.findElement(By.id("resignme"));
@@ -122,7 +123,7 @@ public class OldUserJoinZalerioTest {
 			System.out.println("their turn tiles not found");
 		}
 		 size=their_turnTiles.size();
-		for(int i=0;i<size;i++)
+		for(int i=0;i<size-1;i++)
 		{
 			WebElement gameTile=null;
 			try{
@@ -180,6 +181,12 @@ public class OldUserJoinZalerioTest {
 	public void olduserNoActiveGame()
 	{
 		driver.navigate().back();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		GameUtil.closeGameEndPopUp(driver);
 		//check Your Turns
 		WebElement rightHUD_yourturn=driver.findElement(By.id("rightHUD-yourturn"));
@@ -214,4 +221,8 @@ public class OldUserJoinZalerioTest {
 			}
 		}
 	}
+	//old user with no game in Your Turn but many games in Their Turn
+	
+	//old user with many games in Your Turn but no games in Their Turn
+	
 }
