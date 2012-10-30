@@ -2560,7 +2560,8 @@ define('drag-drop',[], function() {
         return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       },
       scope: "drop_tile",
-      revert: 'invalid'
+      revert: 'invalid',
+      delay: 50
     });
     $('.box-blank').draggable({
       scope: "drop_tile",
