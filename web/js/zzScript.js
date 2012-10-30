@@ -792,8 +792,6 @@ define('leftHudController',["../../config/config", "../../helper/notifications"]
     }
     return $("#gameInfo-game-players").append(userList);
   };
-  jDocument.bind("dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, updateLeftHud);
-  jDocument.bind("client:" + zzGlobals.clientCodes.USERINFO, updatePlayerPlate);
   return true;
 });
 
@@ -870,6 +868,7 @@ define('myLevel',['../../helper/utils'], function(utils) {
   GB_UINFO.PFN = "";
   return usersRecord = function(gameRecords) {
     var APG, FBids, UINFO, cl, cl_up, cls, cm_fbids, cr_belt_html, gameId, gssCount, i, index, is_apg, low_next_game_arr, low_next_won_arr, message, need_game_next, need_won_next, next_belt_html, next_cls, next_level, rematchButton, seatID, status, top_level, urDiv, user_level, vertical_text;
+    return;
     $(".Mylevel", "#rip_active_rh").remove();
     try {
       message = gameRecords.RH;
@@ -1308,6 +1307,7 @@ define('messageListener',["../../helper/confirmBox", "../../helper/utils", "game
         }
         break;
       case zalerioCMDListners.RIGHT_HUD:
+        return;
         usersObject = jQuery.parseJSON(message);
         for (i in usersObject) {
           usersObject[i] = jQuery.parseJSON(usersObject[i]);
@@ -2560,8 +2560,7 @@ define('drag-drop',[], function() {
         return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       },
       scope: "drop_tile",
-      revert: 'invalid',
-      delay: 50
+      revert: 'invalid'
     });
     $('.box-blank').draggable({
       scope: "drop_tile",
@@ -2571,7 +2570,7 @@ define('drag-drop',[], function() {
         return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       },
       revert: 'invalid',
-      delay: 50
+      helper: 'clone'
     });
     if (bindStatus === false) {
       bindStatus = true;
