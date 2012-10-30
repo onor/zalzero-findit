@@ -6,25 +6,34 @@
 <script type="text/javascript">
             var baseUrl = "<?php echo Yii::app()->request->baseUrl; ?>";
         </script>
-<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"
+	type="image/x-icon" />
 <!-- blueprint CSS framework -->
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css"
+	media="screen, projection" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css"
+	media="print" />
 <!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
         <![endif]-->
 
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/zalerioStyle.css" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo Yii::app()->request->baseUrl; ?>/css/zalerioStyle.css" />
 
 <?php
-	$userId = Yii::app()->user->getID();
-	$userEmail = getUserEmailId($userId);
+$userId = Yii::app()->user->getID();
+$userEmail = getUserEmailId($userId);
 ?>
 <?php
-	$usersummary = Zzgameusersummary::model()->findByAttributes(array('user_id'=>$userId));
-	$new_user = false;
+$usersummary = Zzgameusersummary::model()->findByAttributes(array('user_id'=>$userId));
+$new_user = false;
 if($usersummary['last_gameinst_id'] == NULL && $usersummary['last_gameinst_id'] == ''){
 	$new_user = true;
 }
@@ -66,6 +75,40 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 
 //$cs->registerScriptFile('http://connect.facebook.net/en_US/all.js');
 ?>
+<script>
+	function touchHandler(event)
+	{
+	 var touches = event.changedTouches,
+	    first = touches[0],
+	    type = "";
+	
+	switch(event.type)
+	{
+	    case "touchstart": type = "mousedown"; break;
+	    case "touchmove":  type="mousemove"; break;        
+	    case "touchend":   type="mouseup"; break;
+	    default: return;
+	}
+	var simulatedEvent = document.createEvent("MouseEvent");
+	simulatedEvent.initMouseEvent(type, true, true, window, 1,
+	                          first.screenX, first.screenY,
+	                          first.clientX, first.clientY, false,
+	                          false, false, false, 0/*left*/, null);
+	
+	first.target.dispatchEvent(simulatedEvent);
+	event.preventDefault();
+	}
+	
+	function init()
+	{
+	   document.addEventListener("touchstart", touchHandler, true);
+	   document.addEventListener("touchmove", touchHandler, true);
+	   document.addEventListener("touchend", touchHandler, true);
+	   document.addEventListener("touchcancel", touchHandler, true);    
+	}
+</script>
+
+
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <?php if($new_user == true ) {?>
 <script>
@@ -78,7 +121,8 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 <?php } ?>
 
 <script>
-	        jQuery(function() {
+	        jQuery(document).ready(function() {
+	        	init();
 	        	require(['gameEventManager'], function(gameEventManager) {
 		        	start = new gameEventManager();	        		
 	        	});
@@ -114,7 +158,7 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
   </script>
 <?php
 Yii::app()->clientScript->registerScript(
-		'myHideEffect', '$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");
+'myHideEffect', '$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");
 		$(".flash-notice").animate({opacity: 1.0}, 3000).fadeOut("slow");
 		$(".flash-error").animate({opacity: 1.0}, 3000).fadeOut("slow");
 		', CClientScript::POS_READY
@@ -439,12 +483,14 @@ Yii::app()->clientScript->registerScript(
 					<div id="rules-container" class="rules-container">
 						<div class="rules">
 							<div id="tutorial_0" class="fll">
-								<h3>You need some smarts to win ZALERIO! Find things first before your friends!</h3>
+								<h3>You need some smarts to win ZALERIO! Find things first
+									before your friends!</h3>
 								<p>
-								<strong>ZALERIO</strong> is a fun game for you and your friends for 2 to 5 players per game! You 
-								place tiles and try to uncover as many objects and Jokers as you can over the course of 
-								7 rounds. The player who scores the highest wins! But be careful, there are some twists 
-								that you need to watch out for!
+									<strong>ZALERIO</strong> is a fun game for you and your friends
+									for 2 to 5 players per game! You place tiles and try to uncover
+									as many objects and Jokers as you can over the course of 7
+									rounds. The player who scores the highest wins! But be careful,
+									there are some twists that you need to watch out for!
 								</p>
 							</div>
 							<div id="tutorial_1" class="fll">
@@ -460,7 +506,14 @@ Yii::app()->clientScript->registerScript(
 									src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_search_bar.png"
 									alt="Find Friends">
 								<p>
-									The <strong>friend search bar</strong> helps you find your friends. You can also simply scroll through the list with pictures and select. Your friends do not have to be online at the same time in order to play the game but you might get a faster response if they are. If they are not online right now they will still get invited and can chose to join as soon as they receive the invite. It is most fun to play the game with 5 players so invite your friends! You will see why soon!
+									The <strong>friend search bar</strong> helps you find your
+									friends. You can also simply scroll through the list with
+									pictures and select. Your friends do not have to be online at
+									the same time in order to play the game but you might get a
+									faster response if they are. If they are not online right now
+									they will still get invited and can chose to join as soon as
+									they receive the invite. It is most fun to play the game with 5
+									players so invite your friends! You will see why soon!
 								</p>
 								<img class="none"
 									src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_indicator_green.png"
@@ -474,130 +527,245 @@ Yii::app()->clientScript->registerScript(
 									src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_select_friend.png"
 									align="select Friend">
 								<p>
-									Just click <strong>'SELECT'</strong> for each friend you would like to invite to the game. It will show you clearly if your friend has declined your request earlier. Keep trying to convince your friends to play but don't annoy them – you might be called a "whiner"!
+									Just click <strong>'SELECT'</strong> for each friend you would
+									like to invite to the game. It will show you clearly if your
+									friend has declined your request earlier. Keep trying to
+									convince your friends to play but don't annoy them ï¿½ you might
+									be called a "whiner"!
 								</p>
 
 								<p>
 									<img class="left"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_send _challange.png"
-										alt="Send Challenge">
-										
-										After you select your friends press <strong>'SEND CHALLENGE'</strong> to start the game. Invites will be sent to your friends and you will be able to see who accepted and who did not. This way you can see which players you invited joined your game! You can start multiple games at the same time with many friends, which is even more fun. So don't be shy, challenge them and see who has the best strategy! There is an exciting journey to become a black-belt!
+										alt="Send Challenge"> After you select your friends press <strong>'SEND
+										CHALLENGE'</strong> to start the game. Invites will be sent to
+									your friends and you will be able to see who accepted and who
+									did not. This way you can see which players you invited joined
+									your game! You can start multiple games at the same time with
+									many friends, which is even more fun. So don't be shy,
+									challenge them and see who has the best strategy! There is an
+									exciting journey to become a black-belt!
 								</p>
 
 							</div>
 							<div id="tutorial_2" class="fll">
 								<h3 id="taketurn">2. Take Your Turn</h3>
 								<ul>
-									<li>Now it's your turn! You have a total of 9 tiles to place in each round and you have a total of 7 rounds to play in order to win the game!</li>
-									<li>A red tile with a search mark <img class="none" src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/3.ingame_board/board/board_question_mark_tile.png"
-										alt=""> represents a new tile which has been placed on the board by you in the current round. </li>
-									
-									<li>Green tiles <img class="none" src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_tile_with _white_digit.png"
-										alt=""> remain green if  they  "hit" (your placement uncovered a part of a hidden object). The digit on the tile represents the number of players who have placed a tile on the same space (if you hover over the tile you will also see pictures of your friends who placed a tile on the same space). </li>
-									
-									<li>An orange tile  <img class="none" src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_yellow_tile.png"
+									<li>Now it's your turn! You have a total of 9 tiles to place in
+										each round and you have a total of 7 rounds to play in order
+										to win the game!</li>
+									<li>A red tile with a search mark <img class="none"
+										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/3.ingame_board/board/board_question_mark_tile.png"
+										alt=""> represents a new tile which has been placed on the
+										board by you in the current round.
+									</li>
+
+									<li>Green tiles <img class="none"
+										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_tile_with _white_digit.png"
+										alt=""> remain green if they "hit" (your placement uncovered a
+										part of a hidden object). The digit on the tile represents the
+										number of players who have placed a tile on the same space (if
+										you hover over the tile you will also see pictures of your
+										friends who placed a tile on the same space).
+									</li>
+
+									<li>An orange tile <img class="none"
+										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_yellow_tile.png"
 										alt=""> represents a "miss" by you. A grey tile <img
 										class="none"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_grey_tile.png"
-										alt="">  represents a miss by one of your fellow players. A "miss" is a tile that was placed that did not uncover any part of a hidden object  or hit a joker. You will always see your own misses and the misses of your fellow players.</li>
-									
-									
-									<li style="list-style-position:inside"><img class="left" src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_complete_ digit.png"
-										alt="">When the object is fully uncovered by you all the tiles turn blue. Only you will see your uncovered objects. Here an example of the object 5. Each object from 0 - 9 is placed on the grid. To make this a little harder the objects can be placed in any position. To see all of the hidden objects you can uncover please take a look at the cheat sheet.</li>
-			
-									<li>To add to the fun, there are up to <strong>6 Joker</strong> tiles <img class="none"
+										alt=""> represents a miss by one of your fellow players. A
+										"miss" is a tile that was placed that did not uncover any part
+										of a hidden object or hit a joker. You will always see your
+										own misses and the misses of your fellow players.
+									</li>
+
+
+									<li style="list-style-position: inside"><img class="left"
+										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_complete_ digit.png"
+										alt="">When the object is fully uncovered by you all the tiles
+										turn blue. Only you will see your uncovered objects. Here an
+										example of the object 5. Each object from 0 - 9 is placed on
+										the grid. To make this a little harder the objects can be
+										placed in any position. To see all of the hidden objects you
+										can uncover please take a look at the cheat sheet.</li>
+
+									<li>To add to the fun, there are up to <strong>6 Joker</strong>
+										tiles <img class="none"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_joker_tile.png"
-										alt=""> hidden on the grid. Whoever hits the Joker first gets <strong style="text-decoration: underline">33 joker points</strong> - so go for it!</li>
-									
-									<li>Even better, there is only <strong>1 Super Joker</strong> tile <img
-										class="none"
+										alt=""> hidden on the grid. Whoever hits the Joker first gets
+										<strong style="text-decoration: underline">33 joker points</strong>
+										- so go for it!
+									</li>
+
+									<li>Even better, there is only <strong>1 Super Joker</strong>
+										tile <img class="none"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_sjoker_tile.png"
-										alt=""> hidden on the board. Whoever hits the Super Joker first gets <strong style="text-decoration: underline">77 super-joker points!</strong>  Find him and you have an edge! (by the way – if multiple players uncover the Joker or Super-Joker in the same round they all get the bonus joker points!)</li>
-									
-									<li>Once you have placed your tiles and you are satisfied with all your <img class="right"
+										alt=""> hidden on the board. Whoever hits the Super Joker
+										first gets <strong style="text-decoration: underline">77
+											super-joker points!</strong> Find him and you have an edge!
+										(by the way ï¿½ if multiple players uncover the Joker or
+										Super-Joker in the same round they all get the bonus joker
+										points!)
+									</li>
+
+									<li>Once you have placed your tiles and you are satisfied with
+										all your <img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_play_ button.png"
-										alt=""> moves press the <strong>"PLAY"</strong> button. The results of each round will only be published when all players have placed their tiles. So it might take a while until your friends have all played but that just makes it more exciting as you can plan your strategy for your next moves. Ever played chess? </li>
-									
-									<li>There are <strong>7 rounds in total</strong> in every game <img
-										class="right"
+										alt=""> moves press the <strong>"PLAY"</strong> button. The
+										results of each round will only be published when all players
+										have placed their tiles. So it might take a while until your
+										friends have all played but that just makes it more exciting
+										as you can plan your strategy for your next moves. Ever played
+										chess?
+									</li>
+
+									<li>There are <strong>7 rounds in total</strong> in every game
+										<img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_round_bar.png"
-										alt=""> (6 rounds + 1 final round). On the dashboard, the current round is highlighted in yellow. The past rounds are highlighted in brown. The rounds not played yet are grey</li>
-									
+										alt=""> (6 rounds + 1 final round). On the dashboard, the
+										current round is highlighted in yellow. The past rounds are
+										highlighted in brown. The rounds not played yet are grey
+									</li>
+
 									<li>On the left-hand side you can see who <img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_left_hud.png"
-										alt=""> is playing with you. The user panel below  is of great help for you to manage the game with your friends (i.e. who is online, who you should remind to play, etc.) </li>
-									
+										alt=""> is playing with you. The user panel below is of great
+										help for you to manage the game with your friends (i.e. who is
+										online, who you should remind to play, etc.)
+									</li>
+
 									<li><img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_right_hud.png"
-										alt="">
-										On the right hand side you can see all the other games that you are participating in. There are two sections your turn and their turn. In <strong>"YOUR TURN"</strong> you will find the games in which it is your turn to place your tiles. In <strong>"THEIR TURN"</strong> you will find all the games in which your fellow players currently need to place tiles. </li>
-									
-									<li>On the score board you can see the arrow in front of players who have not yet placed their bet in a particular round. Never <img class="right"
+										alt=""> On the right hand side you can see all the other games
+										that you are participating in. There are two sections your
+										turn and their turn. In <strong>"YOUR TURN"</strong> you will
+										find the games in which it is your turn to place your tiles.
+										In <strong>"THEIR TURN"</strong> you will find all the games
+										in which your fellow players currently need to place tiles.</li>
+
+									<li>On the score board you can see the arrow in front of
+										players who have not yet placed their bet in a particular
+										round. Never <img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_arrow _on score_board.png"
-										alt=""> be the last one placing your tiles as you might get a "boooh" from your friends :>).   If you don't want to finish the game  then just press select resign under the more button. </li>
-									
-									<li>If our gentle reminders don't work well enough we will need your help! <img class="right"
+										alt=""> be the last one placing your tiles as you might get a
+										"boooh" from your friends :>). If you don't want to finish the
+										game then just press select resign under the more button.
+									</li>
+
+									<li>If our gentle reminders don't work well enough we will need
+										your help! <img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_carousel.png"
-										alt=""> You always have the opportunity to poke your friends and remind them to play. Just click <strong>"remind symbol - BELL..."</strong> and a notification will be sent. In both sections of "their turn" and "my turn" players will have a choice to see all the players playing the game. </li>
+										alt=""> You always have the opportunity to poke your friends
+										and remind them to play. Just click <strong>"remind symbol -
+											BELL..."</strong> and a notification will be sent. In both
+										sections of "their turn" and "my turn" players will have a
+										choice to see all the players playing the game.
+									</li>
 								</ul>
 
 							</div>
 							<div id="tutorial_3" class="fll">
 								<h3 id="scoring">3. Scoring and Winning.</h3>
-								<p>To win you have to score points. To score points you have to uncover or find hidden objects and jokers. There are a total of 10 objects <strong>hidden on</strong> the board. In addition, there are 6 Jokers and 1 Super Joker. The minimum number of players who can start a game is 2. But you are free to start games with up to 5 players. The more the merrier!</p>
-								<p>To find objects and Jokers you should keep the following in mind:</p>
+								<p>
+									To win you have to score points. To score points you have to
+									uncover or find hidden objects and jokers. There are a total of
+									10 objects <strong>hidden on</strong> the board. In addition,
+									there are 6 Jokers and 1 Super Joker. The minimum number of
+									players who can start a game is 2. But you are free to start
+									games with up to 5 players. The more the merrier!
+								</p>
+								<p>To find objects and Jokers you should keep the following in
+									mind:</p>
 								<h3>A) In-game Points</h3>
 								<ul>
-									<li>You have 9 search  tiles in total for each of the 7 rounds, so you have a total of 63 tiles to play per game </li>
-									
-									<li>The completion of objects <strong>1 - 9 gives 100 points</strong> each and the completion of the object <strong>0 gives 200 points</strong></li>
-									
-									<li>The score of completed objects is evenly split among all the players who complete the object during the whole game</li>
-									
-									<li>Each correctly placed tile gives <strong>10 points</strong>. Each wrongly placed tile gives a <strong>penalty of -10 (minus 10) points</strong></li>
+									<li>You have 9 search tiles in total for each of the 7 rounds,
+										so you have a total of 63 tiles to play per game</li>
+
+									<li>The completion of objects <strong>1 - 9 gives 100 points</strong>
+										each and the completion of the object <strong>0 gives 200
+											points</strong>
+									</li>
+
+									<li>The score of completed objects is evenly split among all
+										the players who complete the object during the whole game</li>
+
+									<li>Each correctly placed tile gives <strong>10 points</strong>.
+										Each wrongly placed tile gives a <strong>penalty of -10 (minus
+											10) points</strong>
+									</li>
 								</ul>
 								<h3>B) Bonus Points</h3>
 								<ul>
-									<li>In order to win the bonus points, player has to be the 1st one to find and finish the object. Each player who uncovers a object first receives an <strong>additional 75 bonus points</strong> (bonus points are never split among other players who uncover the same object later).</li>
+									<li>In order to win the bonus points, player has to be the 1st
+										one to find and finish the object. Each player who uncovers a
+										object first receives an <strong>additional 75 bonus points</strong>
+										(bonus points are never split among other players who uncover
+										the same object later).
+									</li>
 								</ul>
 								<h3>C) Joker and Super Jokers</h3>
 								<ul>
-									<li>A joker is a "one tile object" only so you can uncover the joker with just one hit. The uncovered jokers will be visible to other players so that you can party together! Also, we want to make sure your friends always have to look jealously at your Joker wins! The Joker and Super Joker is exclusive to whoever hits it first.  In case of a tie (more than one player uncovers the joker in the same round) all players who uncover the joker are awarded the full Joker points. </li>
-									
+									<li>A joker is a "one tile object" only so you can uncover the
+										joker with just one hit. The uncovered jokers will be visible
+										to other players so that you can party together! Also, we want
+										to make sure your friends always have to look jealously at
+										your Joker wins! The Joker and Super Joker is exclusive to
+										whoever hits it first. In case of a tie (more than one player
+										uncovers the joker in the same round) all players who uncover
+										the joker are awarded the full Joker points.</li>
+
 									<li>There are up to 6 "Jokers" and 1 "Super Joker"</li>
-									
-									<li>Each Joker gets <strong>33 points</strong>, 1 <strong>Super Joker gets 77 points</strong>.</li>
+
+									<li>Each Joker gets <strong>33 points</strong>, 1 <strong>Super
+											Joker gets 77 points</strong>.
+									</li>
 								</ul>
-								<p>So let us give you a final hint: Try to complete as many objects as possible that require the least amount of tiles but at the same time are not targeted by too many other players. Of course, try to get all the Jokers as well.</p>
+								<p>So let us give you a final hint: Try to complete as many
+									objects as possible that require the least amount of tiles but
+									at the same time are not targeted by too many other players. Of
+									course, try to get all the Jokers as well.</p>
 								<h3>D) Final Tips.</h3>
 								<ul>
-									<li>Check out Help if you are stuck or want some more information. If you want to contact us just jot down an email and we will reply as quickly as we can! Let us <img class="right"
+									<li>Check out Help if you are stuck or want some more
+										information. If you want to contact us just jot down an email
+										and we will reply as quickly as we can! Let us <img
+										class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_help_button.png"
-										alt=""> know anytime what you think. We love your feed-back as it helps as to make better games for you!</li>
-									
+										alt=""> know anytime what you think. We love your feed-back as
+										it helps as to make better games for you!
+									</li>
+
 									<li>Stats is your own dashboard and performance section. <img
 										class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_stats_ button.png"
-										alt="">  You can get all the details like how many games you played, which of your friends has and has not played with you and what your overall performance and level is. This is designed for you in a way so that you can easily plan your next games. </li>
-									
+										alt=""> You can get all the details like how many games you
+										played, which of your friends has and has not played with you
+										and what your overall performance and level is. This is
+										designed for you in a way so that you can easily plan your
+										next games.
+									</li>
+
 									<li><img class="right"
 										src="<?php echo Yii::app()->request->baseUrl; ?>/images/zalerio_1.2/5.all_popup/help/tutorial/tutorial_more_ button.png"
-										alt="">Under "MORE" you find the resign button. Just in case you are really ready to let your friends win! </li>
-		
+										alt="">Under "MORE" you find the resign button. Just in case
+										you are really ready to let your friends win!</li>
+
 								</ul>
 								<p>
-									Now let's go and sharpen your strategy skills while having fun with friends!<br> <br> Your ZALERIO Team!
+									Now let's go and sharpen your strategy skills while having fun
+									with friends!<br> <br> Your ZALERIO Team!
 								</p>
 							</div>
 							<div id="tutorial_4" class="fll">
-								<h3 id="jokers"> 4.	Overview of hidden objects and jokers </h3>
+								<h3 id="jokers">4. Overview of hidden objects and jokers</h3>
 								<table border="1" width="90%">
 									<tr>
 										<th bgcolor="#ccc">Object</th>
 										<th bgcolor="#999">Shape</th>
 										<th bgcolor="#CCCCCC">Tiles needed to complete object</th>
-										<th bgcolor="#999">Available points if object is fully uncovered</th>
+										<th bgcolor="#999">Available points if object is fully
+											uncovered</th>
 									</tr>
 									<tr class="even">
 										<td valign="middle" align="center">0</td>
