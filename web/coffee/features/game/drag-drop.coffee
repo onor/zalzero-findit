@@ -19,7 +19,7 @@ define [], () ->
 				$('.box-previousRoundCurrentPlayerIncorrect').droppable("disable")
 				$('.box-previousRoundCurrentPlayerCorrect').droppable("disable")
 			revert : 'invalid'
-			helper:'clone'
+			delay : 50
 				
 		if bindStatus is false
 			bindStatus = true

@@ -2571,7 +2571,7 @@ define('drag-drop',[], function() {
         return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       },
       revert: 'invalid',
-      helper: 'clone'
+      delay: 50
     });
     if (bindStatus === false) {
       bindStatus = true;
