@@ -2549,7 +2549,7 @@ define('../../popup/roundScorePopup',[], function() {
 define('drag-drop',[], function() {
   var bindStatus;
   bindStatus = false;
-  return $('.draggableBets').live("touchstart", function() {
+  return $('.draggableBets').live("mouseover", function() {
     if (window.tutorialFlag) {
       return;
     }
