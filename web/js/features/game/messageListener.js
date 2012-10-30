@@ -11,7 +11,6 @@ define(["../../helper/confirmBox", "../../helper/utils", "gamePlayView"], functi
         }
         break;
       case zalerioCMDListners.RIGHT_HUD:
-        return;
         usersObject = jQuery.parseJSON(message);
         for (i in usersObject) {
           usersObject[i] = jQuery.parseJSON(usersObject[i]);

@@ -9,7 +9,6 @@ define ["../../helper/confirmBox","../../helper/utils","gamePlayView"], (confirm
 	      		 	   gamePlayView.setGameDisable()
 	      		 	   
 	      	when zalerioCMDListners.RIGHT_HUD
-	        	return
 	        	usersObject = jQuery.parseJSON(message)      
 	        	for i of usersObject
 	        		usersObject[i] = jQuery.parseJSON(usersObject[i])
