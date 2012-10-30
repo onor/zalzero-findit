@@ -1,7 +1,7 @@
 define [], () ->
 	bindStatus = false
 	
-	$('.draggableBets').live( "mouseover", () ->
+	$('.draggableBets').live( "touchstart", () ->
 		return if window.tutorialFlag
 		$('.draggableBets').draggable
 			start : ( e,ui )->
