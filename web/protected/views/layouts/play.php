@@ -75,39 +75,6 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 
 //$cs->registerScriptFile('http://connect.facebook.net/en_US/all.js');
 ?>
-<script>
-	function touchHandler(event)
-	{
-	 var touches = event.changedTouches,
-	    first = touches[0],
-	    type = "";
-	
-	switch(event.type)
-	{
-	    case "touchstart": type = "mousedown"; break;
-	    case "touchmove":  type="mousemove"; break;        
-	    case "touchend":   type="mouseup"; break;
-	    default: return;
-	}
-	var simulatedEvent = document.createEvent("MouseEvent");
-	simulatedEvent.initMouseEvent(type, true, true, window, 1,
-	                          first.screenX, first.screenY,
-	                          first.clientX, first.clientY, false,
-	                          false, false, false, 0/*left*/, null);
-	
-	first.target.dispatchEvent(simulatedEvent);
-	event.preventDefault();
-	}
-	
-	function init()
-	{
-	   document.addEventListener("touchstart", touchHandler, true);
-	   document.addEventListener("touchmove", touchHandler, true);
-	   document.addEventListener("touchend", touchHandler, true);
-	   document.addEventListener("touchcancel", touchHandler, true);    
-	}
-</script>
-
 
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <?php if($new_user == true ) {?>
@@ -122,7 +89,6 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 
 <script>
 	        jQuery(document).ready(function() {
-	        	init();
 	        	require(['gameEventManager'], function(gameEventManager) {
 		        	start = new gameEventManager();	        		
 	        	});
@@ -131,7 +97,10 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 	        </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script src="<?php echo Yii::app()->baseUrl.'/js/jquery.ui.touch-punch.min.js'?>"> </script>
+
 <script>
+
   $(document).ready(function() {
       if (!$.browser.webkit){
             scrollBar = document.createElement("div");
