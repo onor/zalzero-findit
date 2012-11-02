@@ -9,5 +9,7 @@ public interface Config {
 	public static String FB_UNSECURED_ACCOUNT_PASSWORD = "123456";
 	
 	public static String TEST_APP_URL = "http://apps.facebook.com/zalerio/";
+	public static String FB_NEWUSER_USERNAME="iqttlmo_fallersen_1351759082@tfbnw.net";
+	public static String FB_NEWUSER_PASSWORD="zalerio";
 	
 }

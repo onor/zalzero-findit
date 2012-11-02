@@ -17,7 +17,7 @@ public class GameEnterTest extends ZalerioBaseTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
+	//@Test
 	public void nonSecuredGameOpenTest() {
 		GameUtil.closeGameEndPopUp(driver);
 		
@@ -27,7 +27,7 @@ public class GameEnterTest extends ZalerioBaseTest {
 		assertEquals(startButton.isDisplayed(),true);
 	}
 	
-	@Test
+//	@Test
 	public void nonSecuredStartANewGame() {
 		GameUtil.closeGameEndPopUp(driver);
 		// If Game End Pop up Found then dismiss it

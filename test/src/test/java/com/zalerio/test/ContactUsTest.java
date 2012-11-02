@@ -15,7 +15,7 @@ public class ContactUsTest extends ZalerioBaseTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
+	//@Test
 	public void trySendMail() {
 		GameUtil.closeGameEndPopUp(driver);
 		// click help

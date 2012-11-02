@@ -15,7 +15,7 @@ public class StartAGameTest extends ZalerioBaseTest {
 		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-		@Test
+	//	@Test
 		public void clickStartAGame() {
 		GameUtil.closeGameEndPopUp(driver);
 		WebElement startButton = driver.findElement(By.id("startButton"));
@@ -26,7 +26,7 @@ public class StartAGameTest extends ZalerioBaseTest {
 		}
 
 	}
-	@Test
+	//@Test
 	public void verifyPopUpOnNoFriendSelect() {
 		GameUtil.closeGameEndPopUp(driver);
 		WebElement startButton = driver.findElement(By.id("startButton"));
@@ -54,7 +54,7 @@ public class StartAGameTest extends ZalerioBaseTest {
 		}
 		okButton.click();
 	}
-	@Test
+//	@Test
 	public void searchFriendsAndShowAll() {
 		// Search For Friends by entering test (a-z;A-Z)
 		GameUtil.closeGameEndPopUp(driver);
@@ -78,7 +78,7 @@ public class StartAGameTest extends ZalerioBaseTest {
 			e.printStackTrace();
 		}
 	}
-	@Test
+	//@Test
 	public void selectAndUnselect1Friend() {
 		GameUtil.closeGameEndPopUp(driver);
 		WebElement startButton = driver.findElement(By.id("startButton"));
@@ -94,7 +94,7 @@ public class StartAGameTest extends ZalerioBaseTest {
 		fr1.click();
 		System.out.println("fr1 unselected");
 	}
-	@Test
+	//@Test
 	public void createAGameWith5Friends() {
 		GameUtil.closeGameEndPopUp(driver);
 		WebElement startButton = driver.findElement(By.id("startButton"));
@@ -145,7 +145,7 @@ public class StartAGameTest extends ZalerioBaseTest {
 		// WebElement closeButton=driver.findElement(By.id("close"));
 		closeButton.click();
 	}
-	@Test
+//	@Test
 	public void create2PlayerGame() {
 		GameUtil.closeGameEndPopUp(driver);
 		WebElement startButton = driver.findElement(By.id("startButton"));
@@ -176,7 +176,7 @@ public class StartAGameTest extends ZalerioBaseTest {
 		js.executeScript("window.scrollTo(0,0)");
 
 	}
-	@Test
+	//@Test
 	public void verifyClickOtherButtonsWhilePopUp() {
 		
 			GameUtil.closeGameEndPopUp(driver);

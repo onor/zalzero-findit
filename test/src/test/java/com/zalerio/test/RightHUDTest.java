@@ -14,7 +14,7 @@ public class RightHUDTest extends ZalerioBaseTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
+	//@Test
 	public void rightHUDTest() {
 		GameUtil.closeGameEndPopUp(driver);
 		// right HUD

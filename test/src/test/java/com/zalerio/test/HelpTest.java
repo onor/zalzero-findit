@@ -13,7 +13,7 @@ public class HelpTest extends ZalerioBaseTest  {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
+	//@Test
 	public void tryOptions() {
 		GameUtil.closeGameEndPopUp(driver);
 		// help

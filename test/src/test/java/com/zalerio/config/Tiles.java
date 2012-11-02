@@ -21,11 +21,12 @@ public class Tiles {
 	// over there
 	public static void dragAllTiles(WebDriver driver)
 			throws InterruptedException {
-		WebElement gamewall = driver.findElement(By.id("gamewall"));
-		WebElement gameBetPanel = driver.findElement(By.id("gameBetPanel"));
+		Thread.sleep(2000);
 		Random randomGenerator = new Random();
-		Thread.sleep(4000);
+		
 		for (int i = 0; i < 9; i++) {
+			WebElement gamewall = driver.findElement(By.id("gamewall"));
+			WebElement gameBetPanel = driver.findElement(By.id("gameBetPanel"));
 			// get bet
 			String betid = "bet_" + i;
 			WebElement bet = gameBetPanel.findElement(By.id(betid));

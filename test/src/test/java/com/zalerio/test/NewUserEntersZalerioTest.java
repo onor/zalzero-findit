@@ -12,7 +12,7 @@ import com.zalerio.config.VerifyFeatures;
 
 public class NewUserEntersZalerioTest {
 	//new user entering Zalerio for 1st time
-	@Test
+//	@Test
 	public void joinNewUserTest()
 	{//	WebDriver driver= new FirefoxDriver();
 		System.setProperty("webdriver.chrome.driver", "C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
@@ -41,7 +41,7 @@ public class NewUserEntersZalerioTest {
 		VerifyFeatures.verifyIngameScreenFirstTimeEnter(driver);
 	}
 	// user who has joined fb before but did not play any is same as above so no need to do this now
-	@Test
+	//@Test
 	public void newUserWithNoActiveGames()
 	{
 		WebDriver driver= new FirefoxDriver();

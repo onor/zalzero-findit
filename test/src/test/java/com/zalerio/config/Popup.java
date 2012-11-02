@@ -7,17 +7,26 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Popup {
-	public static void verifyPopup(WebDriver driver, String msg) {
+	public static void closePopup(WebDriver driver) {
+		try {
+			Thread.sleep(5000);
+			WebElement popup = driver.findElement(By.className("msgbox-msg"));
+			WebElement ok = driver.findElement(By.className("msgbox-ok"));
+			ok.click();
+		}catch(Exception e){e.printStackTrace();}
+	}
+	public static void verifyPopup(WebDriver driver,String msg)
+	{
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		WebElement popup = driver.findElement(By.className("msgbox-msg"));
-		String errorPopMsg = popup.getText();
-		if (errorPopMsg.contains(msg)) {
-			assertEquals(1, 1);
-		}
+		assertEquals(popup.isDisplayed(),true);
+		String observerdMsg=popup.getText();
+		assertEquals(msg, observerdMsg);
 		WebElement ok = driver.findElement(By.className("msgbox-ok"));
 		ok.click();
 	}

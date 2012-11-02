@@ -1,25 +1,18 @@
 package com.zalerio.test;
 
 import java.net.URL;
-import java.util.LinkedList;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.junit.SauceOnDemandTestWatcher;
-import com.zalerio.config.GameUtil;
-import com.zalerio.config.Parallelized;
 
 /**
  * Simple {@link RemoteWebDriver} test that demonstrates how to run your Selenium tests with <a href="http://saucelabs.com/ondemand">Sauce OnDemand</a>.
@@ -30,7 +23,7 @@ import com.zalerio.config.Parallelized;
  *
  * @author Ross Rowe
  */
-@RunWith(Parallelized.class)
+//@RunWith(Parallelized.class)
 public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
 
 	 private String browser;
@@ -42,7 +35,7 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
 	//{
 		
 //	}
-	public ZalerioBaseTest(String os, String browser, String version,String userid,String password)  
+	/*public ZalerioBaseTest(String os, String browser, String version,String userid,String password)  
     {
         super();
         this.browser = browser;
@@ -65,7 +58,7 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
        browsers.add(new String[] {OS[i], browser[i], version[i], userid[i],password[i] });
       } 
     return browsers;
-	}
+	}*/
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
@@ -84,14 +77,15 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
      */
     public @Rule TestName testName= new TestName();
 
-    protected WebDriver driver;
+    protected WebDriver driver1;
+    protected WebDriver driver2;
 
     private String sessionId;
 
     @Before
     public void setUp() throws Exception {
 
-        DesiredCapabilities capabillities=null ;;
+        /*DesiredCapabilities capabillities=null ;;
         if(browser.contains("firefox"))
         {
         	capabillities = DesiredCapabilities.firefox();
@@ -115,6 +109,7 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
         capabillities.setCapability("version", browserVersion);
         capabillities.setCapability("platform", os);
         capabillities.setCapability("name",  testName.getMethodName());
+        
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabillities);
@@ -130,8 +125,24 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
 		login.submit();
 		driver.switchTo().frame("iframe_canvas");
 		GameUtil.clickPlayHereForMultiTabIssue(driver);
-		
-    }
+		*/
+    	DesiredCapabilities capability1=null;
+    	capability1=DesiredCapabilities.chrome();
+    	DesiredCapabilities capability2=null;
+    	capability2=DesiredCapabilities.chrome();
+    	capability1.setCapability("version"," " );
+    	capability1.setCapability("platform", "Windows 2008");
+    	capability2.setCapability("version"," " );
+    	capability2.setCapability("platform", "Windows 2008");
+    	    	this.driver1 = new RemoteWebDriver(
+                new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
+                capability1);
+        this.sessionId = ((RemoteWebDriver)driver1).getSessionId().toString();
+        this.driver2 = new RemoteWebDriver(
+                new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
+                capability2);
+        this.sessionId = ((RemoteWebDriver)driver2).getSessionId().toString();
+  }
 
     @Override
     public String getSessionId() {
@@ -142,7 +153,7 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
 
     @After
     public void tearDown() throws Exception {
-        driver.quit();
+        driver1.quit();driver2.quit();
     }
 
 }

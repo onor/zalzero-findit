@@ -10,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class MonitorUnionTest {
-	@Test
+	//@Test
 	public void unionMonitor()
 	{
 		int status=0;

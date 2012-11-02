@@ -16,7 +16,7 @@ import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
 
 public class Try {
-	@Test
+//	@Test
 	public void createGame() throws InterruptedException
 	{	
 		int friendPosition=2;

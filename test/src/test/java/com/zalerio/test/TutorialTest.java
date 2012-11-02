@@ -18,7 +18,7 @@ public class TutorialTest extends ZalerioBaseTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
+	//@Test
 	public void runTutorialFromHelp() {
 		GameUtil.closeGameEndPopUp(driver);
 		// help

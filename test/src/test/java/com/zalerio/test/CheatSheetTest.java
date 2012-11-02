@@ -6,25 +6,30 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.zalerio.config.Config;
 import com.zalerio.config.GameUtil;
+import com.zalerio.config.UserLogin;
 
 public class CheatSheetTest extends ZalerioBaseTest {
 
 	public CheatSheetTest(String os, String browser, String version,
 			String userid, String password) {
-		super(os, browser, version, userid, password);
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
+	//@Test
 	public void openAndScrollCheatSheet() {
-		GameUtil.closeGameEndPopUp(driver);
+		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;
+		String password=Config.FB_SECURED_ACCOUNT_PASSWORD;
+		UserLogin.Olduserlogin(driver1, emailid, password);
+		GameUtil.closeGameEndPopUp(driver1);
 		// class friendChallenge
 		// class friendChallenge back_to_the_game
-		WebElement cheatSheetDiv = driver.findElement(By
+		WebElement cheatSheetDiv = driver1.findElement(By
 				.className("friendChallenge"));
 
-		WebElement backToGameDiv = driver.findElement(By.id("cheat-sheet"));
+		WebElement backToGameDiv = driver1.findElement(By.id("cheat-sheet"));
 		backToGameDiv.click();
 
 		// Check if the button shows Back to Game

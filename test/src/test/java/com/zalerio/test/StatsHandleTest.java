@@ -13,7 +13,7 @@ public class StatsHandleTest extends ZalerioBaseTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
+	//@Test
 	public void statsClick() {
 		GameUtil.closeGameEndPopUp(driver);
 		// stats
