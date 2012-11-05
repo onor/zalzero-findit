@@ -1,9 +1,7 @@
 define ['../../helper/utils'], (utils)->
 	GB_UINFO = {}
 	GB_UINFO.PFN = ""
-		
 	usersRecord = (gameRecords) ->
-
 		# active game
 		$(".Mylevel", "#rip_active_rh").remove()
 		try
