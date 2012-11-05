@@ -8,33 +8,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class GameFeatures {
-	public static void createGame(WebDriver driver, int friendList[]) throws InterruptedException
+	public static void createGame(WebDriver driver, int SelectedFriends[]) throws InterruptedException
 	{
 		WebElement startButton = driver.findElement(By.id("startButton"));
 		startButton.click();
-		Thread.sleep(3000);
-		//select friends
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {}
 		WebElement a = driver.findElement(By.className("friendlist"));
 		List<WebElement> selectListOfButtons = (a.findElements(By
 				.className("rep")));
-		int no_of_friends=friendList.length;
-		for(int i=0;i<no_of_friends;i++)
+		// select n friends
+		for(int i=0;i<SelectedFriends.length;i++)
 		{	
-		WebElement fr = selectListOfButtons.get(i).findElement(
-				By.className("select_button"));
-		fr.click();
+		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
+		friend.click();
 		}
-		///click "send challenge"
+		//send challenge
 		WebElement sendChallengeButton = driver.findElement(By
-				.id("sendinvite"));
+						.id("sendinvite"));
 		sendChallengeButton.click();
-		// scroll window to default position
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0,0)");
-		Thread.sleep(5000);
-		Popup.closePopup(driver);
+		System.out.println("challenge sent");
+		Popup.verifyPopup(driver,"Challenge has been sent. Would you like to start playing.");
+		Thread.sleep(2000);
 	}
-	public static void grabGameId(WebDriver driver)
+	public static String grabGameId(WebDriver driver)
 	{
 		// grab new GameId
 			String NewGameId = "";
@@ -54,9 +52,10 @@ public class GameFeatures {
 				System.out.println("got New your turn tile with Id " + NewGameId);
 				} catch (Exception f) {
 				}
+			return NewGameId;
 
 	}
-	public static void acceptInvitation(WebDriver driver String Newgam,e)
+	public static void acceptInvitation(WebDriver driver, String NewGameId)
 	{
 		// accept invitation
 			WebElement	rightHUD_yourturn = driver.findElement(By.id("rightHUD-yourturn"));
@@ -66,10 +65,10 @@ public class GameFeatures {
 				WebElement accept = accept_decline.findElement(By
 						.className("right_hud_accept"));
 				accept.click();
+				Thread.sleep(5000);
 				// click OK on Pop up
-				Popup.verifyPopup(driver2, "Would you like to start playing");
-				// drag and drop all tiles
-
+				Popup.verifyPopup(driver, "Would you like to start playing");
+				
 	}
 	
 

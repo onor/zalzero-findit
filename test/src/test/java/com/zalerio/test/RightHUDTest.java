@@ -10,16 +10,16 @@ import com.zalerio.config.GameUtil;
 public class RightHUDTest extends ZalerioBaseTest {
 	public RightHUDTest(String os, String browser, String version,
 			String userid, String password) {
-		super(os, browser, version, userid, password);
+//		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
 
 	//@Test
 	public void rightHUDTest() {
-		GameUtil.closeGameEndPopUp(driver);
+		GameUtil.closeGameEndPopUp(driver1);
 		// right HUD
 		// your turn -check game tiles and click
-		WebElement rightHUD_yourturn = driver.findElement(By
+		WebElement rightHUD_yourturn = driver1.findElement(By
 				.id("rightHUD-yourturn"));
 		// check if your turn is empty or not
 		try { // if no game tiles are available
@@ -27,8 +27,9 @@ public class RightHUDTest extends ZalerioBaseTest {
 					.className("newCarouselblanktile"));
 			newCarouselblanktile.click();
 			//start a game window comes up.
+			Thread.sleep(5000);
 			// close the window-close button 
-			WebElement friendpopup = driver.findElement(By.id("friendpopup"));
+			WebElement friendpopup = driver1.findElement(By.id("friendpopup"));
 			WebElement closeButton = friendpopup.findElement(By.tagName("a"));
 			closeButton.click();
 		} catch (org.openqa.selenium.NoSuchElementException e) {
@@ -49,24 +50,24 @@ public class RightHUDTest extends ZalerioBaseTest {
 				// Click Play or Resume whichever is available
 				try {
 					// click play button
-					driver.findElement(By.className("gdPlaydiv")).click();
+					driver1.findElement(By.className("gdPlaydiv")).click();
 				} catch (org.openqa.selenium.NoSuchElementException f) {
 					// click resume button
-					(driver.findElement(By.className("gdResumeDiv"))).click();
+					(driver1.findElement(By.className("gdResumeDiv"))).click();
 				}
 				// remind in 2nd last game
 				if (i == no_of_games_yourTurn - 2) {
 					// click the tile
 					gameTiles.get(i).click();
 					// click remind
-					(driver.findElement(By.className("gdReminddiv"))).click();
+					(driver1.findElement(By.className("gdReminddiv"))).click();
 					// wait
 					try {
 						Thread.sleep(4000);
 					} catch (InterruptedException f) {
 					}
 					// click ok on popup
-					WebElement okButton = driver.findElement(By
+					WebElement okButton = driver1.findElement(By
 							.className("msgbox-ok"));
 					if (okButton != null) {
 						System.out.println("ok button found");
@@ -77,7 +78,7 @@ public class RightHUDTest extends ZalerioBaseTest {
 					// click the tile
 					gameTiles.get(i).click();
 					// gdReturndiv
-					(driver.findElement(By.className("gdReturndiv"))).click();
+					(driver1.findElement(By.className("gdReturndiv"))).click();
 				}
 				try {
 					Thread.sleep(2000);
@@ -88,7 +89,7 @@ public class RightHUDTest extends ZalerioBaseTest {
 		}
 		//TODO ----------- their turns is not working
 		// Their turns- check if game tiles present or not
-		WebElement rightHUD_theirturn = driver.findElement(By
+		WebElement rightHUD_theirturn = driver1.findElement(By
 				.id("theirturn-label"));
 		// check if your turn is empty or not
 		try { // if no game tiles are available
@@ -97,7 +98,7 @@ public class RightHUDTest extends ZalerioBaseTest {
 			newCarouselblanktile.click();
 			//start a game window comes up.
 			// close the window-close button 
-			WebElement friendpopup = driver.findElement(By.id("friendpopup"));
+			WebElement friendpopup = driver1.findElement(By.id("friendpopup"));
 			WebElement closeButton = friendpopup.findElement(By.tagName("a"));
 			closeButton.click();
 		} catch (org.openqa.selenium.NoSuchElementException e) {
@@ -113,24 +114,24 @@ public class RightHUDTest extends ZalerioBaseTest {
 				} catch (InterruptedException f) {}
 				try {
 					// click play button
-					driver.findElement(By.className("gdPlaydiv")).click();
+					driver1.findElement(By.className("gdPlaydiv")).click();
 				} catch (org.openqa.selenium.NoSuchElementException f) {
 					// click resume button
-					(driver.findElement(By.className("gdResumeDiv"))).click();
+					(driver1.findElement(By.className("gdResumeDiv"))).click();
 				}
 				// remind in 2nd last game
 				if (i == no_of_games_theirTurn - 2) {
 					// click the tile
 					gameTiles2.get(i).click();
 					// click remind
-					(driver.findElement(By.className("gdReminddiv"))).click();
+					(driver1.findElement(By.className("gdReminddiv"))).click();
 					// wait
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException f) {
 					}
 					// click ok on pop up
-					WebElement okButton = driver.findElement(By
+					WebElement okButton = driver1.findElement(By
 							.className("msgbox-ok"));
 					if (okButton != null) {
 						System.out.println("ok button found");
@@ -142,7 +143,7 @@ public class RightHUDTest extends ZalerioBaseTest {
 					// click the tile
 					gameTiles2.get(i).click();
 					// click return
-					(driver.findElement(By.className("gdReturndiv"))).click();
+					(driver1.findElement(By.className("gdReturndiv"))).click();
 				}
 				try {
 					Thread.sleep(2000);

@@ -9,18 +9,18 @@ import com.zalerio.config.GameUtil;
 public class HelpTest extends ZalerioBaseTest  {
 	public HelpTest(String os, String browser, String version, String userid,
 			String password) {
-		super(os, browser, version, userid, password);
+	//	super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
 
 	//@Test
 	public void tryOptions() {
-		GameUtil.closeGameEndPopUp(driver);
+		GameUtil.closeGameEndPopUp(driver1);
 		// help
-		WebElement helpButton = driver.findElement(By.className("helpButton"));
+		WebElement helpButton = driver1.findElement(By.className("helpButton"));
 		helpButton.click();
 		// rules-content
-		WebElement ruleContent = driver.findElement(By
+		WebElement ruleContent = driver1.findElement(By
 				.className("rules-content"));
 		try {
 			Thread.sleep(2000);
@@ -63,7 +63,7 @@ public class HelpTest extends ZalerioBaseTest  {
 		} catch (InterruptedException e) {
 		}
 		//close window
-		WebElement s_friendpopup=driver.findElement(By.id("s_friendpopup"));
+		WebElement s_friendpopup=driver1.findElement(By.id("s_friendpopup"));
 		WebElement close=s_friendpopup.findElement(By.id("close"));
 		close.click();
 	}

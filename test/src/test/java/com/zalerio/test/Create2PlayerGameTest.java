@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
 import com.zalerio.config.Stats;
@@ -36,57 +37,18 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		System.out.print("Logged in");
 		// verify Username
 		VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
+		int []SelectedFriends=new int[]{2};
 		// create new game at friendPosition
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		Thread.sleep(3000);
-
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		WebElement fr1 = selectListOfButtons.get(friendPosition).findElement(
-				By.className("select_button"));
-		fr1.click();
-		System.out.println("fr1 selected");
-
-		// load the game on main screen
-		// Click Send Challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-				.id("sendinvite"));
-		sendChallengeButton.click();
-		// scroll window to default position
-		JavascriptExecutor js = (JavascriptExecutor) driver1;
-		js.executeScript("window.scrollTo(0,0)");
-
-		// verify pop up and load the game
-		Popup.verifyPopup(driver1,
-				"Challenge has been sent. Would you like to start playing.");
-		Thread.sleep(2000);
+		GameFeatures.createGame(driver1, SelectedFriends);
 
 		// login user2
 		System.setProperty("webdriver.chrome.driver",
 				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 		WebDriver driver2 = new ChromeDriver();
-		UserLogin.userlogin(driver2, user2Email, user2Pass);
+		UserLogin.Olduserlogin(driver2, user2Email, user2Pass);
 
 		// grab new GameId
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-				.id("rightHUD-yourturn"));
-		int newSize;
-		// access your turn tiles
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			System.out.println("got New your turn tile with Id " + NewGameId);
-		} catch (Exception f) {
-		}
+		String NewGameId=GameFeatures.grabGameId(driver1);
 		// user 2
 		driver2.switchTo().frame("iframe_canvas");
 		GameUtil.clickPlayHereForMultiTabIssue(driver2);
@@ -193,17 +155,8 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 
 		// accept invitation and drag tiles to click play and complete 1 round
 		// accept invitation
-		rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-		WebElement accept_decline = gameTile.findElement(By
-				.className("accept_decline"));
-		WebElement accept = accept_decline.findElement(By
-				.className("right_hud_accept"));
-		accept.click();
-		// click OK on Pop up
-		Popup.verifyPopup(driver2, "Would you like to start playing");
-		// make user1 busy
-
+		
+		GameFeatures.acceptInvitation(driver2, NewGameId);
 		// drag and drop all tiles
 		GameUtil.closeGameEndPopUp(driver1);
 		Tiles.dragAllTiles(driver2);
@@ -283,7 +236,8 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		assertEquals(status, true);
 		
 		// check gameTile
-		gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
+		WebElement rightHUD_yourturn= driver1.findElement(By.id("rightHUD-yourturn"));
+		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
 		status=gameTile.findElement(By.className("round_no")).getText()
 				.contains("2");
 		assertEquals(status, true);

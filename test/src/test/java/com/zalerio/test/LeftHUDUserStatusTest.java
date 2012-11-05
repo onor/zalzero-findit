@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.zalerio.config.GameFeatures;
 import com.zalerio.config.Popup;
 import com.zalerio.config.Tiles;
 
@@ -19,7 +20,7 @@ import com.zalerio.config.UserLogin;
 public class LeftHUDUserStatusTest {
 	@Test
 	public void checkStatus() throws InterruptedException {
-		int friendPosition = 1;
+		
 		WebDriver driver1 = new FirefoxDriver();
 		System.setProperty("webdriver.chrome.driver",
 				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
@@ -31,31 +32,8 @@ public class LeftHUDUserStatusTest {
 		UserLogin.Olduserlogin(driver1, user1id, user1pass);
 		UserLogin.Olduserlogin(driver2, user2id, user2pass);
 		// user1 creates a new game
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		Thread.sleep(6000);
-
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		WebElement fr1 = selectListOfButtons.get(friendPosition).findElement(
-				By.className("select_button"));
-		fr1.click();
-		System.out.println("fr1 selected");
-
-		// load the game on main screen
-		// Click Send Challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-				.id("sendinvite"));
-		sendChallengeButton.click();
-		// scroll window to default position
-		JavascriptExecutor js = (JavascriptExecutor) driver1;
-		js.executeScript("window.scrollTo(0,0)");
-
-		// verify pop up and load the game
-		Popup.verifyPopup(driver1,
-				"Challenge has been sent. Would you like to start playing.");
-		Thread.sleep(2000);
+		int SelectedFriends[]=new int[]{1};
+			GameFeatures.createGame(driver1, SelectedFriends);
 		// user status :not accepted yet in red
 		WebElement gameInfo_game_players = driver1.findElement(By
 				.id("gameInfo-game-players"));
@@ -78,32 +56,9 @@ public class LeftHUDUserStatusTest {
 		assertEquals(color.contains("red"),true);
 		assertEquals(userStatus, "not accepted yet");
 		// grab new GameId
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-				.id("rightHUD-yourturn"));
-		int newSize;
-		// access your turn tiles
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			System.out.println("got New your turn tile with Id " + NewGameId);
-		} catch (Exception f) {
-		}
+	String NewGameId=GameFeatures.grabGameId(driver1);
 		//accept invitation by user2
-		rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-		WebElement accept_decline = gameTile.findElement(By
-				.className("accept_decline"));
-		WebElement accept = accept_decline.findElement(By
-				.className("right_hud_accept"));
-		accept.click();
-		Popup.closePopup(driver2);
+		GameFeatures.acceptInvitation(driver2, NewGameId);
 		Thread.sleep(5000);
 		// user status :...playing now in green
 				WebElement gameInfo_game_players2 = driver1.findElement(By
