@@ -333,24 +333,7 @@ public class User1ResignTest {
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-				.id("rightHUD-yourturn"));
-		int newSize;
-		// access your turn tiles
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			System.out.println("got New your turn tile with Id " + NewGameId);
-		} catch (Exception f) {
-		}
-		Thread.sleep(2000);
+		String NewGameId = GameFeatures.grabGameId(driver1);
 		System.setProperty("webdriver.chrome.driver",
 				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 		WebDriver driver2 = new ChromeDriver();
@@ -359,14 +342,7 @@ public class User1ResignTest {
 		UserLogin.Olduserlogin(driver2, emailid2, password2);
 		Thread.sleep(2000);
 		// make user2 accept game
-		rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-		WebElement accept_decline = gameTile.findElement(By
-				.className("accept_decline"));
-		WebElement accept = accept_decline.findElement(By
-				.className("right_hud_accept"));
-		accept.click();
-		Popup.closePopup(driver2);
+		GameFeatures.acceptInvitation(driver2, NewGameId);
 
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
@@ -431,24 +407,7 @@ public class User1ResignTest {
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-				.id("rightHUD-yourturn"));
-		int newSize;
-		// access your turn tiles
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			System.out.println("got New your turn tile with Id " + NewGameId);
-		} catch (Exception f) {
-		}
-		Thread.sleep(2000);
+		String NewGameId = GameFeatures.grabGameId(driver1);
 		System.setProperty("webdriver.chrome.driver",
 				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 		WebDriver driver2 = new ChromeDriver();
@@ -457,14 +416,7 @@ public class User1ResignTest {
 		UserLogin.Olduserlogin(driver2, emailid2, password2);
 		Thread.sleep(2000);
 		// make user2 accept game
-		rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-		WebElement accept_decline = gameTile.findElement(By
-				.className("accept_decline"));
-		WebElement accept = accept_decline.findElement(By
-				.className("right_hud_accept"));
-		accept.click();
-		Popup.closePopup(driver2);
+		GameFeatures.acceptInvitation(driver2, NewGameId);
 
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
@@ -551,23 +503,7 @@ public class User1ResignTest {
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-				.id("rightHUD-yourturn"));
-		int newSize;
-		// access your turn tiles
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			System.out.println("got New your turn tile with Id " + NewGameId);
-		} catch (Exception f) {
-		}
+		String NewGameId = GameFeatures.grabGameId(driver1);
 		Thread.sleep(2000);
 		System.setProperty("webdriver.chrome.driver",
 				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
@@ -577,14 +513,7 @@ public class User1ResignTest {
 		UserLogin.Olduserlogin(driver2, emailid2, password2);
 		Thread.sleep(2000);
 		// make user2 accept game
-		rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-		WebElement accept_decline = gameTile.findElement(By
-				.className("accept_decline"));
-		WebElement accept = accept_decline.findElement(By
-				.className("right_hud_accept"));
-		accept.click();
-		Popup.closePopup(driver2);
+		GameFeatures.acceptInvitation(driver2, NewGameId);
 
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
