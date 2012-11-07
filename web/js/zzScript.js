@@ -1409,6 +1409,9 @@ define('drag-drop',[], function() {
       if (window.tutorialFlag) {
         return;
       }
+      $('.box-newBet').droppable("disable");
+      $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
+      $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       return $(el).draggable({
         scope: "drop_tile",
         revert: 'invalid'
@@ -1418,6 +1421,9 @@ define('drag-drop',[], function() {
       if (window.tutorialFlag) {
         return;
       }
+      $('.box-newBet').droppable("disable");
+      $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
+      $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       return $(el).draggable({
         scope: "drop_tile",
         revert: 'invalid',
