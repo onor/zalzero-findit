@@ -36,9 +36,9 @@ define [], () ->
 	      true
 	 )
 	 
-	addDrag : ->
+	addDrag : (el) ->
 		return if window.tutorialFlag
-		$('.draggableBets').draggable
+		$(el).draggable
 			start : ( e,ui )->
 				$('.box-newBet').droppable("disable")
 				$('.box-previousRoundCurrentPlayerIncorrect').droppable("disable")

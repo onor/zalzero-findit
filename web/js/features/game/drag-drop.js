@@ -39,11 +39,11 @@ define([], function() {
     }, true);
   });
   return {
-    addDrag: function() {
+    addDrag: function(el) {
       if (window.tutorialFlag) {
         return;
       }
-      return $('.draggableBets').draggable({
+      return $(el).draggable({
         start: function(e, ui) {
           $('.box-newBet').droppable("disable");
           $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
