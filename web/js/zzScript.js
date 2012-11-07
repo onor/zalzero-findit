@@ -1413,6 +1413,16 @@ define('drag-drop',[], function() {
         scope: "drop_tile",
         revert: 'invalid'
       });
+    },
+    addDragClone: function(el) {
+      if (window.tutorialFlag) {
+        return;
+      }
+      return $(el).draggable({
+        scope: "drop_tile",
+        revert: 'invalid',
+        helper: 'clone'
+      });
     }
   };
 });
@@ -1771,6 +1781,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
             currentEl.dragBet = 1;
             currentEl.setAttribute("placedBetId", window.currentBets[tileIdx]);
             currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET);
+            dragdrop.addDragClone(currentEl);
             currentTileVal = "";
           }
           if (currentTilePriority < 10 && (betChangeVOs[tileIdx] != null)) {

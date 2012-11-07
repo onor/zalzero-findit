@@ -335,6 +335,7 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	            currentEl.setAttribute "placedBetId", window.currentBets[tileIdx]
 	            currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET)
 	            #utils.addEventHandler currentEl, "dragstart", handleDragStartWithinBoard, false
+	            dragdrop.addDragClone currentEl
 	            currentTileVal = ""
 	          if currentTilePriority < 10 and (betChangeVOs[tileIdx]?)
 	            if parseInt(betChangeVOs[tileIdx]) is 1

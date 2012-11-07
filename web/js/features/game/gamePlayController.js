@@ -352,6 +352,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "./myLevel", "../../con
             currentEl.dragBet = 1;
             currentEl.setAttribute("placedBetId", window.currentBets[tileIdx]);
             currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET);
+            dragdrop.addDragClone(currentEl);
             currentTileVal = "";
           }
           if (currentTilePriority < 10 && (betChangeVOs[tileIdx] != null)) {

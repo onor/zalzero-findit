@@ -39,3 +39,10 @@ define [], () ->
 		$(el).draggable
 			scope: "drop_tile"
 			revert : 'invalid'
+			
+	addDragClone : (el) ->
+		return if window.tutorialFlag
+		$(el).draggable
+			scope: "drop_tile"
+			revert : 'invalid'
+			helper:'clone'

@@ -32,6 +32,16 @@ define([], function() {
         scope: "drop_tile",
         revert: 'invalid'
       });
+    },
+    addDragClone: function(el) {
+      if (window.tutorialFlag) {
+        return;
+      }
+      return $(el).draggable({
+        scope: "drop_tile",
+        revert: 'invalid',
+        helper: 'clone'
+      });
     }
   };
 });
