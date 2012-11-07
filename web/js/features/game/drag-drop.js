@@ -7,23 +7,8 @@ define([], function() {
     if (window.tutorialFlag) {
       return;
     }
-    $('.box-blank').draggable({
-      scope: "drop_tile",
-      start: function(e, ui) {
-        $('.box-newBet').droppable("disable");
-        $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
-        return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
-      },
-      revert: 'invalid',
-      helper: 'clone'
-    });
-    if (bindStatus === false) {
-      bindStatus = true;
-      $('.box-blank').draggable("disable");
-    }
     return $('.box-blank').droppable({
       scope: "drop_tile",
-      hoverClass: "box-drophover",
       drop: function(e, ui) {
         if (!ui.draggable.hasClass('box-blank')) {
           ui.draggable.remove();
@@ -44,11 +29,6 @@ define([], function() {
         return;
       }
       return $(el).draggable({
-        start: function(e, ui) {
-          $('.box-newBet').droppable("disable");
-          $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
-          return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
-        },
         scope: "drop_tile",
         revert: 'invalid'
       });

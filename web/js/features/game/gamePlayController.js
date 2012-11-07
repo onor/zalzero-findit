@@ -8,7 +8,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "./myLevel", "../../con
   window.currentBets = {};
   window.currentBetsIdx = {};
   ZalerioGame = (function() {
-    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragStartWithinBoard, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
+    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
     ZalerioGame = function() {};
     _this = this;
     docElems = {};
@@ -248,15 +248,6 @@ define(["../../helper/confirmBox", "../../helper/utils", "./myLevel", "../../con
       }
       return _results;
     };
-    handleDragStartWithinBoard = function(e) {
-      var betId;
-      betId = this.getAttribute("placedBetId");
-      gamePlayView.setCustomDragImage(e);
-      e.dataTransfer.setData(internalDNDType, betId);
-      gamePlayView.addMoveClass(e.target);
-      utils.log(e.target, e.target.className);
-      return utils.log("drag started!");
-    };
     drawGameBoard = function() {
       var gameWallDiv;
       gameWallDiv = gamePlayView.getGameWall(board_X, board_Y);
@@ -361,7 +352,6 @@ define(["../../helper/confirmBox", "../../helper/utils", "./myLevel", "../../con
             currentEl.dragBet = 1;
             currentEl.setAttribute("placedBetId", window.currentBets[tileIdx]);
             currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET);
-            utils.addEventHandler(currentEl, "dragstart", handleDragStartWithinBoard, false);
             currentTileVal = "";
           }
           if (currentTilePriority < 10 && (betChangeVOs[tileIdx] != null)) {

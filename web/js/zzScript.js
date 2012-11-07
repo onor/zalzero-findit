@@ -1388,23 +1388,8 @@ define('drag-drop',[], function() {
     if (window.tutorialFlag) {
       return;
     }
-    $('.box-blank').draggable({
-      scope: "drop_tile",
-      start: function(e, ui) {
-        $('.box-newBet').droppable("disable");
-        $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
-        return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
-      },
-      revert: 'invalid',
-      helper: 'clone'
-    });
-    if (bindStatus === false) {
-      bindStatus = true;
-      $('.box-blank').draggable("disable");
-    }
     return $('.box-blank').droppable({
       scope: "drop_tile",
-      hoverClass: "box-drophover",
       drop: function(e, ui) {
         if (!ui.draggable.hasClass('box-blank')) {
           ui.draggable.remove();
@@ -1425,11 +1410,6 @@ define('drag-drop',[], function() {
         return;
       }
       return $(el).draggable({
-        start: function(e, ui) {
-          $('.box-newBet').droppable("disable");
-          $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
-          return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
-        },
         scope: "drop_tile",
         revert: 'invalid'
       });
@@ -1447,7 +1427,7 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
   window.currentBets = {};
   window.currentBetsIdx = {};
   ZalerioGame = (function() {
-    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, handleDragStartWithinBoard, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
+    var betChange, betChangeCode, betsPanelIndexVO, boardVOCodes, boardVOs, board_X, board_Y, coordCodes, currPlayerFigVOs, docElems, drawBetPanel, drawGameBoard, drawResponseTiles, figureDetailsVO, flag_roundDrawn, flag_zoomTrue, getTileClass, initBoard, initRoundBets, internalDNDType, parseCoord, parseRounds, parseToGameBoard, reDrawBetsPanel, refreshGameBoard, refreshRoundsPanel, resetDropZoneOnGameBoard, roundBets, roundVOs, roundVOsIdx, sendPlaceBetToServer, tilesIdxVOs, updateBoardVars, updateFigureDetails, zalerioMapType, _this;
     ZalerioGame = function() {};
     _this = this;
     docElems = {};
@@ -1687,15 +1667,6 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
       }
       return _results;
     };
-    handleDragStartWithinBoard = function(e) {
-      var betId;
-      betId = this.getAttribute("placedBetId");
-      gamePlayView.setCustomDragImage(e);
-      e.dataTransfer.setData(internalDNDType, betId);
-      gamePlayView.addMoveClass(e.target);
-      utils.log(e.target, e.target.className);
-      return utils.log("drag started!");
-    };
     drawGameBoard = function() {
       var gameWallDiv;
       gameWallDiv = gamePlayView.getGameWall(board_X, board_Y);
@@ -1800,7 +1771,6 @@ define('gamePlayController',["../../helper/confirmBox", "../../helper/utils", ".
             currentEl.dragBet = 1;
             currentEl.setAttribute("placedBetId", window.currentBets[tileIdx]);
             currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET);
-            utils.addEventHandler(currentEl, "dragstart", handleDragStartWithinBoard, false);
             currentTileVal = "";
           }
           if (currentTilePriority < 10 && (betChangeVOs[tileIdx] != null)) {

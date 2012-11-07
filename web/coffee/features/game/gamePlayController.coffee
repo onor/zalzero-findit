@@ -218,13 +218,13 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 #	      utils.log "drag started!"
 		
 		#fired when tiles are lifted from the board
-	    handleDragStartWithinBoard = (e) ->
-	      betId = @getAttribute("placedBetId")
-	      gamePlayView.setCustomDragImage e
-	      e.dataTransfer.setData internalDNDType, betId
-	      gamePlayView.addMoveClass e.target
-	      utils.log e.target, e.target.className
-	      utils.log "drag started!"
+#	    handleDragStartWithinBoard = (e) ->
+#	      betId = @getAttribute("placedBetId")
+#	      gamePlayView.setCustomDragImage e
+#	      e.dataTransfer.setData internalDNDType, betId
+#	      gamePlayView.addMoveClass e.target
+#	      utils.log e.target, e.target.className
+#	      utils.log "drag started!"
 	
 	    
 #	    $('.draggableBets').draggable
@@ -334,7 +334,7 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	            currentEl.dragBet = 1
 	            currentEl.setAttribute "placedBetId", window.currentBets[tileIdx]
 	            currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET)
-	            utils.addEventHandler currentEl, "dragstart", handleDragStartWithinBoard, false
+	            #utils.addEventHandler currentEl, "dragstart", handleDragStartWithinBoard, false
 	            currentTileVal = ""
 	          if currentTilePriority < 10 and (betChangeVOs[tileIdx]?)
 	            if parseInt(betChangeVOs[tileIdx]) is 1

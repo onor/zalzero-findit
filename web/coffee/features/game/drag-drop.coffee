@@ -2,22 +2,20 @@ define [], () ->
 	bindStatus = false	
 	$('.draggableBets').live( "mouseover", () ->
 		return if window.tutorialFlag
-		$('.box-blank').draggable
-			scope: "drop_tile"
-			start : ( e,ui )->
-				$('.box-newBet').droppable("disable")
-				$('.box-previousRoundCurrentPlayerIncorrect').droppable("disable")
-				$('.box-previousRoundCurrentPlayerCorrect').droppable("disable")
-			revert : 'invalid'
-			helper:'clone'
-				
-		if bindStatus is false
-			bindStatus = true
-			$('.box-blank').draggable( "disable" )
+#		$('.box-blank').draggable
+#			scope: "drop_tile"
+#			start : ( e,ui )->
+#				$('.box-newBet').droppable("disable")
+#				$('.box-previousRoundCurrentPlayerIncorrect').droppable("disable")
+#				$('.box-previousRoundCurrentPlayerCorrect').droppable("disable")
+#			revert : 'invalid'
+#			helper:'clone'
+#				
+#		$('.box-blank').draggable( "disable" )
 		
 		$('.box-blank').droppable
 	      scope: "drop_tile"
-	      hoverClass: "box-drophover"
+#	      hoverClass: "box-drophover"
 	      drop: (e, ui) ->
 	      	unless ui.draggable.hasClass 'box-blank'
 	      		ui.draggable.remove()
@@ -39,9 +37,5 @@ define [], () ->
 	addDrag : (el) ->
 		return if window.tutorialFlag
 		$(el).draggable
-			start : ( e,ui )->
-				$('.box-newBet').droppable("disable")
-				$('.box-previousRoundCurrentPlayerIncorrect').droppable("disable")
-				$('.box-previousRoundCurrentPlayerCorrect').droppable("disable")
 			scope: "drop_tile"
 			revert : 'invalid'
