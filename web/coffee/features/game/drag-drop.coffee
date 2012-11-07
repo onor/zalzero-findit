@@ -1,16 +1,7 @@
 define [], () ->
-	bindStatus = false
-	
+	bindStatus = false	
 	$('.draggableBets').live( "mouseover", () ->
 		return if window.tutorialFlag
-		$('.draggableBets').draggable
-			start : ( e,ui )->
-				$('.box-newBet').droppable("disable")
-				$('.box-previousRoundCurrentPlayerIncorrect').droppable("disable")
-				$('.box-previousRoundCurrentPlayerCorrect').droppable("disable")
-			scope: "drop_tile"
-			revert : 'invalid'
-	
 		$('.box-blank').draggable
 			scope: "drop_tile"
 			start : ( e,ui )->
@@ -44,3 +35,13 @@ define [], () ->
 	      	
 	      true
 	 )
+	 
+	addDrag : ->
+		return if window.tutorialFlag
+		$('.draggableBets').draggable
+			start : ( e,ui )->
+				$('.box-newBet').droppable("disable")
+				$('.box-previousRoundCurrentPlayerIncorrect').droppable("disable")
+				$('.box-previousRoundCurrentPlayerCorrect').droppable("disable")
+			scope: "drop_tile"
+			revert : 'invalid'

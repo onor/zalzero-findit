@@ -3,19 +3,10 @@
 define([], function() {
   var bindStatus;
   bindStatus = false;
-  return $('.draggableBets').live("mouseover", function() {
+  $('.draggableBets').live("mouseover", function() {
     if (window.tutorialFlag) {
       return;
     }
-    $('.draggableBets').draggable({
-      start: function(e, ui) {
-        $('.box-newBet').droppable("disable");
-        $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
-        return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
-      },
-      scope: "drop_tile",
-      revert: 'invalid'
-    });
     $('.box-blank').draggable({
       scope: "drop_tile",
       start: function(e, ui) {
@@ -47,4 +38,20 @@ define([], function() {
       }
     }, true);
   });
+  return {
+    addDrag: function() {
+      if (window.tutorialFlag) {
+        return;
+      }
+      return $('.draggableBets').draggable({
+        start: function(e, ui) {
+          $('.box-newBet').droppable("disable");
+          $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
+          return $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
+        },
+        scope: "drop_tile",
+        revert: 'invalid'
+      });
+    }
+  };
 });
