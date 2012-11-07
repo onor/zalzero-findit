@@ -12,13 +12,12 @@ import com.zalerio.config.UserLogin;
 
 public class CheatSheetTest extends ZalerioBaseTest {
 
-	public CheatSheetTest(String os, String browser, String version,
-			String userid, String password) {
-		super();
-		// TODO Auto-generated constructor stub
+	public CheatSheetTest(String os, String browser, String version) {
+		super(os, browser, version);
+		
 	}
 
-	//@Test
+//	@Test
 	public void openAndScrollCheatSheet() {
 		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;
 		String password=Config.FB_SECURED_ACCOUNT_PASSWORD;

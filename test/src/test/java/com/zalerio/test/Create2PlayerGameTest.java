@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.zalerio.config.Config;
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
@@ -22,17 +23,17 @@ import com.zalerio.config.VerifyFeatures;
 
 public class Create2PlayerGameTest // extends ZalerioBaseTest
 {
-	@Test
+//	@Test
 	public void createGame() throws InterruptedException {
-		int friendPosition = 2;
-		String user1Email = "abhilashbhaduri@gmail.com";
-		String user1Pass = "16081989";
-		String user2Email = "griffinsingh1@gmail.com";
-		String user2Pass = "griffinsingh1";
-		WebDriver driver1 = new FirefoxDriver();
+		
+		String user1Email = Config.FB_SECURED_ACCOUNT_USERNAME;
+		String user1Pass = Config.FB_SECURED_ACCOUNT_PASSWORD;
+		String user2Email = Config.FB_SECURED_ACCOUNT_USERNAME2;
+		String user2Pass = Config.FB_SECURED_ACCOUNT_PASSWORD2;
+	//	WebDriver driver1 = new FirefoxDriver();
 		// login User1
 		UserLogin.Olduserlogin(driver1, user1Email, user1Pass);
-		// RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
+		//RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
 		Thread.sleep(2000);
 		System.out.print("Logged in");
 		// verify Username
@@ -42,17 +43,19 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		GameFeatures.createGame(driver1, SelectedFriends);
 
 		// login user2
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		WebDriver driver2 = new ChromeDriver();
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+//		WebDriver driver2 = new ChromeDriver();
 		UserLogin.Olduserlogin(driver2, user2Email, user2Pass);
 
 		// grab new GameId
 		String NewGameId=GameFeatures.grabGameId(driver1);
-		// user 2
-		driver2.switchTo().frame("iframe_canvas");
-		GameUtil.clickPlayHereForMultiTabIssue(driver2);
-		//
+		//make user 2 click cheat sheet
+		WebElement cheatSheetDiv2 = driver1.findElement(By
+				.className("friendChallenge"));
+		cheatSheetDiv2.click();
+		Thread.sleep(2000);
+		cheatSheetDiv2.click();
 		// check Cheat Sheet,Help,Stats,game tile,More
 		// cheat sheet
 		WebElement cheatSheetDiv = driver1.findElement(By
@@ -87,7 +90,7 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		assertEquals(status, true);
 		
 		// close insufficent user popup for user2
-		Popup.verifyPopup(driver2, "Game cancel!!!  Insufficient Users in Game");
+		Popup.closePopup(driver2);
 		GameUtil.closeGameEndPopUp(driver2);
 		System.out.print("User 2 has Logged in");
 		// click Play and verify Error Pop up msg
@@ -110,6 +113,7 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		Popup.verifyPopup(driver1,
 				"Not so fast... please place all of your 9 tiles!");
 		// place 1 tile outside board
+		WebElement startButton = driver1.findElement(By.id("startButton"));
 		Thread.sleep(1000);
 		WebElement bet_1 = gameBetPanel.findElement(By.id("bet_1"));
 		Tiles.drag1Tile(driver1, bet_1, startButton);

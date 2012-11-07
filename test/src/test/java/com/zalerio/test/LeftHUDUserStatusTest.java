@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.zalerio.config.Config;
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.Popup;
 import com.zalerio.config.Tiles;
@@ -18,15 +19,16 @@ import static org.junit.Assert.assertEquals;
 import com.zalerio.config.UserLogin;
 
 public class LeftHUDUserStatusTest {
-	@Test
+	//@Test
 	public void checkStatus() throws InterruptedException {
 		
-		WebDriver driver1 = new FirefoxDriver();
+	/*	WebDriver driver1 = new FirefoxDriver();
 		System.setProperty("webdriver.chrome.driver",
 				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 		WebDriver driver2 = new ChromeDriver();
-		String user1id = "griffinsingh1@gmail.com";
-		String user1pass = "griffinsingh1";
+	*/	
+		String user1id = Config.FB_SECURED_ACCOUNT_USERNAME;
+		String user1pass = Config.FB_SECURED_ACCOUNT_PASSWORD;
 		String user2id = "hemantkumer007@gmail.com";
 		String user2pass = "hemantkumer007";
 		UserLogin.Olduserlogin(driver1, user1id, user1pass);

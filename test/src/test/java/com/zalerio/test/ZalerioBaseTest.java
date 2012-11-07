@@ -1,15 +1,18 @@
 package com.zalerio.test;
 
 import java.net.URL;
+import java.util.LinkedList;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
+import org.testng.annotations.Parameters;
+import com.zalerio.config.Parallelized;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.junit.SauceOnDemandTestWatcher;
@@ -23,27 +26,21 @@ import com.saucelabs.junit.SauceOnDemandTestWatcher;
  *
  * @author Ross Rowe
  */
-//@RunWith(Parallelized.class)
+@RunWith(Parallelized.class)
 public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
 
 	 private String browser;
 	    private String browserVersion;
 	    private String os;
-	    private String userid;
-	    private String password;
-	//public ZalerioBaseTest()
-	//{
-		
-//	}
-	/*public ZalerioBaseTest(String os, String browser, String version,String userid,String password)  
-    {
-        super();
-        this.browser = browser;
-        this.browserVersion = version;
-        this.os = os;
-        this.userid=userid;
-        this.password=password;
-    }
+	  
+	public ZalerioBaseTest(String os, String browser, String version)
+	{
+		 super();
+	        this.browser = browser;
+	        this.browserVersion = version;
+	        this.os = os;
+	}
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Parameters
     public static LinkedList browsersStrings() throws Exception { 
@@ -51,14 +48,14 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
       String OS[]={"Windows 2008","Windows 2008"};//,"Mac 10.6","Windows 2008"};
       String browser[]={"firefox","googlechrome"};//',"safari","opera"};
       String version[]={"13"," "};//,"10","5","11"};
-      String userid[]={"abhilashbhaduri@gmail.com","griffinsingh1@gmail.com"};//,"rahulmu550@gmail.com","hemantkumer007@gmail.com","mahasingh50@gmail.com"};
-      String password[]={"16081989","griffinsingh1"};//,"rahulmu550","hemantkumer007","mahasingh50"};
+  //    String userid[]={"abhilashbhaduri@gmail.com","griffinsingh1@gmail.com"};//,"rahulmu550@gmail.com","hemantkumer007@gmail.com","mahasingh50@gmail.com"};
+  //    String password[]={"16081989","griffinsingh1"};//,"rahulmu550","hemantkumer007","mahasingh50"};
       for(int i=0;i<=1;i++)
       {
-       browsers.add(new String[] {OS[i], browser[i], version[i], userid[i],password[i] });
+       browsers.add(new String[] {OS[i], browser[i], version[i] });
       } 
     return browsers;
-	}*/
+	}
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
@@ -85,7 +82,7 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
     @Before
     public void setUp() throws Exception {
 
-        /*DesiredCapabilities capabillities=null ;;
+        DesiredCapabilities capabillities=null ;;
         if(browser.contains("firefox"))
         {
         	capabillities = DesiredCapabilities.firefox();
@@ -110,39 +107,16 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
         capabillities.setCapability("platform", os);
         capabillities.setCapability("name",  testName.getMethodName());
         
-        this.driver = new RemoteWebDriver(
+        this.driver1 = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                 capabillities);
-        this.sessionId = ((RemoteWebDriver)driver).getSessionId().toString();
-    
-        driver.get("http://apps.facebook.com/zalzerostaging/");
-        WebElement email=driver.findElement(By.id("email"));
-		 WebElement pass=driver.findElement(By.id("pass"));
-		WebElement login=driver.findElement(By.id("login_form"));
-		
-		email.sendKeys(userid);
-		pass.sendKeys(password);
-		login.submit();
-		driver.switchTo().frame("iframe_canvas");
-		GameUtil.clickPlayHereForMultiTabIssue(driver);
-		*/
-    	DesiredCapabilities capability1=null;
-    	capability1=DesiredCapabilities.chrome();
-    	DesiredCapabilities capability2=null;
-    	capability2=DesiredCapabilities.chrome();
-    	capability1.setCapability("version"," " );
-    	capability1.setCapability("platform", "Windows 2008");
-    	capability2.setCapability("version"," " );
-    	capability2.setCapability("platform", "Windows 2008");
-    	    	this.driver1 = new RemoteWebDriver(
-                new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
-                capability1);
         this.sessionId = ((RemoteWebDriver)driver1).getSessionId().toString();
+    
         this.driver2 = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
-                capability2);
+                capabillities);
         this.sessionId = ((RemoteWebDriver)driver2).getSessionId().toString();
-  }
+        }
 
     @Override
     public String getSessionId() {

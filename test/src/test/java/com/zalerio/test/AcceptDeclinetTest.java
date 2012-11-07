@@ -12,13 +12,13 @@ import com.zalerio.config.GameUtil;
 import com.zalerio.config.UserLogin;
 
 public class AcceptDeclinetTest  extends ZalerioBaseTest  {
-	public AcceptDeclinetTest(String os, String browser, String version,
-			String userid, String password) {
-		super();
+	public AcceptDeclinetTest(String os, String browser, String version)
+	 {
+		super(os, browser, version);
 		// TODO Auto-generated constructor stub
 	}
 
-	//@Test
+//	@Test
 	public void acceptDeclineTest()
 	{
 		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;

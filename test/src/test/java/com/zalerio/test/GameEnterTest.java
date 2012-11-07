@@ -8,18 +8,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import com.zalerio.config.Config;
 import com.zalerio.config.GameUtil;
+import com.zalerio.config.UserLogin;
 
 public class GameEnterTest extends ZalerioBaseTest {
-	public GameEnterTest(String os, String browser, String version,
-			String userid, String password) {
-	//	super(os, browser, version, userid, password);
+	public GameEnterTest(String os, String browser, String version)
+	{
+		super(os, browser, version);
 		// TODO Auto-generated constructor stub
 	}
 
-	//@Test
+	@Test
 	public void nonSecuredGameOpenTest() {
-		GameUtil.closeGameEndPopUp(driver1);
+		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;
+		String password=Config.FB_SECURED_ACCOUNT_PASSWORD;
+		UserLogin.Olduserlogin(driver1, emailid, password);
 		
 		
 		// Click Start a New Game
@@ -27,20 +31,11 @@ public class GameEnterTest extends ZalerioBaseTest {
 		assertEquals(startButton.isDisplayed(),true);
 	}
 	
-//	@Test
+	@Test
 	public void nonSecuredStartANewGame() {
-		GameUtil.closeGameEndPopUp(driver1);
-		// If Game End Pop up Found then dismiss it
-		try {
-			WebElement dismiss = driver1.findElement(By.className("dismiss"));
-			if (dismiss.isDisplayed()) {
-				dismiss.click();
-			}
-		} catch (NoSuchElementException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;
+		String password=Config.FB_SECURED_ACCOUNT_PASSWORD;
+		UserLogin.Olduserlogin(driver1, emailid, password);
 		// Click Start a New Game
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();

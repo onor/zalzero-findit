@@ -5,24 +5,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import com.zalerio.config.Config;
 import com.zalerio.config.GameUtil;
+import com.zalerio.config.UserLogin;
 
 public class ContactUsTest extends ZalerioBaseTest {
 	
-	public ContactUsTest(String os, String browser, String version,
-			String userid, String password) {
-		super(os, browser, version, userid, password);
+	public ContactUsTest(String os, String browser, String version) {
+		super(os, browser, version);
 		// TODO Auto-generated constructor stub
 	}
 
 	//@Test
 	public void trySendMail() {
-		GameUtil.closeGameEndPopUp(driver);
+		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;
+		String password=Config.FB_SECURED_ACCOUNT_PASSWORD;
+		UserLogin.Olduserlogin(driver1, emailid, password);
 		// click help
-		WebElement helpButton = driver.findElement(By.className("helpButton"));
+		WebElement helpButton = driver1.findElement(By.className("helpButton"));
 		helpButton.click();
 		// Contact Us
-		WebElement contactUs = driver.findElement(By.id("a-help-contactus"));
+		WebElement contactUs = driver1.findElement(By.id("a-help-contactus"));
 		contactUs.click();
 		try {
 			Thread.sleep(2000);
@@ -30,20 +33,20 @@ public class ContactUsTest extends ZalerioBaseTest {
 		}
 		// Enter first name
 		// first_name
-		WebElement first_name = driver.findElement(By.name("first_name"));
+		WebElement first_name = driver1.findElement(By.name("first_name"));
 		first_name.sendKeys("Abhilash");
 		// last_name
-		WebElement last_name = driver.findElement(By.name("last_name"));
+		WebElement last_name = driver1.findElement(By.name("last_name"));
 		last_name.sendKeys("Mobicules");
 		// email
-		WebElement email = driver.findElement(By.name("email"));
+		WebElement email = driver1.findElement(By.name("email"));
 		email.sendKeys("abhilash@mobicules.com");
 		// subject
-		WebElement subject = driver.findElement(By.name("subject"));
+		WebElement subject = driver1.findElement(By.name("subject"));
 		Select select = new Select(subject);
 		select.selectByVisibleText("Issue with game");
 		// body
-		WebElement body = driver.findElement(By.name("body"));
+		WebElement body = driver1.findElement(By.name("body"));
 		body.sendKeys("Testing Contact Us");
 		/*TODO
 		 * //verifyCode-----work has to be done on this-------------------
@@ -51,11 +54,11 @@ public class ContactUsTest extends ZalerioBaseTest {
 		 * verifyCode.sendKeys(" ");
 		 */
 		// upload_help_contactus
-		WebElement send = driver.findElement(By.id("upload_help_contactus"));
+		WebElement send = driver1.findElement(By.id("upload_help_contactus"));
 		send.click();
 		// close window
 		
-		WebElement s_friendpopup = driver.findElement(By.id("s_friendpopup"));
+		WebElement s_friendpopup = driver1.findElement(By.id("s_friendpopup"));
 		WebElement close = s_friendpopup.findElement(By.id("close"));
 		close.click();
 	}

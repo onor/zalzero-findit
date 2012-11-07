@@ -5,9 +5,11 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import com.zalerio.config.Popup;
 
 public class RatingScreenTest {
@@ -56,8 +58,11 @@ public class RatingScreenTest {
 		comment_improvement.click();
 		comment_improvement.sendKeys("checking feedback");
 		WebElement comment_like=suggestions.get(1).findElement(By.name("comment_like"));
-		comment_like.click();
+		Actions builder=new Actions(driver);
+		Action pressTab=builder.keyDown(comment_improvement,Keys.TAB).keyUp(comment_improvement,Keys.TAB).build();
+		pressTab.perform();
 		comment_like.sendKeys("checking feedback");
+		System.out.print("tab contains "+comment_like.getText());
 		submit_rating.click();
 		Popup.verifyPopup(driver, "Thank you for your suggestions.");
 		driver.navigate().refresh();

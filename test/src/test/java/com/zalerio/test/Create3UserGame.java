@@ -16,10 +16,15 @@ import com.zalerio.config.Popup;
 import com.zalerio.config.UserLogin;
 import com.zalerio.config.VerifyFeatures;
 
-public class Create3UserGame { // verify username
-								// left HUD carousal for friend decline
+public class Create3UserGame extends ZalerioBaseTest{ // verify username
+								public Create3UserGame(String os2, String browser2, String version) {
+		super(os2, browser2, version);
+		// TODO Auto-generated constructor stub
+	}
+
+	// left HUD carousal for friend decline
 								// Game confirmation Pop up
-	@Test
+//	@Test
 	public void createGame() throws InterruptedException {
 		// create 3 player game
 		String user1ID = "abhilashbhaduri@gmail.com";
@@ -28,7 +33,7 @@ public class Create3UserGame { // verify username
 
 		String user2Password = "griffinsingh1";
 		
-		WebDriver driver1 = new FirefoxDriver();
+		
 		// login User1
 		UserLogin.Olduserlogin(driver1, user1ID, user1Password);
 		//verify username

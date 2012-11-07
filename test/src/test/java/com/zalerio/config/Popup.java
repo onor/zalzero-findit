@@ -10,7 +10,7 @@ public class Popup {
 	public static void closePopup(WebDriver driver) {
 		try {
 			Thread.sleep(5000);
-			WebElement popup = driver.findElement(By.className("msgbox-msg"));
+	//		WebElement popup = driver.findElement(By.className("msgbox-msg"));
 			WebElement ok = driver.findElement(By.className("msgbox-ok"));
 			ok.click();
 		}catch(Exception e){e.printStackTrace();}

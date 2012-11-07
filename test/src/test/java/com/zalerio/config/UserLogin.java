@@ -4,10 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+//import com.zalerio.test.RatingScreenTest;
+
 public class UserLogin {
 	public static void Olduserlogin(WebDriver driver, String emailid,
 			String password)  {
-		driver.get("http://apps.facebook.com/zalerio/?force=play");
+		driver.get(Config.TEST_APP_URL);
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -22,7 +24,10 @@ public class UserLogin {
 		login_form.submit();
 		driver.switchTo().frame("iframe_canvas");
 		GameUtil.clickPlayHereForMultiTabIssue(driver);
-		Popup.closePopup(driver);
+	//	try {
+	//		RatingScreenTest.closeGameEndPopupWithVerifyRating(driver);
+	//	} catch (InterruptedException e) {
+	//		}
 		GameUtil.closeGameEndPopUp(driver);
 	}
 	public static void Newuserlogin(WebDriver driver, String emailid,

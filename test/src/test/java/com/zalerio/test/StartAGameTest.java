@@ -10,9 +10,8 @@ import org.openqa.selenium.WebElement;
 import com.zalerio.config.GameUtil;
 
 public class StartAGameTest extends ZalerioBaseTest {
-	public StartAGameTest(String os, String browser, String version,
-			String userid, String password) {
-	//	super(os, browser, version, userid, password);
+	public StartAGameTest(String os, String browser, String version) {
+		super(os, browser, version);
 		// TODO Auto-generated constructor stub
 	}
 	//	@Test
