@@ -728,7 +728,6 @@ define('rightHudController',["../../config/config", "../../helper/notifications"
     sound.playPopupApperenceSound();
     return $('#active-screen').append(gdDiv);
   };
-  jDocument.bind("client:" + zzGlobals.msgCodes.RIGHT_HUD, updateRightHud);
   return true;
 });
 
@@ -792,8 +791,6 @@ define('leftHudController',["../../config/config", "../../helper/notifications"]
     }
     return $("#gameInfo-game-players").append(userList);
   };
-  jDocument.bind("dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, updateLeftHud);
-  jDocument.bind("client:" + zzGlobals.clientCodes.USERINFO, updatePlayerPlate);
   return true;
 });
 
@@ -870,6 +867,7 @@ define('myLevel',['../../helper/utils'], function(utils) {
   GB_UINFO.PFN = "";
   return usersRecord = function(gameRecords) {
     var APG, FBids, UINFO, cl, cl_up, cls, cm_fbids, cr_belt_html, gameId, gssCount, i, index, is_apg, low_next_game_arr, low_next_won_arr, message, need_game_next, need_won_next, next_belt_html, next_cls, next_level, rematchButton, seatID, status, top_level, urDiv, user_level, vertical_text;
+    return;
     $(".Mylevel", "#rip_active_rh").remove();
     try {
       message = gameRecords.RH;
