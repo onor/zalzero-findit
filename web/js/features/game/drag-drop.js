@@ -27,6 +27,7 @@ define([], function() {
       if (window.tutorialFlag) {
         return;
       }
+      $('.box-blank').droppable("enable");
       $('.box-newBet').droppable("disable");
       $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
       $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
@@ -39,6 +40,7 @@ define([], function() {
       if (window.tutorialFlag) {
         return;
       }
+      $('.box-blank').droppable("enable");
       $('.box-newBet').droppable("disable");
       $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
       $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
