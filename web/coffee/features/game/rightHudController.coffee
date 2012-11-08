@@ -211,6 +211,6 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
 		    	
     	$('#active-screen').append gdDiv
    
-	#jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, updateRightHud
+	jDocument.bind "client:" + zzGlobals.msgCodes.RIGHT_HUD, updateRightHud
 	
 	true

@@ -67,7 +67,7 @@ define ["../../config/config","../../helper/notifications"], (config,notificatio
     	$("#gameInfo-game-players").append userList
 
     
-    #jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, updateLeftHud
-   # jDocument.bind "client:" + zzGlobals.clientCodes.USERINFO, updatePlayerPlate
+    jDocument.bind "dataObj:" + zzGlobals.dataObjCodes.ALL_PLAYER_INFO, updateLeftHud
+    jDocument.bind "client:" + zzGlobals.clientCodes.USERINFO, updatePlayerPlate
     
     true

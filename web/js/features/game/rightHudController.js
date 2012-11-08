@@ -217,5 +217,6 @@ define(["../../config/config", "../../helper/notifications"], function(config, n
     sound.playPopupApperenceSound();
     return $('#active-screen').append(gdDiv);
   };
+  jDocument.bind("client:" + zzGlobals.msgCodes.RIGHT_HUD, updateRightHud);
   return true;
 });
