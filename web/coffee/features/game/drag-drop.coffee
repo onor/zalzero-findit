@@ -1,9 +1,7 @@
 define [], () ->
-	bindStatus = false	
-	$('.draggableBets').live( "mouseover", () ->
+	addDrop : (el) ->
 		return if window.tutorialFlag
-		
-		$('.box-blank').droppable
+		$(el).droppable
 	      scope: "drop_tile"
 	      
 	      drop: (e, ui) ->
@@ -20,10 +18,8 @@ define [], () ->
 	      	$(@).draggable( "enable" )
 	      	
 	      	true
-	      	
-	      true
-	 )
-	 
+		 true
+		 
 	addDrag : (el) ->
 		return if window.tutorialFlag
 		$('.box-newBet').droppable("disable")

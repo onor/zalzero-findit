@@ -250,6 +250,7 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	    drawGameBoard = ->
 	      gameWallDiv = gamePlayView.getGameWall(board_X,board_Y)
 	      tilesIdxVOs = gamePlayView.getTilesIdxVOs()
+	      
 	      #utils.addEventHandler gameWallDiv, "drop", handleDropNew, false
 	      #utils.addEventHandler gameWallDiv, "dragover", handleDragoverNew, false
 	      #utils.addEventHandler gameWallDiv, "dragenter", handleDragEnterNew, false
