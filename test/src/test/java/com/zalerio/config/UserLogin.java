@@ -9,9 +9,9 @@ import org.openqa.selenium.WebElement;
 public class UserLogin {
 	public static void Olduserlogin(WebDriver driver, String emailid,
 			String password)  {
-		driver.get(Config.TEST_APP_URL);
+		driver.get("http://apps.facebook.com/zalzerostaging/?force=play");//(Config.TEST_APP_URL);
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(6000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

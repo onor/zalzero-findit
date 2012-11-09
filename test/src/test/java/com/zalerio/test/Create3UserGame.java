@@ -4,24 +4,25 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.zalerio.config.GameFeatures;
+import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
-import com.zalerio.config.UserLogin;
 import com.zalerio.config.VerifyFeatures;
 
+
+
 public class Create3UserGame extends ZalerioBaseTest{ // verify username
-								public Create3UserGame(String os2, String browser2, String version) {
-		super(os2, browser2, version);
+								
+/*
+	public Create3UserGame(String os, String browser, String version,
+			String user1id, String user2id, String password) {
+		super(os, browser, version, user1id, user2id, password);
 		// TODO Auto-generated constructor stub
 	}
-
+*/
 	// left HUD carousal for friend decline
 								// Game confirmation Pop up
 //	@Test
@@ -34,8 +35,6 @@ public class Create3UserGame extends ZalerioBaseTest{ // verify username
 		String user2Password = "griffinsingh1";
 		
 		
-		// login User1
-		UserLogin.Olduserlogin(driver1, user1ID, user1Password);
 		//verify username
 		VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
 		
@@ -43,15 +42,15 @@ public class Create3UserGame extends ZalerioBaseTest{ // verify username
 		int[] SelectedFriends=new int[]{2,3};
 		GameFeatures.createGame(driver1, SelectedFriends);
 		
-
+		GameUtil.closeGameEndPopUp(driver2);
 		// grab new GameId
 		String NewGameId=GameFeatures.grabGameId(driver1);
 		// move to user2
 		// login user2
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		WebDriver driver2 = new ChromeDriver();
-		UserLogin.Olduserlogin(driver2, user2ID, user2Password);
+	//	System.setProperty("webdriver.chrome.driver",
+	//			"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+	//	WebDriver driver2 = new ChromeDriver();
+	//	UserLogin.Olduserlogin(driver2, user2ID, user2Password);
 		// decline invitation
 		WebElement rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
 		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
@@ -60,6 +59,7 @@ public class Create3UserGame extends ZalerioBaseTest{ // verify username
 		WebElement decline = accept_decline.findElement(By
 				.className("right_hud_decline"));
 		decline.click();
+		GameUtil.closeGameEndPopUp(driver1);
 		// click OK on Pop up
 		Popup.verifyPopup(driver2, "You have declined successfuly");
 		//close game formation Pop up to  check left HUD
@@ -87,6 +87,7 @@ public class Create3UserGame extends ZalerioBaseTest{ // verify username
 			 WebElement declineBlock=statusWrapper.findElement(By.className("declineBlock"));
 			imgWrapper=declineBlock.findElements(By.className("imgWrapper"));
 			assertEquals(imgWrapper.size(),1);
+			GameUtil.closeGameEndPopUp(driver2);
 			//check NotResponded Yet
 			WebElement inviteBlock=statusWrapper.findElement(By.className("inviteBlock"));
 			imgWrapper=inviteBlock.findElements(By.className("imgWrapper"));

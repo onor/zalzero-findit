@@ -4,21 +4,20 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.zalerio.config.Config;
 import com.zalerio.config.GameUtil;
-import com.zalerio.config.UserLogin;
 
 public class HelpTest extends ZalerioBaseTest  {
-	public HelpTest(String os, String browser, String version) {
-	super(os, browser, version);
+	
+/*
+	public HelpTest(String os, String browser, String version, String user1id,
+			String user2id, String password) {
+		super(os, browser, version, user1id, user2id, password);
 		// TODO Auto-generated constructor stub
 	}
-
-	//@Test
+*/
+	@Test
 	public void tryOptions() {
-		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;
-		String password=Config.FB_SECURED_ACCOUNT_PASSWORD;
-		UserLogin.Olduserlogin(driver1, emailid, password);
+		
 		
 		// help
 		WebElement helpButton = driver1.findElement(By.className("helpButton"));
@@ -42,6 +41,7 @@ public class HelpTest extends ZalerioBaseTest  {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
+		GameUtil.closeGameEndPopUp(driver2);
 		// tutorial_taketurn
 		WebElement gameRulesStep2 = ruleContent.findElement(By
 				.id("tutorial_taketurn"));
@@ -58,9 +58,11 @@ public class HelpTest extends ZalerioBaseTest  {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
+		GameUtil.closeGameEndPopUp(driver2);
 		// tutorial_jokers
 		WebElement gameRulesStep4 = ruleContent.findElement(By
 				.id("tutorial_jokers"));
+		
 		gameRulesStep4.click();
 		try {
 			Thread.sleep(2000);

@@ -2,17 +2,20 @@ package com.zalerio.test;
 
 import java.util.List;
 
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import com.zalerio.config.GameUtil;
 
 public class RightHUDTest extends ZalerioBaseTest {
-	public RightHUDTest(String os, String browser, String version) {
-		super(os, browser, version);
+	
+/*
+	public RightHUDTest(String os, String browser, String version,
+			String user1id, String user2id, String password) {
+		super(os, browser, version, user1id, user2id, password);
 		// TODO Auto-generated constructor stub
 	}
-
+*/
 	//@Test
 	public void rightHUDTest() {
 		GameUtil.closeGameEndPopUp(driver1);
@@ -26,7 +29,12 @@ public class RightHUDTest extends ZalerioBaseTest {
 					.className("newCarouselblanktile"));
 			newCarouselblanktile.click();
 			//start a game window comes up.
-			Thread.sleep(5000);
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// close the window-close button 
 			WebElement friendpopup = driver1.findElement(By.id("friendpopup"));
 			WebElement closeButton = friendpopup.findElement(By.tagName("a"));

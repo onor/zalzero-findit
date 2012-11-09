@@ -4,28 +4,28 @@ import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.zalerio.config.Config;
 import com.zalerio.config.GameUtil;
-import com.zalerio.config.UserLogin;
 
 public class AcceptDeclinetTest  extends ZalerioBaseTest  {
-	public AcceptDeclinetTest(String os, String browser, String version)
-	 {
-		super(os, browser, version);
-		// TODO Auto-generated constructor stub
-	}
+	
 
-//	@Test
-	public void acceptDeclineTest()
+//public AcceptDeclinetTest(String os, String browser, String version,
+//			String user1id, String user2id, String password) {
+//		super();
+		// TODO Auto-generated constructor stub
+//	}
+
+@Test
+	public  void acceptDeclineTest()
 	{
-		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;
-		String password=Config.FB_SECURED_ACCOUNT_PASSWORD;
-	UserLogin.Olduserlogin(driver1, emailid, password);
+	//String emailid="abhi";
+	//String password="asc";
+	//UserLogin.Olduserlogin(driver1, emailid, password);
 	// accept -decline
 	//access right HUD
+		
 	WebElement  rightHUD_yourturn= driver1.findElement(By.id("rightHUD-yourturn"));
 	List<WebElement> your_turnTiles;
 	//access your turn tiles
@@ -60,6 +60,7 @@ public class AcceptDeclinetTest  extends ZalerioBaseTest  {
 	// click decline button
 	declineButton.click();
 	}
+	GameUtil.closeGameEndPopUp(driver2);
 	// click OK on POP up
 	WebElement okButton=driver1.findElement(By.className("msgbox-ok"));
 	if(okButton.isDisplayed())

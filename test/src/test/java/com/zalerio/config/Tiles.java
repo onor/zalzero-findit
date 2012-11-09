@@ -47,7 +47,7 @@ public class Tiles {
 					Action dragAndDrop = builder.clickAndHold(bet)
 							.moveToElement(position).release(position).build();
 					dragAndDrop.perform();
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 				}
 			} while (droppable.contains("-1"));
 		}

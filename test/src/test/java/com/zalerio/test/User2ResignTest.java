@@ -18,9 +18,15 @@ import com.zalerio.config.StartAGame;
 import com.zalerio.config.Tiles;
 import com.zalerio.config.UserLogin;
 
-public class User2ResignTest {
+public class User2ResignTest extends ZalerioBaseTest {
 	
-
+/*
+		public User2ResignTest(String os, String browser, String version,
+			String user1id, String user2id, String password) {
+		super(os, browser, version, user1id, user2id, password);
+		// TODO Auto-generated constructor stub
+	}
+*/
 		// user2 resigns from a game after user2 accepts game
 		// @Test
 		public void resignImmediateAfterAccept() throws InterruptedException {
@@ -423,7 +429,7 @@ public class User2ResignTest {
 			assertEquals(status, true);
 		}
 //resign after user1 hits final round 
-		@Test
+	//	@Test
 		public void resignFinalRoundAfterUser1HitsPlay()
 				throws InterruptedException {
 			WebDriver driver1 = new FirefoxDriver();

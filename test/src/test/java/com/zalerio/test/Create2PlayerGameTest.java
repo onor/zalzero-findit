@@ -6,50 +6,52 @@ import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.zalerio.config.Config;
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
-import com.zalerio.config.Stats;
 import com.zalerio.config.Tiles;
-import com.zalerio.config.UserLogin;
-import com.zalerio.config.VerifyFeatures;
 
-public class Create2PlayerGameTest // extends ZalerioBaseTest
+public class Create2PlayerGameTest  extends ZalerioBaseTest
 {
-//	@Test
+	
+	//public Create2PlayerGameTest()
+
+	//(String os, String browser, String version,
+	//		String user1id, String user2id, String password) {
+	//	super(os, browser, version, user1id, user2id, password);
+		// TODO Auto-generated constructor stub
+	//}
+
+	@Test
 	public void createGame() throws InterruptedException {
-		
-		String user1Email = Config.FB_SECURED_ACCOUNT_USERNAME;
-		String user1Pass = Config.FB_SECURED_ACCOUNT_PASSWORD;
-		String user2Email = Config.FB_SECURED_ACCOUNT_USERNAME2;
-		String user2Pass = Config.FB_SECURED_ACCOUNT_PASSWORD2;
-	//	WebDriver driver1 = new FirefoxDriver();
+//		String user1Email = "abhilashbhaduri@gmail.com";
+//		String user1Pass = "16081989"; //Config.FB_SECURED_ACCOUNT_PASSWORD;
+//		String user2Email = "griffinsingh1@gmail.com";//Config.FB_SECURED_ACCOUNT_USERNAME2;
+//		String user2Pass = "griffinsingh1";//Config.FB_SECURED_ACCOUNT_PASSWORD2;
+//		WebDriver driver1 = new FirefoxDriver();
 		// login User1
-		UserLogin.Olduserlogin(driver1, user1Email, user1Pass);
+	//	driver1.manage().window().s
+//		UserLogin.Olduserlogin(driver1, user1Email, user1Pass);
 		//RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
 		Thread.sleep(2000);
 		System.out.print("Logged in");
 		// verify Username
-		VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
-		int []SelectedFriends=new int[]{2};
+//		VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
+		int []SelectedFriends=new int[]{0};
 		// create new game at friendPosition
 		GameFeatures.createGame(driver1, SelectedFriends);
-
+		GameUtil.closeGameEndPopUp(driver2);
 		// login user2
 //		System.setProperty("webdriver.chrome.driver",
 //				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 //		WebDriver driver2 = new ChromeDriver();
-		UserLogin.Olduserlogin(driver2, user2Email, user2Pass);
-
+//		UserLogin.Olduserlogin(driver2, user2Email, user2Pass);
+		
 		// grab new GameId
 		String NewGameId=GameFeatures.grabGameId(driver1);
+		GameUtil.closeGameEndPopUp(driver2);
 		//make user 2 click cheat sheet
 		WebElement cheatSheetDiv2 = driver1.findElement(By
 				.className("friendChallenge"));
@@ -90,7 +92,6 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		assertEquals(status, true);
 		
 		// close insufficent user popup for user2
-		Popup.closePopup(driver2);
 		GameUtil.closeGameEndPopUp(driver2);
 		System.out.print("User 2 has Logged in");
 		// click Play and verify Error Pop up msg
@@ -123,7 +124,7 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		bet_0 = gameBetPanel.findElement(By.id("bet_0"));
 		bet_1 = gameBetPanel.findElement(By.id("bet_1"));
 		Tiles.drag1Tile(driver1, bet_1, bet_0);
-
+		GameUtil.closeGameEndPopUp(driver2);
 		// drag rest of tiles at random and place on board.
 		for (int i = 1; i < 9; i++) {
 			String betid = "bet_" + i;
@@ -148,9 +149,9 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		play.click();
 		Thread.sleep(2000);
 		// change position of tiles on board TODO unsuccessful need to be redone
-		tilePresentPosition = gamewall.findElement(By.id("boardTile-90"));
-		String draggable = tilePresentPosition.getAttribute("draggable");
-
+	//	tilePresentPosition = gamewall.findElement(By.id("boardTile-90"));
+	//	String draggable = tilePresentPosition.getAttribute("draggable");
+		GameUtil.closeGameEndPopUp(driver2);
 		// click Play to verify popup
 		play.click();
 		Popup.verifyPopup(driver1,
@@ -246,44 +247,64 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 				.contains("2");
 		assertEquals(status, true);
 		// Play User1 round2
+		Thread.sleep(3000);
 		Tiles.dragAllTiles(driver1);
+		GameUtil.closeGameEndPopUp(driver2);
 		play.click();
 		// Play User2 round2
 		Tiles.dragAllTiles(driver2);
+		GameUtil.closeGameEndPopUp(driver1);
 		play2.click();
 		// Play User1 round3
+		Thread.sleep(3000);
 		Tiles.dragAllTiles(driver1);
+		GameUtil.closeGameEndPopUp(driver2);
 		play.click();
 		// Play User2 round3
 		Tiles.dragAllTiles(driver2);
+		GameUtil.closeGameEndPopUp(driver1);
 		play2.click();
 		// Play User1 round4
+		Thread.sleep(3000);
 		Tiles.dragAllTiles(driver1);
+		GameUtil.closeGameEndPopUp(driver2);
 		play.click();
 		// Play User2 round4
 		Tiles.dragAllTiles(driver2);
+		GameUtil.closeGameEndPopUp(driver1);
 		play2.click();
 		// Play User1 round5
+		Thread.sleep(3000);
 		Tiles.dragAllTiles(driver1);
+		GameUtil.closeGameEndPopUp(driver2);
 		play.click();
 		// Play User2 round5
 		Tiles.dragAllTiles(driver2);
+		GameUtil.closeGameEndPopUp(driver1);
 		play2.click();
 
 		// Play User1 round6
+		Thread.sleep(3000);
 		Tiles.dragAllTiles(driver1);
+		GameUtil.closeGameEndPopUp(driver2);
 		play.click();
 		// Play User2 round6
 		Tiles.dragAllTiles(driver2);
+		GameUtil.closeGameEndPopUp(driver1);
 		play2.click();
 		// Play User1 round7
+		Thread.sleep(3000);
 		Tiles.dragAllTiles(driver1);
+		GameUtil.closeGameEndPopUp(driver2);
 		play.click();
 		// Play User2 round7
 		Tiles.dragAllTiles(driver2);
+		GameUtil.closeGameEndPopUp(driver1);
 		play2.click();
+		Thread.sleep(3000);
 		// verify rating screen pop up
-		RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
+		//RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
+		GameUtil.closeGameEndPopUp(driver1);
 		// handle finish game pop up
 		Thread.sleep(5000);
 		WebElement score_friendpopup = driver2.findElement(By
@@ -304,10 +325,9 @@ public class Create2PlayerGameTest // extends ZalerioBaseTest
 		// reload the page
 		driver2.navigate().refresh();
 		Thread.sleep(8000);
-		// TODO this is not working properly
 		driver2.switchTo().frame("iframe_canvas");
-		GameUtil.closeGameEndPopUp(driver2);
+		//RatingScreenTest.closeGameEndPopupWithVerifyRating(driver2);
 		//check stats 
-		Stats.verifyGameAddToPastGames(driver1, NewGameId);
+	//	Stats.verifyGameAddToPastGames(driver2, NewGameId);
 	}
 }

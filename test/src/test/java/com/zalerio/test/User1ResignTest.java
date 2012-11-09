@@ -18,14 +18,20 @@ import com.zalerio.config.StartAGame;
 import com.zalerio.config.Tiles;
 import com.zalerio.config.UserLogin;
 
-public class User1ResignTest {
+ public class User1ResignTest extends ZalerioBaseTest{
+/*	public User1ResignTest(String os, String browser, String version,
+			String user1id, String user2id, String password) {
+		super(os, browser, version, user1id, user2id, password);
+		// TODO Auto-generated constructor stub
+	}
+*/
 	// user1 resigns from a game before user2 accepts the game
 	// @Test
 	public void resignBeforeAccept() throws InterruptedException {
-		WebDriver driver1 = new FirefoxDriver();
-		String emailid = "abhilashbhaduri@gmail.com";
-		String password = "16081989";
-		UserLogin.Olduserlogin(driver1, emailid, password);
+		//WebDriver driver1 = new FirefoxDriver();
+		//String emailid = "abhilashbhaduri@gmail.com";
+		//String password = "16081989";
+		//UserLogin.Olduserlogin(driver1, emailid, password);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
@@ -492,7 +498,7 @@ public class User1ResignTest {
 		assertEquals(status, true);
 	}
 
-	@Test
+	//@Test
 	public void resignFinalRoundAfterUser2HitsPlay()
 			throws InterruptedException {
 		WebDriver driver1 = new FirefoxDriver();

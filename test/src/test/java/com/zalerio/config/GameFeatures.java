@@ -29,7 +29,7 @@ public class GameFeatures {
 						.id("sendinvite"));
 		sendChallengeButton.click();
 		System.out.println("challenge sent");
-		Popup.verifyPopup(driver,"Challenge has been sent. Would you like to start playing.");
+		Popup.closePopup(driver);
 		Thread.sleep(2000);
 	}
 	public static String grabGameId(WebDriver driver)

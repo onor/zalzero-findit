@@ -3,35 +3,36 @@ package com.zalerio.test;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import com.zalerio.config.GameUtil;
 
 public class StatsHandleTest extends ZalerioBaseTest {
 	
+	
+/*
 	public StatsHandleTest(String os, String browser, String version,
-			String userid, String password) {
-		super(os, browser, version, userid, password);
+			String user1id, String user2id, String password) {
+		super(os, browser, version, user1id, user2id, password);
 		// TODO Auto-generated constructor stub
 	}
-
-	//@Test
+*/
+	@Test
 	public void statsClick() {
-		GameUtil.closeGameEndPopUp(driver);
+		
 		// stats
-		WebElement stats = driver.findElement(By.id("bottomHUDbuttons-stats"));
+		WebElement stats = driver1.findElement(By.id("bottomHUDbuttons-stats"));
 		stats.click();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
 		// my levels
-		WebElement myLevels = driver.findElement(By.id("mylevel_a"));
+		WebElement myLevels = driver1.findElement(By.id("mylevel_a"));
 		myLevels.click();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
 		// learn-performance-level
-		WebElement learn_performance_level = driver.findElement(By
+		WebElement learn_performance_level = driver1.findElement(By
 				.id("learn-performance-level"));
 		learn_performance_level.click();
 		try {
@@ -39,21 +40,21 @@ public class StatsHandleTest extends ZalerioBaseTest {
 		} catch (InterruptedException e) {
 		}
 		// Close performance window
-		WebElement perform_close = driver.findElement(By
+		WebElement perform_close = driver1.findElement(By
 				.id("close-performance-level"));
 		perform_close.click();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
-		WebElement myGames = driver.findElement(By.id("mygames_a"));
+		WebElement myGames = driver1.findElement(By.id("mygames_a"));
 		myGames.click();
 		//TODO
 		// re match from left HUD
 		
 		// re-match cannot be done now- have some limitations
 		//CLOSE stats s_friendpopup
-		WebElement s_friendpopup=driver.findElement(By.id("s_friendpopup"));
+		WebElement s_friendpopup=driver1.findElement(By.id("s_friendpopup"));
 		WebElement close=s_friendpopup.findElement(By.id("close"));
 		close.click();
 	}

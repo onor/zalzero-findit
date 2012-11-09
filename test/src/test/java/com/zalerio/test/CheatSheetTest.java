@@ -6,23 +6,19 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.zalerio.config.Config;
-import com.zalerio.config.GameUtil;
-import com.zalerio.config.UserLogin;
-
 public class CheatSheetTest extends ZalerioBaseTest {
 
-	public CheatSheetTest(String os, String browser, String version) {
-		super(os, browser, version);
-		
-	}
+	
 
-//	@Test
+/*public CheatSheetTest
+(String os, String browser, String version,
+			String user1id, String user2id, String password) {
+		super(os, browser, version, user1id, user2id, password);
+		// TODO Auto-generated constructor stub
+	}
+*/
+		@Test
 	public void openAndScrollCheatSheet() {
-		String emailid=Config.FB_SECURED_ACCOUNT_USERNAME;
-		String password=Config.FB_SECURED_ACCOUNT_PASSWORD;
-		UserLogin.Olduserlogin(driver1, emailid, password);
-		GameUtil.closeGameEndPopUp(driver1);
 		// class friendChallenge
 		// class friendChallenge back_to_the_game
 		WebElement cheatSheetDiv = driver1.findElement(By
