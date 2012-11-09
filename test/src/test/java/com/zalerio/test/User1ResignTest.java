@@ -26,7 +26,7 @@ import com.zalerio.config.UserLogin;
 	}
 */
 	// user1 resigns from a game before user2 accepts the game
-	// @Test
+	 @Test
 	public void resignBeforeAccept() throws InterruptedException {
 		//WebDriver driver1 = new FirefoxDriver();
 		//String emailid = "abhilashbhaduri@gmail.com";
@@ -47,24 +47,24 @@ import com.zalerio.config.UserLogin;
 	}
 
 	// user1 resigns from a game after user2 accepts game
-	// @Test
+	 @Test
 	public void resignImmediateAfterAccept() throws InterruptedException {
-		WebDriver driver1 = new FirefoxDriver();
-		String emailid1 = "abhilashbhaduri@gmail.com";
-		String password1 = "16081989";
-		UserLogin.Olduserlogin(driver1, emailid1, password1);
+//		WebDriver driver1 = new FirefoxDriver();
+//		String emailid1 = "abhilashbhaduri@gmail.com";
+//		String password1 = "16081989";
+//		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
 		String NewGameId = GameFeatures.grabGameId(driver1);
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		WebDriver driver2 = new ChromeDriver();
-		String emailid2 = "griffinsingh1@gmail.com";
-		String password2 = "griffinsingh1";
-		UserLogin.Olduserlogin(driver2, emailid2, password2);
-		Thread.sleep(2000);
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+//		WebDriver driver2 = new ChromeDriver();
+//		String emailid2 = "griffinsingh1@gmail.com";
+//		String password2 = "griffinsingh1";
+//		UserLogin.Olduserlogin(driver2, emailid2, password2);
+//		Thread.sleep(2000);
 		// make user2 accept game
 		GameFeatures.acceptInvitation(driver2, NewGameId);
 		
@@ -119,26 +119,26 @@ import com.zalerio.config.UserLogin;
 	}
 
 	// user1 resigns from a game after user2 accepts and user1 drags a all tiles
-	// @Test
+	 @Test
 	public void resignAfterDragFewTiles() throws InterruptedException {
-		WebDriver driver1 = new FirefoxDriver();
-		String emailid1 = "abhilashbhaduri@gmail.com";
-		String password1 = "16081989";
-		UserLogin.Olduserlogin(driver1, emailid1, password1);
+//		WebDriver driver1 = new FirefoxDriver();
+//		String emailid1 = "abhilashbhaduri@gmail.com";
+//		String password1 = "16081989";
+//		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
 		String NewGameId=GameFeatures.grabGameId(driver1);
 		//login user2
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		WebDriver driver2 = new ChromeDriver();
-		String emailid2 = "griffinsingh1@gmail.com";
-		String password2 = "griffinsingh1";
-		UserLogin.Olduserlogin(driver2, emailid2, password2);
-		Thread.sleep(2000);
-		// make user2 accept game
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+//		WebDriver driver2 = new ChromeDriver();
+//		String emailid2 = "griffinsingh1@gmail.com";
+//		String password2 = "griffinsingh1";
+//		UserLogin.Olduserlogin(driver2, emailid2, password2);
+//		Thread.sleep(2000);
+//		// make user2 accept game
 		GameFeatures.acceptInvitation(driver2, NewGameId);
 
 		// grab shown name of user
@@ -188,24 +188,24 @@ import com.zalerio.config.UserLogin;
 		assertEquals(score.getText(), "0");
 	}
 
-	// @Test
+	 @Test
 	public void resignAfterPl2dragsAllTiles() throws InterruptedException {
-		WebDriver driver1 = new FirefoxDriver();
-		String emailid1 = "abhilashbhaduri@gmail.com";
-		String password1 = "16081989";
-		UserLogin.Olduserlogin(driver1, emailid1, password1);
+//		WebDriver driver1 = new FirefoxDriver();
+//		String emailid1 = "abhilashbhaduri@gmail.com";
+//		String password1 = "16081989";
+//		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
 		String NewGameId = GameFeatures.grabGameId(driver1);
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		WebDriver driver2 = new ChromeDriver();
-		String emailid2 = "griffinsingh1@gmail.com";
-		String password2 = "griffinsingh1";
-		UserLogin.Olduserlogin(driver2, emailid2, password2);
-		Thread.sleep(2000);
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+//		WebDriver driver2 = new ChromeDriver();
+//		String emailid2 = "griffinsingh1@gmail.com";
+//		String password2 = "griffinsingh1";
+//		UserLogin.Olduserlogin(driver2, emailid2, password2);
+//		Thread.sleep(2000);
 		// make user2 accept game
 		GameFeatures.acceptInvitation(driver2, NewGameId);
 
@@ -259,22 +259,22 @@ import com.zalerio.config.UserLogin;
 	// user1 resigns after playing round 1 after user has accepted game
 	// @Test
 	public void resignAfterPl1clicksPlay() throws InterruptedException {
-		WebDriver driver1 = new FirefoxDriver();
-		String emailid1 = "abhilashbhaduri@gmail.com";
-		String password1 = "16081989";
-		UserLogin.Olduserlogin(driver1, emailid1, password1);
+//		WebDriver driver1 = new FirefoxDriver();
+//		String emailid1 = "abhilashbhaduri@gmail.com";
+//		String password1 = "16081989";
+//		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
 		String NewGameId = GameFeatures.grabGameId(driver1);
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		WebDriver driver2 = new ChromeDriver();
-		String emailid2 = "griffinsingh1@gmail.com";
-		String password2 = "griffinsingh1";
-		UserLogin.Olduserlogin(driver2, emailid2, password2);
-		Thread.sleep(2000);
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+//		WebDriver driver2 = new ChromeDriver();
+//		String emailid2 = "griffinsingh1@gmail.com";
+//		String password2 = "griffinsingh1";
+//		UserLogin.Olduserlogin(driver2, emailid2, password2);
+//		Thread.sleep(2000);
 		// make user2 accept game
 		GameFeatures.acceptInvitation(driver2, NewGameId);
 
@@ -329,24 +329,24 @@ import com.zalerio.config.UserLogin;
 		assertEquals(score.getText(), "0");
 	}
 
-	// @Test
+	 @Test
 	public void resignAfterPl2ClicksPlay() throws InterruptedException {
-		WebDriver driver1 = new FirefoxDriver();
-		String emailid1 = "abhilashbhaduri@gmail.com";
-		String password1 = "16081989";
-		UserLogin.Olduserlogin(driver1, emailid1, password1);
+//		WebDriver driver1 = new FirefoxDriver();
+//		String emailid1 = "abhilashbhaduri@gmail.com";
+//		String password1 = "16081989";
+//		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
 		String NewGameId = GameFeatures.grabGameId(driver1);
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		WebDriver driver2 = new ChromeDriver();
-		String emailid2 = "griffinsingh1@gmail.com";
-		String password2 = "griffinsingh1";
-		UserLogin.Olduserlogin(driver2, emailid2, password2);
-		Thread.sleep(2000);
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+//		WebDriver driver2 = new ChromeDriver();
+//		String emailid2 = "griffinsingh1@gmail.com";
+//		String password2 = "griffinsingh1";
+//		UserLogin.Olduserlogin(driver2, emailid2, password2);
+//		Thread.sleep(2000);
 		// make user2 accept game
 		GameFeatures.acceptInvitation(driver2, NewGameId);
 
@@ -403,25 +403,25 @@ import com.zalerio.config.UserLogin;
 		assertEquals(status, false);
 	}
 
-	// @Test
+	 @Test
 	public void resignRoundNWithEqualScores() throws InterruptedException {
-		WebDriver driver1 = new FirefoxDriver();
-		String emailid1 = "abhilashbhaduri@gmail.com";
-		String password1 = "16081989";
-		UserLogin.Olduserlogin(driver1, emailid1, password1);
+//		WebDriver driver1 = new FirefoxDriver();
+//		String emailid1 = "abhilashbhaduri@gmail.com";
+//		String password1 = "16081989";
+//		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
 		Thread.sleep(2000);
 		// grab new GameId
 		String NewGameId = GameFeatures.grabGameId(driver1);
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		WebDriver driver2 = new ChromeDriver();
-		String emailid2 = "griffinsingh1@gmail.com";
-		String password2 = "griffinsingh1";
-		UserLogin.Olduserlogin(driver2, emailid2, password2);
-		Thread.sleep(2000);
-		// make user2 accept game
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+//		WebDriver driver2 = new ChromeDriver();
+//		String emailid2 = "griffinsingh1@gmail.com";
+//		String password2 = "griffinsingh1";
+//		UserLogin.Olduserlogin(driver2, emailid2, password2);
+//		Thread.sleep(2000);
+//		// make user2 accept game
 		GameFeatures.acceptInvitation(driver2, NewGameId);
 
 		// grab shown name of user
