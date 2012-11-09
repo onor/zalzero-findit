@@ -1,4 +1,4 @@
-define [], () ->
+define ['drag-drop'], (dragdrop) ->
 	class gameView
 		# constructor class
 		constructor: () ->
@@ -195,6 +195,7 @@ define [], () ->
 				while (if 0 <= board_X then j < board_X else j > board_X)
 					csBlankTileClassName = "box-blank box-black ui-droppable"
 					gameWallTileDiv = document.createElement("div")
+					dragdrop.addDrop gameWallTileDiv
 					gameWallTileDiv.className = csBlankTileClassName
 					tileIdx = @parseCoordsAsNum( j, i, board_X )
 					gameWallTileDiv.id = "boardTile-" + tileIdx

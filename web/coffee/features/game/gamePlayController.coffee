@@ -1,4 +1,4 @@
-define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config/globals","gamePlayView","messageListener"], (confirmBox,utils,myLevel,globals,gamePlayView,messageListenerObj) ->
+define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config/globals","gamePlayView","messageListener",'drag-drop'], (confirmBox,utils,myLevel,globals,gamePlayView,messageListenerObj,dragdrop) ->
 	bets = {}
 	boardVo = {}
 	responseVo = {}
@@ -140,7 +140,7 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	          el.dragBet = 0
 	          el.draggable = false  if el.draggable?
 	          # remove event handler
-	          utils.removeEventHandler el, "dragstart", handleDragStart, false
+	          #utils.removeEventHandler el, "dragstart", handleDragStart, false
 	          
 	          (if 0 <= roundBets then i++ else i--)
 	        gamePlayView.setBetDonePlayButtonEl playButtonEl
@@ -170,12 +170,13 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	            gamePlayView.getUsedDraggableBetsClass el	            
 	            el.dragBet = 0
 	            el.draggable = false  if el.draggable?
-	            utils.removeEventHandler el, "dragstart", handleDragStart, false
+	            #utils.removeEventHandler el, "dragstart", handleDragStart, false
 	          else
 	            gamePlayView.getDraggableBetsClass el	            
 	            el.dragBet = 1
 	            el.draggable = true  if el.draggable?
-	            utils.addEventHandler el, "dragstart", handleDragStart, false
+	            dragdrop.addDrag el
+	            #utils.addEventHandler el, "dragstart", handleDragStart, false
 	          gamePlayView.enablePlayBoutton playButtonEl
 	          _results.push utils.addEventHandler(playButtonEl, "click", sendPlaceBetToServer, true)
 	          (if 0 <= roundBets then i++ else i--)
@@ -193,7 +194,8 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	        gamePlayView.getDraggableBetsClass divNbrPanel
 	        divNbrPanel.id = currentBetId
 	        divNbrPanel.draggable = true  if divNbrPanel.draggable?
-	        utils.addEventHandler divNbrPanel, "dragstart", handleDragStart, false
+	        #utils.addEventHandler divNbrPanel, "dragstart", handleDragStart, false
+	        dragdrop.addDrag divNbrPanel
 	        divAnc = gamePlayView.createAHrefElem()
 	        gamePlayView.getSpaceClass divAnc
 	        divAnc.id = "new-" + i
@@ -207,22 +209,22 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	      
 	    		
 		#fired when tiles are lifted from the upper basket
-	    handleDragStart = (e) ->
-	      utils.log e.target.id
-	      gamePlayView.setCustomDragImage e
-	      e.dataTransfer.setData internalDNDType, @id
-	      gamePlayView.addMoveClass e.target	      
-	      utils.log e.target + " : " + e.target.className
-	      utils.log "drag started!"
+#	    handleDragStart = (e) ->
+#	      utils.log e.target.id
+#	      gamePlayView.setCustomDragImage e
+#	      e.dataTransfer.setData internalDNDType, @id
+#	      gamePlayView.addMoveClass e.target	      
+#	      utils.log e.target + " : " + e.target.className
+#	      utils.log "drag started!"
 		
 		#fired when tiles are lifted from the board
-	    handleDragStartWithinBoard = (e) ->
-	      betId = @getAttribute("placedBetId")
-	      gamePlayView.setCustomDragImage e
-	      e.dataTransfer.setData internalDNDType, betId
-	      gamePlayView.addMoveClass e.target
-	      utils.log e.target, e.target.className
-	      utils.log "drag started!"
+#	    handleDragStartWithinBoard = (e) ->
+#	      betId = @getAttribute("placedBetId")
+#	      gamePlayView.setCustomDragImage e
+#	      e.dataTransfer.setData internalDNDType, betId
+#	      gamePlayView.addMoveClass e.target
+#	      utils.log e.target, e.target.className
+#	      utils.log "drag started!"
 	
 	    
 #	    $('.draggableBets').draggable
@@ -248,6 +250,7 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	    drawGameBoard = ->
 	      gameWallDiv = gamePlayView.getGameWall(board_X,board_Y)
 	      tilesIdxVOs = gamePlayView.getTilesIdxVOs()
+	      
 	      #utils.addEventHandler gameWallDiv, "drop", handleDropNew, false
 	      #utils.addEventHandler gameWallDiv, "dragover", handleDragoverNew, false
 	      #utils.addEventHandler gameWallDiv, "dragenter", handleDragEnterNew, false
@@ -332,7 +335,8 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	            currentEl.dragBet = 1
 	            currentEl.setAttribute "placedBetId", window.currentBets[tileIdx]
 	            currentTileClass = csBlankTileClassName + getTileClass(gamePlayView.tileClassOverload.CURR_PLYR_NEWBET)
-	            utils.addEventHandler currentEl, "dragstart", handleDragStartWithinBoard, false
+	            #utils.addEventHandler currentEl, "dragstart", handleDragStartWithinBoard, false
+	            dragdrop.addDragClone currentEl
 	            currentTileVal = ""
 	          if currentTilePriority < 10 and (betChangeVOs[tileIdx]?)
 	            if parseInt(betChangeVOs[tileIdx]) is 1
