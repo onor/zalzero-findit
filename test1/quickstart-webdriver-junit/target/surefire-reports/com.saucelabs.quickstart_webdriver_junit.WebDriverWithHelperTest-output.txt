@@ -1,0 +1,11 @@
+ok button found
+
+name is Singh G. status 1
+
+no game is found hence creating a new game
+
+ok button found
+
+status 2
+SauceOnDemandSessionID=14373159df9b434886d70d26397bd400 job-name=com.saucelabs.quickstart_webdriver_junit.WebDriverWithHelperTest.unionMonitor
+

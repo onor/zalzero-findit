@@ -56,8 +56,8 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
     @Before
     public void setUp() throws Exception {
 
-        DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-        capabillities.setCapability("version", "5");
+        DesiredCapabilities capabillities = DesiredCapabilities.chrome();
+        capabillities.setCapability("version", " ");
         capabillities.setCapability("platform", Platform.XP);
         capabillities.setCapability("name",  testName.getMethodName());
         this.driver = new RemoteWebDriver(
@@ -87,6 +87,58 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		pass.sendKeys("griffinsingh1");
 		login_form.submit();
 		driver.switchTo().frame("iframe_canvas");
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		//close pop up
+		try{
+		WebElement okButton = driver.findElement(By.className("msgbox-ok"));
+		if (okButton != null) {
+			System.out.println("ok button found");
+		}
+		okButton.click();
+		}catch(Exception e)
+		{}
+		// close game end popup
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// If Game End Pop up Found then dismiss it
+		try{
+		WebElement score_friendpopup=driver.findElement(By.id("score_friendpopup"));
+		WebElement close=score_friendpopup.findElement(By.id("close"));	
+		close.click();
+		}catch(Exception e)
+		{e.printStackTrace();}
+		//close feedback screen
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		try{
+			WebElement rating_popup=driver.findElement(By.className("rating-popup"));
+			WebElement close1= rating_popup.findElement(By.tagName("a"));
+			if(close1.isDisplayed())
+			{
+				close1.click();
+			}
+		}catch(Exception e)
+		{e.printStackTrace();}
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+			
 		// verify username is visible
 		WebElement leftHUD= driver.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel=leftHUD.findElement(By.className("gameInfoPanel"));
@@ -96,9 +148,10 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		if(userAreaName.isDisplayed())
 		{
 			String name=userAreaName.getText();
-			if(name.contains(""))
+			if(name.contains("Singh"))
 			{
 				status=1;
+				System.out.println("name is "+name+" status "+status);
 			}	
 		}
 		//verify right HUD game carousals
@@ -113,10 +166,12 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 			if(userArea1.findElement(By.className("round_no")).isDisplayed())
 			{
 				status=2;
+				System.out.println("round no found  "+ status +"status");
 			}
 		}catch(Exception e)
 		{
 			//else create a new game and verify right HUD carousals
+			System.out.println("no game is found hence creating a new game");
 			
 			try {
 				Thread.sleep(10000);
@@ -130,7 +185,6 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			WebElement friendlist=driver.findElement(By.className("friendlist"));
