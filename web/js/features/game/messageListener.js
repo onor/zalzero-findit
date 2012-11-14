@@ -2,8 +2,64 @@
 
 define(["../../helper/confirmBox", "../../helper/utils", "gamePlayView"], function(confirmBox, utils, gamePlayView) {
   window.messageListener = function(event, messageName, broadcastType, fromClientID, roomID, message) {
-    var i, playerBetTiles, playerBetsChangeObj, tileId;
+    var i, newCoordObj, parsedObj, playerBetTiles, playerBetsChangeObj, resignStatus, scoreArray, seatId, seatIdArray, tileId, usersObject, x;
     switch (messageName) {
+      case zalerioCMDListners.DECLINE_STATUS:
+        if (parseInt(message) === 1) {
+          confirmBox(popupMSG.declineInvite());
+          return gamePlayView.setGameDisable();
+        }
+        break;
+      case zalerioCMDListners.RIGHT_HUD:
+        usersObject = jQuery.parseJSON(message);
+        for (i in usersObject) {
+          usersObject[i] = jQuery.parseJSON(usersObject[i]);
+          usersObject[i].PLRS = jQuery.parseJSON(usersObject[i].PLRS);
+          scoreArray = [];
+          seatIdArray = [];
+          for (seatId in usersObject[i].PLRS) {
+            usersObject[i].PLRS[seatId] = jQuery.parseJSON(usersObject[i].PLRS[seatId]);
+            scoreArray[seatId] = parseInt(usersObject[i].PLRS[seatId].PSC);
+            seatIdArray.push(seatId);
+          }
+          seatIdArray.sort(function(x, y) {
+            return scoreArray[y] - scoreArray[x];
+          });
+          usersObject[i].PLSC = {};
+          for (x in seatIdArray) {
+            usersObject[i].PLSC[x] = seatIdArray[x];
+          }
+        }
+        if (zzGlobals.msgVars.RH === 'RIGHT_HUD') {
+          zzGlobals.msgVars.RH = usersObject;
+        } else {
+          $.extend(zzGlobals.msgVars.RH, usersObject);
+        }
+        utils.log('MT & TT', zzGlobals.msgVars.RH);
+        return jDocument.trigger("client:" + zzGlobals.msgCodes.RIGHT_HUD, usersObject);
+      case zalerioCMDListners.CLOSE_INVITE:
+        if (0 === message) {
+          return confirmBox('Sorry!!! Unable to Close Invite, <br /> Plese try again..');
+        } else {
+          return gamePlayView.removeStatusPopup();
+        }
+        break;
+      case zalerioCMDListners.RESIGN_GAME:
+        if (message === 0) {
+          confirmBox('Sorry!!! Unable to Resign, \n Plese try again..');
+          return gamePlayView.showBetsPanel();
+        } else {
+          resignStatus = 1;
+          return gamePlayView.setGameDisable();
+        }
+        break;
+      case zalerioCMDListners.ORIG_FIGS:
+        newCoordObj = jQuery.parseJSON(message);
+        utils.log(newCoordObj);
+        return parseToGameBoard(zalerioMapType.ORIG_MAP, newCoordObj);
+      case zalerioCMDListners.BET_RESPONSE:
+        parsedObj = jQuery.parseJSON(message);
+        return utils.log("zalerioCMDListners.BET_RESPONSE if failed : ", parsedObj);
       case zalerioCMDListners.BET_CHANGES:
         window.betChangeVOs = {};
         playerBetsChangeObj = jQuery.parseJSON(message);
