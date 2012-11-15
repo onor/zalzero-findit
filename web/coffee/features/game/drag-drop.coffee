@@ -28,11 +28,6 @@ define [], () ->
 		$('.box-previousRoundCurrentPlayerCorrect').droppable("disable")
 		
 		$(el).draggable
-			#drag: (event, ui) ->
-			
-				#ui.position.top = event.pageY
-				#ui.position.left = event.pageX
-
 			scope: "drop_tile"
 			revert : 'invalid'
 			
