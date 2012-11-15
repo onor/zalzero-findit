@@ -1065,6 +1065,7 @@ define('drag-drop',[], function() {
         drag: function(event, ui) {
           var $dragme;
           $dragme = $(event.target);
+          console.log(event);
           ui.position.top = ui.position.top * 1.01;
           ui.position.left = ui.position.left * 1.01;
           return $dragme.css({
