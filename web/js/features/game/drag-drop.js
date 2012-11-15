@@ -34,7 +34,7 @@ define([], function() {
       return $(el).draggable({
         drag: function(event, ui) {
           var $dragme, mult;
-          mult = 1.1;
+          mult = 2;
           $dragme = $(event.target);
           ui.position.top = ui.position.top * mult;
           ui.position.left = ui.position.left * mult;

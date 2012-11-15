@@ -29,7 +29,7 @@ define [], () ->
 		
 		$(el).draggable
 			drag: (event, ui) ->
-				mult = 1.1
+				mult = 2
 				$dragme = $(event.target)
 				
 				ui.position.top = ui.position.top*mult
