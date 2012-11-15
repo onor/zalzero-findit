@@ -32,8 +32,8 @@ define [], () ->
 				mult = 2
 				$dragme = $(event.target)
 				
-				ui.position.top = ui.position.top*mult
-				ui.position.left = ui.position.left*mult
+				ui.position.top = ui.position.top
+				ui.position.left = ui.position.left
 				
 				$dragme.css({
 					top: ui.position.top
