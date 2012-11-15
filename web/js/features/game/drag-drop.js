@@ -33,11 +33,10 @@ define([], function() {
       $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       return $(el).draggable({
         drag: function(event, ui) {
-          var $dragme, mult;
-          mult = 2;
+          var $dragme;
           $dragme = $(event.target);
-          ui.position.top = $.offset().top;
-          ui.position.left = $.offset().left;
+          ui.position.top = ui.position.top * 1.01;
+          ui.position.left = ui.position.left * 1.01;
           return $dragme.css({
             top: ui.position.top,
             left: ui.position.left

@@ -1063,11 +1063,10 @@ define('drag-drop',[], function() {
       $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       return $(el).draggable({
         drag: function(event, ui) {
-          var $dragme, mult;
-          mult = 1.1;
+          var $dragme;
           $dragme = $(event.target);
-          ui.position.top = ui.position.top * mult;
-          ui.position.left = ui.position.left * mult;
+          ui.position.top = ui.position.top * 1.01;
+          ui.position.left = ui.position.left * 1.01;
           return $dragme.css({
             top: ui.position.top,
             left: ui.position.left

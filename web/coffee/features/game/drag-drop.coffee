@@ -29,11 +29,10 @@ define [], () ->
 		
 		$(el).draggable
 			drag: (event, ui) ->
-				mult = 2
 				$dragme = $(event.target)
 				
-				ui.position.top = $.offset().top
-				ui.position.left = $.offset().left
+				ui.position.top = ui.position.top * 1.01
+				ui.position.left = ui.position.left * 1.01
 				
 				$dragme.css({
 					top: ui.position.top
