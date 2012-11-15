@@ -1062,6 +1062,17 @@ define('drag-drop',[], function() {
       $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
       $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       return $(el).draggable({
+        drag: function(event, ui) {
+          var $dragme, mult;
+          mult = 1.1;
+          $dragme = $(event.target);
+          ui.position.top = ui.position.top * mult;
+          ui.position.left = ui.position.left * mult;
+          return $dragme.css({
+            top: ui.position.top,
+            left: ui.position.left
+          });
+        },
         scope: "drop_tile",
         revert: 'invalid'
       });
