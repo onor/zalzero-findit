@@ -30,15 +30,13 @@ define [], () ->
 		$(el).draggable
 			drag: (event, ui) ->
 				$dragme = $(event.target)
-				console.log(event);
+				console.log(ui.position);
+		
+				ui.position.top = event.pageY
+			
 				
-				ui.position.top = ui.position.top * 1.01
-				ui.position.left = ui.position.left * 1.01
-				
-				$dragme.css({
-					top: ui.position.top
-					left: ui.position.left
-				})
+				console.log(ui.position);
+
 			scope: "drop_tile"
 			revert : 'invalid'
 			
