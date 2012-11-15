@@ -82,7 +82,7 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 	        });
 	        </script>
 <script
-	src="<?php echo Yii::app()->baseUrl.'/js/jquery-ui.custom.min.js'?>"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script src="<?php echo Yii::app()->baseUrl.'/js/jquery.ui.touch-punch.min.js'?>"> </script>
 
 <script>
