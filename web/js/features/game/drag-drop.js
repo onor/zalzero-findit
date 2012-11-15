@@ -32,13 +32,6 @@ define([], function() {
       $('.box-previousRoundCurrentPlayerIncorrect').droppable("disable");
       $('.box-previousRoundCurrentPlayerCorrect').droppable("disable");
       return $(el).draggable({
-        drag: function(event, ui) {
-          var $dragme;
-          $dragme = $(event.target);
-          console.log(ui.position);
-          ui.position.top = event.pageY;
-          return console.log(ui.position);
-        },
         scope: "drop_tile",
         revert: 'invalid'
       });
