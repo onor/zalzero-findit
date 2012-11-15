@@ -36,8 +36,8 @@ define([], function() {
           var $dragme, mult;
           mult = 2;
           $dragme = $(event.target);
-          ui.position.top = ui.position.top;
-          ui.position.left = ui.position.left;
+          ui.position.top = $.offset().top;
+          ui.position.left = $.offset().left;
           return $dragme.css({
             top: ui.position.top,
             left: ui.position.left
