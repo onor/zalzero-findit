@@ -39,7 +39,7 @@ public class Create2PlayerGameTest  extends ZalerioBaseTest
 		System.out.print("Logged in");
 		// verify Username
 //		VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
-		int []SelectedFriends=new int[]{0};
+		int []SelectedFriends=new int[]{2};
 		// create new game at friendPosition
 		GameFeatures.createGame(driver1, SelectedFriends);
 		GameUtil.closeGameEndPopUp(driver2);

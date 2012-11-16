@@ -2,8 +2,6 @@ package com.zalerio.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +11,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
-import com.zalerio.config.Popup;
 import com.zalerio.config.StartAGame;
 import com.zalerio.config.Tiles;
 import com.zalerio.config.UserLogin;

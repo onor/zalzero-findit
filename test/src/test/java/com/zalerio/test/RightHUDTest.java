@@ -2,6 +2,7 @@ package com.zalerio.test;
 
 import java.util.List;
 
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -16,7 +17,7 @@ public class RightHUDTest extends ZalerioBaseTest {
 		// TODO Auto-generated constructor stub
 	}
 */
-	//@Test
+	@Test
 	public void rightHUDTest() {
 		GameUtil.closeGameEndPopUp(driver1);
 		// right HUD

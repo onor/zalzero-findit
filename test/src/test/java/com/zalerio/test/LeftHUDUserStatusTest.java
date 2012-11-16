@@ -33,7 +33,7 @@ public class LeftHUDUserStatusTest extends ZalerioBaseTest {
 		UserLogin.Olduserlogin(driver2, user2id, user2pass);
 		*/
 		// user1 creates a new game
-		int SelectedFriends[]=new int[]{1};
+		int SelectedFriends[]=new int[]{2};
 			GameFeatures.createGame(driver1, SelectedFriends);
 			GameUtil.closeGameEndPopUp(driver2);
 		// user status :not accepted yet in red

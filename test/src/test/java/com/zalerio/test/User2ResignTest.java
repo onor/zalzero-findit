@@ -28,24 +28,25 @@ public class User2ResignTest extends ZalerioBaseTest {
 	}
 */
 		// user2 resigns from a game after user2 accepts game
-		// @Test
+		 @Test
 		public void resignImmediateAfterAccept() throws InterruptedException {
-			WebDriver driver1 = new FirefoxDriver();
+		/*	WebDriver driver1 = new FirefoxDriver();
 			String emailid1 = "abhilashbhaduri@gmail.com";
 			String password1 = "16081989";
 			UserLogin.Olduserlogin(driver1, emailid1, password1);
-			int[] SelectedFriends = new int[] { 2 };
+		*/	int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
 			Thread.sleep(2000);
 			// grab new GameId
 			String NewGameId = GameFeatures.grabGameId(driver1);
 			Thread.sleep(2000);
-			System.setProperty("webdriver.chrome.driver",
+			/*System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 			WebDriver driver2 = new ChromeDriver();
 			String emailid2 = "griffinsingh1@gmail.com";
 			String password2 = "griffinsingh1";
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
+			*/
 			Thread.sleep(2000);
 			// make user2 accept game
 			GameFeatures.acceptInvitation(driver2, NewGameId);
@@ -98,25 +99,25 @@ public class User2ResignTest extends ZalerioBaseTest {
 		}
 
 		 //user2 resigns from a game after user2 accepts and user1 drags  all tiles
-		// @Test
+		 @Test
 		public void resignAfterDragFewTiles() throws InterruptedException {
-			WebDriver driver1 = new FirefoxDriver();
+			/*WebDriver driver1 = new FirefoxDriver();
 			String emailid1 = "abhilashbhaduri@gmail.com";
 			String password1 = "16081989";
-			UserLogin.Olduserlogin(driver1, emailid1, password1);
+			UserLogin.Olduserlogin(driver1, emailid1, password1);*/
 			int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
 			Thread.sleep(2000);
 			// grab new GameId
 			String NewGameId = GameFeatures.grabGameId(driver1);
 			Thread.sleep(2000);
-			System.setProperty("webdriver.chrome.driver",
+			/*System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 			WebDriver driver2 = new ChromeDriver();
 			String emailid2 = "griffinsingh1@gmail.com";
 			String password2 = "griffinsingh1";
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
-			Thread.sleep(2000);
+			Thread.sleep(2000);*/
 			// make user2 accept game
 			GameFeatures.acceptInvitation(driver2, NewGameId);
 			// grab shown name of user
@@ -167,25 +168,25 @@ public class User2ResignTest extends ZalerioBaseTest {
 		}
 
 		//user2 resigns from game after pl2 drags all tiles
-		// @Test
+		 @Test
 		public void resignAfterPl2dragsAllTiles() throws InterruptedException {
-			WebDriver driver1 = new FirefoxDriver();
+		/*	WebDriver driver1 = new FirefoxDriver();
 			String emailid1 = "abhilashbhaduri@gmail.com";
 			String password1 = "16081989";
 			UserLogin.Olduserlogin(driver1, emailid1, password1);
-			int[] SelectedFriends = new int[] { 2 };
+		*/	int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
 			Thread.sleep(2000);
 			// grab new GameId
 			String NewGameId = GameFeatures.grabGameId(driver1);
-			System.setProperty("webdriver.chrome.driver",
+		/*	System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 			WebDriver driver2 = new ChromeDriver();
 			String emailid2 = "griffinsingh1@gmail.com";
 			String password2 = "griffinsingh1";
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
 			Thread.sleep(2000);
-			// make user2 accept game
+		*/	// make user2 accept game
 			GameFeatures.acceptInvitation(driver2, NewGameId);
 			// grab shown name of user1
 			WebElement leftHUD = driver1.findElement(By.id("leftHUD"));
@@ -235,26 +236,26 @@ public class User2ResignTest extends ZalerioBaseTest {
 		}
 
 		// user2 resigns after playing round 1 after 
-		// @Test
+		 @Test
 		public void resignAfterPl1clicksPlay() throws InterruptedException {
-			WebDriver driver1 = new FirefoxDriver();
+		/*	WebDriver driver1 = new FirefoxDriver();
 			String emailid1 = "abhilashbhaduri@gmail.com";
 			String password1 = "16081989";
 			UserLogin.Olduserlogin(driver1, emailid1, password1);
-			int[] SelectedFriends = new int[] { 2 };
+		*/	int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
 			Thread.sleep(2000);
 			// grab new GameId
 			String NewGameId = GameFeatures.grabGameId(driver1);
 			Thread.sleep(2000);
-			System.setProperty("webdriver.chrome.driver",
+		/*	System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 			WebDriver driver2 = new ChromeDriver();
 			String emailid2 = "griffinsingh1@gmail.com";
 			String password2 = "griffinsingh1";
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
 			Thread.sleep(2000);
-			// make user2 accept game
+		*/	// make user2 accept game
 			GameFeatures.acceptInvitation(driver2, NewGameId);
 
 			// grab shown name of user
@@ -310,13 +311,13 @@ public class User2ResignTest extends ZalerioBaseTest {
 		
 		//resign with equal scores
 
-		// @Test
+		 @Test
 		public void resignRoundNWithEqualScores() throws InterruptedException {
-			WebDriver driver1 = new FirefoxDriver();
+		/*	WebDriver driver1 = new FirefoxDriver();
 			String emailid1 = "abhilashbhaduri@gmail.com";
 			String password1 = "16081989";
 			UserLogin.Olduserlogin(driver1, emailid1, password1);
-			int[] SelectedFriends = new int[] { 2 };
+		*/	int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
 			Thread.sleep(2000);
 			// grab new GameId
@@ -338,14 +339,14 @@ public class User2ResignTest extends ZalerioBaseTest {
 			} catch (Exception f) {
 			}
 			Thread.sleep(2000);
-			System.setProperty("webdriver.chrome.driver",
+		/*	System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 			WebDriver driver2 = new ChromeDriver();
 			String emailid2 = "griffinsingh1@gmail.com";
 			String password2 = "griffinsingh1";
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
 			Thread.sleep(2000);
-			// make user2 accept game
+		*/	// make user2 accept game
 			rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
 			WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
 			WebElement accept_decline = gameTile.findElement(By
@@ -429,14 +430,14 @@ public class User2ResignTest extends ZalerioBaseTest {
 			assertEquals(status, true);
 		}
 //resign after user1 hits final round 
-	//	@Test
+		@Test
 		public void resignFinalRoundAfterUser1HitsPlay()
 				throws InterruptedException {
-			WebDriver driver1 = new FirefoxDriver();
+	/*		WebDriver driver1 = new FirefoxDriver();
 			String emailid1 = "abhilashbhaduri@gmail.com";
 			String password1 = "16081989";
 			UserLogin.Olduserlogin(driver1, emailid1, password1);
-			int[] SelectedFriends = new int[] { 2 };
+	*/		int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
 			Thread.sleep(2000);
 			// grab new GameId
@@ -458,13 +459,13 @@ public class User2ResignTest extends ZalerioBaseTest {
 			} catch (Exception f) {
 			}
 			Thread.sleep(2000);
-			System.setProperty("webdriver.chrome.driver",
+	/*		System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 			WebDriver driver2 = new ChromeDriver();
 			String emailid2 = "griffinsingh1@gmail.com";
 			String password2 = "griffinsingh1";
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
-			Thread.sleep(2000);
+	*/		Thread.sleep(2000);
 			// make user2 accept game
 			rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
 			WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
