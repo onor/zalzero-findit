@@ -34,6 +34,12 @@
 <profiles>
 	<profile>
 	<id>staging</id>
+	 <activation>
+      <property>
+        <name>environment</name>
+        <value>staging</value>
+      </property>
+    </activation>
 	<build>
 	<plugins>
             <plugin>
@@ -61,6 +67,12 @@
 	</profile>
 	<profile>
 	<id>production</id>
+	 <activation>
+      <property>
+        <name>environment</name>
+        <value>production</value>
+      </property>
+    </activation>
 	<build>
 	<plugins>
             <plugin>
