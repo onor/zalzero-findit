@@ -2391,7 +2391,7 @@ a.black:hover{color: #1e1e1e;}
 .popup-cheatsheet .jspDrag{ border-radius:5px;height: 37% !important} 
 .popup-cheatsheet .jspVerticalBar { right:15px; width:6px !important; top:12px !important;background:#333333 !important}
 .popup-cheatsheet .jspDrag{ background:#CCCCCC !important;}
-.pop-content h3{ color:#FFFFFF; font-size:16px; margin:0; padding:8px 0 0 5px;letter-spacing: 2px;}
+.pop-content h3{ color:#FFFFFF; font-size:13px; margin:0; padding:8px 0 0 5px;letter-spacing: 2px;}
 
 .figures{ background:url(../images/zalerio_1.2/9.cheatsheet/cheatsheet_part1.png) no-repeat center center; width:396px; float:left; height:250px;}
 .figures p{ color:#FFFFFF; font-size:12px; margin:203px 0 0; text-align:center;letter-spacing: 1px;}
