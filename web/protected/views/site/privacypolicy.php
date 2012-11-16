@@ -205,10 +205,12 @@
 					you consent to the transfer of information outside of your country,
 					even if your country has more rigorous data protection standards.</li>
 				<li><strong>Contacting Us.</strong> If you have any questions about
-					this Policy, please contact us at privacy@zalzero.com or at:</li>
-			</ul>
-			Zalzero Inc. Attn: Privacy Questions <br> 950 Page Mill Road<br> Palo
+					this Policy, please contact us at privacy@zalzero.com or at: <br /><br />
+						Zalzero Inc. Attn: Privacy Questions <br> 950 Page Mill Road<br> Palo
 			Alto, CA 94306<br> U.S.A.<br>
+					</li>
+			</ul>
+		
 
 		</div>
 		<a class="button" href="<?php echo Yii::app()->baseUrl ?>"> Play Game
