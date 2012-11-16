@@ -2432,7 +2432,7 @@ a.black:hover{color: #1e1e1e;}
 .rating-content ul li h3{ float:left; width:60%; margin:0; color:#FFFFFF; font-size:13px}
 .rating-content ul li p{ float:left; width:60%; margin:0; color:#FFFFFF; font-size:11px;}
 .rating-content div.suggestion { background:url(../images/zalerio_1.2/6.feedback_screen/feedback_commentbase.png) no-repeat left top; width:329px; height:104px; float:left; margin:10px 20px 0}
-.rating-content div.suggestion h3 {color:#FFFFFF; font-size:12px; padding:2px 5px 0; margin:0;}
+.rating-content div.suggestion h3 {color:#FFFFFF; font-size:12px; padding:0px 5px 0; margin:0;}
 .rating-content div.suggestion textarea{ width:319px; height:88px; color:#6c99c4;font-family: FuturaLT; font-size:11px; padding:0 5px;resize:none}
 .rating-content input.submit{ background:url(../images/zalerio_1.2/6.feedback_screen/sendbutton_ideal.png) no-repeat left top; width:92px; height:36px; color:#FFFFFF; text-indent:-9999px; font-size:14px;padding-bottom: 9px; float:right; margin:5px 11px 0 0;}
 .rating-content input.submit:hover{background:url(../images/zalerio_1.2/6.feedback_screen/sendbutton_hover.png) no-repeat left top;}
