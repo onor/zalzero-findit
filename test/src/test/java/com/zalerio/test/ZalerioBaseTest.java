@@ -79,7 +79,7 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
     public @Rule TestName testName= new TestName();
 
     protected  RemoteWebDriver driver1;
- //   protected RemoteWebDriver driver2;
+    protected RemoteWebDriver driver2;
 
     private String sessionId;
 
@@ -146,13 +146,13 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
                  capabilities1);
          this.sessionId = ((RemoteWebDriver)driver1).getSessionId().toString();
      
-       /*  this.driver2 = new RemoteWebDriver(
+         this.driver2 = new RemoteWebDriver(
                  new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                  capabilities2);
          this.sessionId = ((RemoteWebDriver)driver2).getSessionId().toString();
          UserLogin.Olduserlogin(driver1, "abhilashbhaduri@gmail.com", "16081989");
          UserLogin.Olduserlogin(driver2,"griffinsingh1@gmail.com" ,"griffinsingh1");
-    */
+    
     }
 
     @Override
@@ -164,7 +164,7 @@ public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
 
     @After
     public void tearDown() throws Exception {
-        driver1.quit();//driver2.quit();
+        driver1.quit();driver2.quit();
     }
 
 }

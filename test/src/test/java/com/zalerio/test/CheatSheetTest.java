@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.zalerio.config.GameUtil;
+
 public class CheatSheetTest extends ZalerioBaseTest {
 
 	
@@ -26,7 +28,7 @@ public class CheatSheetTest extends ZalerioBaseTest {
 
 		WebElement backToGameDiv = driver1.findElement(By.id("cheat-sheet"));
 		backToGameDiv.click();
-
+		GameUtil.closeGameEndPopUp(driver2);
 		// Check if the button shows Back to Game
 
 		String backToGame = cheatSheetDiv.getAttribute("class");

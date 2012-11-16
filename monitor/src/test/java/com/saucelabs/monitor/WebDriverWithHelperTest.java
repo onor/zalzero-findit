@@ -1,5 +1,6 @@
-package com.saucelabs.quickstart_webdriver_junit;
+package com.saucelabs.monitor;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.net.URL;
@@ -82,9 +83,9 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		driver.get("http://apps.facebook.com/zalzerostaging/?force=play");
 		WebElement login_form=driver.findElement(By.id("login_form"));
 		WebElement email=driver.findElement(By.id("email"));
-		email.sendKeys("griffinsingh1@gmail.com");
+		email.sendKeys("oxgdvaq_valtchanovsen_1352878531@tfbnw.net");
 		WebElement pass=driver.findElement(By.id("pass"));
-		pass.sendKeys("griffinsingh1");
+		pass.sendKeys("zalerio");
 		login_form.submit();
 		driver.switchTo().frame("iframe_canvas");
 		try {
@@ -92,6 +93,19 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		} catch (InterruptedException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
+		}
+		//close tutorial in case of db cleanup
+		try{
+		WebElement popup_wrapper= driver.findElement(By.className("popup-wrapper"));
+		WebElement start_popup=popup_wrapper.findElement(By.className("start-popup"));
+		WebElement title=start_popup.findElement(By.className("title"));
+		String Title=title.getText();
+		assertEquals(Title,"Welcome to Zalerio!");
+		WebElement left_button=start_popup.findElement(By.className("left-button"));
+		left_button.click();
+		}catch(Exception e)
+		{
+			System.out.println("tutorial not found");
 		}
 		//close pop up
 		try{
@@ -148,7 +162,7 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		if(userAreaName.isDisplayed())
 		{
 			String name=userAreaName.getText();
-			if(name.contains("Singh"))
+			if(name.contains("Maria"))
 			{
 				status=1;
 				System.out.println("name is "+name+" status "+status);
