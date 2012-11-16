@@ -2411,7 +2411,7 @@ a.black:hover{color: #1e1e1e;}
 .points-to-win .win-table .figure p{ width: 70%;height: 15px;padding: 3px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;line-height: 13px;}
 .points-to-win .win-table .superjoker h3{ width: 23%; height: 50px; float: left; text-align: center;color: #000000;font-size: 13px;}
 .points-to-win .win-table .superjoker p{ width: 71%;height: 15px;padding: 7px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;}
-.points-to-win .win-table .bpoint h3{ width: 23%; height: 50px; float: left; text-align: center;color: #000000;font-size: 13px;}
+.points-to-win .win-table .bpoint h3{ width: 23%; height: 50px; float: left; text-align: center;color: #000000;font-size: 9px;}
 .points-to-win .win-table .bpoint p{ width: 71%;height: 15px;padding: 7px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;}
 
 .example-grid{ background:url(../images/zalerio_1.2/9.cheatsheet/cheatsheet_part4.png) no-repeat top center; width:396px; height:450px; float:left; margin-top:10px;}
