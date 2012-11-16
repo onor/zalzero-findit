@@ -5,6 +5,10 @@
  Description:
  Purpose of the stylesheet follows.
 */
+
+body{
+	font: normal 10pt Arial,Helvetica,sans-serif
+}
 [draggable] {
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -2448,7 +2452,7 @@ a.black:hover{color: #1e1e1e;}
 	height: 100px;
 	background: url(../images/zalerio_1.2/7.resign/resign_basebase.png);
 	position: absolute;
-	top: -91px;
+	top: 396px;
 	z-index: 1001;
 	left: 120px;
     display: none
