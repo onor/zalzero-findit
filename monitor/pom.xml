@@ -31,7 +31,62 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+<profiles>
+	<profile>
+	<id>staging</id>
+	<build>
+	<plugins>
+            <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                 <executions>
+             <execution>
+               <phase>test</phase>
+               <goals>
+                 <goal>staging</goal>
+               </goals>
+                <configuration>
+                  <tasks>
+                   <delete file="${project.build.outputDirectory}/environment.properties"/>
+                   <copy file="src/test/java/staging.properties"
+                         tofile="${project.build.outputDirectory}/environment.properties"/>
+                 </tasks>
+                </configuration>
+                </execution>
+               </executions> 
+            </plugin>
+            </plugins>
+	</build>
+	
+	</profile>
+	<profile>
+	<id>production</id>
+	<build>
+	<plugins>
+            <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                 <executions>
+             <execution>
+               <phase>test</phase>
+               <goals>
+                 <goal>production</goal>
+               </goals>
+                <configuration>
+                  <tasks>
+                   <delete file="${project.build.outputDirectory}/environment.properties"/>
+                   <copy file="src/test/java/production.properties"
+                         tofile="${project.build.outputDirectory}/environment.properties"/>
+                 </tasks>
+                </configuration>
+                </execution>
+                </executions>
+            </plugin>
+          </plugins>
+	</build>
+	
+	</profile>
+</profiles>
     <build>
         <plugins>
             <plugin>

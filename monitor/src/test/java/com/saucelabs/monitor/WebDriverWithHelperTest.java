@@ -3,7 +3,10 @@ package com.saucelabs.monitor;
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
@@ -75,17 +78,31 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
     @Test
     public void unionMonitor()
 	{
+    	Properties prop = new Properties();
+    	String url=null,userid=null,userpwd=null;
+    	try {
+               //load a properties file
+    		prop.load(new FileInputStream("environment.properties"));
+ 
+               //get the property value and print it out
+                 url=prop.getProperty("url");
+    		userid=prop.getProperty("userid");
+    		userpwd=prop.getProperty("userpwd");
+ 
+    	} catch (IOException ex) {
+    		ex.printStackTrace();
+        }
 		int status=0;
 	//	System.setProperty("webdriver.chrome.driver", "C:/ChromeDriver/chromedriver");
 	//	WebDriver driver= new ChromeDriver();
 	//	WebDriver driver=new FirefoxDriver();
 	//	WebDriver driver=new OperaDriver();
-		driver.get("http://apps.facebook.com/zalzerostaging/?force=play");
+		driver.get(url);
 		WebElement login_form=driver.findElement(By.id("login_form"));
 		WebElement email=driver.findElement(By.id("email"));
-		email.sendKeys("oxgdvaq_valtchanovsen_1352878531@tfbnw.net");
+		email.sendKeys(userid);
 		WebElement pass=driver.findElement(By.id("pass"));
-		pass.sendKeys("zalerio");
+		pass.sendKeys(userpwd);
 		login_form.submit();
 		driver.switchTo().frame("iframe_canvas");
 		try {
