@@ -5,6 +5,10 @@
  Description:
  Purpose of the stylesheet follows.
 */
+
+body{
+	font: normal 10pt Arial,Helvetica,sans-serif
+}
 [draggable] {
     -moz-user-select: none;
     -khtml-user-select: none;
