@@ -2004,7 +2004,7 @@ ul.tab_nav  li a.active,ul.tab_nav  li a:hover {
 }
 .next-belt h4, .current-belt h4 {
     margin:0;
-    font-size:15px;
+    font-size:13px;
     color:#fff;
 }
 .next-belt ul, .current-belt ul {
@@ -2325,7 +2325,7 @@ a.black:hover{color: #1e1e1e;}
 	margin: 15px 1px;
 	list-style:none;
 }
-.belt_table table td { float:left; width:168px; margin:0; margin-top:5px; font-size:12px; padding: 1px 10px 0px 5px; color:#fff;text-align:center;line-height:16px;}
+.belt_table table td { width:168px; margin:0; margin-top:5px; font-size:12px; padding: 1px 10px 0px 5px; color:#fff;text-align:center;line-height:16px;}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
  .belt_table table td   { padding: 1px 10px 0px 5px !important;}
 }
