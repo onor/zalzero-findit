@@ -1124,7 +1124,40 @@ try {
 } catch (err) {
 }
 
-//window.onerror = function (msg, url, num) {
-//    alert(msg + ';' + url + ';' + num);
-//    return true;
-//}
+jQuery(document).ready(function(){
+	
+	jQuery("#tos_link").click(function(event){
+		event.preventDefault()
+		$.ajax({
+			url : siteUrl + "/site/tos"
+		}).done(function(data) {
+
+			html = '<div class="show_popup zalerio_popup"> \
+				<div id="" class="outer_base"> \
+				<a href="#" id="close" onclick="jQuery(\'.wait\').remove(); jQuery(\'.show_popup\').remove(); return false;"></a> \
+				<div style="padding-top:35px;"><div style="display: block; width: 426px; margin: 0 auto; overflow: hidden; background: white; padding: 25px; height: 345px; overflow: hidden; overflow-y: scroll;">'+data+'</div>\
+				</div></div> \
+				</div>';
+			
+			$('body').append(html);
+		});
+	})
+	
+	jQuery("#tos_privacy").click(function(event){
+		event.preventDefault()
+		$.ajax({
+			url : siteUrl + "/site/privacypolicy"
+		}).done(function(data) {
+			
+			html = '<div class="show_popup zalerio_popup"> \
+				<div id="" class="outer_base"> \
+				<a href="#" id="close" onclick="jQuery(\'.wait\').remove(); jQuery(\'.show_popup\').remove(); return false;"></a> \
+				<div style="padding-top:35px;"><div style="display: block; width: 426px; margin: 0 auto; overflow: hidden; background: white; padding: 25px; height: 345px; overflow: hidden; overflow-y: scroll;">'+data+'</div>\
+				</div></div> \
+				</div>';
+			
+			$('body').append(html);
+		});
+	})
+	
+})

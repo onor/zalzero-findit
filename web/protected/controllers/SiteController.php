@@ -21,6 +21,15 @@ class SiteController extends Controller
 		);
 	}
 
+	
+	public function filters()
+	{
+		return array(
+				'accessControl', // perform access control for CRUD operations
+		);
+	}
+	
+	
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -211,13 +220,22 @@ class SiteController extends Controller
 	
 	public function actionPrivacypolicy(){
 		$this->layout = false;
-		$this->render('privacypolicy');
+		if(Yii::app()->request->isAjaxRequest){
+			$this->render('ajax_privacypolicy');
+		}else{
+			$this->render('privacypolicy');
+		}
 		exit;
 	}
 	
 	public function actiontos(){
 		$this->layout = false;
-		$this->render('tos');
+		if(Yii::app()->request->isAjaxRequest){
+			$this->render('ajax_tos');
+		}else{
+			$this->render('tos');
+		}
+		
 		exit;
 	}
 	
