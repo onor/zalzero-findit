@@ -76,7 +76,7 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
     }
 
     @Test
-    public void unionMonitor()
+    public void unionMonitorProd()
 	{
     	Properties prop = new Properties();
     	String url=null,userid=null,userpwd=null;
@@ -250,7 +250,7 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		assertEquals(2,status);
 	}
     @Test
-    public void unitTest()
+    public void unionMonitorStaging()
     {
     	Properties prop = new Properties();
     	String url=null,userid=null,userpwd=null;
@@ -267,7 +267,12 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
     		ex.printStackTrace();
         }
 		int status=0;
-		driver.get("apps.facebook.com/zalzerostaging/?force=play");
+	//	System.setProperty("webdriver.chrome.driver", "C:/ChromeDriver/chromedriver");
+	//	WebDriver driver= new ChromeDriver();
+	//	WebDriver driver=new FirefoxDriver();
+	//	WebDriver driver=new OperaDriver();
+	//	driver.get(url);
+		driver.get("http://apps.facebook.com/zalzerostaging/?force=play");
 		WebElement login_form=driver.findElement(By.id("login_form"));
 		WebElement email=driver.findElement(By.id("email"));
 		email.sendKeys(userid);
@@ -417,8 +422,7 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 			
 		}
 		System.out.print("status "+status);
-		assertEquals(2,status);
-    }
+		assertEquals(2,status);    }
 
     @After
     public void tearDown() throws Exception {
