@@ -7,11 +7,11 @@ Command duration or timeout: 47 milliseconds
 Build info: version: '2.18.0', revision: '15704', time: '2012-07-21 01:03:50'
 System info: os.name: 'Windows 2003', os.arch: 'x86', os.version: '5.2', java.version: '1.6.0_35'
 Driver info: driver.version: RemoteWebDriver
-Command duration or timeout: 1.44 seconds
+Command duration or timeout: 1.64 seconds
 Build info: version: '2.26.0', revision: '18040', time: '2012-11-02 09:44:45'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
 Driver info: driver.version: RemoteWebDriver
-Session ID: 882d2f024837499e8a1e68668c09d2f8
+Session ID: 08396a0a152f4936bcc112d7883018bd
 
 
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -246,5 +246,5 @@ Driver info: driver.version: RemoteWebDriver
 round no found  2status
 
 status 2
-SauceOnDemandSessionID=882d2f024837499e8a1e68668c09d2f8 job-name=com.saucelabs.monitor.WebDriverWithHelperTest.unionMonitor
+SauceOnDemandSessionID=08396a0a152f4936bcc112d7883018bd job-name=com.saucelabs.monitor.WebDriverWithHelperTest.unionMonitor
 

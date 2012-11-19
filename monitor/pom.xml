@@ -66,7 +66,7 @@
                <configuration>
                  <tasks>
                    <delete file="${project.build.outputDirectory}/environment.properties"/>
-                   <copy file="src/test/java/staging.properties"
+                   <copy file="staging.properties"
                          tofile="${project.build.outputDirectory}/environment.properties"/>
                  </tasks>
                </configuration>
