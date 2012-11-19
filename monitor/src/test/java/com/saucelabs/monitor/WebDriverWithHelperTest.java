@@ -79,16 +79,16 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
     public void unionMonitorProd()
 	{
     	Properties prop = new Properties();
-    	String url=null,userid=null,userpwd=null;
+    	String url=null,userid=null,userpwd=null,userName=null;
     	try {
                //load a properties file
     		prop.load(new FileInputStream("environment.properties"));
  
                //get the property value and print it out
-                 url=prop.getProperty("url");
-    		userid=prop.getProperty("userid");
-    		userpwd=prop.getProperty("userpwd");
- 
+                 url=prop.getProperty("urlProd");
+    		userid=prop.getProperty("useridProd");
+    		userpwd=prop.getProperty("userpwdProd");
+    		userName=prop.getProperty("usernameProd");
     	} catch (IOException ex) {
     		ex.printStackTrace();
         }
@@ -179,7 +179,7 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		if(userAreaName.isDisplayed())
 		{
 			String name=userAreaName.getText();
-			if(name.contains("Maria"))
+			if(name.contains(userName))
 			{
 				status=1;
 				System.out.println("name is "+name+" status "+status);
@@ -253,15 +253,16 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
     public void unionMonitorStaging()
     {
     	Properties prop = new Properties();
-    	String url=null,userid=null,userpwd=null;
+    	String url=null,userid=null,userpwd=null,userName=null;
     	try {
                //load a properties file
     		prop.load(new FileInputStream("environment.properties"));
  
                //get the property value and print it out
-                 url=prop.getProperty("url");
-    		userid=prop.getProperty("userid");
-    		userpwd=prop.getProperty("userpwd");
+                 url=prop.getProperty("urlStag");
+    		userid=prop.getProperty("useridStag");
+    		userpwd=prop.getProperty("userpwdStag");
+    		userName=prop.getProperty("usernameStag");
  
     	} catch (IOException ex) {
     		ex.printStackTrace();
@@ -271,8 +272,7 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 	//	WebDriver driver= new ChromeDriver();
 	//	WebDriver driver=new FirefoxDriver();
 	//	WebDriver driver=new OperaDriver();
-	//	driver.get(url);
-		driver.get("http://apps.facebook.com/zalzerostaging/?force=play");
+		driver.get(url);
 		WebElement login_form=driver.findElement(By.id("login_form"));
 		WebElement email=driver.findElement(By.id("email"));
 		email.sendKeys(userid);
