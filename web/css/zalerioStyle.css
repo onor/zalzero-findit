@@ -7,7 +7,7 @@
 */
 
 body{
-	font: normal 10pt Arial,Helvetica,sans-serif
+	font: normal 12px Arial,Helvetica,sans-serif
 }
 [draggable] {
     -moz-user-select: none;
@@ -19,6 +19,7 @@ body{
     margin: 0;
     padding: 0;
     border: 0;
+    outline:none
 }
 @font-face {
     font-family: FuturaLT;
@@ -1986,7 +1987,6 @@ ul.tab_nav  li a.active,ul.tab_nav  li a:hover {
 }
 .perform { 
     text-align: center;
-	margin-top: 4px;
 }
 .perform  a{
     color:#456295;
@@ -2004,7 +2004,7 @@ ul.tab_nav  li a.active,ul.tab_nav  li a:hover {
 }
 .next-belt h4, .current-belt h4 {
     margin:0;
-    font-size:15px;
+    font-size:13px;
     color:#fff;
 }
 .next-belt ul, .current-belt ul {
@@ -2325,7 +2325,7 @@ a.black:hover{color: #1e1e1e;}
 	margin: 15px 1px;
 	list-style:none;
 }
-.belt_table table td { float:left; width:168px; margin:0; margin-top:5px; font-size:12px; padding: 1px 10px 0px 5px; color:#fff;text-align:center;line-height:16px;}
+.belt_table table td { width:168px; margin:0; margin-top:5px; font-size:12px; padding: 1px 10px 0px 5px; color:#fff;text-align:center;line-height:16px;}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
  .belt_table table td   { padding: 1px 10px 0px 5px !important;}
 }
@@ -2391,7 +2391,7 @@ a.black:hover{color: #1e1e1e;}
 .popup-cheatsheet .jspDrag{ border-radius:5px;height: 37% !important} 
 .popup-cheatsheet .jspVerticalBar { right:15px; width:6px !important; top:12px !important;background:#333333 !important}
 .popup-cheatsheet .jspDrag{ background:#CCCCCC !important;}
-.pop-content h3{ color:#FFFFFF; font-size:16px; margin:0; padding:8px 0 0 5px;letter-spacing: 2px;}
+.pop-content h3{ color:#FFFFFF; font-size:13px; margin:0; padding:8px 0 0 5px;letter-spacing: 2px;}
 
 .figures{ background:url(../images/zalerio_1.2/9.cheatsheet/cheatsheet_part1.png) no-repeat center center; width:396px; float:left; height:250px;}
 .figures p{ color:#FFFFFF; font-size:12px; margin:203px 0 0; text-align:center;letter-spacing: 1px;}
@@ -2410,7 +2410,7 @@ a.black:hover{color: #1e1e1e;}
 .points-to-win .win-table .tiles p{ width: 74%;height: 17px;padding: 5px 0 0 6px !important; float: left; margin: 0; padding:0; text-align: left;}
 .points-to-win .win-table .figure h3{ width: 23%; height: 46px;padding-top: 20px; float: left; text-align: center;color: #000000;font-size: 13px;}
 .points-to-win .win-table .figure p{ width: 70%;height: 15px;padding: 3px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;line-height: 13px;}
-.points-to-win .win-table .superjoker h3{ width: 23%; height: 50px; float: left; text-align: center;color: #000000;font-size: 13px;}
+.points-to-win .win-table .superjoker h3{ width: 23%; height: 50px; float: left; text-align: center;color: #000000;font-size: 9px;}
 .points-to-win .win-table .superjoker p{ width: 71%;height: 15px;padding: 7px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;}
 .points-to-win .win-table .bpoint h3{ width: 23%; height: 50px; float: left; text-align: center;color: #000000;font-size: 13px;}
 .points-to-win .win-table .bpoint p{ width: 71%;height: 15px;padding: 7px 0 0 8px !important; float: left; margin: 0; padding:0; text-align: left;}
@@ -2429,10 +2429,10 @@ a.black:hover{color: #1e1e1e;}
 .rating-content ul li span.selected{ background:url(../images/zalerio_1.2/6.feedback_screen/ratin_base_selected.png) no-repeat 0px 0px}
 .rating-content ul li span:hover{ background:url(../images/zalerio_1.2/6.feedback_screen/ratin_base_selected.png) no-repeat 0px 0px}
 .rating-content ul li span img { margin:0 auto;}
-.rating-content ul li h3{ float:left; width:60%; margin:0; color:#FFFFFF; font-size:18px}
-.rating-content ul li p{ float:left; width:60%; margin:0; color:#FFFFFF; font-size:12px;}
+.rating-content ul li h3{ float:left; width:60%; margin:0; color:#FFFFFF; font-size:13px}
+.rating-content ul li p{ float:left; width:60%; margin:0; color:#FFFFFF; font-size:11px;}
 .rating-content div.suggestion { background:url(../images/zalerio_1.2/6.feedback_screen/feedback_commentbase.png) no-repeat left top; width:329px; height:104px; float:left; margin:10px 20px 0}
-.rating-content div.suggestion h3 {color:#FFFFFF; font-size:12px; padding:2px 5px 0; margin:0;}
+.rating-content div.suggestion h3 {color:#FFFFFF; font-size:12px; padding:0px 5px 0; margin:0;}
 .rating-content div.suggestion textarea{ width:319px; height:88px; color:#6c99c4;font-family: FuturaLT; font-size:11px; padding:0 5px;resize:none}
 .rating-content input.submit{ background:url(../images/zalerio_1.2/6.feedback_screen/sendbutton_ideal.png) no-repeat left top; width:92px; height:36px; color:#FFFFFF; text-indent:-9999px; font-size:14px;padding-bottom: 9px; float:right; margin:5px 11px 0 0;}
 .rating-content input.submit:hover{background:url(../images/zalerio_1.2/6.feedback_screen/sendbutton_hover.png) no-repeat left top;}
@@ -2927,7 +2927,7 @@ background: none !important;
 	background-position: right -16px;
 }
 .gdScoreInfoDiv table{
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 22px	
 }
 .gdScoreInfoDiv table td{
