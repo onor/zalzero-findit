@@ -19,7 +19,6 @@ public class RightHUDTest extends ZalerioBaseTest {
 */
 	@Test
 	public void rightHUDTest() {
-		GameUtil.closeGameEndPopUp(driver1);
 		// right HUD
 		// your turn -check game tiles and click
 		WebElement rightHUD_yourturn = driver1.findElement(By

@@ -21,6 +21,12 @@ public class GameEnterTest extends ZalerioBaseTest {
 		
 		
 		// Check if start-a-game button is visible
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		assertEquals(startButton.isDisplayed(),true);
 		
