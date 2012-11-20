@@ -7,17 +7,19 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
 import com.zalerio.config.UserLogin;
 
-public class OldUserJoinZalerioTest {
-	WebDriver driver = null;
+public class OldUserJoinZalerioTest extends Zalerio1UserBaseTest{
+	public OldUserJoinZalerioTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
+		// TODO Auto-generated constructor stub
+	}
 
 	// remove all active games presently
 	// TODO the situation when user has 1 or more games that have not been
@@ -26,14 +28,14 @@ public class OldUserJoinZalerioTest {
 	public void removeAllGames() throws InterruptedException {
 	//	System.setProperty("webdriver.chrome.driver",
 	//			"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-		driver = new FirefoxDriver();
+	/*	driver = new FirefoxDriver();
 		
 		 String emailid="hemantkumer007@gmail.com";
 		 String password="hemantkumer007";
 		UserLogin.Olduserlogin(driver, emailid, password);
 		Thread.sleep(10000);
-		System.out.print("Logged in");
-		WebElement rightHUD_yourturn = driver.findElement(By
+		System.out.print("Logged in");*/
+		WebElement rightHUD_yourturn = driver1.findElement(By
 				.id("rightHUD-yourturn"));
 		List<WebElement> your_turnTiles;
 		// access your turn tiles
@@ -56,7 +58,7 @@ public class OldUserJoinZalerioTest {
 			}
 			// click play
 			try {
-				WebElement gdPlaydiv = driver.findElement(By
+				WebElement gdPlaydiv = driver1.findElement(By
 						.className("gdPlaydiv"));
 				gdPlaydiv.click();
 				System.out.print("cilcked play");
@@ -65,7 +67,7 @@ public class OldUserJoinZalerioTest {
 			}
 			// click resume
 			try {
-				WebElement gdResumeDiv = driver.findElement(By
+				WebElement gdResumeDiv = driver1.findElement(By
 						.className("gdResumeDiv"));
 				gdResumeDiv.click();
 				System.out.print("cilcked resume");
@@ -81,7 +83,7 @@ public class OldUserJoinZalerioTest {
 				declineButton.click();
 				System.out.print("cilcked decline");
 				Thread.sleep(5000);
-				Popup.closePopup(driver);
+				Popup.closePopup(driver1);
 			} catch (Exception f) {
 				System.out.print("no invitation");
 			}
@@ -89,21 +91,21 @@ public class OldUserJoinZalerioTest {
 	
 			// click more to resign
 
-			WebElement bottomHUD = driver.findElement(By.id("bottomHUD"));
+			WebElement bottomHUD = driver1.findElement(By.id("bottomHUD"));
 			WebElement bottomHUDbuttons_more = bottomHUD.findElement(By
 					.id("bottomHUDbuttons-more"));
 			bottomHUDbuttons_more.click();
 			System.out.print("clicked More");
 			// click resign
-			WebElement resign = driver.findElement(By.id("resignme"));
+			WebElement resign = driver1.findElement(By.id("resignme"));
 			resign.click();
 			System.out.print("clicked Resign");
 			// click dismiss to close Game End PopUp
-			GameUtil.closeGameEndPopUp(driver);
+			GameUtil.closeGameEndPopUp(driver1);
 
 		}
 		//Their turn
-		WebElement rightHUD_theirturn = driver.findElement(By
+		WebElement rightHUD_theirturn = driver1.findElement(By
 				.id("rightHUD-theirturn"));
 		List<WebElement> their_turnTiles = null;
 		// access their turn tiles
@@ -125,14 +127,14 @@ public class OldUserJoinZalerioTest {
 			}
 			// click play
 			try {
-				WebElement gdPlaydiv = driver.findElement(By
+				WebElement gdPlaydiv = driver1.findElement(By
 						.className("gdPlaydiv"));
 				gdPlaydiv.click();
 			} catch (Exception f) {
 			}
 			// click resume
 			try {
-				WebElement gdResumeDiv = driver.findElement(By
+				WebElement gdResumeDiv = driver1.findElement(By
 						.className("gdResumeDiv"));
 				gdResumeDiv.click();
 			} catch (Exception f) {
@@ -144,40 +146,40 @@ public class OldUserJoinZalerioTest {
 				WebElement declineButton = checkInvitation.findElement(By
 						.className("right_hud_decline"));
 				declineButton.click();
-				Popup.closePopup(driver);
+				Popup.closePopup(driver1);
 			} catch (Exception f) {
 				System.out.print("NO INVITATION");
 			}
 
 			// click more to resign
 
-			WebElement bottomHUD = driver.findElement(By.id("bottomHUD"));
+			WebElement bottomHUD = driver1.findElement(By.id("bottomHUD"));
 			WebElement bottomHUDbuttons_more = bottomHUD.findElement(By
 					.id("bottomHUDbuttons-more"));
 			bottomHUDbuttons_more.click();
 			System.out.print("clicked More");
 			// click resign
-			WebElement resign = driver.findElement(By.id("resignme"));
+			WebElement resign = driver1.findElement(By.id("resignme"));
 			resign.click();
 			System.out.print("clicked Resign");
 			// click dismiss to close Game End PopUp
-			GameUtil.closeGameEndPopUp(driver);
+			GameUtil.closeGameEndPopUp(driver1);
 
 		}
-		driver.switchTo().defaultContent();
-		driver.findElement(By.id("pageLogo")).click();
+		driver1.switchTo().defaultContent();
+		driver1.findElement(By.id("pageLogo")).click();
 	}
 
 	// old user with no active games currently
-	// @Test
+	 @Test
 	public void olduserNoActiveGame() throws InterruptedException {
-		driver.navigate().back();
+		driver1.navigate().back();
 		
 			Thread.sleep(10000);
 		
-		GameUtil.closeGameEndPopUp(driver);
+		GameUtil.closeGameEndPopUp(driver1);
 		// check Your Turns
-		WebElement rightHUD_yourturn = driver.findElement(By
+		WebElement rightHUD_yourturn = driver1.findElement(By
 				.id("rightHUD-yourturn"));
 
 		WebElement StartMoreGames = rightHUD_yourturn.findElement(By
@@ -186,20 +188,20 @@ public class OldUserJoinZalerioTest {
 			assertEquals(status,true);
 		
 		// check Their Turns
-		WebElement rightHUD_theirturn = driver.findElement(By
+		WebElement rightHUD_theirturn = driver1.findElement(By
 				.id("rightHUD-theirturn"));
 		WebElement StartMoreGames2 = rightHUD_theirturn.findElement(By
 				.className("newCarouselblanktile"));
-		status=StartMoreGames.isDisplayed() && StartMoreGames.isEnabled();
+		status=StartMoreGames2.isDisplayed() && StartMoreGames2.isEnabled();
 		assertEquals(status,true);
 		//check left HUD game carousal of last game
-		WebElement gameInfo_game_players = driver.findElement(By
+		WebElement gameInfo_game_players = driver1.findElement(By
 				.id("gameInfo-game-players"));
 		 
 		status=gameInfo_game_players.isDisplayed();
 		assertEquals(status, true);
 		//check game wall is empty
-		WebElement gamewall = driver.findElement(By.id("gamewall"));
+		WebElement gamewall = driver1.findElement(By.id("gamewall"));
 		for (int i = 0; i <= 483; i++) {
 			String tile = "boardTile-" + i;
 			WebElement boardTile = gamewall.findElement(By.id(tile));
@@ -209,7 +211,7 @@ public class OldUserJoinZalerioTest {
 				return;
 			}
 		}
-		driver.quit();
+		driver1.quit();
 	}
 
 	// old user with no game in Your Turn but many games in Their Turn
@@ -218,12 +220,12 @@ public class OldUserJoinZalerioTest {
 	{
 	//	System.setProperty("webdriver.chrome.driver", "C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 	//	 driver= new ChromeDriver();
-		driver=new FirefoxDriver();
+		driver1=new FirefoxDriver();
 		 String emailid="hemantkumer007@gmail.com";
 		 String password="hemantkumer007";
-		UserLogin.Olduserlogin(driver, emailid, password);
+		UserLogin.Olduserlogin(driver1, emailid, password);
 	
-		WebElement  rightHUD_yourturn= driver.findElement(By.id("rightHUD-yourturn"));
+		WebElement  rightHUD_yourturn= driver1.findElement(By.id("rightHUD-yourturn"));
 		List<WebElement> your_turnTiles;
 		//access your turn tiles
 		try{
@@ -245,14 +247,14 @@ public class OldUserJoinZalerioTest {
 			{}
 				//click play
 				try{
-					WebElement gdPlaydiv=driver.findElement(By.className("gdPlaydiv"));
+					WebElement gdPlaydiv=driver1.findElement(By.className("gdPlaydiv"));
 					gdPlaydiv.click();
 					System.out.print("cilcked play");
 				}catch(Exception f)
 				{System.out.print("no play");}
 				//click resume
 				try{
-					WebElement gdResumeDiv=driver.findElement(By.className("gdResumeDiv"));
+					WebElement gdResumeDiv=driver1.findElement(By.className("gdResumeDiv"));
 					gdResumeDiv.click();
 					System.out.print("cilcked resume");
 				}catch(Exception f)
@@ -264,38 +266,38 @@ public class OldUserJoinZalerioTest {
 				WebElement declineButton=checkInvitation.findElement(By.className("right_hud_decline"));
 				declineButton.click();
 				System.out.print("cilcked decline");
-				Popup.closePopup(driver);
+				Popup.closePopup(driver1);
 				}catch(Exception f)
 				{System.out.print("no invitation");}
 					Thread.sleep(5000);
 				//click more to resign
 			
-			WebElement bottomHUD = driver.findElement(By.id("bottomHUD"));
+			WebElement bottomHUD = driver1.findElement(By.id("bottomHUD"));
 			WebElement bottomHUDbuttons_more = bottomHUD.findElement(By
 					.id("bottomHUDbuttons-more"));
 			bottomHUDbuttons_more.click();
 				System.out.print("clicked More");
 				// click resign
-				WebElement resign=driver.findElement(By.id("resignme"));
+				WebElement resign=driver1.findElement(By.id("resignme"));
 				resign.click();
 				System.out.print("clicked Resign");
 				// click dismiss to close Game End PopUp
-				GameUtil.closeGameEndPopUp(driver);
+				GameUtil.closeGameEndPopUp(driver1);
 		}
-		driver.switchTo().defaultContent();
-		driver.findElement(By.id("pageLogo")).click();	
+		driver1.switchTo().defaultContent();
+		driver1.findElement(By.id("pageLogo")).click();	
 	}
 	
 
 	@Test
 	public void oldUserNoGameYourTurn() throws InterruptedException {
-		driver.navigate().back();
+		driver1.navigate().back();
 		
 			Thread.sleep(10000);
 		
-		GameUtil.closeGameEndPopUp(driver);
+		GameUtil.closeGameEndPopUp(driver1);
 		// check Your Turns
-		WebElement rightHUD_yourturn = driver.findElement(By
+		WebElement rightHUD_yourturn = driver1.findElement(By
 				.id("rightHUD-yourturn"));
 
 		WebElement StartMoreGames = rightHUD_yourturn.findElement(By
@@ -303,12 +305,12 @@ public class OldUserJoinZalerioTest {
 		boolean status =StartMoreGames.isDisplayed() && StartMoreGames.isEnabled();
 			assertEquals(status, true);
 		
-		WebElement gameInfo_game_players = driver.findElement(By
+		WebElement gameInfo_game_players = driver1.findElement(By
 				.id("gameInfo-game-players"));
 		status=gameInfo_game_players.isDisplayed();
 			assertEquals(status,true);
 		
-		WebElement gamewall = driver.findElement(By.id("gamewall"));
+		WebElement gamewall = driver1.findElement(By.id("gamewall"));
 		for (int i = 0; i <= 483; i++) {
 			String tile = "boardTile-" + i;
 			WebElement boardTile = gamewall.findElement(By.id(tile));

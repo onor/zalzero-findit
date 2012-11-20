@@ -6,17 +6,13 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.zalerio.config.GameUtil;
-
-public class RightHUDTest extends ZalerioBaseTest {
+public class RightHUDTest extends Zalerio1UserBaseTest {
 	
-/*
-	public RightHUDTest(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
+public RightHUDTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-*/
 	@Test
 	public void rightHUDTest() {
 		// right HUD
@@ -50,7 +46,10 @@ public class RightHUDTest extends ZalerioBaseTest {
 				//class-accept_decline
 				try{
 				WebElement accept_decline=gameTiles.get(i).findElement(By.className("accept_decline"));
-				continue;
+					if(accept_decline.isDisplayed())
+					{
+						continue;
+					}
 				}catch(Exception f){}
 				gameTiles.get(i).click();
 				

@@ -4,16 +4,14 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class StatsHandleTest extends ZalerioBaseTest {
+public class StatsHandleTest extends Zalerio1UserBaseTest {
 	
 	
-/*
-	public StatsHandleTest(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
+public StatsHandleTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-*/
 	@Test
 	public void statsClick() {
 		

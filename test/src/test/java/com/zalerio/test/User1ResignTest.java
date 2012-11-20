@@ -15,7 +15,7 @@ import com.zalerio.config.StartAGame;
 import com.zalerio.config.Tiles;
 import com.zalerio.config.UserLogin;
 
- public class User1ResignTest extends ZalerioBaseTest{
+ public class User1ResignTest extends Zalerio2UserBaseTest{
 /*	public User1ResignTest(String os, String browser, String version,
 			String user1id, String user2id, String password) {
 		super(os, browser, version, user1id, user2id, password);
@@ -31,6 +31,7 @@ import com.zalerio.config.UserLogin;
 		//UserLogin.Olduserlogin(driver1, emailid, password);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
+		GameUtil.closeGameEndPopUp(driver2);
 		Thread.sleep(2000);
 		WebElement bottomHUDbuttons = driver1.findElement(By
 				.className("bottomHUDbuttons"));
@@ -52,6 +53,7 @@ import com.zalerio.config.UserLogin;
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
+		GameUtil.closeGameEndPopUp(driver2);
 		Thread.sleep(2000);
 		// grab new GameId
 		String NewGameId = GameFeatures.grabGameId(driver1);
@@ -66,7 +68,7 @@ import com.zalerio.config.UserLogin;
 		GameFeatures.acceptInvitation(driver2, NewGameId);
 		
 		
-
+		GameUtil.closeGameEndPopUp(driver1);
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel = leftHUD.findElement(By
@@ -85,6 +87,7 @@ import com.zalerio.config.UserLogin;
 		WebElement bottomHUDbuttons_more = bottomHUDbuttons.findElement(By
 				.id("bottomHUDbuttons-more"));
 		bottomHUDbuttons_more.click();
+		GameUtil.closeGameEndPopUp(driver2);
 		Thread.sleep(2000);
 		boolean status = driver1.findElement(By.className("resignPopup"))
 				.isDisplayed();
@@ -94,6 +97,7 @@ import com.zalerio.config.UserLogin;
 		WebElement resignButton = driver1.findElement(By.id("resignme"));
 		status = resignButton.isDisplayed();
 		resignButton.click();
+		GameUtil.closeGameEndPopUp(driver2);
 		Thread.sleep(2000);
 		// verfiy game end popup
 		WebElement winnerscreen = driver1.findElement(By.id("winnerscreen"));
@@ -103,6 +107,7 @@ import com.zalerio.config.UserLogin;
 				.className("show_score"));
 		WebElement topScore_div = show_score.findElement(By.id("topScore_div"));
 		WebElement score1 = topScore_div.findElement(By.id("score1"));
+		GameUtil.closeGameEndPopUp(driver2);
 		// user2 will be shown as winner with score 0
 		WebElement name = score1.findElement(By.className("name"));
 		String observedName = name.getText();
@@ -124,6 +129,7 @@ import com.zalerio.config.UserLogin;
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
 		StartAGame.createGame(driver1, SelectedFriends);
+		GameUtil.closeGameEndPopUp(driver2);
 		Thread.sleep(2000);
 		// grab new GameId
 		String NewGameId=GameFeatures.grabGameId(driver1);
@@ -137,7 +143,7 @@ import com.zalerio.config.UserLogin;
 //		Thread.sleep(2000);
 //		// make user2 accept game
 		GameFeatures.acceptInvitation(driver2, NewGameId);
-
+		GameUtil.closeGameEndPopUp(driver1);
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel = leftHUD.findElement(By
@@ -490,7 +496,6 @@ import com.zalerio.config.UserLogin;
 		// check observed name of user2 with shown name
 		assertEquals(shownName, observedName);
 		WebElement score = score1.findElement(By.className("score"));
-		int j = 0;
 		status = score.getText() != "";
 		assertEquals(status, true);
 	}
@@ -613,7 +618,6 @@ import com.zalerio.config.UserLogin;
 		// check observed name of user2 with shown name
 		assertEquals(shownName, observedName);
 		WebElement score = score1.findElement(By.className("score"));
-		int j = 0;
 		status = score.getText() != "";
 		assertEquals(status, true);
 	}

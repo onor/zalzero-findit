@@ -2,31 +2,16 @@ package com.zalerio.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
-import com.zalerio.config.Popup;
 import com.zalerio.config.StartAGame;
 import com.zalerio.config.Tiles;
-import com.zalerio.config.UserLogin;
 
-public class User2ResignTest extends ZalerioBaseTest {
-	
-/*
-		public User2ResignTest(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
-		// TODO Auto-generated constructor stub
-	}
-*/
+public class User2ResignTest extends Zalerio2UserBaseTest {
 		// user2 resigns from a game after user2 accepts game
 		 @Test
 		public void resignImmediateAfterAccept() throws InterruptedException {
@@ -36,9 +21,11 @@ public class User2ResignTest extends ZalerioBaseTest {
 			UserLogin.Olduserlogin(driver1, emailid1, password1);
 		*/	int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
+			GameUtil.closeGameEndPopUp(driver2);
 			Thread.sleep(2000);
 			// grab new GameId
 			String NewGameId = GameFeatures.grabGameId(driver1);
+			GameUtil.closeGameEndPopUp(driver2);
 			Thread.sleep(2000);
 			/*System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
@@ -57,6 +44,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 			WebElement gameInfoDiv = gameInfoPanel.findElement(By
 					.className("gameInfoDiv"));
 			WebElement userArea = gameInfoDiv.findElement(By.className("userArea"));
+			GameUtil.closeGameEndPopUp(driver2);
 			// verify user name
 			WebElement currentUserName = userArea.findElement(By
 					.id("currentUserName"));
@@ -68,6 +56,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 			WebElement bottomHUDbuttons_more = bottomHUDbuttons.findElement(By
 					.id("bottomHUDbuttons-more"));
 			bottomHUDbuttons_more.click();
+			GameUtil.closeGameEndPopUp(driver1);
 			Thread.sleep(2000);
 			boolean status = driver2.findElement(By.className("resignPopup"))
 					.isDisplayed();
@@ -79,6 +68,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 			resignButton.click();
 			Thread.sleep(2000);
 			// verfiy game end popup
+			GameUtil.closeGameEndPopUp(driver1);
 			WebElement winnerscreen = driver2.findElement(By.id("winnerscreen"));
 			WebElement score_friendpopup = winnerscreen.findElement(By
 					.id("score_friendpopup"));
@@ -86,6 +76,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 					.className("show_score"));
 			WebElement topScore_div = show_score.findElement(By.id("topScore_div"));
 			WebElement score1 = topScore_div.findElement(By.id("score1"));
+			GameUtil.closeGameEndPopUp(driver1);
 			// user2 will be shown as winner with score 0
 			WebElement name = score1.findElement(By.className("name"));
 			String observedName = name.getText();
@@ -107,9 +98,11 @@ public class User2ResignTest extends ZalerioBaseTest {
 			UserLogin.Olduserlogin(driver1, emailid1, password1);*/
 			int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
+			GameUtil.closeGameEndPopUp(driver2);
 			Thread.sleep(2000);
 			// grab new GameId
 			String NewGameId = GameFeatures.grabGameId(driver1);
+			GameUtil.closeGameEndPopUp(driver2);
 			Thread.sleep(2000);
 			/*System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
@@ -127,19 +120,23 @@ public class User2ResignTest extends ZalerioBaseTest {
 			WebElement gameInfoDiv = gameInfoPanel.findElement(By
 					.className("gameInfoDiv"));
 			WebElement userArea = gameInfoDiv.findElement(By.className("userArea"));
+			GameUtil.closeGameEndPopUp(driver2);
 			// verify user name
 			WebElement currentUserName = userArea.findElement(By
 					.id("currentUserName"));
 			String shownName = currentUserName.getText();
 			Thread.sleep(2000);
 			// User1 draga all tiles
+			GameUtil.closeGameEndPopUp(driver2);
 			Tiles.dragAllTiles(driver1);
+			
 			// click resign by user1
 			WebElement bottomHUDbuttons = driver2.findElement(By
 					.className("bottomHUDbuttons"));
 			WebElement bottomHUDbuttons_more = bottomHUDbuttons.findElement(By
 					.id("bottomHUDbuttons-more"));
 			bottomHUDbuttons_more.click();
+			GameUtil.closeGameEndPopUp(driver2);
 			Thread.sleep(2000);
 			boolean status = driver1.findElement(By.className("resignPopup"))
 					.isDisplayed();
@@ -319,25 +316,11 @@ public class User2ResignTest extends ZalerioBaseTest {
 			UserLogin.Olduserlogin(driver1, emailid1, password1);
 		*/	int[] SelectedFriends = new int[] { 2 };
 			StartAGame.createGame(driver1, SelectedFriends);
+			GameUtil.closeGameEndPopUp(driver2);
 			Thread.sleep(2000);
 			// grab new GameId
-			String NewGameId = "";
-			WebElement rightHUD_yourturn = driver1.findElement(By
-					.id("rightHUD-yourturn"));
-			int newSize;
-			// access your turn tiles
-			try {
-				List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-						.className("userArea"));
-				System.out.print("got your turn tiles");
-				newSize = your_turnTiles.size();
-				System.out.println("new size" + newSize);
-				WebElement gameTile = null;
-				gameTile = your_turnTiles.get(newSize - 1);
-				NewGameId = gameTile.getAttribute("id");
-				System.out.println("got New your turn tile with Id " + NewGameId);
-			} catch (Exception f) {
-			}
+			String NewGameId = GameFeatures.grabGameId(driver1);
+			GameUtil.closeGameEndPopUp(driver2);
 			Thread.sleep(2000);
 		/*	System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
@@ -347,15 +330,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
 			Thread.sleep(2000);
 		*/	// make user2 accept game
-			rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-			WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-			WebElement accept_decline = gameTile.findElement(By
-					.className("accept_decline"));
-			WebElement accept = accept_decline.findElement(By
-					.className("right_hud_accept"));
-			accept.click();
-			Popup.closePopup(driver2);
-
+			GameFeatures.acceptInvitation(driver2, NewGameId);
 			// grab shown name of user
 			WebElement leftHUD = driver1.findElement(By.id("leftHUD"));
 			WebElement gameInfoPanel = leftHUD.findElement(By
@@ -363,11 +338,13 @@ public class User2ResignTest extends ZalerioBaseTest {
 			WebElement gameInfoDiv = gameInfoPanel.findElement(By
 					.className("gameInfoDiv"));
 			WebElement userArea = gameInfoDiv.findElement(By.className("userArea"));
+			GameUtil.closeGameEndPopUp(driver2);
 			// verify user name
 			WebElement currentUserName = userArea.findElement(By
 					.id("currentUserName"));
 			String shownName = currentUserName.getText();
 			Thread.sleep(2000);
+			GameUtil.closeGameEndPopUp(driver2);
 			// User1 places all tiles sequentially and clicks play
 			WebElement gamewall = driver1.findElement(By.id("gamewall"));
 			WebElement gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
@@ -379,6 +356,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 				Tiles.drag1Tile(driver1, bet, position);
 				Thread.sleep(1000);
 			}
+			GameUtil.closeGameEndPopUp(driver2);
 			WebElement play = driver1.findElement(By.id("placeBetOnServer"));
 			play.click();
 			// User2 drags all tiles
@@ -392,6 +370,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 				Tiles.drag1Tile(driver2, bet, position);
 				Thread.sleep(1000);
 			}
+			GameUtil.closeGameEndPopUp(driver1);
 			WebElement play2 = driver2.findElement(By.id("placeBetOnServer"));
 			play2.click();
 			System.out.print("user1 has clicked Play");
@@ -400,6 +379,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 					.className("bottomHUDbuttons"));
 			WebElement bottomHUDbuttons_more = bottomHUDbuttons.findElement(By
 					.id("bottomHUDbuttons-more"));
+			GameUtil.closeGameEndPopUp(driver1);
 			bottomHUDbuttons_more.click();
 			Thread.sleep(2000);
 			boolean status = driver2.findElement(By.className("resignPopup"))
@@ -425,7 +405,6 @@ public class User2ResignTest extends ZalerioBaseTest {
 			// check observed name of user2 with shown name
 			assertEquals(shownName, observedName);
 			WebElement score = score1.findElement(By.className("score"));
-			int j = 0;
 			status = score.getText() != "";
 			assertEquals(status, true);
 		}
@@ -441,23 +420,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 			StartAGame.createGame(driver1, SelectedFriends);
 			Thread.sleep(2000);
 			// grab new GameId
-			String NewGameId = "";
-			WebElement rightHUD_yourturn = driver1.findElement(By
-					.id("rightHUD-yourturn"));
-			int newSize;
-			// access your turn tiles
-			try {
-				List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-						.className("userArea"));
-				System.out.print("got your turn tiles");
-				newSize = your_turnTiles.size();
-				System.out.println("new size" + newSize);
-				WebElement gameTile = null;
-				gameTile = your_turnTiles.get(newSize - 1);
-				NewGameId = gameTile.getAttribute("id");
-				System.out.println("got New your turn tile with Id " + NewGameId);
-			} catch (Exception f) {
-			}
+			String NewGameId = GameFeatures.grabGameId(driver1);
 			Thread.sleep(2000);
 	/*		System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
@@ -467,15 +430,7 @@ public class User2ResignTest extends ZalerioBaseTest {
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
 	*/		Thread.sleep(2000);
 			// make user2 accept game
-			rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-			WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-			WebElement accept_decline = gameTile.findElement(By
-					.className("accept_decline"));
-			WebElement accept = accept_decline.findElement(By
-					.className("right_hud_accept"));
-			accept.click();
-			Popup.closePopup(driver2);
-
+			GameFeatures.acceptInvitation(driver2, NewGameId);
 			// grab shown name of user
 			WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 			WebElement gameInfoPanel = leftHUD.findElement(By
@@ -571,7 +526,6 @@ public class User2ResignTest extends ZalerioBaseTest {
 			// check observed name of user2 with shown name
 			assertEquals(shownName, observedName);
 			WebElement score = score1.findElement(By.className("score"));
-			int j = 0;
 			status = score.getText() != "";
 			assertEquals(status, true);
 		}

@@ -9,14 +9,13 @@ import org.openqa.selenium.WebElement;
 
 import com.zalerio.config.GameUtil;
 
-public class StartAGameTest extends ZalerioBaseTest {
-/*	
-	public StartAGameTest(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
+public class StartAGameTest extends Zalerio1UserBaseTest {
+public StartAGameTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-*/			@Test
+	@Test
 		public void clickStartAGame() {
 		GameUtil.closeGameEndPopUp(driver1);
 		WebElement startButton = driver1.findElement(By.id("startButton"));
