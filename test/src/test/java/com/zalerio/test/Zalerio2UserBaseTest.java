@@ -23,7 +23,7 @@ import com.zalerio.config.UserLogin;
  * @author Ross Rowe
  */
 //@RunWith(Parallelized.class)
-public class ZalerioBaseTest implements SauceOnDemandSessionIdProvider {
+public class Zalerio2UserBaseTest implements SauceOnDemandSessionIdProvider {
 /*
 	 private String browser;
 	    private String browserVersion;

@@ -6,20 +6,14 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.zalerio.config.GameUtil;
-
-public class CheatSheetTest extends ZalerioBaseTest {
-
-	
-
-/*public CheatSheetTest
-(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
+public class CheatSheetTest extends Zalerio1UserBaseTest {
+	public CheatSheetTest(String os, String browser, String version,
+			String userid, String password) {
+		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-*/
-		@Test
+
+	@Test
 	public void openAndScrollCheatSheet() {
 		// class friendChallenge
 		// class friendChallenge back_to_the_game
@@ -28,7 +22,6 @@ public class CheatSheetTest extends ZalerioBaseTest {
 
 		WebElement backToGameDiv = driver1.findElement(By.id("cheat-sheet"));
 		backToGameDiv.click();
-		GameUtil.closeGameEndPopUp(driver2);
 		// Check if the button shows Back to Game
 
 		String backToGame = cheatSheetDiv.getAttribute("class");

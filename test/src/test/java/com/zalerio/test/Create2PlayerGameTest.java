@@ -13,7 +13,7 @@ import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
 import com.zalerio.config.Tiles;
 
-public class Create2PlayerGameTest  extends ZalerioBaseTest
+public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
 {
 	
 	//public Create2PlayerGameTest()

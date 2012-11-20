@@ -2,24 +2,23 @@ package com.zalerio.test;
 
 import static junit.framework.Assert.assertEquals;
 
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-public class TutorialTest extends ZalerioBaseTest {
-	
-	
-/*
+public class TutorialTest extends Zalerio1UserBaseTest {
+
 	public TutorialTest(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
+			String userid, String password) {
+		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-*/
-	//@Test
+
+	@Test
 	public void runTutorialFromHelp() {
-		
+
 		// help
 		WebElement helpButton = driver1.findElement(By.className("helpButton"));
 		helpButton.click();
@@ -27,6 +26,30 @@ public class TutorialTest extends ZalerioBaseTest {
 		// play "show me how"
 		WebElement showmehow = driver1.findElement(By.id("showmehow"));
 		showmehow.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// click "start now"
+		// class =popup-wrapper
+		WebElement popup_wrapper = driver1.findElement(By
+				.className("popup-wrapper"));
+		WebElement start_popup = popup_wrapper.findElement(By
+				.className("start-popup"));
+		WebElement title = start_popup.findElement(By.className("title"));
+		String Title = title.getText();
+		assertEquals(Title, "Welcome to Zalerio!");
+		WebElement right_button = start_popup.findElement(By
+				.className("right-button"));
+		right_button.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// click cheat sheet
 		// cheat-sheet
 		WebElement cheatSheet = driver1.findElement(By.id("cheat-sheet"));
@@ -53,7 +76,8 @@ public class TutorialTest extends ZalerioBaseTest {
 		} catch (InterruptedException e) {
 		}
 		// click OK on popup
-		WebElement active_screen2 = driver1.findElement(By.className("girlimg"));
+		WebElement active_screen2 = driver1
+				.findElement(By.className("girlimg"));
 		WebElement tutorial_popup2 = active_screen2.findElement(By
 				.className("tutorial-popup"));
 		WebElement popup2 = tutorial_popup2.findElement(By
@@ -74,7 +98,8 @@ public class TutorialTest extends ZalerioBaseTest {
 		} catch (InterruptedException e) {
 		}
 		// click OK on popup
-		WebElement active_screen3 = driver1.findElement(By.className("girlimg"));
+		WebElement active_screen3 = driver1
+				.findElement(By.className("girlimg"));
 		WebElement tutorial_popup3 = active_screen3.findElement(By
 				.className("tutorial-popup"));
 		WebElement popup3 = tutorial_popup3.findElement(By
@@ -88,14 +113,16 @@ public class TutorialTest extends ZalerioBaseTest {
 		} catch (InterruptedException e) {
 		}
 		// click OK on popup
-		WebElement active_screen4 = driver1.findElement(By.className("girlimg"));
+		WebElement active_screen4 = driver1
+				.findElement(By.className("girlimg"));
 		WebElement tutorial_popup4 = active_screen4.findElement(By
 				.className("tutorial-popup"));
 		WebElement popup4 = tutorial_popup4.findElement(By
 				.className("popup-button"));
 		popup4.click();
 		// click OK on popup
-		WebElement active_screen5 = driver1.findElement(By.className("girlimg"));
+		WebElement active_screen5 = driver1
+				.findElement(By.className("girlimg"));
 		WebElement tutorial_popup5 = active_screen5.findElement(By
 				.className("tutorial-popup"));
 		WebElement popup5 = tutorial_popup5.findElement(By

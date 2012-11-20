@@ -4,21 +4,17 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.zalerio.config.GameUtil;
+public class HelpTest extends Zalerio1UserBaseTest {
 
-public class HelpTest extends ZalerioBaseTest  {
-	
-/*
-	public HelpTest(String os, String browser, String version, String user1id,
-			String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
+	public HelpTest(String os, String browser, String version, String userid,
+			String password) {
+		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-*/
+
 	@Test
 	public void tryOptions() {
-		
-		
+
 		// help
 		WebElement helpButton = driver1.findElement(By.className("helpButton"));
 		helpButton.click();
@@ -41,7 +37,6 @@ public class HelpTest extends ZalerioBaseTest  {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
-		GameUtil.closeGameEndPopUp(driver2);
 		// tutorial_taketurn
 		WebElement gameRulesStep2 = ruleContent.findElement(By
 				.id("tutorial_taketurn"));
@@ -58,19 +53,18 @@ public class HelpTest extends ZalerioBaseTest  {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
-		GameUtil.closeGameEndPopUp(driver2);
 		// tutorial_jokers
 		WebElement gameRulesStep4 = ruleContent.findElement(By
 				.id("tutorial_jokers"));
-		
+
 		gameRulesStep4.click();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
-		//close window
-		WebElement s_friendpopup=driver1.findElement(By.id("s_friendpopup"));
-		WebElement close=s_friendpopup.findElement(By.id("close"));
+		// close window
+		WebElement s_friendpopup = driver1.findElement(By.id("s_friendpopup"));
+		WebElement close = s_friendpopup.findElement(By.id("close"));
 		close.click();
 	}
 }

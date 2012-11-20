@@ -1,15 +1,16 @@
 package com.zalerio.test;
 
-import java.util.List;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+
 import com.zalerio.config.Popup;
 
 public class RatingScreenTest {

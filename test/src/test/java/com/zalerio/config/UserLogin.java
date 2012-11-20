@@ -28,6 +28,7 @@ public class UserLogin {
 	//		RatingScreenTest.closeGameEndPopupWithVerifyRating(driver);
 	//	} catch (InterruptedException e) {
 	//		}
+		Popup.closePopup(driver);
 		GameUtil.closeGameEndPopUp(driver);
 	}
 	public static void Newuserlogin(WebDriver driver, String emailid,

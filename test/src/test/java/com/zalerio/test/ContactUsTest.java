@@ -5,19 +5,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class ContactUsTest extends ZalerioBaseTest {
-	
-	
-/*
+public class ContactUsTest extends Zalerio1UserBaseTest {
+
 	public ContactUsTest(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
+			String userid, String password) {
+		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-*/
+
 	@Test
 	public void trySendMail() {
-		
+
 		// click help
 		WebElement helpButton = driver1.findElement(By.className("helpButton"));
 		helpButton.click();
@@ -45,8 +43,8 @@ public class ContactUsTest extends ZalerioBaseTest {
 		// body
 		WebElement body = driver1.findElement(By.name("body"));
 		body.sendKeys("Testing Contact Us");
-		/*TODO
-		 * //verifyCode-----work has to be done on this-------------------
+		/*
+		 * TODO //verifyCode-----work has to be done on this-------------------
 		 * WebElement verifyCode =driver.findElement(By.name("verifyCode"));
 		 * verifyCode.sendKeys(" ");
 		 */
@@ -54,7 +52,7 @@ public class ContactUsTest extends ZalerioBaseTest {
 		WebElement send = driver1.findElement(By.id("upload_help_contactus"));
 		send.click();
 		// close window
-		
+
 		WebElement s_friendpopup = driver1.findElement(By.id("s_friendpopup"));
 		WebElement close = s_friendpopup.findElement(By.id("close"));
 		close.click();

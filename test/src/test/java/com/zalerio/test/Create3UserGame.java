@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,25 +15,18 @@ import com.zalerio.config.VerifyFeatures;
 
 
 
-public class Create3UserGame extends ZalerioBaseTest{ // verify username
-								
-/*
-	public Create3UserGame(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
-		// TODO Auto-generated constructor stub
-	}
-*/
+public class Create3UserGame extends Zalerio2UserBaseTest{
+	// verify username
 	// left HUD carousal for friend decline
 								// Game confirmation Pop up
-//	@Test
+	@Test
 	public void createGame() throws InterruptedException {
 		// create 3 player game
-		String user1ID = "abhilashbhaduri@gmail.com";
+		/*String user1ID = "abhilashbhaduri@gmail.com";
 		String user1Password = "16081989";
 		String user2ID = "griffinsingh1@gmail.com";
 
-		String user2Password = "griffinsingh1";
+		String user2Password = "griffinsingh1";*/
 		
 		
 		//verify username

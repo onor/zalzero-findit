@@ -10,13 +10,7 @@ import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
 import com.zalerio.config.Tiles;
 
-public class LeftHUDUserStatusTest extends ZalerioBaseTest {
-/*	public LeftHUDUserStatusTest(String os, String browser, String version,
-			String user1id, String user2id, String password) {
-		super(os, browser, version, user1id, user2id, password);
-		// TODO Auto-generated constructor stub
-	}
-*/
+public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 	@Test
 	public void checkStatus() throws InterruptedException {
 		
