@@ -25,7 +25,7 @@ public class Create2PlayerGameTest  extends ZalerioBaseTest
 	//}
 
 	@Test
-	public void createGame() throws InterruptedException {
+	public void playGame() throws InterruptedException {
 //		String user1Email = "abhilashbhaduri@gmail.com";
 //		String user1Pass = "16081989"; //Config.FB_SECURED_ACCOUNT_PASSWORD;
 //		String user2Email = "griffinsingh1@gmail.com";//Config.FB_SECURED_ACCOUNT_USERNAME2;
@@ -179,7 +179,7 @@ public class Create2PlayerGameTest  extends ZalerioBaseTest
 		String roundNo = doneRound.getText();
 		status=roundNo.contains("1");
 			assertEquals(status, true);
-		
+		GameUtil.closeGameEndPopUp(driver2);
 		WebElement currentRound = gameScore_round.findElement(By
 				.className("currentRound"));
 		roundNo = currentRound.getText();
@@ -196,6 +196,7 @@ public class Create2PlayerGameTest  extends ZalerioBaseTest
 				.id("userScoreHUDMain"));
 		List<WebElement> userScoreHUD_player = userScoreHUDMain.findElements(By
 				.className("userScoreHUD_player"));
+		GameUtil.closeGameEndPopUp(driver2);
 		// check player1
 		WebElement player1 = userScoreHUD_player.get(0);
 		WebElement userScoreHUD_playerBetPlacedNoarrow = player1.findElement(By
@@ -229,7 +230,7 @@ public class Create2PlayerGameTest  extends ZalerioBaseTest
 				.className("userScoreHUD_playerSerial"));
 		status=userScoreHUD_playerSerial.getText().contains("2");
 			assertEquals(status, true);
-		
+			GameUtil.closeGameEndPopUp(driver1);
 		userScoreHUD_playerName = player2.findElement(By
 				.className("userScoreHUD_playerName"));
 		status=userScoreHUD_playerName.isDisplayed();
@@ -246,6 +247,7 @@ public class Create2PlayerGameTest  extends ZalerioBaseTest
 		status=gameTile.findElement(By.className("round_no")).getText()
 				.contains("2");
 		assertEquals(status, true);
+		GameUtil.closeGameEndPopUp(driver2);
 		// Play User1 round2
 		Thread.sleep(3000);
 		Tiles.dragAllTiles(driver1);

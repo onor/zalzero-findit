@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.saucelabs.monitor.WebDriverWithHelperTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 105.87 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 153.852 sec

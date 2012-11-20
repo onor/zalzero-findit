@@ -76,18 +76,193 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
     }
 
     @Test
-    public void unionMonitor()
+    public void unionMonitorProd()
 	{
     	Properties prop = new Properties();
-    	String url=null,userid=null,userpwd=null;
+    	String url=null,userid=null,userpwd=null,userName=null;
     	try {
                //load a properties file
     		prop.load(new FileInputStream("environment.properties"));
  
                //get the property value and print it out
-                 url=prop.getProperty("url");
-    		userid=prop.getProperty("userid");
-    		userpwd=prop.getProperty("userpwd");
+                 url=prop.getProperty("urlProd");
+    		userid=prop.getProperty("useridProd");
+    		userpwd=prop.getProperty("userpwdProd");
+    		userName=prop.getProperty("usernameProd");
+    	} catch (IOException ex) {
+    		ex.printStackTrace();
+        }
+		int status=0;
+	//	System.setProperty("webdriver.chrome.driver", "C:/ChromeDriver/chromedriver");
+	//	WebDriver driver= new ChromeDriver();
+	//	WebDriver driver=new FirefoxDriver();
+	//	WebDriver driver=new OperaDriver();
+		driver.get(url);
+		WebElement login_form=driver.findElement(By.id("login_form"));
+		WebElement email=driver.findElement(By.id("email"));
+		email.sendKeys(userid);
+		WebElement pass=driver.findElement(By.id("pass"));
+		pass.sendKeys(userpwd);
+		login_form.submit();
+		driver.switchTo().frame("iframe_canvas");
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		//close tutorial in case of db cleanup
+		try{
+		WebElement popup_wrapper= driver.findElement(By.className("popup-wrapper"));
+		WebElement start_popup=popup_wrapper.findElement(By.className("start-popup"));
+		WebElement title=start_popup.findElement(By.className("title"));
+		String Title=title.getText();
+		assertEquals(Title,"Welcome to Zalerio!");
+		WebElement left_button=start_popup.findElement(By.className("left-button"));
+		left_button.click();
+		}catch(Exception e)
+		{
+			System.out.println("tutorial not found");
+		}
+		//close pop up
+		try{
+		WebElement okButton = driver.findElement(By.className("msgbox-ok"));
+		if (okButton != null) {
+			System.out.println("ok button found");
+		}
+		okButton.click();
+		}catch(Exception e)
+		{}
+		// close game end popup
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// If Game End Pop up Found then dismiss it
+		try{
+		WebElement score_friendpopup=driver.findElement(By.id("score_friendpopup"));
+		WebElement close=score_friendpopup.findElement(By.id("close"));	
+		close.click();
+		}catch(Exception e)
+		{e.printStackTrace();}
+		//close feedback screen
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		try{
+			WebElement rating_popup=driver.findElement(By.className("rating-popup"));
+			WebElement close1= rating_popup.findElement(By.tagName("a"));
+			if(close1.isDisplayed())
+			{
+				close1.click();
+			}
+		}catch(Exception e)
+		{e.printStackTrace();}
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+			
+		// verify username is visible
+		WebElement leftHUD= driver.findElement(By.id("leftHUD"));
+		WebElement gameInfoPanel=leftHUD.findElement(By.className("gameInfoPanel"));
+		WebElement gameInfoDiv=gameInfoPanel.findElement(By.className("gameInfoDiv"));
+		WebElement userArea=gameInfoDiv.findElement(By.className("userArea"));
+		WebElement userAreaName=userArea.findElement(By.id("currentUserName"));
+		if(userAreaName.isDisplayed())
+		{
+			String name=userAreaName.getText();
+			if(name.contains(userName))
+			{
+				status=1;
+				System.out.println("name is "+name+" status "+status);
+			}	
+		}
+		//verify right HUD game carousals
+		
+		WebElement rightHUD =driver.findElement(By.id("rightHUD"));
+		WebElement rightHUD_yourturn=rightHUD.findElement(By.id("rightHUD-yourturn"));
+		
+		 
+		try
+		{
+			WebElement userArea1=rightHUD_yourturn.findElement(By.className("userArea"));
+			if(userArea1.findElement(By.className("round_no")).isDisplayed())
+			{
+				status=2;
+				System.out.println("round no found  "+ status +"status");
+			}
+		}catch(Exception e)
+		{
+			//else create a new game and verify right HUD carousals
+			System.out.println("no game is found hence creating a new game");
+			
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			// new game creation
+			WebElement startButton =driver.findElement(By.id("startButton"));
+			startButton.click();
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			WebElement friendlist=driver.findElement(By.className("friendlist"));
+			WebElement rep=friendlist.findElement(By.className("rep"));
+			WebElement select_button=rep.findElement(By.tagName("a"));
+			select_button.click();
+			WebElement sendinvite=driver.findElement(By.id("sendinvite"));
+			sendinvite.click();
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			WebElement okButton = driver.findElement(By.className("msgbox-ok"));
+			if (okButton != null) {
+				System.out.println("ok button found");
+			}
+			okButton.click();
+			// check Right HUD
+			 	rightHUD =driver.findElement(By.id("rightHUD"));
+			 	rightHUD_yourturn=rightHUD.findElement(By.id("rightHUD-yourturn"));
+			 	
+			 	WebElement userArea2=rightHUD_yourturn.findElement(By.className("userArea"));
+				if(userArea2.findElement(By.className("round_no")).isDisplayed())
+				{
+					status=2;
+				}
+			
+		}
+		System.out.print("status "+status);
+		assertEquals(2,status);
+	}
+    @Test
+    public void unionMonitorStaging()
+    {
+    	Properties prop = new Properties();
+    	String url=null,userid=null,userpwd=null,userName=null;
+    	try {
+               //load a properties file
+    		prop.load(new FileInputStream("environment.properties"));
+ 
+               //get the property value and print it out
+                 url=prop.getProperty("urlStag");
+    		userid=prop.getProperty("useridStag");
+    		userpwd=prop.getProperty("userpwdStag");
+    		userName=prop.getProperty("usernameStag");
  
     	} catch (IOException ex) {
     		ex.printStackTrace();
@@ -247,8 +422,7 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 			
 		}
 		System.out.print("status "+status);
-		assertEquals(2,status);
-	}
+		assertEquals(2,status);    }
 
     @After
     public void tearDown() throws Exception {

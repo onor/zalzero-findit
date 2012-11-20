@@ -46,6 +46,7 @@ public class LeftHUDUserStatusTest extends ZalerioBaseTest {
 		WebElement reminder = infoPlate.findElement(By.className("reminder"));
 		boolean status = reminder.isDisplayed() && reminder.isEnabled();
 		assertEquals(status, true);
+		GameUtil.closeGameEndPopUp(driver2);
 		assertEquals(infoPlate.findElement(By.className("userAreaImg"))
 				.isDisplayed(), true);
 		WebElement userinfo = infoPlate.findElement(By.className("userinfo"));
@@ -145,8 +146,7 @@ public class LeftHUDUserStatusTest extends ZalerioBaseTest {
 					bottomHUDbuttons_more.click();
 					WebElement resignme =driver1.findElement(By.id("resignme"));
 					resignme.click();
-					driver1.quit();
-					driver2.quit();
+					
 					
 	}
 
