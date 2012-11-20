@@ -3952,7 +3952,7 @@ height: 19px;
 }
 #copyright{
 	position: absolute;
-	bottom: 10px;
+	bottom: 20px;
 	right: 10px;
 	text-align: right;
 	font-family:FuturaLT;
@@ -3988,4 +3988,13 @@ h2.round_no_r{
 
 .reminder:hover{
 	background: url("../images/zalerio_1.2/4.ingame_ui/bell_.png") no-repeat scroll -21px -3px transparent;
+}
+
+#privacy_tos{
+	margin-top: 42px;
+	font-size: 10px;
+	position: absolute;
+	right: 10px;
+	bottom: 2px;
+
 }
