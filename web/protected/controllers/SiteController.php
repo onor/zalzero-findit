@@ -22,13 +22,30 @@ class SiteController extends Controller
 	}
 
 	
-// 	public function filters()
-// 	{
-// 		return array(
-// 				'accessControl', // perform access control for CRUD operations
-// 		);
-// 	}
+	public function filters()
+	{
+		return array(
+				'accessControl', // perform access control for CRUD operations
+		);
+	}
 	
+	
+	public function accessRules()
+	{
+		return array(
+				array('allow',  // allow all users to perform 'index' and 'view' actions
+						'actions'=>array('index','error','login'),
+						'users'=>array('*'),
+				),
+				array('allow',  // allow all users to perform 'index' and 'view' actions
+						'actions'=>array('privacypolicy','tos'),
+						'users'=>array('@'),
+				),
+				array('deny',  // deny all users
+						'users'=>array('*'),
+				),
+		);
+	}
 	
 	/**
 	 * This is the default 'index' action that is invoked
