@@ -13,11 +13,8 @@ define(['zalzero.utils', 'zalzero.config'], function(utils, config) {
     _def = def;
     utils.addHighlight('#startButton');
     utils.addPositionRelative('#startButton');
-    utils.activateAccordion(4);
     _arrow = utils.createArrow(190, 100, 'right');
-    _popup = utils.createPopup(200, 200, config.POPUP_MESSAGE_STEP_5, function(e) {
-      return false;
-    });
+    utils.congratPopup();
     $('#startButton').on('click', _startGameButtonClick);
     return true;
   };

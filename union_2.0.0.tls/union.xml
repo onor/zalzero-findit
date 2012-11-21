@@ -1,19 +1,25 @@
 <union>
     <server>
         <admin>
-            <port>9110</port>
-    	    <password>password</password>
+            <port>8000</port>
+    	    <password>Cytzmlk1</password>
         </admin>
-        <client_timeout>30</client_timeout>
+        <client_timeout>30000</client_timeout>
     </server>
     <gateways>
         <gateway id="PrimaryGateway" type="TCP">
-            <port>9100</port>
+            <port>9933</port>
             <policy_file>policy.xml</policy_file>
             <access_control_allow_origin>*</access_control_allow_origin>
         </gateway>              
     </gateways>
     <modules>
+       	<module>
+       		<id>zalerioGameServer</id>
+           	<source type="class">
+                 net.user1.union.zz.zalerioGame.ZalerioGameServer
+           	</source>
+       	</module>
     </modules>    
     <persistence>
         <datasource id="union"/>

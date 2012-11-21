@@ -6,8 +6,7 @@ define(['zalzero.utils', 'zalzero.config'], function(utils, config) {
   _popup = null;
   _showPopup = function() {
     _popup = utils.createPopup(200, 200, config.POPUP_MESSAGE_STEP_4, function(e) {
-      _finish();
-      return false;
+      return _finish();
     });
     return true;
   };

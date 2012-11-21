@@ -6,6 +6,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 require_once( dirname(__FILE__) . '/../components/helpers.php');
+require_once( dirname(__FILE__) . '/../config/fbappconfig.php');
 ob_start('My_OB');
 function My_OB($str, $flags)
 {
@@ -48,8 +49,7 @@ return array(
 	// application components
 	'components'=>array(
 		'user'=>array(
-			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+			'allowAutoLogin' => false
 		),
 		// uncomment the following to enable URLs in path-format
 		

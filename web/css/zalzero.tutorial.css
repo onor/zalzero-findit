@@ -150,7 +150,7 @@
 
 #page .girlimg {
   position: relative; }
-  #page .girlimg .tutorial-overlay {
+  #active-screen > .tutorial-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -255,3 +255,107 @@
       text-transform: uppercase; }
   .tutorial-accordion h3.ui-state-active .accordion-circle {
     background: url("../images/tutorial/accordion_orange.png"); }
+    
+.start-popup{
+	background: url("../images/tutorial/Welcome_base.png");
+	width: 435px;
+	height: 435px;
+	position: absolute;
+	z-index: 1001;
+	top: 107px;
+	left: 153px;
+}
+.congratPopup{
+	background: url("../images/tutorial/Congratulationsbase.png");
+	height:349px;
+	top: 194px;
+}
+.start-popup .details{
+	text-align: center;
+	position: absolute;
+	top: 70px;
+	width: 95%;
+	font-size: 19px;
+	padding-right: 30px;
+	padding: 0 10px;
+}
+
+.start-popup .details ul{
+	text-align:left;
+	list-style-position: inside;
+	margin-top:20px;
+}
+.popup-wrapper{
+	z-index:1002;
+	position: absolute;
+	left:0;
+	top:0;
+	bottom:0;
+	right:0;
+}
+.start-popup .title{
+	font-size: 30px;
+	text-align: center;
+	line-height: 55px;
+}
+.congratPopup .details{
+	font-size: 18px;
+}
+
+.congratPopup .nowPlay{
+	font-size: 25px;
+	position: absolute;
+	top: 215px;
+	text-align: center;
+	width: 100%;
+}
+.start-popup .right-button{
+	background: url("../images/tutorial/Welcome_buttons.png")  right bottom no-repeat;
+	width: 225px;
+	height: 81px;
+	top: 350px;
+	position: absolute;
+	left: 214px;
+	cursor:pointer
+}
+
+.start-popup .left-button{
+	background: url("../images/tutorial/Welcome_buttons.png") left bottom no-repeat;
+	width: 225px;
+	height: 81px;
+	top: 350px;
+	position: absolute;
+	left: 2px;
+	cursor:pointer
+}
+
+.start-popup .left-button:hover{
+	background-position: left -12px;
+	height: 80px;
+}
+
+.start-popup .right-button:hover{
+	background-position: right -12px;
+	height: 80px;
+}
+
+.start-popup .ok-button{
+	background: url("../images/tutorial/Ok.png") right bottom no-repeat;
+	width: 172px;
+	height: 50px;
+	top: 290px;
+	position: absolute;
+	left: 132px;
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+.exit{
+	background: url("../images/tutorial/exit-button.png") right bottom no-repeat;
+	width: 108px;
+	height: 26px;
+	top: 10px;
+	position: absolute;
+	right: 10px;
+	cursor: pointer;
+}
