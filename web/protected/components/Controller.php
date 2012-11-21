@@ -54,6 +54,13 @@ class Controller extends CController
 
 	public function filterFacebook($filterChain) {
 		
+		if(Yii::app()->request->isAjaxRequest){
+			
+			$filterChain->run();
+			
+			exit;
+		}
+		
 		// check if safari browser
 		if( strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') ){
 			
