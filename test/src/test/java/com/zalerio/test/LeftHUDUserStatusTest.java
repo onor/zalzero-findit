@@ -77,6 +77,7 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 						.isDisplayed(), true);
 				WebElement userPlayStatus2 = userinfo2.findElement(By
 						.className("userPlayStatus"));
+				GameUtil.closeGameEndPopUp(driver1);
 				String userStatus2 = userPlayStatus2.getText();
 				String color2=userPlayStatus2.getAttribute("class");
 				assertEquals(color2.contains("green"),true);
@@ -96,7 +97,7 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 						.className("background"));
 				 infoPlate = background
 						.findElement(By.className("infoPlate"));
-				
+				GameUtil.closeGameEndPopUp(driver2);
 				assertEquals(infoPlate.findElement(By.className("userAreaImg"))
 						.isDisplayed(), true);
 				 userinfo = infoPlate.findElement(By.className("userinfo"));
@@ -108,12 +109,14 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 				color=userPlayStatus.getAttribute("class");
 				assertEquals(color.contains("green"),true);
 				assertEquals(userStatus, "finished round");
-		
+				GameUtil.closeGameEndPopUp(driver2);
 		//drag and drop all tiles by user1
 				Tiles.dragAllTiles(driver1);
+				GameUtil.closeGameEndPopUp(driver2);
 				WebElement play1 = driver1.findElement(By.id("placeBetOnServer"));
 				play1.click();
 				Thread.sleep(8000);
+				GameUtil.closeGameEndPopUp(driver2);
 		//check user2 status "not played yet"	
 			 gameInfo_game_players = driver1.findElement(By
 						.id("gameInfo-game-players"));
@@ -126,21 +129,24 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 				assertEquals(status, true);
 				assertEquals(infoPlate.findElement(By.className("userAreaImg"))
 						.isDisplayed(), true);
+				GameUtil.closeGameEndPopUp(driver2);
 				 userinfo = infoPlate.findElement(By.className("userinfo"));
 				assertEquals(userinfo.findElement(By.className("username"))
 						.isDisplayed(), true);
 				 userPlayStatus = userinfo.findElement(By
 							.className("userPlayStatus"));
 					 userStatus = userPlayStatus.getText();
+					 GameUtil.closeGameEndPopUp(driver2);
 					assertEquals(userStatus, "not played yet");
 		//click resign by user 1 to end game
 					WebElement bottomHUD = driver1.findElement(By.id("bottomHUD"));
 					WebElement bottomHUDbuttons_more = bottomHUD.findElement(By
 							.id("bottomHUDbuttons-more"));
 					bottomHUDbuttons_more.click();
+					GameUtil.closeGameEndPopUp(driver2);
 					WebElement resignme =driver1.findElement(By.id("resignme"));
 					resignme.click();
-					
+					GameUtil.closeGameEndPopUp(driver2);
 					
 	}
 

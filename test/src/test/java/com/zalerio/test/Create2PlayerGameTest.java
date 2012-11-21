@@ -13,46 +13,47 @@ import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
 import com.zalerio.config.Tiles;
 
-public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
-{
-	
-	//public Create2PlayerGameTest()
+public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 
-	//(String os, String browser, String version,
-	//		String user1id, String user2id, String password) {
-	//	super(os, browser, version, user1id, user2id, password);
-		// TODO Auto-generated constructor stub
-	//}
+	// public Create2PlayerGameTest()
+
+	// (String os, String browser, String version,
+	// String user1id, String user2id, String password) {
+	// super(os, browser, version, user1id, user2id, password);
+	// TODO Auto-generated constructor stub
+	// }
 
 	@Test
 	public void playGame() throws InterruptedException {
-//		String user1Email = "abhilashbhaduri@gmail.com";
-//		String user1Pass = "16081989"; //Config.FB_SECURED_ACCOUNT_PASSWORD;
-//		String user2Email = "griffinsingh1@gmail.com";//Config.FB_SECURED_ACCOUNT_USERNAME2;
-//		String user2Pass = "griffinsingh1";//Config.FB_SECURED_ACCOUNT_PASSWORD2;
-//		WebDriver driver1 = new FirefoxDriver();
-		// login User1
-	//	driver1.manage().window().s
-//		UserLogin.Olduserlogin(driver1, user1Email, user1Pass);
-		//RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
+		// String user1Email = "abhilashbhaduri@gmail.com";
+		// String user1Pass = "16081989"; //Config.FB_SECURED_ACCOUNT_PASSWORD;
+		// String user2Email =
+		// "griffinsingh1@gmail.com";//Config.FB_SECURED_ACCOUNT_USERNAME2;
+		// String user2Pass =
+		// "griffinsingh1";//Config.FB_SECURED_ACCOUNT_PASSWORD2;
+		// WebDriver driver1 = new FirefoxDriver();
+		// // login User1
+		// driver1.manage().window().s
+		// UserLogin.Olduserlogin(driver1, user1Email, user1Pass);
+		// RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
 		Thread.sleep(2000);
 		System.out.print("Logged in");
 		// verify Username
-//		VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
-		int []SelectedFriends=new int[]{2};
+		// VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
+		int[] SelectedFriends = new int[] { 2 };
 		// create new game at friendPosition
-		GameFeatures.createGame(driver1, SelectedFriends);
-		GameUtil.closeGameEndPopUp(driver2);
+		 GameFeatures.createGame(driver1, SelectedFriends);
+		 GameUtil.closeGameEndPopUp(driver2);
 		// login user2
-//		System.setProperty("webdriver.chrome.driver",
-//				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
-//		WebDriver driver2 = new ChromeDriver();
-//		UserLogin.Olduserlogin(driver2, user2Email, user2Pass);
-		
+		// System.setProperty("webdriver.chrome.driver",
+		// "C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
+		// WebDriver driver2 = new ChromeDriver();
+		// UserLogin.Olduserlogin(driver2, user2Email, user2Pass);
+
 		// grab new GameId
-		String NewGameId=GameFeatures.grabGameId(driver1);
+		String NewGameId = GameFeatures.grabGameId(driver1);
 		GameUtil.closeGameEndPopUp(driver2);
-		//make user 2 click cheat sheet
+		// make user 2 click cheat sheet
 		WebElement cheatSheetDiv2 = driver1.findElement(By
 				.className("friendChallenge"));
 		cheatSheetDiv2.click();
@@ -88,9 +89,9 @@ public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
 		WebElement bottomHUD = driver1.findElement(By.id("bottomHUD"));
 		WebElement bottomHUDbuttons_more = bottomHUD.findElement(By
 				.id("bottomHUDbuttons-more"));
-		boolean status=bottomHUDbuttons_more.isDisplayed(); 
+		boolean status = bottomHUDbuttons_more.isDisplayed();
 		assertEquals(status, true);
-		
+
 		// close insufficent user popup for user2
 		GameUtil.closeGameEndPopUp(driver2);
 		System.out.print("User 2 has Logged in");
@@ -149,8 +150,8 @@ public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
 		play.click();
 		Thread.sleep(2000);
 		// change position of tiles on board TODO unsuccessful need to be redone
-	//	tilePresentPosition = gamewall.findElement(By.id("boardTile-90"));
-	//	String draggable = tilePresentPosition.getAttribute("draggable");
+		// tilePresentPosition = gamewall.findElement(By.id("boardTile-90"));
+		// String draggable = tilePresentPosition.getAttribute("draggable");
 		GameUtil.closeGameEndPopUp(driver2);
 		// click Play to verify popup
 		play.click();
@@ -160,7 +161,7 @@ public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
 
 		// accept invitation and drag tiles to click play and complete 1 round
 		// accept invitation
-		
+
 		GameFeatures.acceptInvitation(driver2, NewGameId);
 		// drag and drop all tiles
 		GameUtil.closeGameEndPopUp(driver1);
@@ -177,18 +178,18 @@ public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
 		WebElement doneRound = gameScore_round.findElement(By
 				.className("doneRound"));
 		String roundNo = doneRound.getText();
-		status=roundNo.contains("1");
-			assertEquals(status, true);
+		status = roundNo.contains("1");
+		assertEquals(status, true);
 		GameUtil.closeGameEndPopUp(driver2);
 		WebElement currentRound = gameScore_round.findElement(By
 				.className("currentRound"));
 		roundNo = currentRound.getText();
-		status=roundNo.contains("2");
+		status = roundNo.contains("2");
 		assertEquals(status, true);
 		WebElement notPlayedRound = gameScore_round.findElement(By
 				.className("notPlayedRound"));
 		roundNo = notPlayedRound.getText();
-		status=roundNo.contains("3");
+		status = roundNo.contains("3");
 		assertEquals(status, true);
 		WebElement gameScore_players = gameScore.findElement(By
 				.className("gameScore-players"));
@@ -201,50 +202,51 @@ public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
 		WebElement player1 = userScoreHUD_player.get(0);
 		WebElement userScoreHUD_playerBetPlacedNoarrow = player1.findElement(By
 				.className("userScoreHUD_playerBetPlacedNo"));
-		status=userScoreHUD_playerBetPlacedNoarrow.isDisplayed();
-			assertEquals(status, true);
-		
+		status = userScoreHUD_playerBetPlacedNoarrow.isDisplayed();
+		assertEquals(status, true);
+
 		WebElement userScoreHUD_playerSerial = player1.findElement(By
 				.className("userScoreHUD_playerSerial"));
-		status=userScoreHUD_playerSerial.getText().contains("1");
-			assertEquals(status, true);
-		
+		status = userScoreHUD_playerSerial.getText().contains("1");
+		assertEquals(status, true);
+
 		WebElement userScoreHUD_playerName = player1.findElement(By
 				.className("userScoreHUD_playerName"));
-		status=userScoreHUD_playerName.isDisplayed();
-			assertEquals(status, true);
-		
+		status = userScoreHUD_playerName.isDisplayed();
+		assertEquals(status, true);
+
 		WebElement userScoreHUD_playerScore = player1.findElement(By
 				.className("userScoreHUD_playerScore"));
-		status=userScoreHUD_playerScore.isDisplayed();
-			assertEquals(status, true);
-		
+		status = userScoreHUD_playerScore.isDisplayed();
+		assertEquals(status, true);
+
 		// check player2
 		WebElement player2 = userScoreHUD_player.get(1);
 		userScoreHUD_playerBetPlacedNoarrow = player2.findElement(By
 				.className("userScoreHUD_playerBetPlacedNo"));
-		status=userScoreHUD_playerBetPlacedNoarrow.isDisplayed();
-			assertEquals(status, true);
-		
+		status = userScoreHUD_playerBetPlacedNoarrow.isDisplayed();
+		assertEquals(status, true);
+
 		userScoreHUD_playerSerial = player2.findElement(By
 				.className("userScoreHUD_playerSerial"));
-		status=userScoreHUD_playerSerial.getText().contains("2");
-			assertEquals(status, true);
-			GameUtil.closeGameEndPopUp(driver1);
+		status = userScoreHUD_playerSerial.getText().contains("2");
+		assertEquals(status, true);
+		GameUtil.closeGameEndPopUp(driver1);
 		userScoreHUD_playerName = player2.findElement(By
 				.className("userScoreHUD_playerName"));
-		status=userScoreHUD_playerName.isDisplayed();
-			assertEquals(status, true);
-		
+		status = userScoreHUD_playerName.isDisplayed();
+		assertEquals(status, true);
+
 		userScoreHUD_playerScore = player2.findElement(By
 				.className("userScoreHUD_playerScore"));
-		status=userScoreHUD_playerScore.isDisplayed();
+		status = userScoreHUD_playerScore.isDisplayed();
 		assertEquals(status, true);
-		
+
 		// check gameTile
-		WebElement rightHUD_yourturn= driver1.findElement(By.id("rightHUD-yourturn"));
+		WebElement rightHUD_yourturn = driver1.findElement(By
+				.id("rightHUD-yourturn"));
 		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-		status=gameTile.findElement(By.className("round_no")).getText()
+		status = gameTile.findElement(By.className("round_no")).getText()
 				.contains("2");
 		assertEquals(status, true);
 		GameUtil.closeGameEndPopUp(driver2);
@@ -305,7 +307,7 @@ public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
 		play2.click();
 		Thread.sleep(3000);
 		// verify rating screen pop up
-		//RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
+		// RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
 		GameUtil.closeGameEndPopUp(driver1);
 		// handle finish game pop up
 		Thread.sleep(5000);
@@ -328,8 +330,8 @@ public class Create2PlayerGameTest  extends Zalerio2UserBaseTest
 		driver2.navigate().refresh();
 		Thread.sleep(8000);
 		driver2.switchTo().frame("iframe_canvas");
-		//RatingScreenTest.closeGameEndPopupWithVerifyRating(driver2);
-		//check stats 
-	//	Stats.verifyGameAddToPastGames(driver2, NewGameId);
+		// RatingScreenTest.closeGameEndPopupWithVerifyRating(driver2);
+		// check stats
+		// Stats.verifyGameAddToPastGames(driver2, NewGameId);
 	}
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 public class UserLogin {
 	public static void Olduserlogin(WebDriver driver, String emailid,
 			String password)  {
-		driver.get("http://apps.facebook.com/zalzerostaging/?force=play");//(Config.TEST_APP_URL);
+		driver.get("http://apps.facebook.com/zalerio/?force=play");//(Config.TEST_APP_URL);
 		try {
 			Thread.sleep(6000);
 		} catch (InterruptedException e) {
@@ -19,8 +19,11 @@ public class UserLogin {
 		WebElement login_form = driver.findElement(By.id("login_form"));
 		WebElement email = driver.findElement(By.id("email"));
 		email.sendKeys(emailid);
+		try{
 		WebElement pass = driver.findElement(By.id("pass"));
 		pass.sendKeys(password);
+		}catch(Exception e)
+		{}
 		login_form.submit();
 		driver.switchTo().frame("iframe_canvas");
 		GameUtil.clickPlayHereForMultiTabIssue(driver);

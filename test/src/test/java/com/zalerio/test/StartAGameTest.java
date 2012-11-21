@@ -102,24 +102,24 @@ public StartAGameTest(String os, String browser, String version,
 		WebElement a = driver1.findElement(By.className("friendlist"));
 		List<WebElement> selectListOfButtons = (a.findElements(By
 				.className("rep")));
-		WebElement fr1 = selectListOfButtons.get(1).findElement(
+		WebElement fr1 = selectListOfButtons.get(0).findElement(
 				By.className("select_button"));
 		// select 5 friends
 		fr1.click();
 		System.out.println("fr1 selected");
-		WebElement fr2 = selectListOfButtons.get(4)
+		WebElement fr2 = selectListOfButtons.get(1)
 				.findElement(By.tagName("a"));
 		fr2.click();
 		System.out.println("fr2 selected");
-		WebElement fr3 = selectListOfButtons.get(5)
+		WebElement fr3 = selectListOfButtons.get(2)
 				.findElement(By.tagName("a"));
 		fr3.click();
 		System.out.println("fr3 selected");
-		WebElement fr4 = selectListOfButtons.get(6)
+		WebElement fr4 = selectListOfButtons.get(3)
 				.findElement(By.tagName("a"));
 		fr4.click();
 		System.out.println("fr4 selected");
-		WebElement fr5 = selectListOfButtons.get(7)
+		WebElement fr5 = selectListOfButtons.get(4)
 				.findElement(By.tagName("a"));
 		fr5.click();
 		//send challenge

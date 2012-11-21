@@ -1,4 +1,4 @@
-package com.zalerio.test;
+/*package com.zalerio.test;
 
 import java.util.List;
 import java.util.Random;
@@ -15,6 +15,7 @@ import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
 
 public class Try {
+	
 //	@Test
 	public void createGame() throws InterruptedException
 	{	
@@ -98,3 +99,18 @@ public class Try {
 		}
 	}
 }
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+ 
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+ CheatSheetTest .class,
+  TestCalculatorSubtraction.class,
+  TestCalculatorMultiplication.class,
+  TestCalculatorDivision.class
+})
+public class CalculatorSuite {
+    // the class remains completely empty, 
+    // being used only as a holder for the above annotations
+}
+*/
