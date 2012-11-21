@@ -1,6 +1,6 @@
-define ['zalzero.deffereds', 'zalzero.tutorial.step1', 'zalzero.tutorial.step2', 'zalzero.tutorial.step3', 'zalzero.tutorial.step4', 'zalzero.tutorial.step5'],
+define ['zalzero.deffereds','zalzero.utils', 'zalzero.tutorial.step1', 'zalzero.tutorial.step2', 'zalzero.tutorial.step3', 'zalzero.tutorial.step4', 'zalzero.tutorial.step5'],
 
-(deffereds, step1, step2, step3, step4, step5) ->
+(deffereds,utils, step1, step2, step3, step4, step5) ->
   _overlay = null
   
   _getChainFuncsArr = (modules) ->
@@ -29,21 +29,22 @@ define ['zalzero.deffereds', 'zalzero.tutorial.step1', 'zalzero.tutorial.step2',
     if jQueryOverlay.length is 0
       _overlay = $("<div class=\"tutorial-overlay\"></div>")
   
-      $('#active-screen .girlimg').append _overlay
+      $('#active-screen').prepend _overlay
       
     else _overlay = jQueryOverlay
     
     _overlay.on 'click', (e) ->
       false
-    
-    def.resolve()
+     
+    #utils.addExit()
+    utils.startPopup(def)
     
     true
   
   _afterTutorial = (arg, def) ->
     delete window.tutorialFlag
     try
-    	gameChangeListener()
+    	jDocument.trigger "gameChangeListener", ''
     eval("tutorial = false")
        	
     _overlay.remove()

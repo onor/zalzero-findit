@@ -4,7 +4,9 @@ $this->breadcrumbs = array(
     'play',
 );
 ?>
-
+<script>
+var gameInstId = '<?php echo $gameinst_id ?>';
+</script>
 
 <?php
 if (isset($startGame) || isset($game)) {
@@ -12,7 +14,7 @@ if (isset($startGame) || isset($game)) {
     $fbCurrentUserImg = "";
     if (isset(Yii::app()->user->user_fbid)) {
         $fbId = Yii::app()->user->user_fbid;
-        $fbCurrentUserImg = "http://graph.facebook.com/" . $fbId . "/picture";
+        $fbCurrentUserImg = "https://graph.facebook.com/" . $fbId . "/picture";
     }
 }
 ?>
@@ -43,16 +45,13 @@ if (isset($startGame) || isset($game)) {
                         </div>
                     </div>
                     <div class="gameInfoDiv" id="gameInfo-game-players">
-                        <div id="navCarouselLeft" class="navCarouselForPlayer"></div>
-                        <div id="navCarouselRight" class="navCarouselForPlayer"></div>
-                        <ul id="userTopPicHUDMain" class="newCarousel" ></ul>
-                        <ul id="nowPlayers" style="display:hidden;"></ul>
+
                     </div>
-                    <div class="gameInfoDiv" id="gamePrize">
+               <?php /* ?>     <div class="gameInfoDiv" id="gamePrize">
                         <div id="gamePrizeImageDiv"><img id="gamePrizeImage" src="" alt="Game Prize Image" /></div>
                         <div id="gamePrizeName"></div>
-                        <div id="gamePrizeMRP"></div>
-                    </div>
+                        <div id="gamePrizeMRP"></div> 
+                    </div> */ ?>
                 </div>
                 <div class="gameScore" <?php if(isset($tutorial)){ ?> style="display:none" <?php } ?> >
                     <div id="gameScore-round" class="gameScore-round">
@@ -81,19 +80,14 @@ if (isset($startGame) || isset($game)) {
                                     Once you have placed all 9 tiles hit the Play button 
                                     After your friends have placed their tiles, you will see your results.	
                                 </div>
-                                <h3><div class="accordion-circle">4</div><a href="#">Correct Hits</a></h3>
+                                <h3><div class="accordion-circle">4</div><a href="#">Start a game</a></h3>
                                 <div class="accordion-content">
-                                    You can see the results after the round, and place your next set of tiles to increase
-                                    your score.  Keep in mind, every wrong placement is penalized. While correct placements and 
-                                    completing a figure increase your score.
-                                </div>
-                                <h3><div class="accordion-circle">5</div><a href="#">Start a game</a></h3>
-                                <div class="accordion-content">
-                                    Now your ready to play. Press the 'Start a 
+                                   Now your ready to play. Press the 'Start a 
                                     GAME' button to invite and  
                                     enjoy the game with 
                                     your Friends.
                                 </div>
+                               
 	                   <div id="tutorial-accordion-cover">
 	                   		
 	                   </div>
@@ -104,7 +98,7 @@ if (isset($startGame) || isset($game)) {
                 <div class="friendChallenge">
                 		<a href="" onclick="return false" id="cheat-sheet"></a>
                 </div>
-                    <ul id="gameBetPanel" class="gameBetPanelUl" style="display: block; "><li class="draggableBets" id="bet_0" draggable="true"><a class="nbrs" id="new-0"></a></li><li class="draggableBets" id="bet_1" draggable="true"><a class="nbrs" id="new-1"></a></li><li class="draggableBets" id="bet_2" draggable="true"><a class="nbrs" id="new-2"></a></li><li class="draggableBets" id="bet_3" draggable="true"><a class="nbrs" id="new-3"></a></li><li class="draggableBets" id="bet_4" draggable="true"><a class="nbrs" id="new-4"></a></li><li class="draggableBets" id="bet_5" draggable="true"><a class="nbrs" id="new-5"></a></li><li class="draggableBets" id="bet_6" draggable="true"><a class="nbrs" id="new-6"></a></li><li class="draggableBets" id="bet_7" draggable="true"><a class="nbrs" id="new-7"></a></li><li class="draggableBets" id="bet_8" draggable="true"><a class="nbrs" id="new-8"></a></li></ul>
+                    <ul id="gameBetPanel" class="gameBetPanelUl" style="display: block; "><li class="draggableBets ui-draggable" id="bet_0" draggable="true"><a class="nbrs" id="new-0"></a></li><li class="draggableBets ui-draggable" id="bet_1" draggable="true"><a class="nbrs" id="new-1"></a></li><li class="draggableBets ui-draggable" id="bet_2" draggable="true"><a class="nbrs" id="new-2"></a></li><li class="draggableBets ui-draggable" id="bet_3" draggable="true"><a class="nbrs" id="new-3"></a></li><li class="draggableBets ui-draggable" id="bet_4" draggable="true"><a class="nbrs" id="new-4"></a></li><li class="draggableBets ui-draggable" id="bet_5" draggable="true"><a class="nbrs" id="new-5"></a></li><li class="draggableBets ui-draggable" id="bet_6" draggable="true"><a class="nbrs" id="new-6"></a></li><li class="draggableBets ui-draggable" id="bet_7" draggable="true"><a class="nbrs" id="new-7"></a></li><li class="draggableBets ui-draggable" id="bet_8" draggable="true"><a class="nbrs" id="new-8"></a></li></ul>
                     <div class="clear" ></div>
                 </div>
                 <div id="showOnMouseOver">
@@ -146,7 +140,7 @@ if (isset($startGame) || isset($game)) {
         <div class="clear"></div>
         <div class="bottomHUDpanel" id="bottomHUD">
             <div class="resignPopup">
-                <a href="" id="resignmeClose" onclick="jQuery('.resignPopup').hide(); return false;"></a>
+                <a id="resignmeClose" onclick="jQuery('.resignPopup').hide(); jQuery('.overlay').remove(); return false;"></a>
                 <span id="resignme"></span>
             </div>
             <div class="companySignature">
@@ -158,6 +152,9 @@ if (isset($startGame) || isset($game)) {
                 <li id="bottomHUDbuttons-play"><a id="placeBetOnServer" alt="Play" href="#" ></a></li>
             </ul>
         </div>
+    </div>
+    <div id="privacy_tos">
+    	<a id="tos_privacy"  href="<?php echo Yii::app()->homeUrl; ?>site/privacypolicy" style="color:#000" >Privacy Policy</a> | <a id="tos_link" href="<?php echo Yii::app()->homeUrl; ?>site/tos" style="color:#000" >Terms & Conditions</a>
     </div>
     <div id="copyright">
     	&copy; Copyright Zalzero Inc.<br />

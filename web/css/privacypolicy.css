@@ -1,0 +1,102 @@
+body, h1, h2, p {
+  margin: 0;
+  padding: 0; }
+
+div {
+  overflow: hidden;
+  display: block; }
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  color: white;
+  font-family: arial; }
+
+#con {
+  background: url(../images/zalerio_1.2/3.ingame_board/board/ingame_bg.jpg) no-repeat;
+  width: 758px;
+  margin: 0 auto;
+  height: 640px; }
+  #con .gameLogo {
+    background: url(../images/zalerio_1.2/4.ingame_ui/zalerio_logo.png) left -3px no-repeat transparent;
+    width: 232px;
+    height: 60px;
+    float: left; }
+  #con .heading {
+    font-weight: normal;
+    height: 40px;
+    width: 700px;
+    padding: 0 10px 0 10px;
+    background: rgba(0, 0, 0, 0.4);
+    margin: 100px auto 0;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px; }
+  #con .text {
+    height: 400px;
+    width: 700px;
+    padding: 0 10px 0 10px;
+    background: rgba(0, 0, 0, 0.4);
+    margin: 10px auto 0;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    padding: 10px;
+    overflow-y: scroll;
+    text-align: justify; }
+    #con .text ol {
+      margin-bottom: 20px; }
+    #con .text li {
+      margin-top: 20px; }
+  #con .text::-webkit-scrollbar {
+    width: 12px; }
+  #con .text::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+  #con .text::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); }
+  #con .text::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4); }
+  #con .button {
+    background-color: #7fbf4d;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+    background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: linear-gradient(top, #7fbf4d, #63a62f);
+    border: 1px solid #63a62f;
+    border-bottom: 1px solid #5b992b;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
+    box-shadow: inset 0 1px 0 0 #96ca6d;
+    color: white;
+    font: bold 11px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    padding: 7px 0 8px 0;
+    text-align: center;
+    text-shadow: 0 -1px 0 #4c9021;
+    width: 150px;
+    height: 25px;
+    margin: 20px 0 0 20px;
+    text-decoration: none;
+    display: block;
+    overflow: hidden;
+    line-height: 30px;
+    font-size: 15px; }
+    #con .button:hover {
+      background-color: #76b347;
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
+      background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
+      background-image: -moz-linear-gradient(top, #76b347, #5e9e2e);
+      background-image: -ms-linear-gradient(top, #76b347, #5e9e2e);
+      background-image: -o-linear-gradient(top, #76b347, #5e9e2e);
+      background-image: linear-gradient(top, #76b347, #5e9e2e);
+      -webkit-box-shadow: inset 0 1px 0 0 #8dbf67;
+      box-shadow: inset 0 1px 0 0 #8dbf67;
+      cursor: pointer; }

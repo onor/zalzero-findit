@@ -1,0 +1,6 @@
+/unionDB
+*.log
+log*.txt*
+*.class
+.project
+.classpath

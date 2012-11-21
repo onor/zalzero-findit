@@ -1,10 +1,11 @@
 <?php
-Yii::import('application.vendors.*');
+
 Yii::import('application.config.*');
-require_once('facebook-php-sdk-b14edfa/src/facebookwrapper.php');
+
 require_once('fbappconfig.php');
 require_once('GameServices.php');
 require_once("UserServices.php");
+
 /**
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
@@ -26,80 +27,214 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-        
+
+	public $facebook;
+
+	public $oauth_token;
+	
+	public $loggedInUser;
+
 	function __construct($id,$module=null) {
-    parent::__construct($id, $module);
-    // Get an instance of the Facebook class distributed as the PHP SDK by facebook:
-    $getFbCredentialsObj = new getFbCredentials();
-    $getFbCredentials = $getFbCredentialsObj->getFbAppData();
-    $fbAppID = $getFbCredentials['fbAppID'];
-    $fbAppSecretId = $getFbCredentials['fbAppSecretId'];
-    $fbCanvasPage = $getFbCredentials['fbCanvasPage'];
-    $fbCanvasUrl = $getFbCredentials['fbCanvasUrl'];
-    $fbAppName = $getFbCredentials['fbAppName'];
 
-     Yii::app()->params['facebook'] = new FacebookWrapper(array(
-      'appId'  => $fbAppID,
-      'secret' => $fbAppSecretId,
-      'cookie' => true,
-      'appName' => $fbAppName,
-      'canvasPage' => $fbCanvasPage,
-      'canvasUrl'  => $fbCanvasUrl
-      ));
-  }
+		parent::__construct($id, $module);
 
-  /**
-   * Filters for all the request coming to facebook application 
-   */
-  public function filters() {
-    return array(
-            'facebook',
-    );
-  }
+		// Get an instance of the Facebook class distributed as the PHP SDK by facebook:
+		$this->facebook = new facebookCredetials();
 
- public function filterFacebook($filterChain) {
-    header('P3P: CP="CAO PSA OUR"');
-    $facebook = Yii::app()->params['facebook'];
-    $session = $facebook->getSession();
-    $fbme = null;
-    if ($session) {
-      try {
-        $uid = $facebook->getUser();
-        $fbme = $facebook->api('/me');
-      } catch (FacebookApiException $e) {
-        print_r("<pre>".$e."</pre>");
-      }
-    }
-    if ($fbme) {
-      // call $filterChain->run() to continue filtering and action execution
-      $filterChain->run();
-    }
-    else {
-      $appId = $facebook->getAppId();
-      if(isset($_REQUEST['gameinst_id']) && is_numeric($_REQUEST['gameinst_id'])) {
-      		$canvasUrl = $facebook->getCanvasPage()."?gameinst_id=".$_REQUEST['gameinst_id'];
-      } 
-      else {
-		$canvasUrl = $facebook->getCanvasPage();
-      }
-	// Set the required permissions for the application
-      $perms = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
-      $loginUrl = "https://www.facebook.com/dialog/oauth?scope=".$perms.
-        "&client_id=".$facebook->getAppId().
-        "&redirect_uri=".urlencode($canvasUrl);
-      echo("<script> top.location.href='" . $loginUrl . "'</script>");
-      Yii::app()->end();
-    }
-  }
+	}
+
+	/**
+	 * Filters for all request
+	 */
+	public function filters() {
+		return array(
+				'facebook',
+		);
+	}
+
+	public function filterFacebook($filterChain) {
+		
+		if(Yii::app()->request->isAjaxRequest){
+			
+			$filterChain->run();
+			
+			exit;
+		}
+		
+		// check if safari browser
+		if( strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') ){
+			
+			// set test cookies for browser
+			setcookie("zalerio_safari_test", "1");
+			
+			setcookie("zalerio_","1",time() + 30 * 84000 );
+			
+			// if cookies count zero or less then zero then redirect to zalerio
+			if(	! count($_COOKIE) > 0 ){
+				
+				echo("<script> top.location.href='" . $this->facebook->config->canvasUrl . "'</script>");
+			}
+		}
+		
+		if(isset($_REQUEST["signed_request"])){ // user come for facebook iframe
+			
+			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
+			$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
+
+			if(!empty($signedRequestData["oauth_token"])){
+				
+				Yii::app()->session['oauth_token'] = $signedRequestData["oauth_token"];
+				
+				// get user if exists
+				$this->loggedInUser = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $signedRequestData["user_id"] ));
+				
+				if( ! $this->loggedInUser ){
+					
+					$this->loggedInUser = ''; // reset variable
+				
+					// get facebook me data
+					$facebookUser	=	$this->get_fb_user_info($signedRequestData["oauth_token"]);
+
+					Yii::app()->session['fbid'] = $facebookUser->id;
+
+					$this->loggedInUser = new Zzuser;
+					
+					if(isset($facebookUser->name)){
+						$this->loggedInUser->user_name	=	substr($facebookUser->name, 0, 49); // user name can't more then 50 char
+					}else{
+						$this->loggedInUser->user_name	= $facebookUser->id;
+					}
+					// User First Name
+					$this->loggedInUser->user_fname	=	@$facebookUser->first_name;
+
+					// user Last name
+					$this->loggedInUser->user_lname	=	@$facebookUser->last_name;
+
+					// user facebook id
+					$this->loggedInUser->user_fbid	=	$facebookUser->id;
+
+					if(isset($facebookUser->email)){
+						$this->loggedInUser->user_email	=	$facebookUser->email;
+					}else{
+						$this->loggedInUser->user_email	=	$facebookUser->id.'@facebook.com';
+					}
+
+					$this->loggedInUser->user_handle		=	$facebookUser->id.'@facebook.com';
+
+					$this->loggedInUser->zzuser_status	=	'';
+					
+					$this->loggedInUser->user_password = md5($facebookUser->id);
+					
+					$this->loggedInUser->user_role_id	= '2';
+					
+					if($this->loggedInUser->save()){
+						
+						// create game users summary
+						$userGameSummaryModel = new Zzgameusersummary;
+						$userGameSummaryModel->zz_gameinsttemp_id = 'ZalerioTempl1';
+						$userGameSummaryModel->user_id = $this->loggedInUser->user_id;
+						$userGameSummaryModel->total_games_played = 0;//At the start Games played is 0
+						$userGameSummaryModel->total_game_won = 0;//At the start Games Won is 0
+						$userGameSummaryModel->user_level = 1;//At the start the Level is 1
+						$userGameSummaryModel->save();
+						
+					}
+				}
+
+				if( $this->loggedInUser->zzuser_status == 'invited'){
+					
+					// get facebook me data
+					$facebookUser	=	$this->get_fb_user_info($signedRequestData["oauth_token"]);
+					
+					if(isset($facebookUser->email)){
+						Yii::app()->session['fb_email']	=	$facebookUser->email;
+					}else{
+						Yii::app()->session['fb_email']	=	$facebookUser->id.'@facebook.com';
+					}
+					
+				}else{
+					Yii::app()->session['fb_email'] =	$this->loggedInUser->user_email;
+				}
+			
+				// we have logged-in user if we are here
+				Yii::app()->session['fbid']		=	$this->loggedInUser->user_fbid;
+			
+				$filterChain->run();
+				
+				exit;
+				
+			}
+		}
+		
+		$this->get_auth();
+	}
 	
-	
-        public function printmodel($model){
-            if(is_object($model) || is_array($model)){
-                echo "<PRE>";
-                echo print_r($model->attributes);
-                echo "</PRE>";
-            }else{
-                echo $model;
-            }
-        }
+	function get_auth(){
+		$get_param = "gameinst_id=0";
+		
+		if(isset($_REQUEST["force"])){
+			
+			$get_param .= "&force=play";
+		}
+		
+		$get_param = urlencode($get_param);
+		
+//		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
+		$permission = "email,friends_online_presence";
+		
+		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?'.$get_param;
+		
+		echo("<script> top.location.href='" . $auth_url . "'</script>");
+		
+		Yii::app()->end();
+		
+		exit;
+	}
+
+	function get_fb_user_info($oauth_token = false)
+	{
+		if ($oauth_token !== false){
+			// oatuh token set
+			$this->oauth_token = $oauth_token;
+
+		}elseif( !$this->oauth_token ) {
+			// if access token not set
+			$this->set_access_token();
+		}
+
+		// Attempt to query the graph:
+		$graph_url = "https://graph.facebook.com/me?". "access_token=" . $this->oauth_token;
+
+		$response = $this->curl_get_file_contents($graph_url);
+
+		$decoded_response = json_decode($response);
+
+		//Check for errors
+		if (@$decoded_response->error) {
+			// check to see if this is an oAuth error:
+			if ($decoded_response->error->type == "OAuthException") {
+				// Retrieving a valid access token.
+				$this->request_oauth();
+				exit;
+			}
+
+			echo "other error has happened";
+			return false;  // error
+		}
+		return $decoded_response;  // success
+	}
+
+	// we should have access token now
+	function curl_get_file_contents($URL) {
+		$c = curl_init();
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($c, CURLOPT_URL, $URL);
+		$contents = curl_exec($c);
+		$err = curl_error($c);
+		curl_close($c);
+		if ($err) return $err;
+		// if not error
+		return $contents;
+	}
 }
