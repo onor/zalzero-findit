@@ -2,12 +2,18 @@ package com.zalerio.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+import java.util.Random;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
+import com.zalerio.config.Popup;
 import com.zalerio.config.Tiles;
 
 public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
@@ -28,7 +34,29 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 		*/
 		// user1 creates a new game
 		int SelectedFriends[]=new int[]{2};
-			GameFeatures.createGame(driver1, SelectedFriends);
+		WebElement startButton = driver1.findElement(By.id("startButton"));
+		startButton.click();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {}
+		GameUtil.closeGameEndPopUp(driver2);
+		WebElement a = driver1.findElement(By.className("friendlist"));
+		List<WebElement> selectListOfButtons = (a.findElements(By
+				.className("rep")));
+		// select n friends
+		for(int i=0;i<SelectedFriends.length;i++)
+		{	
+		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
+		friend.click();
+		}
+		GameUtil.closeGameEndPopUp(driver2);
+		//send challenge
+		WebElement sendChallengeButton = driver1.findElement(By
+						.id("sendinvite"));
+		sendChallengeButton.click();
+		System.out.println("challenge sent");
+		Popup.closePopup(driver1);
+		Thread.sleep(2000);
 			GameUtil.closeGameEndPopUp(driver2);
 		// user status :not accepted yet in red
 		WebElement gameInfo_game_players = driver1.findElement(By
@@ -57,8 +85,10 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 		// grab new GameId
 	String NewGameId=GameFeatures.grabGameId(driver1);
 		//accept invitation by user2
+	
 		GameFeatures.acceptInvitation(driver2, NewGameId);
-		Thread.sleep(5000);
+		GameUtil.closeGameEndPopUp(driver2);
+		Thread.sleep(2000);
 		// user status :...playing now in green
 				WebElement gameInfo_game_players2 = driver1.findElement(By
 						.id("gameInfo-game-players"));
@@ -77,13 +107,43 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 						.isDisplayed(), true);
 				WebElement userPlayStatus2 = userinfo2.findElement(By
 						.className("userPlayStatus"));
-				GameUtil.closeGameEndPopUp(driver1);
+				GameUtil.closeGameEndPopUp(driver2);
 				String userStatus2 = userPlayStatus2.getText();
 				String color2=userPlayStatus2.getAttribute("class");
 				assertEquals(color2.contains("green"),true);
 				assertEquals(userStatus2, "...playing now");
 		//drag and drop all tiles of user2 and click play
-				Tiles.dragAllTiles(driver2);
+				
+				Random randomGenerator = new Random();
+				
+				for (int i = 0; i < 9; i++) {
+					WebElement gamewall = driver2.findElement(By.id("gamewall"));
+					WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
+					// get bet
+					String betid = "bet_" + i;
+					WebElement bet = gameBetPanel.findElement(By.id(betid));
+					int randomInt;
+					GameUtil.closeGameEndPopUp(driver1);
+					// get position
+					WebElement position;
+					String droppable;
+					do {
+						randomInt = randomGenerator.nextInt(480);
+						String betPos = "boardTile-" + randomInt;
+						position = gamewall.findElement(By.id(betPos));
+						// check if it is droppable
+						droppable = position.getAttribute("droppable");
+						if (droppable.contains("2")) {
+							// place bet
+							Actions builder = new Actions(driver2); // Configure the
+																	// Action
+							Action dragAndDrop = builder.clickAndHold(bet)
+									.moveToElement(position).release(position).build();
+							dragAndDrop.perform();
+							Thread.sleep(1000);
+						}
+					} while (droppable.contains("-1"));
+				}
 				GameUtil.closeGameEndPopUp(driver1);
 				WebElement play2 = driver2.findElement(By.id("placeBetOnServer"));
 				play2.click();
@@ -91,6 +151,7 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 				driver2.switchTo().defaultContent();
 			driver2.findElement(By.id("pageLogo")).click();		
 		//check user2 status as "finished round"
+			GameUtil.closeGameEndPopUp(driver2);
 				 gameInfo_game_players = driver1.findElement(By
 						.id("gameInfo-game-players"));
 				 background = gameInfo_game_players.findElement(By

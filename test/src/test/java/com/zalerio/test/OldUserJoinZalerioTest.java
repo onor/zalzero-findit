@@ -8,11 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
 import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
-import com.zalerio.config.UserLogin;
 
 public class OldUserJoinZalerioTest extends Zalerio1UserBaseTest{
 	public OldUserJoinZalerioTest(String os, String browser, String version,
@@ -220,11 +217,10 @@ public class OldUserJoinZalerioTest extends Zalerio1UserBaseTest{
 	{
 	//	System.setProperty("webdriver.chrome.driver", "C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 	//	 driver= new ChromeDriver();
-		driver1=new FirefoxDriver();
-		 String emailid="hemantkumer007@gmail.com";
-		 String password="hemantkumer007";
-		UserLogin.Olduserlogin(driver1, emailid, password);
-	
+	//	driver1=new FirefoxDriver();
+//		 String emailid="hemantkumer007@gmail.com";
+//		 String password="hemantkumer007";
+//		UserLogin.Olduserlogin(driver1, emailid, password);	
 		WebElement  rightHUD_yourturn= driver1.findElement(By.id("rightHUD-yourturn"));
 		List<WebElement> your_turnTiles;
 		//access your turn tiles
