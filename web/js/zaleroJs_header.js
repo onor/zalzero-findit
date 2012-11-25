@@ -363,7 +363,7 @@ jQuery(function($) {
 						if (id.length == 0) {
 							messagePopup('Please select a friend.');
 						} else if (id.length > 4) {
-							messagePopup('Please select max upto 4 friends.');
+							messagePopup('Please select up to 4 friends.');
 						} else {
 							if (jQuery('#sendinvite').attr('value') == 'Sending...') {
 								return;
@@ -446,11 +446,11 @@ jQuery(function($) {
 	function fb_publish(friendId, gameId) {
 		/* if(opts == 'undefined') { */
 		var opts = {
-			message : 'Find IT game Invitation',
-			name : 'Find IT',
+			message : 'Zalerio game Invitation',
+			name : 'Zalerio',
 			link : "http://" + window.location.hostname + "/?invited_game_id="
 					+ gameId,
-			description : 'Join Find IT to play game'
+			description : 'Join Zalerio to play game'
 		};
 		/* } */
 		$.holdReady(true);
