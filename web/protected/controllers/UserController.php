@@ -564,9 +564,9 @@ class UserController extends Controller
 				$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 				$headers .= "From: $getLoggedinUserEmail" . "\r\n";
 
-				$body ='<a href="'.$canvasUrl.'/?gameinst_id='.$gameId.'">Find IT game Invitation</a>';
+				$body ='<a href="'.$canvasUrl.'/?gameinst_id='.$gameId.'">Zalerio game Invitation</a>';
 				if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
-					mail($fbEmail,'Find IT',$body, $headers);
+					mail($fbEmail,'Zalerio',$body, $headers);
 				}
 
 				if(empty($checkForExistenceData)) {

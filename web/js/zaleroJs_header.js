@@ -446,11 +446,11 @@ jQuery(function($) {
 	function fb_publish(friendId, gameId) {
 		/* if(opts == 'undefined') { */
 		var opts = {
-			message : 'Find IT game Invitation',
-			name : 'Find IT',
+			message : 'Zalerio game Invitation',
+			name : 'Zalerio',
 			link : "http://" + window.location.hostname + "/?invited_game_id="
 					+ gameId,
-			description : 'Join Find IT to play game'
+			description : 'Join Zalerio to play game'
 		};
 		/* } */
 		$.holdReady(true);
