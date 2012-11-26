@@ -96,7 +96,7 @@
 						discretion could damage, disable, overburden, or impair it or
 						interfere with any other party's use of the Game. You may not
 						intentionally interfere with or damage the operation of the Game
-						or any User�s enjoyment of it, by any means, including uploading
+						or any User's enjoyment of it, by any means, including uploading
 						or otherwise disseminating viruses, worms, or other malicious
 						code. You may not remove, circumvent, disable, damage or otherwise
 						interfere with any security-related features of a Game, features
@@ -187,7 +187,7 @@
 				<li><strong>Indemnification; Hold Harmless. </strong>You agree to
 					indemnify and hold Company, and its affiliated companies, and its
 					suppliers and partners, harmless from any claims, losses, damages,
-					liabilities, including attorney�s fees, arising out of your use or
+					liabilities, including attorney's fees, arising out of your use or
 					misuse of any Game, breach of this Agreement or violation of the
 					rights of any other person or entity. Company reserves the right,
 					at our own expense, to assume the exclusive defense and control of
@@ -204,10 +204,10 @@
 					BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. APPLICABLE LAW MAY
 					NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY OR INCIDENTAL OR
 					CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT
-					APPLY TO YOU. IN SUCH CASES, COMPANY�S LIABILITY WILL BE LIMITED TO
-					THE EXTENT PERMITTED BY LAW. <br><br /> IN NO EVENT SHALL COMPANY�S OR
+					APPLY TO YOU. IN SUCH CASES, COMPANY'S LIABILITY WILL BE LIMITED TO
+					THE EXTENT PERMITTED BY LAW. <br><br /> IN NO EVENT SHALL COMPANY'S OR
 					ITS AFFILIATES, CONTRACTORS, EMPLOYEES, AGENTS, OR THIRD PARTY
-					PARTNERS OR SUPPLIERS� TOTAL LIABILITY TO YOU FOR ALL DAMAGES,
+					PARTNERS OR SUPPLIERS TOTAL LIABILITY TO YOU FOR ALL DAMAGES,
 					LOSSES, AND CAUSES OF ACTION ARISING OUT OF OR RELATING TO THESE
 					TERMS OR YOUR USE OF ALL GAMES (WHETHER IN CONTRACT, TORT,
 					WARRANTY, OR OTHERWISE) EXCEED FIFTY U.S. DOLLARS. <br><br /> THESE
@@ -234,7 +234,7 @@
 							waived only by a written instrument executed by the party
 							entitled to the benefit of such provision. The failure of any
 							party at any time to require performance of any provision of this
-							Agreement shall in no manner affect such party�s right at a later
+							Agreement shall in no manner affect such party's right at a later
 							time to enforce the same. A waiver of any breach of any provision
 							of this Agreement shall not be construed as a continuing waiver
 							of other breaches of the same or other provisions of this
