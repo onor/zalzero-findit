@@ -20,7 +20,8 @@
 			</p>
 			<ol>
 				<li><strong>Privacy Policy.</strong> The Company�s Privacy Policy, found at
-					[""http://www.zalerio.com/site/privacypolicy"] 
+< a href="https://apps.facebook.com/zalerio/site/Privacypolicy">Privacy Policy</a>
+
 					is hereby incorporated into this Agreement. Please read
 					this notice carefully for details relating to the collection, use,
 					and disclosure of your personal information.</li>
@@ -253,7 +254,9 @@
 							writing, signed by both parties, or by a change to this Agreement
 							or Guidelines made by Company as set forth in Section 3 above.
 							The services hereunder are offered by Zalzero Inc., located at
-							Zalzero Inc. Palo Alto CA 94304
+							<br>Zalzero Inc. 
+							<br>950 Page Mill Road
+							<br>Palo Alto CA 94304
 							email: privacy@zalzero.com.</li>
 					</ol></li>
 			</ol>
