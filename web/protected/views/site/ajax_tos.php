@@ -136,7 +136,7 @@
 					products, or services on a Game may be out of date, and Company
 					makes no commitment to update these materials on any Game.</li>
 				<li><strong>Notice.</strong> Except as explicitly stated otherwise, legal notices
-					shall be served on Company�s national registered agent or to the
+					shall be served on Company's' national registered agent or to the
 					email address you provide to Company during the registration
 					process. Notice shall be deemed given 24 hours after email is sent,
 					unless the sending party is notified that the email address is
