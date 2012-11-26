@@ -19,7 +19,7 @@
 				what sites are appropriate for you.
 			</p>
 			<ol>
-				<li><strong>Privacy Policy.</strong> The Company�s Privacy Policy, found at
+				<li><strong>Privacy Policy.</strong> The Company Privacy Policy, found at
 < a href="https://apps.facebook.com/zalerio/site/Privacypolicy">Privacy Policy</a>
 
 					is hereby incorporated into this Agreement. Please read
@@ -94,7 +94,7 @@
 						strictly prohibited.</li>
 					<li>You may not use a Game in any manner that in our sole
 						discretion could damage, disable, overburden, or impair it or
-						interfere with any other party�s use of the Game. You may not
+						interfere with any other party's use of the Game. You may not
 						intentionally interfere with or damage the operation of the Game
 						or any User�s enjoyment of it, by any means, including uploading
 						or otherwise disseminating viruses, worms, or other malicious
