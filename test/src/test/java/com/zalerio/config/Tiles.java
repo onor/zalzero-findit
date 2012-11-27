@@ -1,5 +1,6 @@
 package com.zalerio.config;
 
+
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -48,6 +49,43 @@ public class Tiles {
 							.moveToElement(position).release(position).build();
 					dragAndDrop.perform();
 					Thread.sleep(1000);
+				}
+			} while (droppable.contains("-1"));
+		}
+	}
+	// add delay methods
+	// place all tiles in random positions by checking that it can be placed
+	// over there
+	public static void dragAllTilesWithDelay(WebDriver driver,WebDriver driver2)
+			throws InterruptedException {
+		Thread.sleep(2000);
+		Random randomGenerator = new Random();
+		
+		for (int i = 0; i < 9; i++) {
+			WebElement gamewall = driver.findElement(By.id("gamewall"));
+			WebElement gameBetPanel = driver.findElement(By.id("gameBetPanel"));
+			// get bet
+			String betid = "bet_" + i;
+			WebElement bet = gameBetPanel.findElement(By.id(betid));
+			int randomInt;
+			// get position
+			WebElement position;
+			String droppable;
+			do {
+				randomInt = randomGenerator.nextInt(480);
+				String betPos = "boardTile-" + randomInt;
+				position = gamewall.findElement(By.id(betPos));
+				// check if it is droppable
+				droppable = position.getAttribute("droppable");
+				if (droppable.contains("2")) {
+					// place bet
+					Actions builder = new Actions(driver); // Configure the
+															// Action
+					Action dragAndDrop = builder.clickAndHold(bet)
+							.moveToElement(position).release(position).build();
+					dragAndDrop.perform();
+					GameUtil.closeGameEndPopUp(driver2);
+					
 				}
 			} while (droppable.contains("-1"));
 		}
