@@ -412,7 +412,7 @@ jQuery(function($) {
 										// get the id's and send app request
 										
 										FB.ui({method: 'apprequests',
-									          message: 'My Great Request',
+									          message: 'You are invited to play a game of zalerio',
 									          to: user_ids
 									    }, function(response){
 									    	
@@ -432,7 +432,7 @@ jQuery(function($) {
 												
 												jQuery('.wait').remove();
 												jQuery('.show_popup').remove();
-												messagePopup('Please select a friend.');
+												messagePopup('Not enough players to create a game .Please select again and try.');
 												
 											}else{
 												
