@@ -51,7 +51,7 @@ class UserController extends Controller
 						'users'=>array('*'),
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','friendFun'),
+						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','getActiveMember','friendFun'),
 						'users'=>array('@'),
 				),
 				array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -458,6 +458,38 @@ class UserController extends Controller
 			}
 		}
 	}
+	
+	public function actiongetActiveMember(){
+		if (Yii::app()->request->isAjaxRequest) {
+
+			$FBid_array = $_REQUEST['usersID'];
+			
+			$user_FBids = implode('\',\'',$_REQUEST['usersID']);
+			$query = "select user_fbid from zzuser where zzuser_status = 'active' and user_fbid in ('$user_FBids')";
+			$users = Zzuser::model()->findAllBySql($query);
+
+			$activeMembers = array();
+			
+			if($users){
+				
+				foreach($users as $user){
+					
+					if( ( $key = array_search( $user->user_fbid, $FBid_array ) ) !== false ) {
+						
+						unset($FBid_array[$key]);
+					}
+				}
+				
+			}
+			
+			$non_active_member = implode(',', $FBid_array);
+			
+			print_r( $non_active_member );
+			exit;
+			
+		}
+	}
+	
 	/**
 	 * Get friend list
 	 * written by pankaj anupam
@@ -465,13 +497,7 @@ class UserController extends Controller
 	public function actiongetFriend(){
 		// process when ajax request
 		if (Yii::app()->request->isAjaxRequest) {
-			// Get friend list
-			/*   $user = Zzzlrofriends::model()->with('friend')->findAll('t.user_id = :userId', array(':userId'=>Yii::app()->user->getId()));
 
-			if(empty($user)){
-			echo 'No friend found';
-			}
-			*/
 			$this->layout = false;
 			//  $this->render('inviteFriends',array('users'=>$user));
 			$this->render('inviteFriends');
@@ -492,8 +518,8 @@ class UserController extends Controller
 			}
 			$user_id = implode('\',\'',$_REQUEST['friendId']);
 			$query = "select * from zzuser where user_id in ('$user_id')";
-			$users = Zzuser::model()->findAllBySql($query); //findAll('user_id = :userId', );
-			//Yii::app()->email->send('from@email.address','pankajanupam@mobicules.com','Subject','Body');
+			$users = Zzuser::model()->findAllBySql($query);
+
 			if(!empty($users)){
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";

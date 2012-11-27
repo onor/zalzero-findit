@@ -205,28 +205,23 @@ function showFrndSelector() {
 										+ '</span>';
 								html += '<a class="select_button right">Select</a></div><div class="line"></div>';
 							}
-							// alert(htmlt);
+
 							$.ajax({
+								
 								type : 'POST',
 								url : siteUrl + "/user/getFriend"
-							// data:{'fbUserData' : fbUserData}
+								
 							}).done(function(data) { // alert(data);
 								$('body').append(data);
 								$("#floatingBarsG").css('display', 'none');
 								$('.friendlist').html(html);
 								if (playSound) {
 									popupapperence.play(); // popup apperence
-									// sound
 								}
-
 							});
 						});
 		flag_fbPullAuthorised = false;
 	}
-	/*
-	 * $.ajax({ type:'POST', url: siteUrl+"/user/getFriend"
-	 * }).done(function(data) { $('body').append(data); });
-	 */
 }
 
 jQuery(function($) {
@@ -327,7 +322,18 @@ jQuery(function($) {
 						});
 		return flag;
 	}
-
+	
+	function removeA(arr) {
+	    var what, a = arguments, L = a.length, ax;
+	    while (L > 1 && arr.length) {
+	        what = a[--L];
+	        while ((ax= arr.indexOf(what)) !== -1) {
+	            arr.splice(ax, 1);
+	        }
+	    }
+	    return arr;
+	}
+	
 	$('#sendrinvite').live("click", function() {
 		var id = new Array();
 		$('.friendlist .rep .status').each(function() {
@@ -367,7 +373,7 @@ jQuery(function($) {
 						} else {
 							if (jQuery('#sendinvite').attr('value') == 'Sending...') {
 								return;
-							}
+						}
 
 							jQuery('.footerbutton')
 									.append(
@@ -392,7 +398,53 @@ jQuery(function($) {
 
 							jQuery('#sendinvite').attr('value', 'Sending...');
 							jQuery('#sendinvite').css('cursor', 'default');
-							InviteFriends(id);
+							
+							jQuery.ajax({
+								type : 'POST',
+								url : baseUrl + "/user/getActiveMember",
+								data : {
+									'usersID' : id
+								}
+							}).done( function(user_ids) { 
+
+								if(user_ids != ""){
+	
+										// get the id's and send app request
+										
+										FB.ui({method: 'apprequests',
+									          message: 'My Great Request',
+									          to: user_ids
+									    }, function(response){
+									    	
+									    	if(response ){
+									    		// nothing to do									    		
+									    	}else{
+									    		// if user cancel the friend request then remove users
+									    		user_ids = user_ids.split(',');
+									    		
+									    		for( key in user_ids ){
+									    												    			
+									    			id = removeA( id, user_ids[key] );
+									    		}
+									    	}
+									    	
+											if( sizeOfObj(id) < 1){
+												
+												jQuery('.wait').remove();
+												jQuery('.show_popup').remove();
+												messagePopup('Please select a friend.');
+												
+											}else{
+												
+												InviteFriends(id);
+											}
+											
+									    });
+								}else{
+									
+									InviteFriends(id);	
+								}								
+							});
 						}
 					});
 
