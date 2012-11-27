@@ -120,7 +120,7 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 					// In case of the error Send Email
 					if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
 						// send emails to the invited users
-						mail($fbEmail,'Zalerio',$body, $headers);
+					//	mail($fbEmail,'Zalerio',$body, $headers);
 					}
 				}
 
@@ -146,7 +146,7 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 					// In case of the error Send Email
 					if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
 						// send emails to the invited users
-						mail($fbEmail,'Zalerio',$body, $headers);
+						//mail($fbEmail,'Zalerio',$body, $headers);
 					}
 				}
 			} else {
