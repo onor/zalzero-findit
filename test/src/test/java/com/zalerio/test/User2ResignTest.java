@@ -3,16 +3,12 @@
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
-import com.zalerio.config.Popup;
-import com.zalerio.config.StartAGame;
 import com.zalerio.config.Tiles;
 
 public class User2ResignTest extends Zalerio2UserBaseTest {
@@ -24,51 +20,11 @@ public class User2ResignTest extends Zalerio2UserBaseTest {
 			String password1 = "16081989";
 			UserLogin.Olduserlogin(driver1, emailid1, password1);
 		*/	int[] SelectedFriends = new int[] { 2 };
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {}
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		GameUtil.closeGameEndPopUp(driver2);
-		// select n friends
-		for(int i=0;i<SelectedFriends.length;i++)
-		{	
-		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-		friend.click();
-		}
-		//send challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-						.id("sendinvite"));
-		sendChallengeButton.click();
-		System.out.println("challenge sent");
-		Popup.closePopup(driver1);
-		Thread.sleep(2000);
+		GameFeatures.createGameWithDelay(driver1,SelectedFriends, driver2);
 		// grab new GameId
 		// grab new GameId
-					String NewGameId = "";
-					WebElement rightHUD_yourturn = driver1.findElement(By
-								.id("rightHUD-yourturn"));
-					int newSize;
-					// access your turn tiles
-					try {
-						List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-								.className("userArea"));
-						System.out.print("got your turn tiles");
-						newSize = your_turnTiles.size();
-						System.out.println("new size" + newSize);
-						WebElement gameTile = null;
-						gameTile = your_turnTiles.get(newSize - 1);
-						GameUtil.closeGameEndPopUp(driver2);
-						NewGameId = gameTile.getAttribute("id");
-						System.out.println("got New your turn tile with Id " + NewGameId);
-						} catch (Exception f) {
-						}
+					String NewGameId = GameFeatures.grabGameIdWithDelay(driver1, driver2);
 					
-			
-			Thread.sleep(2000);
 			/*System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 			WebDriver driver2 = new ChromeDriver();
@@ -76,25 +32,9 @@ public class User2ResignTest extends Zalerio2UserBaseTest {
 			String password2 = "griffinsingh1";
 			UserLogin.Olduserlogin(driver2, emailid2, password2);
 			*/
-			Thread.sleep(2000);
 			// make user2 accept game
 			// accept invitation
-					rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-							WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-							WebElement accept_decline = gameTile.findElement(By
-									.className("accept_decline"));
-							WebElement accept = accept_decline.findElement(By
-									.className("right_hud_accept"));
-							accept.click();
-							GameUtil.closeGameEndPopUp(driver2);
-							try {
-								Thread.sleep(5000);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							// click OK on Pop up
-							Popup.verifyPopup(driver2, "Would you like to start playing");
+					GameFeatures.acceptInvitationWithDelay(driver2, NewGameId, driver1);
 			// grab shown name of user1
 			WebElement leftHUD = driver1.findElement(By.id("leftHUD"));
 			WebElement gameInfoPanel = leftHUD.findElement(By
@@ -102,7 +42,7 @@ public class User2ResignTest extends Zalerio2UserBaseTest {
 			WebElement gameInfoDiv = gameInfoPanel.findElement(By
 					.className("gameInfoDiv"));
 			WebElement userArea = gameInfoDiv.findElement(By.className("userArea"));
-			GameUtil.closeGameEndPopUp(driver2);
+			GameUtil.makebusy(driver2);
 			// verify user name
 			WebElement currentUserName = userArea.findElement(By
 					.id("currentUserName"));
@@ -114,7 +54,7 @@ public class User2ResignTest extends Zalerio2UserBaseTest {
 			WebElement bottomHUDbuttons_more = bottomHUDbuttons.findElement(By
 					.id("bottomHUDbuttons-more"));
 			bottomHUDbuttons_more.click();
-			GameUtil.closeGameEndPopUp(driver1);
+			GameUtil.makebusy(driver1);
 			Thread.sleep(2000);
 			boolean status = driver2.findElement(By.className("resignPopup"))
 					.isDisplayed();
@@ -155,50 +95,9 @@ public class User2ResignTest extends Zalerio2UserBaseTest {
 			String password1 = "16081989";
 			UserLogin.Olduserlogin(driver1, emailid1, password1);*/
 			int[] SelectedFriends = new int[] { 2 };
-			WebElement startButton = driver1.findElement(By.id("startButton"));
-			startButton.click();
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {}
-			WebElement a = driver1.findElement(By.className("friendlist"));
-			List<WebElement> selectListOfButtons = (a.findElements(By
-					.className("rep")));
-			GameUtil.closeGameEndPopUp(driver2);
-			// select n friends
-			for(int i=0;i<SelectedFriends.length;i++)
-			{	
-			WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-			friend.click();
-			}
-			//send challenge
-			WebElement sendChallengeButton = driver1.findElement(By
-							.id("sendinvite"));
-			sendChallengeButton.click();
-			System.out.println("challenge sent");
-			Popup.closePopup(driver1);
-			Thread.sleep(2000);
-			GameUtil.closeGameEndPopUp(driver2);
+			GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 			// grab new GameId
-			String NewGameId = "";
-			WebElement rightHUD_yourturn = driver1.findElement(By
-						.id("rightHUD-yourturn"));
-			int newSize;
-			GameUtil.closeGameEndPopUp(driver2);
-			// access your turn tiles
-			try {
-				List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-						.className("userArea"));
-				System.out.print("got your turn tiles");
-				newSize = your_turnTiles.size();
-				System.out.println("new size" + newSize);
-				WebElement gameTile = null;
-				gameTile = your_turnTiles.get(newSize - 1);
-				NewGameId = gameTile.getAttribute("id");
-				System.out.println("got New your turn tile with Id " + NewGameId);
-				} catch (Exception f) {
-				}
-			GameUtil.closeGameEndPopUp(driver2);
-			Thread.sleep(2000);
+			String NewGameId =GameFeatures.grabGameIdWithDelay(driver1, driver2);
 			/*System.setProperty("webdriver.chrome.driver",
 					"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 			WebDriver driver2 = new ChromeDriver();

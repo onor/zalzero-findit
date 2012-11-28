@@ -88,7 +88,7 @@ public class GameFeatures {
 		WebElement a = driver.findElement(By.className("friendlist"));
 		List<WebElement> selectListOfButtons = (a.findElements(By
 				.className("rep")));
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// select n friends
 		for(int i=0;i<SelectedFriends.length;i++)
 		{	
@@ -110,7 +110,7 @@ public class GameFeatures {
 			WebElement rightHUD_yourturn = driver.findElement(By
 						.id("rightHUD-yourturn"));
 			int newSize;
-			GameUtil.closeGameEndPopUp(driver2);
+			GameUtil.makebusy(driver2);
 			// access your turn tiles
 			try {
 				List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
@@ -137,7 +137,7 @@ public class GameFeatures {
 				WebElement accept = accept_decline.findElement(By
 						.className("right_hud_accept"));
 				accept.click();
-				GameUtil.closeGameEndPopUp(driver2);
+				GameUtil.makebusy(driver2);
 				try {
 					Thread.sleep(5000);
 				} catch (InterruptedException e) {

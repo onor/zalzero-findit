@@ -1,16 +1,14 @@
 
 
 
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
-import java.util.Random;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
@@ -44,30 +42,8 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 		// verify Username
 		// VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
 		int[] SelectedFriends = new int[] { 2 };
-		GameUtil.closeGameEndPopUp(driver2);
 		// create new game at friendPosition
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {}
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		GameUtil.closeGameEndPopUp(driver2);
-		// select n friends
-		for(int i=0;i<SelectedFriends.length;i++)
-		{	
-		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-		friend.click();
-		}
-		//send challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-						.id("sendinvite"));
-		sendChallengeButton.click();
-		System.out.println("challenge sent");
-		Popup.closePopup(driver1);
-		Thread.sleep(2000);
+		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		 
 		// login user2
 		// System.setProperty("webdriver.chrome.driver",
@@ -75,27 +51,9 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 		// WebDriver driver2 = new ChromeDriver();
 		// UserLogin.Olduserlogin(driver2, user2Email, user2Pass);
 		// grab new GameId
-		GameUtil.closeGameEndPopUp(driver2);
+		String NewGameId= GameFeatures.grabGameIdWithDelay(driver1, driver2);
 		
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-					.id("rightHUD-yourturn"));
-		int newSize;
-		// access your turn tiles
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			GameUtil.closeGameEndPopUp(driver2);
-			System.out.println("got New your turn tile with Id " + NewGameId);
-			} catch (Exception f) {
-			}
-		GameFeatures.acceptInvitation(driver2, NewGameId);
+		GameFeatures.acceptInvitationWithDelay(driver2, NewGameId,driver1);
 		//shift to user 1 to verify tiles drag and drop
 		// click Play and verify Error Pop up msg
 		WebElement play = driver1.findElement(By.id("placeBetOnServer"));
@@ -113,11 +71,11 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 		Tiles.drag1Tile(driver1, bet_0, pos);
 		// click play to verify popup
 		play.click();
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		Popup.verifyPopup(driver1,
 				"Not so fast... please place all of your 9 tiles!");
 		// place 1 tile outside board
-		 startButton = driver1.findElement(By.id("startButton"));
+		 WebElement startButton = driver1.findElement(By.id("startButton"));
 		Thread.sleep(1000);
 		WebElement bet_1 = gameBetPanel.findElement(By.id("bet_1"));
 		Tiles.drag1Tile(driver1, bet_1, startButton);
@@ -127,7 +85,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 		bet_0 = gameBetPanel.findElement(By.id("bet_0"));
 		bet_1 = gameBetPanel.findElement(By.id("bet_1"));
 		Tiles.drag1Tile(driver1, bet_1, bet_0);
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// drag rest of tiles at random and place on board.
 		for (int i = 1; i < 9; i++) {
 			String betid = "bet_" + i;
@@ -136,7 +94,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 			WebElement position = gamewall.findElement(By.id(betPos));
 			Tiles.drag1Tile(driver1, bet, position);
 			Thread.sleep(1000);
-			GameUtil.closeGameEndPopUp(driver2);
+			GameUtil.makebusy(driver2);
 		}
 		
 		// interchange position of tiles on board
@@ -149,7 +107,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 		tilePresentPosition = gamewall.findElement(By.id("boardTile-482"));
 		tileNextPosition = gameBetPanel.findElement(By.id("bet_3"));
 		Tiles.drag1Tile(driver1, tilePresentPosition, tileNextPosition);
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// click Play
 		play.click();
 		// change position of tiles on board TODO unsuccessful need to be redone
@@ -157,11 +115,10 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 				// String draggable = tilePresentPosition.getAttribute("draggable");
 				// click Play to verify popup
 				play.click();
-				GameUtil.closeGameEndPopUp(driver2);
 				Popup.verifyPopup(driver1,
 						"Not so fast.... lets wait for your friends to play their turn");
 						
-				GameUtil.closeGameEndPopUp(driver2);
+				GameUtil.makebusy(driver2);
 		Thread.sleep(2000);
 		//check game screen by user 2
 		// check Cheat Sheet,Help,Stats,game tile,More
@@ -175,7 +132,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 				// Help
 				WebElement helpButton = driver2.findElement(By.className("helpButton"));
 				helpButton.click();
-				GameUtil.closeGameEndPopUp(driver1);
+				GameUtil.makebusy(driver1);
 				WebElement s_friendpopup = driver2.findElement(By.id("s_friendpopup"));
 				WebElement close = s_friendpopup.findElement(By.id("close"));
 				close.click();
@@ -186,43 +143,12 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 				WebElement s_friendpopup1 = driver2.findElement(By.id("s_friendpopup"));
 				WebElement close1 = s_friendpopup1.findElement(By.id("close"));
 				close1.click();
-				GameUtil.closeGameEndPopUp(driver1);
+				GameUtil.makebusy(driver1);
 				//User 2 places all round 1 tiles and hits play
 				// drag and drop all tiles
-				
-				Random randomGenerator = new Random();
-				
-				for (int i = 0; i < 9; i++) {
-					 gamewall = driver2.findElement(By.id("gamewall"));
-					 gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-					// get bet
-					String betid = "bet_" + i;
-					WebElement bet = gameBetPanel.findElement(By.id(betid));
-					int randomInt;
-					// get position
-					WebElement position;
-					String droppable;
-					do {
-						randomInt = randomGenerator.nextInt(480);
-						String betPos = "boardTile-" + randomInt;
-						position = gamewall.findElement(By.id(betPos));
-						
-						// check if it is droppable
-						droppable = position.getAttribute("droppable");
-						if (droppable.contains("2")) {
-							// place bet
-							Actions builder = new Actions(driver2); // Configure the
-																	// Action
-							Action dragAndDrop = builder.clickAndHold(bet)
-									.moveToElement(position).release(position).build();
-							dragAndDrop.perform();
-							GameUtil.closeGameEndPopUp(driver1);
-						}
-					} while (droppable.contains("-1"));
-				}
-					
-						WebElement play2 = driver2.findElement(By.id("placeBetOnServer"));
-						play2.click();
+				Tiles.dragAllTilesWithDelay(driver2, driver1);
+				WebElement play2 = driver2.findElement(By.id("placeBetOnServer"));
+				play2.click();
 				
 		
 		// shift to user 1 to verify round end
@@ -238,7 +164,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 		String roundNo = doneRound.getText();
 		status = roundNo.contains("1");
 		assertEquals(status, true);
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		WebElement currentRound = gameScore_round.findElement(By
 				.className("currentRound"));
 		roundNo = currentRound.getText();
@@ -255,7 +181,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 				.id("userScoreHUDMain"));
 		List<WebElement> userScoreHUD_player = userScoreHUDMain.findElements(By
 				.className("userScoreHUD_player"));
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// check player1
 		WebElement player1 = userScoreHUD_player.get(0);
 		WebElement userScoreHUD_playerBetPlacedNoarrow = player1.findElement(By
@@ -266,7 +192,6 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 				.className("userScoreHUD_playerSerial"));
 		status = userScoreHUD_playerSerial.getText().contains("1");
 		assertEquals(status, true);
-		GameUtil.closeGameEndPopUp(driver2);
 		WebElement userScoreHUD_playerName = player1.findElement(By
 				.className("userScoreHUD_playerName"));
 		status = userScoreHUD_playerName.isDisplayed();
@@ -276,7 +201,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 				.className("userScoreHUD_playerScore"));
 		status = userScoreHUD_playerScore.isDisplayed();
 		assertEquals(status, true);
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// check player2
 		WebElement player2 = userScoreHUD_player.get(1);
 		userScoreHUD_playerBetPlacedNoarrow = player2.findElement(By
@@ -287,427 +212,64 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 				.className("userScoreHUD_playerSerial"));
 		status = userScoreHUD_playerSerial.getText().contains("2");
 		assertEquals(status, true);
-		GameUtil.closeGameEndPopUp(driver2);
 		userScoreHUD_playerName = player2.findElement(By
 				.className("userScoreHUD_playerName"));
 		status = userScoreHUD_playerName.isDisplayed();
 		assertEquals(status, true);
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		userScoreHUD_playerScore = player2.findElement(By
 				.className("userScoreHUD_playerScore"));
 		status = userScoreHUD_playerScore.isDisplayed();
 		assertEquals(status, true);
-		GameUtil.closeGameEndPopUp(driver2);
 		// check gameTile
-		 rightHUD_yourturn = driver1.findElement(By
+		WebElement rightHUD_yourturn = driver1.findElement(By
 				.id("rightHUD-yourturn"));
 		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
 		status = gameTile.findElement(By.className("round_no")).getText()
 				.contains("2");
 		assertEquals(status, true);
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// Play User1 round2
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver1.findElement(By.id("gamewall"));
-			 gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
 		play.click();
 		// Play User2 round2
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver2.findElement(By.id("gamewall"));
-			 gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				GameUtil.closeGameEndPopUp(driver1);
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		play2.click();
 		// Play User1 round3
-		GameUtil.closeGameEndPopUp(driver2);
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver1.findElement(By.id("gamewall"));
-			 gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play.click();
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
+		 play.click();
 		// Play User2 round3
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver2.findElement(By.id("gamewall"));
-			 gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play2.click();
+		 Tiles.dragAllTilesWithDelay(driver2, driver1);
+		 play2.click();
 		// Play User1 round4
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver1.findElement(By.id("gamewall"));
-			 gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play.click();
+		 Tiles.dragAllTilesWithDelay(driver1, driver2);
+		 play.click();
 		// Play User2 round4
-	
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver2.findElement(By.id("gamewall"));
-			 gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play2.click();
+		 Tiles.dragAllTilesWithDelay(driver2, driver1);
+		 play2.click();
 		// Play User1 round5
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver1.findElement(By.id("gamewall"));
-			 gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play.click();
+		 Tiles.dragAllTilesWithDelay(driver1, driver2);
+		 play.click();
 		// Play User2 round5
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver2.findElement(By.id("gamewall"));
-			 gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play2.click();
+		 Tiles.dragAllTilesWithDelay(driver2, driver1);
+		 play2.click();
 
 		// Play User1 round6
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver1.findElement(By.id("gamewall"));
-			 gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play.click();
+		 Tiles.dragAllTilesWithDelay(driver1, driver2);
+		 play.click();
 		// Play User2 round6
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver2.findElement(By.id("gamewall"));
-			 gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
+		 Tiles.dragAllTilesWithDelay(driver2, driver1);
 		play2.click();
 		// Play User1 round7
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver1.findElement(By.id("gamewall"));
-			 gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play.click();
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
+		 play.click();
 		// Play User2 round7
-		
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			 gamewall = driver2.findElement(By.id("gamewall"));
-			 gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
-		play2.click();
+		 Tiles.dragAllTilesWithDelay(driver2, driver1);
+		 play2.click();
 		Thread.sleep(2000);
 		// verify rating screen pop up
 		// RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1);
-		GameUtil.closeGameEndPopUp(driver1);
 		// handle finish game pop up
-		Thread.sleep(2000);
 		WebElement score_friendpopup = driver2.findElement(By
 				.id("score_friendpopup"));
 		// click dismiss
@@ -718,20 +280,12 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 		List<WebElement> buttons = button_score.findElements(By.tagName("a"));
 		WebElement dismiss = buttons.get(1);
 		dismiss.click();
+		GameUtil.closeGameEndPopUp(driver1);
 		// click x of rating screen
 		WebElement rating_popup = driver2.findElement(By
 				.className("rating-popup"));
 		close1 = rating_popup.findElement(By.tagName("a"));
 		close1.click();
-		GameUtil.closeGameEndPopUp(driver1);
-		// reload the page
-		driver2.navigate().refresh();
-		GameUtil.closeGameEndPopUp(driver1);
-		Thread.sleep(8000);
-		driver2.switchTo().frame("iframe_canvas");
-		GameUtil.closeGameEndPopUp(driver1);
-		 RatingScreenTest.closeGameEndPopupWithVerifyRating(driver2);
-		// check stats
-		// Stats.verifyGameAddToPastGames(driver2, NewGameId);
+		
 	}
 }

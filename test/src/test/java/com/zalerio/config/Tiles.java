@@ -84,7 +84,7 @@ public class Tiles {
 					Action dragAndDrop = builder.clickAndHold(bet)
 							.moveToElement(position).release(position).build();
 					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
+					GameUtil.makebusy(driver2);
 					
 				}
 			} while (droppable.contains("-1"));

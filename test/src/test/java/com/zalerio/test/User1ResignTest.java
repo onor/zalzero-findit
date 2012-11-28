@@ -3,24 +3,14 @@
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-import java.util.Random;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 
 import com.zalerio.config.GameFeatures;
 import com.zalerio.config.GameUtil;
-import com.zalerio.config.Popup;
-import com.zalerio.config.StartAGame;
 import com.zalerio.config.Tiles;
-import com.zalerio.config.UserLogin;
+//import org.openqa.selenium.chrome.ChromeDriver;
 
  public class User1ResignTest extends Zalerio2UserBaseTest{
 /*	public User1ResignTest(String os, String browser, String version,
@@ -37,8 +27,7 @@ import com.zalerio.config.UserLogin;
 		//String password = "16081989";
 		//UserLogin.Olduserlogin(driver1, emailid, password);
 		int[] SelectedFriends = new int[] { 2 };
-		StartAGame.createGame(driver1, SelectedFriends);
-		GameUtil.closeGameEndPopUp(driver2);
+		GameFeatures.createGameWithDelay(driver1, SelectedFriends,driver2);
 		Thread.sleep(2000);
 		WebElement bottomHUDbuttons = driver1.findElement(By
 				.className("bottomHUDbuttons"));
@@ -61,50 +50,11 @@ import com.zalerio.config.UserLogin;
 		 //------------------------------------------
 		 //create game by User1
 		int[] SelectedFriends = new int[] { 2 };
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {}
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		// select n friends
-		for(int i=0;i<SelectedFriends.length;i++)
-		{	
-		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-		friend.click();
-		}
-		GameUtil.closeGameEndPopUp(driver2);
-		//send challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-						.id("sendinvite"));
-		sendChallengeButton.click();
-		System.out.println("challenge sent");
-		Popup.closePopup(driver1);
-		Thread.sleep(2000);
-		//--------------------------------------------
+		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
+		
 		//---------------------------------------------
 		// grab new GameId
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-					.id("rightHUD-yourturn"));
-		int newSize;
-		// access your turn tiles
-		GameUtil.closeGameEndPopUp(driver2);
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			GameUtil.closeGameEndPopUp(driver2);
-			System.out.println("got New your turn tile with Id " + NewGameId);
-			} catch (Exception f) {
-			}
+		String NewGameId =GameFeatures.grabGameIdWithDelay(driver1, driver2); 
 //		System.setProperty("webdriver.chrome.driver",
 //				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 //		WebDriver driver2 = new ChromeDriver();
@@ -115,26 +65,8 @@ import com.zalerio.config.UserLogin;
 		//-----------------------------------------------------------
 		// make user2 accept game
 		// accept invitation
-						rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-						WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-						WebElement accept_decline = gameTile.findElement(By
-								.className("accept_decline"));
-						WebElement accept = accept_decline.findElement(By
-								.className("right_hud_accept"));
-						accept.click();
-						GameUtil.closeGameEndPopUp(driver1);
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						// click OK on Pop up
-						Popup.verifyPopup(driver2, "Would you like to start playing");
+			GameFeatures.acceptInvitationWithDelay(driver2, NewGameId, driver1);			
 		//-----------------------------------------------------------
-		
-		
-		GameUtil.closeGameEndPopUp(driver1);
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel = leftHUD.findElement(By
@@ -147,7 +79,7 @@ import com.zalerio.config.UserLogin;
 				.id("currentUserName"));
 		String shownName = currentUserName.getText();
 		Thread.sleep(2000);
-		GameUtil.closeGameEndPopUp(driver1);
+		GameUtil.makebusy(driver1);
 		// click resign by user1
 		WebElement bottomHUDbuttons = driver1.findElement(By
 				.className("bottomHUDbuttons"));
@@ -174,7 +106,7 @@ import com.zalerio.config.UserLogin;
 				.className("show_score"));
 		WebElement topScore_div = show_score.findElement(By.id("topScore_div"));
 		WebElement score1 = topScore_div.findElement(By.id("score1"));
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// user2 will be shown as winner with score 0
 		WebElement name = score1.findElement(By.className("name"));
 		String observedName = name.getText();
@@ -182,7 +114,7 @@ import com.zalerio.config.UserLogin;
 		assertEquals(shownName, observedName);
 		WebElement score = score1.findElement(By.className("score"));
 		assertEquals(score.getText(), "0");
-		GameUtil.closeGameEndPopUp(driver1);
+		GameUtil.makebusy(driver2);
 		// TODO verfiy scoreboard
 
 	}
@@ -268,53 +200,14 @@ import com.zalerio.config.UserLogin;
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		//-----------------------------------------------------
 		 int[] SelectedFriends = new int[] { 2 };
-		 WebElement startButton = driver1.findElement(By.id("startButton"));
-			startButton.click();
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {}
-			WebElement a = driver1.findElement(By.className("friendlist"));
-			List<WebElement> selectListOfButtons = (a.findElements(By
-					.className("rep")));
-			GameUtil.closeGameEndPopUp(driver2);
-			// select n friends
-			for(int i=0;i<SelectedFriends.length;i++)
-			{	
-			WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-			friend.click();
-			}
-			//send challenge
-			WebElement sendChallengeButton = driver1.findElement(By
-							.id("sendinvite"));
-			sendChallengeButton.click();
-			System.out.println("challenge sent");
-			GameUtil.closeGameEndPopUp(driver2);
-			Popup.closePopup(driver1);
+		 GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 			Thread.sleep(2000);
 			//------------------------------------------------------
 		
 		// grab new GameId
 			// grab new GameId
-						String NewGameId = "";
-						WebElement rightHUD_yourturn = driver2.findElement(By
-									.id("rightHUD-yourturn"));
-						int newSize;
-						GameUtil.closeGameEndPopUp(driver2);
-						// access your turn tiles
-						try {
-							List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-									.className("userArea"));
-							System.out.print("got your turn tiles");
-							newSize = your_turnTiles.size();
-							System.out.println("new size" + newSize);
-							WebElement gameTile = null;
-							gameTile = your_turnTiles.get(newSize - 1);
-							NewGameId = gameTile.getAttribute("id");
-							GameUtil.closeGameEndPopUp(driver2);
-							System.out.println("got New your turn tile with Id " + NewGameId);
-							} catch (Exception f) {
-							}
-		//------------------------------------------------------------------				
+						String NewGameId =GameFeatures.grabGameIdWithDelay(driver1, driver2);
+			//------------------------------------------------------------------				
 //		System.setProperty("webdriver.chrome.driver",
 //				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 //		WebDriver driver2 = new ChromeDriver();
@@ -324,23 +217,7 @@ import com.zalerio.config.UserLogin;
 //		Thread.sleep(2000);
 		// make user2 accept game
 						// accept invitation
-							rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-							WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-							WebElement accept_decline = gameTile.findElement(By
-									.className("accept_decline"));
-							WebElement accept = accept_decline.findElement(By
-									.className("right_hud_accept"));
-							accept.click();
-							GameUtil.closeGameEndPopUp(driver1);
-							try {
-								Thread.sleep(5000);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							// click OK on Pop up
-							Popup.verifyPopup(driver2, "Would you like to start playing");
-
+						GameFeatures.acceptInvitationWithDelay(driver2, NewGameId, driver1);
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel = leftHUD.findElement(By
@@ -348,53 +225,23 @@ import com.zalerio.config.UserLogin;
 		WebElement gameInfoDiv = gameInfoPanel.findElement(By
 				.className("gameInfoDiv"));
 		WebElement userArea = gameInfoDiv.findElement(By.className("userArea"));
-		GameUtil.closeGameEndPopUp(driver1);
+		GameUtil.makebusy(driver1);
 		// verify user name
 		WebElement currentUserName = userArea.findElement(By
 				.id("currentUserName"));
 		String shownName = currentUserName.getText();
 		Thread.sleep(2000);
-		GameUtil.closeGameEndPopUp(driver1);
+		GameUtil.makebusy(driver1);
 		// User2 drags all tiles
-		Thread.sleep(2000);
-		Random randomGenerator = new Random();
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver2.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-					Thread.sleep(1000);
-					
-				}
-			} while (droppable.contains("-1"));
-		}
 		// click resign by user1
 		WebElement bottomHUDbuttons = driver1.findElement(By
 				.className("bottomHUDbuttons"));
 		WebElement bottomHUDbuttons_more = bottomHUDbuttons.findElement(By
 				.id("bottomHUDbuttons-more"));
 		bottomHUDbuttons_more.click();
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		Thread.sleep(2000);
 		boolean status = driver1.findElement(By.className("resignPopup"))
 				.isDisplayed();
@@ -414,7 +261,7 @@ import com.zalerio.config.UserLogin;
 				.className("show_score"));
 		WebElement topScore_div = show_score.findElement(By.id("topScore_div"));
 		WebElement score1 = topScore_div.findElement(By.id("score1"));
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// user2 will be shown as winner with score 0
 		WebElement name = score1.findElement(By.className("name"));
 		String observedName = name.getText();
@@ -432,49 +279,11 @@ import com.zalerio.config.UserLogin;
 //		String password1 = "16081989";
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {}
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		GameUtil.closeGameEndPopUp(driver2);
-		// select n friends
-		for(int i=0;i<SelectedFriends.length;i++)
-		{	
-		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-		friend.click();
-		}
-		//send challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-						.id("sendinvite"));
-		sendChallengeButton.click();
-		System.out.println("challenge sent");
-		Popup.closePopup(driver1);
-		GameUtil.closeGameEndPopUp(driver2);
-		Thread.sleep(2000);
+		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		//-------------------------------------------------------------------
 		// grab new GameId
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-					.id("rightHUD-yourturn"));
-		int newSize;
-		// access your turn tiles
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			System.out.println("got New your turn tile with Id " + NewGameId);
-			} catch (Exception f) {
-			}
-//		System.setProperty("webdriver.chrome.driver",
+		String NewGameId = GameFeatures.grabGameIdWithDelay(driver1, driver2);
+		//System.setProperty("webdriver.chrome.driver",
 //				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 //		WebDriver driver2 = new ChromeDriver();
 //		String emailid2 = "griffinsingh1@gmail.com";
@@ -483,24 +292,7 @@ import com.zalerio.config.UserLogin;
 //		Thread.sleep(2000);
 		//-------------------------------------------------------------
 		// make user2 accept game
-			rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-		WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-		WebElement accept_decline = gameTile.findElement(By
-				.className("accept_decline"));
-		WebElement accept = accept_decline.findElement(By
-				.className("right_hud_accept"));
-		accept.click();
-		GameUtil.closeGameEndPopUp(driver2);
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// click OK on Pop up
-		Popup.verifyPopup(driver2, "Would you like to start playing");
-		
-
+		GameFeatures.acceptInvitationWithDelay(driver2, NewGameId, driver1);
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel = leftHUD.findElement(By
@@ -508,44 +300,14 @@ import com.zalerio.config.UserLogin;
 		WebElement gameInfoDiv = gameInfoPanel.findElement(By
 				.className("gameInfoDiv"));
 		WebElement userArea = gameInfoDiv.findElement(By.className("userArea"));
-		GameUtil.closeGameEndPopUp(driver1);
+		GameUtil.makebusy(driver1);
 		// verify user name
 		WebElement currentUserName = userArea.findElement(By
 				.id("currentUserName"));
 		String shownName = currentUserName.getText();
 		Thread.sleep(2000);
 		// User1 drags all tiles
-		Thread.sleep(2000);
-		Random randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver1.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-					Thread.sleep(1000);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
 		// User1 clicks Play
 		WebElement play = driver1.findElement(By.id("placeBetOnServer"));
 		play.click();
@@ -555,7 +317,7 @@ import com.zalerio.config.UserLogin;
 				.className("bottomHUDbuttons"));
 		WebElement bottomHUDbuttons_more = bottomHUDbuttons.findElement(By
 				.id("bottomHUDbuttons-more"));
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		bottomHUDbuttons_more.click();
 		Thread.sleep(2000);
 		boolean status = driver1.findElement(By.className("resignPopup"))
@@ -593,53 +355,10 @@ import com.zalerio.config.UserLogin;
 //		String password1 = "16081989";
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		int[] SelectedFriends = new int[] { 2 };
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {}
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		GameUtil.closeGameEndPopUp(driver2);
-		// select n friends
-		for(int i=0;i<SelectedFriends.length;i++)
-		{	
-		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-		friend.click();
-		}
-		//send challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-						.id("sendinvite"));
-		sendChallengeButton.click();
-		GameUtil.closeGameEndPopUp(driver2);
-		System.out.println("challenge sent");
-		Popup.closePopup(driver1);
-		
-		Thread.sleep(2000);
+		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		// grab new GameId
-		// grab new GameId
-					String NewGameId = "";
-					WebElement rightHUD_yourturn = driver1.findElement(By
-								.id("rightHUD-yourturn"));
-					int newSize;
-					// access your turn tiles
-					try {
-						List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-								.className("userArea"));
-						System.out.print("got your turn tiles");
-						newSize = your_turnTiles.size();
-						System.out.println("new size" + newSize);
-						WebElement gameTile = null;
-						gameTile = your_turnTiles.get(newSize - 1);
-						NewGameId = gameTile.getAttribute("id");
-						GameUtil.closeGameEndPopUp(driver2);
-						System.out.println("got New your turn tile with Id " + NewGameId);
-						} catch (Exception f) {
-						}
-					
-
-//		System.setProperty("webdriver.chrome.driver",
+					String NewGameId =GameFeatures.grabGameIdWithDelay(driver1, driver2);
+					//		System.setProperty("webdriver.chrome.driver",
 //				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 //		WebDriver driver2 = new ChromeDriver();
 //		String emailid2 = "griffinsingh1@gmail.com";
@@ -648,24 +367,8 @@ import com.zalerio.config.UserLogin;
 //		Thread.sleep(2000);
 		// make user2 accept game
 					// accept invitation
-					rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-						WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-						WebElement accept_decline = gameTile.findElement(By
-								.className("accept_decline"));
-						WebElement accept = accept_decline.findElement(By
-								.className("right_hud_accept"));
-						accept.click();
-						GameUtil.closeGameEndPopUp(driver1);
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						// click OK on Pop up
-						Popup.verifyPopup(driver2, "Would you like to start playing");
-
-		// grab shown name of user
+					GameFeatures.acceptInvitationWithDelay(driver2, NewGameId, driver1);
+							// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel = leftHUD.findElement(By
 				.className("gameInfoPanel"));
@@ -679,37 +382,8 @@ import com.zalerio.config.UserLogin;
 		String shownName = currentUserName.getText();
 		Thread.sleep(2000);
 		// User2 drags all tiles
-		Thread.sleep(2000);
-		Random randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver2.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
-		// User1 clicks Play
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
+		// User2 clicks Play
 		WebElement play = driver2.findElement(By.id("placeBetOnServer"));
 		play.click();
 		System.out.print("user1 has clicked Play");
@@ -742,7 +416,7 @@ import com.zalerio.config.UserLogin;
 		WebElement score1 = topScore_div.findElement(By.id("score1"));
 		// user2 will be shown as winner with score 0
 		WebElement name = score1.findElement(By.className("name"));
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		String observedName = name.getText();
 		// check observed name of user2 with shown name
 		assertEquals(shownName, observedName);
@@ -761,53 +435,13 @@ import com.zalerio.config.UserLogin;
 		 //----------------------------------------------------
 		int[] SelectedFriends = new int[] { 2 };
 		//create a new game
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {}
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		GameUtil.closeGameEndPopUp(driver2);
-		// select n friends
-		for(int i=0;i<SelectedFriends.length;i++)
-		{	
-		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-		friend.click();
-		}
-		//send challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-						.id("sendinvite"));
-		sendChallengeButton.click();
-		GameUtil.closeGameEndPopUp(driver2);
-		System.out.println("challenge sent");
-		Popup.closePopup(driver1);
-		Thread.sleep(2000);
+		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		//--------------------------------------------------------------------
 		//--------------------------------------------------------------------
 		// grab new GameId
 		// grab new GameId
-					String NewGameId = "";
-					WebElement rightHUD_yourturn = driver1.findElement(By
-								.id("rightHUD-yourturn"));
-					int newSize;
-					GameUtil.closeGameEndPopUp(driver2);
-					// access your turn tiles
-					try {
-						List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-								.className("userArea"));
-						System.out.print("got your turn tiles");
-						newSize = your_turnTiles.size();
-						System.out.println("new size" + newSize);
-						WebElement gameTile = null;
-						gameTile = your_turnTiles.get(newSize - 1);
-						NewGameId = gameTile.getAttribute("id");
-						System.out.println("got New your turn tile with Id " + NewGameId);
-						} catch (Exception f) {
-						}
-					GameUtil.closeGameEndPopUp(driver2);
-		//--------------------------------------------------------------------
+					String NewGameId =GameFeatures.grabGameIdWithDelay(driver1, driver2);
+					//--------------------------------------------------------------------
 		
 //		System.setProperty("webdriver.chrome.driver",
 //				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
@@ -819,24 +453,9 @@ import com.zalerio.config.UserLogin;
 		//------------------------------------------------------					
 					
 		// make user2 accept game
-					// accept invitation
-						rightHUD_yourturn = driver1.findElement(By.id("rightHUD-yourturn"));
-						WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-						WebElement accept_decline = gameTile.findElement(By
-								.className("accept_decline"));
-						WebElement accept = accept_decline.findElement(By
-								.className("right_hud_accept"));
-						accept.click();
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						GameUtil.closeGameEndPopUp(driver1);	
-						// click OK on Pop up
-						Popup.verifyPopup(driver1, "Would you like to start playing");
-		//--------------------------------------------------------
+		// accept invitation
+			GameFeatures.acceptInvitationWithDelay(driver2, NewGameId, driver1);	
+		//----------------------------------------------
 	// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel = leftHUD.findElement(By
@@ -844,7 +463,7 @@ import com.zalerio.config.UserLogin;
 		WebElement gameInfoDiv = gameInfoPanel.findElement(By
 				.className("gameInfoDiv"));
 		WebElement userArea = gameInfoDiv.findElement(By.className("userArea"));
-		GameUtil.closeGameEndPopUp(driver1);
+		GameUtil.makebusy(driver1);
 		// verify user name
 		WebElement currentUserName = userArea.findElement(By
 				.id("currentUserName"));
@@ -860,7 +479,7 @@ import com.zalerio.config.UserLogin;
 			WebElement bet = gameBetPanel.findElement(By.id(betid));
 			WebElement position = gamewall.findElement(By.id(betPos));
 			Tiles.drag1Tile(driver1, bet, position);
-			GameUtil.closeGameEndPopUp(driver2);
+			GameUtil.makebusy(driver2);
 			Thread.sleep(1000);
 		}
 		WebElement play = driver1.findElement(By.id("placeBetOnServer"));
@@ -874,7 +493,7 @@ import com.zalerio.config.UserLogin;
 			WebElement bet = gameBetPanel2.findElement(By.id(betid));
 			WebElement position = gamewall2.findElement(By.id(betPos));
 			Tiles.drag1Tile(driver2, bet, position);
-			GameUtil.closeGameEndPopUp(driver1);
+			GameUtil.makebusy(driver1);
 			Thread.sleep(1000);
 		}
 		WebElement play2 = driver2.findElement(By.id("placeBetOnServer"));
@@ -904,13 +523,13 @@ import com.zalerio.config.UserLogin;
 				.id("score_friendpopup"));
 		WebElement show_score = score_friendpopup.findElement(By
 				.className("show_score"));
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		WebElement topScore_div = show_score.findElement(By.id("topScore_div"));
 		WebElement score1 = topScore_div.findElement(By.id("score1"));
 		// user2 will be shown as winner with score 0
 		WebElement name = score1.findElement(By.className("name"));
 		String observedName = name.getText();
-		GameUtil.closeGameEndPopUp(driver2);
+		GameUtil.makebusy(driver2);
 		// check observed name of user2 with shown name
 		assertEquals(shownName, observedName);
 		WebElement score = score1.findElement(By.className("score"));
@@ -921,59 +540,18 @@ import com.zalerio.config.UserLogin;
 	@Test
 	public void resignFinalRoundAfterUser2HitsPlay()
 			throws InterruptedException {
-		WebDriver driver1 = new FirefoxDriver();
-		String emailid1 = "abhilashbhaduri@gmail.com";
-		String password1 = "16081989";
-		UserLogin.Olduserlogin(driver1, emailid1, password1);
+//		WebDriver driver1 = new FirefoxDriver();
+//		String emailid1 = "abhilashbhaduri@gmail.com";
+//		String password1 = "16081989";
+//		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		//-------------------------------------------------------
 		//create game
 		int[] SelectedFriends = new int[] { 2 };
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		startButton.click();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {}
-		WebElement a = driver1.findElement(By.className("friendlist"));
-		List<WebElement> selectListOfButtons = (a.findElements(By
-				.className("rep")));
-		GameUtil.closeGameEndPopUp(driver2);
-		// select n friends
-		for(int i=0;i<SelectedFriends.length;i++)
-		{	
-		WebElement friend = selectListOfButtons.get(SelectedFriends[i]).findElement(By.tagName("a"));
-		friend.click();
-		}
-		//send challenge
-		WebElement sendChallengeButton = driver1.findElement(By
-						.id("sendinvite"));
-		sendChallengeButton.click();
-		System.out.println("challenge sent");
-		Popup.closePopup(driver1);
-		GameUtil.closeGameEndPopUp(driver2);
-		Thread.sleep(2000);
+		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		//----------------------------------------------
 		// grab new GameId
-		String NewGameId = "";
-		WebElement rightHUD_yourturn = driver1.findElement(By
-					.id("rightHUD-yourturn"));
-		GameUtil.closeGameEndPopUp(driver2);
-		int newSize;
-		// access your turn tiles
-		try {
-			List<WebElement> your_turnTiles = rightHUD_yourturn.findElements(By
-					.className("userArea"));
-			System.out.print("got your turn tiles");
-			newSize = your_turnTiles.size();
-			System.out.println("new size" + newSize);
-			WebElement gameTile = null;
-			gameTile = your_turnTiles.get(newSize - 1);
-			NewGameId = gameTile.getAttribute("id");
-			GameUtil.closeGameEndPopUp(driver2);
-			System.out.println("got New your turn tile with Id " + NewGameId);
-			} catch (Exception f) {
-			}
-		Thread.sleep(2000);
-//		System.setProperty("webdriver.chrome.driver",
+		String NewGameId =GameFeatures.grabGameIdWithDelay(driver1, driver2);
+		//		System.setProperty("webdriver.chrome.driver",
 //				"C:/Setup_Abhilash/BrowserDrivers/ChromeDriver/chromedriver.exe");
 //		WebDriver driver2 = new ChromeDriver();
 //		String emailid2 = "griffinsingh1@gmail.com";
@@ -982,23 +560,7 @@ import com.zalerio.config.UserLogin;
 //		Thread.sleep(2000);
 		// make user2 accept game
 		// accept invitation
-						rightHUD_yourturn = driver2.findElement(By.id("rightHUD-yourturn"));
-						WebElement gameTile = rightHUD_yourturn.findElement(By.id(NewGameId));
-						WebElement accept_decline = gameTile.findElement(By
-								.className("accept_decline"));
-						WebElement accept = accept_decline.findElement(By
-								.className("right_hud_accept"));
-						accept.click();
-						GameUtil.closeGameEndPopUp(driver2);
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						// click OK on Pop up
-						Popup.verifyPopup(driver2, "Would you like to start playing");
-
+		GameFeatures.acceptInvitationWithDelay(driver2, NewGameId, driver1);
 		// grab shown name of user
 		WebElement leftHUD = driver2.findElement(By.id("leftHUD"));
 		WebElement gameInfoPanel = leftHUD.findElement(By
@@ -1013,431 +575,56 @@ import com.zalerio.config.UserLogin;
 		String shownName = currentUserName.getText();
 		Thread.sleep(2000);
 		// User1 places all tiles sequentially and clicks play
-		Thread.sleep(2000);
-		Random randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver1.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
 		WebElement play = driver1.findElement(By.id("placeBetOnServer"));
 		play.click();
 		// User2 drags all tiles
-		Thread.sleep(2000);
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver2.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		WebElement play2 = driver2.findElement(By.id("placeBetOnServer"));
 		play2.click();
 		System.out.print("user1 has clicked Play");
 		// user1 places all tile in round 2
-		Thread.sleep(2000);
-	randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver1.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
 		play = driver1.findElement(By.id("placeBetOnServer"));
 		play.click();
 		// user2 places all tiles in round 2
-		Thread.sleep(2000);
-	randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver2.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		play2 = driver2.findElement(By.id("placeBetOnServer"));
 		play2.click();
 		// user1 places all tile in round 3
-		Thread.sleep(2000);
-		randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver1.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
 		play = driver1.findElement(By.id("placeBetOnServer"));
 		play.click();
 		// user2 places all tiles in round 3
-		Thread.sleep(2000);
-	 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver2.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		play2 = driver2.findElement(By.id("placeBetOnServer"));
 		play2.click();
 		// user1 places all tile in round 4
-		Thread.sleep(2000);
-		randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver1.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
 		play = driver1.findElement(By.id("placeBetOnServer"));
 		play.click();
 		// user2 places all tiles in round 4
-		Thread.sleep(2000);
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver2.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		play2 = driver2.findElement(By.id("placeBetOnServer"));
 		play2.click();
 		// user1 places all tile in round 5
-		Thread.sleep(2000);
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver1.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
 		play = driver1.findElement(By.id("placeBetOnServer"));
 		play.click();
 		// user2 places all tiles in round 5
-		Thread.sleep(2000);
-		 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver2.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver2); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver1);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		play2 = driver2.findElement(By.id("placeBetOnServer"));
 		play2.click();
 		// user1 places all tile in round 6
-		Thread.sleep(2000);
-	 randomGenerator = new Random();
-		
-		for (int i = 0; i < 9; i++) {
-			WebElement gamewall = driver1.findElement(By.id("gamewall"));
-			WebElement gameBetPanel = driver1.findElement(By.id("gameBetPanel"));
-			// get bet
-			String betid = "bet_" + i;
-			WebElement bet = gameBetPanel.findElement(By.id(betid));
-			int randomInt;
-			// get position
-			WebElement position;
-			String droppable;
-			do {
-				randomInt = randomGenerator.nextInt(480);
-				String betPos = "boardTile-" + randomInt;
-				position = gamewall.findElement(By.id(betPos));
-				// check if it is droppable
-				droppable = position.getAttribute("droppable");
-				if (droppable.contains("2")) {
-					// place bet
-					Actions builder = new Actions(driver1); // Configure the
-															// Action
-					Action dragAndDrop = builder.clickAndHold(bet)
-							.moveToElement(position).release(position).build();
-					dragAndDrop.perform();
-					GameUtil.closeGameEndPopUp(driver2);
-				}
-			} while (droppable.contains("-1"));
-		}
+		Tiles.dragAllTilesWithDelay(driver1, driver2);
 		play = driver1.findElement(By.id("placeBetOnServer"));
 		play.click();
 		// user2 places all tiles in round 6
-		 randomGenerator = new Random();
-			
-			for (int i = 0; i < 9; i++) {
-				WebElement gamewall = driver2.findElement(By.id("gamewall"));
-				WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-				// get bet
-				String betid = "bet_" + i;
-				WebElement bet = gameBetPanel.findElement(By.id(betid));
-				int randomInt;
-				// get position
-				WebElement position;
-				String droppable;
-				do {
-					randomInt = randomGenerator.nextInt(480);
-					String betPos = "boardTile-" + randomInt;
-					position = gamewall.findElement(By.id(betPos));
-					// check if it is droppable
-					droppable = position.getAttribute("droppable");
-					if (droppable.contains("2")) {
-						// place bet
-						Actions builder = new Actions(driver2); // Configure the
-																// Action
-						Action dragAndDrop = builder.clickAndHold(bet)
-								.moveToElement(position).release(position).build();
-						dragAndDrop.perform();
-						GameUtil.closeGameEndPopUp(driver1);
-					}
-				} while (droppable.contains("-1"));
-			}
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		play2 = driver2.findElement(By.id("placeBetOnServer"));
 		play2.click();
 		// user2 places all tiles in round 7
-		 randomGenerator = new Random();
-			
-			for (int i = 0; i < 9; i++) {
-				WebElement gamewall = driver2.findElement(By.id("gamewall"));
-				WebElement gameBetPanel = driver2.findElement(By.id("gameBetPanel"));
-				// get bet
-				String betid = "bet_" + i;
-				WebElement bet = gameBetPanel.findElement(By.id(betid));
-				int randomInt;
-				// get position
-				WebElement position;
-				String droppable;
-				do {
-					randomInt = randomGenerator.nextInt(480);
-					String betPos = "boardTile-" + randomInt;
-					position = gamewall.findElement(By.id(betPos));
-					// check if it is droppable
-					droppable = position.getAttribute("droppable");
-					if (droppable.contains("2")) {
-						// place bet
-						Actions builder = new Actions(driver2); // Configure the
-																// Action
-						Action dragAndDrop = builder.clickAndHold(bet)
-								.moveToElement(position).release(position).build();
-						dragAndDrop.perform();
-						GameUtil.closeGameEndPopUp(driver1);
-					}
-				} while (droppable.contains("-1"));
-			}
+		Tiles.dragAllTilesWithDelay(driver2, driver1);
 		play2 = driver2.findElement(By.id("placeBetOnServer"));
 		play2.click();
 		// click resign by user1
