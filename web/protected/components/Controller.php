@@ -121,7 +121,7 @@ class Controller extends CController
 
 					$this->loggedInUser->user_handle		=	$facebookUser->id.'@facebook.com';
 
-					$this->loggedInUser->zzuser_status	=	'';
+					$this->loggedInUser->zzuser_status	=	'invited';
 					
 					$this->loggedInUser->user_password = md5($facebookUser->id);
 					

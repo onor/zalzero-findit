@@ -51,7 +51,7 @@ class UserController extends Controller
 						'users'=>array('*'),
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','friendFun'),
+						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','getActiveMember','friendFun'),
 						'users'=>array('@'),
 				),
 				array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -88,7 +88,7 @@ class UserController extends Controller
 
 		if(isset($_POST['Zzuser']))
 		{
-			 
+
 			/*
 			 * end of setting primary key
 			*/
@@ -242,7 +242,7 @@ class UserController extends Controller
 
 				$urlForGeneratingSession = "/site/fbLogin?user_email=$model->user_email&user_fbid=$model->user_fbid";
 				$this->redirect(array("$urlForGeneratingSession"));
-				
+
 				exit;
 			}
 		}
@@ -380,11 +380,12 @@ class UserController extends Controller
 	}
 	// function to remid the user of the game. A message will be send to the user who is getting reminded
 	public function actionremindUser() {
+		$nonActiveMember = array();
 		if (Yii::app()->request->isAjaxRequest) {
-			
+
 			$userData = $_REQUEST['user_data'];  // get the list of users of the game
 			$gameId = $_REQUEST['game_id'];  // get the game id
-			
+
 			$loggedInFbId = Yii::app()->user->getState('user_fbid');
 			$fbDataArray = array();
 			$fbDataPlayed = array();
@@ -420,31 +421,33 @@ class UserController extends Controller
 						// We have to remind the user if they are in invited and accepted status. In case of accepted status we need to check there CRS status
 						// IF GSS == 1 the they are invited. If GSS == 2 the we will only send the invitation if there CRS status is 0
 						if($gssValue == 1) {
-							remindUserOnFb($gameId,$fbData,$fbDataArray,'invited',$currentUserStatus);  // invited paramere to for the message changes
+						$nonActiveMember[] = remindUserOnFb($gameId,$fbData,$fbDataArray,'invited',$currentUserStatus);  // invited paramere to for the message changes
 						} else {
 							if($gssValue == 2 && $crsValue == 0) {
-								remindUserOnFb($gameId,$fbData,$fbDataPlayed,'turnremaining',$currentUserStatus);  // turnremaining  parameter for message changes
+								$nonActiveMember[] = remindUserOnFb($gameId,$fbData,$fbDataPlayed,'turnremaining',$currentUserStatus);  // turnremaining  parameter for message changes
 							}
 						}
 					}
 		  } else { // if reminder is sent from right hud
-		  	foreach($userData as $key => $value) {
-		  		$fbData = $key;
-		  		$gssValue = $value['GSS']; // get the gss value of the user
-		  		$crsValue = $value['CRS']; // get the cres value of the user
-		  		// We have to remind the user if they are in invited and accepted status. In case of accepted status we need to check there CRS status
-		  		// IF GSS == 1 the they are invited. If GSS == 2 the we will only send the invitation if there CRS status is 0
-		    if($gssValue == 1) {
-		    	remindUserOnFb($gameId,$fbData,$fbDataArray,'invited',$currentUserStatus);  // invited paramere to for the message changes
-		    } else {
-		    	if($gssValue == 2 && $crsValue == 0) {
-		    		remindUserOnFb($gameId,$fbData,$fbDataPlayed,'turnremaining',$currentUserStatus);  // turnremaining  parameter for message changes
-		    	}
-		    }
-		   }
+			  	foreach($userData as $key => $value) {
+			  		$fbData = $key;
+			  		$gssValue = $value['GSS']; // get the gss value of the user
+			  		$crsValue = $value['CRS']; // get the cres value of the user
+			  		// We have to remind the user if they are in invited and accepted status. In case of accepted status we need to check there CRS status
+			  		// IF GSS == 1 the they are invited. If GSS == 2 the we will only send the invitation if there CRS status is 0
+				    if($gssValue == 1) {
+				    	$nonActiveMember[] = remindUserOnFb($gameId,$fbData,$fbDataArray,'invited',$currentUserStatus);  // invited paramere to for the message changes
+				    } else {
+				    	if($gssValue == 2 && $crsValue == 0) {
+				    		$nonActiveMember[] = remindUserOnFb($gameId,$fbData,$fbDataPlayed,'turnremaining',$currentUserStatus);  // turnremaining  parameter for message changes
+				    	}
+				    }
+			   }
 		  }
-			}
 		}
+		
+		print_r( implode(',', $nonActiveMember) );
+	  }
 	}
 	// function to update the invitation status of user
 	public function actionacceptInvite() {
@@ -458,6 +461,38 @@ class UserController extends Controller
 			}
 		}
 	}
+
+	public function actiongetActiveMember(){
+		if (Yii::app()->request->isAjaxRequest) {
+
+			$FBid_array = $_REQUEST['usersID'];
+
+			$user_FBids = implode('\',\'',$_REQUEST['usersID']);
+			$query = "select user_fbid from zzuser where zzuser_status = 'active' and user_fbid in ('$user_FBids')";
+			$users = Zzuser::model()->findAllBySql($query);
+
+			$activeMembers = array();
+
+			if($users){
+
+				foreach($users as $user){
+
+					if( ( $key = array_search( $user->user_fbid, $FBid_array ) ) !== false ) {
+
+						unset($FBid_array[$key]);
+					}
+				}
+
+			}
+
+			$non_active_member = implode(',', $FBid_array);
+
+			print_r( $non_active_member );
+			exit;
+
+		}
+	}
+
 	/**
 	 * Get friend list
 	 * written by pankaj anupam
@@ -465,17 +500,11 @@ class UserController extends Controller
 	public function actiongetFriend(){
 		// process when ajax request
 		if (Yii::app()->request->isAjaxRequest) {
-			// Get friend list
-			/*   $user = Zzzlrofriends::model()->with('friend')->findAll('t.user_id = :userId', array(':userId'=>Yii::app()->user->getId()));
 
-			if(empty($user)){
-			echo 'No friend found';
-			}
-			*/
 			$this->layout = false;
 			//  $this->render('inviteFriends',array('users'=>$user));
 			$this->render('inviteFriends');
-			 
+
 		}
 	}
 
@@ -492,8 +521,8 @@ class UserController extends Controller
 			}
 			$user_id = implode('\',\'',$_REQUEST['friendId']);
 			$query = "select * from zzuser where user_id in ('$user_id')";
-			$users = Zzuser::model()->findAllBySql($query); //findAll('user_id = :userId', );
-			//Yii::app()->email->send('from@email.address','pankajanupam@mobicules.com','Subject','Body');
+			$users = Zzuser::model()->findAllBySql($query);
+
 			if(!empty($users)){
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
@@ -536,15 +565,15 @@ class UserController extends Controller
 	public function actiongetFbFriendsList() {
 		// process when ajax request
 		if (Yii::app()->request->isAjaxRequest) {
-			
-			$canvasUrl = '' ; // 
-			
+
+			$canvasUrl = '' ; //
+
 			$fbUserFriends = $_REQUEST['fbUserData'];
 			$userId = Yii::app()->user->getId();
-			
+
 			$getLoggedinUserEmail = getUserEmailId($userId);
 			$gameId = $_REQUEST['gameseat_gameinst_id'];
-			
+
 			foreach ($fbUserFriends as $fbUser) {
 				$name = $fbUser['name'];
 				$id = $fbUser['uid'];
@@ -564,9 +593,9 @@ class UserController extends Controller
 				$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 				$headers .= "From: $getLoggedinUserEmail" . "\r\n";
 
-				$body ='<a href="'.$canvasUrl.'/?gameinst_id='.$gameId.'">Find IT game Invitation</a>';
+				$body ='<a href="'.$canvasUrl.'/?gameinst_id='.$gameId.'">Zalerio game Invitation</a>';
 				if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
-					mail($fbEmail,'Find IT',$body, $headers);
+					mail($fbEmail,'Zalerio',$body, $headers);
 				}
 
 				if(empty($checkForExistenceData)) {
