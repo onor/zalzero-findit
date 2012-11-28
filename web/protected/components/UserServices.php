@@ -268,15 +268,13 @@ function remindUserOnFb($gameId,$fbUid,$UsersFbData,$checkForMessage,$loggedInUs
 		}
 		
 		$fbNotificationService = new FBNotificationService($getFbCredentials->config->appId, $getFbCredentials->config->appSecretId);
-		
 		if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
 			// In case of the error Send Email
-			if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
 				// send emails to the invited users
 				if($loggedInFbId != $fbUid) {
-					mail($fbEmail,'Zalerio',$body, $headers);
+					return $fbUid;
+					// mail($fbEmail,'Zalerio',$body, $headers);
 				}
-			}
 		}
 	}
 }
