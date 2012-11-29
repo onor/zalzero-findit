@@ -59,5 +59,16 @@ public class GameUtil {
 		{e.printStackTrace();}
 			assertEquals(1,1);
 	}
-
+	// add a method to busy other browser
+		public static void makebusy(WebDriver driver)
+		{
+			// cheat sheet
+			try{
+			WebElement righthud=driver.findElement(By.id("rightHUD"));
+			WebElement gameMenu=righthud.findElement(By.className("gameMenu"));
+			WebElement audioButton=gameMenu.findElement(By.className("audioButton"));
+			audioButton.click();
+			}catch(Exception e)
+			{}
+		}
 }
