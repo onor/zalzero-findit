@@ -10,9 +10,11 @@ class DeauthoriseController extends Controller
 		list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
 		$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
 		
-		$a = var_export($signedRequestData);
+		ob_start();
+var_dump($someVar);
+$result = ob_get_clean();
 		
-		Yii::log($a, CLogger::LEVEL_ERROR, 'var_export');
+		Yii::log($result, CLogger::LEVEL_ERROR, 'var_export');
 		
 	/*	foreach($signedRequestData as $key=>$val){
 			Yii::log($key.'=>'.$val, CLogger::LEVEL_ERROR, 'Any category/label will work');
