@@ -11,7 +11,7 @@ class DeauthoriseController extends Controller
 		$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
 		
 		ob_start();
-var_dump($someVar);
+var_dump($signedRequestData);
 $result = ob_get_clean();
 		
 		Yii::log($result, CLogger::LEVEL_ERROR, 'var_export');
