@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 public class UserLogin {
 	public static void Olduserlogin(WebDriver driver, String emailid,
 			String password)  {
-		driver.get("http://apps.facebook.com/zalerio/?force=play");//(Config.TEST_APP_URL);
+		driver.get(Config.TEST_APP_URL);//("http://apps.facebook.com/zalerio/?force=play");//
 		try {
 			Thread.sleep(6000);
 		} catch (InterruptedException e) {
