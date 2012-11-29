@@ -14,7 +14,7 @@ class DeauthoriseController extends Controller
 		Yii::log(Yii::app()->user->getId().'gdfgdf', CLogger::LEVEL_ERROR, 'Any category/label will work');
 
 
-foreach($signedRequestData as $val){
+foreach($signedRequestData as $key=>$val){
 	Yii::log($key.'=>'.$val, CLogger::LEVEL_ERROR, 'Any category/label will work');
 }
 		
