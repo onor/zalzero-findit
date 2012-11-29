@@ -5,7 +5,7 @@ class DeauthoriseController extends Controller
 	public function actionIndex()
 	{
 		//$this->render('index');
-		Yii::app()->user->getId();
+		echo Yii::app()->user->getId();
 	
 	}
 
