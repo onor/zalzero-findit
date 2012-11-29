@@ -10,29 +10,25 @@ class DeauthoriseController extends Controller
 		list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
 		$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
 		
-		//echo Yii::app()->user->getId();
-		Yii::log(Yii::app()->user->getId().'gdfgdf', CLogger::LEVEL_ERROR, 'Any category/label will work');
+		foreach($signedRequestData as $key=>$val){
+			Yii::log($key.'=>'.$val, CLogger::LEVEL_ERROR, 'Any category/label will work');
+		}
+		
+		Yii::log($signedRequestData["user_id"], CLogger::info, 'user leving the game');
 
-
-foreach($signedRequestData as $key=>$val){
-	Yii::log($key.'=>'.$val, CLogger::LEVEL_ERROR, 'Any category/label will work');
-}
+		$check_for_user_existence = Zzuser::model()->findByAttributes( array('user_fbid'=>$signedRequestData["user_id"]) );
 		
-Yii::log($_REQUEST["signed_request"], CLogger::LEVEL_ERROR, 'Any category/label will work');
-	/* 	
-		list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
-		$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
-		
-		Yii::log($signedRequestData, CLogger::LEVEL_ERROR, 'Any category/label will work');
-		
-		Yii::log(Yii::app()->user->getId(), CLogger::LEVEL_ERROR, 'Any category/label will work'); */
-	
+		if(isset($check_for_user_existence)) {
+			$check_for_user_existence->zzuser_status = 'invited';
+			$check_for_user_existence->save();
+			
+			Yii::log($signedRequestData["user_id"], CLogger::info, 'User leave the game: Status changed to invited ');
+		}
 	}
 
 	
  public function filters()
 	{
-		// return the filter configuration for this controller, e.g.:
 		return array( 'accessControl');
 	}
 	
