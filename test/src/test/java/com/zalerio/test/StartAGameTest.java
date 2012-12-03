@@ -10,14 +10,14 @@ import org.openqa.selenium.WebElement;
 import com.zalerio.config.GameUtil;
 
 public class StartAGameTest extends Zalerio1UserBaseTest {
-public StartAGameTest(String os, String browser, String version,
+	public StartAGameTest(String os, String browser, String version,
 			String userid, String password) {
 		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
+
 	@Test
-		public void clickStartAGame() {
-		GameUtil.closeGameEndPopUp(driver1);
+	public void clickStartAGame() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
 		try {
@@ -26,6 +26,7 @@ public StartAGameTest(String os, String browser, String version,
 		}
 
 	}
+
 	@Test
 	public void verifyPopUpOnNoFriendSelect() {
 		GameUtil.closeGameEndPopUp(driver1);
@@ -54,6 +55,7 @@ public StartAGameTest(String os, String browser, String version,
 		}
 		okButton.click();
 	}
+
 	@Test
 	public void searchFriendsAndShowAll() {
 		// Search For Friends by entering test (a-z;A-Z)
@@ -65,7 +67,8 @@ public StartAGameTest(String os, String browser, String version,
 		System.out.println("g");
 		try {
 			Thread.sleep(2000);
-		} catch (InterruptedException e) {}
+		} catch (InterruptedException e) {
+		}
 		searchArea.sendKeys("gr");
 		System.out.println("gr");
 		// show all
@@ -78,6 +81,7 @@ public StartAGameTest(String os, String browser, String version,
 			e.printStackTrace();
 		}
 	}
+
 	@Test
 	public void selectAndUnselect1Friend() {
 		GameUtil.closeGameEndPopUp(driver1);
@@ -86,7 +90,7 @@ public StartAGameTest(String os, String browser, String version,
 		WebElement a = driver1.findElement(By.className("friendlist"));
 		List<WebElement> selectListOfButtons = (a.findElements(By
 				.className("rep")));
-		WebElement fr1 = selectListOfButtons.get(1).findElement(
+		WebElement fr1 = selectListOfButtons.get(2).findElement(
 				By.className("select_button"));
 		fr1.click();
 		System.out.println("fr1 selected");
@@ -94,6 +98,7 @@ public StartAGameTest(String os, String browser, String version,
 		fr1.click();
 		System.out.println("fr1 unselected");
 	}
+
 	@Test
 	public void createAGameWith5Friends() {
 		GameUtil.closeGameEndPopUp(driver1);
@@ -122,7 +127,7 @@ public StartAGameTest(String os, String browser, String version,
 		WebElement fr5 = selectListOfButtons.get(4)
 				.findElement(By.tagName("a"));
 		fr5.click();
-		//send challenge
+		// send challenge
 		WebElement sendChallengeButton = driver1.findElement(By
 				.id("sendinvite"));
 		sendChallengeButton.click();
@@ -145,6 +150,7 @@ public StartAGameTest(String os, String browser, String version,
 		// WebElement closeButton=driver.findElement(By.id("close"));
 		closeButton.click();
 	}
+
 	@Test
 	public void create2PlayerGame() {
 		GameUtil.closeGameEndPopUp(driver1);
@@ -158,7 +164,7 @@ public StartAGameTest(String os, String browser, String version,
 		WebElement a = driver1.findElement(By.className("friendlist"));
 		List<WebElement> selectListOfButtons = (a.findElements(By
 				.className("rep")));
-		WebElement fr1 = selectListOfButtons.get(0).findElement(
+		WebElement fr1 = selectListOfButtons.get(2).findElement(
 				By.className("select_button"));
 		// select friend
 		fr1.click();
@@ -176,12 +182,40 @@ public StartAGameTest(String os, String browser, String version,
 		js.executeScript("window.scrollTo(0,0)");
 
 	}
-	//@Test
+
+	@Test
 	public void verifyClickOtherButtonsWhilePopUp() {
-		
-			GameUtil.closeGameEndPopUp(driver1);
-			WebElement startButton = driver1.findElement(By.id("startButton"));
-			try {	
+
+		GameUtil.closeGameEndPopUp(driver1);
+		WebElement startButton = driver1.findElement(By.id("startButton"));
+		startButton.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		WebElement a = driver1.findElement(By.className("friendlist"));
+		List<WebElement> selectListOfButtons = (a.findElements(By
+				.className("rep")));
+		WebElement fr1 = selectListOfButtons.get(2).findElement(
+				By.className("select_button"));
+		// select friend
+		fr1.click();
+		WebElement sendChallengeButton = driver1.findElement(By
+				.id("sendinvite"));
+
+		sendChallengeButton.click();
+		System.out.println("challenge sent");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+		}
+		// scroll window to default position
+		JavascriptExecutor js = (JavascriptExecutor) driver1;
+		js.executeScript("window.scrollTo(0,0)");
+
+		try {
+			startButton = driver1.findElement(By.id("startButton"));
 			startButton.click();
 		} catch (Exception e) {
 			System.out.println("Start button cannot be clicked");
@@ -193,6 +227,6 @@ public StartAGameTest(String os, String browser, String version,
 		System.out.println("ok button clicked");
 
 		// ok or cancel any 1 has to be clicked
-		
+
 	}
 }
