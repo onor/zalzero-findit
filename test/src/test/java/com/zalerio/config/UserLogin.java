@@ -32,6 +32,12 @@ public class UserLogin {
 			e.printStackTrace();
 		}
 		driver.get(Config.TEST_APP_URL);
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.switchTo().frame("iframe_canvas");
 		GameUtil.clickPlayHereForMultiTabIssue(driver);
 	//	try {
