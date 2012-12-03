@@ -3,13 +3,10 @@ package com.zalerio.config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-//import com.zalerio.test.RatingScreenTest;
-
 public class UserLogin {
 	public static void Olduserlogin(WebDriver driver, String emailid,
 			String password)  {
-		driver.get("https://www.facebook.com/");//("http://apps.facebook.com/zalerio/?force=play");//
+		driver.get("https://www.facebook.com/");
 		try {
 			Thread.sleep(6000);
 		} catch (InterruptedException e) {
@@ -33,7 +30,7 @@ public class UserLogin {
 		}
 		driver.get(Config.TEST_APP_URL);
 		try {
-			Thread.sleep(6000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
