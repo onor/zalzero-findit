@@ -551,7 +551,7 @@ function emailTemplate($game){
 					<body>
 					<table width="580" border="0" align="center" style="color:white;background-color: #1a274a; background: -webkit-linear-gradient(top, #1a274a, #3366ff); ">
 					  <tr>
-					    <td align="left"><img src="{$url}/images/email/Zalerio.png" alt="Logo" /></td>
+					    <td align="left"><img src="{$url}images/email/Zalerio.png" alt="Logo" /></td>
 					    <td colspan="0">&nbsp;</td>
 					  </tr>
 					  <tr>
