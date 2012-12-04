@@ -20,7 +20,7 @@ public class Create3UserGameTest extends Zalerio2UserBaseTest{
 	// verify username
 	// left HUD carousal for friend decline
 								// Game confirmation Pop up
-	@Test
+	//@Test
 	public void createGame()  {
 		// create 3 player game
 		/*String user1ID = "abhilashbhaduri@gmail.com";
