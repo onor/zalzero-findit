@@ -1,5 +1,6 @@
 
 
+
 import java.net.URL;
 
 import org.junit.After;
@@ -13,6 +14,7 @@ import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.junit.SauceOnDemandTestWatcher;
 import com.zalerio.config.UserLogin;
+//import com.zalerio.config.UserLogin;
 /**
  * Simple {@link RemoteWebDriver} test that demonstrates how to run your Selenium tests with <a href="http://saucelabs.com/ondemand">Sauce OnDemand</a>.
  *

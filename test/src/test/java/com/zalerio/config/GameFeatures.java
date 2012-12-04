@@ -29,6 +29,16 @@ public class GameFeatures {
 		WebElement sendChallengeButton = driver.findElement(By
 						.id("sendinvite"));
 		sendChallengeButton.click();
+		//check if new user screen is shown
+		driver.switchTo().defaultContent();
+		WebElement pop_container=driver.findElement(By.className("pop_container"));
+		WebElement pop_content=pop_container.findElement(By.id("pop_content"));
+		WebElement dialog_buttons=pop_content.findElement(By.className("dialog_buttons"));
+		WebElement rfloat=dialog_buttons.findElement(By.className("rfloat"));
+		List<WebElement> uiButton=rfloat.findElements(By.className("uiButton"));
+		uiButton.get(0).click();
+		Thread.sleep(5000);
+		
 		System.out.println("challenge sent");
 		Popup.closePopup(driver);
 		Thread.sleep(2000);

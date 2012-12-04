@@ -1,5 +1,6 @@
 
 
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -113,7 +114,7 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 				assertEquals(userStatus, "finished round");
 				GameUtil.makebusy(driver2);
 		//drag and drop all tiles by user1
-				Tiles.dragAllTiles(driver1);
+				Tiles.dragAllTilesWithDelay(driver1, driver2);
 				WebElement play1 = driver1.findElement(By.id("placeBetOnServer"));
 				play1.click();
 				Thread.sleep(8000);
@@ -147,12 +148,7 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 					WebElement resignme =driver1.findElement(By.id("resignme"));
 					resignme.click();
 					GameUtil.makebusy(driver2);
-					// reload the page
-					driver2.navigate().refresh();
-					GameUtil.makebusy(driver1);
-					Thread.sleep(8000);
-					driver2.switchTo().frame("iframe_canvas");
-						 RatingScreenTest.closeGameEndPopupWithVerifyRating(driver2);
+					 RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1,driver2);
 					// check stats
 					 Stats.verifyGameAddToPastGames(driver2, NewGameId);
 	

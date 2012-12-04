@@ -1,5 +1,6 @@
 
 
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
@@ -11,11 +12,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import com.zalerio.config.GameUtil;
 import com.zalerio.config.Popup;
+
+
 
 public class RatingScreenTest {
 	
-	public static void closeGameEndPopupWithVerifyRating(WebDriver driver) throws InterruptedException
+	public static void closeGameEndPopupWithVerifyRating(WebDriver driver,WebDriver driver2) throws InterruptedException
 	{
 		try {
 			Thread.sleep(8000);
@@ -37,7 +41,9 @@ public class RatingScreenTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		WebElement rating_popup=driver.findElement(By.className("rating-popup"));
+		GameUtil.makebusy(driver2);
+		WebElement page=driver.findElement(By.id("page"));
+		WebElement rating_popup=page.findElement(By.className("rating-popup"));
 		WebElement rating_content=rating_popup.findElement(By.className("rating-content"));
 		WebElement rating_form=rating_content.findElement(By.id("rating_form"));
 		WebElement submit_rating=rating_form.findElement(By.id("submit_rating"));
@@ -54,6 +60,7 @@ public class RatingScreenTest {
 		star_4.click();
 		 star_3Selected=star_3.getAttribute("class");
 		assertEquals(star_3Selected,"star_3");
+		GameUtil.makebusy(driver2);
 		List<WebElement> suggestions=rating_form.findElements(By.className("suggestion"));
 		WebElement comment_improvement=suggestions.get(0).findElement(By.name("comment_improvement"));
 		comment_improvement.click();
@@ -66,6 +73,7 @@ public class RatingScreenTest {
 		System.out.print("tab contains "+comment_like.getText());
 		submit_rating.click();
 		Popup.verifyPopup(driver, "Thank you for your suggestions.");
+		GameUtil.makebusy(driver2);
 		driver.navigate().refresh();
 		Thread.sleep(8000);
 		driver.switchTo().frame("iframe_canvas");
@@ -76,6 +84,7 @@ public class RatingScreenTest {
 				.className("button_score"));
 		List<WebElement> buttons = button_score.findElements(By.tagName("a"));
 		WebElement rematch = buttons.get(0);
+		GameUtil.makebusy(driver2);
 		rematch.click();
 		Popup.verifyPopup(driver, "Challenge has been sent. Would you like to start playing.");
 	}

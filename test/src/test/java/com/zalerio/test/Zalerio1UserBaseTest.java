@@ -1,5 +1,6 @@
 
 
+
 import static junit.framework.Assert.assertEquals;
 
 import java.net.URL;
@@ -117,7 +118,9 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	{
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		assertEquals(startButton.isDisplayed(), true);
+
 	}
+	
 
 	@After
 	public void tearDown() throws Exception {

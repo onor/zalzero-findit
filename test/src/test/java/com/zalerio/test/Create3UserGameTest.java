@@ -1,5 +1,6 @@
 
 
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
@@ -15,12 +16,12 @@ import com.zalerio.config.VerifyFeatures;
 
 
 
-public class Create3UserGame extends Zalerio2UserBaseTest{
+public class Create3UserGameTest extends Zalerio2UserBaseTest{
 	// verify username
 	// left HUD carousal for friend decline
 								// Game confirmation Pop up
 	@Test
-	public void createGame() throws InterruptedException {
+	public void createGame()  {
 		// create 3 player game
 		/*String user1ID = "abhilashbhaduri@gmail.com";
 		String user1Password = "16081989";
@@ -33,8 +34,13 @@ public class Create3UserGame extends Zalerio2UserBaseTest{
 		VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
 		VerifyFeatures.verifyUsername(driver2, "Griffin Singh");
 		//create a new game
-		int[] SelectedFriends=new int[]{2,3};
-		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
+		int[] SelectedFriends=new int[]{2,4};
+		try {
+			GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		GameUtil.makebusy(driver2);
 		// grab new GameId
 		String NewGameId=GameFeatures.grabGameIdWithDelay(driver1,driver2);
@@ -55,19 +61,30 @@ public class Create3UserGame extends Zalerio2UserBaseTest{
 		GameUtil.makebusy(driver1);
 		// click OK on Pop up
 		Popup.verifyPopup(driver2, "You have declined successfuly");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//close game formation Pop up to  check left HUD
 		WebElement invitestatus=driver1.findElement(By.id("invitestatus"));
 		WebElement score_friendpopup=invitestatus.findElement(By.id("score_friendpopup"));
 		WebElement close=score_friendpopup.findElement(By.id("close"));
 		close.click();
-		GameUtil.makebusy(driver1);
+		GameUtil.makebusy(driver2);
 		WebElement gameInfo_game_players=driver1.findElement(By.id("gameInfo-game-players"));
 		WebElement background=gameInfo_game_players.findElement(By.className("background"));
 		List<WebElement> infoPlates=background.findElements(By.className("infoPlate"));
 		assertEquals(infoPlates.size(),1);
 		//reload page to check game formation Pop up
 		driver1.navigate().refresh();
-		Thread.sleep(5000);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver1.switchTo().frame("iframe_canvas");
 		GameUtil.makebusy(driver2);
 		 invitestatus=driver1.findElement(By.id("invitestatus"));
