@@ -1,6 +1,4 @@
 package com.zalerio.config;
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,11 +39,23 @@ public class UserLogin {
     });*/
 		WebElement iframe=driver.findElement(By.id("iframe_canvas"));
 		driver.switchTo().frame(iframe);
-		GameUtil.clickPlayHereForMultiTabIssue(driver);
+		boolean status=GameUtil.clickPlayHereForMultiTabIssue(driver);
 	//	try {
 	//		RatingScreenTest.closeGameEndPopupWithVerifyRating(driver);
 	//	} catch (InterruptedException e) {
 	//		}
+		if(status==true)
+		{	
+		driver.navigate().refresh();
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 iframe=driver.findElement(By.id("iframe_canvas"));
+		driver.switchTo().frame(iframe);
+		}
 		Popup.closePopup(driver);
 		GameUtil.closeGameEndPopUp(driver);
 	}

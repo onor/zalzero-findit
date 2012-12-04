@@ -1,15 +1,20 @@
 
 
+import static junit.framework.Assert.assertEquals;
+
 import java.net.URL;
 import java.util.LinkedList;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -107,7 +112,12 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	        UserLogin.Olduserlogin(driver1, userid, password);
 }
 
-	
+	@Test
+	public void gameEnterTest()
+	{
+		WebElement startButton = driver1.findElement(By.id("startButton"));
+		assertEquals(startButton.isDisplayed(), true);
+	}
 
 	@After
 	public void tearDown() throws Exception {

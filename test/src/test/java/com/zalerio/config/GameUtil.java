@@ -9,11 +9,13 @@ import org.openqa.selenium.WebElement;
 
 public class GameUtil {
 	
-	public static void clickPlayHereForMultiTabIssue(WebDriver driver) {
+	public static boolean clickPlayHereForMultiTabIssue(WebDriver driver) {
+		boolean status=false;
 		try {
 			WebElement playHereButton = driver.findElement(By.className("playhere"));
 			if(playHereButton.isDisplayed()) {
 				playHereButton.click();
+				status=true;
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
@@ -25,6 +27,7 @@ public class GameUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return status;
 	}
 	
 	public static void closeGameEndPopUp(WebDriver driver) {
