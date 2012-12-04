@@ -1,5 +1,4 @@
 
-
 import static junit.framework.Assert.assertEquals;
 
 import org.junit.Test;
@@ -120,21 +119,26 @@ public class TutorialTest extends Zalerio1UserBaseTest {
 		WebElement popup4 = tutorial_popup4.findElement(By
 				.className("popup-button"));
 		popup4.click();
-		// click OK on popup
-		WebElement active_screen5 = driver1
-				.findElement(By.className("girlimg"));
-		WebElement tutorial_popup5 = active_screen5.findElement(By
-				.className("tutorial-popup"));
-		WebElement popup5 = tutorial_popup5.findElement(By
-				.className("popup-button"));
-		popup5.click();
-		WebElement startButton = driver1.findElement(By.id("startButton"));
+	
+		WebElement ok_button=driver1.findElement(By.className("ok-button"));
+		ok_button.click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		WebElement startGame=driver1.findElement(By.className("startGame"));
+		WebElement startButton=startGame.findElement(By.id("startButton"));
 		startButton.click();
-		// close the window-close button not working
-		WebElement friendpopup = driver1.findElement(By.id("friendpopup"));
-		WebElement closeButton = friendpopup.findElement(By.tagName("a"));
-		closeButton.click();
-		assertEquals("1", "1");
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		WebElement findfriend=driver1.findElement(By.className("findfriend"));
+		assertEquals(findfriend.isDisplayed(), true);
 	}
 
 }
