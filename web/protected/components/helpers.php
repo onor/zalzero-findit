@@ -432,7 +432,7 @@ function sendWinnerNotificationMail( $gameInstId)
 	
 	// game id and score sort by rank
 	$gameUsersDetails =  Zzgameseat::model()->with(  array( 'gameseatUser' => array('condition'=>'zzuser_subscribe_status=TRUE') ) )->findAllByAttributes( array( 'gameseat_gameinst_id'=>"$gameInstId",'zzuser_subscribe_status'=>TRUE, 'zzgameseat_status'=> array( 'accepted', 'resigned' )),array('order'=>'game_rank ASC,gameseat_score DESC') );
-
+print_r($gameUsersDetails);
 	if(!$gameUsersDetails){
 		return;		// return if no record found
 	}

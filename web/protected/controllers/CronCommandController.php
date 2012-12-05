@@ -23,7 +23,9 @@ class CronCommandController extends CController {
 					$update_game->zzgameinst_status = 'completed';
 					try{
 						sendWinnerNotificationMail( $game_id );			// send winner notification mail to all player
-					}catch(Exception  $error){}
+					}catch(Exception  $error){
+						print_r($error);
+					}
 					
 				} else {
 					$update_game->zzgameinst_status = 'canceled';
