@@ -33,11 +33,9 @@ class DeauthoriseController extends Controller
 			
 			if(isset($usr)) {
 
-				$usr->zzuser_subscribe_status = 'FALSE';
+				$usr->zzuser_subscribe_status = FALSE;
 				$usr->save();
-			
-				Yii::log($_REQUEST['user_id'], CLogger::LEVEL_ERROR, 'User '.$_REQUEST['user_id'].' unsubscribe ');
-			
+						
 				echo '<h1>You have been successfully unsubscribed!</h1>';
 
 				echo '<p>You have requested to be removed from our mailing list, which has been successful, <br />You will not receive any future correspondence from us.</p>';
