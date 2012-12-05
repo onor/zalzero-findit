@@ -431,7 +431,7 @@ function sendWinnerNotificationMail( $gameInstId)
 	$i = 0;
 	
 	// game id and score sort by rank
-	$gameUsersDetails =  Zzgameseat::model()->with( 'gameseatUser' )->findAllByAttributes( array( 'gameseat_gameinst_id'=>"$gameInstId", 'zzgameseat_status'=> array( 'accepted', 'resigned' )),array('order'=>'game_rank ASC,gameseat_score DESC') );
+	$gameUsersDetails =  Zzgameseat::model()->with( 'gameseatUser' )->findAllByAttributes( array( 'gameseat_gameinst_id'=>"$gameInstId",'zzuser_subscribe_status'=>TRUE, 'zzgameseat_status'=> array( 'accepted', 'resigned' )),array('order'=>'game_rank ASC,gameseat_score DESC') );
 
 	if(!$gameUsersDetails){
 		return;		// return if no record found
@@ -442,7 +442,7 @@ function sendWinnerNotificationMail( $gameInstId)
 
 	foreach($gameUsersDetails as $gameUserDetails)
 	{	$i++;
-		$game->sendEmailTo[] = $gameUserDetails->gameseatUser->user_email;
+		$game->sendEmailTo[$gameUserDetails->gameseatUser->user_fbid] = $gameUserDetails->gameseatUser->user_email;
 		$userDisplayName = getDisplayName( $gameUserDetails->gameseatUser->user_fname, $gameUserDetails->gameseatUser->user_lname );
 		
 		$game->allPlayerImgs .= '<img style=" margin-left:1px;" width="32" height="32" src="http://graph.facebook.com/'.$gameUserDetails->gameseatUser->user_fbid.'/picture" />';
@@ -504,9 +504,10 @@ EOD;
 	$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 	$headers .= "From: zalerio@zalerio.com" . "\r\n";
 	
-	foreach($game->sendEmailTo as $to){
+	foreach($game->sendEmailTo as $user_fbid=>$to){   // array key ($user_fbid) content user facebook id
+		
 		$game->to = $to;
-		$emailTemplate	= emailTemplate($game);
+		$emailTemplate	= emailTemplate($game,$user_fbid);
 		
 		@mail( $to,'Zalerio: Winner Notification',$emailTemplate, $headers );
 	}
@@ -515,12 +516,14 @@ EOD;
 }
 
 
-function emailTemplate($game){
+function emailTemplate($game,$user_fbid){
 
 	$FBConfig = new facebookCredetials();
 	$url = $FBConfig->config->canvasPage;
 	$privacypolicy = $url.'site/privacypolicy';
 	$tos = $url.'site/tos';
+	
+	$unsub_url = $url.'deauthorise/unsubscribe?user_id='.$user_fbid;
 	
 	$emailTemplate = <<<EOD
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -590,7 +593,7 @@ function emailTemplate($game){
 					</table>
 						<table width="580" border="0" align="center" style="background:#fff; color:#000">
 						  <tr>
-						    <td>This email is intended for {$game->to}. You received this message because you signed up for 'Zalerio' e-mail program. To unsubscribe from Zalerio (Game Invitation) emails <a href="#">unsubscribe here</a></td>
+						    <td>This email is intended for {$game->to}. You received this message because you signed up for 'Zalerio' e-mail program. To unsubscribe from Zalerio (Game Invitation) emails <a href="{$unsub_url}">unsubscribe here</a></td>
 						  </tr>
 						  <tr>
 						    <td>&copy; Zalzero Inc., Palo Alto, CA California, U.S.A. <a href="{$privacypolicy}" style="color:#000" >Privacy Policy</a> & <a href="{$tos}" style="color:#000" >Terms & Conditions</a> </td>
