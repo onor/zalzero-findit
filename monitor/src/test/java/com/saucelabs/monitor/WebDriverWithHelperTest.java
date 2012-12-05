@@ -117,6 +117,12 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		pass.sendKeys(userpwd);
 		login_form.submit();
 		driver.get(url);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		driver.switchTo().frame("iframe_canvas");
 		try {
 			Thread.sleep(10000);
