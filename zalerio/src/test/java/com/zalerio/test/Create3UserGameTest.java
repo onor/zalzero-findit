@@ -1,3 +1,5 @@
+package com.zalerio.test;
+
 
 
 
@@ -20,7 +22,7 @@ public class Create3UserGameTest extends Zalerio2UserBaseTest{
 	// verify username
 	// left HUD carousal for friend decline
 								// Game confirmation Pop up
-	//@Test
+	@Test
 	public void createGame()  {
 		// create 3 player game
 		/*String user1ID = "abhilashbhaduri@gmail.com";
@@ -107,17 +109,30 @@ public class Create3UserGameTest extends Zalerio2UserBaseTest{
 			assertEquals(imgWrapper.size(),1);
 		WebElement buttonWrapper=invite_status_base.findElement(By.className("buttonWrapper"));	
 		GameUtil.makebusy(driver2);
-			//send Reminder
-			WebElement rightButtonWrapper=buttonWrapper.findElement(By.className("rightButtonWrapper"));
-			WebElement rightButton=rightButtonWrapper.findElement(By.className("rightButton"));
-			rightButton.click();
-			Popup.verifyPopup(driver1, "You have sent reminder successfuly");
-			GameUtil.makebusy(driver2);
+			//send Reminder(this needs to be modified to handle unusual popup)
+//			WebElement rightButtonWrapper=buttonWrapper.findElement(By.className("rightButtonWrapper"));
+//			WebElement rightButton=rightButtonWrapper.findElement(By.className("rightButton"));
+//			rightButton.click();
+//			Popup.verifyPopup(driver1, "You have sent reminder successfuly");
+//			GameUtil.makebusy(driver2);
 			//close invitations
 			WebElement leftButtonWrapper=buttonWrapper.findElement(By.className("leftButtonWrapper"));
 			WebElement leftButton=leftButtonWrapper.findElement(By.className("leftButton"));
 			leftButton.click();
-			Popup.verifyPopup(driver1, "Game cancel!!!   Insufficient Users in Game");
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			GameUtil.makebusy(driver2);
+			WebElement popup = driver1.findElement(By.className("msgbox-msg"));
+			assertEquals(popup.isDisplayed(),true);
+			String observerdMsg=popup.getText();
+			boolean status=observerdMsg.contains("Game cancel!!!");
+			assertEquals(status, true);
+			WebElement ok = driver1.findElement(By.className("msgbox-ok"));
+			ok.click();
+			
 	}
 }

@@ -1,3 +1,5 @@
+package com.zalerio.test;
+
 
 
 
@@ -148,7 +150,7 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 					WebElement resignme =driver1.findElement(By.id("resignme"));
 					resignme.click();
 					GameUtil.makebusy(driver2);
-					 RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1,driver2);
+					// RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1,driver2);
 					// check stats
 					 Stats.verifyGameAddToPastGames(driver2, NewGameId);
 	

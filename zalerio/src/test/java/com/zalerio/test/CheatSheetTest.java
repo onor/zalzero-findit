@@ -1,3 +1,5 @@
+package com.zalerio.test;
+
 
 
 import static junit.framework.Assert.assertEquals;

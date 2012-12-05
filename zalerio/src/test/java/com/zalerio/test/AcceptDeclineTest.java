@@ -1,3 +1,5 @@
+package com.zalerio.test;
+
 
 
 
@@ -7,11 +9,11 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class AcceptDeclinetTest extends Zalerio1UserBaseTest {
+public class AcceptDeclineTest extends Zalerio1UserBaseTest {
 	
 	
 
-	public AcceptDeclinetTest(String os, String browser, String version,
+	public AcceptDeclineTest(String os, String browser, String version,
 			String userid, String password) {
 		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
