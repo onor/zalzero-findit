@@ -1041,6 +1041,19 @@ jQuery("#rating_form textarea[name=comment_like]").live('click', function() {
 		jQuery(this).val('');
 	}
 });
+
+jQuery("#rating_form textarea[name=comment_improvement]").live('focus',
+		function() {
+			if (jQuery(this).val() == "Write a comment here") {
+				jQuery(this).val('')
+			}
+		});
+jQuery("#rating_form textarea[name=comment_like]").live('focus', function() {
+	if (jQuery(this).val() == "Write a comment here") {
+		jQuery(this).val('');
+	}
+});
+
 /** ** end ** */
 // get the size of an object
 sizeOfObj = function(obj) {
