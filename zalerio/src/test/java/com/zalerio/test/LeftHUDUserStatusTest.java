@@ -152,7 +152,7 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 					GameUtil.makebusy(driver2);
 					// RatingScreenTest.closeGameEndPopupWithVerifyRating(driver1,driver2);
 					// check stats
-					 Stats.verifyGameAddToPastGames(driver2, NewGameId);
+					 Stats.verifyGameAddToPastGames(driver1, NewGameId);
 	
 	}
 

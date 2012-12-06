@@ -15,7 +15,7 @@ public StatsHandleTest(String os, String browser, String version,
 		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-	@Test
+	//@Test
 	public void statsClick() {
 		
 		// stats
