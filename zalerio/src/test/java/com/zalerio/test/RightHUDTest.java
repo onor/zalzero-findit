@@ -15,7 +15,7 @@ public RightHUDTest(String os, String browser, String version,
 		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-	@Test
+//	@Test
 	public void rightHUDTest() {
 		// right HUD
 		// your turn -check game tiles and click

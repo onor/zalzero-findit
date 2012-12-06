@@ -14,7 +14,7 @@ public StartAGameTest(String os, String browser, String version,
 		super(os, browser, version, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-	@Test
+//	@Test
 		public void clickStartAGame() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
@@ -24,7 +24,7 @@ public StartAGameTest(String os, String browser, String version,
 		}
 
 	}
-	@Test
+//	@Test
 	public void verifyPopUpOnNoFriendSelect() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
@@ -51,7 +51,7 @@ public StartAGameTest(String os, String browser, String version,
 		}
 		okButton.click();
 	}
-	@Test
+//	@Test
 	public void searchFriendsAndShowAll() {
 		// Search For Friends by entering test (a-z;A-Z)
 		WebElement startButton = driver1.findElement(By.id("startButton"));
@@ -74,7 +74,7 @@ public StartAGameTest(String os, String browser, String version,
 			e.printStackTrace();
 		}
 	}
-	@Test
+//	@Test
 	public void selectAndUnselect1Friend() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
@@ -89,7 +89,7 @@ public StartAGameTest(String os, String browser, String version,
 		fr1.click();
 		System.out.println("fr1 unselected");
 	}
-	@Test
+//	@Test
 	public void createAGameWith5Friends() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
@@ -139,7 +139,7 @@ public StartAGameTest(String os, String browser, String version,
 		// WebElement closeButton=driver.findElement(By.id("close"));
 		closeButton.click();
 	}
-	@Test
+//	@Test
 	public void create2PlayerGame() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
@@ -169,7 +169,7 @@ public StartAGameTest(String os, String browser, String version,
 		js.executeScript("window.scrollTo(0,0)");
 
 	}
-	@Test
+//	@Test
 	public void verifyClickOtherButtonsWhilePopUp() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
