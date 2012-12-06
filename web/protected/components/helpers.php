@@ -522,7 +522,7 @@ function emailTemplate($game,$user_fbid){
 	$privacypolicy = $url.'site/privacypolicy';
 	$tos = $url.'site/tos';
 	
-	$unsub_url = $url.'deauthorise/unsubscribe?user_id='.$user_fbid;
+	$unsub_url = $FBConfig->config->canvasUrl.'deauthorise/unsubscribe?user_id='.$user_fbid;
 	
 	$emailTemplate = <<<EOD
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
