@@ -521,7 +521,7 @@ function emailTemplate($game,$user_fbid){
 	$url = $FBConfig->config->canvasPage;
 	$privacypolicy = $url.'site/privacypolicy';
 	$tos = $url.'site/tos';
-	
+	$canvasUrl = $FBConfig->config->canvasUrl;
 	$unsub_url = $FBConfig->config->canvasUrl.'deauthorise/unsubscribe?user_id='.$user_fbid;
 	
 	$emailTemplate = <<<EOD
@@ -553,7 +553,7 @@ function emailTemplate($game,$user_fbid){
 					<body>
 					<table width="580" border="0" align="center" style="color:white;background-color: #1a274a; background: -webkit-linear-gradient(top, #1a274a, #3366ff); ">
 					  <tr>
-					    <td align="left"><img src="{$url}images/email/zalerio_logo.png" alt="Logo" /></td>
+					    <td align="left"><img src="{$canvasUrl}images/email/zalerio_logo.png" alt="Logo" /></td>
 					    <td colspan="0">&nbsp;</td>
 					  </tr>
 					  <tr>
