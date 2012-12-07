@@ -440,9 +440,11 @@ class sendEmail{
  * Send winner notification mail to all players except players decline the game 
  * @param int $gameInstId
  */
-$mail_obj_notification = new sendEmail();
+
 function sendWinnerNotificationMail( $gameInstId)
 {
+	$mail_obj_notification = new sendEmail();
+	
 	$game = new stdClass;
 	$game->id = $gameInstId;
 	$game->winner = new stdClass;
