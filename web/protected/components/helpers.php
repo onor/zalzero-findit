@@ -538,7 +538,7 @@ EOD;
         $mail_status = $mail_obj->notifyemail( array("to" => "$to", "subject" => "Zalerio: Winner Notification", "from" => "zalerio@zalerio.com", "body" => "$emailTemplate") );
                        
 		
-		@mail( $to,'Zalerio: Winner Notification',$emailTemplate, $headers );
+		//@mail( $to,'Zalerio: Winner Notification',$emailTemplate, $headers );
 	}
 	
 	return;
