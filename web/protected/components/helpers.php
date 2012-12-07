@@ -430,8 +430,8 @@ function sendWinnerNotificationMail( $gameInstId)
 	$game->allPlayerImgs = '';
 	$i = 0;
 	
-	// game id and score sort by rank
-	$gameUsersDetails =  Zzgameseat::model()->with(  array( 'gameseatUser' => array('condition'=>'zzuser_subscribe_status=TRUE') ) )->findAllByAttributes( array( 'gameseat_gameinst_id'=>"$gameInstId", 'zzgameseat_status'=> array( 'accepted', 'resigned' )),array('order'=>'game_rank ASC,gameseat_score DESC') );
+	// game id and score sort by rank  => array('condition'=>'zzuser_subscribe_status=TRUE')
+	$gameUsersDetails =  Zzgameseat::model()->with(  array( 'gameseatUser' ) )->findAllByAttributes( array( 'gameseat_gameinst_id'=>"$gameInstId", 'zzgameseat_status'=> array( 'accepted', 'resigned' )),array('order'=>'game_rank ASC,gameseat_score DESC') );
 	if(!$gameUsersDetails){
 		return;		// return if no record found
 	}
@@ -441,7 +441,10 @@ function sendWinnerNotificationMail( $gameInstId)
 
 	foreach($gameUsersDetails as $gameUserDetails)
 	{	$i++;
-		$game->sendEmailTo[$gameUserDetails->gameseatUser->user_fbid] = $gameUserDetails->gameseatUser->user_email;
+		 if($gameUserDetails->gameseatUser->zzuser_subscribe_status){
+			 $game->sendEmailTo[$gameUserDetails->gameseatUser->user_fbid] = $gameUserDetails->gameseatUser->user_email;
+		 }
+		 
 		$userDisplayName = getDisplayName( $gameUserDetails->gameseatUser->user_fname, $gameUserDetails->gameseatUser->user_lname );
 		
 		$game->allPlayerImgs .= '<img style=" margin-left:1px;" width="32" height="32" src="http://graph.facebook.com/'.$gameUserDetails->gameseatUser->user_fbid.'/picture" />';
