@@ -320,24 +320,12 @@ jQuery(function($) {
 	}
 	
 	$('#sendrinvite').live("click", function() {
-		var id = new Array();
-		$('.friendlist .rep .status').each(function() {
-			id.push($(this).val());
-		});
-		var arr = []
-		while (arr.length < 5 && arr.length < id.length) {
-			var randomnumber = Math.ceil(Math.random() * id.length - 1)
-			var found = false;
-			for ( var i = 0; i < arr.length; i++) {
-				if (arr[i] == id[randomnumber]) {
-					found = true;
-					break
-				}
-			}
-			if (!found)
-				arr[arr.length] = id[randomnumber];
-		}
-		InviteFriends(arr);
+		 var id = new Array('650715441','623504');
+		
+		 //	var id = new Array('100000842727950','100004066793304'); Pankaj Anupam and Abhi
+		
+		console.log(id);
+		InviteFriends(id);
 	});
 
 	$('#sendinvite')
@@ -380,7 +368,6 @@ jQuery(function($) {
     		<div class="blockG" id="rotateG_08">\
     		</div>\
     		</div>');
-
 							jQuery('#sendinvite').attr('value', 'Sending...');
 							jQuery('#sendinvite').css('cursor', 'default');
 							
