@@ -499,7 +499,21 @@ define('../../helper/notifications',["./utils"], function(utils) {
           lh_users_data: userData
         },
         success: function(responseData, textStatus, jqXHR) {
-          return messagePopup(popupMSG.remindSucess(''));
+          if (responseData) {
+            return FB.ui({
+              method: 'apprequests',
+              message: 'You are invited to play a game of zalerio',
+              to: responseData
+            }, function(response) {
+              if (response) {
+                return messagePopup(popupMSG.remindSucess(''));
+              } else {
+                return utils.log("notificatoion send fail : " + responseData + "\n errorThrown : " + errorThrown);
+              }
+            });
+          } else {
+            return messagePopup(popupMSG.remindSucess(''));
+          }
         },
         error: function(responseData, textStatus, errorThrown) {
           return utils.log("notificatoion send fail : " + responseData + "\n errorThrown : " + errorThrown);
@@ -2348,7 +2362,21 @@ define('../../popup/../helper/notifications',["./utils"], function(utils) {
           lh_users_data: userData
         },
         success: function(responseData, textStatus, jqXHR) {
-          return messagePopup(popupMSG.remindSucess(''));
+          if (responseData) {
+            return FB.ui({
+              method: 'apprequests',
+              message: 'You are invited to play a game of zalerio',
+              to: responseData
+            }, function(response) {
+              if (response) {
+                return messagePopup(popupMSG.remindSucess(''));
+              } else {
+                return utils.log("notificatoion send fail : " + responseData + "\n errorThrown : " + errorThrown);
+              }
+            });
+          } else {
+            return messagePopup(popupMSG.remindSucess(''));
+          }
         },
         error: function(responseData, textStatus, errorThrown) {
           return utils.log("notificatoion send fail : " + responseData + "\n errorThrown : " + errorThrown);

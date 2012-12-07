@@ -115,12 +115,12 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join your friends now!</a>';
 				}
 				
-				//    $body ='<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Find IT game Invitation</a>';
+				//    $body ='<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Zalerio game Invitation</a>';
 				if(!$fbNotificationService->sendNotification($id, $notification, $gameId)) { // Send FB Notification
 					// In case of the error Send Email
 					if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
 						// send emails to the invited users
-						mail($fbEmail,'Find IT',$body, $headers);
+					//	mail($fbEmail,'Zalerio',$body, $headers);
 					}
 				}
 
@@ -146,7 +146,7 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 					// In case of the error Send Email
 					if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
 						// send emails to the invited users
-						mail($fbEmail,'Find IT',$body, $headers);
+						//mail($fbEmail,'Zalerio',$body, $headers);
 					}
 				}
 			} else {
@@ -268,15 +268,13 @@ function remindUserOnFb($gameId,$fbUid,$UsersFbData,$checkForMessage,$loggedInUs
 		}
 		
 		$fbNotificationService = new FBNotificationService($getFbCredentials->config->appId, $getFbCredentials->config->appSecretId);
-		
 		if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
 			// In case of the error Send Email
-			if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
 				// send emails to the invited users
 				if($loggedInFbId != $fbUid) {
-					mail($fbEmail,'Find IT',$body, $headers);
+					return $fbUid;
+					// mail($fbEmail,'Zalerio',$body, $headers);
 				}
-			}
 		}
 	}
 }
