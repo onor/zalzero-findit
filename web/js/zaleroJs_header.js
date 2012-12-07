@@ -72,17 +72,9 @@ jQuery('.closesound').live('click', function() {
 function facebookInit() {
 	if (typeof (FB) !== "undefined") {
 		FB.getLoginStatus(function(response) {
-			// console.log("FB.getLoginStatus() : [response:" + response + "]");
-			// tempGlobalResponse["fbresponse"] = response;
 			if (response.status && response.status === "connected") {
-				// logged in and connected user, someone you know
-				// alert("FB Connected!");
 				updateFBInfo(response);
-				// jQuery ( "#notConnectedWithFB_displayBtn" ).hide () ;
 			} else {
-				// no user session available, someone you dont know
-				// alert("FB NOT Connected!");
-				// jQuery ( "#notConnectedWithFB_displayBtn" ).show () ;
 			}
 		});
 	} else {
@@ -98,8 +90,6 @@ function updateFBInfo(response) {
 			ofbizUser["accessToken"] = response["authResponse"]["accessToken"];
 			ofbizUser["fbStatus"] = 1;
 			serveFBRequests();
-			// now hide the facebook conect button
-			// jQuery ( "#notConnectedWithFB_displayBtn" ).hide () ;
 		} else if (typeof (response[2]) !== "undefined"
 				&& typeof (response[2][0]) !== "undefined"
 				&& typeof (response[2][0]["status"]) !== "undefined") {
@@ -117,14 +107,10 @@ function serveFBRequests() {
 	for ( var i in oloFunctionRequests) {
 		request = oloFunctionRequests[i];
 		if (request !== 0) {
-			// alert(i);
 			if (request === 1) {// request w/o parameters
 				window[i]();
 			} else if (request === 2) { // request with parameters
-				// alert("hi");
-				// window [ i ] () ;//
 				eval(i);
-				// alert("hi2");
 			}
 			oloFunctionRequests[i] = 0;
 		}
@@ -177,7 +163,6 @@ function showFrndSelector() {
     		</div></div>')
 	flag_fbPullAuthorised = true;
 	if (flag_fbPullAuthorised === true) {
-		// alert("fbPullData invoked() 2");
 		FB
 				.api(
 						{
@@ -205,28 +190,23 @@ function showFrndSelector() {
 										+ '</span>';
 								html += '<a class="select_button right">Select</a></div><div class="line"></div>';
 							}
-							// alert(htmlt);
+
 							$.ajax({
+								
 								type : 'POST',
 								url : siteUrl + "/user/getFriend"
-							// data:{'fbUserData' : fbUserData}
+								
 							}).done(function(data) { // alert(data);
 								$('body').append(data);
 								$("#floatingBarsG").css('display', 'none');
 								$('.friendlist').html(html);
 								if (playSound) {
 									popupapperence.play(); // popup apperence
-									// sound
 								}
-
 							});
 						});
 		flag_fbPullAuthorised = false;
 	}
-	/*
-	 * $.ajax({ type:'POST', url: siteUrl+"/user/getFriend"
-	 * }).done(function(data) { $('body').append(data); });
-	 */
 }
 
 jQuery(function($) {
@@ -327,7 +307,18 @@ jQuery(function($) {
 						});
 		return flag;
 	}
-
+	
+	function removeA(arr) {
+	    var what, a = arguments, L = a.length, ax;
+	    while (L > 1 && arr.length) {
+	        what = a[--L];
+	        while ((ax= arr.indexOf(what)) !== -1) {
+	            arr.splice(ax, 1);
+	        }
+	    }
+	    return arr;
+	}
+	
 	$('#sendrinvite').live("click", function() {
 		var id = new Array();
 		$('.friendlist .rep .status').each(function() {
@@ -367,7 +358,7 @@ jQuery(function($) {
 						} else {
 							if (jQuery('#sendinvite').attr('value') == 'Sending...') {
 								return;
-							}
+						}
 
 							jQuery('.footerbutton')
 									.append(
@@ -392,7 +383,53 @@ jQuery(function($) {
 
 							jQuery('#sendinvite').attr('value', 'Sending...');
 							jQuery('#sendinvite').css('cursor', 'default');
-							InviteFriends(id);
+							
+							jQuery.ajax({
+								type : 'POST',
+								url : baseUrl + "/user/getActiveMember",
+								data : {
+									'usersID' : id
+								}
+							}).done( function(user_ids) { 
+
+								if(user_ids != ""){
+	
+										// get the id's and send app request
+										
+										FB.ui({method: 'apprequests',
+									          message: 'You are invited to play a game of zalerio',
+									          to: user_ids
+									    }, function(response){
+									    	
+									    	if(response ){
+									    		// nothing to do									    		
+									    	}else{
+									    		// if user cancel the friend request then remove users
+									    		user_ids = user_ids.split(',');
+									    		
+									    		for( key in user_ids ){
+									    												    			
+									    			id = removeA( id, user_ids[key] );
+									    		}
+									    	}
+									    	
+											if( sizeOfObj(id) < 1){
+												
+												jQuery('.wait').remove();
+												jQuery('.show_popup').remove();
+												messagePopup('Not enough players to create a game .Please select again and try.');
+												
+											}else{
+												
+												InviteFriends(id);
+											}
+											
+									    });
+								}else{
+									
+									InviteFriends(id);	
+								}								
+							});
 						}
 					});
 
@@ -446,11 +483,11 @@ jQuery(function($) {
 	function fb_publish(friendId, gameId) {
 		/* if(opts == 'undefined') { */
 		var opts = {
-			message : 'Find IT game Invitation',
-			name : 'Find IT',
+			message : 'Zalerio game Invitation',
+			name : 'Zalerio',
 			link : "http://" + window.location.hostname + "/?invited_game_id="
 					+ gameId,
-			description : 'Join Find IT to play game'
+			description : 'Join Zalerio to play game'
 		};
 		/* } */
 		$.holdReady(true);
@@ -723,40 +760,20 @@ jQuery(function($) {
 			function() {
 				jQuery("#msg-submit-popup").remove();
 			});
-	// mousedownFunction = function(e){
-	// if($(this).attr('draggable') === 'false') return;
-	// if(playSound){
-	// tilepickup.play(); // play sound on tile pickup
-	// }
-	// div = $('<div></div>')
-	// for(var i = 0, attributes = $(this).get(0).attributes; i <
-	// attributes.length; i++) {
-	// div.attr(attributes[i].name, attributes[i].value);
-	// }
-	// $(div).addClass("draggableBetsClick");
-	// $('body').append(div);
-	// $('.draggableBetsClick').css({'position':'absolute','left':e.pageX-15,'top':e.pageY-15});
-	// };
-	//      
-	// //$('.box-newBet').live('mousedown',mousedownFunction);
-	// // $('.draggableBets').live('mousedown',mousedownFunction);
-	//     
-	// $('.draggableBetsClick').live('mousemove',function(e){
-	// $('.draggableBetsClick').remove();
-	// })
 
 	$('.dismiss').live(
 			'click',
 			function() {
 				if (playSound) {
 					otherbuttonSound.play();
+				}
 					jQuery("#rating_form input[name=rating_level]").val('');
 					jQuery("#rating_form textarea[name=comment_improvement]")
 							.val('Write a comment here');
 					jQuery("#rating_form textarea[name=comment_like]").val(
 							'Write a comment here');
 					jQuery(".rating-popup").show();
-				}
+				
 			});
 	var countImg = 1;
 	var lastImg = 1;
@@ -1024,6 +1041,19 @@ jQuery("#rating_form textarea[name=comment_like]").live('click', function() {
 		jQuery(this).val('');
 	}
 });
+
+jQuery("#rating_form textarea[name=comment_improvement]").live('focus',
+		function() {
+			if (jQuery(this).val() == "Write a comment here") {
+				jQuery(this).val('')
+			}
+		});
+jQuery("#rating_form textarea[name=comment_like]").live('focus', function() {
+	if (jQuery(this).val() == "Write a comment here") {
+		jQuery(this).val('');
+	}
+});
+
 /** ** end ** */
 // get the size of an object
 sizeOfObj = function(obj) {

@@ -12,8 +12,16 @@ define ["./utils"], (utils) ->
 	      lh_users_data	: userData
 	      
 	    success : (responseData, textStatus, jqXHR) ->
-	    	messagePopup popupMSG.remindSucess('')
-	    	
+	    	if responseData
+		    	FB.ui({method: 'apprequests', message: 'You are invited to play a game of zalerio', to: responseData }, (response) ->
+		    			if response
+		    				messagePopup popupMSG.remindSucess('')
+		    			else
+		    				utils.log("notificatoion send fail : "+responseData+"\n errorThrown : "+errorThrown);
+		    		)
+	    	else
+	    		messagePopup popupMSG.remindSucess('')
+	    		
 	    error : (responseData, textStatus, errorThrown) ->
 	    	utils.log("notificatoion send fail : "+responseData+"\n errorThrown : "+errorThrown);
 	    	
