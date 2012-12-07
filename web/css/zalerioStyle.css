@@ -2599,7 +2599,6 @@ width: auto !important;
 position: absolute !important;
 background: none !important;
 }
-.basebutton.left{display:none !important}
 
 /**** to make font color grey instead of default white ***/
 .white .current-belt h4{color:#aaaaaa}
