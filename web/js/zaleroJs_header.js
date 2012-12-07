@@ -324,7 +324,6 @@ jQuery(function($) {
 		
 		 //	var id = new Array('100000842727950','100004066793304'); Pankaj Anupam and Abhi
 		
-		console.log(id);
 		InviteFriends(id);
 	});
 
