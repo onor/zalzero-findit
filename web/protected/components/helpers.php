@@ -535,10 +535,10 @@ EOD;
 		
 		
         $mail_obj = new sendEmail();
-        $mail_status = $mail_obj->notifyemail( array("to" => "$to", "subject" => "Zalerio: Winner Notification", "from" => "zalerio@zalerio.com", "body" => "$emailTemplate") );
+        $mail_status = $mail_obj->notifyemail( array("to" => "$to", "subject" => "Zalerio: Winner Notification", "from" => "zalerio@zalerio.com", "body" => "$emailTemplate",'fromname'=>"Zalerio") );
                        
 		
-		@mail( $to,'Zalerio: Winner Notification',$emailTemplate, $headers );
+		//@mail( $to,'Zalerio: Winner Notification',$emailTemplate, $headers );
 	}
 	
 	return;
