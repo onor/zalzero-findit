@@ -440,7 +440,10 @@ function sendWinnerNotificationMail( $gameInstId)
 	$game->startDate = date("M d", strtotime( $gameInstRecord->create_time ));
 
 	foreach($gameUsersDetails as $gameUserDetails)
-	{	$i++;
+	{	
+		$i++;
+		$game->sendEmailTo = array();
+		
 		 if($gameUserDetails->gameseatUser->zzuser_subscribe_status){
 			 $game->sendEmailTo[$gameUserDetails->gameseatUser->user_fbid] = $gameUserDetails->gameseatUser->user_email;
 		 }
