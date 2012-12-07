@@ -440,6 +440,7 @@ class sendEmail{
  * Send winner notification mail to all players except players decline the game 
  * @param int $gameInstId
  */
+$mail_obj_notification = new sendEmail();
 function sendWinnerNotificationMail( $gameInstId)
 {
 	$game = new stdClass;
@@ -534,10 +535,9 @@ EOD;
 		$emailTemplate	= emailTemplate($game,$user_fbid);
 		
 		
-        $mail_obj = new sendEmail();
-        $mail_status = $mail_obj->notifyemail( array("to" => "$to", "subject" => "Zalerio: Winner Notification", "from" => "zalerio@zalerio.com", "body" => "$emailTemplate",'fromname'=>"Zalerio") );
+        
+        $mail_status = $mail_obj_notification->notifyemail( array("to" => "$to", "subject" => "Zalerio: Winner Notification", "from" => "zalerio@zalerio.com", "body" => "$emailTemplate",'fromname'=>"Zalerio") );
                        
-		
 		//@mail( $to,'Zalerio: Winner Notification',$emailTemplate, $headers );
 	}
 	
