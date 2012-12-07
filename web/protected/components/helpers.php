@@ -1,5 +1,24 @@
 <?php
 
+//desk support mail
+define('DESK_SUPPORT_MAIL','support@zalzero.com');
+
+//sendgrid details
+define('SENDGRID_USER', 'zalerio');
+define('SENDGRID_PWD', 'Cytzmlk1');
+// this contains the subject of mail when user will submit the rating and suggestion about the game
+define('RATING_FEATURE_SUBJECT','Rating about game');
+// this is the global array that contains level's number and corresponding level text that will be displayed to end user
+$GLOBALS['belt_array'] = array("1"=>"white","2"=>"yellow","3"=>"orange","4"=>"green","5"=>"blue","6"=>"purple","7"=>"red","8"=>"brown","9"=>"black");
+// this array contains minimum number of games that should be played to reach a particular level
+$GLOBALS['total_games_array'] = array('1-1','2-4','5-9','10-29','30-74','75-99','100-199','200-399','400-10000');
+// this array contains minimum number of games that should be won to reach a particular level
+$GLOBALS['total_won_array'] = array('0-0','0-0','1-1','2-7','8-24','25-39','40-89','90-179','180-10000');
+// this array contains minimum number of friends that should be invited to reach a particular level
+$GLOBALS['invited_friends'] = array('1'=>0,'2'=>0,'3'=>0,'4'=>0,'5'=>10,'6'=>25,'7'=>50,'8'=>100,'9'=>200);
+// this array contains the rating level number
+$GLOBALS['rating_level'] = array('1','2','3','4','5');
+
 // helper function to get the facebook id of a user
 
 function getUserFaceBookId($userId) {
@@ -514,6 +533,11 @@ EOD;
 		$game->to = $to;
 		$emailTemplate	= emailTemplate($game,$user_fbid);
 		
+		
+        $mail_obj = new sendEmail();
+        $mail_status = $mail_obj->notifyemail( array("to" => "$to", "subject" => "Zalerio: Winner Notification", "from" => "zalerio@zalerio.com", "body" => "$emailTemplate") );
+                       
+		
 		@mail( $to,'Zalerio: Winner Notification',$emailTemplate, $headers );
 	}
 	
@@ -610,24 +634,3 @@ function emailTemplate($game,$user_fbid){
 EOD;
 	return $emailTemplate;
 }
-
-
-
-//desk support mail
-define('DESK_SUPPORT_MAIL','support@zalzero.com');
-
-//sendgrid details
-define('SENDGRID_USER', 'zalerio');
-define('SENDGRID_PWD', 'Cytzmlk1');
-// this contains the subject of mail when user will submit the rating and suggestion about the game
-define('RATING_FEATURE_SUBJECT','Rating about game');
-// this is the global array that contains level's number and corresponding level text that will be displayed to end user
-$GLOBALS['belt_array'] = array("1"=>"white","2"=>"yellow","3"=>"orange","4"=>"green","5"=>"blue","6"=>"purple","7"=>"red","8"=>"brown","9"=>"black");
-// this array contains minimum number of games that should be played to reach a particular level
-$GLOBALS['total_games_array'] = array('1-1','2-4','5-9','10-29','30-74','75-99','100-199','200-399','400-10000');
-// this array contains minimum number of games that should be won to reach a particular level
-$GLOBALS['total_won_array'] = array('0-0','0-0','1-1','2-7','8-24','25-39','40-89','90-179','180-10000');
-// this array contains minimum number of friends that should be invited to reach a particular level
-$GLOBALS['invited_friends'] = array('1'=>0,'2'=>0,'3'=>0,'4'=>0,'5'=>10,'6'=>25,'7'=>50,'8'=>100,'9'=>200);
-// this array contains the rating level number
-$GLOBALS['rating_level'] = array('1','2','3','4','5');
