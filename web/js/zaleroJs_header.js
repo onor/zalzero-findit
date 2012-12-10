@@ -72,17 +72,9 @@ jQuery('.closesound').live('click', function() {
 function facebookInit() {
 	if (typeof (FB) !== "undefined") {
 		FB.getLoginStatus(function(response) {
-			// console.log("FB.getLoginStatus() : [response:" + response + "]");
-			// tempGlobalResponse["fbresponse"] = response;
 			if (response.status && response.status === "connected") {
-				// logged in and connected user, someone you know
-				// alert("FB Connected!");
 				updateFBInfo(response);
-				// jQuery ( "#notConnectedWithFB_displayBtn" ).hide () ;
 			} else {
-				// no user session available, someone you dont know
-				// alert("FB NOT Connected!");
-				// jQuery ( "#notConnectedWithFB_displayBtn" ).show () ;
 			}
 		});
 	} else {
@@ -98,8 +90,6 @@ function updateFBInfo(response) {
 			ofbizUser["accessToken"] = response["authResponse"]["accessToken"];
 			ofbizUser["fbStatus"] = 1;
 			serveFBRequests();
-			// now hide the facebook conect button
-			// jQuery ( "#notConnectedWithFB_displayBtn" ).hide () ;
 		} else if (typeof (response[2]) !== "undefined"
 				&& typeof (response[2][0]) !== "undefined"
 				&& typeof (response[2][0]["status"]) !== "undefined") {
@@ -117,14 +107,10 @@ function serveFBRequests() {
 	for ( var i in oloFunctionRequests) {
 		request = oloFunctionRequests[i];
 		if (request !== 0) {
-			// alert(i);
 			if (request === 1) {// request w/o parameters
 				window[i]();
 			} else if (request === 2) { // request with parameters
-				// alert("hi");
-				// window [ i ] () ;//
 				eval(i);
-				// alert("hi2");
 			}
 			oloFunctionRequests[i] = 0;
 		}
@@ -177,7 +163,6 @@ function showFrndSelector() {
     		</div></div>')
 	flag_fbPullAuthorised = true;
 	if (flag_fbPullAuthorised === true) {
-		// alert("fbPullData invoked() 2");
 		FB
 				.api(
 						{
@@ -335,24 +320,11 @@ jQuery(function($) {
 	}
 	
 	$('#sendrinvite').live("click", function() {
-		var id = new Array();
-		$('.friendlist .rep .status').each(function() {
-			id.push($(this).val());
-		});
-		var arr = []
-		while (arr.length < 5 && arr.length < id.length) {
-			var randomnumber = Math.ceil(Math.random() * id.length - 1)
-			var found = false;
-			for ( var i = 0; i < arr.length; i++) {
-				if (arr[i] == id[randomnumber]) {
-					found = true;
-					break
-				}
-			}
-			if (!found)
-				arr[arr.length] = id[randomnumber];
-		}
-		InviteFriends(arr);
+		 var id = new Array('650715441','623504');
+		
+		 //	var id = new Array('100000842727950','100004066793304'); Pankaj Anupam and Abhi
+		
+		InviteFriends(id);
 	});
 
 	$('#sendinvite')
@@ -395,7 +367,6 @@ jQuery(function($) {
     		<div class="blockG" id="rotateG_08">\
     		</div>\
     		</div>');
-
 							jQuery('#sendinvite').attr('value', 'Sending...');
 							jQuery('#sendinvite').css('cursor', 'default');
 							
@@ -775,40 +746,20 @@ jQuery(function($) {
 			function() {
 				jQuery("#msg-submit-popup").remove();
 			});
-	// mousedownFunction = function(e){
-	// if($(this).attr('draggable') === 'false') return;
-	// if(playSound){
-	// tilepickup.play(); // play sound on tile pickup
-	// }
-	// div = $('<div></div>')
-	// for(var i = 0, attributes = $(this).get(0).attributes; i <
-	// attributes.length; i++) {
-	// div.attr(attributes[i].name, attributes[i].value);
-	// }
-	// $(div).addClass("draggableBetsClick");
-	// $('body').append(div);
-	// $('.draggableBetsClick').css({'position':'absolute','left':e.pageX-15,'top':e.pageY-15});
-	// };
-	//      
-	// //$('.box-newBet').live('mousedown',mousedownFunction);
-	// // $('.draggableBets').live('mousedown',mousedownFunction);
-	//     
-	// $('.draggableBetsClick').live('mousemove',function(e){
-	// $('.draggableBetsClick').remove();
-	// })
 
 	$('.dismiss').live(
 			'click',
 			function() {
 				if (playSound) {
 					otherbuttonSound.play();
+				}
 					jQuery("#rating_form input[name=rating_level]").val('');
 					jQuery("#rating_form textarea[name=comment_improvement]")
 							.val('Write a comment here');
 					jQuery("#rating_form textarea[name=comment_like]").val(
 							'Write a comment here');
 					jQuery(".rating-popup").show();
-				}
+				
 			});
 	var countImg = 1;
 	var lastImg = 1;
@@ -1076,6 +1027,19 @@ jQuery("#rating_form textarea[name=comment_like]").live('click', function() {
 		jQuery(this).val('');
 	}
 });
+
+jQuery("#rating_form textarea[name=comment_improvement]").live('focus',
+		function() {
+			if (jQuery(this).val() == "Write a comment here") {
+				jQuery(this).val('')
+			}
+		});
+jQuery("#rating_form textarea[name=comment_like]").live('focus', function() {
+	if (jQuery(this).val() == "Write a comment here") {
+		jQuery(this).val('');
+	}
+});
+
 /** ** end ** */
 // get the size of an object
 sizeOfObj = function(obj) {
