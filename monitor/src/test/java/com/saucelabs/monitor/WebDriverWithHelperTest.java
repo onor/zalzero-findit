@@ -109,13 +109,20 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		// WebDriver driver= new ChromeDriver();
 		// WebDriver driver=new FirefoxDriver();
 		// WebDriver driver=new OperaDriver();
-		driver.get(url);
+		driver.get("https://www.facebook.com/");
 		WebElement login_form = driver.findElement(By.id("login_form"));
 		WebElement email = driver.findElement(By.id("email"));
 		email.sendKeys(userid);
 		WebElement pass = driver.findElement(By.id("pass"));
 		pass.sendKeys(userpwd);
 		login_form.submit();
+		driver.get(url);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		driver.switchTo().frame("iframe_canvas");
 		try {
 			Thread.sleep(10000);
@@ -291,13 +298,14 @@ public class WebDriverWithHelperTest implements SauceOnDemandSessionIdProvider {
 		// WebDriver driver= new ChromeDriver();
 		// WebDriver driver=new FirefoxDriver();
 		// WebDriver driver=new OperaDriver();
-		driver.get(url);
+		driver.get("https://www.facebook.com/");
 		WebElement login_form = driver.findElement(By.id("login_form"));
 		WebElement email = driver.findElement(By.id("email"));
 		email.sendKeys(userid);
 		WebElement pass = driver.findElement(By.id("pass"));
 		pass.sendKeys(userpwd);
 		login_form.submit();
+		driver.get(url);
 		driver.switchTo().frame("iframe_canvas");
 		try {
 			Thread.sleep(10000);
