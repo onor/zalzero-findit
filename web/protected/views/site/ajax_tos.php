@@ -19,8 +19,10 @@
 				what sites are appropriate for you.
 			</p>
 			<ol>
-				<li><strong>Privacy Policy.</strong> The Company’s Privacy Policy, found at
-					[________] is hereby incorporated into this Agreement. Please read
+				<li><strong>Privacy Policy.</strong> The Company Privacy Policy, found at
+< a href="https://apps.facebook.com/zalerio/site/Privacypolicy">Privacy Policy</a>
+
+					is hereby incorporated into this Agreement. Please read
 					this notice carefully for details relating to the collection, use,
 					and disclosure of your personal information.</li>
 				<li><strong>Individual Features and Services.</strong> When playing a Game, you will
@@ -92,9 +94,9 @@
 						strictly prohibited.</li>
 					<li>You may not use a Game in any manner that in our sole
 						discretion could damage, disable, overburden, or impair it or
-						interfere with any other party’s use of the Game. You may not
+						interfere with any other party's use of the Game. You may not
 						intentionally interfere with or damage the operation of the Game
-						or any User’s enjoyment of it, by any means, including uploading
+						or any User's enjoyment of it, by any means, including uploading
 						or otherwise disseminating viruses, worms, or other malicious
 						code. You may not remove, circumvent, disable, damage or otherwise
 						interfere with any security-related features of a Game, features
@@ -134,7 +136,7 @@
 					products, or services on a Game may be out of date, and Company
 					makes no commitment to update these materials on any Game.</li>
 				<li><strong>Notice.</strong> Except as explicitly stated otherwise, legal notices
-					shall be served on Company’s national registered agent or to the
+					shall be served on Company's' national registered agent or to the
 					email address you provide to Company during the registration
 					process. Notice shall be deemed given 24 hours after email is sent,
 					unless the sending party is notified that the email address is
@@ -185,7 +187,7 @@
 				<li><strong>Indemnification; Hold Harmless. </strong>You agree to
 					indemnify and hold Company, and its affiliated companies, and its
 					suppliers and partners, harmless from any claims, losses, damages,
-					liabilities, including attorney’s fees, arising out of your use or
+					liabilities, including attorney's fees, arising out of your use or
 					misuse of any Game, breach of this Agreement or violation of the
 					rights of any other person or entity. Company reserves the right,
 					at our own expense, to assume the exclusive defense and control of
@@ -202,10 +204,10 @@
 					BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. APPLICABLE LAW MAY
 					NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY OR INCIDENTAL OR
 					CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT
-					APPLY TO YOU. IN SUCH CASES, COMPANY’S LIABILITY WILL BE LIMITED TO
-					THE EXTENT PERMITTED BY LAW. <br><br /> IN NO EVENT SHALL COMPANY’S OR
+					APPLY TO YOU. IN SUCH CASES, COMPANY'S LIABILITY WILL BE LIMITED TO
+					THE EXTENT PERMITTED BY LAW. <br><br /> IN NO EVENT SHALL COMPANY'S OR
 					ITS AFFILIATES, CONTRACTORS, EMPLOYEES, AGENTS, OR THIRD PARTY
-					PARTNERS OR SUPPLIERS’ TOTAL LIABILITY TO YOU FOR ALL DAMAGES,
+					PARTNERS OR SUPPLIERS TOTAL LIABILITY TO YOU FOR ALL DAMAGES,
 					LOSSES, AND CAUSES OF ACTION ARISING OUT OF OR RELATING TO THESE
 					TERMS OR YOUR USE OF ALL GAMES (WHETHER IN CONTRACT, TORT,
 					WARRANTY, OR OTHERWISE) EXCEED FIFTY U.S. DOLLARS. <br><br /> THESE
@@ -232,7 +234,7 @@
 							waived only by a written instrument executed by the party
 							entitled to the benefit of such provision. The failure of any
 							party at any time to require performance of any provision of this
-							Agreement shall in no manner affect such party’s right at a later
+							Agreement shall in no manner affect such party's right at a later
 							time to enforce the same. A waiver of any breach of any provision
 							of this Agreement shall not be construed as a continuing waiver
 							of other breaches of the same or other provisions of this
@@ -252,7 +254,10 @@
 							writing, signed by both parties, or by a change to this Agreement
 							or Guidelines made by Company as set forth in Section 3 above.
 							The services hereunder are offered by Zalzero Inc., located at
-							[________________], email: [email], telephone: [telephone].</li>
+							<br>Zalzero Inc. 
+							<br>950 Page Mill Road
+							<br>Palo Alto CA 94304
+							email: privacy@zalzero.com.</li>
 					</ol></li>
 			</ol>
 		</div>
