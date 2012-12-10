@@ -585,8 +585,8 @@ function emailTemplate($game,$user_fbid){
 					<body>
 					<table width="580" border="0" align="center" style="color:white;background-color: #1a274a; background: -webkit-linear-gradient(top, #1a274a, #3366ff); ">
 					  <tr>
-					    <td align="left"><img src="{$canvasUrl}images/email/zalerio_logo.png" alt="Logo" /></td>
-					    <td colspan="0">&nbsp; <span style="display:none">{$game->id}</span></td>
+					    <td align="left"><img src="{$canvasUrl}images/email/zalerio_logo.png" alt="Logo {$game->id}" /></td>
+					    <td colspan="0">&nbsp;</td>
 					  </tr>
 					  <tr>
 					    <td><table width="545" border="0" style="color:white;background:#7c85a2; padding:2px; margin-left:15px; border-radius:5px;">
