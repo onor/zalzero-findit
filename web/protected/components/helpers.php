@@ -585,7 +585,7 @@ function emailTemplate($game,$user_fbid){
 					<body>
 					<table width="580" border="0" align="center" style="color:white;background-color: #1a274a; background: -webkit-linear-gradient(top, #1a274a, #3366ff); ">
 					  <tr>
-					    <td align="left"><img src="{$canvasUrl}images/email/zalerio_logo.png" alt="Logo {$game->id}" /></td>
+					    <td align="left"><img src="{$canvasUrl}images/email/zalerio_logo.png" alt="Logo" /></td>
 					    <td colspan="0">&nbsp;</td>
 					  </tr>
 					  <tr>
@@ -596,7 +596,7 @@ function emailTemplate($game,$user_fbid){
 					          <th width="15%">Start Date</th>
 					        </tr>
 							<tr>
-								<td align="bottom" valign="middle"><img width="50" height="50" src="http://graph.facebook.com/{$game->creatorFBid}/picture" /><span style=" padding-top: 15px;margin:0 0 0 5px; font-size: 20px;">{$game->creator}</span></td>
+								<td align="bottom" valign="middle"><img alt="{$game->id}" width="50" height="50" src="http://graph.facebook.com/{$game->creatorFBid}/picture" /><span style=" padding-top: 15px;margin:0 0 0 5px; font-size: 20px;">{$game->creator}</span></td>
 								<td align="center" valign="bottom">
 										{$game->allPlayerImgs}
 								</td>
