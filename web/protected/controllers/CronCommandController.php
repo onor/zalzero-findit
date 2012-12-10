@@ -1,29 +1,45 @@
 <?php
 class CronCommandController extends CController {
 	public function actionIndex() {
+		
 		$cron_id = 1;
 		$game_inst_tmpl_id = 'ZalerioTempl1';    // need to change this once multitemplate game will be started. Will have to make a function for the same.
 		$get_cron_id = $cron_id;  // getting the cron id
+		
+		// get cron last update time
 		$get_cron_details = Zzcron::model()->findByPk($get_cron_id);
 		$get_cron_last_update_time = $get_cron_details->getAttribute('update_time');
+		
+		// get the total number of round in a game.
 		$get_total_rounds = get_total_number_of_rounds($game_inst_tmpl_id);
+		
 		$currentTime = new CDbExpression('now()');
+		
 		$query = "select zlgameround_gameinst_id from zzzlrogameround where zlgameround_timeend > "."'$get_cron_last_update_time'"." and zlgameround_timeend<= "."'$currentTime'"." and   zlgameround_roundname = "."'$get_total_rounds'"; // query for checking the game which is completed
 		$get_completed_games = Zzzlrogameround::model()->findAllBySql($query);
+		
 		$user_array = array(); // array for storing users uid's
+		
 		if($get_completed_games) {
-			foreach($get_completed_games as $get_completed_game) {
+			foreach($get_completed_games as $get_completed_game)
+			{
 				$game_id =  $get_completed_game->zlgameround_gameinst_id;
-				//print $game_id;
 				$get_users_of_game = get_users_of_game($game_id); // getting the users of the game
+				
 				$check_the_game_status = check_the_game_status($game_id);
+				
 				// iterating on the game to get the insert data on the user in game summary table
 				$update_game = Zzgameinst::model()->findByPk($game_id);
-				if($check_the_game_status > 1) {
+				
+				if($check_the_game_status > 1)
+				{
 					$update_game->zzgameinst_status = 'completed';
+					
 					try{
 						sendWinnerNotificationMail( $game_id );			// send winner notification mail to all player
-					}catch(Exception  $error){}
+					}catch(Exception  $error){
+						print_r($error);
+					}
 					
 				} else {
 					$update_game->zzgameinst_status = 'canceled';
