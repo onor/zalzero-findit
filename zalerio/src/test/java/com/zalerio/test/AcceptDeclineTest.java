@@ -13,9 +13,9 @@ public class AcceptDeclineTest extends Zalerio1UserBaseTest {
 	
 	
 
-	public AcceptDeclineTest(String os, String browser, String version,
-			String userid, String password) {
-		super(os, browser, version, userid, password);
+	public AcceptDeclineTest(String os, String browser, String version){
+	
+		super(os, browser, version);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -71,4 +71,5 @@ public class AcceptDeclineTest extends Zalerio1UserBaseTest {
 			}
 		}
 	}
+
 }

@@ -12,7 +12,7 @@ public class ContactUsTest extends Zalerio1UserBaseTest {
 
 	public ContactUsTest(String os, String browser, String version,
 			String userid, String password) {
-		super(os, browser, version, userid, password);
+		super(os, browser, version);//, userid, password);
 		// TODO Auto-generated constructor stub
 	}
 
