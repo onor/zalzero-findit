@@ -27,7 +27,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 	
 	// }
 
-	@Test
+	//@Test
 	public void playGame() throws InterruptedException {
 		// String user1Email = "abhilashbhaduri@gmail.com";
 		// String user1Pass = "16081989"; //Config.FB_SECURED_ACCOUNT_PASSWORD;
@@ -43,7 +43,7 @@ public class Create2PlayerGameTest extends Zalerio2UserBaseTest {
 		System.out.print("Logged in");
 		// verify Username
 		// VerifyFeatures.verifyUsername(driver1, "Abhi Vads");
-		int[] SelectedFriends = new int[] { 2 };
+		int[] SelectedFriends = new int[] { 3 };
 		// create new game at friendPosition
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		 
