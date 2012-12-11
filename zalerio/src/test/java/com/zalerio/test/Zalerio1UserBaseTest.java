@@ -5,12 +5,15 @@ package com.zalerio.test;
 
 import static junit.framework.Assert.assertEquals;
 
+import java.io.FileInputStream;
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
@@ -36,12 +39,14 @@ import com.zalerio.config.UserLogin;
 @RunWith(Parallelized.class)
 public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 
+	
 	private String browser;
 	private String browserVersion;
 	private String os;
 	private String userid;
 	private String password;
 	private String sessionId;
+	
 	public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("cloudbees_zalzero", "15b88203-7a0f-4339-804a-fffb6abb2e3c");
 	public @Rule
     SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
@@ -49,14 +54,14 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	public @Rule TestName testName= new TestName();
 	protected WebDriver driver1;
 
-	public Zalerio1UserBaseTest(String os, String browser, String version,
-			String userid, String password) {
+	public Zalerio1UserBaseTest(String os, String browser, String version){ //,
+		//	String userid, String password) {
 		super();
 		this.browser = browser;
 		this.browserVersion = version;
 		this.os = os;
-		this.userid = userid;
-		this.password = password;
+	//	this.userid = userid;
+	//	this.password = password;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -66,19 +71,36 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 		String OS[] = { "Windows 2008"};//, "Windows 2008" };// ,"Mac 10.6","Windows 2008"};
 		String browser[] = { "firefox"};//, "googlechrome" };// ',"safari","opera"};
 		String version[] = { "13"};//, " " };// ,"10","5","11"};
-		String userid[] = { "abhilashbhaduri@gmail.com"};//,
+	//	String userid[] = { "abhilashbhaduri@gmail.com"};//,
 		//		"griffinsingh1@gmail.com" };// ,"rahulmu550@gmail.com","hemantkumer007@gmail.com","mahasingh50@gmail.com"};
-		String password[] = { "16081989"};//, "griffinsingh1" };// ,"rahulmu550","hemantkumer007","mahasingh50"};
+	//	String password[] = { "16081989"};//, "griffinsingh1" };// ,"rahulmu550","hemantkumer007","mahasingh50"};
 		for (int i = 0; i <=0; i++) {
-			browsers.add(new String[] { OS[i], browser[i], version[i],
-					userid[i], password[i] });
+			browsers.add(new String[] { OS[i], browser[i], version[i]
+					});
 		}
 		return browsers;
 	}
 
 	@Before
 	public void setUp() throws Exception {
-
+		String url;
+		//get data from testing.properties
+		Properties values= new Properties();
+		values.load(new FileInputStream("testing.properties"));
+		String type = System.getenv("testUrl");
+		if(type.contains("staging"))
+		{
+		url=values.getProperty("Staging_url");
+		userid=values.getProperty("user1_stag_username");
+		password=values.getProperty("password");
+		}	
+		else
+		{
+			url=values.getProperty("Production_url");
+			userid=values.getProperty("user1_prod_username");
+			password=values.getProperty("password");
+		}	
+		
 		    DesiredCapabilities capabilities1=null;
 	        
 	        if(browser.contains("firefox"))
@@ -111,10 +133,10 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	                capabilities1);
 	        this.sessionId = ((RemoteWebDriver)driver1).getSessionId().toString();
 	    
-	        UserLogin.Olduserlogin(driver1, userid, password);
+	        UserLogin.Olduserlogin(driver1, userid, password,url);
 }
 
-//	@Test
+	@Test
 	public void gameEnterTest()
 	{
 		WebElement startButton = driver1.findElement(By.id("startButton"));
