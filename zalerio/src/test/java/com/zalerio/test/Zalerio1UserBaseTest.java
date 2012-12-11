@@ -54,14 +54,14 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	public @Rule TestName testName= new TestName();
 	protected WebDriver driver1;
 
-	public Zalerio1UserBaseTest(String os, String browser, String version,
-			String userid, String password) {
+	public Zalerio1UserBaseTest(String os, String browser, String version){ //,
+		//	String userid, String password) {
 		super();
 		this.browser = browser;
 		this.browserVersion = version;
 		this.os = os;
-		this.userid = userid;
-		this.password = password;
+	//	this.userid = userid;
+	//	this.password = password;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
