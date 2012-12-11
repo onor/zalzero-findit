@@ -12,7 +12,7 @@ public class RightHUDTest extends Zalerio1UserBaseTest {
 	
 public RightHUDTest(String os, String browser, String version,
 			String userid, String password) {
-		super(os, browser, version, userid, password);
+		super(os, browser, version);//, userid, password);
 		// TODO Auto-generated constructor stub
 	}
 //	@Test
