@@ -24,7 +24,7 @@ public class RatingScreenTest {
 	public static void closeGameEndPopupWithVerifyRating(WebDriver driver,WebDriver driver2) throws InterruptedException
 	{
 		try {
-			Thread.sleep(8000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
