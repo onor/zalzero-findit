@@ -89,6 +89,7 @@ public class Zalerio2UserBaseTest implements SauceOnDemandSessionIdProvider {
 
     @Before
     public void setUp() throws Exception {
+    	String url="http://apps.facebook.com/zalzerostaging/?force=play";
 /*
         
         DesiredCapabilities capabilities2=null;
@@ -154,8 +155,8 @@ public class Zalerio2UserBaseTest implements SauceOnDemandSessionIdProvider {
                  new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
                  capabilities2);
          this.sessionId = ((RemoteWebDriver)driver2).getSessionId().toString();
-         UserLogin.Olduserlogin(driver1, "abhilashbhaduri@gmail.com", "16081989");
-         UserLogin.Olduserlogin(driver2,"griffinsingh1@gmail.com" ,"griffinsingh1");
+         UserLogin.Olduserlogin(driver1, "abhilashbhaduri@gmail.com", "16081989",url);
+         UserLogin.Olduserlogin(driver2,"griffinsingh1@gmail.com" ,"griffinsingh1",url);
     
     }
 
