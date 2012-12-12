@@ -33,13 +33,21 @@ class DeauthoriseController extends Controller
 			
 			if(isset($usr)) {
 
-				$usr->zzuser_subscribe_status = FALSE;
-				$usr->save();
-						
-				echo '<h1>You have been successfully unsubscribed!</h1>';
-
-				echo '<p>You have requested to be removed from our mailing list, which has been successful, <br />You will not receive any future correspondence from us.</p>';
+				$email = urlencode($usr->user_email);
+				$url = 'https://sendgrid.com/api/unsubscribes.add.json?email='.$email.'&api_user=zalerio&api_key=Cytzmlk1';
+				$url = file_get_contents($url);
+				$result = json_decode($url);
 				
+				if(isset($result->message) && $result->message == 'success'){
+
+					echo '<h1>You have been successfully unsubscribed!</h1>';
+
+					echo '<p>You have requested to be removed from our mailing list, which has been successful, <br />You will not receive any future correspondence from us.</p>';
+				
+				}else{
+					echo '<h1>Unsubscribe failed please contact at support@zalerio.com.</h1>';
+				}
+				die();
 			}
 		}
 	}
