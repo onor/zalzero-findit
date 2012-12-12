@@ -107,6 +107,5 @@ public class UserLogin {
 		WebElement userNavigationLabel=driver.findElement(By.id("userNavigationLabel"));
 		WebElement logout_form=userNavigationLabel.findElement(By.id("logout_form"));
 		logout_form.submit();
-		
 	}
 }

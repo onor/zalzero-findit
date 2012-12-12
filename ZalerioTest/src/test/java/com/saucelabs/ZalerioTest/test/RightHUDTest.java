@@ -14,7 +14,7 @@ public RightHUDTest(String os, String browser, String version){
 		super(os, browser, version);
 
 	}
-@Test
+//@Test
 	public void rightHUDTest() {
 		// right HUD
 		// your turn -check game tiles and click
