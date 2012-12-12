@@ -1,17 +1,17 @@
 org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"class name","selector":"playhere"}
-Command duration or timeout: 128 milliseconds
+Command duration or timeout: 31 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.26.0', revision: '18041', time: '2012-11-01 19:33:38'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
 Driver info: driver.version: EventFiringWebDriver
-Session ID: e00dedb0-1ec2-474e-b79c-822bb2460552
-Command duration or timeout: 952 milliseconds
+Session ID: b2c04757-dc7f-438a-a5c7-cb316364324c
+Command duration or timeout: 3.28 seconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '2.27.0', revision: '18259', time: '2012-12-05 11:30:53'
+Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: ebe88912c60849ea82282b6308a32ef9
+Session ID: c02ce56b8afc439ba67275f0f281a4ed
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=1355232171350, version=13.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, browserConnectionEnabled=true, webStorageEnabled=true, nativeEvents=true, applicationCacheEnabled=true, takesScreenshot=true}]
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=1355289701792, version=13.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, browserConnectionEnabled=true, webStorageEnabled=true, nativeEvents=true, applicationCacheEnabled=true, takesScreenshot=true}]
 
 
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -147,14 +147,14 @@ Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMeta
 
 
 Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"class name","selector":"playhere"}
-Command duration or timeout: 128 milliseconds
+Command duration or timeout: 31 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.26.0', revision: '18041', time: '2012-11-01 19:33:38'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
 Driver info: driver.version: EventFiringWebDriver
-Session ID: e00dedb0-1ec2-474e-b79c-822bb2460552
+Session ID: b2c04757-dc7f-438a-a5c7-cb316364324c
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '2.27.0', revision: '18259', time: '2012-12-05 11:30:53'
+Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
 Driver info: driver.version: EventFiringWebDriver
 
@@ -234,5 +234,5 @@ Driver info: driver.version: EventFiringWebDriver
 	... 2 more
 
 
-SauceOnDemandSessionID=ebe88912c60849ea82282b6308a32ef9 job-name=com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest.gameEnterTest[0]
+SauceOnDemandSessionID=c02ce56b8afc439ba67275f0f281a4ed job-name=com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest.gameEnterTest[0]
 
