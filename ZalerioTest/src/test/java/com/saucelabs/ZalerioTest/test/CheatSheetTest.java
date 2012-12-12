@@ -16,7 +16,7 @@ public class CheatSheetTest extends Zalerio1UserBaseTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Test
+@Test
 	public void openAndScrollCheatSheet() {
 	
 		// class friendChallenge
