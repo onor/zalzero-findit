@@ -134,7 +134,7 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	        UserLogin.Olduserlogin(driver1, userid, password,url);
 }
 
-//	@Test
+//	//@Test
 	public void gameEnterTest()
 	{
 		WebElement startButton = driver1.findElement(By.id("startButton"));
