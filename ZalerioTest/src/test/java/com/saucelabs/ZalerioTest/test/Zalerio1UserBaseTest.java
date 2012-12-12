@@ -66,9 +66,9 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	@Parameters
 	public static LinkedList browsersStrings() throws Exception {
 		LinkedList browsers = new LinkedList();
-		String OS[] = { "Windows 2008"};//, "Windows 2008" };// ,"Mac 10.6","Windows 2008"};
-		String browser[] = { "firefox"};//, "googlechrome" };// ',"safari","opera"};
-		String version[] = { "13"};//, " " };// ,"10","5","11"};
+		String OS[] = { "Windows 2008","Windows 2008" ,"Mac 10.6","Windows 2008"};
+		String browser[] = { "firefox","googlechrome","safari","opera"};
+		String version[] = { "13"," ","10","5","11"};
 	//	String userid[] = { "abhilashbhaduri@gmail.com"};//,
 		//		"griffinsingh1@gmail.com" };// ,"rahulmu550@gmail.com","hemantkumer007@gmail.com","mahasingh50@gmail.com"};
 	//	String password[] = { "16081989"};//, "griffinsingh1" };// ,"rahulmu550","hemantkumer007","mahasingh50"};
@@ -134,7 +134,7 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	        UserLogin.Olduserlogin(driver1, userid, password,url);
 }
 
-	@Test
+//	//@Test
 	public void gameEnterTest()
 	{
 		WebElement startButton = driver1.findElement(By.id("startButton"));
@@ -145,6 +145,7 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 
 	@After
 	public void tearDown() throws Exception {
+		UserLogin.logout(driver1);
 		driver1.quit();
 	}
 
