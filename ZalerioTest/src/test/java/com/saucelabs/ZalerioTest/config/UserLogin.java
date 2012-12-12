@@ -101,4 +101,12 @@ public class UserLogin {
 		driver.get(url);
 
 	}
+	public static void logout(WebDriver driver)
+	{
+		driver.switchTo().defaultContent();
+		WebElement userNavigationLabel=driver.findElement(By.id("userNavigationLabel"));
+		WebElement logout_form=userNavigationLabel.findElement(By.id("logout_form"));
+		logout_form.submit();
+		
+	}
 }
