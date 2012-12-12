@@ -6,7 +6,7 @@ import static junit.framework.Assert.assertEquals;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 
 public class CheatSheetTest extends Zalerio1UserBaseTest {
@@ -18,7 +18,7 @@ public class CheatSheetTest extends Zalerio1UserBaseTest {
 
 	@Test
 	public void openAndScrollCheatSheet() {
-	driver1.manage().window().maximize();
+	
 		// class friendChallenge
 		// class friendChallenge back_to_the_game
 		WebElement cheatSheetDiv = driver1.findElement(By
