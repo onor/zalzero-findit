@@ -14,7 +14,7 @@ public class HelpTest extends Zalerio1UserBaseTest {
 		// TODO Auto-generated constructor stub
 	}
 
-//@Test
+@Test
 	public void tryOptions() {
 
 		// help

@@ -14,7 +14,7 @@ public StartAGameTest(String os, String browser, String version) {
 		super(os, browser, version);//, userid, password);
 		// TODO Auto-generated constructor stub
 	}
-//@Test
+@Test
 		public void clickStartAGame() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
@@ -24,7 +24,7 @@ public StartAGameTest(String os, String browser, String version) {
 		}
 
 	}
-//@Test
+@Test
 	public void verifyPopUpOnNoFriendSelect() {
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
