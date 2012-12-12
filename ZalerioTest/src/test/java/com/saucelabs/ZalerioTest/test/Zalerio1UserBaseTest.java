@@ -85,8 +85,8 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 		//get data from testing.properties
 		Properties values= new Properties();
 		values.load(new FileInputStream("testing.properties"));
-		String type =System.getenv("testUrl");
-		if(type.contains("staging"))
+		String type =System.getenv("JOB_NAME");
+		if(type.contains("Zalerio-Staging-Test"))
 		{
 		url=values.getProperty("Staging_url");
 		userid=values.getProperty("user1_stag_username");
