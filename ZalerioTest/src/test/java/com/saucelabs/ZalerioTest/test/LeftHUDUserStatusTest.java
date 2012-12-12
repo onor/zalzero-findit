@@ -1,4 +1,4 @@
-package com.zalerio.test;
+package com.saucelabs.ZalerioTest.test;
 
 
 
@@ -9,14 +9,14 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.zalerio.config.GameFeatures;
-import com.zalerio.config.GameUtil;
-import com.zalerio.config.RatingScreenTest;
-import com.zalerio.config.Stats;
-import com.zalerio.config.Tiles;
+import com.saucelabs.ZalerioTest.config.GameFeatures;
+import com.saucelabs.ZalerioTest.config.GameUtil;
+import com.saucelabs.ZalerioTest.config.RatingScreenTest;
+import com.saucelabs.ZalerioTest.config.Tiles;
+
 
 public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
-	//@Test
+	@Test
 	public void checkStatus() throws InterruptedException {
 		
 	/*	WebDriver driver1 = new FirefoxDriver();
@@ -32,7 +32,8 @@ public class LeftHUDUserStatusTest extends Zalerio2UserBaseTest {
 		UserLogin.Olduserlogin(driver2, user2id, user2pass);
 		*/
 		// user1 creates a new game
-		int SelectedFriends[]=new int[]{3};
+		int friendPosition=GameFeatures.getFriendPosition();
+		int SelectedFriends[]=new int[]{friendPosition};
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		// user status :not accepted yet in red
 		WebElement gameInfo_game_players = driver1.findElement(By
