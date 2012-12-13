@@ -256,7 +256,11 @@ function remindUserOnFb($gameId,$fbUid,$UsersFbData,$checkForMessage,$loggedInUs
 		if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
 				if($loggedInFbId != $fbUid) {
 					return $fbUid;
+				}else{
+					return false;
 				}
+		}else{
+			return false;
 		}
 	}
 }

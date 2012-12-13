@@ -16,7 +16,7 @@ class UserController extends Controller
 		parent::__construct($id, $module);
 
 		if(Yii::app()->request->serverName == "localhost" ||
-				Yii::app()->request->serverName == "zl.mobicules.com")    // Active more button for staging and developers
+		Yii::app()->request->serverName == "zl.mobicules.com")    // Active more button for staging and developers
 		{
 			$this->decode_key = 'e499493a0c1f970faabef8d1bfda725dc4766a8c'; // staging decode key
 		}else{
@@ -42,25 +42,25 @@ class UserController extends Controller
 	public function accessRules()
 	{
 		return array(
-				array('allow',  // allow all users to perform 'index' and 'view' actions
+		array('allow',  // allow all users to perform 'index' and 'view' actions
 						'actions'=>array('index','view','create','createFbUser','fbCheckLoginAjax','verifyUser','testQuery','getFriend','inviteFriend','friendFun','getFbFriendsList'),
 						'roles'=>array('admin'),
-				),
-				array('allow',
+		),
+		array('allow',
 						'actions'=>array('create','createFbUser','fbCheckLoginAjax','verifyUser','remindUser','acceptInvite','inviteUser','testQuery','decode_key','getFriend','friendFun','getFbFriendsList'),
 						'users'=>array('*'),
-				),
-				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+		),
+		array('allow', // allow authenticated user to perform 'create' and 'update' actions
 						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','getActiveMember','friendFun'),
 						'users'=>array('@'),
-				),
-				array('allow', // allow admin user to perform 'admin' and 'delete' actions
+		),
+		array('allow', // allow admin user to perform 'admin' and 'delete' actions
 						'actions'=>array('admin','delete'),
 						'roles'=>array('admin'),
-				),
-				array('deny',  // deny all users
+		),
+		array('deny',  // deny all users
 						'users'=>array('*'),
-				),
+		),
 		);
 	}
 
@@ -91,7 +91,7 @@ class UserController extends Controller
 
 			/*
 			 * end of setting primary key
-			*/
+			 */
 			//print_r($_POST['Zzuser']);
 			//break;
 			$model->attributes=$_POST['Zzuser'];
@@ -166,30 +166,30 @@ class UserController extends Controller
 				/* commenting this code for beta but it will be in use when the site in production. Not deleting this because it will be useful in future */
 				/*
 				 $inviteBy = Zzinvitefriends::model()->findAllByAttributes(array('fbid'=>$_REQUEST['user_fbid']));
-				if(!empty($inviteBy)){
-				foreach($inviteBy as $inviteFriend){
-				$iFriends = new Zzzlrofriends;
-				$iFriends->user_id = $getUserId;
-				$iFriends->friend_id = $inviteFriend->id;
-				//check for existence. Dont save if its already in db
-				$checkForExistence = Zzzlrofriends::model()->findByAttributes(array('user_id'=>"'$getUserId'",'friend_id'=>"'$inviteFriend->id'"));
-				if(empty($checkForExistence)) {
-				$iFriends->save();
-				}
-				}
-				foreach($inviteBy as $inviteFriend){
-				$iFriends = new Zzzlrofriends;
-				$iFriends->user_id = $inviteFriend->id;
-				$iFriends->friend_id = $getUserId;
-			 //check for existence. Dont save if its already in db
-				$checkForExistenceData = Zzzlrofriends::model()->findByAttributes(array('user_id'=>"'$inviteFriend->id'",'friend_id'=>"'$getUserId'"));
-				if(empty($checkForExistenceData)) {
-				$iFriends->save();
-				}
-				}
-				Zzinvitefriends::model()->deleteAllByAttributes(array('fbid'=>$_REQUEST['user_fbid']));
-				}
-				*/
+				 if(!empty($inviteBy)){
+				 foreach($inviteBy as $inviteFriend){
+				 $iFriends = new Zzzlrofriends;
+				 $iFriends->user_id = $getUserId;
+				 $iFriends->friend_id = $inviteFriend->id;
+				 //check for existence. Dont save if its already in db
+				 $checkForExistence = Zzzlrofriends::model()->findByAttributes(array('user_id'=>"'$getUserId'",'friend_id'=>"'$inviteFriend->id'"));
+				 if(empty($checkForExistence)) {
+				 $iFriends->save();
+				 }
+				 }
+				 foreach($inviteBy as $inviteFriend){
+				 $iFriends = new Zzzlrofriends;
+				 $iFriends->user_id = $inviteFriend->id;
+				 $iFriends->friend_id = $getUserId;
+				 //check for existence. Dont save if its already in db
+				 $checkForExistenceData = Zzzlrofriends::model()->findByAttributes(array('user_id'=>"'$inviteFriend->id'",'friend_id'=>"'$getUserId'"));
+				 if(empty($checkForExistenceData)) {
+				 $iFriends->save();
+				 }
+				 }
+				 Zzinvitefriends::model()->deleteAllByAttributes(array('fbid'=>$_REQUEST['user_fbid']));
+				 }
+				 */
 				$fbIdFoundInDb = true;
 				$userValid = true;
 				$userEmail = $userModelWithFb->user_email;
@@ -259,7 +259,7 @@ class UserController extends Controller
 
 	/*
 	 * To be deleted used for testing queries.
-	*/
+	 */
 	public function actionTestQuery(){
 		$userModelWithFb = Zzuser::model()->findByAttributes(array('user_fbid'=>$_REQUEST['user_fbid']));
 		if(isset($userModelWithFb)){
@@ -286,10 +286,10 @@ class UserController extends Controller
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -311,7 +311,7 @@ class UserController extends Controller
 		$model=new Zzuser('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Zzuser']))
-			$model->attributes=$_GET['Zzuser'];
+		$model->attributes=$_GET['Zzuser'];
 
 		$this->render('admin',array(
 				'model'=>$model,
@@ -327,7 +327,7 @@ class UserController extends Controller
 	{
 		$model=Zzuser::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
@@ -421,33 +421,55 @@ class UserController extends Controller
 						// We have to remind the user if they are in invited and accepted status. In case of accepted status we need to check there CRS status
 						// IF GSS == 1 the they are invited. If GSS == 2 the we will only send the invitation if there CRS status is 0
 						if($gssValue == 1) {
-						$nonActiveMember[] = remindUserOnFb($gameId,$fbData,$fbDataArray,'invited',$currentUserStatus);  // invited paramere to for the message changes
+							$_result = FALSE;
+							$_result = remindUserOnFb($gameId,$fbData,$fbDataArray,'invited',$currentUserStatus);  // invited paramere to for the message changes
+							if($_result){
+								$nonActiveMember[] = $_result;
+							}
 						} else {
 							if($gssValue == 2 && $crsValue == 0) {
-								$nonActiveMember[] = remindUserOnFb($gameId,$fbData,$fbDataPlayed,'turnremaining',$currentUserStatus);  // turnremaining  parameter for message changes
+								$_result = FALSE;
+								$_result = remindUserOnFb($gameId,$fbData,$fbDataPlayed,'turnremaining',$currentUserStatus);  // turnremaining  parameter for message changes
+								if($_result){
+									$nonActiveMember[] = $_result;
+
+								}
 							}
 						}
 					}
 		  } else { // if reminder is sent from right hud
-			  	foreach($userData as $key => $value) {
-			  		$fbData = $key;
-			  		$gssValue = $value['GSS']; // get the gss value of the user
-			  		$crsValue = $value['CRS']; // get the cres value of the user
-			  		// We have to remind the user if they are in invited and accepted status. In case of accepted status we need to check there CRS status
-			  		// IF GSS == 1 the they are invited. If GSS == 2 the we will only send the invitation if there CRS status is 0
-				    if($gssValue == 1) {
-				    	$nonActiveMember[] = remindUserOnFb($gameId,$fbData,$fbDataArray,'invited',$currentUserStatus);  // invited paramere to for the message changes
-				    } else {
-				    	if($gssValue == 2 && $crsValue == 0) {
-				    		$nonActiveMember[] = remindUserOnFb($gameId,$fbData,$fbDataPlayed,'turnremaining',$currentUserStatus);  // turnremaining  parameter for message changes
-				    	}
-				    }
-			   }
+		  	foreach($userData as $key => $value) {
+		  		$fbData = $key;
+		  		$gssValue = $value['GSS']; // get the gss value of the user
+		  		$crsValue = $value['CRS']; // get the cres value of the user
+		  		// We have to remind the user if they are in invited and accepted status. In case of accepted status we need to check there CRS status
+		  		// IF GSS == 1 the they are invited. If GSS == 2 the we will only send the invitation if there CRS status is 0
+		  		if($gssValue == 1) {
+		  			$_result = FALSE;
+		  			$_result = remindUserOnFb($gameId,$fbData,$fbDataArray,'invited',$currentUserStatus);  // invited paramere to for the message changes
+		  			if($_result){
+		  				$nonActiveMember[] = $_result;
+		  			}
+		  			 
+		  		} else {
+		  			if($gssValue == 2 && $crsValue == 0) {
+		  				$_result = FALSE;
+		  				$_result = remindUserOnFb($gameId,$fbData,$fbDataPlayed,'turnremaining',$currentUserStatus);  // turnremaining  parameter for message changes
+		  				 
+		  				if($_result){
+		  					$nonActiveMember[] = $_result;
+		  				}
+		  			}
+		  		}
+		  	}
 		  }
+			}
+			if(!empty($nonActiveMember)){
+				print_r( implode(',', $nonActiveMember) );
+			}else{
+				echo false;
+			}
 		}
-		
-		print_r( implode(',', $nonActiveMember) );
-	  }
 	}
 	// function to update the invitation status of user
 	public function actionacceptInvite() {
