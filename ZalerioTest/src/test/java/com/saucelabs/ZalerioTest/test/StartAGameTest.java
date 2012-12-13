@@ -57,7 +57,7 @@ public StartAGameTest(String os, String browser, String version) {
 		// Search For Friends by entering test (a-z;A-Z)
 		WebElement startButton = driver1.findElement(By.id("startButton"));
 		startButton.click();
-		WebElement searchArea = driver1.findElement(By.name("findfrind"));
+		WebElement searchArea = driver1.findElement(By.id("findfriend"));
 		searchArea.sendKeys("g");
 		System.out.println("g");
 		try {
