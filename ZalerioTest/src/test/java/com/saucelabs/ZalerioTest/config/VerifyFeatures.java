@@ -133,7 +133,7 @@ public class VerifyFeatures {
 		if (rest.indexOf(" ") != -1) {
 			seperator=rest.indexOf(" ");
 			String middlePart = rest.substring(0, seperator);
-			rest = rest.substring(seperator + 1);
+			rest = rest.substring(seperator+1);
 			System.out.println("middle part:" + middlePart);
 		}
 		// last name
@@ -169,5 +169,6 @@ public class VerifyFeatures {
 		System.out.println("actualShownName: " + actualShownName
 				+ "\n shownName:" + shownName);
 		assertEquals(shownName, actualShownName);
+		
 	}
 }

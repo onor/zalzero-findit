@@ -44,11 +44,8 @@ public class UserLogin {
 		driver.switchTo().frame(iframe);
 		// multi tab error page handle
 		boolean status = GameUtil.clickPlayHereForMultiTabIssue(driver);
-		// try {
-		// RatingScreenTest.closeGameEndPopupWithVerifyRating(driver);
-		// } catch (InterruptedException e) {
-		// }
-		if (status == true) {
+		if (status == true) 
+		{
 			driver.navigate().refresh();
 			try {
 				Thread.sleep(8000);
