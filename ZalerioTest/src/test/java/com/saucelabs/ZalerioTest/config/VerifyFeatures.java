@@ -131,6 +131,7 @@ public class VerifyFeatures {
 		System.out.println("first part:" + firstPart);
 		// middle name
 		if (rest.indexOf(" ") != -1) {
+			seperator=rest.indexOf(" ");
 			String middlePart = rest.substring(0, seperator);
 			rest = rest.substring(seperator + 1);
 			System.out.println("middle part:" + middlePart);

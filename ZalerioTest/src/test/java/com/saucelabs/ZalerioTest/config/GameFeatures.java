@@ -35,14 +35,9 @@ public class GameFeatures {
 		sendChallengeButton.click();
 		Thread.sleep(2000);
 		// click Send Request on alert popup
+		try{
 		driver.switchTo().defaultContent();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+		Thread.sleep(5000);
 		WebElement dialog_2 = driver
 				.findElement(By.className("generic_dialog"));
 		WebElement generic_dialog_popup = dialog_2.findElement(By
@@ -57,12 +52,8 @@ public class GameFeatures {
 		List<WebElement> uiButton = rfloat.findElements(By
 				.className("uiButton"));
 		uiButton.get(0).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Thread.sleep(5000);
+		}catch(Exception e){}	
 		WebElement iframe = driver.findElement(By.id("iframe_canvas"));
 		driver.switchTo().frame(iframe);
 
@@ -172,14 +163,9 @@ public class GameFeatures {
 		sendChallengeButton.click();
 		Thread.sleep(2000);
 		// click Send Request on alert popup
+	try{	
 		driver.switchTo().defaultContent();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+		Thread.sleep(5000);
 		WebElement dialog_2 = driver
 				.findElement(By.className("generic_dialog"));
 		WebElement generic_dialog_popup = dialog_2.findElement(By
@@ -194,12 +180,9 @@ public class GameFeatures {
 		List<WebElement> uiButton = rfloat.findElements(By
 				.className("uiButton"));
 		uiButton.get(0).click();
-		try {
 			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+	}catch(Exception e){}	
 		WebElement iframe = driver.findElement(By.id("iframe_canvas"));
 		driver.switchTo().frame(iframe);
 		System.out.println("challenge sent");
