@@ -3,7 +3,6 @@ package com.saucelabs.ZalerioTest.test;
 
 
 
-import static junit.framework.Assert.assertEquals;
 
 import java.io.FileInputStream;
 import java.net.URL;
@@ -45,21 +44,15 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	private String password;
 	private String sessionId;
 	
-	public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("cloudbees_zalzero", "15b88203-7a0f-4339-804a-fffb6abb2e3c");
-	public @Rule
-    SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
+	
+	
 
-	public @Rule TestName testName= new TestName();
-	protected WebDriver driver1;
-
-	public Zalerio1UserBaseTest(String os, String browser, String version){ //,
-		//	String userid, String password) {
+	public Zalerio1UserBaseTest(String os, String browser, String version){
+		
 		super();
 		this.browser = browser;
 		this.browserVersion = version;
 		this.os = os;
-	//	this.userid = userid;
-	//	this.password = password;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -78,6 +71,12 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 		}
 		return browsers;
 	}
+	public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("cloudbees_zalzero", "15b88203-7a0f-4339-804a-fffb6abb2e3c");
+	public @Rule
+    SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
+
+	public @Rule TestName testName= new TestName();
+	protected RemoteWebDriver driver1;
 
 	@Before
 	public void setUp() throws Exception {
@@ -132,28 +131,17 @@ public class Zalerio1UserBaseTest implements SauceOnDemandSessionIdProvider {
 	        this.sessionId = ((RemoteWebDriver)driver1).getSessionId().toString();
 	    
 	        UserLogin.Olduserlogin(driver1, userid, password,url);
-}
-
-//	//@Test
-	public void gameEnterTest()
-	{
-		WebElement startButton = driver1.findElement(By.id("startButton"));
-		assertEquals(startButton.isDisplayed(), true);
-
 	}
-	
-
-	@After
-	public void tearDown() throws Exception {
-		driver1.manage().window().maximize();
-		UserLogin.logout(driver1);
-		driver1.quit();
-	}
-
 	@Override
 	public String getSessionId() {
 		// TODO Auto-generated method stub
 		return sessionId;
 	}
+	@After
+	public void tearDown() throws Exception {
+		driver1.quit();
+	}
+
+	
 
 }
