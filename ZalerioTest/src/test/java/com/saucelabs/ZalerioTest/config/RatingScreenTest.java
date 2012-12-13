@@ -70,20 +70,6 @@ public class RatingScreenTest {
 		comment_like.sendKeys("checking feedback");
 		submit_rating.click();
 		Popup.verifyPopup(driver, "Thank you for your suggestions.");
-		GameUtil.makebusy(driver2);
-		driver.navigate().refresh();
-		Thread.sleep(8000);
-		driver.switchTo().frame("iframe_canvas");
-		WebElement score_friendpopup=driver.findElement(By.id("score_friendpopup"));
-		WebElement show_score = score_friendpopup.findElement(By
-				.className("show_score"));
-		WebElement button_score = show_score.findElement(By
-				.className("button_score"));
-		List<WebElement> buttons = button_score.findElements(By.tagName("a"));
-		WebElement rematch = buttons.get(0);
-		GameUtil.makebusy(driver2);
-		rematch.click();
-		Popup.verifyPopup(driver, "Challenge has been sent. Would you like to start playing.");
 	}
 
 }
