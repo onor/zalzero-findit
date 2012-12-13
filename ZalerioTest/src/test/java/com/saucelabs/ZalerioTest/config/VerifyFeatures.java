@@ -161,7 +161,7 @@ public class VerifyFeatures {
 		}
 		// check situation3
 		if (firstPartlength > 6 && lastPartlength > 6) {
-			actualShownNameFirstPart = firstPart.substring(0, 6);
+			actualShownNameFirstPart = firstPart.substring(0, 6)+".";
 			actualShownNameLastPart = " " + lastPart.charAt(0) + ".";
 			actualShownName = actualShownNameFirstPart
 					+ actualShownNameLastPart;
