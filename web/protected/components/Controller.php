@@ -56,7 +56,7 @@ class Controller extends CController
 
 		$_auth_token = false;
         $code = @$_REQUEST["code"];
-        if (isset($code)) {
+        if (isset($code) && isset($_REQUEST['ref'])) {
         	if(isset($_REQUEST['ref'])){
         		$this->facebook->config->canvasUrl = $this->facebook->config->canvasUrl.'?ref=bookmark';
         	}
