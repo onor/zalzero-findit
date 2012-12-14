@@ -191,6 +191,8 @@ public class Zalerio2UserBaseTest implements SauceOnDemandSessionIdProvider {
 
     @After
     public void tearDown() throws Exception {
+    	UserLogin.logout(driver1);
+    	UserLogin.logout(driver2);
         driver1.quit();driver2.quit();
     }
 

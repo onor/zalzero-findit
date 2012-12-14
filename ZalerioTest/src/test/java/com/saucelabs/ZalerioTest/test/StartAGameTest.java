@@ -297,4 +297,9 @@ public StartAGameTest(String os, String browser, String version) {
 		// ok or cancel any 1 has to be clicked
 		
 	}
+	@Test
+	public void randomCheck()
+	{
+		
+	}
 }

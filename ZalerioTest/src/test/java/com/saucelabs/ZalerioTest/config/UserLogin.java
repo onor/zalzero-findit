@@ -100,9 +100,23 @@ public class UserLogin {
 	}
 	public static void logout(WebDriver driver)
 	{
-		driver.switchTo().defaultContent();
-		WebElement userNavigationLabel=driver.findElement(By.id("userNavigationLabel"));
-		WebElement logout_form=userNavigationLabel.findElement(By.id("logout_form"));
+		driver.get("https://www.facebook.com/");
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	WebElement userNavigationLabel=driver.findElement(By.id("userNavigationLabel"));
+	userNavigationLabel.click();
+	try {
+		Thread.sleep(2000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		WebElement logout_form=driver.findElement(By.id("logout_form"));
 		logout_form.submit();
 	}
 }

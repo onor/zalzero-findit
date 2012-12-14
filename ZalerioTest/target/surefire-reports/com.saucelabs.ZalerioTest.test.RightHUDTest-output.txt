@@ -1,17 +1,17 @@
 org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"class name","selector":"playhere"}
-Command duration or timeout: 175 milliseconds
+Command duration or timeout: 33 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.26.0', revision: '18041', time: '2012-11-01 19:33:38'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
 Driver info: driver.version: EventFiringWebDriver
-Session ID: 28c244e0-fc1b-461d-8b48-c29ceabf0a45
-Command duration or timeout: 912 milliseconds
+Session ID: 4bc45ad3-e72f-4351-81fa-de0e4a003f09
+Command duration or timeout: 2.91 seconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: b2c5ff94ecff4c16882f98cd452dd696
+Session ID: 4c4c3fd160124d4b8b96ca000b92a799
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=1355318160085, version=13.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, browserConnectionEnabled=true, webStorageEnabled=true, nativeEvents=true, applicationCacheEnabled=true, takesScreenshot=true}]
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=1355473193227, version=13.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, browserConnectionEnabled=true, webStorageEnabled=true, nativeEvents=true, applicationCacheEnabled=true, takesScreenshot=true}]
 
 
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -53,7 +53,7 @@ Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMeta
 	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:46)
 
 
-	at com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest.setUp(Zalerio1UserBaseTest.java:134)
+	at com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest.setUp(Zalerio1UserBaseTest.java:137)
 
 
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -147,12 +147,12 @@ Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMeta
 
 
 Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"class name","selector":"playhere"}
-Command duration or timeout: 175 milliseconds
+Command duration or timeout: 33 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.26.0', revision: '18041', time: '2012-11-01 19:33:38'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
 Driver info: driver.version: EventFiringWebDriver
-Session ID: 28c244e0-fc1b-461d-8b48-c29ceabf0a45
+Session ID: 4bc45ad3-e72f-4351-81fa-de0e4a003f09
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
@@ -234,54 +234,34 @@ Driver info: driver.version: EventFiringWebDriver
 	... 2 more
 
 
-org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
-Command duration or timeout: 22 milliseconds
-Build info: version: '2.26.0', revision: '18041', time: '2012-11-01 19:33:38'
-System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
-Driver info: driver.version: RemoteWebDriver
-Session ID: 28c244e0-fc1b-461d-8b48-c29ceabf0a45
-Command duration or timeout: 789 milliseconds
+org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
 Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: b2c5ff94ecff4c16882f98cd452dd696
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=1355318160085, version=13.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, browserConnectionEnabled=true, webStorageEnabled=true, nativeEvents=true, applicationCacheEnabled=true, takesScreenshot=true}]
+Driver info: driver.version: RemoteWebDriver
 
 
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:527)
 
 
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:302)
 
 
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:331)
 
 
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.By$ById.findElement(By.java:216)
 
 
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
 
 
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
+	at com.saucelabs.ZalerioTest.config.GameUtil.closeGameEndPopUp(GameUtil.java:42)
 
 
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
+	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:72)
 
 
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:246)
-
-
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
-
-
-	at com.saucelabs.ZalerioTest.config.Popup.closePopup(Popup.java:15)
-
-
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:73)
-
-
-	at com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest.setUp(Zalerio1UserBaseTest.java:134)
+	at com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest.setUp(Zalerio1UserBaseTest.java:137)
 
 
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -374,343 +354,76 @@ Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMeta
 	at java.lang.Thread.run(Unknown Source)
 
 
-Caused by: org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
-Command duration or timeout: 22 milliseconds
-Build info: version: '2.26.0', revision: '18041', time: '2012-11-01 19:33:38'
-System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
-Driver info: driver.version: RemoteWebDriver
-Session ID: 28c244e0-fc1b-461d-8b48-c29ceabf0a45
-Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
-System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Driver info: driver.version: RemoteWebDriver
+Caused by: org.apache.http.conn.HttpHostConnectException: Connection to http://ondemand.saucelabs.com:80 refused
 
 
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:190)
 
 
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:151)
 
 
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:125)
 
 
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:640)
 
 
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:188)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:479)
 
 
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:906)
 
 
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:531)
+	at org.openqa.selenium.remote.HttpCommandExecutor.fallBackExecute(HttpCommandExecutor.java:331)
 
 
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:246)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:310)
 
 
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:506)
 
 
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	... 37 more
 
 
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+Caused by: java.net.ConnectException: Connection timed out: connect
 
 
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
 
 
-	at java.lang.reflect.Method.invoke(Unknown Source)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
 
 
-	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:327)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
 
 
-	at $Proxy2.click(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
 
 
-	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:340)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
 
 
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
 
 
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
 
 
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
 
 
-	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:127)
 
 
-	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:63)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:180)
 
 
-	at $Proxy3.click(Unknown Source)
-
-
-	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:29)
-
-
-	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:1)
-
-
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-
-
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-
-
-	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:150)
-
-
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
-
-
-	... 2 more
-
-
-org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
-Command duration or timeout: 27 milliseconds
-Build info: version: '2.26.0', revision: '18041', time: '2012-11-01 19:33:38'
-System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
-Driver info: driver.version: RemoteWebDriver
-Session ID: 28c244e0-fc1b-461d-8b48-c29ceabf0a45
-Command duration or timeout: 758 milliseconds
-Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
-System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: b2c5ff94ecff4c16882f98cd452dd696
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, hasMetadata=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=1355318160085, version=13.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, browserConnectionEnabled=true, webStorageEnabled=true, nativeEvents=true, applicationCacheEnabled=true, takesScreenshot=true}]
-
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-
-
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-
-
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-
-
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-
-
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-
-
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-
-
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:246)
-
-
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
-
-
-	at com.saucelabs.ZalerioTest.config.GameUtil.closeGameEndPopUp(GameUtil.java:44)
-
-
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:75)
-
-
-	at com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest.setUp(Zalerio1UserBaseTest.java:134)
-
-
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-
-
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-
-
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-
-
-	at java.lang.reflect.Method.invoke(Unknown Source)
-
-
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-
-
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-
-
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-
-
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
-
-
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
-
-
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-
-
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-
-
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-
-
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-
-
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-
-
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-
-
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-
-
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-
-
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-
-
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-
-
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-
-
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-
-
-	at org.junit.runners.Suite.runChild(Suite.java:128)
-
-
-	at org.junit.runners.Suite.runChild(Suite.java:24)
-
-
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-
-
-	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
-
-
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-
-
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-
-
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-
-
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-
-
-	at java.lang.Thread.run(Unknown Source)
-
-
-Caused by: org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
-Command duration or timeout: 27 milliseconds
-Build info: version: '2.26.0', revision: '18041', time: '2012-11-01 19:33:38'
-System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
-Driver info: driver.version: RemoteWebDriver
-Session ID: 28c244e0-fc1b-461d-8b48-c29ceabf0a45
-Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
-System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Driver info: driver.version: RemoteWebDriver
-
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-
-
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-
-
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-
-
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:188)
-
-
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-
-
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:531)
-
-
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:246)
-
-
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
-
-
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-
-
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-
-
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-
-
-	at java.lang.reflect.Method.invoke(Unknown Source)
-
-
-	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:327)
-
-
-	at $Proxy2.click(Unknown Source)
-
-
-	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:340)
-
-
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-
-
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-
-
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-
-
-	at java.lang.reflect.Method.invoke(Unknown Source)
-
-
-	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:63)
-
-
-	at $Proxy3.click(Unknown Source)
-
-
-	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:29)
-
-
-	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:1)
-
-
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-
-
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-
-
-	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:150)
-
-
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
-
-
-	... 2 more
+	... 45 more
 
 
 ok button found
 
-SauceOnDemandSessionID=b2c5ff94ecff4c16882f98cd452dd696 job-name=com.saucelabs.ZalerioTest.test.RightHUDTest.rightHUDTest[0]
+SauceOnDemandSessionID=4c4c3fd160124d4b8b96ca000b92a799 job-name=com.saucelabs.ZalerioTest.test.RightHUDTest.rightHUDTest[0]
 

@@ -142,16 +142,28 @@ public class Create3UserGameTest extends Zalerio2UserBaseTest{
 		WebElement buttonWrapper=invite_status_base.findElement(By.className("buttonWrapper"));	
 		GameUtil.makebusy(driver2);
 			//send Reminder
-//			WebElement rightButtonWrapper=buttonWrapper.findElement(By.className("rightButtonWrapper"));
-//			WebElement rightButton=rightButtonWrapper.findElement(By.className("rightButton"));
-//			rightButton.click();
-//			Popup.verifyPopup(driver1, "You have sent reminder successfuly");
-//			GameUtil.makebusy(driver2);
+			WebElement rightButtonWrapper=buttonWrapper.findElement(By.className("rightButtonWrapper"));
+			WebElement rightButton=rightButtonWrapper.findElement(By.className("rightButton"));
+			rightButton.click();
+			Popup.verifyPopup(driver1, "You have sent reminder successfuly");
+			GameUtil.makebusy(driver2);
 			//close invitations
 			WebElement leftButtonWrapper=buttonWrapper.findElement(By.className("leftButtonWrapper"));
 			WebElement leftButton=leftButtonWrapper.findElement(By.className("leftButton"));
 			leftButton.click();
-			Popup.verifyPopup(driver1, "Game cancel!!!   Insufficient Users in Game");
+			//verify popup
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			WebElement popup = driver1.findElement(By.className("msgbox-msg"));
+			assertEquals(popup.isDisplayed(),true);
+			String observerdMsg=popup.getText();
+			assertEquals(true, observerdMsg.contains("Game cancel!!!"));
+			WebElement ok = driver1.findElement(By.className("msgbox-ok"));
+			ok.click();
 			GameUtil.makebusy(driver2);
 	}
 }

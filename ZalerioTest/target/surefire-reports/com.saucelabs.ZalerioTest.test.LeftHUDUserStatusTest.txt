@@ -1,26 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: com.saucelabs.ZalerioTest.test.LeftHUDUserStatusTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 129.609 sec <<< FAILURE!
-checkStatus(com.saucelabs.ZalerioTest.test.LeftHUDUserStatusTest)  Time elapsed: 129.608 sec  <<< ERROR!
-org.openqa.selenium.WebDriverException: ERROR selenium resource was unavailable for session 359287d6a8224bd9a210dcc6ec54c513 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 8.22 seconds
-Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
-System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: 359287d6a8224bd9a210dcc6ec54c513
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:246)
-	at org.openqa.selenium.remote.RemoteWebElement.submit(RemoteWebElement.java:83)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:25)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:181)
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 227.098 sec <<< FAILURE!
+checkStatus(com.saucelabs.ZalerioTest.test.LeftHUDUserStatusTest)  Time elapsed: 227.097 sec  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index: 3, Size: 3
+	at java.util.ArrayList.rangeCheck(Unknown Source)
+	at java.util.ArrayList.get(Unknown Source)
+	at com.saucelabs.ZalerioTest.config.GameFeatures.createGameWithDelay(GameFeatures.java:156)
+	at com.saucelabs.ZalerioTest.test.LeftHUDUserStatusTest.checkStatus(LeftHUDUserStatusTest.java:37)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -28,58 +15,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
 	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-checkStatus(com.saucelabs.ZalerioTest.test.LeftHUDUserStatusTest)  Time elapsed: 129.608 sec  <<< ERROR!
-org.openqa.selenium.WebDriverException: OKOK (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 332 milliseconds
-Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
-System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: db9f14a4f5154dc6825beafe86c92a0f
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-	at org.openqa.selenium.remote.RemoteWebDriver.quit(RemoteWebDriver.java:406)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:36)
 	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
 	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
 	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
