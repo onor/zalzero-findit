@@ -53,7 +53,28 @@ class Controller extends CController
 	}
 
 	public function filterFacebook($filterChain) {
-		
+
+		$_auth_token = false;
+        $code = @$_REQUEST["code"];
+        if (isset($code)) {
+        	if(isset($_REQUEST['ref'])){
+        		$this->facebook->config->canvasUrl = $this->facebook->config->canvasUrl.'?ref=bookmark';
+        	}
+        	
+            $token_url = "https://graph.facebook.com/oauth/access_token?client_id="
+                    . $this->facebook->config->appId . "&redirect_uri=".urlencode($this->facebook->config->canvasUrl)
+                    . "&client_secret=" . $this->facebook->config->appSecretId
+                    . "&code=" . $code . "&display=popup";
+                    
+            $response = file_get_contents($token_url);
+            
+            $params = null;
+            parse_str($response, $params);
+
+            $_auth_token = $params['access_token'];
+            
+        }
+
 		if(Yii::app()->request->isAjaxRequest){
 			
 			$filterChain->run();
@@ -76,17 +97,32 @@ class Controller extends CController
 			}
 		}
 		
-		if(isset($_REQUEST["signed_request"])){ // user come for facebook iframe
+		if(isset($_REQUEST["signed_request"]) || $_auth_token != false ){ // user come for facebook iframe
 			
-			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
-			$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
-
+			if( $_auth_token == false ){
+				list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
+				$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
+			}else{
+				
+				// get facebook me data
+				$facebookUser	=	$this->get_fb_user_info($_auth_token);
+				
+				$signedRequestData["oauth_token"] = $_auth_token;
+				
+			}
+			
 			if(!empty($signedRequestData["oauth_token"])){
 				
 				Yii::app()->session['oauth_token'] = $signedRequestData["oauth_token"];
 				
-				// get user if exists
-				$this->loggedInUser = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $signedRequestData["user_id"] ));
+				if( $_auth_token == false ){
+					// get user if exists
+					$this->loggedInUser = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $signedRequestData["user_id"] ));
+					
+				}else{
+					// get user if exists
+					$this->loggedInUser = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $facebookUser->id ));
+				}
 				
 				if( ! $this->loggedInUser ){
 					

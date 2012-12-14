@@ -448,9 +448,7 @@ function sendWinnerNotificationMail( $gameInstId)
 		$i++;
 		$game->sendEmailTo = array();
 
-		if($gameUserDetails->gameseatUser->zzuser_subscribe_status){
-			$game->sendEmailTo[$gameUserDetails->gameseatUser->user_fbid] = $gameUserDetails->gameseatUser->user_email;
-		}
+		$game->sendEmailTo[$gameUserDetails->gameseatUser->user_fbid] = $gameUserDetails->gameseatUser->user_email;
 			
 		$userDisplayName = getDisplayName( $gameUserDetails->gameseatUser->user_fname, $gameUserDetails->gameseatUser->user_lname );
 
