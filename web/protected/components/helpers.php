@@ -532,8 +532,8 @@ function emailTemplate($game,$user_fbid){
 
 	$FBConfig = new facebookCredetials();
 	$url = $FBConfig->config->canvasPage;
-	$privacypolicy = $url.'zalerio/privacypolicy';
-	$tos = $url.'zalerio/tos';
+	$privacypolicy = $FBConfig->config->canvasUrl.'zalerio/privacypolicy';
+	$tos = $FBConfig->config->canvasUrl.'zalerio/tos';
 	$canvasUrl = $FBConfig->config->canvasUrl;
 	$unsub_url = $FBConfig->config->canvasUrl.'deauthorise/unsubscribe?user_id='.$user_fbid;
 
