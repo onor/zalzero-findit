@@ -443,10 +443,11 @@ function sendWinnerNotificationMail( $gameInstId)
 	$gameInstRecord = Zzgameinst::model()->findByAttributes(array('gameinst_id'=>"$gameInstId"));
 	$game->startDate = date("M d", strtotime( $gameInstRecord->create_time ));
 
+	$game->sendEmailTo = array();
+
 	foreach($gameUsersDetails as $gameUserDetails)
 	{
 		$i++;
-		$game->sendEmailTo = array();
 
 		$game->sendEmailTo[$gameUserDetails->gameseatUser->user_fbid] = $gameUserDetails->gameseatUser->user_email;
 			
