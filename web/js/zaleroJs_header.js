@@ -1129,7 +1129,30 @@ try {
 jQuery(document).ready(function(){
 	
 	jQuery("#tos_link").click(function(event){
-		event.preventDefault()
+		event.preventDefault();
+		
+		$('body')
+		.append(
+				'<div class="wait"><div id="floatingBarsG">\
+		<div class="blockG" id="rotateG_01">\
+		</div>\
+		<div class="blockG" id="rotateG_02">\
+		</div>\
+		<div class="blockG" id="rotateG_03">\
+		</div>\
+		<div class="blockG" id="rotateG_04">\
+		</div>\
+		<div class="blockG" id="rotateG_05">\
+		</div>\
+		<div class="blockG" id="rotateG_06">\
+		</div>\
+		<div class="blockG" id="rotateG_07">\
+		</div>\
+		<div class="blockG" id="rotateG_08">\
+		</div>\
+		</div></div>');
+		
+		
 		$.ajax({
 			url : siteUrl + "/zalerio/tos"
 		}).done(function(data) {
@@ -1146,7 +1169,29 @@ jQuery(document).ready(function(){
 	})
 	
 	jQuery("#tos_privacy").click(function(event){
-		event.preventDefault()
+		event.preventDefault();
+		
+		$('body')
+		.append(
+				'<div class="wait"><div id="floatingBarsG">\
+		<div class="blockG" id="rotateG_01">\
+		</div>\
+		<div class="blockG" id="rotateG_02">\
+		</div>\
+		<div class="blockG" id="rotateG_03">\
+		</div>\
+		<div class="blockG" id="rotateG_04">\
+		</div>\
+		<div class="blockG" id="rotateG_05">\
+		</div>\
+		<div class="blockG" id="rotateG_06">\
+		</div>\
+		<div class="blockG" id="rotateG_07">\
+		</div>\
+		<div class="blockG" id="rotateG_08">\
+		</div>\
+		</div></div>');
+		
 		$.ajax({
 			url : siteUrl + "/zalerio/privacypolicy"
 		}).done(function(data) {
