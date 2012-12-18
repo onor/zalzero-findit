@@ -63,8 +63,13 @@ class Controller extends CController
 		if ( $this->detect->isMobile() ) {
 			
 			if (isset($_REQUEST["code"])){
-
-				$_auth_token = $this->get_auth_token($_REQUEST["code"]);
+				
+				if(!Yii::app()->session['oauth_token'])
+				{
+					$_auth_token = $this->get_auth_token($_REQUEST["code"]);
+				}else{
+					$_auth_token = Yii::app()->session['oauth_token'];
+				}	
 			}else{
 				$this->get_auth();
 			}
@@ -215,12 +220,17 @@ class Controller extends CController
 		if ( $this->detect->isMobile() ) {
 			
 			$redirect_uri = urlencode($this->facebook->config->canvasUrl);
+			
+			$domain = 'https://m.facebook.com/';
+			
 		}else{
+			
+			$domain = 'https://www.facebook.com/';
 			
 			$redirect_uri = urlencode($this->facebook->config->canvasPage);
 		}
 		
-		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".$redirect_uri.'?'.$get_param;
+		$auth_url = $domain."dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".$redirect_uri.'?'.$get_param;
 
 		echo("<script> top.location.href='" . $auth_url . "'</script>");
 		
@@ -265,13 +275,13 @@ class Controller extends CController
 	function get_auth_token($code) {
 		
       		if(isset($_REQUEST['ref'])){
-        		$this->facebook->config->canvasUrl = $this->facebook->config->canvasUrl.'?ref=bookmark';
+        		$redirect_uri = $this->facebook->config->canvasUrl.'?ref=bookmark';
         	}else{
-        		$this->facebook->config->canvasUrl = $this->facebook->config->canvasUrl."?gameinst_id=0";
+        		$redirect_uri = $this->facebook->config->canvasUrl."?gameinst_id=0";
         	}
         	
             $token_url = "https://graph.facebook.com/oauth/access_token?client_id="
-                    . $this->facebook->config->appId . "&redirect_uri=".urlencode($this->facebook->config->canvasUrl)
+                    . $this->facebook->config->appId . "&redirect_uri=".urlencode($redirect_uri)
                     . "&client_secret=" . $this->facebook->config->appSecretId
                     . "&code=" . $code . "&display=popup";
                                         
