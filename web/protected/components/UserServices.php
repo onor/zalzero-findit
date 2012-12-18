@@ -253,15 +253,19 @@ function remindUserOnFb($gameId,$fbUid,$UsersFbData,$checkForMessage,$loggedInUs
 		}
 		
 	    $fbNotificationService = new FBNotificationService($getFbCredentials->config->appId, $getFbCredentials->config->appSecretId);
-		if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
-				if($loggedInFbId != $fbUid) {
-					return $fbUid;
-				}else{
-					return false;
-				}
-		}else{
-			return false;
-		}
+	    if($loggedInFbId != $fbUid) {
+		    if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
+					if($loggedInFbId != $fbUid) {
+						return $fbUid;
+					}else{
+						return false;
+					}
+			}else{
+				return false;
+			}
+	    }else{
+	    	return false;
+	    }
 	}
 }
 
