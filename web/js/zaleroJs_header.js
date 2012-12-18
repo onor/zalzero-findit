@@ -1131,7 +1131,7 @@ jQuery(document).ready(function(){
 	jQuery("#tos_link").click(function(event){
 		event.preventDefault()
 		$.ajax({
-			url : siteUrl + "/site/tos"
+			url : siteUrl + "/zalerio/tos"
 		}).done(function(data) {
 
 			html = '<div class="show_popup zalerio_popup"> \
@@ -1148,7 +1148,7 @@ jQuery(document).ready(function(){
 	jQuery("#tos_privacy").click(function(event){
 		event.preventDefault()
 		$.ajax({
-			url : siteUrl + "/site/privacypolicy"
+			url : siteUrl + "/zalerio/privacypolicy"
 		}).done(function(data) {
 			
 			html = '<div class="show_popup zalerio_popup"> \
