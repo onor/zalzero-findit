@@ -1,7 +1,7 @@
 <?php
 
 Yii::import('application.config.*');
-
+require_once('mobile.php');
 require_once('fbappconfig.php');
 require_once('GameServices.php');
 require_once("UserServices.php");
@@ -32,6 +32,8 @@ class Controller extends CController
 
 	public $oauth_token;
 	
+	public $detect;
+	
 	public $loggedInUser;
 
 	function __construct($id,$module=null) {
@@ -53,27 +55,20 @@ class Controller extends CController
 	}
 
 	public function filterFacebook($filterChain) {
-
+				
 		$_auth_token = false;
-        $code = @$_REQUEST["code"];
-        if (isset($code) && isset($_REQUEST['ref'])) {
-        	if(isset($_REQUEST['ref'])){
-        		$this->facebook->config->canvasUrl = $this->facebook->config->canvasUrl.'?ref=bookmark';
-        	}
-        	
-            $token_url = "https://graph.facebook.com/oauth/access_token?client_id="
-                    . $this->facebook->config->appId . "&redirect_uri=".urlencode($this->facebook->config->canvasUrl)
-                    . "&client_secret=" . $this->facebook->config->appSecretId
-                    . "&code=" . $code . "&display=popup";
-                    
-            $response = file_get_contents($token_url);
-            
-            $params = null;
-            parse_str($response, $params);
+		
+		$this->detect = new Mobile_Detect();
+		
+		if ( $this->detect->isMobile() ) {
+			
+			if (isset($_REQUEST["code"])){
 
-            $_auth_token = $params['access_token'];
-            
-        }
+				$_auth_token = $this->get_auth_token($_REQUEST["code"]);
+			}else{
+				$this->get_auth();
+			}
+		}
 
 		if(Yii::app()->request->isAjaxRequest){
 			
@@ -194,7 +189,7 @@ class Controller extends CController
 			
 				// we have logged-in user if we are here
 				Yii::app()->session['fbid']		=	$this->loggedInUser->user_fbid;
-			
+
 				$filterChain->run();
 				
 				exit;
@@ -217,9 +212,16 @@ class Controller extends CController
 		
 //		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
 		$permission = "email,friends_online_presence";
+		if ( $this->detect->isMobile() ) {
+			
+			$redirect_uri = urlencode($this->facebook->config->canvasUrl);
+		}else{
+			
+			$redirect_uri = urlencode($this->facebook->config->canvasPage);
+		}
 		
-		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?'.$get_param;
-		
+		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".$redirect_uri.'?'.$get_param;
+
 		echo("<script> top.location.href='" . $auth_url . "'</script>");
 		
 		Yii::app()->end();
@@ -260,6 +262,28 @@ class Controller extends CController
 		return $decoded_response;  // success
 	}
 
+	function get_auth_token($code) {
+		
+      		if(isset($_REQUEST['ref'])){
+        		$this->facebook->config->canvasUrl = $this->facebook->config->canvasUrl.'?ref=bookmark';
+        	}else{
+        		$this->facebook->config->canvasUrl = $this->facebook->config->canvasUrl."?gameinst_id=0";
+        	}
+        	
+            $token_url = "https://graph.facebook.com/oauth/access_token?client_id="
+                    . $this->facebook->config->appId . "&redirect_uri=".urlencode($this->facebook->config->canvasUrl)
+                    . "&client_secret=" . $this->facebook->config->appSecretId
+                    . "&code=" . $code . "&display=popup";
+                                        
+            $response = file_get_contents($token_url);
+            
+            $params = null;
+            parse_str($response, $params);
+            
+            return $params['access_token'];
+            
+	}
+	
 	// we should have access token now
 	function curl_get_file_contents($URL) {
 		$c = curl_init();
