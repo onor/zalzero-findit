@@ -154,7 +154,7 @@ if (isset($startGame) || isset($game)) {
         </div>
     </div>
     <div id="privacy_tos">
-    	<a id="tos_privacy"  href="<?php echo Yii::app()->homeUrl; ?>site/privacypolicy" style="color:#000" >Privacy Policy</a> | <a id="tos_link" href="<?php echo Yii::app()->homeUrl; ?>site/tos" style="color:#000" >Terms & Conditions</a>
+    	<a id="tos_privacy"  href="<?php echo Yii::app()->homeUrl; ?>zalerio/privacypolicy" style="color:#000" >Privacy Policy</a> | <a id="tos_link" href="<?php echo Yii::app()->homeUrl; ?>zalerio/tos" style="color:#000" >Terms & Conditions</a>
     </div>
     <div id="copyright">
     	&copy; Copyright Zalzero Inc.<br />
