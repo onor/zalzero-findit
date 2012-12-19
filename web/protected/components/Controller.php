@@ -262,7 +262,7 @@ class Controller extends CController
 			// check to see if this is an oAuth error:
 			if ($decoded_response->error->type == "OAuthException") {
 				// Retrieving a valid access token.
-				$this->request_oauth();
+				$this->get_auth();
 				exit;
 			}
 
