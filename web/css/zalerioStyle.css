@@ -145,15 +145,16 @@ body {
 }
 .bottomHUDbuttons li#bottomHUDbuttons-play a {
     color: white;
-    display: block;
-    font-size: 1.9em;
-    font-weight: bolder;
-    height: 60px;
-    line-height: 70px;
-    text-align: center;
-    text-decoration: none;
-    width: 141px;
-    text-transform: uppercase
+	display: block;
+	font-size: 1.9em;
+	font-weight: normal;
+	height: 60px;
+	line-height: 63px;
+	text-align: center;
+	text-decoration: none;
+	width: 141px;
+	text-transform: uppercase;
+	letter-spacing: 3px
 }
 .box-blank {
     background: url("../images/zalerio_1.2/3.ingame_board/board/tile_base.png") no-repeat top left transparent;
