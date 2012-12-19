@@ -2,7 +2,7 @@
 Test set: com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest
 -------------------------------------------------------------------------------
 Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.001 sec <<< FAILURE!
-initializationError(com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest)  Time elapsed: 0 sec  <<< ERROR!
+initializationError(com.saucelabs.ZalerioTest.test.Zalerio1UserBaseTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.Exception: No runnable methods
 	at org.junit.runners.BlockJUnit4ClassRunner.validateInstanceMethods(BlockJUnit4ClassRunner.java:166)
 	at org.junit.runners.BlockJUnit4ClassRunner.collectInitializationErrors(BlockJUnit4ClassRunner.java:102)

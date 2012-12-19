@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="1,829.58" errors="2" skipped="0" tests="2" name="com.saucelabs.ZalerioTest.test.Create2PlayerGameTest">
+<testsuite failures="0" time="136.775" errors="2" skipped="0" tests="2" name="com.saucelabs.ZalerioTest.test.Create2PlayerGameTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jre7\bin"/>
@@ -26,7 +26,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 8"/>
-    <property name="classworlds.conf" value="Z:\AutomationProjects\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf3924775854633209892.tmp"/>
+    <property name="classworlds.conf" value="Z:\AutomationProjects\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf8227907901625196291.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jre7\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre7/bin/client;C:/Program Files/Java/jre7/bin;C:/Program Files/Java/jre7/lib/i386;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Users\Mobicules\AppData\Roaming\npm\;E:\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -60,34 +60,44 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="1,829.577" classname="com.saucelabs.ZalerioTest.test.Create2PlayerGameTest" name="playGame">
-    <error message="ERROR Selenium Server in Sauce Labs was already shut down (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 1.41 seconds
+  <testcase time="136.77" classname="com.saucelabs.ZalerioTest.test.Create2PlayerGameTest" name="playGame">
+    <error message="The element could not be found (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 32 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
+System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
+Driver info: driver.version: EventFiringWebDriver
+Command duration or timeout: 1.65 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
 System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: eaf8dd60826e49f393c7f196171f5ca1
+Session ID: cf19f7d9a1e94dc0bada6515632d73bf
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: ERROR Selenium Server in Sauce Labs was already shut down (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 1.41 seconds
+Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 32 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
+System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
+Driver info: driver.version: EventFiringWebDriver
+Command duration or timeout: 1.65 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
 System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: eaf8dd60826e49f393c7f196171f5ca1
+Session ID: cf19f7d9a1e94dc0bada6515632d73bf
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
 	at java.lang.reflect.Constructor.newInstance(Unknown Source)
 	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
 	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-	at org.openqa.selenium.remote.RemoteExecuteMethod.execute(RemoteExecuteMethod.java:32)
-	at org.openqa.selenium.remote.RemoteMouse.mouseUp(RemoteMouse.java:82)
-	at org.openqa.selenium.interactions.ButtonReleaseAction.perform(ButtonReleaseAction.java:41)
-	at org.openqa.selenium.interactions.CompositeAction.perform(CompositeAction.java:31)
-	at com.saucelabs.ZalerioTest.config.Tiles.dragAllTilesWithDelay(Tiles.java:86)
-	at com.saucelabs.ZalerioTest.test.Create2PlayerGameTest.playGame(Create2PlayerGameTest.java:252)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:302)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:331)
+	at org.openqa.selenium.By$ById.findElement(By.java:216)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
+	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:43)
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:181)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -95,8 +105,7 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
 	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
 	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
 	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
@@ -122,27 +131,58 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-</error>
-    <system-out>Logged inchallenge sent
-got your turn tilesnew size6
-got New your turn tile with Id right_hud_278
-SauceOnDemandSessionID=eaf8dd60826e49f393c7f196171f5ca1 job-name=com.saucelabs.ZalerioTest.test.Create2PlayerGameTest.playGame
-</system-out>
-    <system-err>org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 51 milliseconds
+Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 32 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
 System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
 Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 3.41 seconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
 System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: c22d5b5c384d433a95bb8df37765467d
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
+Driver info: driver.version: EventFiringWebDriver
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:147)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:113)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:439)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:226)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:243)
+	at org.openqa.selenium.By$ById.findElement(By.java:216)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:218)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:100)
+	at $Proxy1.findElement(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:179)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:1)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</error>
+    <system-out>SauceOnDemandSessionID=cf19f7d9a1e94dc0bada6515632d73bf job-name=com.saucelabs.ZalerioTest.test.Create2PlayerGameTest.playGame
+</system-out>
+    <system-err>org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 41 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
+System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
+Driver info: driver.version: EventFiringWebDriver
+Command duration or timeout: 1.54 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
+System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
+Session ID: 9da2079ae8ed4d60a8da840d642d11af
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
+	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
 	at java.lang.reflect.Constructor.newInstance(Unknown Source)
 	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
@@ -189,7 +229,7 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 51 milliseconds
+Command duration or timeout: 41 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
 System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
@@ -224,20 +264,19 @@ Driver info: driver.version: EventFiringWebDriver
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at java.lang.Thread.run(Unknown Source)
 org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 45 milliseconds
+Command duration or timeout: 49 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
 System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
 Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 1.57 seconds
+Command duration or timeout: 1.17 seconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
 System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: eaf8dd60826e49f393c7f196171f5ca1
+Session ID: 9da2079ae8ed4d60a8da840d642d11af
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
 	at java.lang.reflect.Constructor.newInstance(Unknown Source)
 	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
@@ -247,9 +286,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:371)
 	at org.openqa.selenium.By$ByClassName.findElement(By.java:371)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
-	at com.saucelabs.ZalerioTest.config.GameUtil.clickPlayHereForMultiTabIssue(GameUtil.java:15)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:46)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:181)
+	at com.saucelabs.ZalerioTest.config.Popup.closePopup(Popup.java:14)
+	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:70)
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -284,7 +323,7 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 45 milliseconds
+Command duration or timeout: 49 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
 System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
@@ -319,14 +358,14 @@ Driver info: driver.version: EventFiringWebDriver
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at java.lang.Thread.run(Unknown Source)
 org.openqa.selenium.ElementNotVisibleException: Element must be displayed to click (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 39 milliseconds
+Command duration or timeout: 41 milliseconds
 Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
 System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
 Driver info: driver.version: RemoteWebDriver
-Command duration or timeout: 1.38 seconds
+Command duration or timeout: 1.46 seconds
 Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
 System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: eaf8dd60826e49f393c7f196171f5ca1
+Session ID: 9da2079ae8ed4d60a8da840d642d11af
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -338,9 +377,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
 	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:246)
 	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
-	at com.saucelabs.ZalerioTest.config.Popup.closePopup(Popup.java:15)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:70)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:181)
+	at com.saucelabs.ZalerioTest.config.GameUtil.closeGameEndPopUp(GameUtil.java:44)
+	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:72)
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -375,7 +414,7 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Caused by: org.openqa.selenium.ElementNotVisibleException: Element must be displayed to click (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 39 milliseconds
+Command duration or timeout: 41 milliseconds
 Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
 System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
 Driver info: driver.version: RemoteWebDriver
@@ -413,30 +452,44 @@ Driver info: driver.version: RemoteWebDriver
 	at java.lang.Thread.run(Unknown Source)
 </system-err>
   </testcase>
-  <testcase time="1,829.577" classname="com.saucelabs.ZalerioTest.test.Create2PlayerGameTest" name="playGame">
-    <error message="Job c22d5b5c384d433a95bb8df37765467d has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/c22d5b5c384d433a95bb8df37765467d (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 515 milliseconds
+  <testcase time="136.771" classname="com.saucelabs.ZalerioTest.test.Create2PlayerGameTest" name="playGame">
+    <error message="The element could not be found (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 29 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
+System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
+Driver info: driver.version: EventFiringWebDriver
+Command duration or timeout: 1.20 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
 System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: c22d5b5c384d433a95bb8df37765467d
+Session ID: cf19f7d9a1e94dc0bada6515632d73bf
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job c22d5b5c384d433a95bb8df37765467d has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/c22d5b5c384d433a95bb8df37765467d (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 515 milliseconds
+Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 29 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
+System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
+Driver info: driver.version: EventFiringWebDriver
+Command duration or timeout: 1.20 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
 System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: c22d5b5c384d433a95bb8df37765467d
+Session ID: cf19f7d9a1e94dc0bada6515632d73bf
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
 	at java.lang.reflect.Constructor.newInstance(Unknown Source)
 	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
 	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:302)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:331)
+	at org.openqa.selenium.By$ById.findElement(By.java:216)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
+	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:111)
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:195)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -469,6 +522,41 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 29 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
+System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
+Driver info: driver.version: EventFiringWebDriver
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
+System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
+Driver info: driver.version: EventFiringWebDriver
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:147)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:113)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:439)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:226)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:243)
+	at org.openqa.selenium.By$ById.findElement(By.java:216)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:218)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:100)
+	at $Proxy1.findElement(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:179)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:1)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
 </error>
   </testcase>
 </testsuite>

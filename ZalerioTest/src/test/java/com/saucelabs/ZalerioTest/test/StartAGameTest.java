@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import static org.junit.Assert.assertEquals;
 
 import com.saucelabs.ZalerioTest.config.GameFeatures;
 
@@ -297,9 +298,58 @@ public StartAGameTest(String os, String browser, String version) {
 		// ok or cancel any 1 has to be clicked
 		
 	}
-	@Test
+//	@Test
 	public void randomCheck()
 	{
+		WebElement startButton = driver1.findElement(By.id("startButton"));
+		startButton.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		// click Random button.
+		WebElement sendrinvite=driver1.findElement(By.id("sendrinvite"));
+		sendrinvite.click();
+		try
+		{
+			// click Send Request on alert popup
+			driver1.switchTo().defaultContent();
+			Thread.sleep(5000);
+			WebElement dialog_2 = driver1
+					.findElement(By.className("generic_dialog"));
+			WebElement generic_dialog_popup = dialog_2.findElement(By
+					.className("generic_dialog_popup"));
+			WebElement pop_container = generic_dialog_popup.findElement(By
+					.className("pop_container"));
+			WebElement pop_content = pop_container
+					.findElement(By.id("pop_content"));
+			WebElement dialog_buttons = pop_content.findElement(By
+					.className("dialog_buttons"));
+			WebElement rfloat = dialog_buttons.findElement(By.className("rfloat"));
+			List<WebElement> uiButton = rfloat.findElements(By
+					.className("uiButton"));
+			uiButton.get(0).click();
+				Thread.sleep(5000);
+		}catch(Exception e){}
+		WebElement gameInfo_game_players = driver1.findElement(By
+				.id("gameInfo-game-players"));
+		WebElement background = gameInfo_game_players.findElement(By
+				.className("background"));
+		List<WebElement> infoPlates = background
+				.findElements(By.className("infoPlate"));
+		//access name0 Piyush S. Philip. S.
 		
+		WebElement infoPlate0=infoPlates.get(0);
+		WebElement userinfo0 = infoPlate0.findElement(By.className("userinfo"));
+	    WebElement username0=userinfo0.findElement(By.className("username"));
+	    String userName0=username0.getText();
+	    WebElement infoPlate1=infoPlates.get(1);
+		WebElement userinfo1 = infoPlate1.findElement(By.className("userinfo"));
+	    WebElement username1=userinfo1.findElement(By.className("username"));
+	    String userName1=username1.getText();
+	    String userNames=userName1+" "+userName0;
+	    boolean status=(userNames.contains("Piyush S.")&& userNames.contains("Philip. S.") );
+	    assertEquals(true,status);
 	}
 }

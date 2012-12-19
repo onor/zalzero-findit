@@ -151,8 +151,8 @@ public class Zalerio2UserBaseTest implements SauceOnDemandSessionIdProvider {
 		else
 		{
 			url=values.getProperty("Production_url");
-			user1id=values.getProperty("user1_stag_username");
-			user2id=values.getProperty("user2_stag_username");
+			user1id=values.getProperty("user1_prod_username");
+			user2id=values.getProperty("user2_prod_username");
 			password=values.getProperty("password");
 		}	
     	 DesiredCapabilities capabilities2=null;

@@ -1,22 +1,19 @@
 org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 51 milliseconds
+Command duration or timeout: 41 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.18.0', revision: '15704', time: '2012-07-21 01:03:50'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
 Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 3.41 seconds
+Command duration or timeout: 1.54 seconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: c22d5b5c384d433a95bb8df37765467d
+Session ID: 9da2079ae8ed4d60a8da840d642d11af
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
 
 
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
 
 
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
@@ -155,7 +152,7 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 
 
 Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 51 milliseconds
+Command duration or timeout: 41 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.18.0', revision: '15704', time: '2012-07-21 01:03:50'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
@@ -242,24 +239,21 @@ Driver info: driver.version: EventFiringWebDriver
 
 
 org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 45 milliseconds
+Command duration or timeout: 49 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.18.0', revision: '15704', time: '2012-07-21 01:03:50'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
 Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 1.57 seconds
+Command duration or timeout: 1.17 seconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: eaf8dd60826e49f393c7f196171f5ca1
+Session ID: 9da2079ae8ed4d60a8da840d642d11af
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
 
 
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
 
 
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
@@ -289,13 +283,13 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
 
 
-	at com.saucelabs.ZalerioTest.config.GameUtil.clickPlayHereForMultiTabIssue(GameUtil.java:15)
+	at com.saucelabs.ZalerioTest.config.Popup.closePopup(Popup.java:14)
 
 
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:46)
+	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:70)
 
 
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:181)
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
 
 
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -398,7 +392,7 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 
 
 Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 45 milliseconds
+Command duration or timeout: 49 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '2.18.0', revision: '15704', time: '2012-07-21 01:03:50'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
@@ -485,14 +479,14 @@ Driver info: driver.version: EventFiringWebDriver
 
 
 org.openqa.selenium.ElementNotVisibleException: Element must be displayed to click (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 39 milliseconds
+Command duration or timeout: 41 milliseconds
 Build info: version: '2.18.0', revision: '15704', time: '2012-07-21 01:03:50'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
 Driver info: driver.version: RemoteWebDriver
-Command duration or timeout: 1.38 seconds
+Command duration or timeout: 1.46 seconds
 Build info: version: '2.28.0', revision: '18309', time: '2012-12-11 15:53:30'
 System info: os.name: 'Windows 8', os.arch: 'x86', os.version: '6.2', java.version: '1.7.0_09'
-Session ID: eaf8dd60826e49f393c7f196171f5ca1
+Session ID: 9da2079ae8ed4d60a8da840d642d11af
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
 Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
 
@@ -524,13 +518,13 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
 
 
-	at com.saucelabs.ZalerioTest.config.Popup.closePopup(Popup.java:15)
+	at com.saucelabs.ZalerioTest.config.GameUtil.closeGameEndPopUp(GameUtil.java:44)
 
 
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:70)
+	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:72)
 
 
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:181)
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
 
 
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -633,7 +627,7 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 
 
 Caused by: org.openqa.selenium.ElementNotVisibleException: Element must be displayed to click (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 39 milliseconds
+Command duration or timeout: 41 milliseconds
 Build info: version: '2.18.0', revision: '15704', time: '2012-07-21 01:03:50'
 System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.6.0_31'
 Driver info: driver.version: RemoteWebDriver
@@ -729,13 +723,5 @@ Driver info: driver.version: RemoteWebDriver
 	at java.lang.Thread.run(Unknown Source)
 
 
-Logged in
-challenge sent
-
-got your turn tiles
-new size6
-
-got New your turn tile with Id right_hud_278
-
-SauceOnDemandSessionID=eaf8dd60826e49f393c7f196171f5ca1 job-name=com.saucelabs.ZalerioTest.test.Create2PlayerGameTest.playGame
+SauceOnDemandSessionID=cf19f7d9a1e94dc0bada6515632d73bf job-name=com.saucelabs.ZalerioTest.test.Create2PlayerGameTest.playGame
 

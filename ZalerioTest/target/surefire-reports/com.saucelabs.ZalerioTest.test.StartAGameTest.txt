@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.saucelabs.ZalerioTest.test.StartAGameTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 599.996 sec
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 599.994 sec
