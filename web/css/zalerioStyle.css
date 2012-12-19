@@ -152,9 +152,10 @@ body {
 	line-height: 63px;
 	text-align: center;
 	text-decoration: none;
-	width: 141px;
+	width: 137px;
 	text-transform: uppercase;
-	letter-spacing: 3px
+	letter-spacing: 3px;
+	padding-right: 10px
 }
 .box-blank {
     background: url("../images/zalerio_1.2/3.ingame_board/board/tile_base.png") no-repeat top left transparent;

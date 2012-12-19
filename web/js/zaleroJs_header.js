@@ -321,10 +321,26 @@ jQuery(function($) {
 	
 	$('#sendrinvite').live("click", function() {
 		 var id = new Array('650715441','623504');
-		
+		 
+		 FB.ui({method: 'apprequests',
+	          message: 'You are invited to play a game of zalerio',
+	          to: '650715441,623504'
+		 	
+		 }, function(response){
+	    	
+	    	if(response ){
+	    		InviteFriends(id);
+	    		// nothing to do									    		
+	    	}else{
+	    		
+				jQuery('.wait').remove();
+				jQuery('.show_popup').remove();
+				messagePopup('Not enough players to create a game .Please select again and try.');
+				
+	    	}
+			
+	    });
 		 //	var id = new Array('100000842727950','100004066793304'); Pankaj Anupam and Abhi
-		
-		InviteFriends(id);
 	});
 
 	$('#sendinvite')
@@ -379,27 +395,15 @@ jQuery(function($) {
 								    }, function(response){
 								    	
 								    	if(response ){
+								    		InviteFriends(id);
 								    		// nothing to do									    		
 								    	}else{
-								    		// if user cancel the friend request then remove users
-								    		user_ids = user_ids.split(',');
 								    		
-								    		for( key in user_ids ){
-								    												    			
-								    			id = removeA( id, user_ids[key] );
-								    		}
-								    	}
-								    	
-										if( sizeOfObj(id) < 1){
-											
 											jQuery('.wait').remove();
 											jQuery('.show_popup').remove();
 											messagePopup('Not enough players to create a game .Please select again and try.');
 											
-										}else{
-											
-											InviteFriends(id);
-										}
+								    	}
 										
 								    });
 						}
