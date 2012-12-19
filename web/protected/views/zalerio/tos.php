@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Zalerio: Privacy Policy</title>
+<title>Zalerio: Terms & Conditions</title>
 <link rel="stylesheet" type="text/css"
 	href="<?php echo Yii::app()->request->baseUrl; ?>/css/privacypolicy.css" />
 </head>
