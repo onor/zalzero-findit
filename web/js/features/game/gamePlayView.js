@@ -84,6 +84,7 @@ define(['drag-drop'], function(dragdrop) {
 
     gameView.prototype.setBetDonePlayButtonEl = function(el) {
       el.href = "#Already Placed Bets";
+      el.innerHTML = 'Done';
       el.className = 'bet_done';
       return this.disablePlayBoutton(el);
     };
@@ -99,6 +100,7 @@ define(['drag-drop'], function(dragdrop) {
     gameView.prototype.enablePlayBoutton = function(el) {
       el.href = "#Place Bets";
       el.className = '';
+      el.innerHTML = 'Play';
       return el.parentNode.setAttribute("class", "");
     };
 
