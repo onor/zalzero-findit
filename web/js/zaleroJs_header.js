@@ -379,27 +379,15 @@ jQuery(function($) {
 								    }, function(response){
 								    	
 								    	if(response ){
+								    		InviteFriends(id);
 								    		// nothing to do									    		
 								    	}else{
-								    		// if user cancel the friend request then remove users
-								    		user_ids = user_ids.split(',');
 								    		
-								    		for( key in user_ids ){
-								    												    			
-								    			id = removeA( id, user_ids[key] );
-								    		}
-								    	}
-								    	
-										if( sizeOfObj(id) < 1){
-											
 											jQuery('.wait').remove();
 											jQuery('.show_popup').remove();
 											messagePopup('Not enough players to create a game .Please select again and try.');
 											
-										}else{
-											
-											InviteFriends(id);
-										}
+								    	}
 										
 								    });
 						}
