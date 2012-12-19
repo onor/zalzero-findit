@@ -141,12 +141,12 @@ body {
     line-height: 62px !important;
 }
 .bottomHUDbuttons li.bottomHUDbuttons-play-gray .bet_done{
-	background-position:-6px -208px !important;
+	background-position:-6px -206px !important;
 }
 .bottomHUDbuttons li#bottomHUDbuttons-play a {
     color: white;
 	display: block;
-	font-size: 1.9em;
+	font-size: 1.7em;
 	font-weight: normal;
 	height: 60px;
 	line-height: 63px;
