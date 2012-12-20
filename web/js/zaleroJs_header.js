@@ -320,7 +320,49 @@ jQuery(function($) {
 	}
 	
 	$('#sendrinvite').live("click", function() {
-		 var id = new Array('650715441','623504');
+		id = '1';
+		jQuery.ajax({
+			type : 'POST',
+			url : baseUrl + "/user/waiting_users",
+			data : {
+				'userFBID' : id
+			}
+		}).done( function(user_ids) { 
+
+			if(user_ids != "" && user_ids != false ){
+
+					// get the id's and send app request
+					FB.ui({method: 'apprequests',
+				          message: 'My Great Request',
+				          to: user_ids
+				    }, function(response){
+
+				    	if(response ){
+				    		//sizeOfObj(response)
+				    		//remove usr
+				    		//if(typeof response->to != 'undefined'){
+				    			InviteFriends(user_ids);
+				    		//}else{
+				    			// change usr status
+				    		//}
+				    			
+				    	}else{
+				    		jQuery('.wait').remove();
+							jQuery('.show_popup').remove();
+							messagePopup('Please select a friend.');
+							
+							// change usr status
+				    	}
+				    });
+			}else{
+	    		jQuery('.wait').remove();
+				jQuery('.show_popup').remove();
+				messagePopup('Please select a friend.');
+	    	}		
+		});
+		
+		
+	/*	var id = new Array('650715441','623504');
 		 
 		 FB.ui({method: 'apprequests',
 	          message: 'You are invited to play a game of zalerio',
@@ -339,7 +381,7 @@ jQuery(function($) {
 				
 	    	}
 			
-	    });
+	    }); */
 		 //	var id = new Array('100000842727950','100004066793304'); Pankaj Anupam and Abhi
 	});
 
