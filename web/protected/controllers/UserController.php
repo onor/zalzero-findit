@@ -490,7 +490,7 @@ class UserController extends Controller
 			$FBid_array = $_REQUEST['usersID'];
 
 			$user_FBids = implode('\',\'',$_REQUEST['usersID']);
-			$query = "select user_fbid from zzuser where zzuser_status = 'active' and user_fbid in ('$user_FBids') LIMIT 0,2";
+			$query = "select user_fbid from zzuser where zzuser_status = 'active' and user_fbid in ('$user_FBids')";
 			$users = Zzuser::model()->findAllBySql($query);
 
 			$activeMembers = array();
@@ -554,7 +554,7 @@ class UserController extends Controller
 			//$FBid = $_REQUEST['userFBID'];
 			
 			$FBid = Yii::app()->session['fbid'];;
-			$query = "select user_fbid from zzrandomgame where status = TRUE and user_fbid != '".$FBid."'";
+			$query = "select user_fbid from zzrandomgame where status = TRUE and user_fbid != '".$FBid."' LIMIT 0,2";
 			$users = Zzrandomgame::model()->findAllBySql($query);
 
 			if($users){
