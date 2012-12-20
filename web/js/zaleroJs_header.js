@@ -342,6 +342,18 @@ jQuery(function($) {
 				    		//remove usr
 				    		//if(typeof response->to != 'undefined'){
 				    			InviteFriends(user_ids);
+				    			
+				    			// remove users
+				    			
+				    			jQuery.ajax({
+									type : 'POST',
+									url : baseUrl + "/user/waiting_users_remove",
+									data : {
+										'usersFBID' : user_ids
+									}
+								}).done(function(data) {})
+				    			
+				    			
 				    		//}else{
 				    			// change usr status
 				    		//}
@@ -366,32 +378,9 @@ jQuery(function($) {
 			}else{
 	    		jQuery('.wait').remove();
 				jQuery('.show_popup').remove();
-				messagePopup('Please select a friend.');
+				messagePopup('Oops enough players are not available.Please wait we will inform as soon as possible.');
 	    	}		
 		});
-		
-		
-	/*	var id = new Array('650715441','623504');
-		 
-		 FB.ui({method: 'apprequests',
-	          message: 'You are invited to play a game of zalerio',
-	          to: '650715441,623504'
-		 	
-		 }, function(response){
-	    	
-	    	if(response ){
-	    		InviteFriends(id);
-	    		// nothing to do									    		
-	    	}else{
-	    		
-				jQuery('.wait').remove();
-				jQuery('.show_popup').remove();
-				messagePopup('Not enough players to create a game .Please select again and try.');
-				
-	    	}
-			
-	    }); */
-		 //	var id = new Array('100000842727950','100004066793304'); Pankaj Anupam and Abhi
 	});
 
 	$('#sendinvite')
