@@ -51,7 +51,7 @@ class UserController extends Controller
 						'users'=>array('*'),
 		),
 		array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','waiting_users','getActiveMember','friendFun'),
+						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','waiting_users','waiting_users_status_change','getActiveMember','friendFun'),
 						'users'=>array('@'),
 		),
 		array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -515,7 +515,21 @@ class UserController extends Controller
 		}
 	}
 	
-	
+	function actionWaiting_users_status_change(){
+		
+			if( isset($_REQUEST['usersFBID']) ){
+				
+					$users_FBid = explode(',', $_REQUEST['usersFBID']);
+					
+					$update_query = "update zzrandomgame set status = TRUE where user_fbid in('".$users_FBid[0]."','".$users_FBid[1]."')";
+
+					$connection=Yii::app()->db;
+					
+					$command=$connection->createCommand($update_query);
+					
+					if($command->execute()){}
+			}
+	}
 	
 	/** find user for random game **/
 	function actionWaiting_users(){

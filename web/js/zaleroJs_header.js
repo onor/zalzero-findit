@@ -352,6 +352,15 @@ jQuery(function($) {
 							messagePopup('Please select a friend.');
 							
 							// change usr status
+							
+							jQuery.ajax({
+								type : 'POST',
+								url : baseUrl + "/user/waiting_users_status_change",
+								data : {
+									'usersFBID' : user_ids
+								}
+							}).done(function(data) {})
+							
 				    	}
 				    });
 			}else{
