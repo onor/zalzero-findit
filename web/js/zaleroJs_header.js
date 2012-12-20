@@ -357,7 +357,7 @@ jQuery(function($) {
 						if (id.length == 0) {
 							messagePopup('Please select a friend.');
 						} else if (id.length > 4) {
-							messagePopup('Please select max upto 4 friends.');
+							messagePopup('Please select up to 4 friends.');
 						} else {
 							if (jQuery('#sendinvite').attr('value') == 'Sending...') {
 								return;
