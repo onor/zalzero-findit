@@ -68,7 +68,7 @@ public class Create3UserGameTest extends Zalerio2UserBaseTest{
 	
 		//create a new game
 	int friendPosition=GameFeatures.getFriendPosition();
-		int[] SelectedFriends=new int[]{friendPosition,5};
+		int[] SelectedFriends=new int[]{friendPosition,0};
 		try {
 			GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		} catch (InterruptedException e) {
