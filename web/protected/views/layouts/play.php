@@ -139,7 +139,7 @@ Yii::app()->clientScript->registerScript(
             window.fbAsyncInit = function() {
                 FB.init({
                     appId      : "<?php echo $facebookConfig->config->appId; ?>",
-                    channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+                    frictionlessRequests: true,
                     status     : true, // check login status
                     cookie     : false, // enable cookies to allow the server to access the session
                     xfbml      : true  // parse XFBML

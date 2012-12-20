@@ -1,7 +1,7 @@
 <?php
 
 Yii::import('application.config.*');
-
+require_once('mobile.php');
 require_once('fbappconfig.php');
 require_once('GameServices.php');
 require_once("UserServices.php");
@@ -32,6 +32,8 @@ class Controller extends CController
 
 	public $oauth_token;
 	
+	public $detect;
+	
 	public $loggedInUser;
 
 	function __construct($id,$module=null) {
@@ -53,7 +55,26 @@ class Controller extends CController
 	}
 
 	public function filterFacebook($filterChain) {
+				
+		$_auth_token = false;
 		
+		$this->detect = new Mobile_Detect();
+		
+		if ( $this->detect->isMobile() ) {
+			
+			if (isset($_REQUEST["code"])){
+				
+				if(!Yii::app()->session['oauth_token'])
+				{
+					$_auth_token = $this->get_auth_token($_REQUEST["code"]);
+				}else{
+					$_auth_token = Yii::app()->session['oauth_token'];
+				}	
+			}else{
+				$this->get_auth();
+			}
+		}
+
 		if(Yii::app()->request->isAjaxRequest){
 			
 			$filterChain->run();
@@ -76,17 +97,32 @@ class Controller extends CController
 			}
 		}
 		
-		if(isset($_REQUEST["signed_request"])){ // user come for facebook iframe
+		if(isset($_REQUEST["signed_request"]) || $_auth_token != false ){ // user come for facebook iframe
 			
-			list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
-			$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
-
+			if( $_auth_token == false ){
+				list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
+				$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
+			}else{
+				
+				// get facebook me data
+				$facebookUser	=	$this->get_fb_user_info($_auth_token);
+				
+				$signedRequestData["oauth_token"] = $_auth_token;
+				
+			}
+			
 			if(!empty($signedRequestData["oauth_token"])){
 				
 				Yii::app()->session['oauth_token'] = $signedRequestData["oauth_token"];
 				
-				// get user if exists
-				$this->loggedInUser = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $signedRequestData["user_id"] ));
+				if( $_auth_token == false ){
+					// get user if exists
+					$this->loggedInUser = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $signedRequestData["user_id"] ));
+					
+				}else{
+					// get user if exists
+					$this->loggedInUser = Zzuser::model()->findByAttributes(	array( 'user_fbid' => $facebookUser->id ));
+				}
 				
 				if( ! $this->loggedInUser ){
 					
@@ -158,7 +194,7 @@ class Controller extends CController
 			
 				// we have logged-in user if we are here
 				Yii::app()->session['fbid']		=	$this->loggedInUser->user_fbid;
-			
+
 				$filterChain->run();
 				
 				exit;
@@ -181,9 +217,21 @@ class Controller extends CController
 		
 //		$permission = "email,user_birthday,sms,publish_stream,read_friendlists,friends_online_presence";
 		$permission = "email,friends_online_presence";
+		if ( $this->detect->isMobile() ) {
+			
+			$redirect_uri = urlencode($this->facebook->config->canvasUrl);
+			
+			$domain = 'https://m.facebook.com/';
+			
+		}else{
+			
+			$domain = 'https://www.facebook.com/';
+			
+			$redirect_uri = urlencode($this->facebook->config->canvasPage);
+		}
 		
-		$auth_url = "https://www.facebook.com/dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".urlencode($this->facebook->config->canvasPage).'?'.$get_param;
-		
+		$auth_url = $domain."dialog/oauth?scope=".$permission."&client_id=".$this->facebook->config->appId."&redirect_uri=".$redirect_uri.'?'.$get_param;
+
 		echo("<script> top.location.href='" . $auth_url . "'</script>");
 		
 		Yii::app()->end();
@@ -214,7 +262,7 @@ class Controller extends CController
 			// check to see if this is an oAuth error:
 			if ($decoded_response->error->type == "OAuthException") {
 				// Retrieving a valid access token.
-				$this->request_oauth();
+				$this->get_auth();
 				exit;
 			}
 
@@ -224,6 +272,28 @@ class Controller extends CController
 		return $decoded_response;  // success
 	}
 
+	function get_auth_token($code) {
+		
+      		if(isset($_REQUEST['ref'])){
+        		$redirect_uri = $this->facebook->config->canvasUrl.'?ref=bookmark';
+        	}else{
+        		$redirect_uri = $this->facebook->config->canvasUrl."?gameinst_id=0";
+        	}
+        	
+            $token_url = "https://graph.facebook.com/oauth/access_token?client_id="
+                    . $this->facebook->config->appId . "&redirect_uri=".urlencode($redirect_uri)
+                    . "&client_secret=" . $this->facebook->config->appSecretId
+                    . "&code=" . $code . "&display=popup";
+                                        
+            $response = file_get_contents($token_url);
+            
+            $params = null;
+            parse_str($response, $params);
+            
+            return $params['access_token'];
+            
+	}
+	
 	// we should have access token now
 	function curl_get_file_contents($URL) {
 		$c = curl_init();

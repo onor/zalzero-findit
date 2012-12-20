@@ -114,15 +114,6 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 					$notification = '{'.$loggedInFbId.'} wants to play ZALERIO with ' . $message . '. Join your friends now!';
 					$body =$loggedInUserName.' wants to play ZALERIO with '.$message.'. <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join your friends now!</a>';
 				}
-				
-				//    $body ='<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'">Zalerio game Invitation</a>';
-				if(!$fbNotificationService->sendNotification($id, $notification, $gameId)) { // Send FB Notification
-					// In case of the error Send Email
-					if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
-						// send emails to the invited users
-					//	mail($fbEmail,'Zalerio',$body, $headers);
-					}
-				}
 
 				// if user is not active in system the insert him with status invited
 				// checking if the user is in active state in zzusers table or not. If not then we are going to insert in zzinvitre table
@@ -142,13 +133,7 @@ function getFbFriendsList($gameId,$getFbUsersInvitedData) {
 					$notification = '{'.$loggedInFbId.'} wants to rematch you in ZALERIO game. Take the challenge. Join {'.$loggedInFbId.'} and other friends now!';
 					$body =$loggedInUserName.' wants to rematch you in ZALERIO game. Take the challenge - <a href="'.$getFbCredentials->config->canvasPage.'?gameinst_id='.$gameId.'">Join '.$loggedInUserName.' and other friends now!</a>';
 				}
-				if(!$fbNotificationService->sendNotification($id, $notification, $gameId)) { // Send FB Notification
-					// In case of the error Send Email
-					if(!strstr(Yii::app()->getBaseUrl(true),"localhost")){
-						// send emails to the invited users
-						//mail($fbEmail,'Zalerio',$body, $headers);
-					}
-				}
+
 			} else {
 				// Do nothing for Now.
 			}
@@ -267,15 +252,20 @@ function remindUserOnFb($gameId,$fbUid,$UsersFbData,$checkForMessage,$loggedInUs
 			}
 		}
 		
-		$fbNotificationService = new FBNotificationService($getFbCredentials->config->appId, $getFbCredentials->config->appSecretId);
-		if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
-			// In case of the error Send Email
-				// send emails to the invited users
-				if($loggedInFbId != $fbUid) {
-					return $fbUid;
-					// mail($fbEmail,'Zalerio',$body, $headers);
-				}
-		}
+	    $fbNotificationService = new FBNotificationService($getFbCredentials->config->appId, $getFbCredentials->config->appSecretId);
+	    if($loggedInFbId != $fbUid) {
+		    if(!$fbNotificationService->sendNotification($fbUid, $notification, $gameId)) { // Send FB Notification
+					if($loggedInFbId != $fbUid) {
+						return $fbUid;
+					}else{
+						return false;
+					}
+			}else{
+				return false;
+			}
+	    }else{
+	    	return false;
+	    }
 	}
 }
 

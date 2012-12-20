@@ -321,10 +321,26 @@ jQuery(function($) {
 	
 	$('#sendrinvite').live("click", function() {
 		 var id = new Array('650715441','623504');
-		
+		 
+		 FB.ui({method: 'apprequests',
+	          message: 'You are invited to play a game of zalerio',
+	          to: '650715441,623504'
+		 	
+		 }, function(response){
+	    	
+	    	if(response ){
+	    		InviteFriends(id);
+	    		// nothing to do									    		
+	    	}else{
+	    		
+				jQuery('.wait').remove();
+				jQuery('.show_popup').remove();
+				messagePopup('Not enough players to create a game .Please select again and try.');
+				
+	    	}
+			
+	    });
 		 //	var id = new Array('100000842727950','100004066793304'); Pankaj Anupam and Abhi
-		
-		InviteFriends(id);
 	});
 
 	$('#sendinvite')
@@ -369,53 +385,27 @@ jQuery(function($) {
     		</div>');
 							jQuery('#sendinvite').attr('value', 'Sending...');
 							jQuery('#sendinvite').css('cursor', 'default');
-							
-							jQuery.ajax({
-								type : 'POST',
-								url : baseUrl + "/user/getActiveMember",
-								data : {
-									'usersID' : id
-								}
-							}).done( function(user_ids) { 
+							console.log(id);
 
-								if(user_ids != ""){
-	
-										// get the id's and send app request
-										
-										FB.ui({method: 'apprequests',
-									          message: 'You are invited to play a game of zalerio',
-									          to: user_ids
-									    }, function(response){
-									    	
-									    	if(response ){
-									    		// nothing to do									    		
-									    	}else{
-									    		// if user cancel the friend request then remove users
-									    		user_ids = user_ids.split(',');
-									    		
-									    		for( key in user_ids ){
-									    												    			
-									    			id = removeA( id, user_ids[key] );
-									    		}
-									    	}
-									    	
-											if( sizeOfObj(id) < 1){
-												
-												jQuery('.wait').remove();
-												jQuery('.show_popup').remove();
-												messagePopup('Not enough players to create a game .Please select again and try.');
-												
-											}else{
-												
-												InviteFriends(id);
-											}
-											
-									    });
-								}else{
+									// get the id's and send app request
 									
-									InviteFriends(id);	
-								}								
-							});
+									FB.ui({method: 'apprequests',
+								          message: 'You are invited to play a game of zalerio',
+								          to: id
+								    }, function(response){
+								    	
+								    	if(response ){
+								    		InviteFriends(id);
+								    		// nothing to do									    		
+								    	}else{
+								    		
+											jQuery('.wait').remove();
+											jQuery('.show_popup').remove();
+											messagePopup('Not enough players to create a game .Please select again and try.');
+											
+								    	}
+										
+								    });
 						}
 					});
 
@@ -1143,9 +1133,32 @@ try {
 jQuery(document).ready(function(){
 	
 	jQuery("#tos_link").click(function(event){
-		event.preventDefault()
+		event.preventDefault();
+		
+		$('body')
+		.append(
+				'<div class="wait"><div id="floatingBarsG">\
+		<div class="blockG" id="rotateG_01">\
+		</div>\
+		<div class="blockG" id="rotateG_02">\
+		</div>\
+		<div class="blockG" id="rotateG_03">\
+		</div>\
+		<div class="blockG" id="rotateG_04">\
+		</div>\
+		<div class="blockG" id="rotateG_05">\
+		</div>\
+		<div class="blockG" id="rotateG_06">\
+		</div>\
+		<div class="blockG" id="rotateG_07">\
+		</div>\
+		<div class="blockG" id="rotateG_08">\
+		</div>\
+		</div></div>');
+		
+		
 		$.ajax({
-			url : siteUrl + "/site/tos"
+			url : siteUrl + "/zalerio/tos"
 		}).done(function(data) {
 
 			html = '<div class="show_popup zalerio_popup"> \
@@ -1160,9 +1173,31 @@ jQuery(document).ready(function(){
 	})
 	
 	jQuery("#tos_privacy").click(function(event){
-		event.preventDefault()
+		event.preventDefault();
+		
+		$('body')
+		.append(
+				'<div class="wait"><div id="floatingBarsG">\
+		<div class="blockG" id="rotateG_01">\
+		</div>\
+		<div class="blockG" id="rotateG_02">\
+		</div>\
+		<div class="blockG" id="rotateG_03">\
+		</div>\
+		<div class="blockG" id="rotateG_04">\
+		</div>\
+		<div class="blockG" id="rotateG_05">\
+		</div>\
+		<div class="blockG" id="rotateG_06">\
+		</div>\
+		<div class="blockG" id="rotateG_07">\
+		</div>\
+		<div class="blockG" id="rotateG_08">\
+		</div>\
+		</div></div>');
+		
 		$.ajax({
-			url : siteUrl + "/site/privacypolicy"
+			url : siteUrl + "/zalerio/privacypolicy"
 		}).done(function(data) {
 			
 			html = '<div class="show_popup zalerio_popup"> \
