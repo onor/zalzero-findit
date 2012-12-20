@@ -490,7 +490,7 @@ class UserController extends Controller
 			$FBid_array = $_REQUEST['usersID'];
 
 			$user_FBids = implode('\',\'',$_REQUEST['usersID']);
-			$query = "select user_fbid from zzuser where zzuser_status = 'active' and user_fbid in ('$user_FBids')";
+			$query = "select user_fbid from zzuser where zzuser_status = 'active' and user_fbid in ('$user_FBids') LIMIT 0,2";
 			$users = Zzuser::model()->findAllBySql($query);
 
 			$activeMembers = array();
