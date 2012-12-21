@@ -18,7 +18,32 @@ if (isset($startGame) || isset($game)) {
     }
 }
 ?>
-<div draggable="false" id="active-screen">
+
+<div id='lodder' style="width:760px; height:660px; position:absolute;z-index:9999; background:-webkit-linear-gradient(top, #5353E6 0%,#0D052E 100%);">
+<img style='margin: 140px 0 0 290px; position: absolute;' src="<?php echo Yii::app()->getBaseUrl(true);?>/images/zalerio_1.2/4.ingame_ui/zalerio_logo.png" />
+<div id="floatingBarsG">
+    		<div class="blockG" id="rotateG_01">
+    		</div>
+    		<div class="blockG" id="rotateG_02">
+    		</div>
+    		<div class="blockG" id="rotateG_03">
+    		</div>
+    		<div class="blockG" id="rotateG_04">
+    		</div>
+    		<div class="blockG" id="rotateG_05">
+    		</div>
+    		<div class="blockG" id="rotateG_06">
+    		</div>
+    		<div class="blockG" id="rotateG_07">
+    		</div>
+    		<div class="blockG" id="rotateG_08">
+    		</div>
+    		</div>
+
+</div>
+
+
+<div draggable="false" style='display:none' id="active-screen">
     <div draggable="false" class="girlimg">
         <div class="topHead">
             <div class="gameLogo">

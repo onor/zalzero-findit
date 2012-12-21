@@ -1277,3 +1277,12 @@ jQuery(document).ready(function(){
 	})
 	
 })
+
+
+jQuery(document).ready(function(){
+	
+	jQuery(window).load(function(){
+		jQuery('#active-screen').css('display','');
+		jQuery('#lodder').fadeOut();
+	})
+})
