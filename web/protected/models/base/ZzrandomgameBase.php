@@ -8,7 +8,8 @@
  * @property string $user_id
  * @property string $user_fbid
  * @property boolean $status
- * @property string $time
+ * @property string $create_time
+ * @property string $update_time
  */
 class ZzrandomgameBase extends ActiveRecord
 {
@@ -41,10 +42,10 @@ class ZzrandomgameBase extends ActiveRecord
 			array('id, user_id, user_fbid', 'required'),
 			array('user_id', 'length', 'max'=>100),
 			array('user_fbid', 'length', 'max'=>150),
-			array('status, time', 'safe'),
+			array('status, create_time, update_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, user_fbid, status, time', 'safe', 'on'=>'search'),
+			array('id, user_id, user_fbid, status, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,7 +70,8 @@ class ZzrandomgameBase extends ActiveRecord
 			'user_id' => 'User',
 			'user_fbid' => 'User Fbid',
 			'status' => 'Status',
-			'time' => 'Time',
+			'create_time' => 'Create Time',
+			'update_time' => 'Update Time',
 		);
 	}
 
@@ -88,7 +90,8 @@ class ZzrandomgameBase extends ActiveRecord
 		$criteria->compare('user_id',$this->user_id,true);
 		$criteria->compare('user_fbid',$this->user_fbid,true);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('time',$this->time,true);
+		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('update_time',$this->update_time,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
