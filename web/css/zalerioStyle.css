@@ -244,7 +244,7 @@ body {
 .gameBetPanel .back_to_the_game:hover{
 	background-position:3px -139px;
 }
-.friendChallenge a{
+.friendChallenge #cheat-sheet{
      font-family: mriam;
      color: white;
      font-size: 17px;
