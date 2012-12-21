@@ -17,7 +17,7 @@ function My_OB($str, $flags)
 }
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Zalzero Game',
+	'name'=>'Zalerio Game',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
