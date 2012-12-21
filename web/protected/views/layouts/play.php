@@ -62,7 +62,7 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 //$cs->registerScriptFile('http://connect.facebook.net/en_US/all.js');
 ?>
 
-<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<title>Zalerio</title>
 <?php if($new_user == true ) {?>
 <script>
 	        jQuery(function() {
