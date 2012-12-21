@@ -320,7 +320,32 @@ jQuery(function($) {
 	}
 	
 	$('#sendrinvite').live("click", function() {
-		id = '1';
+		
+		jQuery('.footerbutton')
+		.append(
+				'<div id="floatingBarsGs" style="left:130px">\
+<div class="blockG" id="rotateG_01">\
+</div>\
+<div class="blockG" id="rotateG_02">\
+</div>\
+<div class="blockG" id="rotateG_03">\
+</div>\
+<div class="blockG" id="rotateG_04">\
+</div>\
+<div class="blockG" id="rotateG_05">\
+</div>\
+<div class="blockG" id="rotateG_06">\
+</div>\
+<div class="blockG" id="rotateG_07">\
+</div>\
+<div class="blockG" id="rotateG_08">\
+</div>\
+</div>');
+jQuery('#sendrinvite').attr('value', 'Sending...');
+jQuery('#sendrinvite').css('cursor', 'default');
+jQuery('#sendinvite').css('display', 'none');
+
+		id = '1'; // not in use function will select login user id.
 		jQuery.ajax({
 			type : 'POST',
 			url : baseUrl + "/user/waiting_users",
@@ -425,7 +450,7 @@ jQuery(function($) {
     		</div>');
 							jQuery('#sendinvite').attr('value', 'Sending...');
 							jQuery('#sendinvite').css('cursor', 'default');
-							console.log(id);
+							jQuery('#sendrinvite').css('display', 'none');
 
 									// get the id's and send app request
 									
