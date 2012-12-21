@@ -78,7 +78,7 @@ return array(
 		
 		'db'=>array(
 			'connectionString' => 'pgsql:host=localhost;port=5432;dbname=zalzero',
-			'emulatePrepare' => true,
+			//'emulatePrepare' => true,
 			'username' => 'zalzero',
 			'password' => 'Cytzmlk1',
 			'charset' => 'utf8',
