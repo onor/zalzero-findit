@@ -151,51 +151,8 @@ if (isset($startGame) || isset($game)) {
     	&copy; Copyright Zalzero Inc.<br />
     	All rights reserved.
     </div>
-</div><!---- cheat sheet block -->           
-     <div class="popup-cheatsheet">
-        <div class="pop-content" id="popup-cheatsheet">
-             <div class="figures">
-             <h3>1. Figures to find</h3>
-        <p>Each figure is hidden only once in each game</p>
-      </div>
-      <div class="jokers">
-        <h3>2. Jokers and Super jokers to find</h3>
-        <p>Joker can be hidden 1 - 6 times</p>
-        <p>Super Joker can be hidden once</p>
-      </div>
-      <div class="points-to-win">
-        <h3>3. Points to win</h3>
-        <div class="win-table">
-          <div class="tiles">
-            <h3>Tiles</h3>
-            <p>Wrongly placed tile = Minus 10 points (penalty) </p>
-            <p>Correctly placed tile = 10 points</p>
-          </div>
-          
-	 <div class="figure">
-           <h3>Figures</h3>
-            <p>Figure 0 = 200 points </p><p>Figures 1 - 9 = 100 points each</p>
-            <p>Total points will be equally shared among all players who uncover complete figure</p>
-          </div>
-          
-	  <div class="superjoker">
-            <h3>Jokers / Super Jokers</h3>
-            <p>Joker = 33 points </p>
-            <p>Super joker = 77 points</p>
-          </div>
-        <div class="bpoint">
-            <h3>Bonus Points</h3>
-            <p>Player who uncovers a figure first = 75 bonus points </p>
-          </div>
-      
-        </div>
-      </div>
-      <div class="example-grid">
-        <h3>4. Example Grid and Distribution of Figures</h3>
-      </div>
-    </div>
-  </div>
-  <!-- rating popup -->
+    
+     <!-- rating popup -->
   <div class="rating-popup"> <a href="#" class="close closesound" onClick="jQuery('.wait').remove(); jQuery('.rating-popup').css('display','none'); return false;"></a>
     <div class="rating-content">
 	<form id="rating_form" onsubmit="return false">
@@ -243,7 +200,51 @@ if (isset($startGame) || isset($game)) {
 	  </form>
     </div>
   </div>
-</ul>
+    
+</div><!---- cheat sheet block -->           
+     <div class="popup-cheatsheet">
+        <div class="pop-content" id="popup-cheatsheet">
+             <div class="figures">
+             <h3>1. Figures to find</h3>
+        <p>Each figure is hidden only once in each game</p>
+      </div>
+      <div class="jokers">
+        <h3>2. Jokers and Super jokers to find</h3>
+        <p>Joker can be hidden 1 - 6 times</p>
+        <p>Super Joker can be hidden once</p>
+      </div>
+      <div class="points-to-win">
+        <h3>3. Points to win</h3>
+        <div class="win-table">
+          <div class="tiles">
+            <h3>Tiles</h3>
+            <p>Wrongly placed tile = Minus 10 points (penalty) </p>
+            <p>Correctly placed tile = 10 points</p>
+          </div>
+          
+	 <div class="figure">
+           <h3>Figures</h3>
+            <p>Figure 0 = 200 points </p><p>Figures 1 - 9 = 100 points each</p>
+            <p>Total points will be equally shared among all players who uncover complete figure</p>
+          </div>
+          
+	  <div class="superjoker">
+            <h3>Jokers / Super Jokers</h3>
+            <p>Joker = 33 points </p>
+            <p>Super joker = 77 points</p>
+          </div>
+        <div class="bpoint">
+            <h3>Bonus Points</h3>
+            <p>Player who uncovers a figure first = 75 bonus points </p>
+          </div>
+      
+        </div>
+      </div>
+      <div class="example-grid">
+        <h3>4. Example Grid and Distribution of Figures</h3>
+      </div>
+    </div>
+  </div>
 <div style="position:absolute;left:-600px; width:200px; overflow:hidden; display:block">
 	<img src="<?php echo Yii::app()->getBaseUrl(true);?>/images/tutorial/popup_button_hover.png" />
 	<img src="<?php echo Yii::app()->getBaseUrl(true);?>/images/zalerio_1.2/7.resign/resign_basebase.png" />
