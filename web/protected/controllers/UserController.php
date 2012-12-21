@@ -554,7 +554,7 @@ class UserController extends Controller
 			//$FBid = $_REQUEST['userFBID'];
 			
 			$FBid = Yii::app()->session['fbid'];;
-			$query = "select user_fbid from zzrandomgame where status = TRUE and user_fbid != '".$FBid."' LIMIT 2 offset 0";
+			$query = "select user_fbid from zzrandomgame where status = TRUE and user_fbid != '".$FBid."' order by create_time LIMIT 2 offset 0";
 			$users = Zzrandomgame::model()->findAllBySql($query);
 
 			if($users){
