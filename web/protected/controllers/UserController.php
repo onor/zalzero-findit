@@ -581,7 +581,7 @@ class UserController extends Controller
 
 					if(!$users_exist){ 
 						$add_waiting_user = new Zzrandomgame;
-						$add_waiting_user->status = true;
+						$add_waiting_user->status = TRUE;
 						$add_waiting_user->user_id = Yii::app()->user->getId();
 						$add_waiting_user->user_fbid = $FBid;
 						$add_waiting_user->save();
@@ -593,7 +593,7 @@ class UserController extends Controller
 				
 				if(!$users_exist){
 					$add_waiting_user = new Zzrandomgame;
-					$add_waiting_user->status = true;
+					$add_waiting_user->status = TRUE;
 					$add_waiting_user->user_id = Yii::app()->user->getId();
 					$add_waiting_user->user_fbid = $FBid;
 					$add_waiting_user->save();
