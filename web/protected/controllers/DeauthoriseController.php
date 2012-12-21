@@ -17,6 +17,14 @@ class DeauthoriseController extends Controller
 			$check_for_user_existence->zzuser_status = 'invited';
 			$check_for_user_existence->save();
 			
+			$update_query = "delete from zzrandomgame where user_fbid in('".$signedRequestData["user_id"]."')";
+	
+			$connection = Yii::app()->db;
+			
+			$command = $connection->createCommand($update_query);
+			
+			if($command->execute()){}
+			
 			Yii::log($signedRequestData["user_id"], CLogger::LEVEL_ERROR, 'User leave the game: Status changed to invited ');
 		}
 		
