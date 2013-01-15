@@ -27,8 +27,8 @@ if($usersummary['last_gameinst_id'] == NULL && $usersummary['last_gameinst_id'] 
 <script type="text/javascript">
             var userLoginId = '<?php echo $userEmail;?>';
 
-            var window.gameLoadStatus = false;
-            var window.gameUnionStatus =  false;
+            var gameLoadStatus = false;
+            var gameUnionStatus =  false;
             
             var belt_array = <?php echo CJSON::encode($GLOBALS['belt_array']);?>;
             var total_games_array = <?php echo CJSON::encode($GLOBALS['total_games_array']);?>;
