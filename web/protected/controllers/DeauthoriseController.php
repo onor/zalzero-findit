@@ -35,7 +35,9 @@ class DeauthoriseController extends Controller
 	
 	public function actionUpdateinfo(){
 		
-		echo @$_REQUEST['hub.challenge'];
+		
+		
+		print_r( $_REQUEST['hub_challenge'] );
 	}
 
 	public function actionUnsubscribe()
