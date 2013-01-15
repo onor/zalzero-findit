@@ -520,7 +520,7 @@ class UserController extends Controller
 				
 					$users_FBid = explode(',', $_REQUEST['usersFBID']);
 
-					$update_query = "DELETE FROM zzrandomgame where user_fbid in('".$users_FBid[0]."','".$users_FBid[1]."')";
+					$update_query = "DELETE FROM zzrandomgame where user_fbid in('".$users_FBid[0]."')";
 
 					$connection=Yii::app()->db;
 					
@@ -536,7 +536,7 @@ class UserController extends Controller
 				
 					$users_FBid = explode(',', $_REQUEST['usersFBID']);
 					
-					$update_query = "update zzrandomgame set status = TRUE where user_fbid in('".$users_FBid[0]."','".$users_FBid[1]."')";
+					$update_query = "update zzrandomgame set status = TRUE where user_fbid in('".$users_FBid[0]."')";
 
 					$connection=Yii::app()->db;
 					
@@ -554,7 +554,7 @@ class UserController extends Controller
 			//$FBid = $_REQUEST['userFBID'];
 			
 			$FBid = Yii::app()->session['fbid'];;
-			$query = "select user_fbid from zzrandomgame where status = TRUE and user_fbid != '".$FBid."' order by create_time LIMIT 2 offset 0";
+			$query = "select user_fbid from zzrandomgame where status = TRUE and user_fbid != '".$FBid."' order by create_time LIMIT 1 offset 0";
 			$users = Zzrandomgame::model()->findAllBySql($query);
 
 			if($users){
@@ -562,12 +562,12 @@ class UserController extends Controller
 					$users_FBid[] = $user->user_fbid;
 				}
 				
-				if( sizeof($users_FBid) == 2 ){
+				if( sizeof($users_FBid) == 1 ){
 					
 					$waiting_users = implode(',',$users_FBid);
 					
 					// update user status
-					$update_query = "update zzrandomgame set status = FALSE where user_fbid in('".$users_FBid[0]."','".$users_FBid[1]."')";
+					$update_query = "update zzrandomgame set status = FALSE where user_fbid in('".$users_FBid[0]."')";
 
 					$connection=Yii::app()->db;
 					
