@@ -32,6 +32,10 @@ class DeauthoriseController extends Controller
 			Yii::log($key.'=>'.$val, CLogger::LEVEL_ERROR, 'Any category/label will work');
 		}
 	}
+	
+	public function actionUpdateinfo(){
+		
+	}
 
 	public function actionUnsubscribe()
 	{	
@@ -69,7 +73,7 @@ class DeauthoriseController extends Controller
     {
         	return array(
         			array('allow',
-        				  'actions'=>array('index','unsubscribe'),
+        				  'actions'=>array('index','unsubscribe','updateinfo'),
         				  'users'=>array('*'),
         			),
         	);
