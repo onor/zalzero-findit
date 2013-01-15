@@ -1173,9 +1173,43 @@ function getOrdinal(intNum, includeNumber) {
 							: (intNum % 10 == 3 && intNum != 13) ? "rd" : "th");
 
 };
-function rematchPastGames(ids, gameOption, gameId) {
-	var check = InviteFriends(ids, gameOption, gameId);
 
+function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
+
+
+function rematchPastGames(ids, gameOption, gameId) {
+	//loginUserFBId
+	inviteId = ids;
+	removeA(inviteId, loginUserFBId);
+
+		FB.ui({method: 'apprequests',
+	        message: 'You are invited to play a game of zalerio',
+	        to: inviteId
+	  }, function(response){
+	  	
+	  	if(response ){
+
+	  		var check = InviteFriends(ids, gameOption, gameId);
+	  		// nothing to do									    		
+	  	}else{
+	  		
+				jQuery('.wait').remove();
+				jQuery('.show_popup').remove();
+				messagePopup('Not enough players to create a game .Please select again and try.');
+				
+	  	}
+			
+	  });
+	
 	jQuery('.s_show_popup').css('display', 'none');
 	return true;
 
