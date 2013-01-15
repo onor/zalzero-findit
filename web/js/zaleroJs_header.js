@@ -1282,7 +1282,10 @@ jQuery(document).ready(function(){
 jQuery(document).ready(function(){
 	
 	jQuery(window).load(function(){
-		jQuery('#active-screen').css('display','');
-		jQuery('#lodder').fadeOut();
+		window.gameLoadStatus = true;
+		if( window.gameUnionStatus == true ){
+			jQuery('#active-screen').css('display','');
+			jQuery('#lodder').fadeOut();
+		}
 	})
 })

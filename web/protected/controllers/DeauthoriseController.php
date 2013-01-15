@@ -35,9 +35,20 @@ class DeauthoriseController extends Controller
 	
 	public function actionUpdateinfo(){
 		
-		
-		
-		print_r( $_REQUEST['hub_challenge'] );
+		if ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['hub_mode']) && $_GET['hub_mode'] == 'subscribe' )  {
+		      echo $_GET['hub_challenge'];
+		      
+		  } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		  	
+		    $post_body = file_get_contents('php://input');
+		    $obj = json_decode($post_body, true);
+		    
+		    // $obj will contain the list of fields that have changed
+		    
+		    
+		  }
+		  
+		//print_r( $_REQUEST['hub_challenge'] );
 	}
 
 	public function actionUnsubscribe()
