@@ -39,16 +39,18 @@ define ['../../helper/utils'], (utils)->
 				rematchButton = """<div class="msgbox-ok">Rematch</div>"""
 				
 				FBids = []
+				add_rematch = true
 				for index of message[gameId].PLRS
 					
 					continue  if message[gameId].PLRS[index].GSS is 5 or message[gameId].PLRS[index].GSS is 3
 					
 					FBids.push message[gameId].PLRS[index].PFB
 					
-					if gameRecords.UINFO.UI is message[gameId].PLRS[index].UI
+					if true
 						
-						if message[gameId].PLRS[index].PRE isnt 1 and FBids.length > 1
+						if message[gameId].PLRS[index].PRE isnt 1 and FBids.length > 1 and add_rematch
 							urDiv.append rematchButton
+							add_rematch = false
 						
 						urDiv.append """<div class="point">Points- #{message[gameId].PLRS[index].PSC} </div>"""
 						urDiv.append """<div class="rank #{if message[gameId].PLRS[index].PR is "1" then 'winner'}" >#{utils.playerRank(message[gameId].PLRS[index].PR)}</div>"""
