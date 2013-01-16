@@ -4,6 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="en" />
 <script type="text/javascript">
+//Load the SDK Asynchronously
+(function(d){
+    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement('script'); js.id = id; js.async = false;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    ref.parentNode.insertBefore(js, ref);
+}(document));
             var baseUrl = "<?php echo Yii::app()->request->baseUrl; ?>";
         </script>
 <link rel="shortcut icon"
@@ -126,18 +134,7 @@ Yii::app()->clientScript->registerScript(
 <?php $facebookConfig = new facebookCredetials(); ?>
 <body>
 	<div id="fb-root"></div>
-	<script>
-
-        // Load the SDK Asynchronously
-        (function(d){
-            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
-
-        
+	<script>        
         jQuery(document).ready(function($) {
             window.fbAsyncInit = function() {
                 FB.init({
