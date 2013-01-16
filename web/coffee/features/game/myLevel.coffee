@@ -47,7 +47,7 @@ define ['../../helper/utils'], (utils)->
 					
 					if gameRecords.UINFO.UI is message[gameId].PLRS[index].UI
 						
-						if message[gameId].PLRS[index].PRE isnt 1
+						if message[gameId].PLRS[index].PRE isnt 1 and FBids.length > 1
 							urDiv.append rematchButton
 						
 						urDiv.append """<div class="point">Points- #{message[gameId].PLRS[index].PSC} </div>"""

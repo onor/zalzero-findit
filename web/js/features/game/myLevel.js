@@ -44,7 +44,7 @@ define(['../../helper/utils'], function(utils) {
           }
           FBids.push(message[gameId].PLRS[index].PFB);
           if (gameRecords.UINFO.UI === message[gameId].PLRS[index].UI) {
-            if (message[gameId].PLRS[index].PRE !== 1 && FBids.length > 1 ) {
+            if (message[gameId].PLRS[index].PRE !== 1) {
               urDiv.append(rematchButton);
             }
             urDiv.append("<div class=\"point\">Points- " + message[gameId].PLRS[index].PSC + " </div>");
