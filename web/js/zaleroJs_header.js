@@ -271,6 +271,7 @@ jQuery(function($) {
 		
 		FB.ui({method: 'apprequests',
 	          message: 'You are invited to play a game of zalerio',
+	          title:'Send new game invite',
 	          to: id
 	    }, function(response){
 	    	
@@ -383,7 +384,8 @@ jQuery('#sendinvite').css('display', 'none');
 
 					// get the id's and send app request
 					FB.ui({method: 'apprequests',
-				          message: 'My Great Request',
+				          message: 'You are invited to play a game of Zalerio',
+				          title:'Send new game invite',
 				          to: user_ids
 				    }, function(response){
 
@@ -481,6 +483,7 @@ jQuery('#sendinvite').css('display', 'none');
 									
 									FB.ui({method: 'apprequests',
 								          message: 'You are invited to play a game of zalerio',
+								          title:'Send new game invite',
 								          to: id
 								    }, function(response){
 								    	
@@ -1208,6 +1211,7 @@ function rematchPastGames(ids, gameOption, gameId) {
 
 		FB.ui({method: 'apprequests',
 	        message: 'You are invited to play a game of zalerio',
+	        title:'Send new game invite',
 	        to: inviteId
 	  }, function(response){
 	  	
