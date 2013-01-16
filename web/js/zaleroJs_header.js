@@ -53,7 +53,7 @@ var InviteFriends;
 var callRematchFunction;
 var usersRecord;
 jQuery(function() {
-	facebookInit();
+	// facebookInit();
 });
 
 jQuery('#close').live('click', function() {
@@ -1335,6 +1335,9 @@ jQuery(document).ready(function(){
 jQuery(document).ready(function(){
 	
 	jQuery(window).load(function(){
+		
+		facebookInit();
+		
 		window.gameLoadStatus = true;
 		if( window.gameUnionStatus == true ){
 			jQuery('#active-screen').css('display','');
