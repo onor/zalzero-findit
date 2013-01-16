@@ -33,6 +33,9 @@ class DeauthoriseController extends Controller
 	public function actionUpdateinfo(){
 		Yii::log('call update', CLogger::LEVEL_ERROR, 'update user name');
 		
+		$b = var_export($_REQUEST);
+		Yii::log($b, CLogger::LEVEL_ERROR, 'update user name with data request');
+		
 		if ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['hub_mode']) && $_GET['hub_mode'] == 'subscribe' )  {
 		      echo $_GET['hub_challenge'];
 		      
@@ -43,9 +46,7 @@ class DeauthoriseController extends Controller
 		    
 		    $a = var_export($obj);
 		    Yii::log($a, CLogger::LEVEL_ERROR, 'update user name with data');
-		    $b = var_export($_REQUEST);
-		    Yii::log($b, CLogger::LEVEL_ERROR, 'update user name with data request');
-		    
+		    		    
 		    // $obj will contain the list of fields that have changed
 		    
 		    
