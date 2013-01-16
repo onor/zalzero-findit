@@ -26,7 +26,7 @@ if($usersummary['last_gameinst_id'] == NULL && $usersummary['last_gameinst_id'] 
 ?>
 <script type="text/javascript">
             var userLoginId = '<?php echo $userEmail;?>';
-			var loginUserFBId = '<?php echo $userId; ?>';
+			var loginUserFBId = '<?php echo Yii::app()->user->getState('user_fbid'); ?>';
             var gameLoadStatus = false;
             var gameUnionStatus =  false;
             
