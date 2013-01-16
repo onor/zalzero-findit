@@ -265,7 +265,7 @@ jQuery(function($) {
 			});
 
 	
-	callRematchFunction = function(_results,'Rematch',gameId){
+	callRematchFunction = function(_results,rematch,gameId){
 		id = _results;
 		id.splice($.inArray(loginUserFBId, id),1);
 		
