@@ -50,6 +50,7 @@ var ofbizUser = {};
 var flag_fbPullAuthorised = false;
 var oloFunctionRequests = {};
 var InviteFriends;
+var callRematchFunction;
 var usersRecord;
 jQuery(function() {
 	facebookInit();
@@ -263,6 +264,30 @@ jQuery(function($) {
 				}
 			});
 
+	
+	callRematchFunction = function(_results,'Rematch',gameId){
+		id = _results;
+		id.splice($.inArray(loginUserFBId, id),1);
+		
+		FB.ui({method: 'apprequests',
+	          message: 'You are invited to play a game of zalerio',
+	          to: id
+	    }, function(response){
+	    	
+	    	if(response ){
+	    		InviteFriends(_results,'Rematch',gameId)
+	    		// nothing to do									    		
+	    	}else{
+	    		
+				jQuery('.wait').remove();
+				jQuery('.show_popup').remove();
+				messagePopup('Not enough players to create a game .Please select again and try.');
+				
+	    	}
+			
+	    });
+	}
+	
 	InviteFriends = function(id, gameOption, gameId) {
 		var friends_id = id;
 		var fbUserData = {};
