@@ -8,9 +8,6 @@ class DeauthoriseController extends Controller
 		list($encoded_sig, $payload) = explode('.', $_REQUEST["signed_request"], 2);
 		$signedRequestData = json_decode(base64_decode(strtr($payload, '-_', '+/')), true);
 		
-
-		Yii::log($signedRequestData["user_id"], CLogger::LEVEL_ERROR, 'user leving the game');
-		
 		$check_for_user_existence = Zzuser::model()->findByAttributes( array('user_fbid'=>$signedRequestData["user_id"]) );
 		
 		if(isset($check_for_user_existence)) {
@@ -34,6 +31,7 @@ class DeauthoriseController extends Controller
 	}
 	
 	public function actionUpdateinfo(){
+		Yii::log('call update', CLogger::LEVEL_ERROR, 'update user name');
 		
 		if ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['hub_mode']) && $_GET['hub_mode'] == 'subscribe' )  {
 		      echo $_GET['hub_challenge'];
@@ -42,6 +40,9 @@ class DeauthoriseController extends Controller
 		  	
 		    $post_body = file_get_contents('php://input');
 		    $obj = json_decode($post_body, true);
+		    
+		    $a = var_export($obj);
+		    Yii::log($a, CLogger::LEVEL_ERROR, 'update user name');
 		    
 		    // $obj will contain the list of fields that have changed
 		    
