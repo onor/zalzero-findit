@@ -83,7 +83,7 @@ class Controller extends CController
 		}
 		
 		// check if safari browser
-		if( strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') || strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') ){
+		if( true ){
 			
 			// set test cookies for browser
 			setcookie("zalerio_safari_test", "1");
