@@ -518,15 +518,17 @@ class UserController extends Controller
 	function actionWaiting_users_remove(){
 			if( isset($_REQUEST['usersFBID']) ){
 				
-					$users_FBid = explode(',', $_REQUEST['usersFBID']);
+					$users_FBid = $_REQUEST['usersFBID'];
 
-					$update_query = "DELETE FROM zzrandomgame where user_fbid in('".$users_FBid[0]."')";
+					$update_query = "DELETE FROM zzrandomgame where user_fbid in('".$users_FBid."')";
 
 					$connection=Yii::app()->db;
 					
 					$command=$connection->createCommand($update_query);
 					
 					if($command->execute()){}
+					
+					Yii::log($users_FBid, CLogger::LEVEL_ERROR, 'user remove'.$users_FBid);
 			}
 	}
 	
