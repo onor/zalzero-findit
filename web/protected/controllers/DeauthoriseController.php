@@ -46,11 +46,11 @@ class DeauthoriseController extends Controller
 		    
 		    $a = var_export($obj,true);
 		    
-		    Yii::log($a, CLogger::LEVEL_ERROR, 'update user name with data');
+		    Yii::log($a, CLogger::LEVEL_ERROR, 'Complete data********************');
 		    try {
 			    $b = var_export($obj['entry'][0]['uid'],true);
 			    
-			    Yii::log($b, CLogger::LEVEL_ERROR, 'update user name with data entry');
+			    Yii::log($b, CLogger::LEVEL_ERROR, 'user id*********************');
 		    }catch (Exception $e){}   
 		    
 		    try{
@@ -67,9 +67,9 @@ class DeauthoriseController extends Controller
 				$command=$connection->createCommand($update_query);
 				
 				if($command->execute()){
-					Yii::log('data updated', CLogger::LEVEL_ERROR, 'uid'.$user_id );
+					Yii::log('data updated', CLogger::LEVEL_ERROR, '**********uid'.$user_id );
 				}else{
-					Yii::log('query fail', CLogger::LEVEL_ERROR, 'uid'.$user_id );
+					Yii::log('query fail', CLogger::LEVEL_ERROR, '##########uid'.$user_id );
 				}
 		    	
 		    }catch (Exception $e){
