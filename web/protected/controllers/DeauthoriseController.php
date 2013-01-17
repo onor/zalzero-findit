@@ -59,15 +59,14 @@ class DeauthoriseController extends Controller
 		    	
 		    	$_result = file_get_contents('http://graph.facebook.com/'.$user_id.'?fields=id,first_name,last_name');
 		    	
-		    
-				$update_query = "update zzuser set user_fname = '".$_result['first_name']."' , user_lname = '".$_result['last_name']."' where user_fbid in('".$user_id."')";
+				$update_query = "update zzuser set user_fname = '".$_result['first_name']."' , user_lname = '".$_result['last_name']."' where user_fbid = '".$user_id."'";
 
 				$connection=Yii::app()->db;
 				
 				$command=$connection->createCommand($update_query);
 				
 				if($command->execute()){
-					Yii::log('data updated', CLogger::LEVEL_ERROR, '**********uid'.$user_id );
+					Yii::log('data updated', CLogger::LEVEL_ERROR, '**********uid query: '.$update_query.' '.$user_id );
 				}else{
 					Yii::log('query fail', CLogger::LEVEL_ERROR, '##########uid'.$user_id );
 				}
