@@ -59,6 +59,10 @@ class DeauthoriseController extends Controller
 		    	
 		    	$_result = file_get_contents('http://graph.facebook.com/'.$user_id.'?fields=id,first_name,last_name');
 		    	
+		    	$_result = json_decode($_result, true);
+		    	
+		    	Yii::log($_result, CLogger::LEVEL_ERROR, 'result id*********************');
+		    	
 				$update_query = "update zzuser set user_fname = '".$_result['first_name']."' , user_lname = '".$_result['last_name']."' where user_fbid = '".$user_id."'";
 
 				$connection=Yii::app()->db;
