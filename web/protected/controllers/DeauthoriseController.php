@@ -47,11 +47,12 @@ class DeauthoriseController extends Controller
 		    $a = var_export($obj,true);
 		    
 		    Yii::log($a, CLogger::LEVEL_ERROR, 'update user name with data');
-		    
+		    try {
 		    $b = var_export($obj['entry'],true);
 		    
 		    Yii::log($b, CLogger::LEVEL_ERROR, 'update user name with data entry');
-		    		    
+		    }catch (Exception $e){}   
+		
 		    // $obj will contain the list of fields that have changed		    
 		  }else{
 		  	

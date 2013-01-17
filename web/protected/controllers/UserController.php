@@ -528,7 +528,6 @@ class UserController extends Controller
 					
 					if($command->execute()){}
 					
-					Yii::log($users_FBid, CLogger::LEVEL_ERROR, 'user remove'.$users_FBid);
 			}
 	}
 	
