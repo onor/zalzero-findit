@@ -31,28 +31,28 @@ class DeauthoriseController extends Controller
 	}
 	
 	public function actionUpdateinfo(){
-		Yii::log('call update', CLogger::LEVEL_ERROR, 'update user name');
-		
-		$b = var_export($_REQUEST,true);
-		Yii::log($b, CLogger::LEVEL_ERROR, 'update user name with data request');
-		
+
 		if ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['hub_mode']) && $_GET['hub_mode'] == 'subscribe' )  {
-		      echo $_GET['hub_challenge'];
+
+			echo $_GET['hub_challenge'];
 		      
-		  } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		  } else if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+		  	
+		  	Yii::log('post call', CLogger::LEVEL_ERROR, 'update user name with data');
 		  	
 		    $post_body = file_get_contents('php://input');
+		    
 		    $obj = json_decode($post_body, true);
 		    
 		    $a = var_export($obj,true);
+		    
 		    Yii::log($a, CLogger::LEVEL_ERROR, 'update user name with data');
 		    		    
-		    // $obj will contain the list of fields that have changed
-		    
-		    
+		    // $obj will contain the list of fields that have changed		    
+		  }else{
+		  	
+		  	Yii::log('else part', CLogger::LEVEL_ERROR, 'else part run');
 		  }
-		  
-		//print_r( $_REQUEST['hub_challenge'] );
 	}
 
 	public function actionUnsubscribe()
