@@ -61,7 +61,7 @@ class DeauthoriseController extends Controller
 		    	
 		    	$_result = json_decode($_result, true);
 		    	
-		    	Yii::log($_result, CLogger::LEVEL_ERROR, 'result id*********************');
+		    	Yii::log(var_export($_result,true), CLogger::LEVEL_ERROR, 'result id*********************');
 		    	
 				$update_query = "update zzuser set user_fname = '".$_result['first_name']."' , user_lname = '".$_result['last_name']."' where user_fbid = '".$user_id."'";
 
@@ -76,7 +76,7 @@ class DeauthoriseController extends Controller
 				}
 		    	
 		    }catch (Exception $e){
-		    	Yii::log($e, CLogger::LEVEL_ERROR, 'uid '.$user_id );
+		    	Yii::log($e, CLogger::LEVEL_ERROR, 'uid exp -'.$user_id );
 		    }
 		
 		    // $obj will contain the list of fields that have changed		    
