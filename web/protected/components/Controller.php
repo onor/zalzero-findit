@@ -55,6 +55,7 @@ class Controller extends CController
 	}
 
 	public function filterFacebook($filterChain) {
+		header('P3P: CP="CAO PSA OUR"');
 				
 		$_auth_token = false;
 		
