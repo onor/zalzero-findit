@@ -59,6 +59,11 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 			), 5000
 
 		onLoginResult = (clientID, userID, arg2) ->
+			window.gameUnionStatus = true;
+			if window.gameLoadStatus is true
+				jQuery('#active-screen').css('display','')
+				jQuery('#lodder').fadeOut()
+			
 			unionClientId = clientID
 			zzGlobals.currentUserDBId = userID
 
