@@ -3,6 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="en" />
+<?php $facebookConfig = new facebookCredetials(); ?>
+<script id="facebook-jssdk" src="https://connect.facebook.net/en_US/all.js#xfbml=1&appId=<?php echo $facebookConfig->config->appId; ?>&status=1&cookie=0"></script>
+
 <script type="text/javascript">
             var baseUrl = "<?php echo Yii::app()->request->baseUrl; ?>";
         </script>
@@ -26,7 +29,10 @@ if($usersummary['last_gameinst_id'] == NULL && $usersummary['last_gameinst_id'] 
 ?>
 <script type="text/javascript">
             var userLoginId = '<?php echo $userEmail;?>';
-           
+			var loginUserFBId = '<?php echo Yii::app()->user->getState('user_fbid'); ?>';
+            var gameLoadStatus = false;
+            var gameUnionStatus =  false;
+            
             var belt_array = <?php echo CJSON::encode($GLOBALS['belt_array']);?>;
             var total_games_array = <?php echo CJSON::encode($GLOBALS['total_games_array']);?>;
             var total_won_array = <?php echo CJSON::encode($GLOBALS['total_won_array']);?>;
@@ -62,7 +68,7 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/zzScript.js');
 //$cs->registerScriptFile('http://connect.facebook.net/en_US/all.js');
 ?>
 
-<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<title>Zalerio</title>
 <?php if($new_user == true ) {?>
 <script>
 	        jQuery(function() {
@@ -120,21 +126,9 @@ Yii::app()->clientScript->registerScript(
 );
 ?>
 </head>
-<?php $facebookConfig = new facebookCredetials(); ?>
 <body>
 	<div id="fb-root"></div>
-	<script>
-
-        // Load the SDK Asynchronously
-        (function(d){
-            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
-
-        
+<?php /*	<script>        
         jQuery(document).ready(function($) {
             window.fbAsyncInit = function() {
                 FB.init({
@@ -149,7 +143,7 @@ Yii::app()->clientScript->registerScript(
             };
         });
         
-        </script>
+        </script> */ ?>
 	<div class="container" id="page">
 
 		<!--	<div id="header">

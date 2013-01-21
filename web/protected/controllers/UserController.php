@@ -51,7 +51,7 @@ class UserController extends Controller
 						'users'=>array('*'),
 		),
 		array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','getActiveMember','friendFun'),
+						'actions'=>array('update','myGames','inviteFriend','getFbFriendsList','waiting_users_remove','waiting_users','waiting_users_status_change','getActiveMember','friendFun'),
 						'users'=>array('@'),
 		),
 		array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -514,6 +514,99 @@ class UserController extends Controller
 
 		}
 	}
+	
+	function actionWaiting_users_remove(){
+			if( isset($_REQUEST['usersFBID']) ){
+				
+					$users_FBid = $_REQUEST['usersFBID'];
+
+					$update_query = "DELETE FROM zzrandomgame where user_fbid in('".$users_FBid."')";
+
+					$connection=Yii::app()->db;
+					
+					$command=$connection->createCommand($update_query);
+					
+					if($command->execute()){}
+					
+			}
+	}
+	
+	function actionWaiting_users_status_change(){
+		
+			if( isset($_REQUEST['usersFBID']) ){
+				
+					$users_FBid = explode(',', $_REQUEST['usersFBID']);
+					
+					$update_query = "update zzrandomgame set status = TRUE where user_fbid in('".$users_FBid[0]."')";
+
+					$connection=Yii::app()->db;
+					
+					$command=$connection->createCommand($update_query);
+					
+					if($command->execute()){}
+			}
+	}
+	
+	/** find user for random game **/
+	function actionWaiting_users(){
+		//if (Yii::app()->request->isAjaxRequest) {
+			
+			$waiting_users = false;
+			//$FBid = $_REQUEST['userFBID'];
+			
+			$FBid = Yii::app()->session['fbid'];;
+			$query = "select user_fbid from zzrandomgame where status = TRUE and user_fbid != '".$FBid."' order by create_time LIMIT 1 offset 0";
+			$users = Zzrandomgame::model()->findAllBySql($query);
+
+			if($users){
+				foreach($users as $user){
+					$users_FBid[] = $user->user_fbid;
+				}
+				
+				if( sizeof($users_FBid) == 1 ){
+					
+					$waiting_users = implode(',',$users_FBid);
+					
+					// update user status
+					$update_query = "update zzrandomgame set status = FALSE where user_fbid in('".$users_FBid[0]."')";
+
+					$connection=Yii::app()->db;
+					
+					$command=$connection->createCommand($update_query);
+					
+					if($command->execute()){}
+							
+				}else{
+					$check_user = "select user_fbid from zzrandomgame where user_fbid = '".$FBid."'";
+					$users_exist = Zzrandomgame::model()->findAllBySql($check_user);
+
+					if(!$users_exist){ 
+						$add_waiting_user = new Zzrandomgame;
+						$add_waiting_user->status = TRUE;
+						$add_waiting_user->user_id = Yii::app()->user->getId();
+						$add_waiting_user->user_fbid = $FBid;
+						$add_waiting_user->save();
+					}	
+				}
+			}else{
+				$check_user = "select user_fbid from zzrandomgame where user_fbid = '".$FBid."'";
+				$users_exist = Zzrandomgame::model()->findAllBySql($check_user);
+				
+				if(!$users_exist){
+					$add_waiting_user = new Zzrandomgame;
+					$add_waiting_user->status = TRUE;
+					$add_waiting_user->user_id = Yii::app()->user->getId();
+					$add_waiting_user->user_fbid = $FBid;
+					$add_waiting_user->save();
+				}	
+			}
+
+			print_r( $waiting_users );
+			exit;
+		//}
+	}
+	
+	
 
 	/**
 	 * Get friend list

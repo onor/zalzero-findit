@@ -17,7 +17,7 @@ function My_OB($str, $flags)
 }
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Zalzero Game',
+	'name'=>'Zalerio Game',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -78,7 +78,7 @@ return array(
 		
 		'db'=>array(
 			'connectionString' => 'pgsql:host=localhost;port=5432;dbname=zalzero',
-			'emulatePrepare' => true,
+			//'emulatePrepare' => true,
 			'username' => 'zalzero',
 			'password' => 'Cytzmlk1',
 			'charset' => 'utf8',
