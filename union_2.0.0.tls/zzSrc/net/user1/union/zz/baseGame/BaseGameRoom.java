@@ -1032,6 +1032,7 @@ public class BaseGameRoom implements Module , IRoomVO{
 						playerVO.setRank(rec.getValueAsInteger(Zzgameseat.ZZGAMESEAT.GAME_RANK));
 						playerVO.setLevel(rec.getValueAsInteger(Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_LEVEL));
 						playerVO.setLastPlayed(GameUtil.getTimeElapsed(rec.getValueAsTimestamp("LAST_PLAYED")));
+						playerVO.setLastPlayedTime(rec.getValueAsTimestamp("LAST_PLAYED"));
 						if(rec.getValueAsTimestamp(Zzgameseat.ZZGAMESEAT.GAMESEAT_STATUS_UPDATE_TIME)!=null) {
 							playerVO.setGameSeatStatusUpdateTime(rec.getValueAsTimestamp(Zzgameseat.ZZGAMESEAT.GAMESEAT_STATUS_UPDATE_TIME).getTime());
 						} else {
