@@ -20,6 +20,7 @@ import net.user1.union.core.exception.ClientNotFoundException;
 import net.user1.union.core.exception.RoomNotFoundException;
 import net.user1.union.zz.baseGame.GameUtil;
 import net.user1.union.zz.baseGame.lib.vo.IUserVO;
+import net.user1.union.zz.common.model.tables.Zzgame;
 import net.user1.union.zz.common.model.tables.Zzgameinst;
 import net.user1.union.zz.common.model.tables.Zzgameseat;
 import net.user1.union.zz.common.model.tables.Zzgameusersummary;
@@ -384,8 +385,8 @@ public class ClientHelper {
 						.and(Zzzlrogameround.ZZZLROGAMEROUND.ZLGAMEROUND_TIMEEND.greaterThan(now))
 						*/
 						.and(Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_ID.equal(Zzuser.ZZUSER.USER_ID))
-				//.orderBy(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.desc());
-				.orderBy(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.cast(Integer.class).desc());
+				//.orderBy(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.cast(Integer.class).desc());
+				.orderBy(Zzgameinst.ZZGAMEINST.GAMEINST_ENDTIME.desc(), Zzgameinst.ZZGAMEINST.GAMEINST_ID.cast(Integer.class).desc()).limit(20);
 
 		List<GameVO> games = null;
 
