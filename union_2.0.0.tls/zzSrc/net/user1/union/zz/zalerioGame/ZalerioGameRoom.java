@@ -434,7 +434,9 @@ public class ZalerioGameRoom extends BaseGameRoom implements IZalerioGameRoomVO{
 								timeOfLastPlacedBetPerPlayer.put(betVO.getGameSeatId(), betVO.getBetTime());
 							}
 						} else {
-							timeOfLastPlacedBetPerPlayer.put(betVO.getGameSeatId(), betVO.getBetTime());
+							if(betVO.getBetTime() != null) {
+								timeOfLastPlacedBetPerPlayer.put(betVO.getGameSeatId(), betVO.getBetTime());
+							}
 						}
 					} else {
 						playerAddScores += GAME_INCORRECT_BET_POINTS;
