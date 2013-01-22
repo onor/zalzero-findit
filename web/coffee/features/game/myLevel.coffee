@@ -51,9 +51,9 @@ define ['../../helper/utils'], (utils)->
 						if message[gameId].PLRS[index].PRE isnt 1 and FBids.length > 1 and add_rematch
 							urDiv.append rematchButton
 							add_rematch = false
-						
-						urDiv.append """<div class="point">Points- #{message[gameId].PLRS[index].PSC} </div>"""
-						urDiv.append """<div class="rank #{if message[gameId].PLRS[index].PR is "1" then 'winner'}" >#{utils.playerRank(message[gameId].PLRS[index].PR)}</div>"""
+						if gameRecords.UINFO.UI is message[gameId].PLRS[index].UI
+							urDiv.append """<div class="point">Points- #{message[gameId].PLRS[index].PSC} </div>"""
+							urDiv.append """<div class="rank #{if message[gameId].PLRS[index].PR is "1" then 'winner'}" >#{utils.playerRank(message[gameId].PLRS[index].PR)}</div>"""
 					
 					status = (if message[gameId].PLRS[index].PON is 1 then "online" else "offline")
 					
