@@ -384,7 +384,8 @@ public class ClientHelper {
 						.and(Zzzlrogameround.ZZZLROGAMEROUND.ZLGAMEROUND_TIMEEND.greaterThan(now))
 						*/
 						.and(Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_ID.equal(Zzuser.ZZUSER.USER_ID))
-				.orderBy(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.desc());
+				//.orderBy(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.desc());
+				.orderBy(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.cast(Integer.class).desc());
 
 		List<GameVO> games = null;
 
