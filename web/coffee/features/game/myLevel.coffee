@@ -52,6 +52,7 @@ define ['../../helper/utils'], (utils)->
 							urDiv.append rematchButton
 							add_rematch = false
 						if gameRecords.UINFO.UI is message[gameId].PLRS[index].UI
+							alert(gameRecords.UINFO.UI);
 							urDiv.append """<div class="point">Points- #{message[gameId].PLRS[index].PSC} </div>"""
 							urDiv.append """<div class="rank #{if message[gameId].PLRS[index].PR is "1" then 'winner'}" >#{utils.playerRank(message[gameId].PLRS[index].PR)}</div>"""
 					
