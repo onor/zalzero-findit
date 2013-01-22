@@ -190,6 +190,7 @@ public class ClientHelper {
 					playerVO.setRank(rec.getValueAsInteger(Zzgameseat.ZZGAMESEAT.GAME_RANK));
 					playerVO.setLevel(rec.getValueAsInteger(Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_LEVEL));
 					playerVO.setLastPlayed(GameUtil.getTimeElapsed(rec.getValueAsTimestamp("LAST_PLAYED")));
+					playerVO.setLastPlayedTime(rec.getValueAsTimestamp("LAST_PLAYED"));
 					playerVO.setCurrentRoundDisp(GameUtil.getRoundName(rec.getValueAsString(Zzzlrogameround.ZZZLROGAMEROUND.ZLGAMEROUND_ROUNDNAME)));
 					
 					if(server.isAccountOnline(rec.getValueAsString(Zzuser.ZZUSER.USER_ID))) {
