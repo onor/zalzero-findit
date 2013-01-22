@@ -1,5 +1,7 @@
 package net.user1.union.zz.zalerioGame.lib.vo;
 
+import java.sql.Timestamp;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -60,6 +62,7 @@ public class PlayerVO implements Comparable<PlayerVO>{
 	private Integer rank;
 	private Integer level;
 	private String lastPlayed;
+	private Timestamp lastPlayedTime;
 	private String currentRoundDisp;
 	private Integer isOnline;
 	private Integer currentRoundPlayed;
@@ -131,6 +134,14 @@ public class PlayerVO implements Comparable<PlayerVO>{
 
 	public void setLastPlayed(String lastPlayed) {
 		this.lastPlayed = lastPlayed;
+	}
+	
+	public Timestamp getLastPlayedTime() {
+		return lastPlayedTime;
+	}
+
+	public void setLastPlayedTime(Timestamp lastPlayedTime) {
+		this.lastPlayedTime = lastPlayedTime;
 	}
 
 	public String getCurrentRoundDisp() {
@@ -441,8 +452,23 @@ public class PlayerVO implements Comparable<PlayerVO>{
 			return -1;
 		} else if(this.getScore() > o.getScore()) {
 			return 1;
+		} else {
+			// Scores are equal
+			if(this.getLastPlayedTime() != null && o.getLastPlayedTime() != null) {
+				if(this.getLastPlayedTime().before(o.getLastPlayedTime())) {
+					// One who has played first wins
+					return 1;
+				} else {
+					return -1;
+				}
+			} else if(this.getLastPlayedTime() != null) {
+				// Only he has played
+				return 1;
+			} else {
+				// Only the other player has played
+				return -1;
+			}
 		}
-		return 0;
 	}
 	
 }
