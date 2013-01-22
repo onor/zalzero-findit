@@ -232,7 +232,7 @@ function remindUserOnFb($gameId,$fbUid,$UsersFbData,$checkForMessage,$loggedInUs
                 $message = $messageToAppend;
 				if($loggedInUserStatus == 0) {
 					$notification = 'New round in ZALERIO game has started. We are waiting for you. Check out where you stand and play your next turn now!';
-					$body = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
+					$body = 'New round in ZALERIO game has started. We are waiting for you. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
 				} else {
 					$notification = $loggedInUserName .' has played round in ZALERIO and is waiting for you. Please play your turn now!';
 					$body = $loggedInUserName .' has played round in ZALERIO and is waiting for you.'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please play your turn now!.</a>';
@@ -241,14 +241,14 @@ function remindUserOnFb($gameId,$fbUid,$UsersFbData,$checkForMessage,$loggedInUs
 				$data = implode(", ",$UsersFbData);
 				if($loggedInUserStatus == 0) {
 					$notification = 'New round in ZALERIO game has started. We are waiting for you. Check out where you stand and play your next turn now!';
-					$body = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
+					$body = 'New round in ZALERIO game has started. We are waiting for you. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
 				} else {
 					$notification = $loggedInUserName .' has played round in ZALERIO and is waiting for you. Please play your turn now!';
 					$body = $loggedInUserName .' has played round in ZALERIO and is waiting for you.'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> Please play your turn now!.</a>';
 				}  
 			} else {
-				$notification = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and play your next turn now!';
-                $body = 'New round in ZALERIO game has started. We are waiting for you &#9786;. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
+				$notification = 'New round in ZALERIO game has started. We are waiting for you. Check out where you stand and play your next turn now!';
+                $body = 'New round in ZALERIO game has started. We are waiting for you. Check out where you stand and'. '<a href="'.$canvasUrl.'?gameinst_id='.$gameId.'"> play your next turn now!.</a>';
 			}
 		}
 		
