@@ -63,7 +63,7 @@ define ['../../helper/utils'], (utils)->
 					rematchPastGames(e.data.ids, e.data.gameOption, e.data.gameId)
 				)
 				if( $('.imageWrapper',urDiv).length isnt 0)
-					$("#rip_won_apg").append urDiv
+					$("#rip_won_apg").prepend urDiv
 
 		$ ->
 			$(".scroll-pane").jScrollPane
