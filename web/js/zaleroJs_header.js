@@ -430,7 +430,7 @@ jQuery('#sendinvite').css('display', 'none');
 			}else{
 	    		jQuery('.wait').remove();
 				jQuery('.show_popup').remove();
-				messagePopup('Oops enough players are not available.Please wait we will inform as soon as possible.');
+				messagePopup('Stay tuned! We are waiting for one more player to join and then you will be in the game - Thank you!');
 	    	}		
 		});
 	});
