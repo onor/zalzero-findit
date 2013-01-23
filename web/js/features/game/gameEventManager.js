@@ -51,6 +51,11 @@ define(["../../config/config", "../../config/version", "../../helper/confirmBox"
     };
     onLoginResult = function(clientID, userID, arg2) {
       var unionClientId;
+      window.gameUnionStatus = true;
+      if (window.gameLoadStatus === true) {
+        jQuery('#active-screen').css('display', '');
+        jQuery('#lodder').fadeOut();
+      }
       unionClientId = clientID;
       return zzGlobals.currentUserDBId = userID;
     };
@@ -165,7 +170,7 @@ define(["../../config/config", "../../config/version", "../../helper/confirmBox"
     window.gameChangeListener = function(e, gameInstIdTemp) {
       var flag_roundBetsDrawn, flag_roundDrawn;
       zzGlobals.inviteStatus = 0;
-      utils.log("gameInstIdTemp", gameInstIdTemp);
+      console.log("gameInstIdTemp", gameInstIdTemp);
       if (typeof e === 'string') {
         gameInstIdTemp = e;
       }

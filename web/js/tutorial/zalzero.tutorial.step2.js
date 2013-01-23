@@ -50,6 +50,7 @@ define(['zalzero.utils', 'zalzero.deffereds', 'zalzero.config'], function(utils,
   };
   _initTiles = function() {
     $('.draggableBets:first').draggable({
+      scope: "drop_tile",
       start: function(e, ui) {
         $(this).css({
           opacity: '0'
@@ -67,6 +68,7 @@ define(['zalzero.utils', 'zalzero.deffereds', 'zalzero.config'], function(utils,
       }
     });
     return $('.box-blank').droppable({
+      scope: "drop_tile",
       drop: function(e, ui) {
         ui.draggable.remove();
         ui.helper.remove();

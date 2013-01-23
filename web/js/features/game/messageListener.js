@@ -6,8 +6,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "gamePlayView"], functi
     switch (messageName) {
       case zalerioCMDListners.DECLINE_STATUS:
         if (parseInt(message) === 1) {
-          confirmBox(popupMSG.declineInvite());
-          return gamePlayView.setGameDisable();
+          return confirmBox(popupMSG.declineInvite());
         }
         break;
       case zalerioCMDListners.RIGHT_HUD:

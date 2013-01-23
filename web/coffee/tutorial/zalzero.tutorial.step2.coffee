@@ -54,6 +54,7 @@ define ['zalzero.utils', 'zalzero.deffereds', 'zalzero.config'], (utils, deffere
   
   _initTiles = () ->
     $('.draggableBets:first').draggable
+      scope:"drop_tile"
       start: (e, ui) ->
         $(@).css
           opacity: '0'
@@ -70,6 +71,7 @@ define ['zalzero.utils', 'zalzero.deffereds', 'zalzero.config'], (utils, deffere
         $ "<div class=\"draggableBetsClick tutorial-highlight\"></div>"
 
     $('.box-blank').droppable
+      scope:"drop_tile"
       drop: (e, ui) ->
         ui.draggable.remove()
         ui.helper.remove()

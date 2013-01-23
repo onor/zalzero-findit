@@ -5,7 +5,7 @@ define(['../../helper/utils'], function(utils) {
   GB_UINFO = {};
   GB_UINFO.PFN = "";
   return usersRecord = function(gameRecords) {
-    var APG, FBids, UINFO, cl, cl_up, cls, cm_fbids, cr_belt_html, gameId, gssCount, i, index, is_apg, low_next_game_arr, low_next_won_arr, message, need_game_next, need_won_next, next_belt_html, next_cls, next_level, rematchButton, seatID, status, top_level, urDiv, user_level, vertical_text;
+    var APG, FBids, UINFO, add_rematch, cl, cl_up, cls, cm_fbids, cr_belt_html, gameId, gssCount, i, index, is_apg, low_next_game_arr, low_next_won_arr, message, need_game_next, need_won_next, next_belt_html, next_cls, next_level, rematchButton, seatID, status, top_level, urDiv, user_level, vertical_text;
     $(".Mylevel", "#rip_active_rh").remove();
     try {
       message = gameRecords.RH;
@@ -38,17 +38,21 @@ define(['../../helper/utils'], function(utils) {
         urDiv.append("<div class=\"end_date\">" + message[gameId].ED + "</div>");
         rematchButton = "<div class=\"msgbox-ok\">Rematch</div>";
         FBids = [];
+        add_rematch = true;
         for (index in message[gameId].PLRS) {
           if (message[gameId].PLRS[index].GSS === 5 || message[gameId].PLRS[index].GSS === 3) {
             continue;
           }
           FBids.push(message[gameId].PLRS[index].PFB);
-          if (gameRecords.UINFO.UI === message[gameId].PLRS[index].UI) {
-            if (message[gameId].PLRS[index].PRE !== 1) {
+          if (true) {
+            if (message[gameId].PLRS[index].PRE !== 1 && FBids.length > 1 && add_rematch) {
               urDiv.append(rematchButton);
+              add_rematch = false;
             }
-            urDiv.append("<div class=\"point\">Points- " + message[gameId].PLRS[index].PSC + " </div>");
-            urDiv.append("<div class=\"rank " + (message[gameId].PLRS[index].PR === "1" ? 'winner' : void 0) + "\" >" + (utils.playerRank(message[gameId].PLRS[index].PR)) + "</div>");
+            if (gameRecords.UINFO.UI === message[gameId].PLRS[index].UI) {
+              urDiv.append("<div class=\"point\">Points- " + message[gameId].PLRS[index].PSC + " </div>");
+              urDiv.append("<div class=\"rank " + (message[gameId].PLRS[index].PR === "1" ? 'winner' : void 0) + "\" >" + (utils.playerRank(message[gameId].PLRS[index].PR)) + "</div>");
+            }
           }
           status = (message[gameId].PLRS[index].PON === 1 ? "online" : "offline");
           if (message[gameId].PLRS[index].PFB) {
@@ -63,7 +67,7 @@ define(['../../helper/utils'], function(utils) {
           return rematchPastGames(e.data.ids, e.data.gameOption, e.data.gameId);
         });
         if ($('.imageWrapper', urDiv).length !== 0) {
-          $("#rip_won_apg").append(urDiv);
+          $("#rip_won_apg").prepend(urDiv);
         }
       }
     } catch (_error) {}

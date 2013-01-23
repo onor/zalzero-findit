@@ -32,6 +32,8 @@ if($usersummary['last_gameinst_id'] == NULL && $usersummary['last_gameinst_id'] 
 			var loginUserFBId = '<?php echo Yii::app()->user->getState('user_fbid'); ?>';
             var gameLoadStatus = false;
             var gameUnionStatus =  false;
+
+            var secondArrow = '0';
             
             var belt_array = <?php echo CJSON::encode($GLOBALS['belt_array']);?>;
             var total_games_array = <?php echo CJSON::encode($GLOBALS['total_games_array']);?>;

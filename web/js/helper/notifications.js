@@ -18,6 +18,7 @@ define(["./utils"], function(utils) {
           if (responseData) {
             return FB.ui({
               method: 'apprequests',
+              title: 'Send game reminder',
               message: 'You are invited to play a game of zalerio',
               to: responseData
             }, function(response) {

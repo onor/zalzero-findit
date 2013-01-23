@@ -703,7 +703,7 @@ define(["../../helper/confirmBox", "../../helper/utils", "./myLevel", "../../con
       _results = [];
       _results.push(rematchPlayerFBID);
     }
-    InviteFriends(_results, 'Rematch', gameId);
+    callRematchFunction(_results, 'Rematch', gameId);
     jQuery('.zalerio_popup').css('display', 'none');
   };
   utils.addEventHandler(document.getElementById('rematch'), 'click', rematchCall, false);
