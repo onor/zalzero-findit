@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="en" />
 <?php $facebookConfig = new facebookCredetials(); ?>
-<script id="facebook-jssdk" src="https://connect.facebook.net/en_US/all.js#xfbml=1&appId=<?php echo $facebookConfig->config->appId; ?>&status=1&cookie=0"></script>
+<script id="facebook-jssdk" src="https://connect.facebook.net/en_US/all.js#xfbml=1&appId=<?php echo $facebookConfig->config->appId; ?>&status=1&cookie=0&frictionlessRequests=1"></script>
 
 <script type="text/javascript">
             var baseUrl = "<?php echo Yii::app()->request->baseUrl; ?>";
