@@ -576,7 +576,7 @@ define('zalzero.tutorial',['zalzero.deffereds', 'zalzero.utils', 'zalzero.tutori
   _afterTutorial = function(arg, def) {
     delete window.tutorialFlag;
     try {
-      if (window.gameInstId !== 0) {
+      if (window.gameInstId !== '0') {
         jDocument.trigger("gameChangeListener", gameInstId);
       } else {
         showFrndSelector();

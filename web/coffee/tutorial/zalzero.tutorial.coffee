@@ -44,7 +44,7 @@ define ['zalzero.deffereds','zalzero.utils', 'zalzero.tutorial.step1', 'zalzero.
   _afterTutorial = (arg, def) ->
     delete window.tutorialFlag
     try
-    	if window.gameInstId isnt 0
+    	if window.gameInstId isnt '0'
     		jDocument.trigger "gameChangeListener", gameInstId
     	else
     		showFrndSelector()
