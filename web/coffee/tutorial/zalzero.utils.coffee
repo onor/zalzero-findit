@@ -106,7 +106,8 @@ define ["zalzero.config"], (config) ->
   		$(".gameInfoPanel").css("display","block")
   		$(".gameScore").css("display","block")
   		def.reject()
-  		jDocument.trigger "gameChangeListener", ''
+  		jDocument.trigger "gameChangeListener", gameInstId
+  		$("#gameBetPanel").html('')
   		eval("tutorial = false")
   		popup.remove()
   	

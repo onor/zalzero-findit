@@ -22,11 +22,6 @@ define(['zalzero.utils', 'zalzero.config'], function(utils, config) {
     $('.gameInfoPanel').css('display', 'block');
     $('.gameScore').css('display', 'block');
     $('#tutorial-accordion').css('display', 'none');
-    if (secondArrow === '0') {
-      showFrndSelector();
-    } else {
-      showFrndSelector();
-    }
     _def.resolve();
     return true;
   };

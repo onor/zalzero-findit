@@ -25,14 +25,9 @@ define ['zalzero.utils', 'zalzero.config'], (utils, config) ->
     
     $('.finish').off 'click', _startGameButtonClick
     $('.popup-wrapper').remove()
-    $('.gameInfoPanel').css('display', 'block');
+    $('.gameInfoPanel').css('display', 'block')
     $('.gameScore').css('display', 'block');
-    $('#tutorial-accordion').css('display', 'none');
-    
-    if secondArrow is '0'
-    	showFrndSelector()
-    else
-    	showFrndSelector()
+    $('#tutorial-accordion').css('display', 'none')
     
     _def.resolve()
     

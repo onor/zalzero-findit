@@ -217,7 +217,8 @@ define('zalzero.utils',["zalzero.config"], function(config) {
         $(".gameInfoPanel").css("display", "block");
         $(".gameScore").css("display", "block");
         def.reject();
-        jDocument.trigger("gameChangeListener", '');
+        jDocument.trigger("gameChangeListener", gameInstId);
+        $("#gameBetPanel").html('');
         eval("tutorial = false");
         return popup.remove();
       });
@@ -517,11 +518,6 @@ define('zalzero.tutorial.step5',['zalzero.utils', 'zalzero.config'], function(ut
     $('.gameInfoPanel').css('display', 'block');
     $('.gameScore').css('display', 'block');
     $('#tutorial-accordion').css('display', 'none');
-    if (secondArrow === '0') {
-      showFrndSelector();
-    } else {
-      showFrndSelector();
-    }
     _def.resolve();
     return true;
   };
@@ -580,7 +576,11 @@ define('zalzero.tutorial',['zalzero.deffereds', 'zalzero.utils', 'zalzero.tutori
   _afterTutorial = function(arg, def) {
     delete window.tutorialFlag;
     try {
-      jDocument.trigger("gameChangeListener", '');
+      if (window.gameInstId !== 0) {
+        jDocument.trigger("gameChangeListener", gameInstId);
+      } else {
+        showFrndSelector();
+      }
     } catch (_error) {}
     eval("tutorial = false");
     _overlay.remove();

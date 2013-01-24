@@ -44,7 +44,11 @@ define ['zalzero.deffereds','zalzero.utils', 'zalzero.tutorial.step1', 'zalzero.
   _afterTutorial = (arg, def) ->
     delete window.tutorialFlag
     try
-    	jDocument.trigger "gameChangeListener", ''
+    	if window.gameInstId isnt 0
+    		jDocument.trigger "gameChangeListener", gameInstId
+    	else
+    		showFrndSelector()
+    	
     eval("tutorial = false")
        	
     _overlay.remove()
