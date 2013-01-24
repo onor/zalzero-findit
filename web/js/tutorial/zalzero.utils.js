@@ -112,7 +112,8 @@ define(["zalzero.config"], function(config) {
         $(".gameInfoPanel").css("display", "block");
         $(".gameScore").css("display", "block");
         def.reject();
-        jDocument.trigger("gameChangeListener", '');
+        jDocument.trigger("gameChangeListener", gameInstId);
+        $("#gameBetPanel").html('');
         eval("tutorial = false");
         return popup.remove();
       });
@@ -120,7 +121,7 @@ define(["zalzero.config"], function(config) {
     congratPopup: function(def) {
       var nowPlay, popup;
       nowPlay = 'Now let\'s play!';
-      popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations!</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button\"></div>\n</div></div>");
+      popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations!</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button finish\"></div>\n</div></div>");
       $('#active-screen').append(popup);
       popup.on('click', '.ok-button', function(e) {
         return popup.remove();

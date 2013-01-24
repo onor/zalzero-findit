@@ -106,25 +106,23 @@ define ["zalzero.config"], (config) ->
   		$(".gameInfoPanel").css("display","block")
   		$(".gameScore").css("display","block")
   		def.reject()
-  		jDocument.trigger "gameChangeListener", ''
+  		jDocument.trigger "gameChangeListener", gameInstId
+  		$("#gameBetPanel").html('')
   		eval("tutorial = false")
   		popup.remove()
   	
   congratPopup : (def) ->
   	
-  	#if parseInt(gameInstId,10) isnt 0
-  	#	nowPlay = 'Now let\'s play with'
-  	#else
   	nowPlay = 'Now let\'s play!'
   		
   	popup = $ """<div class="popup-wrapper"><div class="start-popup congratPopup"><div  class="title">Congratulations!</div>
 						<div class="details">#{config.POPUP_MESSAGE_CONGRATULATION}</div>
 						<div class="nowPlay">#{nowPlay}</div>
-						<div class="ok-button"></div>
+						<div class="ok-button finish"></div>
 				</div></div>"""
   	$('#active-screen').append popup
 	
-  	popup.on 'click', '.ok-button', (e) ->
+  	popup.on 'click', '.ok-button', (e) ->  		
   		popup.remove()
   	
   	popup

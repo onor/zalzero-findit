@@ -14,37 +14,20 @@ define ['zalzero.utils', 'zalzero.config'], (utils, config) ->
     
   _initialize = (args, def) ->
     _def = def
-    
-    utils.addHighlight '#startButton'
-    utils.addPositionRelative '#startButton'
-	
-    if window.secondArrow is '0'
-    	_arrow = utils.createArrow 190, 100, 'right'
-    else
-    	_arrow_right = utils.createArrow 540, 100, 'left'
-    	
-    	_arrow = utils.createArrow 190, 100, 'right'
-    	
-    	$('#rightHUDbackground').addClass 'tutorial-highlight'
-    
+     
     utils.congratPopup()
 	    
-    $('#startButton').on 'click', _startGameButtonClick
-    $('#rightHUDbackground').on 'click', _startGameButtonClick
+    $('.finish').on 'click', _startGameButtonClick
     
     true
   
   _finish = () ->
-    utils.removeHighlight '#startButton'
     
-    $('#startButton').off 'click', _startGameButtonClick
-    $('#rightHUDbackground').off 'click', _startGameButtonClick
-    
-    _arrow.remove()
-    
-    _arrow_right.remove()
-    
-    utils.removeHighlight '#rightHUDbackground'
+    $('.finish').off 'click', _startGameButtonClick
+    $('.popup-wrapper').remove()
+    $('.gameInfoPanel').css('display', 'block')
+    $('.gameScore').css('display', 'block');
+    $('#tutorial-accordion').css('display', 'none')
     
     _def.resolve()
     

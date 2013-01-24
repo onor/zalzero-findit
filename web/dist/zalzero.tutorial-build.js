@@ -217,7 +217,8 @@ define('zalzero.utils',["zalzero.config"], function(config) {
         $(".gameInfoPanel").css("display", "block");
         $(".gameScore").css("display", "block");
         def.reject();
-        jDocument.trigger("gameChangeListener", '');
+        jDocument.trigger("gameChangeListener", gameInstId);
+        $("#gameBetPanel").html('');
         eval("tutorial = false");
         return popup.remove();
       });
@@ -225,7 +226,7 @@ define('zalzero.utils',["zalzero.config"], function(config) {
     congratPopup: function(def) {
       var nowPlay, popup;
       nowPlay = 'Now let\'s play!';
-      popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations!</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button\"></div>\n</div></div>");
+      popup = $("<div class=\"popup-wrapper\"><div class=\"start-popup congratPopup\"><div  class=\"title\">Congratulations!</div>\n		<div class=\"details\">" + config.POPUP_MESSAGE_CONGRATULATION + "</div>\n		<div class=\"nowPlay\">" + nowPlay + "</div>\n		<div class=\"ok-button finish\"></div>\n</div></div>");
       $('#active-screen').append(popup);
       popup.on('click', '.ok-button', function(e) {
         return popup.remove();
@@ -507,27 +508,16 @@ define('zalzero.tutorial.step5',['zalzero.utils', 'zalzero.config'], function(ut
   };
   _initialize = function(args, def) {
     _def = def;
-    utils.addHighlight('#startButton');
-    utils.addPositionRelative('#startButton');
-    if (window.secondArrow === '0') {
-      _arrow = utils.createArrow(190, 100, 'right');
-    } else {
-      _arrow_right = utils.createArrow(540, 100, 'left');
-      _arrow = utils.createArrow(190, 100, 'right');
-      $('#rightHUDbackground').addClass('tutorial-highlight');
-    }
     utils.congratPopup();
-    $('#startButton').on('click', _startGameButtonClick);
-    $('#rightHUDbackground').on('click', _startGameButtonClick);
+    $('.finish').on('click', _startGameButtonClick);
     return true;
   };
   _finish = function() {
-    utils.removeHighlight('#startButton');
-    $('#startButton').off('click', _startGameButtonClick);
-    $('#rightHUDbackground').off('click', _startGameButtonClick);
-    _arrow.remove();
-    _arrow_right.remove();
-    utils.removeHighlight('#rightHUDbackground');
+    $('.finish').off('click', _startGameButtonClick);
+    $('.popup-wrapper').remove();
+    $('.gameInfoPanel').css('display', 'block');
+    $('.gameScore').css('display', 'block');
+    $('#tutorial-accordion').css('display', 'none');
     _def.resolve();
     return true;
   };
@@ -586,7 +576,11 @@ define('zalzero.tutorial',['zalzero.deffereds', 'zalzero.utils', 'zalzero.tutori
   _afterTutorial = function(arg, def) {
     delete window.tutorialFlag;
     try {
-      jDocument.trigger("gameChangeListener", '');
+      if (window.gameInstId !== '0') {
+        jDocument.trigger("gameChangeListener", gameInstId);
+      } else {
+        showFrndSelector();
+      }
     } catch (_error) {}
     eval("tutorial = false");
     _overlay.remove();

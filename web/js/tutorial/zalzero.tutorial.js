@@ -45,7 +45,11 @@ define(['zalzero.deffereds', 'zalzero.utils', 'zalzero.tutorial.step1', 'zalzero
   _afterTutorial = function(arg, def) {
     delete window.tutorialFlag;
     try {
-      jDocument.trigger("gameChangeListener", '');
+      if (window.gameInstId !== '0') {
+        jDocument.trigger("gameChangeListener", gameInstId);
+      } else {
+        showFrndSelector();
+      }
     } catch (_error) {}
     eval("tutorial = false");
     _overlay.remove();
