@@ -53,8 +53,8 @@ define(["../../config/config", "../../config/version", "../../helper/confirmBox"
       var unionClientId;
       window.gameUnionStatus = true;
       if (window.gameLoadStatus === true) {
-        jQuery('#active-screen').css('display', '');
         jQuery('#lodder').fadeOut();
+        jQuery('#active-screen').show();
       }
       unionClientId = clientID;
       return zzGlobals.currentUserDBId = userID;

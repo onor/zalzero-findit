@@ -1339,9 +1339,9 @@ jQuery(document).ready(function(){
 		facebookInit();
 		
 		window.gameLoadStatus = true;
-		if( window.gameUnionStatus == true ){
-			jQuery('#active-screen').css('display','');
+		if( window.gameUnionStatus == true ){			
 			jQuery('#lodder').fadeOut();
+			jQuery('#active-screen').show();
 		}
 	})
 })
