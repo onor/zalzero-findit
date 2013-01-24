@@ -5,7 +5,7 @@ define(['../../helper/utils'], function(utils) {
   GB_UINFO = {};
   GB_UINFO.PFN = "";
   return usersRecord = function(gameRecords) {
-    var APG, FBids, UINFO, add_rematch, cl, cl_up, cls, cm_fbids, cr_belt_html, gameId, gssCount, i, index, is_apg, low_next_game_arr, low_next_won_arr, message, need_game_next, need_won_next, next_belt_html, next_cls, next_level, rematchButton, seatID, status, top_level, urDiv, user_level, vertical_text;
+    var APG, FBids, UINFO, add_rematch, cl, cl_up, cls, cm_fbids, cr_belt_html, edlArray, edlIdArray, gameId, gameIdkey, gssCount, i, index, is_apg, low_next_game_arr, low_next_won_arr, message, need_game_next, need_won_next, next_belt_html, next_cls, next_level, rematchButton, seatID, status, top_level, urDiv, user_level, vertical_text;
     $(".Mylevel", "#rip_active_rh").remove();
     try {
       message = gameRecords.RH;
@@ -33,7 +33,17 @@ define(['../../helper/utils'], function(utils) {
     $("#rip_won_apg .Mylevel").remove();
     try {
       message = gameRecords.APG;
+      edlArray = [];
+      edlIdArray = [];
       for (gameId in message) {
+        edlIdArray.push(gameId);
+        edlArray[gameId] = message[gameId].EDL;
+      }
+      edlIdArray.sort(function(x, y) {
+        return edlArray[y] - edlArray[x];
+      });
+      for (gameIdkey in edlIdArray) {
+        gameId = edlIdArray[gameIdkey];
         urDiv = $("<div class=\"userArea Mylevel\" id=\"myLevel_apg_" + gameId + "\" ><div class=\"imgCon\"></div></div>");
         urDiv.append("<div class=\"end_date\">" + message[gameId].ED + "</div>");
         rematchButton = "<div class=\"msgbox-ok\">Rematch</div>";
@@ -67,7 +77,7 @@ define(['../../helper/utils'], function(utils) {
           return rematchPastGames(e.data.ids, e.data.gameOption, e.data.gameId);
         });
         if ($('.imageWrapper', urDiv).length !== 0) {
-          $("#rip_won_apg").prepend(urDiv);
+          $("#rip_won_apg").append(urDiv);
         }
       }
     } catch (_error) {}
