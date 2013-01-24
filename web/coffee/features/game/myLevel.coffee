@@ -31,8 +31,17 @@ define ['../../helper/utils'], (utils)->
 		
 		try
 			message = gameRecords.APG
-			
+			edlArray = []
+			edlIdArray = []
 			for gameId of message
+				edlIdArray.push gameId
+				edlArray[gameId] = message[gameId].EDL
+				
+			edlIdArray.sort (x, y) ->
+				edlArray[y] - edlArray[x]
+
+			for gameIdkey of edlIdArray
+				gameId = edlIdArray[gameIdkey]
 				urDiv = $ """<div class="userArea Mylevel" id="myLevel_apg_#{gameId}" ><div class="imgCon"></div></div>"""
 				
 				urDiv.append """<div class="end_date">#{message[gameId].ED}</div>"""
@@ -63,7 +72,7 @@ define ['../../helper/utils'], (utils)->
 					rematchPastGames(e.data.ids, e.data.gameOption, e.data.gameId)
 				)
 				if( $('.imageWrapper',urDiv).length isnt 0)
-					$("#rip_won_apg").prepend urDiv
+					$("#rip_won_apg").append urDiv
 
 		$ ->
 			$(".scroll-pane").jScrollPane

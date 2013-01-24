@@ -4000,4 +4000,7 @@ h2.round_no_r{
 
 }
 
-#lodder{ z-index:99999 !important}
+#lodder{ z-index:99999 !important; position:static !important; margin:0 auto}
+#lodder img{ position:static !important; }
+
+#lodder #floatingBarsG{ margin-top:0 }
