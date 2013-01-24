@@ -19,8 +19,9 @@
 				what sites are appropriate for you.
 			</p>
 			<ol>
-				<li><strong>Privacy Policy.</strong> The Company Privacy Policy, found at <a href='https://apps.facebook.com/zalerio/site/Privacypolicy'>Privacy Policy</a>
-					is hereby incorporated into this Agreement. Please read
+				<li> <strong>Privacy Policy.</strong> The Company Privacy Policy, found at 
+				
+				<a style="color:#000" href="http://zalerio.com/zalerio/privacypolicy"> Privacy Policy </a>					is hereby incorporated into this Agreement. Please read
 					this notice carefully for details relating to the collection, use,
 					and disclosure of your personal information.</li>
 				<li><strong>Individual Features and Services.</strong> When playing a Game, you will
