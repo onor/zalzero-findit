@@ -531,7 +531,7 @@ define('rightHudController',["../../config/config", "../../helper/notifications"
   updateRightHud = function(event, message) {
     var acceptDecline, bindClick, gameId, gameSeatID, index, status, urDiv, urDivClassName;
     for (gameId in message) {
-      if (window.gameInstId === 0) {
+      if (window.gameInstId === '0') {
         window.gameInstId = gameId;
       }
       if (document.getElementById("right_hud_" + gameId) === null) {
