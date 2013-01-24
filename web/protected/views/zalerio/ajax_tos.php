@@ -20,6 +20,7 @@
 			</p>
 			<ol>
 				<li> <strong>Privacy Policy.</strong> The Company Privacy Policy, found at 
+				
 				<a style="color:#000" href="http://zalerio.com/zalerio/privacypolicy"> Privacy Policy </a>
 					is hereby incorporated into this Agreement. Please read
 					this notice carefully for details relating to the collection, use,
