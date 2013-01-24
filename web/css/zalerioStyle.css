@@ -4004,3 +4004,6 @@ h2.round_no_r{
 #lodder img{ position:static !important; }
 
 #lodder #floatingBarsG{ margin-top:0 }
+
+#page{height: 640px;
+overflow: hidden;}
