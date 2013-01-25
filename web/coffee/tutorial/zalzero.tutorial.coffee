@@ -52,7 +52,9 @@ define ['zalzero.deffereds','zalzero.utils', 'zalzero.tutorial.step1', 'zalzero.
     	else
     		jDocument.trigger "gameChangeListener", window.gameInstId	
     eval("tutorial = false")
-       	
+    
+    $('#tutorial-accordion').accordion( "destroy" )
+    
     _overlay.remove()
     
     true
