@@ -52,7 +52,7 @@ define ["zalzero.config"], (config) ->
     arrow
   
   createPopup: (x, y, text, handler) ->
-    popup = $ "<div class=\"tutorial-popup\">#{text}<div class=\"popup-button\"></div></div>"
+    popup = $ "<div class=\"tutorial-popup\">#{text}<div class=\"popup-button\"></div></div><div id='glspane' style='position:absolute;width:100%; height:600px;z-index:1001' ></div>"
     
     popup.css
       left: "#{x}px"
