@@ -170,14 +170,13 @@ define(["../../config/config", "../../config/version", "../../helper/confirmBox"
     window.gameChangeListener = function(e, gameInstIdTemp) {
       var flag_roundBetsDrawn, flag_roundDrawn;
       zzGlobals.inviteStatus = 0;
-      console.log("gameInstIdTemp", gameInstIdTemp);
       if (typeof e === 'string') {
         gameInstIdTemp = e;
       }
       if (typeof gameInstIdTemp === 'undefined') {
-        eval("gameInstIdTemp = gameInstId");
+        gameInstIdTemp = window.gameInstId;
       } else {
-        eval("gameInstId = gameInstIdTemp");
+        window.gameInstId = gameInstIdTemp;
       }
       zzGlobals.roomVars.FR = -1;
       flag_roundDrawn = false;
