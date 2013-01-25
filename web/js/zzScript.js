@@ -2899,7 +2899,7 @@ define('gameEventManager',["../../config/config", "../../config/version", "../..
       zzGlobals.roomVars.FR = -1;
       flag_roundDrawn = false;
       flag_roundBetsDrawn = false;
-      return msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
+      return msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + window.gameInstId);
     };
     jDocument.bind("gameChangeListener", gameChangeListener);
     sendDeclinedToServer = function(e, gameSeatId, gameId) {

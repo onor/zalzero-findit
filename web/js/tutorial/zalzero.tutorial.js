@@ -45,14 +45,13 @@ define(['zalzero.deffereds', 'zalzero.utils', 'zalzero.tutorial.step1', 'zalzero
   _afterTutorial = function(arg, def) {
     delete window.tutorialFlag;
     try {
-      if (window.secondArrow !== '0') {
+      if (window.secondArrow === '0' && window.gameInstId === '0') {
+        showFrndSelector();
+      }
+      if (window.secondArrow !== '0' && window.gameInstId === '0') {
         acceptInvitation(window.secondArrow);
       } else {
-        if (window.gameInstId !== '0') {
-          jDocument.trigger("gameChangeListener", gameInstId);
-        } else {
-          showFrndSelector();
-        }
+        jDocument.trigger("gameChangeListener", window.gameInstId);
       }
     } catch (_error) {}
     eval("tutorial = false");

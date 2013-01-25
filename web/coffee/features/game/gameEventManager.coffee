@@ -154,19 +154,21 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 
 		# change game
 		window.gameChangeListener = (e,gameInstIdTemp) ->	# fire when user click on carousel to change game
+			
 			zzGlobals.inviteStatus = 0
-
-			if(typeof e is 'string')
+			
+			if typeof e is 'string'
 				gameInstIdTemp = e
+			
 			if typeof gameInstIdTemp is 'undefined'
 				gameInstIdTemp = window.gameInstId
 			else
 				window.gameInstId = gameInstIdTemp
-
+			
 			zzGlobals.roomVars.FR = -1
 			flag_roundDrawn = false
 			flag_roundBetsDrawn = false
-			msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
+			msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + window.gameInstId);
 		jDocument.bind "gameChangeListener" , gameChangeListener
 
 		sendDeclinedToServer = (e,gameSeatId,gameId) ->   # fire when user click decined

@@ -112,7 +112,7 @@ define(["zalzero.config"], function(config) {
         $(".gameInfoPanel").css("display", "block");
         $(".gameScore").css("display", "block");
         def.reject();
-        jDocument.trigger("gameChangeListener", gameInstId);
+        jDocument.trigger("gameChangeListener", window.gameInstId);
         $("#gameBetPanel").html('');
         eval("tutorial = false");
         return popup.remove();
