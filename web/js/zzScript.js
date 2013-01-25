@@ -531,8 +531,8 @@ define('rightHudController',["../../config/config", "../../helper/notifications"
   updateRightHud = function(event, message) {
     var acceptDecline, bindClick, gameId, gameSeatID, index, status, urDiv, urDivClassName;
     for (gameId in message) {
-      if (window.gameInstId === '0') {
-        window.gameInstId = gameId;
+      if (window.secondArrow === '0') {
+        window.secondArrow = gameId;
       }
       if (document.getElementById("right_hud_" + gameId) === null) {
         urDivClassName = gameInstId === gameId ? "userArea selected" : "userArea";
@@ -2888,14 +2888,13 @@ define('gameEventManager',["../../config/config", "../../config/version", "../..
     window.gameChangeListener = function(e, gameInstIdTemp) {
       var flag_roundBetsDrawn, flag_roundDrawn;
       zzGlobals.inviteStatus = 0;
-      console.log("gameInstIdTemp", gameInstIdTemp);
       if (typeof e === 'string') {
         gameInstIdTemp = e;
       }
       if (typeof gameInstIdTemp === 'undefined') {
-        eval("gameInstIdTemp = gameInstId");
+        gameInstIdTemp = window.gameInstId;
       } else {
-        eval("gameInstId = gameInstIdTemp");
+        window.gameInstId = gameInstIdTemp;
       }
       zzGlobals.roomVars.FR = -1;
       flag_roundDrawn = false;

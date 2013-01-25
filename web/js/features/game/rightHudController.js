@@ -5,8 +5,8 @@ define(["../../config/config", "../../helper/notifications"], function(config, n
   updateRightHud = function(event, message) {
     var acceptDecline, bindClick, gameId, gameSeatID, index, status, urDiv, urDivClassName;
     for (gameId in message) {
-      if (window.gameInstId === '0') {
-        window.gameInstId = gameId;
+      if (window.secondArrow === '0') {
+        window.secondArrow = gameId;
       }
       if (document.getElementById("right_hud_" + gameId) === null) {
         urDivClassName = gameInstId === gameId ? "userArea selected" : "userArea";
