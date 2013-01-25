@@ -155,13 +155,13 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 		# change game
 		window.gameChangeListener = (e,gameInstIdTemp) ->	# fire when user click on carousel to change game
 			zzGlobals.inviteStatus = 0
-			console.log("gameInstIdTemp", gameInstIdTemp)
+
 			if(typeof e is 'string')
 				gameInstIdTemp = e
 			if typeof gameInstIdTemp is 'undefined'
-				eval("gameInstIdTemp = gameInstId")
+				gameInstIdTemp = window.gameInstId
 			else
-				eval("gameInstId = gameInstIdTemp")
+				window.gameInstId = gameInstIdTemp
 
 			zzGlobals.roomVars.FR = -1
 			flag_roundDrawn = false
