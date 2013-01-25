@@ -55,6 +55,7 @@ define(['zalzero.deffereds', 'zalzero.utils', 'zalzero.tutorial.step1', 'zalzero
       }
     } catch (_error) {}
     eval("tutorial = false");
+    $('#tutorial-accordion').accordion("destroy");
     _overlay.remove();
     return true;
   };
