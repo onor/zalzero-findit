@@ -217,7 +217,7 @@ define('zalzero.utils',["zalzero.config"], function(config) {
         $(".gameInfoPanel").css("display", "block");
         $(".gameScore").css("display", "block");
         def.reject();
-        jDocument.trigger("gameChangeListener", gameInstId);
+        jDocument.trigger("gameChangeListener", window.gameInstId);
         $("#gameBetPanel").html('');
         eval("tutorial = false");
         return popup.remove();
@@ -576,14 +576,13 @@ define('zalzero.tutorial',['zalzero.deffereds', 'zalzero.utils', 'zalzero.tutori
   _afterTutorial = function(arg, def) {
     delete window.tutorialFlag;
     try {
-      if (window.secondArrow !== '0') {
+      if (window.secondArrow === '0' && window.gameInstId === '0') {
+        showFrndSelector();
+      }
+      if (window.secondArrow !== '0' && window.gameInstId === '0') {
         acceptInvitation(window.secondArrow);
       } else {
-        if (window.gameInstId !== '0') {
-          jDocument.trigger("gameChangeListener", gameInstId);
-        } else {
-          showFrndSelector();
-        }
+        jDocument.trigger("gameChangeListener", window.gameInstId);
       }
     } catch (_error) {}
     eval("tutorial = false");
