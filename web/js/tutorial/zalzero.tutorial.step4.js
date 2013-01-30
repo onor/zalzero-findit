@@ -26,7 +26,6 @@ define(['zalzero.utils', 'zalzero.config'], function(utils, config) {
     _def = def;
     utils.addHighlight('#gamewall');
     utils.addPositionRelative('#gamewall');
-    utils.activateAccordion(3);
     setTimeout(_processBets, 300);
     return true;
   };
