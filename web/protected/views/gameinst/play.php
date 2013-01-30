@@ -104,14 +104,14 @@ if (isset($startGame) || isset($game)) {
                                 <div class="accordion-content">
                                     Once you have placed all 9 tiles hit the Play button 
                                     After your friends have placed their tiles, you will see your results.	
-                                </div>
+                                </div>  <!--
                                 <h3><div class="accordion-circle">4</div><a href="#">Start a game</a></h3>
                                 <div class="accordion-content">
                                    Now your ready to play. Press the 'Start a 
                                     GAME' button to invite and  
                                     enjoy the game with 
                                     your Friends.
-                                </div>
+                                </div>  -->
 	                   <div id="tutorial-accordion-cover">
 	                   		
 	                   </div>
