@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="1,058.662" errors="16" skipped="0" tests="16" name="com.saucelabs.ZalerioTest.test.User1ResignTest">
+<testsuite failures="0" time="0.014" errors="16" skipped="0" tests="16" name="com.saucelabs.ZalerioTest.test.User1ResignTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jre7\bin"/>
-    <property name="java.vm.version" value="23.5-b02"/>
+    <property name="java.vm.version" value="23.7-b01"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
@@ -16,7 +16,7 @@
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="Z:\zalzero-findit\ZalerioTest"/>
-    <property name="java.runtime.version" value="1.7.0_09-b05"/>
+    <property name="java.runtime.version" value="1.7.0_13-b20"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jre7\lib\endorsed"/>
     <property name="os.arch" value="x86"/>
@@ -26,9 +26,9 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 8"/>
-    <property name="classworlds.conf" value="Z:\AutomationProjects\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf8227907901625196291.tmp"/>
+    <property name="classworlds.conf" value="Z:\AutomationProjects\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf6329706775209878458.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jre7\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre7/bin/client;C:/Program Files/Java/jre7/bin;C:/Program Files/Java/jre7/lib/i386;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Users\Mobicules\AppData\Roaming\npm\;E:\eclipse;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jre7\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre7/bin/client;C:/Program Files/Java/jre7/bin;C:/Program Files/Java/jre7/lib/i386;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs;Z:\apache-maven-2.2.1\bin;C:\Users\Mobicules\AppData\Roaming\npm\;E:\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="51.0"/>
     <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
@@ -47,8 +47,8 @@
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.7.0_09"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="1.7.0_13"/>
     <property name="java.ext.dirs" value="C:\Program Files\Java\jre7\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jre7\lib\resources.jar;C:\Program Files\Java\jre7\lib\rt.jar;C:\Program Files\Java\jre7\lib\sunrsasign.jar;C:\Program Files\Java\jre7\lib\jsse.jar;C:\Program Files\Java\jre7\lib\jce.jar;C:\Program Files\Java\jre7\lib\charsets.jar;C:\Program Files\Java\jre7\lib\jfr.jar;C:\Program Files\Java\jre7\classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -60,435 +60,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="145.41" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignBeforeAccept">
-    <error message="The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 854 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 2.31 seconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 11937736dd824582bab3c6a771a8275a
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 854 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 2.31 seconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 11937736dd824582bab3c6a771a8275a
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:302)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:331)
-	at org.openqa.selenium.By$ById.findElement(By.java:216)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:43)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:181)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 854 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Driver info: driver.version: EventFiringWebDriver
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:147)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:113)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:439)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:226)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:243)
-	at org.openqa.selenium.By$ById.findElement(By.java:216)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:218)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:100)
-	at $Proxy1.findElement(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:179)
-	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
-	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:1)
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-</error>
-    <system-out>SauceOnDemandSessionID=11937736dd824582bab3c6a771a8275a job-name=com.saucelabs.ZalerioTest.test.User1ResignTest.resignBeforeAccept
-</system-out>
-    <system-err>org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 49 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 1.06 seconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: a382f4acff824a6e8645f897d3a7ade8
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:302)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:371)
-	at org.openqa.selenium.By$ByClassName.findElement(By.java:371)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
-	at com.saucelabs.ZalerioTest.config.Popup.closePopup(Popup.java:14)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:70)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 49 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Driver info: driver.version: EventFiringWebDriver
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:147)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:113)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:439)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:226)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:283)
-	at org.openqa.selenium.By$ByClassName.findElement(By.java:371)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:218)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:100)
-	at $Proxy1.findElement(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:179)
-	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
-	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:1)
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-org.openqa.selenium.ElementNotVisibleException: Element must be displayed to click (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 53 milliseconds
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: RemoteWebDriver
-Command duration or timeout: 1.50 seconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: a382f4acff824a6e8645f897d3a7ade8
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:246)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
-	at com.saucelabs.ZalerioTest.config.GameUtil.closeGameEndPopUp(GameUtil.java:44)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:72)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.openqa.selenium.ElementNotVisibleException: Element must be displayed to click (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 53 milliseconds
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: RemoteWebDriver
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Driver info: driver.version: RemoteWebDriver
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:147)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:113)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:439)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:231)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:72)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:326)
-	at $Proxy2.click(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:339)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:62)
-	at $Proxy3.click(Unknown Source)
-	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:30)
-	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:1)
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-</system-err>
-  </testcase>
-  <testcase time="145.411" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignBeforeAccept">
-    <error message="The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 32 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 975 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 11937736dd824582bab3c6a771a8275a
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 32 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 975 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 11937736dd824582bab3c6a771a8275a
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:302)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:331)
-	at org.openqa.selenium.By$ById.findElement(By.java:216)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
-	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:111)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:195)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:36)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 32 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Driver info: driver.version: EventFiringWebDriver
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:147)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:113)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:439)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:226)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:243)
-	at org.openqa.selenium.By$ById.findElement(By.java:216)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:218)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:100)
-	at $Proxy1.findElement(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:179)
-	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
-	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:1)
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-</error>
-  </testcase>
-  <testcase time="225.787" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignImmediateAfterAccept">
-    <error message="Job 176096a1b64044059348c61967a7c765 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/176096a1b64044059348c61967a7c765 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 297 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 176096a1b64044059348c61967a7c765
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job 176096a1b64044059348c61967a7c765 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/176096a1b64044059348c61967a7c765 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 297 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 176096a1b64044059348c61967a7c765
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:10)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:181)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl1clicksPlay">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:144)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -523,338 +97,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
-    <system-out>SauceOnDemandSessionID=176096a1b64044059348c61967a7c765 job-name=com.saucelabs.ZalerioTest.test.User1ResignTest.resignImmediateAfterAccept
-</system-out>
-    <system-err>org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 45 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-Command duration or timeout: 6.35 seconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: b46a673a50ef4a30a9b2c59d83a46ea8
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.GeneratedConstructorAccessor10.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:302)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:371)
-	at org.openqa.selenium.By$ByClassName.findElement(By.java:371)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:294)
-	at com.saucelabs.ZalerioTest.config.Popup.closePopup(Popup.java:14)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:70)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.openqa.selenium.NoSuchElementException: The element could not be found (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 45 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: EventFiringWebDriver
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Driver info: driver.version: EventFiringWebDriver
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:147)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:113)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:439)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:226)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:283)
-	at org.openqa.selenium.By$ByClassName.findElement(By.java:371)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:218)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:100)
-	at $Proxy1.findElement(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:179)
-	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
-	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:1)
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-org.openqa.selenium.ElementNotVisibleException: Element must be displayed to click (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 58 milliseconds
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: RemoteWebDriver
-Command duration or timeout: 1.40 seconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: b46a673a50ef4a30a9b2c59d83a46ea8
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:246)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
-	at com.saucelabs.ZalerioTest.config.GameUtil.closeGameEndPopUp(GameUtil.java:44)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:72)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: org.openqa.selenium.ElementNotVisibleException: Element must be displayed to click (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 58 milliseconds
-Build info: version: &apos;2.18.0&apos;, revision: &apos;15704&apos;, time: &apos;2012-07-21 01:03:50&apos;
-System info: os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_31&apos;
-Driver info: driver.version: RemoteWebDriver
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Driver info: driver.version: RemoteWebDriver
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:147)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:113)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:439)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:231)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:72)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:326)
-	at $Proxy2.click(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:339)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:62)
-	at $Proxy3.click(Unknown Source)
-	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:30)
-	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:1)
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-</system-err>
   </testcase>
-  <testcase time="225.788" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignImmediateAfterAccept">
-    <error message="Job 176096a1b64044059348c61967a7c765 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/176096a1b64044059348c61967a7c765 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 576 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 176096a1b64044059348c61967a7c765
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job 176096a1b64044059348c61967a7c765 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/176096a1b64044059348c61967a7c765 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 576 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 176096a1b64044059348c61967a7c765
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:195)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:36)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-</error>
-  </testcase>
-  <testcase time="123.919" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl2dragsAllTiles">
-    <error message="ERROR Job 33eb3edac4a1465399e051ca9ad43215 is not in progress. It may have recently finished, or experienced an error. You can learn more at https://saucelabs.com/jobs/33eb3edac4a1465399e051ca9ad43215
-Command duration or timeout: 2.79 seconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 33eb3edac4a1465399e051ca9ad43215
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.UnsupportedCommandException">org.openqa.selenium.UnsupportedCommandException: ERROR Job 33eb3edac4a1465399e051ca9ad43215 is not in progress. It may have recently finished, or experienced an error. You can learn more at https://saucelabs.com/jobs/33eb3edac4a1465399e051ca9ad43215
-Command duration or timeout: 2.79 seconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 33eb3edac4a1465399e051ca9ad43215
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:10)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
-	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-</error>
-    <system-out>SauceOnDemandSessionID=a389d5ce795c42deb0f2b407ad2fea61 job-name=com.saucelabs.ZalerioTest.test.User1ResignTest.resignAfterPl2dragsAllTiles
-</system-out>
-  </testcase>
-  <testcase time="123.919" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl2dragsAllTiles">
-    <error message="ERROR Job 33eb3edac4a1465399e051ca9ad43215 is not in progress. It may have recently finished, or experienced an error. You can learn more at https://saucelabs.com/jobs/33eb3edac4a1465399e051ca9ad43215
-Command duration or timeout: 285 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 33eb3edac4a1465399e051ca9ad43215
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.UnsupportedCommandException">org.openqa.selenium.UnsupportedCommandException: ERROR Job 33eb3edac4a1465399e051ca9ad43215 is not in progress. It may have recently finished, or experienced an error. You can learn more at https://saucelabs.com/jobs/33eb3edac4a1465399e051ca9ad43215
-Command duration or timeout: 285 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 33eb3edac4a1465399e051ca9ad43215
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
+  <testcase time="0.001" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl1clicksPlay">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
 	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -891,30 +136,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
   </testcase>
-  <testcase time="112.502" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignRoundNWithEqualScores">
-    <error message="Job 24f4ce5d80f640dfbe097c66408207ae has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/24f4ce5d80f640dfbe097c66408207ae (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 302 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 24f4ce5d80f640dfbe097c66408207ae
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job 24f4ce5d80f640dfbe097c66408207ae has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/24f4ce5d80f640dfbe097c66408207ae (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 302 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 24f4ce5d80f640dfbe097c66408207ae
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:10)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignImmediateAfterAccept">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:144)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -949,31 +173,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
-    <system-out>SauceOnDemandSessionID=4584d87c60354f5b8d34b6c54f809e1d job-name=com.saucelabs.ZalerioTest.test.User1ResignTest.resignRoundNWithEqualScores
-</system-out>
   </testcase>
-  <testcase time="112.505" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignRoundNWithEqualScores">
-    <error message="Job 24f4ce5d80f640dfbe097c66408207ae has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/24f4ce5d80f640dfbe097c66408207ae (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 295 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 24f4ce5d80f640dfbe097c66408207ae
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job 24f4ce5d80f640dfbe097c66408207ae has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/24f4ce5d80f640dfbe097c66408207ae (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 295 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: 24f4ce5d80f640dfbe097c66408207ae
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignImmediateAfterAccept">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
 	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -1010,30 +212,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
   </testcase>
-  <testcase time="115.617" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl1clicksPlay">
-    <error message="Job c0d4adf0f60f4d0ca701ca5eef1e6bc1 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/c0d4adf0f60f4d0ca701ca5eef1e6bc1 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 366 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: c0d4adf0f60f4d0ca701ca5eef1e6bc1
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job c0d4adf0f60f4d0ca701ca5eef1e6bc1 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/c0d4adf0f60f4d0ca701ca5eef1e6bc1 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 366 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: c0d4adf0f60f4d0ca701ca5eef1e6bc1
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:10)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignRoundNWithEqualScores">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:144)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -1068,31 +249,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
-    <system-out>SauceOnDemandSessionID=e92ef093a3054094a051ad09d4cfd8ec job-name=com.saucelabs.ZalerioTest.test.User1ResignTest.resignAfterPl1clicksPlay
-</system-out>
   </testcase>
-  <testcase time="115.618" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl1clicksPlay">
-    <error message="Job c0d4adf0f60f4d0ca701ca5eef1e6bc1 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/c0d4adf0f60f4d0ca701ca5eef1e6bc1 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 297 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: c0d4adf0f60f4d0ca701ca5eef1e6bc1
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job c0d4adf0f60f4d0ca701ca5eef1e6bc1 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/c0d4adf0f60f4d0ca701ca5eef1e6bc1 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 297 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: c0d4adf0f60f4d0ca701ca5eef1e6bc1
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignRoundNWithEqualScores">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
 	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -1129,30 +288,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
   </testcase>
-  <testcase time="111.779" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl2ClicksPlay">
-    <error message="Job ed9d6651637b4f6ca10b2efd6d623dd8 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/ed9d6651637b4f6ca10b2efd6d623dd8 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 343 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: ed9d6651637b4f6ca10b2efd6d623dd8
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job ed9d6651637b4f6ca10b2efd6d623dd8 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/ed9d6651637b4f6ca10b2efd6d623dd8 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 343 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: ed9d6651637b4f6ca10b2efd6d623dd8
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:10)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterDragFewTiles">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:144)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -1187,31 +325,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
-    <system-out>SauceOnDemandSessionID=2ce5727732d34d04958d0d08a28d3b76 job-name=com.saucelabs.ZalerioTest.test.User1ResignTest.resignAfterPl2ClicksPlay
-</system-out>
   </testcase>
-  <testcase time="111.78" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl2ClicksPlay">
-    <error message="Job ed9d6651637b4f6ca10b2efd6d623dd8 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/ed9d6651637b4f6ca10b2efd6d623dd8 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 295 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: ed9d6651637b4f6ca10b2efd6d623dd8
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job ed9d6651637b4f6ca10b2efd6d623dd8 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/ed9d6651637b4f6ca10b2efd6d623dd8 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 295 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: ed9d6651637b4f6ca10b2efd6d623dd8
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterDragFewTiles">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
 	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -1248,30 +364,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
   </testcase>
-  <testcase time="111.773" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterDragFewTiles">
-    <error message="Job bd7109600f3b4cb49ad595b163051544 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/bd7109600f3b4cb49ad595b163051544 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 311 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: bd7109600f3b4cb49ad595b163051544
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job bd7109600f3b4cb49ad595b163051544 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/bd7109600f3b4cb49ad595b163051544 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 311 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: bd7109600f3b4cb49ad595b163051544
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:10)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
+  <testcase time="0.001" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl2ClicksPlay">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:144)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -1306,31 +401,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
-    <system-out>SauceOnDemandSessionID=fb8d104d6a5249aa87a3df7f00339440 job-name=com.saucelabs.ZalerioTest.test.User1ResignTest.resignAfterDragFewTiles
-</system-out>
   </testcase>
-  <testcase time="111.774" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterDragFewTiles">
-    <error message="Job bd7109600f3b4cb49ad595b163051544 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/bd7109600f3b4cb49ad595b163051544 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 298 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: bd7109600f3b4cb49ad595b163051544
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job bd7109600f3b4cb49ad595b163051544 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/bd7109600f3b4cb49ad595b163051544 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 298 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: bd7109600f3b4cb49ad595b163051544
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
+  <testcase time="0.001" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl2ClicksPlay">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
 	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -1367,30 +440,9 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
   </testcase>
-  <testcase time="111.86" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignFinalRoundAfterUser2HitsPlay">
-    <error message="Job bdfe411b07e54cdaa6df88bd0a5f8264 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/bdfe411b07e54cdaa6df88bd0a5f8264 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 302 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: bdfe411b07e54cdaa6df88bd0a5f8264
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job bdfe411b07e54cdaa6df88bd0a5f8264 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/bdfe411b07e54cdaa6df88bd0a5f8264 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 302 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: bdfe411b07e54cdaa6df88bd0a5f8264
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
-	at com.saucelabs.ZalerioTest.config.UserLogin.Olduserlogin(UserLogin.java:10)
-	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:180)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl2dragsAllTiles">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:144)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -1425,31 +477,161 @@ Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCer
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
-    <system-out>SauceOnDemandSessionID=42b2b29be2874b4f9a77752626c81ab6 job-name=com.saucelabs.ZalerioTest.test.User1ResignTest.resignFinalRoundAfterUser2HitsPlay
-</system-out>
   </testcase>
-  <testcase time="111.861" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignFinalRoundAfterUser2HitsPlay">
-    <error message="Job bdfe411b07e54cdaa6df88bd0a5f8264 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/bdfe411b07e54cdaa6df88bd0a5f8264 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 301 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: bdfe411b07e54cdaa6df88bd0a5f8264
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: Job bdfe411b07e54cdaa6df88bd0a5f8264 has already finished, and can&apos;t receive further commands. It may have experienced an error. You can learn more at https://saucelabs.com/jobs/bdfe411b07e54cdaa6df88bd0a5f8264 (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 301 milliseconds
-Build info: version: &apos;2.28.0&apos;, revision: &apos;18309&apos;, time: &apos;2012-12-11 15:53:30&apos;
-System info: os.name: &apos;Windows 8&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.2&apos;, java.version: &apos;1.7.0_09&apos;
-Session ID: bdfe411b07e54cdaa6df88bd0a5f8264
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities [{platform=XP, chrome.chromedriverVersion=23.0.1240.0, acceptSslCerts=false, javascriptEnabled=true, hasMetadata=true, browserName=chrome, rotatable=false, locationContextEnabled=false, version=22.0.1229.94, cssSelectorsEnabled=true, databaseEnabled=false, handlesAlerts=true, browserConnectionEnabled=false, webStorageEnabled=true, nativeEvents=true, chrome.nativeEvents=false, applicationCacheEnabled=false, takesScreenshot=true}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-	at java.lang.reflect.Constructor.newInstance(Unknown Source)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:187)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:533)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:276)
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignAfterPl2dragsAllTiles">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:36)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+</error>
+  </testcase>
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignFinalRoundAfterUser2HitsPlay">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:144)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+</error>
+  </testcase>
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignFinalRoundAfterUser2HitsPlay">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:36)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+</error>
+  </testcase>
+  <testcase time="0" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignBeforeAccept">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.setUp(Zalerio2UserBaseTest.java:144)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:30)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:47)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:18)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+</error>
+  </testcase>
+  <testcase time="0.001" classname="com.saucelabs.ZalerioTest.test.User1ResignTest" name="resignBeforeAccept">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.saucelabs.ZalerioTest.config.UserLogin.logout(UserLogin.java:103)
 	at com.saucelabs.ZalerioTest.test.Zalerio2UserBaseTest.tearDown(Zalerio2UserBaseTest.java:194)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

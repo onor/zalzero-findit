@@ -27,7 +27,7 @@ import com.saucelabs.ZalerioTest.config.Tiles;
 		//String emailid = "abhilashbhaduri@gmail.com";
 		//String password = "16081989";
 		//UserLogin.Olduserlogin(driver1, emailid, password);
-		int[] SelectedFriends = new int[] { 2 };
+		int[] SelectedFriends = new int[] { 4 };
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends,driver2);
 		Thread.sleep(2000);
 		WebElement bottomHUDbuttons = driver1.findElement(By
@@ -50,7 +50,7 @@ import com.saucelabs.ZalerioTest.config.Tiles;
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		 //------------------------------------------
 		 //create game by User1
-		int[] SelectedFriends = new int[] { 2 };
+		int[] SelectedFriends = new int[] { 4 };
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		
 		//---------------------------------------------
@@ -127,7 +127,7 @@ import com.saucelabs.ZalerioTest.config.Tiles;
 //		String emailid1 = "abhilashbhaduri@gmail.com";
 //		String password1 = "16081989";
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
-		int[] SelectedFriends = new int[] { 2 };
+		int[] SelectedFriends = new int[] { 4 };
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends,driver2);
 		GameUtil.closeGameEndPopUp(driver2);
 		Thread.sleep(2000);
@@ -200,7 +200,7 @@ import com.saucelabs.ZalerioTest.config.Tiles;
 //		String password1 = "16081989";
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		//-----------------------------------------------------
-		 int[] SelectedFriends = new int[] { 2 };
+		 int[] SelectedFriends = new int[] { 4 };
 		 GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 			Thread.sleep(2000);
 			//------------------------------------------------------
@@ -279,7 +279,7 @@ import com.saucelabs.ZalerioTest.config.Tiles;
 //		String emailid1 = "abhilashbhaduri@gmail.com";
 //		String password1 = "16081989";
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
-		int[] SelectedFriends = new int[] { 2 };
+		int[] SelectedFriends = new int[] { 4 };
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		//-------------------------------------------------------------------
 		// grab new GameId
@@ -355,7 +355,7 @@ import com.saucelabs.ZalerioTest.config.Tiles;
 //		String emailid1 = "abhilashbhaduri@gmail.com";
 //		String password1 = "16081989";
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
-		int[] SelectedFriends = new int[] { 2 };
+		int[] SelectedFriends = new int[] { 4 };
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		// grab new GameId
 					String NewGameId =GameFeatures.grabGameIdWithDelay(driver1, driver2);
@@ -434,7 +434,7 @@ import com.saucelabs.ZalerioTest.config.Tiles;
 //		String password1 = "16081989";
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		 //----------------------------------------------------
-		int[] SelectedFriends = new int[] { 2 };
+		int[] SelectedFriends = new int[] { 4 };
 		//create a new game
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		//--------------------------------------------------------------------
@@ -547,7 +547,7 @@ import com.saucelabs.ZalerioTest.config.Tiles;
 //		UserLogin.Olduserlogin(driver1, emailid1, password1);
 		//-------------------------------------------------------
 		//create game
-		int[] SelectedFriends = new int[] { 2 };
+		int[] SelectedFriends = new int[] { 4 };
 		GameFeatures.createGameWithDelay(driver1, SelectedFriends, driver2);
 		//----------------------------------------------
 		// grab new GameId
