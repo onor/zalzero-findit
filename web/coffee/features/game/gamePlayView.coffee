@@ -79,6 +79,7 @@ define ['drag-drop'], (dragdrop) ->
 		# Done bet class name to play button
 		setBetDonePlayButtonEl : (el) ->
 			el.href = "#Already Placed Bets"
+			el.innerHTML = 'Done'
 			el.className = 'bet_done'
 			@disablePlayBoutton el
 		
@@ -91,6 +92,7 @@ define ['drag-drop'], (dragdrop) ->
 		enablePlayBoutton : (el) ->
 			el.href = "#Place Bets"
 			el.className = ''
+			el.innerHTML = 'Play'
 			el.parentNode.setAttribute "class", ""
 		
 		getPlayButtonEl : () ->

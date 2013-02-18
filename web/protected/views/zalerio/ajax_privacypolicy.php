@@ -74,7 +74,7 @@
 							the personally identifiable information that you provide. This
 							includes usage information, such as information on when, how
 							often and for how long you use a Game, and server log data such
-							as a computer’s IP address, browser type or the webpage you were
+							as a computer's IP address, browser type or the webpage you were
 							visiting before you came to our website.</li>
 						<li><strong>Cookies.</strong> "Cookies" are small text files
 							containing a string of alphanumeric characters that are
@@ -87,7 +87,7 @@
 							browser. A persistent cookie remains after you close your browser
 							and may be used by your browser on subsequent visits to our
 							website. Persistent cookies can be removed. Please review your
-							web browser’s documentation to learn the best way to modify your
+							web browser's documentation to learn the best way to modify your
 							cookie settings.</li>
 					</ol></li>
 				<li><strong>Use & Disclosure of Information</strong> <br /> We
@@ -116,7 +116,7 @@
 							zalzero.com, the operator of such website will receive the
 							information you submit or that we collect (including information
 							received through your Social Account). Please review the website
-							operator’s privacy policy for information on how they will use
+							operator's privacy policy for information on how they will use
 							and disclose such information.</li>
 
 						<li>If you login with a Social Account, we will use the
@@ -167,7 +167,7 @@
 					beacons and other technologies in connection with targeting,
 					serving and measuring the performance of their advertising,
 					including for purposes of targeting advertisements based on a
-					user’s browsing behavior. To learn more about such practices and
+					user's browsing behavior. To learn more about such practices and
 					your choices, please visit http://www.networkadvertising.org and
 					http://www.aboutads.info.</li>
 				<li><strong>Choices Regarding Third Party Offers.</strong> To the
@@ -206,6 +206,4 @@
 		
 
 		</div>
-		<a class="button" href="<?php echo Yii::app()->baseUrl ?>"> Play Game
-		</a>
 	</div>

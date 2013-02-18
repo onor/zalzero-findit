@@ -38,10 +38,6 @@ class SiteController extends Controller
 						'actions'=>array('index','error','login','contact','user','fblogin'),
 						'users'=>array('*'),
 				),
-				array('allow',  // allow all users to perform 'index' and 'view' actions
-						'actions'=>array('privacypolicy','tos'),
-						'users'=>array('@'),
-				),
 				array('deny',  // deny all users
 						'users'=>array('*'),
 				),
@@ -235,27 +231,6 @@ class SiteController extends Controller
 		}
 	}
 
-	
-	public function actionPrivacypolicy(){
-		$this->layout = false;
-		if(Yii::app()->request->isAjaxRequest){
-			$this->render('ajax_privacypolicy');
-		}else{
-			$this->render('privacypolicy');
-		}
-		exit;
-	}
-	
-	public function actiontos(){
-		$this->layout = false;
-		if(Yii::app()->request->isAjaxRequest){
-			$this->render('ajax_tos');
-		}else{
-			$this->render('tos');
-		}
-		
-		exit;
-	}
 	
 	/**
 	 * Logs out the current user and redirect to homepage.

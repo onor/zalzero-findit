@@ -334,6 +334,7 @@ public class ZalerioGameRoom extends BaseGameRoom implements IZalerioGameRoomVO{
 
 			//Added to have the time of the last bet placed to complete a figure
 			Map<String, Map<String, Timestamp>> timeOfLastPlacedBetPerPlayerPerFigure = new HashMap<String, Map<String, Timestamp>>();
+			Map<String, Timestamp> timeOfLastPlacedBetPerPlayer = new HashMap<String, Timestamp>();
 			if(results != null){
 				
 				for(Record rec:results){
@@ -424,6 +425,18 @@ public class ZalerioGameRoom extends BaseGameRoom implements IZalerioGameRoomVO{
 							Map<String, Timestamp> tileBetTSMap = new HashMap<String, Timestamp>();
 							tileBetTSMap.put(currentTileFigure, betVO.getBetTime());
 							timeOfLastPlacedBetPerPlayerPerFigure.put(betVO.getGameSeatId(), tileBetTSMap);
+						}
+						
+						// To store last placed time for each player
+						if(timeOfLastPlacedBetPerPlayer.containsKey(betVO.getGameSeatId())) {
+							if(timeOfLastPlacedBetPerPlayer.get(betVO.getGameSeatId()).before(betVO.getBetTime())) {
+								// If there is a bet time that is after the stored then update
+								timeOfLastPlacedBetPerPlayer.put(betVO.getGameSeatId(), betVO.getBetTime());
+							}
+						} else {
+							if(betVO.getBetTime() != null) {
+								timeOfLastPlacedBetPerPlayer.put(betVO.getGameSeatId(), betVO.getBetTime());
+							}
 						}
 					} else {
 						playerAddScores += GAME_INCORRECT_BET_POINTS;
@@ -534,6 +547,7 @@ public class ZalerioGameRoom extends BaseGameRoom implements IZalerioGameRoomVO{
 				PlayerVO playerVO = allPlayersMap.get(playerSeatId);
 				if(playerVO != null) {
 					playerVO.setScore(playerScoreInt);
+					playerVO.setLastPlayedTime(timeOfLastPlacedBetPerPlayer.get(playerSeatId));
 				}
 				
 				//Updating Score per Seat per round

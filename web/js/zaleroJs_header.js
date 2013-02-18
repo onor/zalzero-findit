@@ -50,9 +50,10 @@ var ofbizUser = {};
 var flag_fbPullAuthorised = false;
 var oloFunctionRequests = {};
 var InviteFriends;
+var callRematchFunction;
 var usersRecord;
 jQuery(function() {
-	facebookInit();
+	// facebookInit();
 });
 
 jQuery('#close').live('click', function() {
@@ -263,6 +264,31 @@ jQuery(function($) {
 				}
 			});
 
+	
+	callRematchFunction = function(_results,rematch,gameId){
+		id = _results;
+		id.splice($.inArray(loginUserFBId, id),1);
+		
+		FB.ui({method: 'apprequests',
+	          message: 'You are invited to play a game of zalerio',
+	          title:'Send new game invite',
+	          to: id
+	    }, function(response){
+	    	
+	    	if(response ){
+	    		InviteFriends(_results,'Rematch',gameId)
+	    		// nothing to do									    		
+	    	}else{
+	    		
+				jQuery('.wait').remove();
+				jQuery('.show_popup').remove();
+				messagePopup('Not enough players to create a game .Please select again and try.');
+				
+	    	}
+			
+	    });
+	}
+	
 	InviteFriends = function(id, gameOption, gameId) {
 		var friends_id = id;
 		var fbUserData = {};
@@ -320,24 +346,93 @@ jQuery(function($) {
 	}
 	
 	$('#sendrinvite').live("click", function() {
-		var id = new Array();
-		$('.friendlist .rep .status').each(function() {
-			id.push($(this).val());
-		});
-		var arr = []
-		while (arr.length < 5 && arr.length < id.length) {
-			var randomnumber = Math.ceil(Math.random() * id.length - 1)
-			var found = false;
-			for ( var i = 0; i < arr.length; i++) {
-				if (arr[i] == id[randomnumber]) {
-					found = true;
-					break
-				}
+		
+		jQuery('.footerbutton')
+		.append(
+				'<div id="floatingBarsGs" style="left:130px">\
+<div class="blockG" id="rotateG_01">\
+</div>\
+<div class="blockG" id="rotateG_02">\
+</div>\
+<div class="blockG" id="rotateG_03">\
+</div>\
+<div class="blockG" id="rotateG_04">\
+</div>\
+<div class="blockG" id="rotateG_05">\
+</div>\
+<div class="blockG" id="rotateG_06">\
+</div>\
+<div class="blockG" id="rotateG_07">\
+</div>\
+<div class="blockG" id="rotateG_08">\
+</div>\
+</div>');
+jQuery('#sendrinvite').attr('value', 'Sending...');
+jQuery('#sendrinvite').css('cursor', 'default');
+jQuery('#sendinvite').css('display', 'none');
+
+		id = '1'; // not in use function will select login user id.
+		jQuery.ajax({
+			type : 'POST',
+			url : baseUrl + "/user/waiting_users",
+			data : {
+				'userFBID' : id
 			}
-			if (!found)
-				arr[arr.length] = id[randomnumber];
-		}
-		InviteFriends(arr);
+		}).done( function(user_ids) { 
+
+			if(user_ids != "" && user_ids != false ){
+
+					// get the id's and send app request
+					FB.ui({method: 'apprequests',
+				          message: 'You are invited to play a game of Zalerio',
+				          title:'Send new game invite',
+				          to: user_ids
+				    }, function(response){
+
+				    	if(response ){
+				    		//sizeOfObj(response)
+				    		//remove usr
+				    		//if(typeof response->to != 'undefined'){
+				    			InviteFriends(user_ids);
+				    			
+				    			// remove users
+				    			
+				    			jQuery.ajax({
+									type : 'POST',
+									url : baseUrl + "/user/waiting_users_remove",
+									data : {
+										'usersFBID' : user_ids
+									}
+								}).done(function(data) {})
+				    			
+				    			
+				    		//}else{
+				    			// change usr status
+				    		//}
+				    			
+				    	}else{
+				    		jQuery('.wait').remove();
+							jQuery('.show_popup').remove();
+							messagePopup('Please select a friend.');
+							
+							// change usr status
+							
+							jQuery.ajax({
+								type : 'POST',
+								url : baseUrl + "/user/waiting_users_status_change",
+								data : {
+									'usersFBID' : user_ids
+								}
+							}).done(function(data) {})
+							
+				    	}
+				    });
+			}else{
+	    		jQuery('.wait').remove();
+				jQuery('.show_popup').remove();
+				messagePopup('Stay tuned! We are waiting for one more player to join and then you will be in the game - Thank you!');
+	    	}		
+		});
 	});
 
 	$('#sendinvite')
@@ -354,7 +449,7 @@ jQuery(function($) {
 						if (id.length == 0) {
 							messagePopup('Please select a friend.');
 						} else if (id.length > 4) {
-							messagePopup('Please select max upto 4 friends.');
+							messagePopup('Please select up to 4 friends.');
 						} else {
 							if (jQuery('#sendinvite').attr('value') == 'Sending...') {
 								return;
@@ -380,56 +475,30 @@ jQuery(function($) {
     		<div class="blockG" id="rotateG_08">\
     		</div>\
     		</div>');
-
 							jQuery('#sendinvite').attr('value', 'Sending...');
 							jQuery('#sendinvite').css('cursor', 'default');
-							
-							jQuery.ajax({
-								type : 'POST',
-								url : baseUrl + "/user/getActiveMember",
-								data : {
-									'usersID' : id
-								}
-							}).done( function(user_ids) { 
+							jQuery('#sendrinvite').css('display', 'none');
 
-								if(user_ids != ""){
-	
-										// get the id's and send app request
-										
-										FB.ui({method: 'apprequests',
-									          message: 'You are invited to play a game of zalerio',
-									          to: user_ids
-									    }, function(response){
-									    	
-									    	if(response ){
-									    		// nothing to do									    		
-									    	}else{
-									    		// if user cancel the friend request then remove users
-									    		user_ids = user_ids.split(',');
-									    		
-									    		for( key in user_ids ){
-									    												    			
-									    			id = removeA( id, user_ids[key] );
-									    		}
-									    	}
-									    	
-											if( sizeOfObj(id) < 1){
-												
-												jQuery('.wait').remove();
-												jQuery('.show_popup').remove();
-												messagePopup('Not enough players to create a game .Please select again and try.');
-												
-											}else{
-												
-												InviteFriends(id);
-											}
-											
-									    });
-								}else{
+									// get the id's and send app request
 									
-									InviteFriends(id);	
-								}								
-							});
+									FB.ui({method: 'apprequests',
+								          message: 'You are invited to play a game of zalerio',
+								          title:'Send new game invite',
+								          to: id
+								    }, function(response){
+								    	
+								    	if(response ){
+								    		InviteFriends(id);
+								    		// nothing to do									    		
+								    	}else{
+								    		
+											jQuery('.wait').remove();
+											jQuery('.show_popup').remove();
+											messagePopup('Not enough players to create a game .Please select again and try.');
+											
+								    	}
+										
+								    });
 						}
 					});
 
@@ -1132,9 +1201,34 @@ function getOrdinal(intNum, includeNumber) {
 							: (intNum % 10 == 3 && intNum != 13) ? "rd" : "th");
 
 };
-function rematchPastGames(ids, gameOption, gameId) {
-	var check = InviteFriends(ids, gameOption, gameId);
 
+
+function rematchPastGames(ids, gameOption, gameId) {
+	//loginUserFBId
+	inviteId = ids;
+
+	inviteId.splice($.inArray(loginUserFBId, inviteId),1);
+
+		FB.ui({method: 'apprequests',
+	        message: 'You are invited to play a game of zalerio',
+	        title:'Send new game invite',
+	        to: inviteId
+	  }, function(response){
+	  	
+	  	if(response ){
+
+	  		var check = InviteFriends(ids, gameOption, gameId);
+	  		// nothing to do									    		
+	  	}else{
+	  		
+				jQuery('.wait').remove();
+				jQuery('.show_popup').remove();
+				messagePopup('Not enough players to create a game .Please select again and try.');
+				
+	  	}
+			
+	  });
+	
 	jQuery('.s_show_popup').css('display', 'none');
 	return true;
 
@@ -1157,9 +1251,32 @@ try {
 jQuery(document).ready(function(){
 	
 	jQuery("#tos_link").click(function(event){
-		event.preventDefault()
+		event.preventDefault();
+		
+		$('body')
+		.append(
+				'<div class="wait"><div id="floatingBarsG">\
+		<div class="blockG" id="rotateG_01">\
+		</div>\
+		<div class="blockG" id="rotateG_02">\
+		</div>\
+		<div class="blockG" id="rotateG_03">\
+		</div>\
+		<div class="blockG" id="rotateG_04">\
+		</div>\
+		<div class="blockG" id="rotateG_05">\
+		</div>\
+		<div class="blockG" id="rotateG_06">\
+		</div>\
+		<div class="blockG" id="rotateG_07">\
+		</div>\
+		<div class="blockG" id="rotateG_08">\
+		</div>\
+		</div></div>');
+		
+		
 		$.ajax({
-			url : siteUrl + "/site/tos"
+			url : siteUrl + "/zalerio/tos"
 		}).done(function(data) {
 
 			html = '<div class="show_popup zalerio_popup"> \
@@ -1174,9 +1291,31 @@ jQuery(document).ready(function(){
 	})
 	
 	jQuery("#tos_privacy").click(function(event){
-		event.preventDefault()
+		event.preventDefault();
+		
+		$('body')
+		.append(
+				'<div class="wait"><div id="floatingBarsG">\
+		<div class="blockG" id="rotateG_01">\
+		</div>\
+		<div class="blockG" id="rotateG_02">\
+		</div>\
+		<div class="blockG" id="rotateG_03">\
+		</div>\
+		<div class="blockG" id="rotateG_04">\
+		</div>\
+		<div class="blockG" id="rotateG_05">\
+		</div>\
+		<div class="blockG" id="rotateG_06">\
+		</div>\
+		<div class="blockG" id="rotateG_07">\
+		</div>\
+		<div class="blockG" id="rotateG_08">\
+		</div>\
+		</div></div>');
+		
 		$.ajax({
-			url : siteUrl + "/site/privacypolicy"
+			url : siteUrl + "/zalerio/privacypolicy"
 		}).done(function(data) {
 			
 			html = '<div class="show_popup zalerio_popup"> \
@@ -1190,4 +1329,19 @@ jQuery(document).ready(function(){
 		});
 	})
 	
+})
+
+
+jQuery(document).ready(function(){
+	
+	jQuery(window).load(function(){
+		
+		facebookInit();
+		
+		window.gameLoadStatus = true;
+		if( window.gameUnionStatus == true ){			
+			jQuery('#lodder').fadeOut();
+			jQuery('#active-screen').show();
+		}
+	})
 })

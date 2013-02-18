@@ -5,6 +5,8 @@ define ['zalzero.utils', 'zalzero.config'], (utils, config) ->
   
   _arrow = null
   
+  _arrow_right = null
+  
   _startGameButtonClick = (e) ->
     _finish()
     
@@ -12,27 +14,20 @@ define ['zalzero.utils', 'zalzero.config'], (utils, config) ->
     
   _initialize = (args, def) ->
     _def = def
-    
-    utils.addHighlight '#startButton'
-    utils.addPositionRelative '#startButton'
-	
-    #if parseInt(gameInstId,10) is 0
-    _arrow = utils.createArrow 190, 100, 'right'
-    #else
-    #	_arrow = utils.createArrow 190, 400, 'left'
-    
+     
     utils.congratPopup()
 	    
-    $('#startButton').on 'click', _startGameButtonClick
+    $('.finish').on 'click', _startGameButtonClick
     
     true
   
   _finish = () ->
-    utils.removeHighlight '#startButton'
     
-    $('#startButton').off 'click', _startGameButtonClick
-    
-    _arrow.remove()
+    $('.finish').off 'click', _startGameButtonClick
+    $('.popup-wrapper').remove()
+    $('.gameInfoPanel').css('display', 'block')
+    $('.gameScore').css('display', 'block');
+    $('#tutorial-accordion').css('display', 'none')
     
     _def.resolve()
     

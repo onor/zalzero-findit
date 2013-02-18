@@ -631,7 +631,7 @@ define ["../../helper/confirmBox","../../helper/utils","./myLevel","../../config
 	  	else
 	  		_results = []
 	  		_results.push(rematchPlayerFBID)
-	  	InviteFriends(_results,'Rematch',gameId)
+	  	callRematchFunction(_results,'Rematch',gameId)
 	  	jQuery('.zalerio_popup').css('display','none')
 	  	return
 	
