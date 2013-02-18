@@ -44,9 +44,17 @@ define ['zalzero.deffereds','zalzero.utils', 'zalzero.tutorial.step1', 'zalzero.
   _afterTutorial = (arg, def) ->
     delete window.tutorialFlag
     try
-    	jDocument.trigger "gameChangeListener", ''
+    	if window.secondArrow is '0' and window.gameInstId is '0'
+    		showFrndSelector()
+
+    	if window.secondArrow isnt '0' and window.gameInstId is '0'
+    		acceptInvitation window.secondArrow
+    	else
+    		jDocument.trigger "gameChangeListener", window.gameInstId	
     eval("tutorial = false")
-       	
+    
+    $('#tutorial-accordion').accordion( "destroy" )
+    
     _overlay.remove()
     
     true

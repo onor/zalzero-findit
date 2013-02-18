@@ -28,7 +28,7 @@ define ['zalzero.utils', 'zalzero.config'], (utils, config) ->
     utils.addHighlight '#gamewall'
     utils.addPositionRelative '#gamewall'
     
-    utils.activateAccordion 3
+    #utils.activateAccordion 3
     
     setTimeout _processBets, 300
     

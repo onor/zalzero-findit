@@ -141,19 +141,21 @@ body {
     line-height: 62px !important;
 }
 .bottomHUDbuttons li.bottomHUDbuttons-play-gray .bet_done{
-	background-position:-6px -208px !important;
+	background-position:-6px -206px !important;
 }
 .bottomHUDbuttons li#bottomHUDbuttons-play a {
     color: white;
-    display: block;
-    font-size: 1.9em;
-    font-weight: bolder;
-    height: 60px;
-    line-height: 70px;
-    text-align: center;
-    text-decoration: none;
-    width: 141px;
-    text-transform: uppercase
+	display: block;
+	font-size: 1.7em;
+	font-weight: normal;
+	height: 60px;
+	line-height: 63px;
+	text-align: center;
+	text-decoration: none;
+	width: 137px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	padding-right: 10px
 }
 .box-blank {
     background: url("../images/zalerio_1.2/3.ingame_board/board/tile_base.png") no-repeat top left transparent;
@@ -242,7 +244,7 @@ body {
 .gameBetPanel .back_to_the_game:hover{
 	background-position:3px -139px;
 }
-.friendChallenge a{
+.friendChallenge #cheat-sheet{
      font-family: mriam;
      color: white;
      font-size: 17px;
@@ -2599,7 +2601,6 @@ width: auto !important;
 position: absolute !important;
 background: none !important;
 }
-.basebutton.left{display:none !important}
 
 /**** to make font color grey instead of default white ***/
 .white .current-belt h4{color:#aaaaaa}
@@ -3998,3 +3999,11 @@ h2.round_no_r{
 	bottom: 2px;
 
 }
+
+#lodder{ z-index:99999 !important; position:static !important; margin:0 auto}
+#lodder img{ position:static !important; }
+
+#lodder #floatingBarsG{ margin-top:0 }
+
+#page{height: 640px;
+overflow: hidden;}

@@ -27,7 +27,7 @@
             
             //$cs->registerScriptFile('http://connect.facebook.net/en_US/all.js');
         ?>
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<title>Zalerio</title>
         
         <?php
             Yii::app()->clientScript->registerScript(

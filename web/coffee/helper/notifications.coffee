@@ -13,7 +13,7 @@ define ["./utils"], (utils) ->
 	      
 	    success : (responseData, textStatus, jqXHR) ->
 	    	if responseData
-		    	FB.ui({method: 'apprequests', message: 'You are invited to play a game of zalerio', to: responseData }, (response) ->
+		    	FB.ui({method: 'apprequests', title: 'Send game reminder', message: 'You are invited to play a game of zalerio', to: responseData }, (response) ->
 		    			if response
 		    				messagePopup popupMSG.remindSucess('')
 		    			else

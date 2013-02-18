@@ -31,27 +31,38 @@ define ['../../helper/utils'], (utils)->
 		
 		try
 			message = gameRecords.APG
-			
+			edlArray = []
+			edlIdArray = []
 			for gameId of message
+				edlIdArray.push gameId
+				edlArray[gameId] = message[gameId].EDL
+				
+			edlIdArray.sort (x, y) ->
+				edlArray[y] - edlArray[x]
+
+			for gameIdkey of edlIdArray
+				gameId = edlIdArray[gameIdkey]
 				urDiv = $ """<div class="userArea Mylevel" id="myLevel_apg_#{gameId}" ><div class="imgCon"></div></div>"""
 				
 				urDiv.append """<div class="end_date">#{message[gameId].ED}</div>"""
 				rematchButton = """<div class="msgbox-ok">Rematch</div>"""
 				
 				FBids = []
+				add_rematch = true
 				for index of message[gameId].PLRS
 					
 					continue  if message[gameId].PLRS[index].GSS is 5 or message[gameId].PLRS[index].GSS is 3
 					
 					FBids.push message[gameId].PLRS[index].PFB
 					
-					if gameRecords.UINFO.UI is message[gameId].PLRS[index].UI
+					if true
 						
-						if message[gameId].PLRS[index].PRE isnt 1
+						if message[gameId].PLRS[index].PRE isnt 1 and FBids.length > 1 and add_rematch
 							urDiv.append rematchButton
-						
-						urDiv.append """<div class="point">Points- #{message[gameId].PLRS[index].PSC} </div>"""
-						urDiv.append """<div class="rank #{if message[gameId].PLRS[index].PR is "1" then 'winner'}" >#{utils.playerRank(message[gameId].PLRS[index].PR)}</div>"""
+							add_rematch = false
+						if gameRecords.UINFO.UI is message[gameId].PLRS[index].UI
+							urDiv.append """<div class="point">Points- #{message[gameId].PLRS[index].PSC} </div>"""
+							urDiv.append """<div class="rank #{if message[gameId].PLRS[index].PR is "1" then 'winner'}" >#{utils.playerRank(message[gameId].PLRS[index].PR)}</div>"""
 					
 					status = (if message[gameId].PLRS[index].PON is 1 then "online" else "offline")
 					
@@ -148,6 +159,7 @@ define ['../../helper/utils'], (utils)->
 			$("#stat_image_main").attr "src", UINFO.user_pic
 			$("#stat_image_tri_level").attr "src", baseUrl + "/images/zalerio_1.2/5.all_popup/mystats/mystatsCommon/stats_main_player_belts/" + userLevelImgBig[UINFO.PL - 1]
 			$("#popup-stats .div_top .div_img #stat_userName").html UINFO.PDN
-			$("#popup-stats .div_top #joined_time").html " " + UINFO.JD
+			if( $("#popup-stats .div_top #joined_time").html() is " " or $("#popup-stats .div_top #joined_time").html() is "" )
+				$("#popup-stats .div_top #joined_time").html " " + UINFO.JD
 
 			$("#user-level-span").removeClass().addClass(capFirst(cls.toLowerCase()) + "Belt").html capFirst(cls.toLowerCase()) + " Belt"

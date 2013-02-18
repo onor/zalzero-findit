@@ -59,6 +59,11 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 			), 5000
 
 		onLoginResult = (clientID, userID, arg2) ->
+			window.gameUnionStatus = true;
+			if window.gameLoadStatus is true				
+				jQuery('#lodder').fadeOut()
+				jQuery('#active-screen').show()
+			
 			unionClientId = clientID
 			zzGlobals.currentUserDBId = userID
 
@@ -149,19 +154,21 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 
 		# change game
 		window.gameChangeListener = (e,gameInstIdTemp) ->	# fire when user click on carousel to change game
+			
 			zzGlobals.inviteStatus = 0
-			utils.log("gameInstIdTemp", gameInstIdTemp)
-			if(typeof e is 'string')
+			
+			if typeof e is 'string'
 				gameInstIdTemp = e
+			
 			if typeof gameInstIdTemp is 'undefined'
-				eval("gameInstIdTemp = gameInstId")
+				gameInstIdTemp = window.gameInstId
 			else
-				eval("gameInstId = gameInstIdTemp")
-
+				window.gameInstId = gameInstIdTemp
+			
 			zzGlobals.roomVars.FR = -1
 			flag_roundDrawn = false
 			flag_roundBetsDrawn = false
-			msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + gameInstIdTemp);
+			msgManager.sendUPC(UPC.SEND_SERVERMODULE_MESSAGE, config.unionGameServerId, "REQ", "C|CG", "UI|" + userLoginId, "GI|" + window.gameInstId);
 		jDocument.bind "gameChangeListener" , gameChangeListener
 
 		sendDeclinedToServer = (e,gameSeatId,gameId) ->   # fire when user click decined

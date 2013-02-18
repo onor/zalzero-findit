@@ -6,7 +6,7 @@ define ["../../helper/confirmBox","../../helper/utils","gamePlayView"], (confirm
 	      	when zalerioCMDListners.DECLINE_STATUS
 	      		 if parseInt(message) is 1
 	      		 	   confirmBox(popupMSG.declineInvite())
-	      		 	   gamePlayView.setGameDisable()
+	      		 	   #gamePlayView.setGameDisable()
 	      		 	   
 	      	when zalerioCMDListners.RIGHT_HUD
 	        	usersObject = jQuery.parseJSON(message)      

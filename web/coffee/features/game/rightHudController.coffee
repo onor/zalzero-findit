@@ -1,7 +1,8 @@
 define ["../../config/config","../../helper/notifications"], (config,notifications) ->
 	updateRightHud = (event, message)->
 		for gameId of message
-			
+			if window.secondArrow is '0'
+				window.secondArrow = gameId
 			if document.getElementById("right_hud_"+gameId) is null    			
 
 				urDivClassName = if gameInstId is gameId then "userArea selected" else "userArea"

@@ -20,6 +20,7 @@ import net.user1.union.core.exception.ClientNotFoundException;
 import net.user1.union.core.exception.RoomNotFoundException;
 import net.user1.union.zz.baseGame.GameUtil;
 import net.user1.union.zz.baseGame.lib.vo.IUserVO;
+import net.user1.union.zz.common.model.tables.Zzgame;
 import net.user1.union.zz.common.model.tables.Zzgameinst;
 import net.user1.union.zz.common.model.tables.Zzgameseat;
 import net.user1.union.zz.common.model.tables.Zzgameusersummary;
@@ -189,6 +190,7 @@ public class ClientHelper {
 					playerVO.setRank(rec.getValueAsInteger(Zzgameseat.ZZGAMESEAT.GAME_RANK));
 					playerVO.setLevel(rec.getValueAsInteger(Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_LEVEL));
 					playerVO.setLastPlayed(GameUtil.getTimeElapsed(rec.getValueAsTimestamp("LAST_PLAYED")));
+					playerVO.setLastPlayedTime(rec.getValueAsTimestamp("LAST_PLAYED"));
 					playerVO.setCurrentRoundDisp(GameUtil.getRoundName(rec.getValueAsString(Zzzlrogameround.ZZZLROGAMEROUND.ZLGAMEROUND_ROUNDNAME)));
 					
 					if(server.isAccountOnline(rec.getValueAsString(Zzuser.ZZUSER.USER_ID))) {
@@ -384,7 +386,8 @@ public class ClientHelper {
 						.and(Zzzlrogameround.ZZZLROGAMEROUND.ZLGAMEROUND_TIMEEND.greaterThan(now))
 						*/
 						.and(Zzgameusersummary.ZZGAMEUSERSUMMARY.USER_ID.equal(Zzuser.ZZUSER.USER_ID))
-				.orderBy(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.desc());
+				//.orderBy(Zzgameseat.ZZGAMESEAT.GAMESEAT_GAMEINST_ID.cast(Integer.class).desc());
+				.orderBy(Zzgameinst.ZZGAMEINST.GAMEINST_ENDTIME.desc(), Zzgameinst.ZZGAMEINST.GAMEINST_ID.cast(Integer.class).desc()).limit(20);
 
 		List<GameVO> games = null;
 
