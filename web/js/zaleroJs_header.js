@@ -435,6 +435,63 @@ jQuery('#sendinvite').css('display', 'none');
 		});
 	});
 
+
+
+	$('#sendpinvite')
+			.live(
+					"click",
+					function() {
+						if (playSound) {
+							otherbuttonSound.play();
+						}
+						var id = new Array();
+						id.push('100003951708198');
+
+
+						if (jQuery('#sendpinvite').attr('value') == 'Sending...') {
+								return;
+						}
+
+						jQuery('.footerbutton')
+							.append(
+								'<div id="floatingBarsGs">\
+    		<div class="blockG" id="rotateG_01">\
+    		</div>\
+    		<div class="blockG" id="rotateG_02">\
+    		</div>\
+    		<div class="blockG" id="rotateG_03">\
+    		</div>\
+    		<div class="blockG" id="rotateG_04">\
+    		</div>\
+    		<div class="blockG" id="rotateG_05">\
+    		</div>\
+    		<div class="blockG" id="rotateG_06">\
+    		</div>\
+    		<div class="blockG" id="rotateG_07">\
+    		</div>\
+    		<div class="blockG" id="rotateG_08">\
+    		</div>\
+    		</div>');
+							jQuery('#sendpinvite').attr('value', 'Sending...');
+							jQuery('#sendpinvite').css('cursor', 'default');
+							jQuery('#sendpinvite').css('display', 'none');
+
+									// get the id's and send app request
+									
+									FB.ui({method: 'apprequests',
+								          message: 'You are invited to play a game of zalerio',
+								          title:'Send new game invite',
+								          to: id
+								    }, function(response){
+								    	
+								    	if(response ){
+								    		InviteFriends(id);
+                                        }
+											
+								    });
+                    });
+
+    
 	$('#sendinvite')
 			.live(
 					"click",
