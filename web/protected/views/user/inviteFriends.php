@@ -53,6 +53,7 @@
         </div>
         <div class="footerbutton ">
             <input type="button" id="sendrinvite" class="basebutton left" value="Select Random" />
+            <input type="button" id="sendpinvite" class="basebutton center" value="Select Practice" />
             <input type="button" id="sendinvite" class="basebutton right" value="Send Challenge" />
         </div>
     </div>            
