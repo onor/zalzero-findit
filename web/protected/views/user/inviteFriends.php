@@ -43,7 +43,7 @@
     <a href="#" id="close" onClick="jQuery('.wait').remove(); jQuery('.show_popup').remove(); return false;"></a>
 
 <div id="randompractice" class="top_base">
-
+<br><br><br>
         <input type="image" id="sendrinvite" align="left"
                src="/images/avatar/random.png" />
         <input type="image" id="sendpinvite" align="right"
@@ -54,7 +54,7 @@
     <div class="selectfriendbase inner_base_invite">
         <div class="findfriend">
             <label>Find Friends</label>                    
-            <input type="text" value="" id="findfriend" name="findfrind" />
+            <input type="text" value="" id="findfriend" name="findfriend" />
             <input type="image" id="searchButton"  src=<?php echo Yii::app()->request->baseUrl."/images/zalerio_1.2/5.all_popup/friendselection/friendselection_searchbar_button_ideal.png" ?> />
 	    <a href="#" id='show_all_friends'>Show All</a>
         </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="footerbutton ">
 
-            <input type="button" id="sendinvite" class="basebutton right" value="Send Challenge" />
+   <input type="button" id="sendinvite" class="basebutton right" value="Send Challenge" />
         </div>
     </div>            
 </div>
