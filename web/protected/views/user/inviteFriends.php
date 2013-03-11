@@ -8,7 +8,7 @@
         }
         .title{ margin-top: 20px; border-bottom: 2px solid #909090; padding:0 75px 3px; }
 
-        #searhcbutton{ margin-left: -5px; }
+        #searchbutton{ margin-left: -5px; }
         .friendlist{ width: 500px; height: 295px; margin-top: 5px; margin-bottom:0px; overflow-y:scroll }
         .left{ float:left !important }
         .right{ float:right !important }
@@ -41,6 +41,11 @@
     </style>
 <div id="friendpopup" class="outer_base">
     <a href="#" id="close" onClick="jQuery('.wait').remove(); jQuery('.show_popup').remove(); return false;"></a>
+
+<div>
+        <input type="button" id="sendrinvite" class="basebutton left" value="Select Random" />
+        <input type="button" id="sendpinvite" class="basebutton center" value="Select Practice" />
+</div>            
     <div class="selectfriendbase inner_base_invite">
         <div class="findfriend">
             <label>Find Friends</label>                    
@@ -52,8 +57,7 @@
        
         </div>
         <div class="footerbutton ">
-            <input type="button" id="sendrinvite" class="basebutton left" value="Select Random" />
-            <input type="button" id="sendpinvite" class="basebutton center" value="Select Practice" />
+
             <input type="button" id="sendinvite" class="basebutton right" value="Send Challenge" />
         </div>
     </div>            
