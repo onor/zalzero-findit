@@ -43,7 +43,7 @@
     <a href="#" id="close" onClick="jQuery('.wait').remove(); jQuery('.show_popup').remove(); return false;"></a>
 
 <div id="randompractice" class="top_base">
-<br><br><br>
+<br>
         <input type="image" id="sendrinvite" align="left"
                src="/images/avatar/random.png" />
         <input type="image" id="sendpinvite" align="right"
