@@ -2711,7 +2711,7 @@ background: none !important;
 .inner_base_invite .findfriend:before{
 	content: "Select friends to begin the game";
 	position:absolute;
-	top:82px;
+	top:100px;
 	left:22px;
 	font-size:24px;
 	color:#789fc6;
