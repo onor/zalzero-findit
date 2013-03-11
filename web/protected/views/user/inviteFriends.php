@@ -44,8 +44,8 @@
 
 <div id="randompractice">
 
-        <input type="image" id="sendrinvite" align="left"  src="/images/avatar/Practice_Pro.png" />
-        <input type="image" id="sendpinvite" align="right"  src="/images/avatar/Practice_Amateur.png" />
+        <input type="image" id="sendrinvite" align="left"  src="/images/avatar/random.png" />
+        <input type="image" id="sendpinvite" align="right"  src="/images/avatar/Practice.png" />
         
 
 </div>            
