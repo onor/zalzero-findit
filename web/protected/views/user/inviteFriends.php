@@ -43,8 +43,11 @@
     <a href="#" id="close" onClick="jQuery('.wait').remove(); jQuery('.show_popup').remove(); return false;"></a>
 
 <div>
-        <input type="button" id="sendrinvite" class="basebutton left" value="Select Random" />
-        <input type="button" id="sendpinvite" class="basebutton center" value="Select Practice" />
+
+        <input type="image" id="sendrinvite" align="left"  src="/images/zalerio_1.2/avatar/1314909381.jpg" />
+        <input type="image" id="sendpinvite" align="right"  src="/images/zalerio_1.2/avatar/1271191620.jpg" />
+        
+
 </div>            
     <div class="selectfriendbase inner_base_invite">
         <div class="findfriend">
