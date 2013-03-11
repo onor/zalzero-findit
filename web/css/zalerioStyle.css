@@ -842,9 +842,16 @@ ul.turnGameInstance {
     padding-top: 2px;
 }
 
+#randompractice {
+    width: 531px;
+    height: 60px;
+    margin: 0 auto;
+    background: url('../images/Base.png') center center no-repeat;
+}
+
 #friendpopup {
     width: 531px;
-    height: 460px;
+    height: 500px;
     margin: 0 auto;
     background: url('../images/popupBase.png') center center no-repeat;
 }
@@ -2132,7 +2139,7 @@ ul.tab_nav  li a.active,ul.tab_nav  li a:hover {
 #scroll_carousel{
     overflow: hidden;
     width: 155px;
-    height: 450px;
+    height: 350px;
     float: left
 }
 /* Let's get this party started */
@@ -2645,9 +2652,15 @@ background: none !important;
 #close:hover{
     background-position:0px -15px;
 }
+
 .outer_base{
 	width: 532px; height: 465px; margin:0 auto;position:relative;
     background: url('../images/zalerio_1.2/5.all_popup/all_popup_common/popup_base.png') left top no-repeat !important;
+}
+
+.top_base{
+	width: 532px; height: 65px; margin:0 auto;position:relative;
+    background: url('../images/avatar/randombase.png') left top no-repeat !important;
 }
 
 .inner_base_invite{
