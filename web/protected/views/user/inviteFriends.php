@@ -42,10 +42,12 @@
 <div id="friendpopup" class="outer_base">
     <a href="#" id="close" onClick="jQuery('.wait').remove(); jQuery('.show_popup').remove(); return false;"></a>
 
-<div id="randompractice">
+<div id="randompractice" class="top_base">
 
-        <input type="image" id="sendrinvite" align="left"  src="/images/avatar/random.png" />
-        <input type="image" id="sendpinvite" align="right"  src="/images/avatar/Practice.png" />
+        <input type="image" id="sendrinvite" align="left"
+               src="/images/avatar/random.png" />
+        <input type="image" id="sendpinvite" align="right"
+               src="/images/avatar/practice.png" />
         
 
 </div>            
