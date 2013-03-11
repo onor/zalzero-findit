@@ -42,10 +42,10 @@
 <div id="friendpopup" class="outer_base">
     <a href="#" id="close" onClick="jQuery('.wait').remove(); jQuery('.show_popup').remove(); return false;"></a>
 
-<div>
+<div id="randompractice">
 
-        <input type="image" id="sendrinvite" align="left"  src="/images/zalerio_1.2/avatar/1314909381.jpg" />
-        <input type="image" id="sendpinvite" align="right"  src="/images/zalerio_1.2/avatar/1271191620.jpg" />
+        <input type="image" id="sendrinvite" align="left"  src="/images/zalerio_1.2/avatar/Practice_Pro.png" />
+        <input type="image" id="sendpinvite" align="right"  src="/images/zalerio_1.2/avatar/Practice_Amateur.png" />
         
 
 </div>            
