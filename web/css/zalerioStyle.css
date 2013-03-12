@@ -844,7 +844,7 @@ ul.turnGameInstance {
 
 #randompractice {
     width: 531px;
-    height: 60px;
+    height: 85px;
     margin: 0 auto;
     background: url('../images/Base.png') center center no-repeat;
 }
@@ -2666,7 +2666,6 @@ background: none !important;
 .inner_base_invite{
 	width: 520px;
 	height: 432px;
-	margin-top: 26px;
 	background: url('../images/zalerio_1.2/5.all_popup/group_formation/gfp_base.png') center center no-repeat;
 	text-align: center;
 }
