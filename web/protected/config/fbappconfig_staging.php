@@ -13,8 +13,6 @@ class facebookCredetials {
 		$config->canvasPage		=	'http://apps.facebook.com/zalzerostaging/';
 		$config->canvasUrl		=	'http://staging.zalerio.com/';
 		$config->appName		=	'Zalerio';
-
-        $config->practiceFBId	=	'100003951708198';
 		
 		$this->config = $config;
 

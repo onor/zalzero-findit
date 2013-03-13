@@ -445,9 +445,8 @@ jQuery('#sendinvite').css('display', 'none');
 							otherbuttonSound.play();
 						}
 						var id = new Array();
-						id.push(100003951708198);
- console.log('FB ID') ;                        
- console.log(practiceFBId) ;
+						id.push('100003951708198');
+
                         
 
 						If (jQuery('#sendpinvite').attr('value') == 'Sending...') {

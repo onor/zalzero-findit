@@ -6,7 +6,6 @@ $this->breadcrumbs = array(
 ?>
 <script>
 var gameInstId = '<?php echo $gameinst_id ?>';
-
 </script>
 
 <?php
