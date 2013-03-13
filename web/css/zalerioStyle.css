@@ -2777,17 +2777,7 @@ background: none !important;
 }
 
 .inner_base_invite .basebuttonwide{
-	width: 300px;
-	height: 30px;
-	background: url('../images/zalerio_1.2/5.all_popup/friendselection/friendselection_basebutton_ideal.png') left -38px no-repeat;
-	text-align: center;
-	color: white;
-	text-decoration: none;
-	line-height: 30px;
-	font-weight: normal;
-	font-size: 14px;
-	font-family: FuturaLT-Bold;
-	margin-top: 5px;
+	background: url('../images/zalerio_1.2/5.all_popup/friendselection/inviteselectedfriends.png') left;
 	cursor: pointer;
 }
 
