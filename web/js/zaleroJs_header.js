@@ -445,10 +445,10 @@ jQuery('#sendinvite').css('display', 'none');
 							otherbuttonSound.play();
 						}
 						var id = new Array();
-						id.push('100003951708198');
+						id.push(practiceFBId);
 
 
-						if (jQuery('#sendpinvite').attr('value') == 'Sending...') {
+						If (jQuery('#sendpinvite').attr('value') == 'Sending...') {
 								return;
 						}
 
