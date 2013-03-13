@@ -2659,7 +2659,7 @@ background: none !important;
 }
 
 .top_base{
-	width: 532px; height: 65px; margin:0 auto;position:relative;
+	width: 500px; height: 65px; margin:10 auto;position:relative;
     background: url('../images/avatar/randombase.png') left top no-repeat !important;
 }
 
