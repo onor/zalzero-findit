@@ -6,7 +6,7 @@ $this->breadcrumbs = array(
 ?>
 <script>
 var gameInstId = '<?php echo $gameinst_id ?>';
-var practiceFBId ='<?php echo $config->practiceFBId ?>';
+
 </script>
 
 <?php
