@@ -63,7 +63,7 @@
         </div>
         <div class="footerbutton ">
 
-   <input type="button" id="sendinvite" class="basebuttonwide" />
+   <input type="button" id="sendinvite" class="basebuttonwide" value="Invite selected friends now!"/>
         </div>
     </div>            
 </div>
