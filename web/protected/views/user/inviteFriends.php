@@ -44,12 +44,10 @@
 
 <div id="randompractice" class="top_base" style="width: 400px;">
 <br>
-        <input type="image" id="sendrinvite" align="left"
-               src="/images/avatar/random.png" />
         <input type="image" id="sendpinvite" align="middle"
                src="/images/avatar/practice.png" />
-        
-
+        <input type="image" id="sendrinvite" align="left"
+               src="/images/avatar/random.png" />
 </div>            
     <div class="selectfriendbase inner_base_invite">
         <div class="findfriend">
@@ -58,12 +56,13 @@
             <input type="image" id="searchButton"  src=<?php echo Yii::app()->request->baseUrl."/images/zalerio_1.2/5.all_popup/friendselection/friendselection_searchbar_button_ideal.png" ?> />
 	    <a href="#" id='show_all_friends'>Show All</a>
         </div>
-        <div class="friendlist">
+        <div class="friendlist" style=" height: 280px;">
        
         </div>
         <div class="footerbutton ">
 
-   <input type="image" id="sendinvite" src="/images/avatar/invitefriends.png">
+<input type="image" id="sendinvite" src="/images/avatar/invitefriends.png"
+       style="width: 400px;">
         </div>
     </div>            
 </div>
