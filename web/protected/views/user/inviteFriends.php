@@ -44,9 +44,9 @@
 
 <div id="randompractice" class="top_base" style="width: 400px;">
 <br>
-        <input type="image" id="sendpinvite" align="middle"
+        <input type="image" id="sendpinvite" align="left"
                src="/images/avatar/practice.png" />
-        <input type="image" id="sendrinvite" align="left"
+        <input type="image" id="sendrinvite" align="middle"
                src="/images/avatar/random.png" />
 </div>            
     <div class="selectfriendbase inner_base_invite">
