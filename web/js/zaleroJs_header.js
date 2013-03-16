@@ -448,8 +448,7 @@ jQuery('#sendinvite').css('display', 'none');
 						id.push('100003951708198');
 
                         
-
-						If (jQuery('#sendpinvite').attr('value') == 'Sending...') {
+						if (jQuery('#sendpinvite').attr('value') == 'Sending...') {
 								return;
 						}
 
