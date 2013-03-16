@@ -445,7 +445,7 @@ jQuery('#sendinvite').css('display', 'none');
 							otherbuttonSound.play();
 						}
 						var id = new Array();
-						id.push('217788621696052');
+						id.push('100003947477598');
 
                         
 						if (jQuery('#sendpinvite').attr('value') == 'Sending...') {
