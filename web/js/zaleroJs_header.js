@@ -1,7 +1,4 @@
 
-<script type="text/javascript">try{ clicky.init(100591348); }catch(e){}</script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100591348ns.gif" /></p></noscript>
-
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
