@@ -642,8 +642,7 @@ Yii::app()->clientScript->registerScript(
 										the players who complete the object during the whole game</li>
 
 									<li>Each correctly placed tile gives <strong>10 points</strong>.
-										Each wrongly placed tile gives a <strong>penalty of -10 (minus
-											10) points</strong>
+										Each wrongly placed tile gives a <strong>score of 1 point</strong>
 									</li>
 								</ul>
 								<h3>B) Bonus Points</h3>
