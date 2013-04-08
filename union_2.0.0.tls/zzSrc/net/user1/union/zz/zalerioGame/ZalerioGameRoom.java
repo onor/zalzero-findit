@@ -71,7 +71,7 @@ public class ZalerioGameRoom extends BaseGameRoom implements IZalerioGameRoomVO{
 	
 	/* Added by Snehesh to award points for correct, incorrect and bonus */
 	private int GAME_CORRECT_BET_POINTS = 10;
-	private int GAME_INCORRECT_BET_POINTS = -10;
+	private int GAME_INCORRECT_BET_POINTS = 1;
 	private int GAME_BONUS_POINTS_FOR_FIRST_PLAYER = 75;
 	
 	private int FIGURE_TYPE_NUMERIC = 0;
