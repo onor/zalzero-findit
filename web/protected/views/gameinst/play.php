@@ -199,7 +199,7 @@ if (isset($startGame) || isset($game)) {
         <div class="win-table">
           <div class="tiles">
             <h3>Tiles</h3>
-            <p>Wrongly placed tile = Minus 10 points (penalty) </p>
+            <p>Wrongly placed tile = 1 point  </p>
             <p>Correctly placed tile = 10 points</p>
           </div>
           
