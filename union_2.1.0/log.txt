@@ -1,0 +1,535 @@
+2013-09-09 18:45:49,272 WARN  - ***********************************************
+2013-09-09 18:45:49,273 WARN  - *** Starting Union Server 2.1.0 (build 590) ***
+2013-09-09 18:45:49,274 WARN  - ***********************************************
+2013-09-09 18:45:49,274 WARN  - UPC Version: 1.10.3
+2013-09-09 18:45:49,274 WARN  - Java VM [1.6.0_51 from Apple Inc.]
+2013-09-09 18:45:49,274 WARN  - Licence [Union]
+2013-09-09 18:45:49,416 WARN  - The use of <ip> and <port> under <admin> is now deprecated. Declare one or more [Admin] or [SecureAdmin] gateways using the <gateways> section to configure how admin tools will connect to the server.
+2013-09-09 18:45:49,489 WARN  - UNION_HOME set to [/Users/piyushshah/Development/git/zalzero-findit/union_2.1.0/.]
+2013-09-09 18:45:49,560 INFO  - Hibernate 3.3.1.GA
+2013-09-09 18:45:49,564 INFO  - hibernate.properties not found
+2013-09-09 18:45:49,570 INFO  - Bytecode provider name : javassist
+2013-09-09 18:45:49,579 INFO  - using JDK 1.4 java.sql.Timestamp handling
+2013-09-09 18:45:49,647 INFO  - configuring from file: uhibernate.cfg.xml
+2013-09-09 18:45:49,658 DEBUG - trying to resolve system-id [http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd]
+2013-09-09 18:45:49,658 DEBUG - recognized hibernate namespace; attempting to resolve on classpath under org/hibernate/
+2013-09-09 18:45:49,659 DEBUG - located [http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd] in classpath
+2013-09-09 18:45:49,670 DEBUG - dialect=org.hibernate.dialect.DerbyDialect
+2013-09-09 18:45:49,671 DEBUG - hibernate.connection.driver_class=org.apache.derby.jdbc.EmbeddedDriver
+2013-09-09 18:45:49,671 DEBUG - hibernate.connection.url=jdbc:derby:unionDB
+2013-09-09 18:45:49,671 DEBUG - hibernate.connection.username=
+2013-09-09 18:45:49,671 DEBUG - hibernate.connection.password=
+2013-09-09 18:45:49,671 DEBUG - show_sql=false
+2013-09-09 18:45:49,671 DEBUG - use_outer_join=true
+2013-09-09 18:45:49,671 DEBUG - hibernate.hbm2ddl.auto=update
+2013-09-09 18:45:49,671 DEBUG - null<-org.dom4j.tree.DefaultAttribute@6ba7508a [Attribute: name resource value "Account.hbm.xml"]
+2013-09-09 18:45:49,671 INFO  - Reading mappings from resource : Account.hbm.xml
+2013-09-09 18:45:49,673 DEBUG - trying to resolve system-id [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd]
+2013-09-09 18:45:49,673 DEBUG - recognized hibernate namespace; attempting to resolve on classpath under org/hibernate/
+2013-09-09 18:45:49,674 DEBUG - located [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd] in classpath
+2013-09-09 18:45:49,795 INFO  - Mapping class: net.user1.union.persistence.union.PersistentAccount -> ACCOUNT
+2013-09-09 18:45:49,811 DEBUG - Mapped property: id -> ID
+2013-09-09 18:45:49,818 DEBUG - Mapped property: createdAt -> CREATED_AT
+2013-09-09 18:45:49,818 DEBUG - Mapped property: updatedAt -> UPDATED_AT
+2013-09-09 18:45:49,818 DEBUG - Mapped property: userID -> USERID
+2013-09-09 18:45:49,819 DEBUG - Mapped property: password -> PASSWORD
+2013-09-09 18:45:49,819 DEBUG - Mapped property: moderator -> MODERATOR
+2013-09-09 18:45:49,819 DEBUG - null<-org.dom4j.tree.DefaultAttribute@30e3c624 [Attribute: name resource value "Room.hbm.xml"]
+2013-09-09 18:45:49,819 INFO  - Reading mappings from resource : Room.hbm.xml
+2013-09-09 18:45:49,820 DEBUG - trying to resolve system-id [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd]
+2013-09-09 18:45:49,820 DEBUG - recognized hibernate namespace; attempting to resolve on classpath under org/hibernate/
+2013-09-09 18:45:49,820 DEBUG - located [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd] in classpath
+2013-09-09 18:45:49,855 INFO  - Mapping class: net.user1.union.persistence.union.PersistentRoom -> ROOM
+2013-09-09 18:45:49,855 DEBUG - Mapped property: id -> ID
+2013-09-09 18:45:49,856 DEBUG - Mapped property: roomQualifier -> ROOM_QUALIFIER
+2013-09-09 18:45:49,856 DEBUG - Mapped property: roomID -> ROOM_ID
+2013-09-09 18:45:49,856 DEBUG - Mapped property: password -> PASSWORD
+2013-09-09 18:45:49,857 DEBUG - Mapped property: createdAt -> CREATED_AT
+2013-09-09 18:45:49,857 DEBUG - Mapped property: updatedAt -> UPDATED_AT
+2013-09-09 18:45:49,857 DEBUG - null<-org.dom4j.tree.DefaultAttribute@203fa5ac [Attribute: name resource value "RoomAttribute.hbm.xml"]
+2013-09-09 18:45:49,857 INFO  - Reading mappings from resource : RoomAttribute.hbm.xml
+2013-09-09 18:45:49,858 DEBUG - trying to resolve system-id [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd]
+2013-09-09 18:45:49,858 DEBUG - recognized hibernate namespace; attempting to resolve on classpath under org/hibernate/
+2013-09-09 18:45:49,859 DEBUG - located [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd] in classpath
+2013-09-09 18:45:49,880 INFO  - Mapping class: net.user1.union.persistence.union.RoomAttribute -> ROOM_ATTRIBUTE
+2013-09-09 18:45:49,883 DEBUG - Mapped property: id -> ID
+2013-09-09 18:45:49,883 DEBUG - Mapped property: createdAt -> CREATED_AT
+2013-09-09 18:45:49,883 DEBUG - Mapped property: updatedAt -> UPDATED_AT
+2013-09-09 18:45:49,884 DEBUG - Mapped property: holder -> ROOM
+2013-09-09 18:45:49,884 DEBUG - Mapped property: name -> NAME
+2013-09-09 18:45:49,884 DEBUG - Mapped property: scope -> SCOPE
+2013-09-09 18:45:49,884 DEBUG - Mapped property: value -> VALUE
+2013-09-09 18:45:49,885 DEBUG - Mapped property: flags -> FLAGS
+2013-09-09 18:45:49,885 DEBUG - null<-org.dom4j.tree.DefaultAttribute@403ef810 [Attribute: name resource value "AccountAttribute.hbm.xml"]
+2013-09-09 18:45:49,885 INFO  - Reading mappings from resource : AccountAttribute.hbm.xml
+2013-09-09 18:45:49,886 DEBUG - trying to resolve system-id [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd]
+2013-09-09 18:45:49,886 DEBUG - recognized hibernate namespace; attempting to resolve on classpath under org/hibernate/
+2013-09-09 18:45:49,887 DEBUG - located [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd] in classpath
+2013-09-09 18:45:49,910 INFO  - Mapping class: net.user1.union.persistence.union.AccountAttribute -> ACCOUNT_ATTRIBUTE
+2013-09-09 18:45:49,910 DEBUG - Mapped property: id -> id
+2013-09-09 18:45:49,911 DEBUG - Mapped property: createdAt -> CREATED_AT
+2013-09-09 18:45:49,911 DEBUG - Mapped property: updatedAt -> UPDATED_AT
+2013-09-09 18:45:49,911 DEBUG - Mapped property: holder -> CLIENT
+2013-09-09 18:45:49,912 DEBUG - Mapped property: name -> NAME
+2013-09-09 18:45:49,912 DEBUG - Mapped property: scope -> SCOPE
+2013-09-09 18:45:49,912 DEBUG - Mapped property: value -> VALUE
+2013-09-09 18:45:49,912 DEBUG - Mapped property: flags -> FLAGS
+2013-09-09 18:45:49,913 DEBUG - null<-org.dom4j.tree.DefaultAttribute@48067064 [Attribute: name resource value "ServerAttribute.hbm.xml"]
+2013-09-09 18:45:49,913 INFO  - Reading mappings from resource : ServerAttribute.hbm.xml
+2013-09-09 18:45:49,914 DEBUG - trying to resolve system-id [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd]
+2013-09-09 18:45:49,914 DEBUG - recognized hibernate namespace; attempting to resolve on classpath under org/hibernate/
+2013-09-09 18:45:49,914 DEBUG - located [http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd] in classpath
+2013-09-09 18:45:49,934 INFO  - Mapping class: net.user1.union.persistence.union.ServerAttribute -> SERVER_ATTRIBUTE
+2013-09-09 18:45:49,935 DEBUG - Mapped property: id -> ID
+2013-09-09 18:45:49,935 DEBUG - Mapped property: createdAt -> CREATED_AT
+2013-09-09 18:45:49,935 DEBUG - Mapped property: updatedAt -> UPDATED_AT
+2013-09-09 18:45:49,936 DEBUG - Mapped property: name -> NAME
+2013-09-09 18:45:49,936 DEBUG - Mapped property: scope -> SCOPE
+2013-09-09 18:45:49,936 DEBUG - Mapped property: value -> VALUE
+2013-09-09 18:45:49,936 DEBUG - Mapped property: flags -> FLAGS
+2013-09-09 18:45:49,936 INFO  - Configured SessionFactory: null
+2013-09-09 18:45:49,937 DEBUG - properties: {hibernate.connection.password=, java.runtime.name=Java(TM) SE Runtime Environment, sun.boot.library.path=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries, java.vm.version=20.51-b01-456, awt.nativeDoubleBuffering=true, hibernate.connection.username=, gopherProxySet=false, mrj.build=11M4508, java.vm.vendor=Apple Inc., java.vendor.url=http://www.apple.com/, path.separator=:, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, file.encoding.pkg=sun.io, use_outer_join=true, user.country=US, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=unknown, java.vm.specification.name=Java Virtual Machine Specification, user.dir=/Users/piyushshah/Development/git/zalzero-findit/union_2.1.0, java.runtime.version=1.6.0_51-b11-456-11M4508, java.awt.graphicsenv=apple.awt.CGraphicsEnvironment, java.endorsed.dirs=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed, os.arch=x86_64, java.io.tmpdir=/var/folders/86/jb6f2mbn7jgb1cb6mc4w2ynm0000gp/T/, line.separator=
+, java.vm.specification.vendor=Sun Microsystems Inc., os.name=Mac OS X, sun.jnu.encoding=MacRoman, java.library.path=.:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java, java.specification.name=Java Platform API Specification, java.class.version=50.0, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, os.version=10.8.4, http.nonProxyHosts=local|*.local|169.254/16|*.169.254/16, user.home=/Users/piyushshah, user.timezone=GMT+05:30, java.awt.printerjob=apple.awt.CPrinterJob, file.encoding=UTF-8, java.specification.version=1.6, hibernate.connection.driver_class=org.apache.derby.jdbc.EmbeddedDriver, show_sql=false, java.class.path=lib/union.jar:lib/stax-api-1.0.1.jar:lib/wstx-asl-3.2.6.jar, user.name=piyushshah, hibernate.bytecode.use_reflection_optimizer=false, hibernate.show_sql=false, java.vm.specification.version=1.0, sun.java.command=net.user1.union.core.UnionMain start, java.home=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home, sun.arch.data.model=64, hibernate.connection.url=jdbc:derby:unionDB, hibernate.dialect=org.hibernate.dialect.DerbyDialect, user.language=en, java.specification.vendor=Sun Microsystems Inc., awt.toolkit=apple.awt.CToolkit, java.vm.info=mixed mode, java.version=1.6.0_51, java.ext.dirs=/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext, sun.boot.class.path=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar, java.vendor=Apple Inc., file.separator=/, hibernate.hbm2ddl.auto=update, java.vendor.url.bug=http://bugreport.apple.com/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, hibernate.use_outer_join=true, mrj.version=1070.1.6.0_51-456, socksNonProxyHosts=local|*.local|169.254/16|*.169.254/16, ftp.nonProxyHosts=local|*.local|169.254/16|*.169.254/16, dialect=org.hibernate.dialect.DerbyDialect, sun.cpu.isalist=}
+2013-09-09 18:45:51,931 DEBUG - Preparing to build session factory with filters : {}
+2013-09-09 18:45:51,931 DEBUG - processing extends queue
+2013-09-09 18:45:51,931 DEBUG - processing collection mappings
+2013-09-09 18:45:51,931 DEBUG - processing native query and ResultSetMapping mappings
+2013-09-09 18:45:51,931 DEBUG - processing association property references
+2013-09-09 18:45:51,931 DEBUG - processing foreign key constraints
+2013-09-09 18:45:51,995 INFO  - Using Hibernate built-in connection pool (not for production use!)
+2013-09-09 18:45:51,995 INFO  - Hibernate connection pool size: 20
+2013-09-09 18:45:51,995 INFO  - autocommit mode: false
+2013-09-09 18:45:51,995 INFO  - using driver: org.apache.derby.jdbc.EmbeddedDriver at URL: jdbc:derby:unionDB
+2013-09-09 18:45:51,995 INFO  - connection properties: {user=, password=}
+2013-09-09 18:45:51,996 DEBUG - opening new JDBC connection
+2013-09-09 18:45:51,997 DEBUG - created connection to: jdbc:derby:unionDB, Isolation Level: 2
+2013-09-09 18:45:52,002 INFO  - RDBMS: Apache Derby, version: 10.8.2.2 - (1181258)
+2013-09-09 18:45:52,002 INFO  - JDBC driver: Apache Derby Embedded JDBC Driver, version: 10.8.2.2 - (1181258)
+2013-09-09 18:45:52,027 INFO  - Using dialect: org.hibernate.dialect.DerbyDialect
+2013-09-09 18:45:52,038 INFO  - Using default transaction strategy (direct JDBC transactions)
+2013-09-09 18:45:52,040 INFO  - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2013-09-09 18:45:52,040 INFO  - Automatic flush during beforeCompletion(): disabled
+2013-09-09 18:45:52,040 INFO  - Automatic session close at end of transaction: disabled
+2013-09-09 18:45:52,042 INFO  - Scrollable result sets: enabled
+2013-09-09 18:45:52,042 DEBUG - Wrap result sets: disabled
+2013-09-09 18:45:52,042 INFO  - JDBC3 getGeneratedKeys(): disabled
+2013-09-09 18:45:52,042 INFO  - Connection release mode: auto
+2013-09-09 18:45:52,043 INFO  - Default batch fetch size: 1
+2013-09-09 18:45:52,043 INFO  - Generate SQL with comments: disabled
+2013-09-09 18:45:52,043 INFO  - Order SQL updates by primary key: disabled
+2013-09-09 18:45:52,044 INFO  - Order SQL inserts for batching: disabled
+2013-09-09 18:45:52,044 INFO  - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2013-09-09 18:45:52,047 INFO  - Using ASTQueryTranslatorFactory
+2013-09-09 18:45:52,047 INFO  - Query language substitutions: {}
+2013-09-09 18:45:52,047 INFO  - JPA-QL strict compliance: disabled
+2013-09-09 18:45:52,047 INFO  - Second-level cache: enabled
+2013-09-09 18:45:52,047 INFO  - Query cache: disabled
+2013-09-09 18:45:52,047 INFO  - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2013-09-09 18:45:52,047 INFO  - Optimize cache for minimal puts: disabled
+2013-09-09 18:45:52,047 INFO  - Structured second-level cache entries: disabled
+2013-09-09 18:45:52,051 INFO  - Statistics: disabled
+2013-09-09 18:45:52,052 INFO  - Deleted entity synthetic identifier rollback: disabled
+2013-09-09 18:45:52,052 INFO  - Default entity-mode: pojo
+2013-09-09 18:45:52,052 INFO  - Named query checking : enabled
+2013-09-09 18:45:52,113 INFO  - building session factory
+2013-09-09 18:45:52,115 DEBUG - Session factory constructed with filter configurations : {}
+2013-09-09 18:45:52,115 DEBUG - instantiating session factory with properties: {java.runtime.name=Java(TM) SE Runtime Environment, hibernate.connection.password=, sun.boot.library.path=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries, java.vm.version=20.51-b01-456, awt.nativeDoubleBuffering=true, hibernate.connection.username=, gopherProxySet=false, mrj.build=11M4508, java.vm.vendor=Apple Inc., java.vendor.url=http://www.apple.com/, path.separator=:, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, file.encoding.pkg=sun.io, user.country=US, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=unknown, use_outer_join=true, java.vm.specification.name=Java Virtual Machine Specification, user.dir=/Users/piyushshah/Development/git/zalzero-findit/union_2.1.0, java.runtime.version=1.6.0_51-b11-456-11M4508, java.awt.graphicsenv=apple.awt.CGraphicsEnvironment, java.endorsed.dirs=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed, os.arch=x86_64, java.io.tmpdir=/var/folders/86/jb6f2mbn7jgb1cb6mc4w2ynm0000gp/T/, line.separator=
+, java.vm.specification.vendor=Sun Microsystems Inc., os.name=Mac OS X, sun.jnu.encoding=MacRoman, java.library.path=.:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java, java.specification.name=Java Platform API Specification, java.class.version=50.0, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, os.version=10.8.4, http.nonProxyHosts=local|*.local|169.254/16|*.169.254/16, user.home=/Users/piyushshah, user.timezone=GMT+05:30, java.awt.printerjob=apple.awt.CPrinterJob, java.specification.version=1.6, file.encoding=UTF-8, hibernate.connection.driver_class=org.apache.derby.jdbc.EmbeddedDriver, show_sql=false, user.name=piyushshah, java.class.path=lib/union.jar:lib/stax-api-1.0.1.jar:lib/wstx-asl-3.2.6.jar, hibernate.bytecode.use_reflection_optimizer=false, hibernate.show_sql=false, java.vm.specification.version=1.0, sun.arch.data.model=64, java.home=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home, sun.java.command=net.user1.union.core.UnionMain start, hibernate.dialect=org.hibernate.dialect.DerbyDialect, hibernate.connection.url=jdbc:derby:unionDB, java.specification.vendor=Sun Microsystems Inc., user.language=en, awt.toolkit=apple.awt.CToolkit, java.vm.info=mixed mode, java.version=1.6.0_51, java.ext.dirs=/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext, sun.boot.class.path=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar, java.vendor=Apple Inc., file.separator=/, java.vendor.url.bug=http://bugreport.apple.com/, hibernate.hbm2ddl.auto=update, sun.cpu.endian=little, sun.io.unicode.encoding=UnicodeLittle, hibernate.use_outer_join=true, mrj.version=1070.1.6.0_51-456, socksNonProxyHosts=local|*.local|169.254/16|*.169.254/16, ftp.nonProxyHosts=local|*.local|169.254/16|*.169.254/16, sun.cpu.isalist=, dialect=org.hibernate.dialect.DerbyDialect}
+2013-09-09 18:45:52,354 DEBUG - Static SQL for entity: net.user1.union.persistence.union.ServerAttribute
+2013-09-09 18:45:52,354 DEBUG -  Version select: select ID from SERVER_ATTRIBUTE where ID =?
+2013-09-09 18:45:52,354 DEBUG -  Snapshot select: select serverattr_.ID, serverattr_.CREATED_AT as CREATED2_4_, serverattr_.UPDATED_AT as UPDATED3_4_, serverattr_.NAME as NAME4_, serverattr_.SCOPE as SCOPE4_, serverattr_.VALUE as VALUE4_, serverattr_.FLAGS as FLAGS4_ from SERVER_ATTRIBUTE serverattr_ where serverattr_.ID=?
+2013-09-09 18:45:52,354 DEBUG -  Insert 0: insert into SERVER_ATTRIBUTE (CREATED_AT, UPDATED_AT, NAME, SCOPE, VALUE, FLAGS, ID) values (?, ?, ?, ?, ?, ?, ?)
+2013-09-09 18:45:52,354 DEBUG -  Update 0: update SERVER_ATTRIBUTE set CREATED_AT=?, UPDATED_AT=?, NAME=?, SCOPE=?, VALUE=?, FLAGS=? where ID=?
+2013-09-09 18:45:52,354 DEBUG -  Delete 0: delete from SERVER_ATTRIBUTE where ID=?
+2013-09-09 18:45:52,375 DEBUG - Static SQL for entity: net.user1.union.persistence.union.AccountAttribute
+2013-09-09 18:45:52,375 DEBUG -  Version select: select id from ACCOUNT_ATTRIBUTE where id =?
+2013-09-09 18:45:52,375 DEBUG -  Snapshot select: select accountatt_.id, accountatt_.CREATED_AT as CREATED2_3_, accountatt_.UPDATED_AT as UPDATED3_3_, accountatt_.CLIENT as CLIENT3_, accountatt_.NAME as NAME3_, accountatt_.SCOPE as SCOPE3_, accountatt_.VALUE as VALUE3_, accountatt_.FLAGS as FLAGS3_ from ACCOUNT_ATTRIBUTE accountatt_ where accountatt_.id=?
+2013-09-09 18:45:52,375 DEBUG -  Insert 0: insert into ACCOUNT_ATTRIBUTE (CREATED_AT, UPDATED_AT, CLIENT, NAME, SCOPE, VALUE, FLAGS, id) values (?, ?, ?, ?, ?, ?, ?, ?)
+2013-09-09 18:45:52,375 DEBUG -  Update 0: update ACCOUNT_ATTRIBUTE set CREATED_AT=?, UPDATED_AT=?, CLIENT=?, NAME=?, SCOPE=?, VALUE=?, FLAGS=? where id=?
+2013-09-09 18:45:52,375 DEBUG -  Delete 0: delete from ACCOUNT_ATTRIBUTE where id=?
+2013-09-09 18:45:52,384 DEBUG - Static SQL for entity: net.user1.union.persistence.union.PersistentAccount
+2013-09-09 18:45:52,384 DEBUG -  Version select: select ID from ACCOUNT where ID =?
+2013-09-09 18:45:52,384 DEBUG -  Snapshot select: select persistent_.ID, persistent_.CREATED_AT as CREATED2_0_, persistent_.UPDATED_AT as UPDATED3_0_, persistent_.USERID as USERID0_, persistent_.PASSWORD as PASSWORD0_, persistent_.MODERATOR as MODERATOR0_ from ACCOUNT persistent_ where persistent_.ID=?
+2013-09-09 18:45:52,384 DEBUG -  Insert 0: insert into ACCOUNT (CREATED_AT, UPDATED_AT, USERID, PASSWORD, MODERATOR, ID) values (?, ?, ?, ?, ?, ?)
+2013-09-09 18:45:52,384 DEBUG -  Update 0: update ACCOUNT set CREATED_AT=?, UPDATED_AT=?, USERID=?, PASSWORD=?, MODERATOR=? where ID=?
+2013-09-09 18:45:52,384 DEBUG -  Delete 0: delete from ACCOUNT where ID=?
+2013-09-09 18:45:52,395 DEBUG - Static SQL for entity: net.user1.union.persistence.union.RoomAttribute
+2013-09-09 18:45:52,395 DEBUG -  Version select: select ID from ROOM_ATTRIBUTE where ID =?
+2013-09-09 18:45:52,395 DEBUG -  Snapshot select: select roomattrib_.ID, roomattrib_.CREATED_AT as CREATED2_2_, roomattrib_.UPDATED_AT as UPDATED3_2_, roomattrib_.ROOM as ROOM2_, roomattrib_.NAME as NAME2_, roomattrib_.SCOPE as SCOPE2_, roomattrib_.VALUE as VALUE2_, roomattrib_.FLAGS as FLAGS2_ from ROOM_ATTRIBUTE roomattrib_ where roomattrib_.ID=?
+2013-09-09 18:45:52,395 DEBUG -  Insert 0: insert into ROOM_ATTRIBUTE (CREATED_AT, UPDATED_AT, ROOM, NAME, SCOPE, VALUE, FLAGS, ID) values (?, ?, ?, ?, ?, ?, ?, ?)
+2013-09-09 18:45:52,395 DEBUG -  Update 0: update ROOM_ATTRIBUTE set CREATED_AT=?, UPDATED_AT=?, ROOM=?, NAME=?, SCOPE=?, VALUE=?, FLAGS=? where ID=?
+2013-09-09 18:45:52,395 DEBUG -  Delete 0: delete from ROOM_ATTRIBUTE where ID=?
+2013-09-09 18:45:52,402 DEBUG - Static SQL for entity: net.user1.union.persistence.union.PersistentRoom
+2013-09-09 18:45:52,402 DEBUG -  Version select: select ID from ROOM where ID =?
+2013-09-09 18:45:52,402 DEBUG -  Snapshot select: select persistent_.ID, persistent_.ROOM_QUALIFIER as ROOM2_1_, persistent_.ROOM_ID as ROOM3_1_, persistent_.PASSWORD as PASSWORD1_, persistent_.CREATED_AT as CREATED5_1_, persistent_.UPDATED_AT as UPDATED6_1_ from ROOM persistent_ where persistent_.ID=?
+2013-09-09 18:45:52,402 DEBUG -  Insert 0: insert into ROOM (ROOM_QUALIFIER, ROOM_ID, PASSWORD, CREATED_AT, UPDATED_AT, ID) values (?, ?, ?, ?, ?, ?)
+2013-09-09 18:45:52,402 DEBUG -  Update 0: update ROOM set ROOM_QUALIFIER=?, ROOM_ID=?, PASSWORD=?, CREATED_AT=?, UPDATED_AT=? where ID=?
+2013-09-09 18:45:52,402 DEBUG -  Delete 0: delete from ROOM where ID=?
+2013-09-09 18:45:52,428 DEBUG - Static select for entity net.user1.union.persistence.union.AccountAttribute: select accountatt0_.id as id3_0_, accountatt0_.CREATED_AT as CREATED2_3_0_, accountatt0_.UPDATED_AT as UPDATED3_3_0_, accountatt0_.CLIENT as CLIENT3_0_, accountatt0_.NAME as NAME3_0_, accountatt0_.SCOPE as SCOPE3_0_, accountatt0_.VALUE as VALUE3_0_, accountatt0_.FLAGS as FLAGS3_0_ from ACCOUNT_ATTRIBUTE accountatt0_ where accountatt0_.id=?
+2013-09-09 18:45:52,428 DEBUG - Static select for entity net.user1.union.persistence.union.AccountAttribute: select accountatt0_.id as id3_0_, accountatt0_.CREATED_AT as CREATED2_3_0_, accountatt0_.UPDATED_AT as UPDATED3_3_0_, accountatt0_.CLIENT as CLIENT3_0_, accountatt0_.NAME as NAME3_0_, accountatt0_.SCOPE as SCOPE3_0_, accountatt0_.VALUE as VALUE3_0_, accountatt0_.FLAGS as FLAGS3_0_ from ACCOUNT_ATTRIBUTE accountatt0_ where accountatt0_.id=?
+2013-09-09 18:45:52,429 DEBUG - Static select for entity net.user1.union.persistence.union.AccountAttribute: select accountatt0_.id as id3_0_, accountatt0_.CREATED_AT as CREATED2_3_0_, accountatt0_.UPDATED_AT as UPDATED3_3_0_, accountatt0_.CLIENT as CLIENT3_0_, accountatt0_.NAME as NAME3_0_, accountatt0_.SCOPE as SCOPE3_0_, accountatt0_.VALUE as VALUE3_0_, accountatt0_.FLAGS as FLAGS3_0_ from ACCOUNT_ATTRIBUTE accountatt0_ where accountatt0_.id=? for read only with rs
+2013-09-09 18:45:52,429 DEBUG - Static select for entity net.user1.union.persistence.union.AccountAttribute: select accountatt0_.id as id3_0_, accountatt0_.CREATED_AT as CREATED2_3_0_, accountatt0_.UPDATED_AT as UPDATED3_3_0_, accountatt0_.CLIENT as CLIENT3_0_, accountatt0_.NAME as NAME3_0_, accountatt0_.SCOPE as SCOPE3_0_, accountatt0_.VALUE as VALUE3_0_, accountatt0_.FLAGS as FLAGS3_0_ from ACCOUNT_ATTRIBUTE accountatt0_ where accountatt0_.id=? for read only with rs
+2013-09-09 18:45:52,429 DEBUG - Static select for entity net.user1.union.persistence.union.AccountAttribute: select accountatt0_.id as id3_0_, accountatt0_.CREATED_AT as CREATED2_3_0_, accountatt0_.UPDATED_AT as UPDATED3_3_0_, accountatt0_.CLIENT as CLIENT3_0_, accountatt0_.NAME as NAME3_0_, accountatt0_.SCOPE as SCOPE3_0_, accountatt0_.VALUE as VALUE3_0_, accountatt0_.FLAGS as FLAGS3_0_ from ACCOUNT_ATTRIBUTE accountatt0_ where accountatt0_.id=? for read only with rs
+2013-09-09 18:45:52,438 DEBUG - Static select for action ACTION_MERGE on entity net.user1.union.persistence.union.AccountAttribute: select accountatt0_.id as id3_0_, accountatt0_.CREATED_AT as CREATED2_3_0_, accountatt0_.UPDATED_AT as UPDATED3_3_0_, accountatt0_.CLIENT as CLIENT3_0_, accountatt0_.NAME as NAME3_0_, accountatt0_.SCOPE as SCOPE3_0_, accountatt0_.VALUE as VALUE3_0_, accountatt0_.FLAGS as FLAGS3_0_ from ACCOUNT_ATTRIBUTE accountatt0_ where accountatt0_.id=?
+2013-09-09 18:45:52,438 DEBUG - Static select for action ACTION_REFRESH on entity net.user1.union.persistence.union.AccountAttribute: select accountatt0_.id as id3_0_, accountatt0_.CREATED_AT as CREATED2_3_0_, accountatt0_.UPDATED_AT as UPDATED3_3_0_, accountatt0_.CLIENT as CLIENT3_0_, accountatt0_.NAME as NAME3_0_, accountatt0_.SCOPE as SCOPE3_0_, accountatt0_.VALUE as VALUE3_0_, accountatt0_.FLAGS as FLAGS3_0_ from ACCOUNT_ATTRIBUTE accountatt0_ where accountatt0_.id=?
+2013-09-09 18:45:52,438 DEBUG - Static select for entity net.user1.union.persistence.union.ServerAttribute: select serverattr0_.ID as ID4_0_, serverattr0_.CREATED_AT as CREATED2_4_0_, serverattr0_.UPDATED_AT as UPDATED3_4_0_, serverattr0_.NAME as NAME4_0_, serverattr0_.SCOPE as SCOPE4_0_, serverattr0_.VALUE as VALUE4_0_, serverattr0_.FLAGS as FLAGS4_0_ from SERVER_ATTRIBUTE serverattr0_ where serverattr0_.ID=?
+2013-09-09 18:45:52,438 DEBUG - Static select for entity net.user1.union.persistence.union.ServerAttribute: select serverattr0_.ID as ID4_0_, serverattr0_.CREATED_AT as CREATED2_4_0_, serverattr0_.UPDATED_AT as UPDATED3_4_0_, serverattr0_.NAME as NAME4_0_, serverattr0_.SCOPE as SCOPE4_0_, serverattr0_.VALUE as VALUE4_0_, serverattr0_.FLAGS as FLAGS4_0_ from SERVER_ATTRIBUTE serverattr0_ where serverattr0_.ID=?
+2013-09-09 18:45:52,438 DEBUG - Static select for entity net.user1.union.persistence.union.ServerAttribute: select serverattr0_.ID as ID4_0_, serverattr0_.CREATED_AT as CREATED2_4_0_, serverattr0_.UPDATED_AT as UPDATED3_4_0_, serverattr0_.NAME as NAME4_0_, serverattr0_.SCOPE as SCOPE4_0_, serverattr0_.VALUE as VALUE4_0_, serverattr0_.FLAGS as FLAGS4_0_ from SERVER_ATTRIBUTE serverattr0_ where serverattr0_.ID=? for read only with rs
+2013-09-09 18:45:52,439 DEBUG - Static select for entity net.user1.union.persistence.union.ServerAttribute: select serverattr0_.ID as ID4_0_, serverattr0_.CREATED_AT as CREATED2_4_0_, serverattr0_.UPDATED_AT as UPDATED3_4_0_, serverattr0_.NAME as NAME4_0_, serverattr0_.SCOPE as SCOPE4_0_, serverattr0_.VALUE as VALUE4_0_, serverattr0_.FLAGS as FLAGS4_0_ from SERVER_ATTRIBUTE serverattr0_ where serverattr0_.ID=? for read only with rs
+2013-09-09 18:45:52,439 DEBUG - Static select for entity net.user1.union.persistence.union.ServerAttribute: select serverattr0_.ID as ID4_0_, serverattr0_.CREATED_AT as CREATED2_4_0_, serverattr0_.UPDATED_AT as UPDATED3_4_0_, serverattr0_.NAME as NAME4_0_, serverattr0_.SCOPE as SCOPE4_0_, serverattr0_.VALUE as VALUE4_0_, serverattr0_.FLAGS as FLAGS4_0_ from SERVER_ATTRIBUTE serverattr0_ where serverattr0_.ID=? for read only with rs
+2013-09-09 18:45:52,439 DEBUG - Static select for action ACTION_MERGE on entity net.user1.union.persistence.union.ServerAttribute: select serverattr0_.ID as ID4_0_, serverattr0_.CREATED_AT as CREATED2_4_0_, serverattr0_.UPDATED_AT as UPDATED3_4_0_, serverattr0_.NAME as NAME4_0_, serverattr0_.SCOPE as SCOPE4_0_, serverattr0_.VALUE as VALUE4_0_, serverattr0_.FLAGS as FLAGS4_0_ from SERVER_ATTRIBUTE serverattr0_ where serverattr0_.ID=?
+2013-09-09 18:45:52,439 DEBUG - Static select for action ACTION_REFRESH on entity net.user1.union.persistence.union.ServerAttribute: select serverattr0_.ID as ID4_0_, serverattr0_.CREATED_AT as CREATED2_4_0_, serverattr0_.UPDATED_AT as UPDATED3_4_0_, serverattr0_.NAME as NAME4_0_, serverattr0_.SCOPE as SCOPE4_0_, serverattr0_.VALUE as VALUE4_0_, serverattr0_.FLAGS as FLAGS4_0_ from SERVER_ATTRIBUTE serverattr0_ where serverattr0_.ID=?
+2013-09-09 18:45:52,439 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentAccount: select persistent0_.ID as ID0_0_, persistent0_.CREATED_AT as CREATED2_0_0_, persistent0_.UPDATED_AT as UPDATED3_0_0_, persistent0_.USERID as USERID0_0_, persistent0_.PASSWORD as PASSWORD0_0_, persistent0_.MODERATOR as MODERATOR0_0_ from ACCOUNT persistent0_ where persistent0_.ID=?
+2013-09-09 18:45:52,440 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentAccount: select persistent0_.ID as ID0_0_, persistent0_.CREATED_AT as CREATED2_0_0_, persistent0_.UPDATED_AT as UPDATED3_0_0_, persistent0_.USERID as USERID0_0_, persistent0_.PASSWORD as PASSWORD0_0_, persistent0_.MODERATOR as MODERATOR0_0_ from ACCOUNT persistent0_ where persistent0_.ID=?
+2013-09-09 18:45:52,440 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentAccount: select persistent0_.ID as ID0_0_, persistent0_.CREATED_AT as CREATED2_0_0_, persistent0_.UPDATED_AT as UPDATED3_0_0_, persistent0_.USERID as USERID0_0_, persistent0_.PASSWORD as PASSWORD0_0_, persistent0_.MODERATOR as MODERATOR0_0_ from ACCOUNT persistent0_ where persistent0_.ID=? for read only with rs
+2013-09-09 18:45:52,440 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentAccount: select persistent0_.ID as ID0_0_, persistent0_.CREATED_AT as CREATED2_0_0_, persistent0_.UPDATED_AT as UPDATED3_0_0_, persistent0_.USERID as USERID0_0_, persistent0_.PASSWORD as PASSWORD0_0_, persistent0_.MODERATOR as MODERATOR0_0_ from ACCOUNT persistent0_ where persistent0_.ID=? for read only with rs
+2013-09-09 18:45:52,440 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentAccount: select persistent0_.ID as ID0_0_, persistent0_.CREATED_AT as CREATED2_0_0_, persistent0_.UPDATED_AT as UPDATED3_0_0_, persistent0_.USERID as USERID0_0_, persistent0_.PASSWORD as PASSWORD0_0_, persistent0_.MODERATOR as MODERATOR0_0_ from ACCOUNT persistent0_ where persistent0_.ID=? for read only with rs
+2013-09-09 18:45:52,442 DEBUG - Static select for action ACTION_MERGE on entity net.user1.union.persistence.union.PersistentAccount: select persistent0_.ID as ID0_0_, persistent0_.CREATED_AT as CREATED2_0_0_, persistent0_.UPDATED_AT as UPDATED3_0_0_, persistent0_.USERID as USERID0_0_, persistent0_.PASSWORD as PASSWORD0_0_, persistent0_.MODERATOR as MODERATOR0_0_ from ACCOUNT persistent0_ where persistent0_.ID=?
+2013-09-09 18:45:52,442 DEBUG - Static select for action ACTION_REFRESH on entity net.user1.union.persistence.union.PersistentAccount: select persistent0_.ID as ID0_0_, persistent0_.CREATED_AT as CREATED2_0_0_, persistent0_.UPDATED_AT as UPDATED3_0_0_, persistent0_.USERID as USERID0_0_, persistent0_.PASSWORD as PASSWORD0_0_, persistent0_.MODERATOR as MODERATOR0_0_ from ACCOUNT persistent0_ where persistent0_.ID=?
+2013-09-09 18:45:52,442 DEBUG - Static select for entity net.user1.union.persistence.union.RoomAttribute: select roomattrib0_.ID as ID2_0_, roomattrib0_.CREATED_AT as CREATED2_2_0_, roomattrib0_.UPDATED_AT as UPDATED3_2_0_, roomattrib0_.ROOM as ROOM2_0_, roomattrib0_.NAME as NAME2_0_, roomattrib0_.SCOPE as SCOPE2_0_, roomattrib0_.VALUE as VALUE2_0_, roomattrib0_.FLAGS as FLAGS2_0_ from ROOM_ATTRIBUTE roomattrib0_ where roomattrib0_.ID=?
+2013-09-09 18:45:52,442 DEBUG - Static select for entity net.user1.union.persistence.union.RoomAttribute: select roomattrib0_.ID as ID2_0_, roomattrib0_.CREATED_AT as CREATED2_2_0_, roomattrib0_.UPDATED_AT as UPDATED3_2_0_, roomattrib0_.ROOM as ROOM2_0_, roomattrib0_.NAME as NAME2_0_, roomattrib0_.SCOPE as SCOPE2_0_, roomattrib0_.VALUE as VALUE2_0_, roomattrib0_.FLAGS as FLAGS2_0_ from ROOM_ATTRIBUTE roomattrib0_ where roomattrib0_.ID=?
+2013-09-09 18:45:52,443 DEBUG - Static select for entity net.user1.union.persistence.union.RoomAttribute: select roomattrib0_.ID as ID2_0_, roomattrib0_.CREATED_AT as CREATED2_2_0_, roomattrib0_.UPDATED_AT as UPDATED3_2_0_, roomattrib0_.ROOM as ROOM2_0_, roomattrib0_.NAME as NAME2_0_, roomattrib0_.SCOPE as SCOPE2_0_, roomattrib0_.VALUE as VALUE2_0_, roomattrib0_.FLAGS as FLAGS2_0_ from ROOM_ATTRIBUTE roomattrib0_ where roomattrib0_.ID=? for read only with rs
+2013-09-09 18:45:52,443 DEBUG - Static select for entity net.user1.union.persistence.union.RoomAttribute: select roomattrib0_.ID as ID2_0_, roomattrib0_.CREATED_AT as CREATED2_2_0_, roomattrib0_.UPDATED_AT as UPDATED3_2_0_, roomattrib0_.ROOM as ROOM2_0_, roomattrib0_.NAME as NAME2_0_, roomattrib0_.SCOPE as SCOPE2_0_, roomattrib0_.VALUE as VALUE2_0_, roomattrib0_.FLAGS as FLAGS2_0_ from ROOM_ATTRIBUTE roomattrib0_ where roomattrib0_.ID=? for read only with rs
+2013-09-09 18:45:52,443 DEBUG - Static select for entity net.user1.union.persistence.union.RoomAttribute: select roomattrib0_.ID as ID2_0_, roomattrib0_.CREATED_AT as CREATED2_2_0_, roomattrib0_.UPDATED_AT as UPDATED3_2_0_, roomattrib0_.ROOM as ROOM2_0_, roomattrib0_.NAME as NAME2_0_, roomattrib0_.SCOPE as SCOPE2_0_, roomattrib0_.VALUE as VALUE2_0_, roomattrib0_.FLAGS as FLAGS2_0_ from ROOM_ATTRIBUTE roomattrib0_ where roomattrib0_.ID=? for read only with rs
+2013-09-09 18:45:52,444 DEBUG - Static select for action ACTION_MERGE on entity net.user1.union.persistence.union.RoomAttribute: select roomattrib0_.ID as ID2_0_, roomattrib0_.CREATED_AT as CREATED2_2_0_, roomattrib0_.UPDATED_AT as UPDATED3_2_0_, roomattrib0_.ROOM as ROOM2_0_, roomattrib0_.NAME as NAME2_0_, roomattrib0_.SCOPE as SCOPE2_0_, roomattrib0_.VALUE as VALUE2_0_, roomattrib0_.FLAGS as FLAGS2_0_ from ROOM_ATTRIBUTE roomattrib0_ where roomattrib0_.ID=?
+2013-09-09 18:45:52,444 DEBUG - Static select for action ACTION_REFRESH on entity net.user1.union.persistence.union.RoomAttribute: select roomattrib0_.ID as ID2_0_, roomattrib0_.CREATED_AT as CREATED2_2_0_, roomattrib0_.UPDATED_AT as UPDATED3_2_0_, roomattrib0_.ROOM as ROOM2_0_, roomattrib0_.NAME as NAME2_0_, roomattrib0_.SCOPE as SCOPE2_0_, roomattrib0_.VALUE as VALUE2_0_, roomattrib0_.FLAGS as FLAGS2_0_ from ROOM_ATTRIBUTE roomattrib0_ where roomattrib0_.ID=?
+2013-09-09 18:45:52,444 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentRoom: select persistent0_.ID as ID1_0_, persistent0_.ROOM_QUALIFIER as ROOM2_1_0_, persistent0_.ROOM_ID as ROOM3_1_0_, persistent0_.PASSWORD as PASSWORD1_0_, persistent0_.CREATED_AT as CREATED5_1_0_, persistent0_.UPDATED_AT as UPDATED6_1_0_ from ROOM persistent0_ where persistent0_.ID=?
+2013-09-09 18:45:52,444 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentRoom: select persistent0_.ID as ID1_0_, persistent0_.ROOM_QUALIFIER as ROOM2_1_0_, persistent0_.ROOM_ID as ROOM3_1_0_, persistent0_.PASSWORD as PASSWORD1_0_, persistent0_.CREATED_AT as CREATED5_1_0_, persistent0_.UPDATED_AT as UPDATED6_1_0_ from ROOM persistent0_ where persistent0_.ID=?
+2013-09-09 18:45:52,445 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentRoom: select persistent0_.ID as ID1_0_, persistent0_.ROOM_QUALIFIER as ROOM2_1_0_, persistent0_.ROOM_ID as ROOM3_1_0_, persistent0_.PASSWORD as PASSWORD1_0_, persistent0_.CREATED_AT as CREATED5_1_0_, persistent0_.UPDATED_AT as UPDATED6_1_0_ from ROOM persistent0_ where persistent0_.ID=? for read only with rs
+2013-09-09 18:45:52,445 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentRoom: select persistent0_.ID as ID1_0_, persistent0_.ROOM_QUALIFIER as ROOM2_1_0_, persistent0_.ROOM_ID as ROOM3_1_0_, persistent0_.PASSWORD as PASSWORD1_0_, persistent0_.CREATED_AT as CREATED5_1_0_, persistent0_.UPDATED_AT as UPDATED6_1_0_ from ROOM persistent0_ where persistent0_.ID=? for read only with rs
+2013-09-09 18:45:52,445 DEBUG - Static select for entity net.user1.union.persistence.union.PersistentRoom: select persistent0_.ID as ID1_0_, persistent0_.ROOM_QUALIFIER as ROOM2_1_0_, persistent0_.ROOM_ID as ROOM3_1_0_, persistent0_.PASSWORD as PASSWORD1_0_, persistent0_.CREATED_AT as CREATED5_1_0_, persistent0_.UPDATED_AT as UPDATED6_1_0_ from ROOM persistent0_ where persistent0_.ID=? for read only with rs
+2013-09-09 18:45:52,445 DEBUG - Static select for action ACTION_MERGE on entity net.user1.union.persistence.union.PersistentRoom: select persistent0_.ID as ID1_0_, persistent0_.ROOM_QUALIFIER as ROOM2_1_0_, persistent0_.ROOM_ID as ROOM3_1_0_, persistent0_.PASSWORD as PASSWORD1_0_, persistent0_.CREATED_AT as CREATED5_1_0_, persistent0_.UPDATED_AT as UPDATED6_1_0_ from ROOM persistent0_ where persistent0_.ID=?
+2013-09-09 18:45:52,446 DEBUG - Static select for action ACTION_REFRESH on entity net.user1.union.persistence.union.PersistentRoom: select persistent0_.ID as ID1_0_, persistent0_.ROOM_QUALIFIER as ROOM2_1_0_, persistent0_.ROOM_ID as ROOM3_1_0_, persistent0_.PASSWORD as PASSWORD1_0_, persistent0_.CREATED_AT as CREATED5_1_0_, persistent0_.UPDATED_AT as UPDATED6_1_0_ from ROOM persistent0_ where persistent0_.ID=?
+2013-09-09 18:45:52,449 DEBUG - initializing class SessionFactoryObjectFactory
+2013-09-09 18:45:52,451 DEBUG - registered: ff8080814102dd2f014102dd30fe0000 (unnamed)
+2013-09-09 18:45:52,451 INFO  - Not binding factory to JNDI, no JNDI name configured
+2013-09-09 18:45:52,451 DEBUG - instantiated session factory
+2013-09-09 18:45:52,460 INFO  - Running hbm2ddl schema update
+2013-09-09 18:45:52,460 INFO  - fetching database metadata
+2013-09-09 18:45:52,467 INFO  - updating schema
+2013-09-09 18:45:52,467 DEBUG - processing extends queue
+2013-09-09 18:45:52,467 DEBUG - processing collection mappings
+2013-09-09 18:45:52,467 DEBUG - processing native query and ResultSetMapping mappings
+2013-09-09 18:45:52,467 DEBUG - processing association property references
+2013-09-09 18:45:52,467 DEBUG - processing foreign key constraints
+2013-09-09 18:45:52,936 INFO  - table not found: ACCOUNT
+2013-09-09 18:45:52,949 INFO  - table not found: ACCOUNT_ATTRIBUTE
+2013-09-09 18:45:52,950 INFO  - table not found: ROOM
+2013-09-09 18:45:52,950 INFO  - table not found: ROOM_ATTRIBUTE
+2013-09-09 18:45:52,951 INFO  - table not found: SERVER_ATTRIBUTE
+2013-09-09 18:45:52,952 INFO  - table not found: ACCOUNT
+2013-09-09 18:45:52,953 INFO  - table not found: ACCOUNT_ATTRIBUTE
+2013-09-09 18:45:52,954 INFO  - table not found: ROOM
+2013-09-09 18:45:52,955 INFO  - table not found: ROOM_ATTRIBUTE
+2013-09-09 18:45:52,956 INFO  - table not found: SERVER_ATTRIBUTE
+2013-09-09 18:45:52,957 INFO  - table not found: hibernate_unique_key
+2013-09-09 18:45:52,957 DEBUG - create table ACCOUNT (ID bigint not null, CREATED_AT timestamp, UPDATED_AT timestamp, USERID varchar(255), PASSWORD varchar(255), MODERATOR smallint, primary key (ID))
+2013-09-09 18:45:53,014 DEBUG - create table ACCOUNT_ATTRIBUTE (id bigint not null, CREATED_AT timestamp, UPDATED_AT timestamp, CLIENT bigint, NAME varchar(255), SCOPE varchar(255), VALUE varchar(768), FLAGS integer, primary key (id))
+2013-09-09 18:45:53,045 DEBUG - create table ROOM (ID bigint not null, ROOM_QUALIFIER varchar(255), ROOM_ID varchar(255), PASSWORD varchar(255), CREATED_AT timestamp, UPDATED_AT timestamp, primary key (ID))
+2013-09-09 18:45:53,069 DEBUG - create table ROOM_ATTRIBUTE (ID bigint not null, CREATED_AT timestamp, UPDATED_AT timestamp, ROOM bigint, NAME varchar(255), SCOPE varchar(255), VALUE varchar(768), FLAGS integer, primary key (ID))
+2013-09-09 18:45:53,090 DEBUG - create table SERVER_ATTRIBUTE (ID bigint not null, CREATED_AT timestamp, UPDATED_AT timestamp, NAME varchar(255), SCOPE varchar(255), VALUE varchar(768), FLAGS integer, primary key (ID))
+2013-09-09 18:45:53,115 DEBUG - create table hibernate_unique_key ( next_hi integer )
+2013-09-09 18:45:53,123 DEBUG - insert into hibernate_unique_key values ( 0 )
+2013-09-09 18:45:53,166 INFO  - schema update complete
+2013-09-09 18:45:53,168 DEBUG - Checking 0 named HQL queries
+2013-09-09 18:45:53,168 DEBUG - Checking 0 named SQL queries
+2013-09-09 18:45:53,170 WARN  - Datasource [union] added to server.
+2013-09-09 18:45:53,176 WARN  - Banned list file [banned.txt] not found.  Banned list not initiated.
+2013-09-09 18:45:53,182 WARN  - This node assigned ID [24038f98-21dd-4a94-9e86-4484e3583a02]
+2013-09-09 18:45:53,365 WARN  - Gateway [PrimaryGateway] bound to port [9100] on all local IP addresses.
+2013-09-09 18:45:53,365 INFO  - Gateway [PrimaryGateway] added to the Server.
+2013-09-09 18:45:53,366 WARN  - POLICY_FILE attribute missing for gateway [AdminGateway].  Using default [policy.xml].
+2013-09-09 18:45:53,379 WARN  - Gateway [AdminGateway] bound to port [9110] on all local IP addresses.
+2013-09-09 18:45:53,379 INFO  - Gateway [AdminGateway] added to the Server.
+2013-09-09 18:45:53,379 WARN  - Admin Gateway Started.
+2013-09-09 18:45:53,413 DEBUG - opened session at timestamp: 13787325533
+2013-09-09 18:45:53,416 DEBUG - begin
+2013-09-09 18:45:53,416 DEBUG - opening JDBC connection
+2013-09-09 18:45:53,416 DEBUG - current autocommit status: false
+2013-09-09 18:45:53,479 DEBUG - parse() - HQL: from net.user1.union.persistence.union.ServerAttribute
+2013-09-09 18:45:53,485 DEBUG - Keyword  'union' is being interpreted as an identifier due to: expecting IDENT, found 'union'
+2013-09-09 18:45:53,485 DEBUG - Keyword  'union' is being interpreted as an identifier due to: expecting IDENT, found 'union'
+2013-09-09 18:45:53,493 DEBUG - --- HQL AST ---
+ \-[QUERY] 'query'
+    \-[SELECT_FROM] 'SELECT_FROM'
+       \-[FROM] 'from'
+          \-[RANGE] 'RANGE'
+             \-[DOT] '.'
+                +-[DOT] '.'
+                |  +-[DOT] '.'
+                |  |  +-[DOT] '.'
+                |  |  |  +-[DOT] '.'
+                |  |  |  |  +-[IDENT] 'net'
+                |  |  |  |  \-[IDENT] 'user1'
+                |  |  |  \-[WEIRD_IDENT] 'union'
+                |  |  \-[IDENT] 'persistence'
+                |  \-[WEIRD_IDENT] 'union'
+                \-[IDENT] 'ServerAttribute'
+
+2013-09-09 18:45:53,493 DEBUG - throwQueryException() : no errors
+2013-09-09 18:45:53,533 DEBUG - select << begin [level=1, statement=select]
+2013-09-09 18:45:53,548 DEBUG - FromClause{level=1} :  net.user1.union.persistence.union.ServerAttribute (no alias) -> serverattr0_
+2013-09-09 18:45:53,549 DEBUG - select : finishing up [level=1, statement=select]
+2013-09-09 18:45:53,549 DEBUG - processQuery() :  ( SELECT ( FromClause{level=1} SERVER_ATTRIBUTE serverattr0_ ) )
+2013-09-09 18:45:53,553 DEBUG - Derived SELECT clause created.
+2013-09-09 18:45:53,556 DEBUG - Using FROM fragment [SERVER_ATTRIBUTE serverattr0_]
+2013-09-09 18:45:53,556 DEBUG - select >> end [level=1, statement=select]
+2013-09-09 18:45:53,558 DEBUG - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (SERVER_ATTRIBUTE)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'serverattr0_.ID as ID4_' {FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=null,role=null,tableName=SERVER_ATTRIBUTE,tableAlias=serverattr0_,origin=null,colums={,className=net.user1.union.persistence.union.ServerAttribute}}}
+    |  \-[SQL_TOKEN] SqlFragment: 'serverattr0_.CREATED_AT as CREATED2_4_, serverattr0_.UPDATED_AT as UPDATED3_4_, serverattr0_.NAME as NAME4_, serverattr0_.SCOPE as SCOPE4_, serverattr0_.VALUE as VALUE4_, serverattr0_.FLAGS as FLAGS4_'
+    \-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[], fromElementByTableAlias=[serverattr0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+       \-[FROM_FRAGMENT] FromElement: 'SERVER_ATTRIBUTE serverattr0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=null,role=null,tableName=SERVER_ATTRIBUTE,tableAlias=serverattr0_,origin=null,colums={,className=net.user1.union.persistence.union.ServerAttribute}}
+
+2013-09-09 18:45:53,558 DEBUG - throwQueryException() : no errors
+2013-09-09 18:45:53,567 DEBUG - HQL: from net.user1.union.persistence.union.ServerAttribute
+2013-09-09 18:45:53,567 DEBUG - SQL: select serverattr0_.ID as ID4_, serverattr0_.CREATED_AT as CREATED2_4_, serverattr0_.UPDATED_AT as UPDATED3_4_, serverattr0_.NAME as NAME4_, serverattr0_.SCOPE as SCOPE4_, serverattr0_.VALUE as VALUE4_, serverattr0_.FLAGS as FLAGS4_ from SERVER_ATTRIBUTE serverattr0_
+2013-09-09 18:45:53,567 DEBUG - throwQueryException() : no errors
+2013-09-09 18:45:53,580 DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2013-09-09 18:45:53,580 DEBUG - select serverattr0_.ID as ID4_, serverattr0_.CREATED_AT as CREATED2_4_, serverattr0_.UPDATED_AT as UPDATED3_4_, serverattr0_.NAME as NAME4_, serverattr0_.SCOPE as SCOPE4_, serverattr0_.VALUE as VALUE4_, serverattr0_.FLAGS as FLAGS4_ from SERVER_ATTRIBUTE serverattr0_
+2013-09-09 18:45:53,592 DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0)
+2013-09-09 18:45:53,593 DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1)
+2013-09-09 18:45:53,593 DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2013-09-09 18:45:53,595 DEBUG - initializing non-lazy collections
+2013-09-09 18:45:53,595 DEBUG - commit
+2013-09-09 18:45:53,595 DEBUG - committed JDBC Connection
+2013-09-09 18:45:53,595 DEBUG - aggressively releasing JDBC connection
+2013-09-09 18:45:53,595 DEBUG - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2013-09-09 18:45:53,601 WARN  - Union Server 2.1.0 (build 590) Started....OK
+2013-09-09 18:46:46,634 INFO  - Gateway [AdminGateway] accepted a connection from [/127.0.0.1:49226]
+2013-09-09 18:46:46,655 DEBUG - Processing a MESSAGE_RECEIVED for session 1
+2013-09-09 18:46:46,658 DEBUG - Received PolicyFile request from [127.0.0.1]. Sending [<cross-domain-policy>
+<allow-access-from domain="*" to-ports="80,443,9100,9110" />
+</cross-domain-policy>
+]
+2013-09-09 18:46:46,741 INFO  - Gateway [AdminGateway] accepted a connection from [/127.0.0.1:49227]
+2013-09-09 18:46:46,742 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:46:46,752 INFO  - Client [1] connected to the server with address [127.0.0.1]
+2013-09-09 18:46:46,752 DEBUG - Processing from client [1] message [<U><M>C2S_CLIENT_HELLO(u65)</M><L><A>Reactor</A><A>Flash Player MAC 11,4,402,265 StandAlone (debug, localWithNetwork); 2.1.0 (Build 1293)</A><A>1.10.3</A></L></U>]
+2013-09-09 18:46:46,754 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_HELLO(u66)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>150599820538d3ce0a-2d2d-4591-9f17-d6718aaea9b9</A><A>1.10.3</A><A>true</A><A></A><A>0</A></L></U>]
+2013-09-09 18:46:46,754 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_METADATA(u29)</M><L><A>1</A></L></U>]
+2013-09-09 18:46:46,755 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_CT]]></A><A><![CDATA[1378732606754]]></A><A>36</A></L></U>]
+2013-09-09 18:46:46,755 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_IP]]></A><A><![CDATA[127.0.0.1]]></A><A>32</A></L></U>]
+2013-09-09 18:46:46,756 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_GATEWAY_ID]]></A><A><![CDATA[AdminGateway]]></A><A>96</A></L></U>]
+2013-09-09 18:46:46,756 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_GATEWAY_TYPE]]></A><A><![CDATA[Admin]]></A><A>96</A></L></U>]
+2013-09-09 18:46:46,756 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_CONNECTION_TYPE]]></A><A><![CDATA[XML/Socket]]></A><A>96</A></L></U>]
+2013-09-09 18:46:46,756 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_CLIENT_TYPE]]></A><A><![CDATA[Reactor]]></A><A>96</A></L></U>]
+2013-09-09 18:46:46,756 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_USERAGENT]]></A><A><![CDATA[Flash Player MAC 11,4,402,265 StandAlone (debug, localWithNetwork); 2.1.0 (Build 1293)]]></A><A>96</A></L></U>]
+2013-09-09 18:46:46,756 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_UPC_VERSION]]></A><A><![CDATA[1.10.3]]></A><A>96</A></L></U>]
+2013-09-09 18:46:46,757 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_ROLES]]></A><A><![CDATA[0]]></A><A>68</A></L></U>]
+2013-09-09 18:46:46,757 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_READY(u63)</M><L></L></U>]
+2013-09-09 18:46:46,789 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:46:46,790 DEBUG - Processing from client [1] message [<U><M>C2S_LOGIN_ADMIN(a1)</M><L><A>password</A></L></U>]
+2013-09-09 18:46:46,792 DEBUG - Server sending to client [1] message [<U><M>S2C_CLIENT_ATTR_UPDATE(u8)</M><L><A><![CDATA[]]></A><A>1</A><A><![CDATA[]]></A><A><![CDATA[_ROLES]]></A><A><![CDATA[4]]></A><A>68</A></L></U>]
+2013-09-09 18:46:46,792 DEBUG - Server sending to client [1] message [<U><M>S2C_LOGIN_ADMIN_RESULT(a2)</M><L><A>SUCCESS</A></L></U>]
+2013-09-09 18:46:46,892 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:46:46,893 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>1</A></L></U>]
+2013-09-09 18:46:46,895 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>1</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>292|1784|5.509433962264151|33.660377358490564|5.456312130951491|33.3358248000598|5.456312130951491|33.3358248000598|0</A></L></U>]
+2013-09-09 18:46:46,898 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:46:46,916 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>57480</A><A>DEBUG</A><A>16535224</A><A>1.9248046875</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:46:46,917 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:46:46,917 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>57499</A><A>DEBUG</A><A>16535224</A><A>1.9248046875</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:46:46,917 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:46:46,917 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>57499</A><A>DEBUG</A><A>16535224</A><A>1.9248046875</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:46:49,631 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:46:49,632 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>2</A></L></U>]
+2013-09-09 18:46:49,633 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>2</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.39992001599680066|0.39992001599680066|0.19996000799840033|0.19996000799840033</A><A>326|2910|5.821428571428571|51.964285714285715|5.456312130951491|33.3358248000598|5.456312130951491|33.3358248000598|0</A></L></U>]
+2013-09-09 18:46:51,080 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:46:51,080 DEBUG - Processing from client [1] message [<U><M>C2S_WATCH_FOR_ROOMS(u26)</M><L><A></A><A>true</A></L></U>]
+2013-09-09 18:46:51,083 DEBUG - Server sending to client [1] message [<U><M>S2C_WATCH_FOR_ROOMS_RESULT(u42)</M><L><A><![CDATA[]]></A><A>true</A><A>SUCCESS</A></L></U>]
+2013-09-09 18:46:51,083 DEBUG - Server sending to client [1] message [<U><M>S2C_ROOMLIST_SNAPSHOT(u38)</M><L><A></A><A><![CDATA[]]></A><A>true</A></L></U>]
+2013-09-09 18:46:52,724 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:46:52,724 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVERMODULELIST_SNAPSHOT(u151)</M><L><A>3</A></L></U>]
+2013-09-09 18:46:52,724 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVERMODULELIST_SNAPSHOT(u152)</M><L><A>3</A><A><![CDATA[]]></A></L></U>]
+2013-09-09 18:46:56,824 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:46:56,877 DEBUG - Creating new CacheManager with default config
+2013-09-09 18:46:56,878 DEBUG - Configuring ehcache from classpath.
+2013-09-09 18:46:56,883 DEBUG - Configuring ehcache from ehcache.xml found in the classpath: file:/Users/piyushshah/Development/git/zalzero-findit/union_2.1.0/lib/ehcache.xml
+2013-09-09 18:46:56,883 DEBUG - Configuring ehcache from URL: file:/Users/piyushshah/Development/git/zalzero-findit/union_2.1.0/lib/ehcache.xml
+2013-09-09 18:46:56,883 DEBUG - Configuring ehcache from InputStream
+2013-09-09 18:46:56,903 DEBUG - Ignoring ehcache attribute xmlns:xsi
+2013-09-09 18:46:56,903 DEBUG - Ignoring ehcache attribute xsi:noNamespaceSchemaLocation
+2013-09-09 18:46:56,904 DEBUG - Disk Store Path: /var/folders/86/jb6f2mbn7jgb1cb6mc4w2ynm0000gp/T/
+2013-09-09 18:46:56,910 DEBUG - No CacheManagerEventListenerFactory class specified. Skipping...
+2013-09-09 18:46:56,910 DEBUG - No CachePeerListenerFactoryConfiguration specified. Not configuring a CacheManagerPeerListener.
+2013-09-09 18:46:56,910 DEBUG - No CachePeerProviderFactoryConfiguration specified. Not configuring a CacheManagerPeerProvider.
+2013-09-09 18:46:56,922 DEBUG - No BootstrapCacheLoaderFactory class specified. Skipping...
+2013-09-09 18:46:56,922 DEBUG - No CacheLoaderFactory class specified. Skipping...
+2013-09-09 18:46:56,922 DEBUG - No CacheExceptionHandlerFactory class specified. Skipping...
+2013-09-09 18:46:56,927 DEBUG - Initialized net.sf.ehcache.store.LfuMemoryStore for filterCache
+2013-09-09 18:46:56,927 DEBUG - Initialised cache: filterCache
+2013-09-09 18:46:56,943 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:01,979 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:01,980 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVERMODULELIST_SNAPSHOT(u151)</M><L><A>4</A></L></U>]
+2013-09-09 18:47:01,980 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVERMODULELIST_SNAPSHOT(u152)</M><L><A>4</A><A><![CDATA[]]></A></L></U>]
+2013-09-09 18:47:06,823 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:06,852 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:08,975 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:08,975 DEBUG - Processing from client [1] message [<U><M>C2S_WATCH_FOR_ROOMS(u26)</M><L><A></A><A>true</A></L></U>]
+2013-09-09 18:47:08,975 DEBUG - Server sending to client [1] message [<U><M>S2C_WATCH_FOR_ROOMS_RESULT(u42)</M><L><A><![CDATA[]]></A><A>true</A><A>ALREADY_WATCHING</A></L></U>]
+2013-09-09 18:47:15,233 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:15,234 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>5</A></L></U>]
+2013-09-09 18:47:15,234 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:15,235 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>5</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>839|4157|10.358024691358025|51.32098765432099|19.301340860973887|83.7332392378264|19.301340860973887|83.7332392378264|0</A></L></U>]
+2013-09-09 18:47:15,235 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:47:15,235 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>85817</A><A>DEBUG</A><A>20622720</A><A>1.865234375</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:47:15,235 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:47:15,236 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>85817</A><A>DEBUG</A><A>20622720</A><A>1.865234375</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:47:16,823 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:16,851 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:17,023 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:17,024 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>6</A></L></U>]
+2013-09-09 18:47:17,024 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>6</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>1035|5282|12.46987951807229|63.63855421686747|19.301340860973887|83.7332392378264|19.301340860973887|83.7332392378264|0</A></L></U>]
+2013-09-09 18:47:17,024 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:47:17,025 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>87606</A><A>DEBUG</A><A>20622720</A><A>1.865234375</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:47:22,073 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:22,074 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>7</A></L></U>]
+2013-09-09 18:47:22,074 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>7</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>1086|6057|12.340909090909092|68.82954545454545|36.116391285275625|277.8183945021202|36.116391285275625|277.8183945021202|0</A></L></U>]
+2013-09-09 18:47:22,075 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:47:22,075 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>92657</A><A>DEBUG</A><A>20622720</A><A>1.8759765625</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:47:26,823 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:26,824 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:26,851 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:27,105 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:27,106 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>8</A></L></U>]
+2013-09-09 18:47:27,106 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>8</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>1282|6995|13.78494623655914|75.21505376344086|38.950715421303656|186.40699523052464|38.950715421303656|277.8183945021202|0</A></L></U>]
+2013-09-09 18:47:27,106 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:47:27,106 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>97688</A><A>DEBUG</A><A>20622720</A><A>1.8857421875</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:47:31,067 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:31,068 DEBUG - Processing from client [1] message [<U><M>C2S_WATCH_FOR_ACCOUNTS(u98)</M><L></L></U>]
+2013-09-09 18:47:31,069 DEBUG - opened session at timestamp: 13787326510
+2013-09-09 18:47:31,069 DEBUG - begin
+2013-09-09 18:47:31,069 DEBUG - opening JDBC connection
+2013-09-09 18:47:31,070 DEBUG - current autocommit status: false
+2013-09-09 18:47:31,071 DEBUG - parse() - HQL: from net.user1.union.persistence.union.PersistentAccount
+2013-09-09 18:47:31,073 DEBUG - Keyword  'union' is being interpreted as an identifier due to: expecting IDENT, found 'union'
+2013-09-09 18:47:31,073 DEBUG - Keyword  'union' is being interpreted as an identifier due to: expecting IDENT, found 'union'
+2013-09-09 18:47:31,076 DEBUG - --- HQL AST ---
+ \-[QUERY] 'query'
+    \-[SELECT_FROM] 'SELECT_FROM'
+       \-[FROM] 'from'
+          \-[RANGE] 'RANGE'
+             \-[DOT] '.'
+                +-[DOT] '.'
+                |  +-[DOT] '.'
+                |  |  +-[DOT] '.'
+                |  |  |  +-[DOT] '.'
+                |  |  |  |  +-[IDENT] 'net'
+                |  |  |  |  \-[IDENT] 'user1'
+                |  |  |  \-[WEIRD_IDENT] 'union'
+                |  |  \-[IDENT] 'persistence'
+                |  \-[WEIRD_IDENT] 'union'
+                \-[IDENT] 'PersistentAccount'
+
+2013-09-09 18:47:31,076 DEBUG - throwQueryException() : no errors
+2013-09-09 18:47:31,078 DEBUG - select << begin [level=1, statement=select]
+2013-09-09 18:47:31,079 DEBUG - FromClause{level=1} :  net.user1.union.persistence.union.PersistentAccount (no alias) -> persistent0_
+2013-09-09 18:47:31,079 DEBUG - select : finishing up [level=1, statement=select]
+2013-09-09 18:47:31,079 DEBUG - processQuery() :  ( SELECT ( FromClause{level=1} ACCOUNT persistent0_ ) )
+2013-09-09 18:47:31,082 DEBUG - Derived SELECT clause created.
+2013-09-09 18:47:31,082 DEBUG - Using FROM fragment [ACCOUNT persistent0_]
+2013-09-09 18:47:31,082 DEBUG - select >> end [level=1, statement=select]
+2013-09-09 18:47:31,084 DEBUG - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (ACCOUNT)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'persistent0_.ID as ID0_' {FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=null,role=null,tableName=ACCOUNT,tableAlias=persistent0_,origin=null,colums={,className=net.user1.union.persistence.union.PersistentAccount}}}
+    |  \-[SQL_TOKEN] SqlFragment: 'persistent0_.CREATED_AT as CREATED2_0_, persistent0_.UPDATED_AT as UPDATED3_0_, persistent0_.USERID as USERID0_, persistent0_.PASSWORD as PASSWORD0_, persistent0_.MODERATOR as MODERATOR0_'
+    \-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[], fromElementByTableAlias=[persistent0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+       \-[FROM_FRAGMENT] FromElement: 'ACCOUNT persistent0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=null,role=null,tableName=ACCOUNT,tableAlias=persistent0_,origin=null,colums={,className=net.user1.union.persistence.union.PersistentAccount}}
+
+2013-09-09 18:47:31,084 DEBUG - throwQueryException() : no errors
+2013-09-09 18:47:31,084 DEBUG - HQL: from net.user1.union.persistence.union.PersistentAccount
+2013-09-09 18:47:31,084 DEBUG - SQL: select persistent0_.ID as ID0_, persistent0_.CREATED_AT as CREATED2_0_, persistent0_.UPDATED_AT as UPDATED3_0_, persistent0_.USERID as USERID0_, persistent0_.PASSWORD as PASSWORD0_, persistent0_.MODERATOR as MODERATOR0_ from ACCOUNT persistent0_
+2013-09-09 18:47:31,084 DEBUG - throwQueryException() : no errors
+2013-09-09 18:47:31,085 DEBUG - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+2013-09-09 18:47:31,086 DEBUG - select persistent0_.ID as ID0_, persistent0_.CREATED_AT as CREATED2_0_, persistent0_.UPDATED_AT as UPDATED3_0_, persistent0_.USERID as USERID0_, persistent0_.PASSWORD as PASSWORD0_, persistent0_.MODERATOR as MODERATOR0_ from ACCOUNT persistent0_
+2013-09-09 18:47:31,098 DEBUG - about to open ResultSet (open ResultSets: 0, globally: 0)
+2013-09-09 18:47:31,098 DEBUG - about to close ResultSet (open ResultSets: 1, globally: 1)
+2013-09-09 18:47:31,099 DEBUG - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+2013-09-09 18:47:31,099 DEBUG - initializing non-lazy collections
+2013-09-09 18:47:31,099 DEBUG - commit
+2013-09-09 18:47:31,099 DEBUG - committed JDBC Connection
+2013-09-09 18:47:31,099 DEBUG - aggressively releasing JDBC connection
+2013-09-09 18:47:31,099 DEBUG - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+2013-09-09 18:47:31,100 DEBUG - Server sending to client [1] message [<U><M>S2C_ACCOUNTLIST_SNAPSHOT(u127)</M><L><A></A><A><![CDATA[]]></A></L></U>]
+2013-09-09 18:47:31,100 DEBUG - Server sending to client [1] message [<U><M>S2C_WATCH_FOR_ACCOUNTS_RESULT(u109)</M><L><A>SUCCESS</A></L></U>]
+2013-09-09 18:47:32,165 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:32,165 DEBUG - Processing from client [1] message [<U><M>C2S_WATCH_FOR_BANNED_ADDRESSES(u143)</M><L></L></U>]
+2013-09-09 18:47:32,170 DEBUG - Server sending to client [1] message [<U><M>S2C_BANNED_LIST_SNAPSHOT(u142)</M><L><A></A><A><![CDATA[]]></A></L></U>]
+2013-09-09 18:47:32,170 DEBUG - Server sending to client [1] message [<U><M>S2C_WATCH_FOR_BANNED_ADDRESSES_RESULT(u144)</M><L><A>SUCCESS</A></L></U>]
+2013-09-09 18:47:33,195 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:33,195 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVERMODULELIST_SNAPSHOT(u151)</M><L><A>9</A></L></U>]
+2013-09-09 18:47:33,195 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVERMODULELIST_SNAPSHOT(u152)</M><L><A>9</A><A><![CDATA[]]></A></L></U>]
+2013-09-09 18:47:33,928 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:33,929 DEBUG - Processing from client [1] message [<U><M>C2S_GET_UPC_STATS_SNAPSHOT(u154)</M><L><A>10</A></L></U>]
+2013-09-09 18:47:33,929 DEBUG - Server sending to client [1] message [<U><M>S2C_GET_UPC_STATS_SNAPSHOT_RESULT(u155)</M><L><A>10</A><A>SUCCESS</A></L></U>]
+2013-09-09 18:47:36,855 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:36,855 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:36,906 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:37,105 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:37,106 DEBUG - Processing from client [1] message [<U><M>C2S_GET_UPC_STATS_SNAPSHOT(u154)</M><L><A>11</A></L></U>]
+2013-09-09 18:47:37,106 DEBUG - Server sending to client [1] message [<U><M>S2C_GET_UPC_STATS_SNAPSHOT_RESULT(u155)</M><L><A>11</A><A>SUCCESS</A></L></U>]
+2013-09-09 18:47:39,210 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:39,210 DEBUG - Processing from client [1] message [<U><M>C2S_GET_NODELIST_SNAPSHOT(u165)</M><L><A>12</A></L></U>]
+2013-09-09 18:47:39,210 DEBUG - Server sending to client [1] message [<U><M>S2C_NODELIST_SNAPSHOT(u166)</M><L><A>12</A><A></A></L></U>]
+2013-09-09 18:47:41,276 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:41,277 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>13</A></L></U>]
+2013-09-09 18:47:41,277 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>13</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>1638|10406|15.30841121495327|97.25233644859813|25.121727471596923|240.7028438360031|38.950715421303656|277.8183945021202|0</A></L></U>]
+2013-09-09 18:47:42,156 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:42,156 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>14</A></L></U>]
+2013-09-09 18:47:42,157 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>14</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>1673|10994|15.49074074074074|101.79629629629629|25.121727471596923|240.7028438360031|38.950715421303656|277.8183945021202|0</A></L></U>]
+2013-09-09 18:47:46,855 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:46,856 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:46,905 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:47,156 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:47,157 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>15</A></L></U>]
+2013-09-09 18:47:47,158 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>15</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>1853|11742|16.398230088495577|103.91150442477876|36.5584084339398|227.172249617412|38.950715421303656|277.8183945021202|0</A></L></U>]
+2013-09-09 18:47:48,088 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:48,088 DEBUG - Processing from client [1] message [<U><M>C2S_WATCH_FOR_ROOMS(u26)</M><L><A></A><A>true</A></L></U>]
+2013-09-09 18:47:48,089 DEBUG - Server sending to client [1] message [<U><M>S2C_WATCH_FOR_ROOMS_RESULT(u42)</M><L><A><![CDATA[]]></A><A>true</A><A>ALREADY_WATCHING</A></L></U>]
+2013-09-09 18:47:51,088 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:51,088 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>16</A></L></U>]
+2013-09-09 18:47:51,089 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:51,089 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>16</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>1965|12407|16.794871794871796|106.04273504273505|28.49147799542101|169.16815059781226|38.950715421303656|277.8183945021202|0</A></L></U>]
+2013-09-09 18:47:51,089 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:47:51,089 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>121671</A><A>DEBUG</A><A>21601352</A><A>2.00341796875</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:47:51,090 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:47:51,090 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>121672</A><A>DEBUG</A><A>21601352</A><A>2.00341796875</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:47:52,188 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:52,189 DEBUG - Processing from client [1] message [<U><M>C2S_GET_GATEWAYS_SNAPSHOT(u167)</M><L><A>17</A></L></U>]
+2013-09-09 18:47:52,189 DEBUG - Server sending to client [1] message [<U><M>S2C_GATEWAYS_SNAPSHOT(u168)</M><L><A>17</A><A><![CDATA[PrimaryGateway]]></A><A>TCP</A><A>TOTAL|0</A><A></A><A></A><A>port|9100|access_control_allow_origin|*|policy_file|policy.xml|ip|</A><A>0.0|0.0|0.0|0.0</A><A>0|0|0.0|0.0|0.0|0.0|0.0|0.0|0</A><A><![CDATA[AdminGateway]]></A><A>Admin</A><A>SOCKETPOLICYFILE|1|XMLSOCKETCLIENT|1|TOTAL|2</A><A>Reactor|1</A><A>1.10.3|1</A><A>port|9110|policy_file|policy.xml|ip|</A><A>0.0|0.39992001599680066|0.0|0.19996000799840033</A><A>2017|13385|17.093220338983052|113.4322033898305|28.49147799542101|169.16815059781226|38.950715421303656|277.8183945021202|0</A></L></U>]
+2013-09-09 18:47:52,189 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVER_DATA(a6)</M><L></L></U>]
+2013-09-09 18:47:52,190 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVER_DATA(a7)</M><L><A><![CDATA[Union Server 2.1.0 (build 590)]]></A><A>1378732549418|19800000</A><A>122771</A><A>DEBUG</A><A>21601352</A><A>2.00341796875</A><A>1</A><A>1</A><A>0</A><A>0</A></L></U>]
+2013-09-09 18:47:53,956 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:53,957 DEBUG - Processing from client [1] message [<U><M>C2S_GET_SERVERMODULELIST_SNAPSHOT(u151)</M><L><A>18</A></L></U>]
+2013-09-09 18:47:53,957 DEBUG - Server sending to client [1] message [<U><M>S2C_SERVERMODULELIST_SNAPSHOT(u152)</M><L><A>18</A><A><![CDATA[]]></A></L></U>]
+2013-09-09 18:47:56,895 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:56,895 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:47:56,898 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:06,905 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:06,937 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:16,904 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:16,938 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:26,904 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:26,937 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:36,903 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:36,937 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:46,937 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:46,950 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:56,987 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:48:57,021 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:07,020 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:07,049 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:17,019 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:17,049 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:27,020 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:27,048 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:37,068 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:37,102 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:47,069 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:47,102 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:57,102 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:49:57,147 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:50:07,153 DEBUG - Processing a MESSAGE_RECEIVED for session 2
+2013-09-09 18:50:07,185 DEBUG - Processing a MESSAGE_RECEIVED for session 2
