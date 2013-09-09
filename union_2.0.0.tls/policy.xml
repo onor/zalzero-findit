@@ -1,3 +1,0 @@
-<cross-domain-policy>
-<allow-access-from domain="*" to-ports="80,443,8000,9933" />
-</cross-domain-policy>
