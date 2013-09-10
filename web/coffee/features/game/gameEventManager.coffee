@@ -40,7 +40,7 @@ define ["../../config/config","../../config/version","../../helper/confirmBox","
 				
 			#connecting to union	      
 			jQuery ->
-				orbiter.connect config.unionConnection.url, config.unionConnection.port
+				orbiter.secureConnect config.unionConnection.url, config.unionConnection.port
 
 		roomAttrUpdateListener = (e, roomId, attrKey, attrVal) ->
 			if zzGlobals.roomVars[attrKey]

@@ -27,7 +27,7 @@ define(["../../config/config", "../../config/version", "../../helper/confirmBox"
         orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.CLOSE, closeListener, this);
       }
       return jQuery(function() {
-        return orbiter.connect(config.unionConnection.url, config.unionConnection.port);
+        return orbiter.secureConnect(config.unionConnection.url, config.unionConnection.port);
       });
     };
     roomAttrUpdateListener = function(e, roomId, attrKey, attrVal) {
