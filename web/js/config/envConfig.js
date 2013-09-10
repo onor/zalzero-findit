@@ -3,8 +3,8 @@
 define([], function() {
   return {
     unionConnection: {
-      url: document.domain,
-      port: 9933
+      url: "www.zalerio.com",
+      port: 443
     },
     showLog: false
   };
