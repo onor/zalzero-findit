@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Mon Sep 09 18:45:50 GMT+05:30 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0141-02dd-289d-000004ad5840 
-on database directory /Users/piyushshah/Development/git/zalzero-findit/union_2.1.0/unionDB  with class loader sun.misc.Launcher$AppClassLoader@558fe7c3 
-Loaded from file:/Users/piyushshah/Development/git/zalzero-findit/union_2.1.0/lib/derby.jar
-java.vendor=Apple Inc.
-java.runtime.version=1.6.0_51-b11-456-11M4508
-user.dir=/Users/piyushshah/Development/git/zalzero-findit/union_2.1.0
+Fri Sep 13 05:03:26 UTC 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0141-15b3-ca1e-0000019c9ac8 
+on database directory /home/jenkins/zalzero-findit/union_2.1.0/unionDB in READ ONLY mode with class loader sun.misc.Launcher$AppClassLoader@61e63e3d 
+Loaded from file:/home/jenkins/zalzero-findit/union_2.1.0/lib/derby.jar
+java.vendor=Sun Microsystems Inc.
+java.runtime.version=1.6.0_24-b24
+user.dir=/home/jenkins/zalzero-findit/union_2.1.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
