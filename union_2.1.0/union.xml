@@ -8,20 +8,28 @@
     </server>
     <gateways>
         <gateway id="PrimaryGateway" type="TCP">
-            <ip>173.255.244.64</ip>
-            <port>80</port>
+            <ip>127.0.0.1</ip>
+            <port>8330</port>
             <policy_file>policy.xml</policy_file>
         </gateway>
+        <!--
 	<gateway id="SecureGateway" type="SecureTCP">
 	    <ip>173.255.244.64</ip>
 	    <port>443</port>
-	    <keystoreFile>/root/.keystore</keystoreFile>
+	    <keystoreFile>/home/jenkins/.keystore</keystoreFile>
 	    <keystorePassword>de0re,2569</keystorePassword>
             <policy_file>policy.xml</policy_file>
         </gateway>
+        -->
    </gateways>
 
     <modules>
+	<module>
+                <id>zalerioGameServer</id>
+                <source type="class">
+                 net.user1.union.zz.zalerioGame.ZalerioGameServer
+                </source>
+        </module>
     </modules>    
     <persistence>
         <datasource id="union"/>
